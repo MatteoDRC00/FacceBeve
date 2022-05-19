@@ -1,21 +1,25 @@
 <?php
 /**
- * @access public
- * @package Entity
- */
+ * La classe EProprietario estende la classe EUser, essa contiene tutti gli attributi e metodi base riguardanti i proprietari di locali. 
+ * Gli attributi che la descrivono sono:
+ * - name: nome del proprietario;
+ * - cognome: cognome del proprietario;
+ * - email: email proprietario; 
+ * - locali: locali gestiti da un utente di tipo Proprietario.
+ *  @access public 
+ *  @author Gruppo 8
+ *  @package Entity
+ */ 
     class EProprietario extends EUser {
 
         private string $email;
-        private string $password;
         private string $nome;
         private string $cognome;
-        private string $username;
         private array $locali;
 
 
-        public function __construct(string $nome, string $cognome, string $username, string $email, string $password)
-        {
-            parent::__costructor();
+        public function __construct(string $nome, string $cognome, string $email){
+            parent::__costructor($username,$password;);
             $this->nome = $nome;
             $this->cognome = $cognome;
             $this->username = $username;
@@ -111,11 +115,23 @@
         {
             return $this->mierecensioni;
         }
+		
+		/**
+         * @return object
+         */
+        public function GetLocale($nome){
+			$Y = 0;
+			foreach($locali as $X){
+				if($X::==$nome)
+					$Y=$X;;
+			} 
+			return $Y;
+        }
 
         /**
          * @param array $mieilocali
          */
-        public function AddLocaleGstito($locale): void
+        public function AddLocaleGestito($locale): void
         {
             $this->mierecensioni.array_push($locale);
         }
