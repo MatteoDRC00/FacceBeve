@@ -18,7 +18,7 @@
         private string $nome;
         private string $cognome;
         private array $mierecensioni;
-		private array $localiprefe;
+		private array $localipreferiti;
 		private date $iscrizione;
 
 
@@ -28,7 +28,7 @@
             $this->cognome = $cognome;
             $this->email = $email;
             $this->mierecensioni = array();
-			$this->localiprefe = array();
+			$this->localipreferiti = array();
 			$this->iscrizione = $prima;
         }
 
@@ -144,7 +144,7 @@
          */
         public function addRecensione($locale): void
         {
-            $this->localiprefe.array_push($locale);
+            $this->localipreferiti.array_push($locale);
         }
 
 

@@ -5,7 +5,6 @@
  * - name: nome del proprietario;
  * - cognome: cognome del proprietario;
  * - email: email proprietario; 
- * - locali: locali gestiti da un utente di tipo Proprietario.
  *  @access public 
  *  @author Gruppo 8
  *  @package Entity
@@ -15,7 +14,6 @@
         private string $email;
         private string $nome;
         private string $cognome;
-        private array $locali;
 
 
         public function __construct(string $nome, string $cognome, string $email){
@@ -107,18 +105,15 @@
         {
             $this->username = $username;
         }
-
-        /**
-         * @return array
-         */
+/**
+        
         public function GetLocaliGestiti(): array
         {
             return $this->mierecensioni;
         }
+		*/
 		
 		/**
-         * @return object
-         */
         public function GetLocale($nome){
 			$Y = 0;
 			foreach($locali as $X){
@@ -126,17 +121,16 @@
 					$Y=$X;;
 			} 
 			return $Y;
-        }
+        } */
 
-        /**
-         * @param array $mieilocali
-         */
+/**
+       
         public function AddLocaleGestito($locale): void
         {
             $this->mierecensioni.array_push($locale);
         }
         
-		
+		*/
 
 
     }
