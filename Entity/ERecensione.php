@@ -2,29 +2,34 @@
 class ERecensione {
 
     private EUtente $utente;
+	private ELocale $locale;
     private string $titolo;
     private string $descrizione;
     private int $voto;
     private DateTime $data;
+	private boolean $segnalata;
+	private int $counter;
 
     /**
-     * @param EUserRegistrato $utente
+     * @param EUtente $utente
      * @param string $titolo
      * @param string $descrizione
      * @param int $voto
      * @param DateTime $data
      */
-    public function __construct(EUtente $utente, string $titolo, string $descrizione, int $voto, DateTime $data)
-    {
+    public function __construct(EUtente $utente, string $titolo, string $descrizione, int $voto, DateTime $data,ELocale $locale){
         $this->utente = $utente;
         $this->titolo = $titolo;
         $this->descrizione = $descrizione;
         $this->voto = $voto;
         $this->data = $data;
+		$this->locale=$locale;
+		$this->segnalata=false;
+		$this->counter=0;
     }
 
     /**
-     * @return EUserRegistrato
+     * @return EUtente
      */
     public function getUtente(): EUtente
     {
@@ -32,7 +37,7 @@ class ERecensione {
     }
 
     /**
-     * @param EUserRegistrato $utente
+     * @param EUtente $utente
      */
     public function setUtente(EUtente $utente): void
     {
@@ -103,9 +108,57 @@ class ERecensione {
         $this->data = $data;
     }
 
+    /**
+	* @return ELocale $locale
+	*/
+    public function getLocale() : ELocale
+	{
+		return $locale;
+	}
 
+    /**
+     * @param ELocale $locale
+     */
+    public function setLocale(ELocale $locale): void
+    {
+        $this->locale = $locale;
+    }
+	
+	/**
+	* @return boolean $segnalato
+	*/
+	public function getSegnalato() : boolean{
+		return $segnalata;
+	}
+	
+	/**
+     * @param boolean $segnalata
+     */
+    public function setSegnalato(boolean $segnalato): void
+    {
+        $this->segnalata = $segnalato;
     
-
+	
+	/**
+	* @return int $counter
+	*/
+	public function getNsegnalazioni() : int{
+		return $counter;
+	}
+	
+	/**
+     * @param int $counter
+     */
+    public function setNsegnalazioni(int $counter): void
+    {
+        $this->counter = $counter;
+    }
+	
+	
+	
+	
+	
+	
 
 }
 ?>
