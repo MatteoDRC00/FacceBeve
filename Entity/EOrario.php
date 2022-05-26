@@ -4,7 +4,7 @@ class EOrario
 {
     private $orarioSettimanale= array('lunedi'=>"", 'martedi'=>"", 'mercoledi'=>"", 'giovedi'=>"", 'venerdi'=>"" ,'sabato'=>"", 'domenica'=>"");
 
-
+     //asadasdasdf
 
     public function __construct(array $settimana){
         foreach ($this->orarioSettimanale as $orario){
