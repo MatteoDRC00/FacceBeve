@@ -1,7 +1,7 @@
 <?php
 class ERecensione {
 
-    private EUserRegistrato $utente;
+    private EUtente $utente;
     private string $titolo;
     private string $descrizione;
     private int $voto;
@@ -14,7 +14,7 @@ class ERecensione {
      * @param int $voto
      * @param DateTime $data
      */
-    public function __construct(EUserRegistrato $utente, string $titolo, string $descrizione, int $voto, DateTime $data)
+    public function __construct(EUtente $utente, string $titolo, string $descrizione, int $voto, DateTime $data)
     {
         $this->utente = $utente;
         $this->titolo = $titolo;
@@ -26,7 +26,7 @@ class ERecensione {
     /**
      * @return EUserRegistrato
      */
-    public function getUtente(): EUserRegistrato
+    public function getUtente(): EUtente
     {
         return $this->utente;
     }
@@ -34,7 +34,7 @@ class ERecensione {
     /**
      * @param EUserRegistrato $utente
      */
-    public function setUtente(EUserRegistrato $utente): void
+    public function setUtente(EUtente $utente): void
     {
         $this->utente = $utente;
     }
