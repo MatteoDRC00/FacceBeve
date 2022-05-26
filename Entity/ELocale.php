@@ -1,86 +1,201 @@
 <?php
- public class  ELocale{
-     private $nome;
-     //private $Proprietario; 
-     private $citta;
-	 /**Attività associate al locale, inserite durante la creazione del profilo "Locale" e scelte da una lista di predefiniti
-	 */
-     private $attivita=array();
-     private $indirizzo;
-	 private $numerotel = "";
-	 /**
-     * @AssociationType Entity.ERecensione
-     * @AssociationMultiplicity 0..*
-     */
-    private $recensioni = array();
-	/**
-     * @AssociationType Entity.EEvento
-     * @AssociationMultiplicity 0..*
-     */
-	private $eventi = array();
-     //Attributi da completare
-     
-     public function __construct($nom,$citt,$attivit,$indirizz){
-         $this->nome=$nom;
-         $this->citta=$citt;
-         $this->attivita=$attivit;
-         $this->indirizzo=$indirizz;
-     }
-     
-     public function getSbagliato(){  //Come se non esistesse
-         return $this->nome+"\n"+$this->citta+"\n"+$this->attivita+"\n"+$this->indirizzo+"\n"+$this->recensioni;
-     }
-	 
-	 public function addRecensione(ERecensione $commento) {
-        array_push($this->recensioni, $commento);
-    }
 
-     public function getValutazioneMedia() {
-        $somma=0;
-        $voti=count($this->recensioni);
-        if ($voti>1) {
-            foreach ($this->recensioni as $commento) {
-                $somma+=$commento->voto;
-            }
-            return $somma/$voti;
+    /** La classe ELocale identifica un singolo locale e raggruppa tutti gli attributi che caratterizzano il locale:
+     *  - nome: identifica il nome del locale
+     *  - descrizione: identifica le informazioni generali sul locale
+     *  - num_telefono: identifica il numero di telefono
+     *  - valutazione_media: indentifica il voto medio delle recensioni del locale
+     *  - proprietario: indentifica il proprietario del locale
+     *  - categoria: identifica la categoria del locale, cioè il tipo
+     *  - localizzazione: identifica la posizione geografica in cui si trova il locale
+     *  - eventi_organizzati: è l'insieme degli eventi organizzati dal locale
+     *  - orario_apertura: indica gli orari in cui il locale è aperto in base al giorno della settimana
+     *  @author Gruppo8
+     *  @package Entity
+     */
+
+    class  ELocale{
+
+        private string $nome;
+        private string $descrizione;
+        private string $num_telefono;
+        private int $valutazione_media;
+        private EProprietario $proprietario;
+        private ECategoria $categoria;
+        private ELocalizzazione $localizzazione;
+        private $eventi_organizzati = array();
+        private $orario_apertura = array();
+
+        /**
+         * @param string $nome
+         * @param string $descrizione
+         * @param string $num_telefono
+         * @param int $valutazione_media
+         * @param EProprietario $proprietario
+         * @param ECategoria $categoria
+         * @param ELocalizzazione $localizzazione
+         * @param array $eventi_organizzati
+         * @param array $orario_apertura
+         */
+        public function __construct(string $nome, string $descrizione, string $num_telefono, EProprietario $proprietario, ECategoria $categoria, ELocalizzazione $localizzazione, array $eventi_organizzati, array $orario_apertura)
+        {
+            $this->nome = $nome;
+            $this->descrizione = $descrizione;
+            $this->num_telefono = $num_telefono;
+            $this->valutazione_media = 0;
+            $this->proprietario = $proprietario;
+            $this->categoria = $categoria;
+            $this->localizzazione = $localizzazione;
+            $this->eventi_organizzati = $eventi_organizzati;
+            $this->orario_apertura = $orario_apertura;
         }
-        elseif (isset($this->recensioni[0]->voto))
-            return $this->recensioni[0]->voto;
-        else
-            return false;
+
+        /**
+         * @return string
+         */
+        public function getNome(): string
+        {
+            return $this->nome;
+        }
+
+        /**
+         * @param string $nome
+         */
+        public function setNome(string $nome): void
+        {
+            $this->nome = $nome;
+        }
+
+        /**
+         * @return string
+         */
+        public function getDescrizione(): string
+        {
+            return $this->descrizione;
+        }
+
+        /**
+         * @param string $descrizione
+         */
+        public function setDescrizione(string $descrizione): void
+        {
+            $this->descrizione = $descrizione;
+        }
+
+        /**
+         * @return string
+         */
+        public function getNumTelefono(): string
+        {
+            return $this->num_telefono;
+        }
+
+        /**
+         * @param string $num_telefono
+         */
+        public function setNumTelefono(string $num_telefono): void
+        {
+            $this->num_telefono = $num_telefono;
+        }
+
+        /**
+         * @return int
+         */
+        public function getValutazioneMedia(): int
+        {
+            return $this->valutazione_media;
+        }
+
+        /**
+         * @param int $valutazione_media
+         */
+        public function setValutazioneMedia(int $valutazione_media): void
+        {
+            $this->valutazione_media = $valutazione_media;
+        }
+
+        /**
+         * @return EProprietario
+         */
+        public function getProprietario(): EProprietario
+        {
+            return $this->proprietario;
+        }
+
+        /**
+         * @param EProprietario $proprietario
+         */
+        public function setProprietario(EProprietario $proprietario): void
+        {
+            $this->proprietario = $proprietario;
+        }
+
+        /**
+         * @return ECategoria
+         */
+        public function getCategoria(): ECategoria
+        {
+            return $this->categoria;
+        }
+
+        /**
+         * @param ECategoria $categoria
+         */
+        public function setCategoria(ECategoria $categoria): void
+        {
+            $this->categoria = $categoria;
+        }
+
+        /**
+         * @return ELocalizzazione
+         */
+        public function getLocalizzazione(): ELocalizzazione
+        {
+            return $this->localizzazione;
+        }
+
+        /**
+         * @param ELocalizzazione $localizzazione
+         */
+        public function setLocalizzazione(ELocalizzazione $localizzazione): void
+        {
+            $this->localizzazione = $localizzazione;
+        }
+
+        /**
+         * @return array
+         */
+        public function getEventiOrganizzati(): array
+        {
+            return $this->eventi_organizzati;
+        }
+
+        /**
+         * @param array $eventi_organizzati
+         */
+        public function setEventiOrganizzati(array $eventi_organizzati): void
+        {
+            $this->eventi_organizzati = $eventi_organizzati;
+        }
+
+        /**
+         * @return array
+         */
+        public function getOrarioApertura(): array
+        {
+            return $this->orario_apertura;
+        }
+
+        /**
+         * @param array $orario_apertura
+         */
+        public function setOrarioApertura(array $orario_apertura): void
+        {
+            $this->orario_apertura = $orario_apertura;
+        }
+
+
+
+
     }
-	
-	public function getNumero(){
-		return $this->$numerotel;
-	}
-	
-	public function setNumero(String $num){
-		$array = (str_replace(",","",$num));
-		if(strlen($array)==9){
-			$this->numerotel=$num;
-		}
-	}
-	
-	/**
-     * Restituisce un array di recensioni relative al locale
-     *
-     * @access public
-     * @return array
-     * @ReturnType array
-     */
-    public function getRecensioni() {
-        return ($this->recensioni);
-	}
-	
-	/**
-     * Restituisce un array relativo agli eventi organizzati dal locale
-     *
-     * @access public
-     * @return array
-     * @ReturnType array
-     */
-	public function getEventi() {
-        return ($this->eventi);
-	}
- }
 ?>
