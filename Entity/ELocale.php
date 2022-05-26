@@ -1,6 +1,6 @@
 <?php
 
-    /** La classe ELocale identifica un singolo locale e raggruppa tutti gli attributi che caratterizzano il locale:
+    /** La classe ELocale raggruppa tutti gli attributi che caratterizzano un singolo locale:
      *  - nome: identifica il nome del locale
      *  - descrizione: identifica le informazioni generali sul locale
      *  - num_telefono: identifica il numero di telefono
