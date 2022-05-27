@@ -24,7 +24,7 @@
         private ECategoria $categoria;
         private ELocalizzazione $localizzazione;
         private $eventi_organizzati = array();
-        private $orario_apertura = array();
+        private EOrario $orario;
 
         /**
          * @param string $nome
@@ -35,9 +35,9 @@
          * @param ECategoria $categoria
          * @param ELocalizzazione $localizzazione
          * @param array $eventi_organizzati
-         * @param array $orario_apertura
+         * @param array $orario
          */
-        public function __construct(string $nome, string $descrizione, string $num_telefono, EProprietario $proprietario, ECategoria $categoria, ELocalizzazione $localizzazione, array $eventi_organizzati, array $orario_apertura)
+        public function __construct(string $nome, string $descrizione, string $num_telefono, EProprietario $proprietario, ECategoria $categoria, ELocalizzazione $localizzazione, array $eventi_organizzati, EOrario $orario)
         {
             $this->nome = $nome;
             $this->descrizione = $descrizione;
@@ -47,7 +47,7 @@
             $this->categoria = $categoria;
             $this->localizzazione = $localizzazione;
             $this->eventi_organizzati = $eventi_organizzati;
-            $this->orario_apertura = $orario_apertura;
+            $this->$orario; = $orario;
         }
 
         /**
@@ -99,20 +99,18 @@
         }
 
         /**
-         * @return int
-         */
+         
         public function getValutazioneMedia(): int
         {
             return $this->valutazione_media;
         }
 
-        /**
-         * @param int $valutazione_media
-         */
+        
+         
         public function setValutazioneMedia(int $valutazione_media): void
         {
             $this->valutazione_media = $valutazione_media;
-        }
+        } */
 
         /**
          * @return EProprietario
@@ -181,7 +179,7 @@
         /**
          * @return array
          */
-        public function getOrarioApertura(): array
+        public function getOrarioApertura(): EOrario
         {
             return $this->orario_apertura;
         }
@@ -189,7 +187,7 @@
         /**
          * @param array $orario_apertura
          */
-        public function setOrarioApertura(array $orario_apertura): void
+        public function setOrarioApertura(EOrario $orario): void
         {
             $this->orario_apertura = $orario_apertura;
         }
