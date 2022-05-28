@@ -5,7 +5,6 @@
  * - name: nome dell'utente;
  * - cognome: cognome dell'utente;
  * - email: email utente; 
- * - mierecensione: le recensioni scritte dall'utente;
  * - iscrizione: data prima iscrizione di tale utente;
  * - localiprefe: locali preferiti dell'utente.
  *  @access public 
@@ -17,7 +16,6 @@
         private string $email;
         private string $nome;
         private string $cognome;
-        private array $mierecensioni;
 		private array $localipreferiti;
 		private date $iscrizione;
 
@@ -27,7 +25,6 @@
             $this->nome = $nome;
             $this->cognome = $cognome;
             $this->email = $email;
-            $this->mierecensioni = array();
 			$this->localipreferiti = array();
 			$this->iscrizione = $prima;
         }
@@ -129,20 +126,11 @@
             parent::setPassword($password);
         }*/
 
- //-----------------------------Altri Metodi-----------------------------
-
-        /**
-         * @param array $mierecensioni
-         */
-        public function addRecensione($recensione): void
-        {
-            $this->mierecensioni.array_push($recensione);
-        }
-		
+ //-----------------------------Altri Metodi-----------------------------		
 		/**
          * @param array $locale
          */
-        public function addRecensione($locale): void
+        public function addLocale($locale): void
         {
             $this->localipreferiti.array_push($locale);
         }
