@@ -24,16 +24,7 @@
         public function setOrario(string $giorno, string $orario): void{
             $this->orarioSettimanale[$giorno]=$orario;
         }
-		
-		/**
-         * Passando il giorno della settimana e l'orario relativo al giorno stesso,viene modificato l'orario
-         * @param string $giorno
-         * @param string $orario
-         * @return void
-         */
-        public function setOrario(string $giorno, string $orario): void{
-            $this->orarioSettimanale[$giorno]=$orario;
-        }
+
 
         /**
          * @return string[]

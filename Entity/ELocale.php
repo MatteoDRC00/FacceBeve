@@ -19,7 +19,6 @@
         private string $nome;
         private string $descrizione;
         private string $num_telefono;
-        private int $valutazione_media;
         private EProprietario $proprietario;
         private ECategoria $categoria;
         private ELocalizzazione $localizzazione;
@@ -30,7 +29,6 @@
          * @param string $nome
          * @param string $descrizione
          * @param string $num_telefono
-         * @param int $valutazione_media
          * @param EProprietario $proprietario
          * @param ECategoria $categoria
          * @param ELocalizzazione $localizzazione
@@ -42,12 +40,11 @@
             $this->nome = $nome;
             $this->descrizione = $descrizione;
             $this->num_telefono = $num_telefono;
-            $this->valutazione_media = 0;
             $this->proprietario = $proprietario;
             $this->categoria = $categoria;
             $this->localizzazione = $localizzazione;
             $this->eventi_organizzati = $eventi_organizzati;
-            $this->$orario; = $orario;
+            $this->orario = $orario;
         }
 
         /**
@@ -97,20 +94,6 @@
         {
             $this->num_telefono = $num_telefono;
         }
-
-        /**
-         
-        public function getValutazioneMedia(): int
-        {
-            return $this->valutazione_media;
-        }
-
-        
-         
-        public function setValutazioneMedia(int $valutazione_media): void
-        {
-            $this->valutazione_media = $valutazione_media;
-        } */
 
         /**
          * @return EProprietario
