@@ -9,6 +9,11 @@ class ERecensione {
     private DateTime $data;
 	private boolean $segnalata;
 	private int $counter;
+	/**
+	* identificativo univoco della recensione 
+    * @AttributeType int
+    
+    private $id; */
 
     /**
      * @param EUtente $utente
@@ -154,7 +159,15 @@ class ERecensione {
         $this->counter = $counter;
     }
 	
-	
+	// ----------------------------- TOSTRING --------------------------------
+
+	/**
+	* @return String Stampa le informazioni relative alla recensione
+	 */
+	public function __toString() {
+		$stampa = /*"ID: ".$this->getId(). " */ | TESTO: ".$this->getDescrizione(). " | VALUTAZIONE: ".$this->getVoto()." | SCRITTA DA : ".$this->getUtente(). " | IL: ".$this->getData()." | DATA A: ".$this->getLocale(). "\n";
+		return $stampa;
+	}
 	
 	
 	
