@@ -1,39 +1,80 @@
 <?php
 
-    /** 
-     * @param apri --> array associativo che associa ad ogni giorno della settimana un orario
-	 * @param chiudi --> array associativo che associa ad ogni giorno della settimana un orario
-	 * I due array che vengono passati vengono poi, per ogni giorno della settimana, uniti per ottenere l'associazione giorno => [Apertura; Chiusura] 
+    /** La classe orario definisce in base al giorno della settimana l'orario di apertura e l'orario di chiusura del locale, caratterizzato da:
+     *  - giorno_settimana: indica il giorno della settimana
+     *  - orario_aperuta: indica l'ora di apertura del locale in base al giorno della settimana
+     *  - orario_chiusura: indica l'ora di chiusura del locale in base al giorno della settimana
      */
-    class EOrario
-    {
-        private $orarioSettimanale= array('lunedi'=>"", 'martedi'=>"", 'mercoledi'=>"", 'giovedi'=>"", 'venerdi'=>"" ,'sabato'=>"", 'domenica'=>"");
-        public function __construct(array $apri, array $chiudi){
-            foreach ($this->orarioSettimanale as $orario){
-				$tmp = [$apri[$orario],$chiudi[$orario]];
-                $this->orarioSettimanale[$orario]= $tmp;
-            }
-        }
+    class EOrario{
+
+        private string $giorno_settimana;
+        private string $orario_apertura;
+        private string $orario_chiusura;
 
         /**
-         * Passando il giorno della settimana e l'orario relativo al giorno stesso,viene modificato l'orario
-         * @param string $giorno
-         * @param string $orario
-         * @return void
+         * @param string $giorno_settimana
+         * @param string $orario_apertura
+         * @param string $orario_chiusura
          */
-        public function setOrario(string $giorno, string $orario): void{
-            $this->orarioSettimanale[$giorno]=$orario;
-        }
-
-
-        /**
-         * @return string[]
-         */
-        public function getOrarioSettimanale(): array
+        public function __construct(string $giorno_settimana, string $orario_apertura, string $orario_chiusura)
         {
-            return $this->orarioSettimanale;
+            $this->giorno_settimana = $giorno_settimana;
+            $this->orario_apertura = $orario_apertura;
+            $this->orario_chiusura = $orario_chiusura;
         }
 
+        /**
+         * @return string
+         */
+        public function getGiornoSettimana(): string
+        {
+            return $this->giorno_settimana;
+        }
+
+        /**
+         * @param string $giorno_settimana
+         */
+        public function setGiornoSettimana(string $giorno_settimana): void
+        {
+            $this->giorno_settimana = $giorno_settimana;
+        }
+
+        /**
+         * @return string
+         */
+        public function getOrarioApertura(): string
+        {
+            return $this->orario_apertura;
+        }
+
+        /**
+         * @param string $orario_apertura
+         */
+        public function setOrarioApertura(string $orario_apertura): void
+        {
+            $this->orario_apertura = $orario_apertura;
+        }
+
+        /**
+         * @return string
+         */
+        public function getOrarioChiusura(): string
+        {
+            return $this->orario_chiusura;
+        }
+
+        /**
+         * @param string $orario_chiusura
+         */
+        public function setOrarioChiusura(string $orario_chiusura): void
+        {
+            $this->orario_chiusura = $orario_chiusura;
+        }
+
+        public function __toString(): string
+        {
+            return $this->giorno_settimana.": ".$this->orario_apertura." - ".$this->orario_chiusura;
+        }
 
 
     }
