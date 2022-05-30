@@ -23,7 +23,7 @@
         private ECategoria $categoria;
         private ELocalizzazione $localizzazione;
         private $eventi_organizzati = array();
-        private EOrario $orario;
+        private $orario = array();
 
         /**
          * @param string $nome
@@ -35,7 +35,7 @@
          * @param array $eventi_organizzati
          * @param array $orario
          */
-        public function __construct(string $nome, string $descrizione, string $num_telefono, EProprietario $proprietario, ECategoria $categoria, ELocalizzazione $localizzazione, array $eventi_organizzati, EOrario $orario)
+        public function __construct(string $nome, string $descrizione, string $num_telefono, EProprietario $proprietario, ECategoria $categoria, ELocalizzazione $localizzazione, array $eventi_organizzati, array $orario)
         {
             $this->nome = $nome;
             $this->descrizione = $descrizione;
@@ -162,17 +162,17 @@
         /**
          * @return array
          */
-        public function getOrarioApertura(): EOrario
+        public function getOrario(): array
         {
-            return $this->orario_apertura;
+            return $this->orario;
         }
 
         /**
          * @param array $orario_apertura
          */
-        public function setOrarioApertura(EOrario $orario): void
+        public function setOrario(array $orario): void
         {
-            $this->orario_apertura = $orario_apertura;
+            $this->orario = $orario;
         }
 
 
