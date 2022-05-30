@@ -118,7 +118,7 @@ class FDB{
 			return null;
 		}
 	}
- /**   Metodo che restituisce il numero di righe ineteressate dalla query
+  /** Metodo che restituisce il numero di righe interessate dalla query
   * @param class classe interessata
   *@param field campo usato per la ricerca
   *@param id ,id usato per la ricerca

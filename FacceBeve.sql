@@ -69,19 +69,6 @@ CREATE TABLE `Localizzazione` (
     PRIMARY KEY (`ID`)
 );
 
-/*Tabella relativa agli Orari*/
-DROP TABLE IF EXISTS `Orario`;
-
-CREATE TABLE `Orario` (
-    `ID` INT(11) NOT NULL AUTO_INCREMENT,
-    `indirizzo` VARCHAR(40) NOT NULL,
-    `numCivico` VARCHAR(7) NOT NULL, /*es: via xyz, num 57-A*/
-    `citta` VARCHAR(30) NOT NULL,
-    `nazione` VARCHAR(20) NOT NULL,
-    `CAP` INT(5) NOT NULL,
-    PRIMARY KEY (`ID`)
-);
-
 /*Tabella relativa ai Locali*/
 DROP TABLE IF EXISTS `Locale`;
 
@@ -120,7 +107,7 @@ CREATE TABLE `Orario` (
     `ID` INT(11) NOT NULL AUTO_INCREMENT,
     `giorno` VARCHAR(15),
     `OrarioApertura` CHAR(5),
-	 `OrarioChiusura` CHAR(5),  
+	`OrarioChiusura` CHAR(5),  
     PRIMARY KEY (`ID`),
 );
 
