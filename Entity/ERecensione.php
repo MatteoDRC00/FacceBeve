@@ -118,7 +118,7 @@ class ERecensione {
 	*/
     public function getLocale() : ELocale
 	{
-		return $locale;
+		return $this->locale;
 	}
 
     /**
@@ -128,45 +128,48 @@ class ERecensione {
     {
         $this->locale = $locale;
     }
-	
-	/**
-	* @return boolean $segnalato
-	*/
-	public function getSegnalato() : boolean{
-		return $segnalata;
-	}
-	
-	/**
-     * @param boolean $segnalata
+
+    /**
+     * @return bool
      */
-    public function setSegnalato(boolean $segnalato): void
+    public function isSegnalata(): bool
     {
-        $this->segnalata = $segnalato;
-    
-	
-	/**
-	* @return int $counter
-	*/
-	public function getNsegnalazioni() : int{
-		return $counter;
-	}
-	
-	/**
+        return $this->segnalata;
+    }
+
+    /**
+     * @param bool $segnalata
+     */
+    public function setSegnalata(bool $segnalata): void
+    {
+        $this->segnalata = $segnalata;
+    }
+
+    /**
+     * @return int
+     */
+    public function getCounter(): int
+    {
+        return $this->counter;
+    }
+
+    /**
      * @param int $counter
      */
-    public function setNsegnalazioni(int $counter): void
+    public function setCounter(int $counter): void
     {
         $this->counter = $counter;
     }
 	
+
+
 	// ----------------------------- TOSTRING --------------------------------
 
 	/**
 	* @return String Stampa le informazioni relative alla recensione
 	 */
 	public function __toString() {
-		$stampa = /*"ID: ".$this->getId(). " */ | TESTO: ".$this->getDescrizione(). " | VALUTAZIONE: ".$this->getVoto()." | SCRITTA DA : ".$this->getUtente(). " | IL: ".$this->getData()." | DATA A: ".$this->getLocale(). "\n";
-		return $stampa;
+		return "TESTO: ".$this->getDescrizione(). " | VALUTAZIONE: ".$this->getVoto()." | SCRITTA DA : ".$this->getUtente(). " | IL: ".$this->getData()." | DATA A: ".$this->getLocale(). "\n";
 	}
 	
 	

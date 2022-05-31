@@ -69,6 +69,17 @@ CREATE TABLE `Localizzazione` (
     PRIMARY KEY (`ID`)
 );
 
+/*Tabella relativa agli Orari */
+DROP TABLE IF EXISTS `Orario`;
+
+CREATE TABLE `Orario` (
+    `ID` INT(11) NOT NULL AUTO_INCREMENT,
+    `giorno` VARCHAR(15),
+    `OrarioApertura` CHAR(5),
+    `OrarioChiusura` CHAR(5),
+    PRIMARY KEY (`ID`)
+);
+
 /*Tabella relativa ai Locali*/
 DROP TABLE IF EXISTS `Locale`;
 
@@ -78,10 +89,10 @@ CREATE TABLE `Locale` (
     `numTelefono` CHAR(9),
     `descrizione` VARCHAR(120),
     `valutazione` FLOAT(3) DEFAULT NULL,
-	 `proprietario` INT(11), 
-	 `categoria` INT(11),
-	 `localizzazione` INT(11),
-	 `orario` INT(11),   
+	`proprietario` INT(11),
+    `categoria` INT(11),
+	`localizzazione` INT(11),
+	`orario` INT(11),
     PRIMARY KEY (`ID`),
     FOREIGN KEY (`proprietario`) REFERENCES Proprietario(`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (`categoria`) REFERENCES Categoria(`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -97,19 +108,10 @@ CREATE TABLE `Evento` (
     `nome` VARCHAR(26),
     `descrizione` VARCHAR(120),
 	 `data` DATE,   
-    PRIMARY KEY (`ID`),
+    PRIMARY KEY (`ID`)
 );
 
-/*Tabella relativa agli Orari */
-DROP TABLE IF EXISTS `Orario`; 
 
-CREATE TABLE `Orario` (
-    `ID` INT(11) NOT NULL AUTO_INCREMENT,
-    `giorno` VARCHAR(15),
-    `OrarioApertura` CHAR(5),
-	`OrarioChiusura` CHAR(5),  
-    PRIMARY KEY (`ID`),
-);
 
 /*Tabella relativa alle Recensioni*/
 DROP TABLE IF EXISTS `Recensione`;
@@ -120,7 +122,7 @@ CREATE TABLE `Recensione` (
     `descrizione` VARCHAR(120),
     `voto` FLOAT(3) NOT NULL,
     `data` DATE NOT NULL,
-    `segnalato` BOOLEAN  DEFAULT 'false',
+    `segnalato` BOOLEAN  DEFAULT 0,
     `counter` BOOLEAN  DEFAULT 0,/*Conta il numero di segnalazioni alla recensione*/
     `utente` INT(11) NOT NULL,
     `locale` INT(11) NOT NULL,
