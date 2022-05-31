@@ -52,7 +52,7 @@ class FCategoria{
     }
 
     /**
-    * Metodo che permette la store di un Utente
+    * Metodo che permette la store di una categoria 
     * @param $utente Utenteloggato da salvare
     */
     public static function store($utente){
@@ -64,7 +64,7 @@ class FCategoria{
     /**
     * Permette la load sul database
     * @param $id campo da confrontare per trovare l'oggetto
-    * @return object $utente Utente
+    * @return object $categoria Categoria 
     */
     public static function loadByField($field, $id){
         $utente = null;
@@ -86,7 +86,7 @@ class FCategoria{
     }
 
     /**
-    * Funzione che permette di verificare se esiste un Utente nel database
+    * Funzione che permette di verificare se esiste una categoria nel database
     * @param  $id valore della riga di cui si vuol verificare l'esistenza
     * @param  string $field colonna su ci eseguire la verifica
     * @return bool $ris
@@ -101,11 +101,11 @@ class FCategoria{
     }
 
     /**
-    * Metodo che aggiorna i campi di un Utente
+    * Metodo che aggiorna i campi di un Categoria
     * @param $id valore della primary key da usare come riferimento per la riga
     * @param $newvalue nuovo valore da assegnare
     * @param $field campo in cui si vuo modificare il valore
-	*@param pk chiave primaria della classe interessata
+	* @param pk chiave primaria della classe interessata
     * @return true se esiste il mezzo, altrimenti false
     */
     public static function update($field, $newvalue, $pk, $id){
@@ -122,7 +122,7 @@ class FCategoria{
     */
      public static function delete($field, $id){
       $db=FDB::getInstance();
-      $result = $db->delete(static::getClass(), $field, $id);   //funzione richiamata,presente in FDatabase
+      $result = $db->delete(static::getClass(), $field, $id);   //funzione richiamata,presente in FDB
       if($result) return true;
         else return false;
     }   
