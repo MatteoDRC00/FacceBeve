@@ -6,7 +6,10 @@
      *  - orario_chiusura: indica l'ora di chiusura del locale in base al giorno della settimana
      */
     class EOrario{
+		
+		$contao = 0;
 
+        private int $codicegiorno;
         private string $giorno_settimana;
         private string $orario_apertura;
         private string $orario_chiusura;
@@ -18,6 +21,8 @@
          */
         public function __construct(string $giorno_settimana, string $orario_apertura, string $orario_chiusura)
         {
+			$this->codicegiorno = $GLOBALS[$conta];
+			$GLOBALS[$conta]=$GLOBALS['contao']+1;
             $this->giorno_settimana = $giorno_settimana;
             $this->orario_apertura = $orario_apertura;
             $this->orario_chiusura = $orario_chiusura;
@@ -30,7 +35,15 @@
         {
             return $this->giorno_settimana;
         }
-
+		
+		/**
+         * @return int
+         */
+        public function getCodice(): int
+        {
+            return $this->codicegiorno;
+        }
+		
         /**
          * @param string $giorno_settimana
          */

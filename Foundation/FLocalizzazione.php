@@ -108,7 +108,7 @@ class FLocalizzazione{
     * @param $id valore della primary key da usare come riferimento per la riga
     * @param $newvalue nuovo valore da assegnare
     * @param $field campo in cui si vuo modificare il valore
-	*@param pk chiave primaria della classe interessata
+	* @param pk chiave primaria della classe interessata
     * @return true se esiste il mezzo, altrimenti false
     */
     public static function update($field, $newvalue, $pk, $id){

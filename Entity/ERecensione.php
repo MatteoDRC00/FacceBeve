@@ -1,6 +1,9 @@
 <?php
 class ERecensione {
+	
+	$contar = 0;
 
+    private int codicerecensione;
     private EUtente $utente;
 	private ELocale $locale;
     private string $titolo;
@@ -23,6 +26,8 @@ class ERecensione {
      * @param DateTime $data
      */
     public function __construct(EUtente $utente, string $titolo, string $descrizione, int $voto, DateTime $data,ELocale $locale){
+		$this->codicerecensione=$GLOBALS['contar'];
+		$GLOBALS['contar']=$GLOBALS['contar']+1;
         $this->utente = $utente;
         $this->titolo = $titolo;
         $this->descrizione = $descrizione;
@@ -40,6 +45,14 @@ class ERecensione {
     {
         return $this->utente;
     }
+	
+	/**
+         * @return int
+         */
+        public function getCodice(): int
+        {
+            return $this->codicerecensione;
+        }
 
     /**
      * @param EUtente $utente

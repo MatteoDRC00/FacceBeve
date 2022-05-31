@@ -7,7 +7,7 @@
         /** tabella con la quale opera */
         private static $table = "Recensione";
         /** valori della tabella */
-        private static $values="(:id,:titolo,:descrizione,:voto,:data,:segnalato,:counter,:utente,:locale)";
+        private static $values="(:codicerecensione,:titolo,:descrizione,:voto,:data,:segnalato,:counter,:utente,:locale)";
         /** costruttore */
         public function __construct() {
 
@@ -19,7 +19,7 @@
          * @param ERecensione $rec Recensione in cui i dati devono essere inseriti nel DB
          */
         public static function bind(PDOStatement $stmt, ERecensione $recensione) {
-            $stmt->bindValue(':id',NULL, PDO::PARAM_INT); //l'id è posto a NULL poichè viene dato automaticamente dal DBMS (AUTOINCREMENT_ID)
+            $stmt->bindValue(':codicerecensione',$recensione->getCodice() PDO::PARAM_INT);
             $stmt->bindValue(':titolo',$recensione->getTitolo(),PDO::PARAM_STR);
             $stmt->bindValue(':descrizione',$recensione->getDescrizione(),PDO::PARAM_STR);
             $stmt->bindValue(':voto',$recensione->getVoto(),PDO::PARAM_INT);
