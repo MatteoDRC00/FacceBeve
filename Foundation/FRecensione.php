@@ -7,7 +7,7 @@
         /** tabella con la quale opera */
         private static $table = "Recensione";
         /** valori della tabella */
-        private static $values="(:codicerecensione,:titolo,:descrizione,:voto,:data,:segnalato,:counter,:utente,:locale)";
+        private static $values="(:codicerecensione,:titolo,:descrizione,:voto,:data,:segnalato,:counter,:utente,:nomelocale,:luogolocale)";
         /** costruttore */
         public function __construct() {
 
@@ -26,8 +26,9 @@
             $stmt->bindValue(':data',$recensione->getData());
             $stmt->bindValue(':segnalato',$recensione->getSegnalato(),PDO::PARAM_BOOL);
             $stmt->bindValue(':counter',$recensione->getCounter(),PDO::PARAM_INT);
-            $stmt->bindValue(':utente',$recensione->getUtente());
-            $stmt->bindValue(':locale',$recensione->getLocale());
+            $stmt->bindValue(':utente',$recensione->getUtente()->getUsername());
+            $stmt->bindValue(':nomelocale',$recensione->getLocale()->getNome());
+			$stmt->bindValue(':luogolocale',$recensione->getLocale()->getLocalizzazione()->getCodice());
         }
 
         /**
@@ -61,19 +62,19 @@
          */
         public static function loadByField($field, $id) {
             $rec = null;
-            $db = FDatabase::getInstance();
-            $result = $db->loadDB(static::getClass(), $field, $id);
+            $db = FDB::getInstance();
+            $result = $db->load(static::getClass(), $field, $id);
             $rows_number = $db->interestedRows(static::getClass(), $field, $id);
             if(($result != null) && ($rows_number == 1)) {
-                $rec = new ERecensione($result['text'],$result['mark'],$result['emailClient'],$result['emailConveyor']);
-                $rec->setId($result['id']);
+                $rec = new ERecensione($result['codicerecensione'],$result['titolo'],$result['descrizione'],$result['data'],$result['segnalato'],$result['counter'],$result['utente'],$result['nomelocale'],$result['luogolocale']);
+               // $rec->setId($result['codicerecensione']); ?
             }
             else {
                 if(($result != null) && ($rows_number > 1)){
                     $rec = array();
                     for($i = 0; $i < count($result); $i++){
-                        $rec[] = new ERecensione($result[$i]['text'], $result[$i]['mark'],$result[$i]['emailClient'], $result[$i]['emailConveyor']);
-                        $rec[$i]->setId($result[$i]['id']);
+						 $rec[] = new ERecensione($result[$i]['codicerecensione'],$result[$i]['titolo'],$result[$i]['descrizione'],$result[$i]['data'],$result[$i]['segnalato'],$result[$i]['counter'],$result[$i]['utente'],$result[$i]['nomelocale'],$result[$i]['luogolocale']);
+                       // $rec[$i]->setId($result[$i]['id']); ?
                     }
                 }
             }
@@ -86,8 +87,8 @@
          * @return $id della Recensione salvata
          */
         public static function store(ERecensione $rec) {
-            $db = FDatabase::getInstance();
-            $id = $db->storeDB(static::getClass(), $rec);
+            $db = FDB::getInstance();
+            $id = $db->store(static::getClass(), $rec);
             if($id)
                 return $id;
             else
@@ -102,8 +103,8 @@
          */
         public static function exist($field, $id) {
             $ris = false;
-            $db = FDatabase::getInstance();
-            $result = $db->existDB(static::getClass(), $field, $id);
+            $db = FDB::getInstance();
+            $result = $db->exist(static::getClass(), $field, $id);
             if($result!=null)
                 $ris = true;
             return $ris;
@@ -115,8 +116,8 @@
          * @return bool
          */
         public static function delete($field, $id) {
-            $db = FDatabase::getInstance();
-            $result = $db->deleteDB(static::getClass(), $field, $id);
+            $db = FDB::getInstance();
+            $result = $db->delete(static::getClass(), $field, $id);
             if($result)
                 return true;
             else
@@ -129,18 +130,18 @@
          */
         public static function loadAll() {
             $rec = null;
-            $db = FDatabase::getInstance();
+            $db = FDB::getInstance();
             list ($result, $rows_number)=$db->getAllRev();
             if(($result != null) && ($rows_number == 1)) {
-                $rec = new ERecensione($result['text'],$result['mark'],$result['emailClient'],$result['emailConveyor']);
-                $rec->setId($result['id']);
+                $rec = new ERecensione($result['codicerecensione'],$result['titolo'],$result['descrizione'],$result['data'],$result['segnalato'],$result['counter'],$result['utente'],$result['nomelocale'],$result['luogolocale']);
+                //$rec->setId($result['id']); ?
             }
             else {
                 if(($result != null) && ($rows_number > 1)){
                     $rec = array();
                     for($i = 0; $i < count($result); $i++){
-                        $rec[] = new ERecensione($result[$i]['text'], $result[$i]['mark'],$result[$i]['emailClient'], $result[$i]['emailConveyor']);
-                        $rec[$i]->setId($result[$i]['id']);
+                        $rec[] = new ERecensione($result[$i]['codicerecensione'],$result[$i]['titolo'],$result[$i]['descrizione'],$result[$i]['data'],$result[$i]['segnalato'],$result[$i]['counter'],$result[$i]['utente'],$result[$i]['nomelocale'],$result[$i]['luogolocale']);
+                       // $rec[$i]->setId($result[$i]['id']); ?
                     }
                 }
             }
@@ -154,18 +155,18 @@
          */
         public static function loadByParola($parola) {
             $rec = null;
-            $db = FDatabase::getInstance();
+            $db = FDB::getInstance();
             list ($result, $rows_number)=$db->ricercaParola($parola, static::getClass(), "text");
             if(($result != null) && ($rows_number == 1)) {
-                $rec = new ERecensione($result['text'],$result['mark'],$result['emailClient'],$result['emailConveyor']);
-                $rec->setId($result['id']);
+                $rec = new ERecensione($result['codicerecensione'],$result['titolo'],$result['descrizione'],$result['data'],$result['segnalato'],$result['counter'],$result['utente'],$result['nomelocale'],$result['luogolocale']);
+                //$rec->setId($result['id']); ?
             }
             else {
                 if(($result != null) && ($rows_number > 1)){
                     $rec = array();
                     for($i = 0; $i < count($result); $i++){
-                        $rec[] = new ERecensione($result[$i]['text'], $result[$i]['mark'],$result[$i]['emailClient'], $result[$i]['emailConveyor']);
-                        $rec[$i]->setId($result[$i]['id']);
+                        $rec[] = new ERecensione($result[$i]['codicerecensione'],$result[$i]['titolo'],$result[$i]['descrizione'],$result[$i]['data'],$result[$i]['segnalato'],$result[$i]['counter'],$result[$i]['utente'],$result[$i]['nomelocale'],$result[$i]['luogolocale']);
+                       // $rec[$i]->setId($result[$i]['id']); ?
                     }
                 }
             }

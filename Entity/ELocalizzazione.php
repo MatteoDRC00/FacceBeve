@@ -10,7 +10,10 @@
      *  @package Entity
      */
     class ELocalizzazione{
+		
+		$contalo = 0;
 
+        private int $codiceluogo;
         private string $indirizzo;
         private string $numCivico;
         private string $citta;
@@ -26,6 +29,8 @@
          */
         public function __construct(string $indirizzo, string $numCivico, string $citta, string $nazione, int $CAP)
         {
+			$this->codiceluogo = $GLOBALS[$contalo];
+			$GLOBALS[$contalo]=$GLOBALS['contalo']+1;
             $this->indirizzo = $indirizzo;
             $this->numCivico = $numCivico;
             $this->citta = $citta;
@@ -40,6 +45,15 @@
         {
             return $this->indirizzo;
         }
+		
+		 /**
+         * @return int
+         */
+        public function getCodice(): int
+        {
+            return $this->codiceluogo;
+        }
+
 
         /**
          * @param string $indirizzo

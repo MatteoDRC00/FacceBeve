@@ -12,7 +12,7 @@ class FUtente{
 	/** tabella con la quale opera */          
     private static $table="utente";
     /** valori della tabella */
-    private static $values="(:username,:nome,:cognome,:email,:password,:dataIscrizione)";
+    private static $values="(:nome,:numtelefono,:descrizione,:proprietario,:categoria,:localizzazione)";
 
     /** costruttore*/ 
     public function __construct(){}

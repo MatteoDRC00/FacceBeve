@@ -21,8 +21,8 @@
          */
         public function __construct(string $giorno_settimana, string $orario_apertura, string $orario_chiusura)
         {
-			$this->codicegiorno = $GLOBALS[$conta];
-			$GLOBALS[$conta]=$GLOBALS['contao']+1;
+			$this->codicegiorno = $GLOBALS[$contao];
+			$GLOBALS[$contao]=$GLOBALS['contao']+1;
             $this->giorno_settimana = $giorno_settimana;
             $this->orario_apertura = $orario_apertura;
             $this->orario_chiusura = $orario_chiusura;

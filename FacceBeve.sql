@@ -120,10 +120,11 @@ CREATE TABLE `Recensione` (
     `segnalato` BOOLEAN  DEFAULT 0,
     `counter` BOOLEAN  DEFAULT 0, /*Conta il numero di segnalazioni alla recensione*/
     `utente` INT(11) NOT NULL,
-    `locale` INT(11) NOT NULL,
+    `nomelocale` VARCHAR(26) NOT NULL,
+	`luogolocale` INT(11) NOT NULL,
     PRIMARY KEY (`ID`),
-  /*  FOREIGN KEY (`utente`) REFERENCES Utente(`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (`locale`) REFERENCES Locale(`ID`) ON DELETE CASCADE ON UPDATE CASCADE */
+    FOREIGN KEY (`utente`) REFERENCES Utente(`username`) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (`nomelocale`,`luogolocale`) REFERENCES Locale(`nome`,`localizzazione`) ON DELETE CASCADE ON UPDATE CASCADE 
 );
 
 /*Tabella relativa alle Risposte alle recensioni*/
@@ -147,10 +148,10 @@ CREATE TABLE `Utenti_Locali` (
 	`ID_Locale` INT(11) NOT NULL,
 	CONSTRAINT Utenti_Locali_PK PRIMARY KEY (`ID_Utente` , `ID_Locale`),
     FOREIGN KEY (`ID_Utente`)
-        REFERENCES Utente (`ID`)
+        REFERENCES Utente (`username`)
         ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (`ID_Locale`)
-        REFERENCES Locale (`ID`)
+        REFERENCES Locale (`nome`,`localizzazione`)
         ON DELETE CASCADE ON UPDATE CASCADE
 ); 
 
@@ -165,7 +166,7 @@ CREATE TABLE `Locale_Eventi` (
         REFERENCES Evento (`ID`)
         ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (`ID_Locale`)
-        REFERENCES Locale (`ID`)
+        REFERENCES Locale ((`nome`,`localizzazione`))
         ON DELETE CASCADE ON UPDATE CASCADE
 ); 
 
@@ -177,9 +178,9 @@ CREATE TABLE `Locale_Orari` (
 	`ID_Orario` INT(11) NOT NULL,
 	CONSTRAINT Locale_Orari_PK PRIMARY KEY ( `ID_Locale` ,`ID_Orario`),
     FOREIGN KEY (`ID_Orario`)
-        REFERENCES Orario (`ID`)
+        REFERENCES Orario (`codicegiorno`)
         ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (`ID_Locale`)
-        REFERENCES Locale (`ID`)
+        REFERENCES Locale ((`nome`,`localizzazione`))
         ON DELETE CASCADE ON UPDATE CASCADE
 ); 
