@@ -11,7 +11,7 @@
      */
     class ELocalizzazione{
 		
-		$contalo = 0;
+		private static int $contalo = 0;
 
         private int $codiceluogo;
         private string $indirizzo;
@@ -29,8 +29,8 @@
          */
         public function __construct(string $indirizzo, string $numCivico, string $citta, string $nazione, int $CAP)
         {
-			$this->codiceluogo = $GLOBALS[$contalo];
-			$GLOBALS[$contalo]=$GLOBALS['contalo']+1;
+			$this->codiceluogo = self::$contalo;
+            self::$contalo++;
             $this->indirizzo = $indirizzo;
             $this->numCivico = $numCivico;
             $this->citta = $citta;

@@ -7,7 +7,7 @@
      */
     class EOrario{
 		
-		$contao = 0;
+		private static int $contao = 0;
 
         private int $codicegiorno;
         private string $giorno_settimana;
@@ -21,8 +21,8 @@
          */
         public function __construct(string $giorno_settimana, string $orario_apertura, string $orario_chiusura)
         {
-			$this->codicegiorno = $GLOBALS[$contao];
-			$GLOBALS[$contao]=$GLOBALS['contao']+1;
+			$this->codicegiorno = self::$contao;
+            self::$contao++;
             $this->giorno_settimana = $giorno_settimana;
             $this->orario_apertura = $orario_apertura;
             $this->orario_chiusura = $orario_chiusura;
