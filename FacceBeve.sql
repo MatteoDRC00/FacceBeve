@@ -87,12 +87,12 @@ CREATE TABLE `Locale` (
 	`proprietario` INT(11),
     `categoria` INT(11),
 	`localizzazione` INT(11),
-	`orario` INT(11),
-    PRIMARY KEY (`nome`,`localizzazione`),/*
-    FOREIGN KEY (`proprietario`) REFERENCES Proprietario(`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (`categoria`) REFERENCES Categoria(`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (`localizzazione`) REFERENCES Localizzazione(`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (`orario`) REFERENCES Orario(`ID`) ON DELETE CASCADE ON UPDATE CASCADE*/
+	--`orario` INT(11),
+    PRIMARY KEY (`nome`,`localizzazione`),
+    FOREIGN KEY (`proprietario`) REFERENCES Proprietario(`username`) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (`categoria`) REFERENCES Categoria(`genere`) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (`localizzazione`) REFERENCES Localizzazione(`codiceluogo`) ON DELETE CASCADE ON UPDATE CASCADE
+   -- FOREIGN KEY (`orario`) REFERENCES Orario(`ID`) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 /*Tabella relativa agli Eventi !!!POI RICONTROLLARE PER LE IMMAGINI */
