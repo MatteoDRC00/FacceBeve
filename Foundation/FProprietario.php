@@ -6,7 +6,7 @@
  * @package Foundation
  */
 
-class FUtente{
+class FProprietario{
     /** classe foundation */
     private static $class="FProprietario";
 	/** tabella con la quale opera */          

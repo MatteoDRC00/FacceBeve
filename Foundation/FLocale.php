@@ -6,7 +6,7 @@
  * @package Foundation
  */
 
-class FUtente{
+class FLocale{
     /** classe foundation */
     private static $class="FUtente";
 	/** tabella con la quale opera */          

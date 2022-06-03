@@ -6,7 +6,7 @@
  * @package Foundation
  */
 
-class FLocalizzazione{
+class FOrario{
     /** classe foundation */
     private static $class="FOrario";
 	/** tabella con la quale opera */          

@@ -23,7 +23,7 @@
         private ECategoria $categoria;
         private ELocalizzazione $localizzazione;
         private $eventi_organizzati = array();
-        private EOrario $orario;
+        private $orario = array();
 
         /**
          * @param string $nome
@@ -160,22 +160,20 @@
         }
 
         /**
-         * @return array
+         * @return array|EOrario
          */
-        public function getOrarioApertura(): EOrario
+        public function getOrario()
         {
-            return $this->orario_apertura;
+            return $this->orario;
         }
 
         /**
-         * @param array $orario_apertura
+         * @param array|EOrario $orario
          */
-        public function setOrarioApertura(EOrario $orario): void
+        public function setOrario($orario): void
         {
-            $this->orario_apertura = $orario_apertura;
+            $this->orario = $orario;
         }
-
-
 
 
     }
