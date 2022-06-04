@@ -16,8 +16,8 @@
         private string $cognome;
 
 
-        public function __construct(string $nome, string $cognome, string $email){
-            parent::__costructor($username,$password;);
+        public function __construct(string $nome, string $cognome, string $email,string $username, string $password){
+            parent::__costructor($username,$password);
             $this->nome = $nome;
             $this->cognome = $cognome;
             $this->username = $username;

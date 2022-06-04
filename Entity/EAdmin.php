@@ -7,7 +7,7 @@
  */ 
     class EAdmin extends EUser {
         //private array $recensionisegnalate;
-        public function __construct(){
+        public function __construct(string $username,string $password){
             parent::__costructor($username,$password);
            // $this->recensionisegnalate = array();
         }

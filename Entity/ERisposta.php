@@ -4,6 +4,7 @@ class ERisposta {
 
     private ERecensione $recensione;
 	private EProprietario $proprietario;
+    private string $titolo;
     private string $descrizione;
 
     /**
@@ -11,10 +12,11 @@ class ERisposta {
      * @param string $descrizione
 	 * @param EProprietario $proprietario
      */
-    public function __construct(ERecensione $recensione, string $descrizione, EProprietario $proprietario){
+    public function __construct(ERecensione $recensione, string $titolo, string $descrizione, EProprietario $proprietario){
         $this->recensione = $recensione;
         $this->titolo = $titolo;
         $this->descrizione = $descrizione;
+        $this->proprietario = $proprietario;
     }
 	
 	//Metodi GET
@@ -33,6 +35,7 @@ class ERisposta {
 	public function getAutore() : EUtente{
 		return $recensione->getUtente();
 	}
+
 	//Metodi SET
 	public function setDescrizione(String $testo) : void{
 		$this.descrizione=$testo;
@@ -42,7 +45,7 @@ class ERisposta {
 		$this.recensione=$recensione;
 	}
     
-	public function setRecensione(EProprietario $proprietario) : void{
+	public function setProprietario(EProprietario $proprietario) : void{
 		$this.proprietario=$proprietario;
 	}
 

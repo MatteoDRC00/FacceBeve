@@ -20,7 +20,7 @@
 		private date $iscrizione;
 
 
-        public function __construct(string $nome, string $cognome, string $username, string $email, date $prima){
+        public function __construct(string $password, string $nome, string $cognome, string $username, string $email, date $prima){
             parent::__costructor($username,$password);
             $this->nome = $nome;
             $this->cognome = $cognome;
@@ -39,7 +39,7 @@
             return $this->password;
         }
 
-        /**
+         /**
          * @return string
          */
         public function getEmail(): string
@@ -63,12 +63,13 @@
             return $this->cognome;
         }
 		
-        /*		
+
         public function getUsername(): string
         {
             parent::getUsername();
         }
-		
+
+        /*
 		public function getPassword(){
 			parent::getPassword();
 		}*/

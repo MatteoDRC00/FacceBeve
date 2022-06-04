@@ -81,7 +81,7 @@ class FLocalizzazione{
             if(($result!=null) && ($rows_number > 1)){
                 $utente = array();
         	    for($i=0; $i<count($result); $i++){
-                    $luogo[]=new ELocalizzazione(($result[$i]['indirizzo'],$result[$i]['numCivico'],$result[$i]['citta'], $result[$i]['nazione'], $result[$i]['CAP'])); //Carica un array di oggetti Localizzazione dal database
+                    $luogo[]=new ELocalizzazione($result[$i]['indirizzo'], $result[$i]['numCivico'], $result[$i]['citta'], $result[$i]['nazione'], $result[$i]['CAP']); //Carica un array di oggetti Localizzazione dal database
                 }
             }
         }

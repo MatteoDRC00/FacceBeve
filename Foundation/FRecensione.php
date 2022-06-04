@@ -19,12 +19,12 @@
          * @param ERecensione $rec Recensione in cui i dati devono essere inseriti nel DB
          */
         public static function bind(PDOStatement $stmt, ERecensione $recensione) {
-            $stmt->bindValue(':codicerecensione',$recensione->getCodice() PDO::PARAM_INT);
+            $stmt->bindValue(':codicerecensione',$recensione->getCodice(), PDO::PARAM_INT);
             $stmt->bindValue(':titolo',$recensione->getTitolo(),PDO::PARAM_STR);
             $stmt->bindValue(':descrizione',$recensione->getDescrizione(),PDO::PARAM_STR);
             $stmt->bindValue(':voto',$recensione->getVoto(),PDO::PARAM_INT);
             $stmt->bindValue(':data',$recensione->getData());
-            $stmt->bindValue(':segnalato',$recensione->getSegnalato(),PDO::PARAM_BOOL);
+            $stmt->bindValue(':segnalato',$recensione->isSegnalata(),PDO::PARAM_BOOL);
             $stmt->bindValue(':counter',$recensione->getCounter(),PDO::PARAM_INT);
             $stmt->bindValue(':utente',$recensione->getUtente()->getUsername());
             $stmt->bindValue(':nomelocale',$recensione->getLocale()->getNome());

@@ -23,7 +23,7 @@ class FOrario{
     * @param EOrario $orario Orario i cui i dati devono essere inseriti nel DB
     */
     public static function bind($stmt, EOrario $orario){
-        $stmt->bindValue(':codicegiorno', $orario->getCodice), PDO::PARAM_INT); 
+        $stmt->bindValue(':codicegiorno', $orario->getCodice(), PDO::PARAM_INT);
 		$stmt->bindValue(':giorno', $orario->getGiornoSettimana(), PDO::PARAM_STR);    //Potrebbe dare problemi
 		$stmt->bindValue(':orarioApertura',$orario->getOrarioApertura(), PDO::PARAM_STR);
 		$stmt->bindValue(':orarioChiusura',$orario->getOrarioChiusura(), PDO::PARAM_STR);

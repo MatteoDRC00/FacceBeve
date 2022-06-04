@@ -63,11 +63,11 @@
 		}
 
 		/**	Metodo che instanzia un unico oggetto di questa classe richiamando il costruttore se non è stato già istanziato un oggetto
-		 * 	@return FDatabase
+		 * 	@return FDB
 		 */
 		public static function getInstance ()	{
 			if (self::$instance == null) {
-				self::$instance = new FDatabase();
+				self::$instance = new FDB();
 			}
 			return self::$instance;
 		}
@@ -387,7 +387,7 @@
 				$this->db->rollBack();
 				return null;
 			} */
-		}
+		//}
 	/**  Metodo che restituisce il numero di righe interessate dalla query
 		public function rowsTrasporti ()
 		{

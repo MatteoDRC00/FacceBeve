@@ -82,7 +82,7 @@ class FCategoria{
                 }
             }
         }
-        return $orario;
+        return $categoria;
     }
 
     /**

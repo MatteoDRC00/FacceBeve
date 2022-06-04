@@ -42,7 +42,7 @@
          */
 		public function setPassword(string $password): void
         {
-            $this->username = $username;
+            $this->username = $password;
         }
 
     }
