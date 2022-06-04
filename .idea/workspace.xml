@@ -4,19 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0a8f8ad1-2055-4100-94b1-7818187e7f23" name="Changes" comment="aggiunta orario e evnto">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Entity/EAdmin.php" beforeDir="false" afterPath="$PROJECT_DIR$/Entity/EAdmin.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Entity/EProprietario.php" beforeDir="false" afterPath="$PROJECT_DIR$/Entity/EProprietario.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Entity/ERisposta.php" beforeDir="false" afterPath="$PROJECT_DIR$/Entity/ERisposta.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Entity/EUser.php" beforeDir="false" afterPath="$PROJECT_DIR$/Entity/EUser.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Entity/EUtente.php" beforeDir="false" afterPath="$PROJECT_DIR$/Entity/EUtente.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Foundation/FCategoria.php" beforeDir="false" afterPath="$PROJECT_DIR$/Foundation/FCategoria.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Foundation/FDB.php" beforeDir="false" afterPath="$PROJECT_DIR$/Foundation/FDB.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Foundation/FLocalizzazione.php" beforeDir="false" afterPath="$PROJECT_DIR$/Foundation/FLocalizzazione.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Foundation/FOrario.php" beforeDir="false" afterPath="$PROJECT_DIR$/Foundation/FOrario.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Foundation/FRecensione.php" beforeDir="false" afterPath="$PROJECT_DIR$/Foundation/FRecensione.php" afterDir="false" />
-    </list>
+    <list default="true" id="0a8f8ad1-2055-4100-94b1-7818187e7f23" name="Changes" comment="aggiunta orario e evnto" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -69,7 +57,7 @@
       <workItem from="1651657854134" duration="1175000" />
       <workItem from="1652690760884" duration="3375000" />
       <workItem from="1652796439315" duration="6183000" />
-      <workItem from="1654372664535" duration="1207000" />
+      <workItem from="1654372664535" duration="1260000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <created>1651595118723</created>
