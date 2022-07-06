@@ -215,6 +215,22 @@
 			}
 		}
 
+		public function getRecensioniLocali()
+		{
+			try {
+				$query = "SELECT * FROM recensione INNER JOIN locale ON (locale.nome == recensione.nomelocale AND locale.luogo==recensione.nomelocale)";
+				$stmt = $this->db->prepare($query); //Prepared Statement
+				$stmt->execute();
+				$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+				if (count($result) == 1) return $result[0];  //rimane solo l'array interno
+				else if (count($result) > 1) return $result;  //resituisce array di array
+				$this->closeDbConnection();
+			} catch (PDOException $e) {
+				echo "Attenzione errore: " . $e->getMessage();
+				return null;
+			}
+		}
+
 	/**   Metodo che restituisce gli annunci che rispettano alcuni parametri di ricerca ,passati come parametri alla funzione
 	 * @param luogo 1 città di partenza
 	 * @param luogo 2  città di arrivo
@@ -543,15 +559,11 @@
 		/**
 		 * Funzione utilizzata per ritornare tutti gli utenti che verificano determinate caratteristiche date in input
 		 * Utilizzata nella pagina admin
-		 * @param $state valore booleano in input che esprime la visibilità o meno di un annuncio
-		 * @param $query query da eseguire
-
-		public function utentiByString ($array, $toSearch)
+		 * @param $campo colonna nel db sul quale viene fatto il controllo
+		 * @param $query query da eseguire*/
+		public function CercaByKeyword($class,$campo,$input)
 		{
-			if ($toSearch == 'nome')
-				$query = "SELECT * FROM utenteloggato where name = '" . $array[0] . "' OR surname = '" . $array[0] . "';";
-			else
-				$query = "SELECT * FROM utenteloggato where name = '" . $array[0] . "' AND surname = '" . $array[1] . "' OR name = '" . $array[1] . "' AND surname = '" . $array[0] . "';";
+			$query = "SELECT * FROM " . $class::getTable() . " WHERE " . $campo . " LIKE '%" . $input . "%';";
 			$stmt = $this->db->prepare($query);
 			$stmt->execute();
 			$num = $stmt->rowCount();
@@ -566,7 +578,7 @@
 					$result[] = $row;
 			}
 			return array($result, $num);
-		} */
+		}
 
 	/** Metodo che aggiunge una nuova possibile tappa nel db,inizializzando prima una connessione con lo stesso per poi chiuderla
 	 * @param ad , fk annuncio
@@ -649,6 +661,4 @@
 
 	}
 
-
-
-	  ?>
+	?>

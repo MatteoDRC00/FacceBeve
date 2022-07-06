@@ -67,7 +67,7 @@
             $rows_number = $db->interestedRows(static::getClass(), $field, $id);
             if(($result != null) && ($rows_number == 1)) {
                 $rec = new ERecensione($result['codicerecensione'],$result['titolo'],$result['descrizione'],$result['data'],$result['segnalato'],$result['counter'],$result['utente'],$result['nomelocale'],$result['luogolocale']);
-               // $rec->setId($result['codicerecensione']); ?
+                // $rec->setId($result['codicerecensione']); ?
             }
             else {
                 if(($result != null) && ($rows_number > 1)){

@@ -22,13 +22,13 @@ class FLocale{
     * @param PDOStatement $stmt
     * @param EUtente $utente Utente i cui i dati devono essere inseriti nel DB
     */
-    public static function bind($stmt, EUtente $utente){
-        $stmt->bindValue(':username', $utente->getUsername(), PDO::PARAM_STR); 
-		$stmt->bindValue(':nome',$utente->getNome(), PDO::PARAM_STR);
-		$stmt->bindValue(':cognome',$utente->getCognome(), PDO::PARAM_STR);
-        $stmt->bindValue(':email', $utente->getEmail(), PDO::PARAM_STR);
-        $stmt->bindValue(':password', $utente->getPassword(), PDO::PARAM_STR); 
-        $stmt->bindValue(':dataIscrizione', $utente->getData(), PDO::PARAM_BOOL);
+    public static function bind($stmt, ELocale $locale){
+        $stmt->bindValue(':nome', $locale->getNome(), PDO::PARAM_STR);
+		$stmt->bindValue(':numtelefono',$locale->getNumTelefono(), PDO::PARAM_STR);
+		$stmt->bindValue(':descrizione',$locale->getDescrizione(), PDO::PARAM_STR);
+        $stmt->bindValue(':proprietario', $locale->getProprietario()->getUsername(), PDO::PARAM_STR);
+        $stmt->bindValue(':categoria', $locale->getCategoria(), PDO::PARAM_INT);
+        $stmt->bindValue(':localizzazione', $locale->getLocalizzazione()->getCodice(), PDO::PARAM_STR);
         }
 
     /**
@@ -57,11 +57,11 @@ class FLocale{
 
     /**
     * Metodo che permette la store di un Utente
-    * @param $utente Utenteloggato da salvare
+    * @param $locale Locale da salvare
     */
-    public static function store($utente){
+    public static function store($locale){
         $db=FDB::getInstance();
-        $id=$db->store(static::getClass() ,$utente);
+        $id=$db->store(static::getClass() ,$locale);
     }
 
 
@@ -126,58 +126,46 @@ class FLocale{
     */
      public static function delete($field, $id){
       $db=FDB::getInstance();
-      $result = $db->delete(static::getClass(), $field, $id);   //funzione richiamata,presente in FDatabase
+      $result = $db->delete(static::getClass(), $field, $id);   //funzione richiamata, presente in FDatabase
       if($result) return true;
         else return false;
     }
-	
-    /**  Metodo che permette il caricamento del login di un utente,passati la sua email e la sua password
-    * @param user mail dell utente
-    * @param pass password ell utente
-    
-	public static function loadLogin ($user, $pass) {
-		$utente = null;
-		$db=FDatabase::getInstance();
-		$result=$db->loadVerificaAccesso($user, $pass);
-		if (isset($result)){
-			$tra = FTrasportatore::loadByField("emailUtente" , $result["email"]);
-			$cli = FCliente::loadByField("emailUtente" , $result["email"]);
-			$admin = static::loadByField("email", $result["email"]);
-			if ($tra)
-				$utente = $tra;
-			elseif ($cli)
-				$utente = $cli;
-			elseif ($admin)
-                $utente = $admin;
-		}
-		return $utente;
-	} */
 
+    public static function RecensioniLocale ($nomelocal,$luogo) {
+        $db=FDB::getInstance();
+        $result = $db->getRecensioniLocali();
+        //$rows_number = $result->rowCount();
+        if (($result!=null)/* && ($rows_number == 1)*/){
+            if($result["nomelocale"]==$nomelocal && $result["luogolocale"]==$luogo)
+            $rece = FRecensione::loadByField("codicerecensione" , $result["codicerecensione"]);
+        }
+        return $rece;
+    }
 
     /**
-     * Metodo che permette di ritornare tutti gli utenti presenti sul db, in base al loro stato.
-     * @param $state valore dello stato
-     * @return object $utente Utente
-     
-	 PROBABILMENTE NEL NOSTRO CASO INUTILE
-	 
-    public static function loadUtenti($state){
-        $utente = null;
-        $db=FDatabase::getInstance();
-        list ($result, $rows_number)=$db->getUtenti($state);
-        if(($result!=null) && ($rows_number == 1)) {
-            $utente=new EUtente($result['username'],$result['nome'],$result['cognome'], $result['email'], $result['password'],$result['dataIscrizione']);
+     *
+     * @param $parola valore da ricercare all'interno del campo text
+     * @return object $rec Recensione
+     */
+    public static function loadByKeyword($parola) {
+        $loc = null;
+        $db = FDB::getInstance();
+        list ($result, $rows_number)=$db->CercaByKeyword(static::getClass(), "campo",$parola);
+        if(($result != null) && ($rows_number == 1)) {
+            $rec = new ERecensione($result['text'],$result['mark'],$result['emailClient'],$result['emailConveyor']);
+            $rec->setId($result['id']);
         }
         else {
-            if(($result!=null) && ($rows_number > 1)){
-                $utente = array();
-                for($i=0; $i<count($result); $i++){
-                    $utente[]=new EUtente($result[$i]['username'],$result[$i]['nome'],$result[$i]['cognome'], $result[$i]['email'], $result[$i]['password'],$result[$i]['dataIscrizione']);
+            if(($result != null) && ($rows_number > 1)){
+                $rec = array();
+                for($i = 0; $i < count($result); $i++){
+                    $rec[] = new ERecensione($result[$i]['text'], $result[$i]['mark'],$result[$i]['emailClient'], $result[$i]['emailConveyor']);
+                    $rec[$i]->setId($result[$i]['id']);
                 }
             }
         }
-        return $utente;
-    } */
+        return $rec;
+    }
 
 
     /**
