@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0a8f8ad1-2055-4100-94b1-7818187e7f23" name="Changes" comment="aggiunta orario e evnto" />
+    <list default="true" id="0a8f8ad1-2055-4100-94b1-7818187e7f23" name="Changes" comment="aggiunta orario e evnto">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FacceBeve.sql" beforeDir="false" afterPath="$PROJECT_DIR$/FacceBeve.sql" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -30,7 +33,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/zanza/OneDrive/Documenti/GitHub/FacceBeve",
+    "last_opened_file_path": "C:/Users/zanza/OneDrive/Documenti/GitHub/FacceBeve/Foundation/FDB.php",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -58,6 +61,8 @@
       <workItem from="1652690760884" duration="3375000" />
       <workItem from="1652796439315" duration="6183000" />
       <workItem from="1654372664535" duration="1260000" />
+      <workItem from="1655825045987" duration="20000" />
+      <workItem from="1657091069405" duration="1687000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <created>1651595118723</created>

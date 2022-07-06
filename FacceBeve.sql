@@ -73,7 +73,7 @@ CREATE TABLE `Orario` (
     `giorno` VARCHAR(15),
     `OrarioApertura` CHAR(5),
     `OrarioChiusura` CHAR(5),
-    PRIMARY KEY (`ID`)
+    PRIMARY KEY (`codicegiorno`)
 );
 
 /*Tabella relativa ai Locali*/
@@ -103,7 +103,7 @@ CREATE TABLE `Evento` (
     `nome` VARCHAR(26),
     `descrizione` VARCHAR(120),
 	 `data` DATE,   
-    PRIMARY KEY (`ID`)
+    PRIMARY KEY (`codiceevento`)
 );
 
 
@@ -122,7 +122,7 @@ CREATE TABLE `Recensione` (
     `utente` INT(11) NOT NULL,
     `nomelocale` VARCHAR(26) NOT NULL,
 	`luogolocale` INT(11) NOT NULL,
-    PRIMARY KEY (`ID`),
+    PRIMARY KEY (`codicerecensione`),
     FOREIGN KEY (`utente`) REFERENCES Utente(`username`) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (`nomelocale`,`luogolocale`) REFERENCES Locale(`nome`,`localizzazione`) ON DELETE CASCADE ON UPDATE CASCADE 
 );
@@ -135,7 +135,7 @@ CREATE TABLE `Risposta` (
     `descrizione` VARCHAR(120),
     `proprietario` INT(11) NOT NULL,
     `recensione` INT(11) NOT NULL,
-    PRIMARY KEY (`ID`),
+    PRIMARY KEY (`codicerisposta`),
    /* FOREIGN KEY (`proprietario`) REFERENCES Proprietario(`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (`recensione`) REFERENCES Recensione(`ID`) ON DELETE CASCADE ON UPDATE CASCADE /**Boh, controllare*/ */
 );
