@@ -17,14 +17,14 @@
 		/**
          * @return string
          */
-		protected function getUsername(){
+		public function getUsername(){
 			return $this->username;
 		}
 		
 		/**
          * @return string
          */
-		protected function getPassword(){
+		public function getPassword(){
 			return $this->password;
 		}
 		

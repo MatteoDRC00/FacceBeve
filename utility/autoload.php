@@ -25,7 +25,6 @@ function my_autoload($className) {
             break;*/
 
     }
-  }
 }
 
 spl_autoload_register('my_autoload');

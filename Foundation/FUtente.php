@@ -29,7 +29,7 @@ class FUtente{
         $stmt->bindValue(':email', $utente->getEmail(), PDO::PARAM_STR);
         $stmt->bindValue(':password', $utente->getPassword(), PDO::PARAM_STR); 
         $stmt->bindValue(':dataIscrizione', $utente->getData(), PDO::PARAM_BOOL);
-        }
+    }
 
     /**
     * questo metodo restituisce il nome della classe per la costruzione delle Query
