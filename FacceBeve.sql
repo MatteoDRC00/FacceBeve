@@ -8,6 +8,18 @@ GRANT ALL ON collection_site.* TO 'website'@'localhost';*/
 
 USE `FacceBeve`;
 
+
+/*Tabella relativa alle immagini utilizzate*/
+DROP TABLE IF EXISTS `Immagini`;
+CREATE TABLE `Immangini` (
+    id int(11) NOT NULL auto_increment,
+    nome varchar(50) NOT NULL default "",
+    size varchar(25) NOT NULL default "",
+    type varchar(25) NOT NULL default "",
+    immagine blob NOT NULL,
+    PRIMARY KEY (id)
+);
+
 /*Tabella relativa agli Utenti registrati*/
 DROP TABLE IF EXISTS `Utente`;
 
