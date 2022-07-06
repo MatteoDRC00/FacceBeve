@@ -80,18 +80,18 @@
 		public function store($class, $obj)
 		{
 			try {
-				$this->db->beginTransaction();
+				$this->database->beginTransaction();
 				$query = "INSERT INTO " . $class::getTable() . " VALUES " . $class::getValues();
-				$stmt = $this->db->prepare($query); //Prepared Statement
+				$stmt = $this->database->prepare($query); //Prepared Statement
 				$class::bind($stmt, $obj);
 				$stmt->execute();
-				$id = $this->db->lastInsertId();
-				$this->db->commit();
+				$id = $this->database->lastInsertId();
+				$this->database->commit();
 				$this->closeDbConnection();
 				return $id;
 			} catch (PDOException $e) {
 				echo "Attenzione errore: " . $e->getMessage();
-				$this->db->rollBack();
+				$this->database->rollBack();
 				return null;
 			}
 		}
