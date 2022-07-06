@@ -121,7 +121,7 @@ CREATE TABLE `Recensione` (
     `counter` BOOLEAN  DEFAULT 0, /*Conta il numero di segnalazioni alla recensione*/
     `utente` INT(11) NOT NULL,
     `nomelocale` VARCHAR(26) NOT NULL,
-	`luogolocale` INT(11) NOT NULL,
+    `luogolocale` INT(11) NOT NULL,
     PRIMARY KEY (`codicerecensione`),
     FOREIGN KEY (`utente`) REFERENCES Utente(`username`) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (`nomelocale`,`luogolocale`) REFERENCES Locale(`nome`,`localizzazione`) ON DELETE CASCADE ON UPDATE CASCADE 
@@ -136,8 +136,8 @@ CREATE TABLE `Risposta` (
     `proprietario` INT(11) NOT NULL,
     `recensione` INT(11) NOT NULL,
     PRIMARY KEY (`codicerisposta`),
-   /* FOREIGN KEY (`proprietario`) REFERENCES Proprietario(`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (`recensione`) REFERENCES Recensione(`ID`) ON DELETE CASCADE ON UPDATE CASCADE /**Boh, controllare*/ */
+    FOREIGN KEY (`proprietario`) REFERENCES Proprietario(`username`) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (`recensione`) REFERENCES Recensione(`codicerecensione`) ON DELETE CASCADE ON UPDATE CASCADE /**Boh, controllare*/ */
 );
 
 /*Tabella che mette in relazione l'Utente con i suoi Locali Preferiti*/
