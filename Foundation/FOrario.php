@@ -23,7 +23,7 @@ class FOrario{
     * @param EOrario $orario Orario i cui i dati devono essere inseriti nel DB
     */
     public static function bind($stmt, EOrario $orario){
-        $stmt->bindValue(':codicegiorno', $orario->getCodice(), PDO::PARAM_INT);
+        $stmt->bindValue(':codicegiorno', NULL, PDO::PARAM_INT);
 		$stmt->bindValue(':giorno', $orario->getGiornoSettimana(), PDO::PARAM_STR);    //Potrebbe dare problemi
 		$stmt->bindValue(':orarioApertura',$orario->getOrarioApertura(), PDO::PARAM_STR);
 		$stmt->bindValue(':orarioChiusura',$orario->getOrarioChiusura(), PDO::PARAM_STR);
@@ -55,11 +55,11 @@ class FOrario{
 
     /**
     * Metodo che permette la store di un Utente
-    * @param $utente Utenteloggato da salvare
+    * @param Orario $orario da salvare
     */
-    public static function store($utente){
+    public static function store($orario){
         $db=FDB::getInstance();
-        $id=$db->store(static::getClass() ,$utente);
+        $id=$db->store(static::getClass() ,$orario);
     }
 
 
@@ -74,13 +74,15 @@ class FOrario{
         $result=$db->load(static::getClass(), $field, $id);
         $rows_number = $db->interestedRows(static::getClass(), $field, $id);    //funzione richiamata,presente in FDB --> restituisce numero di righe interessate dalla query
         if(($result!=null) && ($rows_number == 1)) {           
-		   $orario=new EOrario($result['codicegiorno'],$result['giorno'],$result['orarioApertura'],$result['orarioChiusura']); //Carica un Orario dal database
+		    $orario=new EOrario($result['giorno'],$result['orarioApertura'],$result['orarioChiusura']); //Carica un Orario dal database
+            $orario->setCodice($result['codicegiorno']);
         }
         else {
             if(($result!=null) && ($rows_number > 1)){
                 $utente = array();
         	    for($i=0; $i<count($result); $i++){
-                    $orario=new EOrario($result[$i]['codicegiorno'],$result[$i]['giorno'],$result[$i]['orarioApertura'],$result[$i]['orarioChiusura']); //Carica un array di oggetti UOrario dal database
+                    $orario[] =new EOrario($result[$i]['giorno'],$result[$i]['orarioApertura'],$result[$i]['orarioChiusura']); //Carica un array di oggetti UOrario dal database
+                    $orario[$i]->setCodice($result[$i]['codicegiorno']);
                 }
             }
         }

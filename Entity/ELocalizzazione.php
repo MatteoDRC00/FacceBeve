@@ -11,7 +11,7 @@
      */
     class ELocalizzazione{
 		
-		private static int $contalo = 0;
+	//	private static int $contalo = 0;
 
         private int $codiceluogo;
         private string $indirizzo;
@@ -29,8 +29,8 @@
          */
         public function __construct(string $indirizzo, string $numCivico, string $citta, string $nazione, int $CAP)
         {
-			$this->codiceluogo = self::$contalo;
-            self::$contalo++;
+			//$this->codiceluogo = self::$contalo;
+            //self::$contalo++;
             $this->indirizzo = $indirizzo;
             $this->numCivico = $numCivico;
             $this->citta = $citta;
@@ -52,6 +52,14 @@
         public function getCodice(): int
         {
             return $this->codiceluogo;
+        }
+
+        /**
+         * @param int $codice
+         */
+        public function setCodice(int $codice): void
+        {
+            $this->codiceluogo=$codice;
         }
 
 

@@ -1,7 +1,7 @@
 <?php
 class ERecensione {
 
-    private static int $contar = 0;
+    //private static int $contar = 0;
 
     private int $codicerecensione;
     private EUtente $utente;
@@ -26,8 +26,8 @@ class ERecensione {
      * @param DateTime $data
      */
     public function __construct(EUtente $utente, string $titolo, string $descrizione, int $voto, DateTime $data,ELocale $locale){
-		$this->codicerecensione = self::$contar;
-        self::$contar++;
+		//$this->codicerecensione = self::$contar;
+       // self::$contar++;
         $this->utente = $utente;
         $this->titolo = $titolo;
         $this->descrizione = $descrizione;
@@ -158,6 +158,15 @@ class ERecensione {
         $this->segnalata = $segnalata;
     }
 
+    /**
+     * @param int $codice
+     */
+    public function setCodice(int $codice): void
+    {
+        $this->codicerecensione = $codice;
+    }
+
+    //Gestione segnalazioni a recensione
     /**
      * @return int
      */
