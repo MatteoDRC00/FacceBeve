@@ -1,7 +1,7 @@
 <?php
 class ERisposta {
-    //da aggiustare
 
+    private int $codicerisposta;
     private ERecensione $recensione;
 	private EProprietario $proprietario;
     private string $titolo;
@@ -20,33 +20,41 @@ class ERisposta {
     }
 	
 	//Metodi GET
-	public function  getDescrizione() : String{
-		return $descrizione;
+	public function  getDescrizione($descrizione) : String{
+		return $this->descrizione;
 	}
 	
 	public function  getRecensione() : ERecensione{
-		return $recensione;
+		return $this->recensione;
 	}
+
+    public function  getCodice() : int{
+        return $this->codicerisposta;
+    }
 	
 	public function getProprietario() : EProprietario{
-		return $proprietario;
+		return $this->proprietario;
 	}
 	
 	public function getAutore() : EUtente{
-		return $recensione->getUtente();
+		return $this->recensione->getUtente();
 	}
 
 	//Metodi SET
 	public function setDescrizione(String $testo) : void{
-		$this.descrizione=$testo;
+		$this->descrizione=$testo;
 	}
+
+    public function  setCodice(int $codice) : void{
+        $this->codicerisposta=$codice;
+    }
 	
 	public function setRecensione(ERecensione $recensione) : void{
-		$this.recensione=$recensione;
+        $this->recensione=$recensione;
 	}
     
 	public function setProprietario(EProprietario $proprietario) : void{
-		$this.proprietario=$proprietario;
+        $this->proprietario=$proprietario;
 	}
 
 }

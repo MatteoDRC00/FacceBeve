@@ -339,34 +339,6 @@
 				return null;
 			}
 		} */
-	/** Metodo che verifica che il luogo inserito ,esista nel db,controllando che il nome della città e la provincia esistano nel db
-	 *@param nome ,nome della città
-	 *@param provincia , provincia della città
-
-		public function loadVerificaLuogo ($nome, $provincia)
-		{
-			try {
-				$query = null;
-				$class = "FLuogo";
-				$query = "SELECT * FROM " . $class::getTable() . " WHERE name ='" . $nome . "' AND province ='" . $provincia . "';";
-				//print ($query);
-				$stmt = $this->db->prepare($query);
-				$stmt->execute();
-				$num = $stmt->rowCount();
-				if ($num == 0) {
-					$place = null;        //nessuna riga interessata. return null
-				} else {                          //nel caso in cui una sola riga fosse interessata
-					$result = $stmt->fetch(PDO::FETCH_ASSOC);   //ritorna una sola riga
-					$place = new ELuogo($result['province'], $result['name']);
-					$place->setId($result['id']);
-				}
-				return $place;
-			} catch (PDOException $e) {
-				echo "Attenzione errore: " . $e->getMessage();
-				$this->db->rollBack();
-				return null;
-			}
-		} */
 	/**  Metodo che chiude la connesione con il db */
 		public function closeDbConnection (){
 			static::$instance = null;
@@ -403,24 +375,6 @@
 				$this->db->rollBack();
 				return null;
 			} */
-		//}
-	/**  Metodo che restituisce il numero di righe interessate dalla query
-		public function rowsTrasporti ()
-		{
-			try {
-				$this->db->beginTransaction();
-				$query = "SELECT * FROM annuncio WHERE departureDate <> '0000-00-00'";
-				$stmt = $this->db->prepare($query);
-				$stmt->execute();
-				$num = $stmt->rowCount();
-				$this->closeDbConnection();
-				return $num;
-			} catch (PDOException $e) {
-				echo "Attenzione errore: " . $e->getMessage();
-				$this->db->rollBack();
-				return null;
-			}
-		} */
 
 		/**
 		 * Funzione utilizzata per ritornare i soli annunci (attivi e inattivi) che contengono una parola inserita dall'admin.

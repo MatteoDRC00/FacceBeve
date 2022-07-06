@@ -128,7 +128,7 @@ class FLocalizzazione{
     */
      public static function delete($field, $id){
       $db=FDB::getInstance();
-      $result = $db->delete(static::getClass(), $field, $id);   //funzione richiamata,presente in FDatabase
+      $result = $db->delete(static::getClass(), $field, $id);   //funzione richiamata, presente in FDB
       if($result) return true;
         else return false;
     }   

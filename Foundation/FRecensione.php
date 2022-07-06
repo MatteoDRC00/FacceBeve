@@ -66,14 +66,14 @@
             $result = $db->load(static::getClass(), $field, $id);
             $rows_number = $db->interestedRows(static::getClass(), $field, $id);
             if(($result != null) && ($rows_number == 1)) {
-                $rec = new ERecensione($result['codicerecensione'],$result['titolo'],$result['descrizione'],$result['data'],$result['segnalato'],$result['counter'],$result['utente'],$result['nomelocale'],$result['luogolocale']);
+                $rec = new ERecensione($result['titolo'],$result['descrizione'],$result['data'],$result['segnalato'],$result['counter'],$result['utente'],$result['nomelocale'],$result['luogolocale']);
                 $rec->setCodice($result['codicerecensione']);
             }
             else {
                 if(($result != null) && ($rows_number > 1)){
                     $rec = array();
                     for($i = 0; $i < count($result); $i++){
-						 $rec[] = new ERecensione($result[$i]['codicerecensione'],$result[$i]['titolo'],$result[$i]['descrizione'],$result[$i]['data'],$result[$i]['segnalato'],$result[$i]['counter'],$result[$i]['utente'],$result[$i]['nomelocale'],$result[$i]['luogolocale']);
+						 $rec[] = new ERecensione($result[$i]['titolo'],$result[$i]['descrizione'],$result[$i]['data'],$result[$i]['segnalato'],$result[$i]['counter'],$result[$i]['utente'],$result[$i]['nomelocale'],$result[$i]['luogolocale']);
                          $rec[$i]->setCodice($result[$i]['id']);
                     }
                 }
@@ -133,14 +133,14 @@
             $db = FDB::getInstance();
             list ($result, $rows_number)=$db->getAllRev();
             if(($result != null) && ($rows_number == 1)) {
-                $rec = new ERecensione($result['codicerecensione'],$result['titolo'],$result['descrizione'],$result['data'],$result['segnalato'],$result['counter'],$result['utente'],$result['nomelocale'],$result['luogolocale']);
+                $rec = new ERecensione($result['titolo'],$result['descrizione'],$result['data'],$result['segnalato'],$result['counter'],$result['utente'],$result['nomelocale'],$result['luogolocale']);
                 $rec->setCodice($result['id']);
             }
             else {
                 if(($result != null) && ($rows_number > 1)){
                     $rec = array();
                     for($i = 0; $i < count($result); $i++){
-                        $rec[] = new ERecensione($result[$i]['codicerecensione'],$result[$i]['titolo'],$result[$i]['descrizione'],$result[$i]['data'],$result[$i]['segnalato'],$result[$i]['counter'],$result[$i]['utente'],$result[$i]['nomelocale'],$result[$i]['luogolocale']);
+                        $rec[] = new ERecensione($result[$i]['titolo'],$result[$i]['descrizione'],$result[$i]['data'],$result[$i]['segnalato'],$result[$i]['counter'],$result[$i]['utente'],$result[$i]['nomelocale'],$result[$i]['luogolocale']);
                         $rec[$i]->setCodice($result[$i]['id']);
                     }
                 }
@@ -150,22 +150,22 @@
 
         /**
          *
-         * @param $parola valore da ricercare all'interno del campo text
+         * @param $parola valore da ricercare all'interno del campo
          * @return object $rec Recensione
          */
         public static function loadByParola($parola) {
             $rec = null;
             $db = FDB::getInstance();
-            list ($result, $rows_number)=$db->ricercaParola($parola, static::getClass(), "text");
+            list ($result, $rows_number)=$db->CercaByKeyword(static::getClass(),"descrizione",$parola);
             if(($result != null) && ($rows_number == 1)) {
-                $rec = new ERecensione($result['codicerecensione'],$result['titolo'],$result['descrizione'],$result['data'],$result['segnalato'],$result['counter'],$result['utente'],$result['nomelocale'],$result['luogolocale']);
+                $rec = new ERecensione($result['titolo'],$result['descrizione'],$result['data'],$result['segnalato'],$result['counter'],$result['utente'],$result['nomelocale'],$result['luogolocale']);
                 $rec->setCodice($result['id']);
             }
             else {
                 if(($result != null) && ($rows_number > 1)){
                     $rec = array();
                     for($i = 0; $i < count($result); $i++){
-                        $rec[] = new ERecensione($result[$i]['codicerecensione'],$result[$i]['titolo'],$result[$i]['descrizione'],$result[$i]['data'],$result[$i]['segnalato'],$result[$i]['counter'],$result[$i]['utente'],$result[$i]['nomelocale'],$result[$i]['luogolocale']);
+                        $rec[] = new ERecensione($result[$i]['titolo'],$result[$i]['descrizione'],$result[$i]['data'],$result[$i]['segnalato'],$result[$i]['counter'],$result[$i]['utente'],$result[$i]['nomelocale'],$result[$i]['luogolocale']);
                         $rec[$i]->setCodice($result[$i]['id']);
                     }
                 }

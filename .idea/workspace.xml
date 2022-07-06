@@ -5,13 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0a8f8ad1-2055-4100-94b1-7818187e7f23" name="Changes" comment="aggiunta orario e evnto">
+      <change afterPath="$PROJECT_DIR$/Foundation/FRisposta.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Entity/ELocalizzazione.php" beforeDir="false" afterPath="$PROJECT_DIR$/Entity/ELocalizzazione.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Entity/EOrario.php" beforeDir="false" afterPath="$PROJECT_DIR$/Entity/EOrario.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Entity/ERecensione.php" beforeDir="false" afterPath="$PROJECT_DIR$/Entity/ERecensione.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FacceBeve.sql" beforeDir="false" afterPath="$PROJECT_DIR$/FacceBeve.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Entity/ELocale.php" beforeDir="false" afterPath="$PROJECT_DIR$/Entity/ELocale.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Entity/ERisposta.php" beforeDir="false" afterPath="$PROJECT_DIR$/Entity/ERisposta.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Foundation/FDB.php" beforeDir="false" afterPath="$PROJECT_DIR$/Foundation/FDB.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Foundation/FLocale.php" beforeDir="false" afterPath="$PROJECT_DIR$/Foundation/FLocale.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Foundation/FLocalizzazione.php" beforeDir="false" afterPath="$PROJECT_DIR$/Foundation/FLocalizzazione.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Foundation/FOrario.php" beforeDir="false" afterPath="$PROJECT_DIR$/Foundation/FOrario.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Foundation/FRecensione.php" beforeDir="false" afterPath="$PROJECT_DIR$/Foundation/FRecensione.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -69,7 +69,7 @@
       <workItem from="1654372664535" duration="1260000" />
       <workItem from="1655825045987" duration="20000" />
       <workItem from="1657091069405" duration="7169000" />
-      <workItem from="1657112682333" duration="2061000" />
+      <workItem from="1657112682333" duration="4965000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <created>1651595118723</created>
