@@ -19,7 +19,7 @@
          * @param ERecensione $rec Recensione in cui i dati devono essere inseriti nel DB
          */
         public static function bind(PDOStatement $stmt, ERecensione $recensione) {
-            $stmt->bindValue(':codicerecensione',$recensione->getCodice(), PDO::PARAM_INT);
+            $stmt->bindValue(':codicerecensione',NULL, PDO::PARAM_INT);
             $stmt->bindValue(':titolo',$recensione->getTitolo(),PDO::PARAM_STR);
             $stmt->bindValue(':descrizione',$recensione->getDescrizione(),PDO::PARAM_STR);
             $stmt->bindValue(':voto',$recensione->getVoto(),PDO::PARAM_INT);
@@ -67,14 +67,14 @@
             $rows_number = $db->interestedRows(static::getClass(), $field, $id);
             if(($result != null) && ($rows_number == 1)) {
                 $rec = new ERecensione($result['codicerecensione'],$result['titolo'],$result['descrizione'],$result['data'],$result['segnalato'],$result['counter'],$result['utente'],$result['nomelocale'],$result['luogolocale']);
-                // $rec->setId($result['codicerecensione']); ?
+                $rec->setCodice($result['codicerecensione']);
             }
             else {
                 if(($result != null) && ($rows_number > 1)){
                     $rec = array();
                     for($i = 0; $i < count($result); $i++){
 						 $rec[] = new ERecensione($result[$i]['codicerecensione'],$result[$i]['titolo'],$result[$i]['descrizione'],$result[$i]['data'],$result[$i]['segnalato'],$result[$i]['counter'],$result[$i]['utente'],$result[$i]['nomelocale'],$result[$i]['luogolocale']);
-                       // $rec[$i]->setId($result[$i]['id']); ?
+                         $rec[$i]->setCodice($result[$i]['id']);
                     }
                 }
             }
@@ -134,14 +134,14 @@
             list ($result, $rows_number)=$db->getAllRev();
             if(($result != null) && ($rows_number == 1)) {
                 $rec = new ERecensione($result['codicerecensione'],$result['titolo'],$result['descrizione'],$result['data'],$result['segnalato'],$result['counter'],$result['utente'],$result['nomelocale'],$result['luogolocale']);
-                //$rec->setId($result['id']); ?
+                $rec->setCodice($result['id']);
             }
             else {
                 if(($result != null) && ($rows_number > 1)){
                     $rec = array();
                     for($i = 0; $i < count($result); $i++){
                         $rec[] = new ERecensione($result[$i]['codicerecensione'],$result[$i]['titolo'],$result[$i]['descrizione'],$result[$i]['data'],$result[$i]['segnalato'],$result[$i]['counter'],$result[$i]['utente'],$result[$i]['nomelocale'],$result[$i]['luogolocale']);
-                       // $rec[$i]->setId($result[$i]['id']); ?
+                        $rec[$i]->setCodice($result[$i]['id']);
                     }
                 }
             }
@@ -159,14 +159,14 @@
             list ($result, $rows_number)=$db->ricercaParola($parola, static::getClass(), "text");
             if(($result != null) && ($rows_number == 1)) {
                 $rec = new ERecensione($result['codicerecensione'],$result['titolo'],$result['descrizione'],$result['data'],$result['segnalato'],$result['counter'],$result['utente'],$result['nomelocale'],$result['luogolocale']);
-                //$rec->setId($result['id']); ?
+                $rec->setCodice($result['id']);
             }
             else {
                 if(($result != null) && ($rows_number > 1)){
                     $rec = array();
                     for($i = 0; $i < count($result); $i++){
                         $rec[] = new ERecensione($result[$i]['codicerecensione'],$result[$i]['titolo'],$result[$i]['descrizione'],$result[$i]['data'],$result[$i]['segnalato'],$result[$i]['counter'],$result[$i]['utente'],$result[$i]['nomelocale'],$result[$i]['luogolocale']);
-                       // $rec[$i]->setId($result[$i]['id']); ?
+                        $rec[$i]->setCodice($result[$i]['id']);
                     }
                 }
             }

@@ -12,7 +12,7 @@ class FLocalizzazione{
 	/** tabella con la quale opera */          
     private static $table="localizzazione";
     /** valori della tabella */
-    private static $values="(:indirizzo,:numCivico,:citta,:nazione,:CAP)";
+    private static $values="(:codiceluogo,:indirizzo,:numCivico,:citta,:nazione,:CAP)";
 
     /** costruttore*/ 
     public function __construct(){}
@@ -23,6 +23,7 @@ class FLocalizzazione{
     * @param ELocalizzazione $luogo i cui i dati devono essere inseriti nel DB
     */
     public static function bind($stmt, ELocalizzazione $localizzazione){
+        $stmt->bindValue(':codiceluogo', NULL, PDO::PARAM_INT);
         $stmt->bindValue(':indirizzo', $localizzazione->getIndirizzo(), PDO::PARAM_STR); 
 		$stmt->bindValue(':numCivico',$localizzazione->getNumCivico(), PDO::PARAM_STR);
 		$stmt->bindValue(':citta',$localizzazione->getCitta(), PDO::PARAM_STR);
@@ -75,13 +76,15 @@ class FLocalizzazione{
         $result=$db->load(static::getClass(), $field, $id);
         $rows_number = $db->interestedRows(static::getClass(), $field, $id);    //funzione richiamata,presente in FDB --> restituisce numero di righe interessate dalla query
         if(($result!=null) && ($rows_number == 1)) {           
-		   $luogo=new ELocalizzazione($result['indirizzo'],$result['numCivico'],$result['citta'], $result['nazione'], $result['CAP']); //Carica un Luogo dal database
+		    $luogo=new ELocalizzazione($result['indirizzo'],$result['numCivico'],$result['citta'], $result['nazione'], $result['CAP']); //Carica un Luogo dal database
+            $luogo->setCodice($result['codiceluogo']);
         }
         else {
             if(($result!=null) && ($rows_number > 1)){
-                $utente = array();
+                $luogo = array();
         	    for($i=0; $i<count($result); $i++){
                     $luogo[]=new ELocalizzazione($result[$i]['indirizzo'], $result[$i]['numCivico'], $result[$i]['citta'], $result[$i]['nazione'], $result[$i]['CAP']); //Carica un array di oggetti Localizzazione dal database
+                    $luogo[$i]->setCodice($result[$i]['codiceluogo']);
                 }
             }
         }

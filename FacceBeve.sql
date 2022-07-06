@@ -19,7 +19,7 @@ CREATE TABLE `Utente` (
     `password` VARCHAR(30) NOT NULL,
     `dataIscrizione` DATE NOT NULL,
     PRIMARY KEY (`username`)
-);
+)ENGINE=InnoDB;
 
 /*Tabella relativa ai Proprietari dei Locali*/
 DROP TABLE IF EXISTS `Proprietario`;
@@ -31,7 +31,7 @@ CREATE TABLE `Proprietario` (
     `email` VARCHAR(40) NOT NULL,
     `password` VARCHAR(30) NOT NULL,
     PRIMARY KEY (`username`)
-);
+)ENGINE=InnoDB;
 
 /*Tabella relativa agli Admin del sito*/
 DROP TABLE IF EXISTS `Admin`;
@@ -41,7 +41,7 @@ CREATE TABLE `Admin` (
     `email` VARCHAR(40) NOT NULL,
     `password` VARCHAR(30) NOT NULL,
     PRIMARY KEY (`username`)
-);
+)ENGINE=InnoDB;
 
 /*Tabella relativa alle Categorie a cui possono appartenere i locali(Bar, Ristorazione)*/
 DROP TABLE IF EXISTS `Categoria`;
@@ -50,7 +50,7 @@ CREATE TABLE `Categoria` (
     `genere` VARCHAR(30) NOT NULL,
     `descrizione` VARCHAR(120),
     PRIMARY KEY (`genere`)
-);
+)ENGINE=InnoDB;
 
 /*Tabella relativa alla Localizzazione*/
 DROP TABLE IF EXISTS `Localizzazione`;
@@ -63,7 +63,7 @@ CREATE TABLE `Localizzazione` (
     `nazione` VARCHAR(20) NOT NULL,
     `CAP` INT(5) NOT NULL,
     PRIMARY KEY (`codiceluogo`)
-);
+)ENGINE=InnoDB;
 
 /*Tabella relativa agli Orari */
 DROP TABLE IF EXISTS `Orario`;
@@ -74,7 +74,7 @@ CREATE TABLE `Orario` (
     `OrarioApertura` CHAR(5),
     `OrarioChiusura` CHAR(5),
     PRIMARY KEY (`codicegiorno`)
-);
+)ENGINE=InnoDB;
 
 /*Tabella relativa ai Locali*/
 DROP TABLE IF EXISTS `Locale`;
@@ -92,8 +92,8 @@ CREATE TABLE `Locale` (
     FOREIGN KEY (`proprietario`) REFERENCES Proprietario(`username`) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (`categoria`) REFERENCES Categoria(`genere`) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (`localizzazione`) REFERENCES Localizzazione(`codiceluogo`) ON DELETE CASCADE ON UPDATE CASCADE
-   -- FOREIGN KEY (`orario`) REFERENCES Orario(`ID`) ON DELETE CASCADE ON UPDATE CASCADE
-);
+   -- FOREIGN KEY (`orario`) REFERENCES Orario(`codicegiorno`) ON DELETE CASCADE ON UPDATE CASCADE
+)ENGINE=InnoDB;
 
 /*Tabella relativa agli Eventi !!!POI RICONTROLLARE PER LE IMMAGINI */
 DROP TABLE IF EXISTS `Evento`; /*Poi fare seconda tabella / aggiornamento evento*/
@@ -104,7 +104,7 @@ CREATE TABLE `Evento` (
     `descrizione` VARCHAR(120),
 	 `data` DATE,   
     PRIMARY KEY (`codiceevento`)
-);
+)ENGINE=InnoDB;
 
 
 
@@ -125,7 +125,7 @@ CREATE TABLE `Recensione` (
     PRIMARY KEY (`codicerecensione`),
     FOREIGN KEY (`utente`) REFERENCES Utente(`username`) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (`nomelocale`,`luogolocale`) REFERENCES Locale(`nome`,`localizzazione`) ON DELETE CASCADE ON UPDATE CASCADE 
-);
+)ENGINE=InnoDB;
 
 /*Tabella relativa alle Risposte alle recensioni*/
 DROP TABLE IF EXISTS `Risposta`;
@@ -138,7 +138,7 @@ CREATE TABLE `Risposta` (
     PRIMARY KEY (`codicerisposta`),
     FOREIGN KEY (`proprietario`) REFERENCES Proprietario(`username`) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (`recensione`) REFERENCES Recensione(`codicerecensione`) ON DELETE CASCADE ON UPDATE CASCADE /**Boh, controllare*/ */
-);
+)ENGINE=InnoDB;
 
 /*Tabella che mette in relazione l'Utente con i suoi Locali Preferiti*/
 DROP TABLE IF EXISTS `Utenti_Locali`;
@@ -153,7 +153,7 @@ CREATE TABLE `Utenti_Locali` (
     FOREIGN KEY (`ID_Locale`)
         REFERENCES Locale (`nome`,`localizzazione`)
         ON DELETE CASCADE ON UPDATE CASCADE
-); 
+)ENGINE=InnoDB; 
 
 /*Tabella che mette in relazione il Locale con gli Eventi che organizza*/
 DROP TABLE IF EXISTS `Locale_Eventi`;
@@ -168,7 +168,7 @@ CREATE TABLE `Locale_Eventi` (
     FOREIGN KEY (`ID_Locale`)
         REFERENCES Locale ((`nome`,`localizzazione`))
         ON DELETE CASCADE ON UPDATE CASCADE
-); 
+)ENGINE=InnoDB; 
 
 /*Tabella che mette in relazione il Locale con l'Orario settimanale*/
 DROP TABLE IF EXISTS `Locale_Orari`;
@@ -183,4 +183,4 @@ CREATE TABLE `Locale_Orari` (
     FOREIGN KEY (`ID_Locale`)
         REFERENCES Locale ((`nome`,`localizzazione`))
         ON DELETE CASCADE ON UPDATE CASCADE
-); 
+)ENGINE=InnoDB; 
