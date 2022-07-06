@@ -68,25 +68,25 @@ class FLocale{
     /**
     * Permette la load sul database
     * @param $id campo da confrontare per trovare l'oggetto
-    * @return object $utente Utente
+    * @return object $locale
     */
-    public static function loadByField($field, $id){
-        $utente = null;
+    public static function loadByField($field, $id){ //es: ricerca i locali di Pescara
+        $locale = null;
         $db=FDB::getInstance();
         $result=$db->load(static::getClass(), $field, $id);
         $rows_number = $db->interestedRows(static::getClass(), $field, $id);    //funzione richiamata,presente in FDB --> restituisce numero di righe interessate dalla query
         if(($result!=null) && ($rows_number == 1)) {
-            $utente=new EUtente($result['username'],$result['nome'],$result['cognome'], $result['email'], $result['password'],$result['dataIscrizione']); //Carica un Utente dal database
+            $locale=new ELocale($result['nome'],$result['numtelefono'],$result['descrizione'], $result['proprietario'], $result['categoria'],$result['localizzazione']); //Carica un Locale dal database
         }
         else {
             if(($result!=null) && ($rows_number > 1)){
-                $utente = array();
+                $locale = array();
         	    for($i=0; $i<count($result); $i++){
-                    $utente[]=new EUtente($result[$i]['username'],$result[$i]['nome'],$result[$i]['cognome'], $result[$i]['email'], $result[$i]['password'],$result[$i]['dataIscrizione']); //Carica un array di oggetti Utente dal database
+                    $locale[]=new ELocale($result[$i]['nome'],$result[$i]['numtelefono'],$result[$i]['descrizione'], $result[$i]['proprietario'], $result[$i]['categoria'],$result[$i]['localizzazione']); //Carica un array di oggetti Locale dal database
                 }
             }
         }
-        return $utente;
+        return $locale;
     }
 
     /**
@@ -109,7 +109,7 @@ class FLocale{
     * @param $id valore della primary key da usare come riferimento per la riga
     * @param $newvalue nuovo valore da assegnare
     * @param $field campo in cui si vuo modificare il valore
-	*@param pk chiave primaria della classe interessata
+	* @param pk chiave primaria della classe interessata
     * @return true se esiste il mezzo, altrimenti false
     */
     public static function update($field, $newvalue, $pk, $id){
@@ -136,8 +136,9 @@ class FLocale{
         $result = $db->getRecensioniLocali();
         //$rows_number = $result->rowCount();
         if (($result!=null)/* && ($rows_number == 1)*/){
+            $rece = array();
             if($result["nomelocale"]==$nomelocal && $result["luogolocale"]==$luogo)
-            $rece = FRecensione::loadByField("codicerecensione" , $result["codicerecensione"]);
+               $rece[] = FRecensione::loadByField("codicerecensione" , $result["codicerecensione"]);
         }
         return $rece;
     }

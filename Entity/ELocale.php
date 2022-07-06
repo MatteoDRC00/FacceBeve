@@ -35,11 +35,11 @@
          * @param array $eventi_organizzati
          * @param array $orario
          */
-        public function __construct(string $nome, string $descrizione, string $num_telefono, EProprietario $proprietario, ECategoria $categoria, ELocalizzazione $localizzazione, array $eventi_organizzati, EOrario $orario)
+        public function __construct(string $nome, string $num_telefono, string $descrizione, EProprietario $proprietario, ECategoria $categoria, ELocalizzazione $localizzazione, array $eventi_organizzati, EOrario $orario)
         {
             $this->nome = $nome;
-            $this->descrizione = $descrizione;
             $this->num_telefono = $num_telefono;
+            $this->descrizione = $descrizione;
             $this->proprietario = $proprietario;
             $this->categoria = $categoria;
             $this->localizzazione = $localizzazione;
