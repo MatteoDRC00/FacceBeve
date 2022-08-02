@@ -11,31 +11,40 @@
  *  @author Gruppo 8
  *  @package Entity
  */ 
-    class EUtente extends EUser {
+    class EUtente {
 
+        private string $password;
+        private string $username;
         private string $email;
         private string $nome;
         private string $cognome;
-		private array $localipreferiti;
-		private date $iscrizione;
+        private array $localipreferiti;
+        private date $iscrizione;
 
 
-        public function __construct(string $password, string $nome, string $cognome, string $username, string $email, date $prima){
-            parent::__costructor($username,$password);
+        public function __construct(string $password, string $nome, string $cognome, string $username, string $email){
             $this->nome = $nome;
             $this->cognome = $cognome;
             $this->email = $email;
-			$this->localipreferiti = array();
-			$this->iscrizione = $prima;
+            $this->username = $username;
+            $this->password = $password;
+            $this->localipreferiti = array();
+            $this->iscrizione = date("d.m.y");
         }
 
-//----------------------METODI GET-----------------------------
+    //----------------------METODI GET-----------------------------
 
         /**
          * @return string
          */
-        public function getPassword(): string
-        {
+        public function getUsername(){
+            return $this->username;
+        }
+
+        /**
+         * @return string
+         */
+        public function getPassword(){
             return $this->password;
         }
 
@@ -46,44 +55,44 @@
         {
             return $this->email;
         }
-		
-		/**
+
+        /**
          * @return string
          */
         public function getNome(): string
         {
             return $this->nome;
         }
-		
-		/**
+
+        /**
          * @return string
          */
         public function getCognome(): string
         {
             return $this->cognome;
         }
-		
 
-        public function getUsername(): string
-        {
-            parent::getUsername();
-        }
-
-        /*
-		public function getPassword(){
-			parent::getPassword();
-		}*/
-		
-		/**
+        /**
          * @return array
          */
-        public function getMierecensioni(): array
+        public function getLocalipreferiti(): array
         {
-            return $this->mierecensioni;
+            return $this->localipreferiti;
         }
-		
-		//-----------------------------METODI SET-----------------------------
-		
+
+        /**
+         * @return date
+         */
+        public function getIscrizione(): date
+        {
+            return $this->iscrizione;
+        }
+
+
+
+
+        //-----------------------------METODI SET-----------------------------
+
         /**
          * @param string $password
          */
@@ -93,12 +102,20 @@
         }
 
         /**
+         * @param string $username
+         */
+        public function setUsername(string $username): void
+        {
+            $this->username = $username;
+        }
+
+        /**
          * @param string $email
          */
         public function setEmail(string $email): void
         {
             $this->email = $email;
-        }      
+        }
 
         /**
          * @param string $nome
@@ -114,21 +131,11 @@
         public function setCognome(string $cognome): void
         {
             $this->cognome = $cognome;
-        } 
-
-        /*
-        public function setUsername(string $username): void
-        {
-            parent::setUsername($username);
         }
-		
-		public function setPassword(string $password): void
-        {
-            parent::setPassword($password);
-        }*/
 
- //-----------------------------Altri Metodi-----------------------------		
-		/**
+
+    //-----------------------------Altri Metodi-----------------------------
+        /**
          * @param array $locale
          */
         public function addLocale($locale): void

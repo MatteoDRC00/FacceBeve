@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="AutoImportSettings">
-    <option name="autoReloadType" value="SELECTIVE" />
-  </component>
   <component name="ChangeListManager">
-    <list default="true" id="0a8f8ad1-2055-4100-94b1-7818187e7f23" name="Changes" comment="aggiunta orario e evnto">
-      <change afterPath="$PROJECT_DIR$/Controller/CRecensione.php" afterDir="false" />
+    <list default="true" id="152f96c7-1cf8-4e05-a3b8-32cadffc05df" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Entity/EProprietario.php" beforeDir="false" afterPath="$PROJECT_DIR$/Entity/EProprietario.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Entity/EUtente.php" beforeDir="false" afterPath="$PROJECT_DIR$/Entity/EUtente.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,7 +20,7 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="2875i0mSArJIyVUUNMqz8pZDWAx" />
+  <component name="ProjectId" id="28QdjzE58SNYiWrkjmlxumi1Kuc" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -33,53 +31,29 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/zanza/OneDrive/Documenti/GitHub/FacceBeve/Foundation/FLocale.php&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;php.override.implement.member.chooser.php.doc&quot;: &quot;NONE&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="0a8f8ad1-2055-4100-94b1-7818187e7f23" name="Changes" comment="" />
-      <created>1650554912524</created>
+      <changelist id="152f96c7-1cf8-4e05-a3b8-32cadffc05df" name="Changes" comment="" />
+      <created>1651152882261</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1650554912524</updated>
-      <workItem from="1650554913627" duration="67000" />
-      <workItem from="1650555023893" duration="1686000" />
-      <workItem from="1650557010947" duration="3744000" />
-      <workItem from="1650619676487" duration="1849000" />
-      <workItem from="1650640705189" duration="2648000" />
-      <workItem from="1650643643866" duration="425000" />
-      <workItem from="1651237057582" duration="896000" />
-      <workItem from="1651594552094" duration="815000" />
-      <workItem from="1651657854134" duration="1175000" />
-      <workItem from="1652690760884" duration="3375000" />
-      <workItem from="1652796439315" duration="6183000" />
-      <workItem from="1654372664535" duration="1260000" />
-      <workItem from="1655825045987" duration="20000" />
-      <workItem from="1657091069405" duration="7169000" />
-      <workItem from="1657112682333" duration="6411000" />
+      <updated>1651152882261</updated>
+      <workItem from="1651152883719" duration="20000" />
+      <workItem from="1651155143324" duration="577000" />
+      <workItem from="1652772306403" duration="3183000" />
+      <workItem from="1652781708332" duration="6000" />
+      <workItem from="1652791741132" duration="6951000" />
+      <workItem from="1653560223238" duration="666000" />
+      <workItem from="1653560911120" duration="22000" />
+      <workItem from="1656663740176" duration="451000" />
+      <workItem from="1659425909103" duration="140000" />
+      <workItem from="1659426067911" duration="3903000" />
     </task>
-    <task id="LOCAL-00001" summary="first commit">
-      <created>1651595118723</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1651595118723</updated>
-    </task>
-    <task id="LOCAL-00002" summary="aggiunta orario e evnto">
-      <created>1652695183385</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1652695183385</updated>
-    </task>
-    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -95,10 +69,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="first commit" />
-    <MESSAGE value="aggiunta orario e evnto" />
-    <option name="LAST_COMMIT_MESSAGE" value="aggiunta orario e evnto" />
   </component>
 </project>

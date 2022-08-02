@@ -9,22 +9,23 @@
  *  @author Gruppo 8
  *  @package Entity
  */ 
-    class EProprietario extends EUser {
+    class EProprietario {
 
+        private string $password;
+        private string $username;
         private string $email;
         private string $nome;
         private string $cognome;
 
-
         public function __construct(string $nome, string $cognome, string $email,string $username, string $password){
-            parent::__costructor($username,$password);
             $this->nome = $nome;
             $this->cognome = $cognome;
             $this->username = $username;
             $this->email = $email;
             $this->password = $password;
-            $this->locali = array();
         }
+
+    //----------------------METODI GET-----------------------------
 
         /**
          * @return string
@@ -32,14 +33,6 @@
         public function getPassword(): string
         {
             return $this->password;
-        }
-
-        /**
-         * @param string $password
-         */
-        public function setPassword(string $password): void
-        {
-            $this->password = $password;
         }
 
         /**
@@ -51,27 +44,11 @@
         }
 
         /**
-         * @param string $email
-         */
-        public function setEmail(string $email): void
-        {
-            $this->email = $email;
-        }
-
-        /**
          * @return string
          */
         public function getNome(): string
         {
             return $this->nome;
-        }
-
-        /**
-         * @param string $nome
-         */
-        public function setNome(string $nome): void
-        {
-            $this->nome = $nome;
         }
 
         /**
@@ -83,19 +60,45 @@
         }
 
         /**
-         * @param string $cognome
-         */
-        public function setCognome(string $cognome): void
-        {
-            $this->cognome = $cognome;
-        }
-
-        /**
          * @return string
          */
         public function getUsername(): string
         {
             return $this->username;
+        }
+
+    //----------------------METODI SET-----------------------------
+
+        /**
+         * @param string $password
+         */
+        public function setPassword(string $password): void
+        {
+            $this->password = $password;
+        }
+
+        /**
+         * @param string $email
+         */
+        public function setEmail(string $email): void
+        {
+            $this->email = $email;
+        }
+
+        /**
+         * @param string $nome
+         */
+        public function setNome(string $nome): void
+        {
+            $this->nome = $nome;
+        }
+
+        /**
+         * @param string $cognome
+         */
+        public function setCognome(string $cognome): void
+        {
+            $this->cognome = $cognome;
         }
 
         /**
@@ -105,33 +108,7 @@
         {
             $this->username = $username;
         }
-/**
-        
-        public function GetLocaliGestiti(): array
-        {
-            return $this->mierecensioni;
-        }
-		*/
-		
-		/**
-        public function GetLocale($nome){
-			$Y = 0;
-			foreach($locali as $X){
-				if($X::==$nome)
-					$Y=$X;;
-			} 
-			return $Y;
-        } */
-
-/**
-       
-        public function AddLocaleGestito($locale): void
-        {
-            $this->mierecensioni.array_push($locale);
-        }
-        
-		*/
-
 
     }
+
 ?>
