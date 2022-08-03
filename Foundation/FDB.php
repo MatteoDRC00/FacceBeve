@@ -233,13 +233,13 @@
 								if ($query == null)
 									$query = "SELECT * FROM " . $class::getTable()  . " WHERE nome ='" . $nome . "'";
 								else
-									$query = $query . " AND l.nome ='" . $nome . "'";
+									$query = $query . " AND nome ='" . $nome . "'";
 								break;
 							case 2:
 								if ($query == null)
 									$query = "SELECT * FROM " . $class::getTable()  . " WHERE localizzazione ='" . $citta . "'";
 								else
-									$query = $query . " AND l.localizzazione ='" . $citta . "'";
+									$query = $query . " AND localizzazione ='" . $citta . "'";
 								break;
 						}
 					}
@@ -276,40 +276,40 @@
 		 * @param citta  città dove è situato il locale
 		 * @param data data evento
 		 */
-		public function loadMultipleEvento($nomelocale,$nomeevento $citta, $data)
-		{
-			try {
+		public function loadMultipleEvento($nomelocale,$nomeevento, $citta, $data){
+			try{
 				$query = null;
 				$class = "FEvento";
-				$param = array( $nomelocale,$nomeevento $citta, $data);
-
-				if(isset($categorie)){
-					$nCategorie = sizeof($categorie);
-				}
+				$param = array($nomelocale,$nomeevento, $citta, $data);
 
 				//print_r ($param);
 				for ($i = 0; $i < count($param); $i++) {
 					if ($param[$i] != null) {
 						switch ($i) {
 							case 0:
-								for ($j = 0; $j < nCategorie; $j++){
-									if ($query == null)
-										$query = "SELECT * FROM " . $class::getTable() . " INNER JOIN ON  Locale_Categorie  ON Locale_Categorie.ID_Categoria='" .categorie[j] . "'";
-									else
-										$query = $query . " INNER JOIN ON  Locale_Categorie  ON Locale_Categorie.ID_Categoria='" .categorie[j] ."'";
-								}
+								if ($query == null)
+									$query = "SELECT * FROM " . $class::getTable()  . " INNER JOIN Locale_Eventi ON Locale_Eventi.ID_Locale='" . $nomelocale . "'";
+								else
+									$query = $query . " INNER JOIN Locale_Eventi ON Locale_Eventi.ID_Locale='" . $nomelocale . "'";
+								break;
 								break;
 							case 1:
 								if ($query == null)
-									$query = "SELECT * FROM " . $class::getTable()  . " WHERE nome ='" . $nome . "'";
+									$query = "SELECT * FROM " . $class::getTable()  . " WHERE nome ='" . $nomeevento . "'";
 								else
-									$query = $query . " AND l.nome ='" . $nome . "'";
+									$query = $query . " AND nome ='" . $nomeevento . "'";
 								break;
 							case 2:
 								if ($query == null)
-									$query = "SELECT * FROM " . $class::getTable()  . " WHERE localizzazione ='" . $citta . "'";
+									$query = "SELECT * FROM " . $class::getTable()  . " INNER JOIN Locale_Eventi ON Locale_Eventi.ID_Evento=".$class::getTable().id." INNER JOIN Locale ON Locale.id=Locale_Eventi.ID_Locale WHERE localizzazione ='" . $citta . "'";
 								else
-									$query = $query . " AND l.localizzazione ='" . $citta . "'";
+									$query = $query . " INNER JOIN Locale_Eventi ON Locale_Eventi.ID_Evento=".$class::getTable().id." INNER JOIN Locale ON Locale.id=Locale_Eventi.ID_Locale WHERE localizzazione ='" . $citta . "'";
+								break;
+							case 3:
+								if ($query == null)
+									$query = "SELECT * FROM " . $class::getTable()  . " WHERE data ='" . $data. "'";
+								else
+									$query = $query . " AND data ='" . $data . "'";
 								break;
 						}
 					}
