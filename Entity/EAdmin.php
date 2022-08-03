@@ -4,13 +4,34 @@
  *  @author Gruppo 8
  *  @package Entity
  */ 
-    class EAdmin extends EUser {
+    class EAdmin {
 
+        private string $password;
+        private string $username;
         private string $email;
 
         public function __construct(string $username, string $email, string $password ){
-            parent::__costructor($username,$password);
+            $this->username = $username;
+            $this->password = $password;
             $this->email = $email;
+        }
+
+    //---------------------------------METODI GET------------------------------------------//
+
+        /**
+         * @return string
+         */
+        public function getPassword(): string
+        {
+            return $this->password;
+        }
+
+        /**
+         * @return string
+         */
+        public function getUsername(): string
+        {
+            return $this->username;
         }
 
         /**
@@ -21,12 +42,30 @@
             return $this->email;
         }
 
+    //---------------------------------METODI SET------------------------------------------//
+
+        /**
+         * @param string $username
+         */
+        public function setUsername(string $username): void
+        {
+            $this->username = $username;
+        }
+
         /**
          * @param string $email
          */
         public function setEmail(string $email): void
         {
             $this->email = $email;
+        }
+
+        /**
+         * @param string $password
+         */
+        public function setPassword(string $password): void
+        {
+            $this->password = $password;
         }
 
 
