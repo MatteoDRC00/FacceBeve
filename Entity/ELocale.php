@@ -20,7 +20,7 @@
         private string $descrizione;
         private string $num_telefono;
         private EProprietario $proprietario;
-        private ECategoria $categoria;
+        private $categoria = array();
         private ELocalizzazione $localizzazione;
         private $eventi_organizzati = array();
         private $orario = array();
@@ -30,12 +30,12 @@
          * @param string $descrizione
          * @param string $num_telefono
          * @param EProprietario $proprietario
-         * @param ECategoria $categoria
+         * @param array $categoria
          * @param ELocalizzazione $localizzazione
          * @param array $eventi_organizzati
          * @param array $orario
          */
-        public function __construct(string $nome, string $num_telefono, string $descrizione, EProprietario $proprietario, ECategoria $categoria, ELocalizzazione $localizzazione, array $eventi_organizzati, EOrario $orario)
+        public function __construct(string $nome, string $descrizione, string $num_telefono, EProprietario $proprietario, $categoria, ELocalizzazione $localizzazione, array $eventi_organizzati, array $orario)
         {
             $this->nome = $nome;
             $this->num_telefono = $num_telefono;
@@ -122,7 +122,7 @@
         /**
          * @param ECategoria $categoria
          */
-        public function setCategoria(ECategoria $categoria): void
+        public function setCategoria(array $categoria): void
         {
             $this->categoria = $categoria;
         }

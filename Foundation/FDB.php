@@ -231,59 +231,45 @@
 			}
 		}
 
-	/**   Metodo che restituisce gli annunci che rispettano alcuni parametri di ricerca ,passati come parametri alla funzione
-	 * @param luogo 1 città di partenza
-	 * @param luogo 2  città di arrivo
-	 * @param data1 data ritiro
-	 * @param data2 data consegna
-	 * @param dim dimensione
-	 * @param peso peso del pacco
-
-		public function loadMultipleAnnuncio ($luogo1, $luogo2, $data1, $data2, $dim, $peso)
+	/**   Metodo che restituisce i locali che rispettano alcuni parametri di ricerca ,passati come parametri alla funzione
+	 * @param nome nome del locale
+	 * @param citta  città dove è situato il locale
+	 * @param categorie categorie a cui appartiene il locale
+    */
+		public function loadMultipleLocale($nome, $citta, $categorie)
 		{
 			try {
 				$query = null;
-				$class = "FAnnuncio";
-				$param = array($luogo1, $luogo2, $data1, $data2, $dim, $peso);
+				$class = "FLocale";
+				$param = array( $categorie, $nome, $citta);
+
+	            if(isset($categorie)){
+	              $nCategorie = sizeof($categorie);
+	            }
+
 				//print_r ($param);
 				for ($i = 0; $i < count($param); $i++) {
 					if ($param[$i] != null) {
 						switch ($i) {
-							case 0:
-								if ($query == null)
-									$query = "SELECT * FROM " . $class::getTable() . " WHERE departure ='" . $luogo1 . "'";
-								else
-									$query = $query . " AND departure ='" . $luogo1 . "'";
-								break;
+	                        case 0:
+	                            for ($j = 0; $j < nCategorie; $j++){
+	                               if ($query == null)
+	                                  $query = "SELECT * FROM " . $class::getTable() . " INNER JOIN ON  Locale_Categorie  ON Locale_Categorie.ID_Categoria='" .categorie[j] . "'";
+	                               else
+	                                  $query = $query . " INNER JOIN ON  Locale_Categorie  ON Locale_Categorie.ID_Categoria='" .categorie[j] ."'";
+	                            }
+	                            break;
 							case 1:
 								if ($query == null)
-									$query = "SELECT * FROM " . $class::getTable() . " WHERE arrival ='" . $luogo2 . "'";
+									$query = "SELECT * FROM " . $class::getTable()  . " WHERE nome ='" . $nome . "'";
 								else
-									$query = $query . " AND arrival ='" . $luogo2 . "'";
+									$query = $query . " AND l.nome ='" . $nome . "'";
 								break;
 							case 2:
 								if ($query == null)
-									$query = "SELECT * FROM " . $class::getTable() . " WHERE departureDate ='" . $data1 . "'";
+									$query = "SELECT * FROM " . $class::getTable()  . " WHERE localizzazione ='" . $citta . "'";
 								else
-									$query = $query . " AND departureDate ='" . $data1 . "'";
-								break;
-							case 3:
-								if ($query == null)
-									$query = "SELECT * FROM " . $class::getTable() . " WHERE arrivalDate ='" . $data2 . "'";
-								else
-									$query = $query . " AND arrivalDate ='" . $data2 . "'";
-								break;
-							case 4:
-								if ($query == null)
-									$query = "SELECT * FROM " . $class::getTable() . " WHERE space ='" . $dim . "'";
-								else
-									$query = $query . " AND space ='" . $dim . "'";
-								break;
-							case 5:
-								if ($query == null)
-									$query = "SELECT * FROM " . $class::getTable() . " WHERE weight ='" . $peso . "'";
-								else
-									$query = $query . " AND weight ='" . $peso . "'";
+									$query = $query . " AND l.localizzazione ='" . $citta . "'";
 								break;
 						}
 					}
@@ -312,7 +298,7 @@
 				$this->db->rollBack();
 				return null;
 			}
-		} */
+		}
 
 	/**  Metodo che verifica l'accesso di un utente , controllando che le credenziali (email e password) siano presenti nel db
 	 *@param email ,email del utente
@@ -554,40 +540,6 @@
 			}
 		}
 		*/
-	/** Metodo che carica la chat tra due utenti,identificati dal sistema con le proprie email
-	 *@param email ,email del primo utente
-	 *@param email2 ,email del secondo utente
-
-		public function loadChats ($email, $email2)
-		{
-			try {
-				$query = null;
-				if (!$email2)
-					$query = "SELECT * FROM messaggio WHERE sender ='" . $email . "' OR recipient ='" . $email . "';";
-				else
-					$query = "SELECT * FROM messaggio WHERE (sender ='" . $email . "' OR recipient ='" . $email . "') and id IN
-								(SELECT id FROM messaggio where (sender ='" . $email2 . "' OR recipient ='" . $email2 . "'));";
-				//print ($query);
-				$stmt = $this->db->prepare($query);
-				$stmt->execute();
-				$num = $stmt->rowCount();
-				if ($num == 0) {
-					$result = null;
-				} elseif ($num == 1) {
-					$result = $stmt->fetch(PDO::FETCH_ASSOC);
-				} else {
-					$result = array();
-					$stmt->setFetchMode(PDO::FETCH_ASSOC);
-					while ($row = $stmt->fetch())
-						$result[] = $row;
-				}
-				//print_r ($result);
-				//print($num);
-				return array($result, $num);
-			} catch (PDOException $e) {
-				echo "Attenzione errore: " . $e->getMessage();
-			}
-		} */
 
 	/**  Metodo chr permette il salvataggio du un media di un oggetto passato come parametro alla funzione
 	 *@param $class, classe di cui si vuole salvare il media

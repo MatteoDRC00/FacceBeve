@@ -12,7 +12,8 @@ class FLocale{
 	/** tabella con la quale opera */          
     private static $table="utente";
     /** valori della tabella */
-    private static $values="(:nome,:numtelefono,:descrizione,:proprietario,:categoria,:localizzazione)";
+    /*,:categoria*/
+    private static $values="(:nome,:numtelefono,:descrizione,:proprietario,:localizzazione)";
 
     /** costruttore*/ 
     public function __construct(){}
@@ -27,9 +28,9 @@ class FLocale{
 		$stmt->bindValue(':numtelefono',$locale->getNumTelefono(), PDO::PARAM_STR);
 		$stmt->bindValue(':descrizione',$locale->getDescrizione(), PDO::PARAM_STR);
         $stmt->bindValue(':proprietario', $locale->getProprietario()->getUsername(), PDO::PARAM_STR);
-        $stmt->bindValue(':categoria', $locale->getCategoria(), PDO::PARAM_INT);
+       // $stmt->bindValue(':categoria', $locale->getCategoria(), PDO::PARAM_INT);
         $stmt->bindValue(':localizzazione', $locale->getLocalizzazione()->getCodice(), PDO::PARAM_STR);
-        }
+    }
 
     /**
     * questo metodo restituisce il nome della classe per la costruzione delle Query
@@ -76,13 +77,13 @@ class FLocale{
         $result=$db->load(static::getClass(), $field, $id);
         $rows_number = $db->interestedRows(static::getClass(), $field, $id);    //funzione richiamata,presente in FDB --> restituisce numero di righe interessate dalla query
         if(($result!=null) && ($rows_number == 1)) {
-            $locale=new ELocale($result['nome'],$result['numtelefono'],$result['descrizione'], $result['proprietario'], $result['categoria'],$result['localizzazione']); //Carica un Locale dal database
+            $locale=new ELocale($result['nome'], $result['descrizione'], $result['numtelefono'], $result['proprietario'], $result['categoria'], $result['localizzazione']); //Carica un Locale dal database
         }
         else {
             if(($result!=null) && ($rows_number > 1)){
                 $locale = array();
         	    for($i=0; $i<count($result); $i++){
-                    $locale[]=new ELocale($result[$i]['nome'],$result[$i]['numtelefono'],$result[$i]['descrizione'], $result[$i]['proprietario'], $result[$i]['categoria'],$result[$i]['localizzazione']); //Carica un array di oggetti Locale dal database
+                    $locale[]=new ELocale($result[$i]['nome'], $result[$i]['descrizione'], $result[$i]['numtelefono'], $result[$i]['proprietario'], $result[$i]['categoria'], $result[$i]['localizzazione']); //Carica un array di oggetti Locale dal database
                 }
             }
         }
@@ -199,8 +200,87 @@ class FLocale{
         }
         return $utente;
     } */
-    
+
+    /*
+     /** Metodo che permette di caricare un annuncio che ha determinati parametri
+     public static function loadByForm ($nome, $citta,$attivita) {
+        $annuncio = null;
+        $intermedia = null;
+        $tappa = null;
+        $db=FDatabase::getInstance();
+        list ($result, $rows_number)=$db->loadMultipleAnnuncio($luogo1, $luogo2, $data1, $data2, $dim , $peso);
+        //print_r ($result);
+        //print $rows_number;
+        if(($result!=null) && ($rows_number == 1)) {
+            $part = FLuogo::loadByField("id" , $result["departure"]);
+            $arr = FLuogo::loadByField("id" , $result["arrival"]);
+            $ute = FUtenteloggato::loadByField("email" , $result["emailWriter"]);
+            $tappa = FTappa::loadByField("ad", $result["idAd"] );
+            if ($tappa != null ) {
+                $t = current($tappa);
+                if (is_array($t)) {
+                    foreach ($tappa as $t) {
+                        $intermedia[] = FLuogo::loadByField("id", $t['place']);
+                    }
+                }
+                else {
+                    $intermedia[] = FLuogo::loadByField("id", $tappa['place']);
+                }
+            }
+            $annuncio=new EAnnuncio($result['departureDate'], $result['arrivalDate'], $result['space'], $part , $arr ,$result['weight'],$result['description'],$ute);
+            if ($intermedia != null) {
+                foreach ($intermedia as $i)
+                    $annuncio->addTappa($i);
+            }
+            $annuncio->setIdAd($result['idAd']);
+            if($result['visibility']) $annuncio->setVis();
+        }
+        else {
+            if(($result!=null) && ($rows_number > 1)){
+                $part = array();
+                $arr = array();
+                $annuncio = array();
+                for($i=0; $i<count($result); $i++){
+                    $tappa = null;
+                    $intermedia = null;
+                    $part[] = FLuogo::loadByField("id" , $result[$i]["departure"]);
+                    $arr[] = FLuogo::loadByField("id" , $result[$i]["arrival"]);
+                    $ute[] = FUtenteloggato::loadByField("email" , $result[$i]["emailWriter"]);
+                    $tappa = FTappa::loadByField("ad", $result[$i]["idAd"]);
+                    if ($tappa != null ) {
+                        $t = current($tappa);
+                        if (is_array($t)) {
+                            foreach ($tappa as $t) {
+                                $intermedia[] = FLuogo::loadByField("id", $t['place']);
+                            }
+                        } else {
+                            $intermedia[] = FLuogo::loadByField("id", $tappa['place']);
+                        }
+                    }
+
+                    $annuncio[]=new EAnnuncio($result[$i]['departureDate'], $result[$i]['arrivalDate'], $result[$i]['space'], $part[$i] , $arr[$i] ,$result[$i]['weight'],$result[$i]['description'],$ute[$i]);
+                    $annuncio[$i]->setIdAd($result[$i]['idAd']);
+                    if($result[$i]['visibility']) $annuncio[$i]->setVis();
+                    if ( $intermedia != null ){
+                        foreach ($intermedia as $int)
+                            $annuncio[$i]->addTappa($int);
+                    }
+
+                }
+            }
+        }
+        return $annuncio;
+
+    }
+    */
+
+
+
+
+
+
+
 
 }
-
 ?>
+

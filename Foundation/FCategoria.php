@@ -53,7 +53,7 @@ class FCategoria{
 
     /**
     * Metodo che permette la store di una categoria 
-    * @param $utente Utenteloggato da salvare
+    * @param $utente Utente da salvare
     */
     public static function store($utente){
         $db=FDB::getInstance();
