@@ -31,7 +31,7 @@ class FOrario {
 		$stmt->bindValue(':giorno', $orario->getGiornoSettimana(), PDO::PARAM_STR);    //Potrebbe dare problemi
 		$stmt->bindValue(':orarioApertura',$orario->getOrarioApertura(), PDO::PARAM_STR);
 		$stmt->bindValue(':orarioChiusura',$orario->getOrarioChiusura(), PDO::PARAM_STR);
-        }
+    }
 
     /**
     * metodo che restituisce il nome della classe per la costruzione delle query

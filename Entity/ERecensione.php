@@ -1,9 +1,6 @@
 <?php
 class ERecensione {
 
-    //private static int $contar = 0;
-
-    private int $codicerecensione;
     private EUtente $utente;
 	private ELocale $locale;
     private string $titolo;
@@ -26,8 +23,6 @@ class ERecensione {
      * @param DateTime $data
      */
     public function __construct(EUtente $utente, string $titolo, string $descrizione, int $voto, DateTime $data,ELocale $locale){
-		//$this->codicerecensione = self::$contar;
-       // self::$contar++;
         $this->utente = $utente;
         $this->titolo = $titolo;
         $this->descrizione = $descrizione;

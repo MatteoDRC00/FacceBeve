@@ -1,58 +1,65 @@
 <?php
-//Da aggiustare...
+
+/**
+ * La classe FRisposta fornisce query per gli oggetti ERisposta
+ * @author Gruppo 8
+ * @package Foundation
+ */
 class FRisposta{
 
-    /** nome della classe */
+    /** classe Foundation */
     private static $class = "FRisposta";
-    /** tabella con la quale opera */
+
+    /** tabella con la quale opera nel DB */
     private static $table = "Risposta";
-    /** valori della tabella */
+
+    /** valori della tabella nel DB */
     private static $values="(:titolo,:descrizione,:proprietario,:recensione)";
+
     /** costruttore */
     public function __construct() {
 
     }
 
     /**
-     * Questo metodo lega gli attributi della Recensione da inserire con i parametri della INSERT
+     * metodo che lega gli attributi della Risposta da inserire con i parametri della INSERT
      * @param PDOStatement $stmt
-     * @param ERisposta $rec Recensione in cui i dati devono essere inseriti nel DB
+     * @param ERisposta $risposta
      */
     public static function bind(PDOStatement $stmt, ERisposta $risposta) {
-        $stmt->bindValue(':titolo',$risposta->getTitolo(),PDO::PARAM_STR);
+        $stmt->bindValue(':id',NULL, PDO::PARAM_INT); //l'id è posto a NULL poichè viene dato automaticamente dal DBMS (AUTOINCREMENT_ID)
         $stmt->bindValue(':descrizione',$risposta->getDescrizione(),PDO::PARAM_STR);
-        $stmt->bindValue(':proprietario',$risposta->getProprietario());
-        $stmt->bindValue(':recensione',$risposta->getRecensione());
+        $stmt->bindValue(':proprietario',NULL,PDO::PARAM_INT);
+        $stmt->bindValue(':recensione',NULL,PDO::PARAM_INT);
     }
 
     /**
-     * Questo metodo restituisce il nome della classe per la costruzione delle Query
-     * @return string $class nome della classe
+     * metodo che restituisce il nome della classe per la costruzione delle query
+     * @return string $class Nome della classe
      */
     public static function getClass(){
         return self::$class;
     }
 
     /**
-     * Questo metodo restituisce il nome della tabella per la costruzione delle Query
-     * @return string $table nome della tabella
+     * metodo che restituisce il nome della tabella per la costruzione delle query
+     * @return string $table Nome della tabella
      */
     public static function getTable(){
         return self::$table;
     }
 
     /**
-     * Questo metodo restituisce l'insieme dei valori per la costruzione delle Query
-     * @return string $values nomi delle colonne della tabella
+     * metodo che restituisce l'insieme dei valori per la costruzione delle query
+     * @return string $values Nomi delle colonne della tabella
      */
     public static function getValues(){
         return self::$values;
     }
 
     /**
-     * Metodo che permette di salvare una Recensione
-     * @param $rec Recensione da salvare
-     * @return $id della Recensione salvata
+     * metodo che permette il salvataggio una Risposta nel db
+     * @param ERisposta $risposta Risposta da salvare
      */
     public static function store(ERisposta $risposta) {
         $db = FDB::getInstance();
