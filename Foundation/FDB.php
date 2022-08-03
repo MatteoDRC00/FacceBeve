@@ -270,6 +270,83 @@
 			}
 		}
 
+		/**   Metodo che restituisce i locali che rispettano alcuni parametri di ricerca ,passati come parametri alla funzione
+		 * @param nomelocale nome del locale
+		 * @param nomeevento nome evento
+		 * @param citta  città dove è situato il locale
+		 * @param data data evento
+		 */
+		public function loadMultipleEvento($nomelocale,$nomeevento $citta, $data)
+		{
+			try {
+				$query = null;
+				$class = "FEvento";
+				$param = array( $nomelocale,$nomeevento $citta, $data);
+
+				if(isset($categorie)){
+					$nCategorie = sizeof($categorie);
+				}
+
+				//print_r ($param);
+				for ($i = 0; $i < count($param); $i++) {
+					if ($param[$i] != null) {
+						switch ($i) {
+							case 0:
+								for ($j = 0; $j < nCategorie; $j++){
+									if ($query == null)
+										$query = "SELECT * FROM " . $class::getTable() . " INNER JOIN ON  Locale_Categorie  ON Locale_Categorie.ID_Categoria='" .categorie[j] . "'";
+									else
+										$query = $query . " INNER JOIN ON  Locale_Categorie  ON Locale_Categorie.ID_Categoria='" .categorie[j] ."'";
+								}
+								break;
+							case 1:
+								if ($query == null)
+									$query = "SELECT * FROM " . $class::getTable()  . " WHERE nome ='" . $nome . "'";
+								else
+									$query = $query . " AND l.nome ='" . $nome . "'";
+								break;
+							case 2:
+								if ($query == null)
+									$query = "SELECT * FROM " . $class::getTable()  . " WHERE localizzazione ='" . $citta . "'";
+								else
+									$query = $query . " AND l.localizzazione ='" . $citta . "'";
+								break;
+						}
+					}
+				}
+				$query = $query . ";";
+				//print $query;
+
+				$stmt = $this->db->prepare($query);
+				$stmt->execute();
+				$num = $stmt->rowCount();
+				if ($num == 0) {
+					$result = null;        //nessuna riga interessata. return null
+				} elseif ($num == 1) {                          //nel caso in cui una sola riga fosse interessata
+					$result = $stmt->fetch(PDO::FETCH_ASSOC);   //ritorna una sola riga
+				} else {
+					$result = array();                         //nel caso in cui piu' righe fossero interessate
+					$stmt->setFetchMode(PDO::FETCH_ASSOC);   //imposta la modalità di fetch come array associativo
+					while ($row = $stmt->fetch())
+						$result[] = $row;                    //ritorna un array di righe.
+				}
+				//  $this->closeDbConnection();
+				return array($result, $num);
+
+			} catch (PDOException $e) {
+				echo "Attenzione errore: " . $e->getMessage();
+				$this->db->rollBack();
+				return null;
+			}
+		}
+
+
+
+
+
+
+
+
 	/**  Metodo che verifica l'accesso di un utente , controllando che le credenziali (email e password) siano presenti nel db
 	 *@param email ,email del utente
 	 *@param pass, password dell utente
