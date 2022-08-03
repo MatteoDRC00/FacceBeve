@@ -12,11 +12,11 @@ USE `FacceBeve`;
 /*Tabella relativa alle immagini utilizzate*/
 DROP TABLE IF EXISTS `Immagine`;
 CREATE TABLE `Immangine` (
-    `id` int(11) NOT NULL auto_increment,
-    nome varchar(50) NOT NULL default "",
-    size varchar(25) NOT NULL default "",
-    type varchar(25) NOT NULL default "",
-    immagine blob NOT NULL,
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `nome` varchar(50) NOT NULL default "",
+    `size` varchar(25) NOT NULL default "",
+    `type` varchar(25) NOT NULL default "",
+    `immagine` blob NOT NULL,
     PRIMARY KEY (id)
 );
 
@@ -38,7 +38,7 @@ CREATE TABLE `Utente` (
 DROP TABLE IF EXISTS `Proprietario`;
 
 CREATE TABLE `Proprietario` (
-     `id` int(11) NOT NULL AUTO_INCREMENT,
+    `id` int(11) NOT NULL AUTO_INCREMENT,
     `username` VARCHAR(24) UNIQUE,
     `nome` VARCHAR(26),
     `cognome` VARCHAR(26),    
@@ -96,21 +96,16 @@ CREATE TABLE `Orario` (
 DROP TABLE IF EXISTS `Locale`;
 
 CREATE TABLE `Locale` (
-     `id` int(11) NOT NULL AUTO_INCREMENT,
+    `id` int(11) NOT NULL AUTO_INCREMENT,
     `nome` VARCHAR(26),
     `numTelefono` CHAR(9),
     `descrizione` VARCHAR(120),
-    `valutazione` FLOAT(3) DEFAULT NULL,
 	`proprietario` INT(11),
-   /* `categoria` INT(11), */
 	`localizzazione` INT(11),
-	/*`orario` INT(11),*/
     UNIQUE (`nome`,`localizzazione`),
     PRIMARY KEY (`id`),
     FOREIGN KEY (`proprietario`) REFERENCES Proprietario(`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-   /* FOREIGN KEY (`categoria`) REFERENCES Categoria(`genere`) ON DELETE CASCADE ON UPDATE CASCADE,*/
     FOREIGN KEY (`localizzazione`) REFERENCES Localizzazione(`id`) ON DELETE CASCADE ON UPDATE CASCADE
-   -- FOREIGN KEY (`orario`) REFERENCES Orario(`codicegiorno`) ON DELETE CASCADE ON UPDATE CASCADE
 )ENGINE=InnoDB;
 
 /*Tabella relativa agli Eventi !!!POI RICONTROLLARE PER LE IMMAGINI */
@@ -120,10 +115,8 @@ CREATE TABLE `Evento` (
     `id` int(11) NOT NULL AUTO_INCREMENT, 
     `nome` VARCHAR(26),
     `descrizione` VARCHAR(120),
-
-	 `data` DATE,   
+	`data` DATE,
     PRIMARY KEY (`id`)
-
 )ENGINE=InnoDB;
 
 
@@ -202,7 +195,23 @@ CREATE TABLE `Locale_Orari` (
     FOREIGN KEY (`ID_Locale`)
         REFERENCES Locale (`id`)
         ON DELETE CASCADE ON UPDATE CASCADE
-)ENGINE=InnoDB; 
+)ENGINE=InnoDB;
+
+/*Tabella che mette in relazione il Locale con le Categorie assegnate*/
+DROP TABLE IF EXISTS `Locale_Categorie`;
+
+CREATE TABLE `Locale_Categorie` (
+    `ID_Locale` INT(11) NOT NULL,
+    `ID_Categoria` INT(11) NOT NULL,
+    CONSTRAINT Locale_Categorie_PK PRIMARY KEY ( `ID_Locale` ,`ID_Categoria`),
+    FOREIGN KEY (`ID_Categoria`)
+        REFERENCES Categoria (`id`)
+        ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (`ID_Locale`)
+        REFERENCES Locale (`id`)
+        ON DELETE CASCADE ON UPDATE CASCADE
+)ENGINE=InnoDB;
+
 
 /*Tabella che mette in relazione il Locale con le attività svolte*/
 DROP TABLE IF EXISTS `Locale_Categorie`;

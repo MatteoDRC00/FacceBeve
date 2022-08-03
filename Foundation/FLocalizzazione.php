@@ -5,56 +5,65 @@
  * @author Gruppo 8
  * @package Foundation
  */
-
 class FLocalizzazione {
-    /** classe foundation */
-    private static $class="FLocalizzazione";
-	/** tabella con la quale opera */          
-    private static $table="Localizzazione";
-    /** valori della tabella */
-    private static $values="(:indirizzo,:numCivico,:citta,:nazione,:CAP)";
 
-    /** costruttore*/ 
-    public function __construct(){}
+    /** classe Foundation */
+    private static $class="FLocalizzazione";
+
+	/** tabella con la quale opera nel DB */
+    private static $table="Localizzazione";
+
+    /** valori della tabella nel DB */
+    private static $values="(:id,:indirizzo,:numCivico,:citta,:nazione,:CAP)";
+
+    /** costruttore */
+    public function __construct(){
+
+    }
 
     /**
-    * Questo metodo lega gli attributi della Localizzazione del legale da inserire con i parametri della INSERT
+    * metodo che lega gli attributi della Localizzazione da inserire con i parametri della INSERT
     * @param PDOStatement $stmt
-    * @param ELocalizzazione $luogo i cui i dati devono essere inseriti nel DB
+    * @param ELocalizzazione $localizzazione
     */
-    public static function bind($stmt, ELocalizzazione $localizzazione){
+    public static function bind(PDOStatement $stmt, ELocalizzazione $localizzazione){
+        $stmt->bindValue(':id',NULL, PDO::PARAM_INT); //l'id è posto a NULL poichè viene dato automaticamente dal DBMS (AUTOINCREMENT_ID)
         $stmt->bindValue(':indirizzo', $localizzazione->getIndirizzo(), PDO::PARAM_STR); 
 		$stmt->bindValue(':numCivico',$localizzazione->getNumCivico(), PDO::PARAM_STR);
 		$stmt->bindValue(':citta',$localizzazione->getCitta(), PDO::PARAM_STR);
         $stmt->bindValue(':nazione', $localizzazione->getNazione(), PDO::PARAM_STR); 
-        $stmt->bindValue(':CAP', $localizzazione->getCAP(), PDO::PARAM_BOOL);
+        $stmt->bindValue(':CAP', $localizzazione->getCAP(), PDO::PARAM_INT);
     }
 
     /**
-    * questo metodo restituisce il nome della classe per la costruzione delle Query
-    * @return string $class nome della classe
+    * metodo che restituisce il nome della classe per la costruzione delle query
+    * @return string $class Nome della classe
     */
     public static function getClass(){
         return self::$class;
     }
 
     /**
-    * questo metodo restituisce il nome della tabella per la costruzione delle Query
-    * @return string $table nome della tabella
+    * metodo che restituisce il nome della tabella per la costruzione delle query
+    * @return string $table Nome della tabella
     */
     public static function getTable(){
         return self::$table;
     }
 
     /**
-    * questo metodo restituisce l'insieme dei valori per la costruzione delle Query
-    * @return string $values nomi delle colonne della tabella
+    * metodo che restituisce l'insieme dei valori per la costruzione delle uery
+    * @return string $values Nomi delle colonne della tabella
     */
     public static function getValues(){
         return self::$values;
     }
 
-
+    /**
+     * metodo che permette il salvataggio di una Localizzazione nel db
+     * @param ELocalizzazione $localizzazione Localizzazione da salvare
+     * @return void
+     */
     public static function store(ELocalizzazione $localizzazione){
         $db=FDB::getInstance();
         $db->store(static::getClass() ,$localizzazione);

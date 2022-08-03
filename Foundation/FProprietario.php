@@ -1,63 +1,69 @@
 <?php
 
 /**
- * La classe FUtente fornisce query per gli oggetti EUtente
+ * La classe FProprietario fornisce query per gli oggetti EProprietario
  * @author Gruppo 8
  * @package Foundation
  */
-
 class FProprietario{
-    /** classe foundation */
-    private static $class="FProprietario";
-	/** tabella con la quale opera */          
-    private static $table="Proprietario";
-    /** valori della tabella */
-    private static $values="(:username,:nome,:cognome,:email,:password)";
 
-    /** costruttore*/ 
-    public function __construct(){}
+    /** classe Foundation */
+    private static $class="FProprietario";
+
+	/** tabella con la quale opera nel DB */
+    private static $table="Proprietario";
+
+    /** valori della tabella nel DB */
+    private static $values="(:id,:username,:nome,:cognome,:email,:password)";
+
+    /** costruttore */
+    public function __construct(){
+
+    }
 
     /**
-    * Questo metodo lega gli attributi dell'Utente da inserire con i parametri della INSERT
+    * metodo che lega gli attributi del Proprietario da inserire con i parametri della INSERT
     * @param PDOStatement $stmt
-    * @param EUtente $utente Utente i cui i dati devono essere inseriti nel DB
+    * @param EProprietario $proprietario
     */
-    public static function bind($stmt, EProprietario $proprietario){
+    public static function bind(PDOStatement $stmt, EProprietario $proprietario){
+        $stmt->bindValue(':id',NULL, PDO::PARAM_INT); //l'id è posto a NULL poichè viene dato automaticamente dal DBMS (AUTOINCREMENT_ID)
         $stmt->bindValue(':username', $proprietario->getUsername(), PDO::PARAM_STR); 
 		$stmt->bindValue(':nome',$proprietario->getNome(), PDO::PARAM_STR);
 		$stmt->bindValue(':cognome',$proprietario->getCognome(), PDO::PARAM_STR);
         $stmt->bindValue(':email', $proprietario->getEmail(), PDO::PARAM_STR);
         $stmt->bindValue(':password', $proprietario->getPassword(), PDO::PARAM_STR); 
-        }
+    }
 
     /**
-    * questo metodo restituisce il nome della classe per la costruzione delle Query
-    * @return string $class nome della classe
+    * metodo che restituisce il nome della classe per la costruzione delle query
+    * @return string $class Nome della classe
     */
     public static function getClass(){
         return self::$class;
     }
 
     /**
-    * questo metodo restituisce il nome della tabella per la costruzione delle Query
-    * @return string $table nome della tabella
+    * metodo che restituisce il nome della tabella per la costruzione delle query
+    * @return string $table Nome della tabella
     */
     public static function getTable(){
         return self::$table;
     }
 
     /**
-    * questo metodo restituisce l'insieme dei valori per la costruzione delle Query
-    * @return string $values nomi delle colonne della tabella
+    * metodo che restituisce l'insieme dei valori per la costruzione delle query
+    * @return string $values Nomi delle colonne della tabella
     */
     public static function getValues(){
         return self::$values;
     }
 
     /**
-    * Metodo che permette la store di un Utente
-    * @param $utente Utenteloggato da salvare
-    */
+     * metodo che permette il salvataggio di un Proprietario nel db
+     * @param EProprietario $proprietario Proprietario da salvare
+     * @return void
+     */
     public static function store(EProprietario $proprietario){
         $db=FDB::getInstance();
         $db->store(static::getClass() ,$proprietario);

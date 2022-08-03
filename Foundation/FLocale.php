@@ -5,61 +5,66 @@
  * @author Gruppo 8
  * @package Foundation
  */
-
 class FLocale {
-    /** classe foundation */
-    private static $class="FUtente";
-	/** tabella con la quale opera */          
-    private static $table="Locale";
-    /** valori della tabella */
-    /*,:categoria*/
-    private static $values="(:nome,:numtelefono,:descrizione,:proprietario,:localizzazione)";
 
-    /** costruttore*/ 
-    public function __construct(){}
+    /** classe Foundation */
+    private static $class="FUtente";
+
+	/** tabella con la quale opera nel DB */
+    private static $table="Locale";
+
+    /** valori della tabella nel DB */
+    private static $values="(:id,:nome,:numtelefono,:descrizione,:proprietario,:localizzazione)";
+
+    /** costruttore */
+    public function __construct(){
+
+    }
 
     /**
-    * Questo metodo lega gli attributi dell'Utente da inserire con i parametri della INSERT
-    * @param PDOStatement $stmt
-    * @param EUtente $utente Utente i cui i dati devono essere inseriti nel DB
-    */
-    public static function bind($stmt, ELocale $locale){
+     * metodo che lega gli attributi del Locale da inserire con i parametri della INSERT
+     * @param PDOStatement $stmt
+     * @param ELocale $locale
+     * @return void
+     */
+    public static function bind(PDOStatement $stmt, ELocale $locale){
+        $stmt->bindValue(':id',NULL, PDO::PARAM_INT); //l'id è posto a NULL poichè viene dato automaticamente dal DBMS (AUTOINCREMENT_ID)
         $stmt->bindValue(':nome', $locale->getNome(), PDO::PARAM_STR);
 		$stmt->bindValue(':numtelefono',$locale->getNumTelefono(), PDO::PARAM_STR);
 		$stmt->bindValue(':descrizione',$locale->getDescrizione(), PDO::PARAM_STR);
         $stmt->bindValue(':proprietario', $locale->getProprietario()->getUsername(), PDO::PARAM_STR);
-       // $stmt->bindValue(':categoria', $locale->getCategoria(), PDO::PARAM_INT);
         $stmt->bindValue(':localizzazione', $locale->getLocalizzazione()->getCodice(), PDO::PARAM_STR);
     }
 
     /**
-    * questo metodo restituisce il nome della classe per la costruzione delle Query
-    * @return string $class nome della classe
+    * metodo che restituisce il nome della classe per la costruzione delle query
+    * @return string $class Nome della classe
     */
     public static function getClass(){
         return self::$class;
     }
 
     /**
-    * questo metodo restituisce il nome della tabella per la costruzione delle Query
-    * @return string $table nome della tabella
+    * metodo che restituisce il nome della tabella per la costruzione delle query
+    * @return string $table Nome della tabella
     */
     public static function getTable(){
         return self::$table;
     }
 
     /**
-    * questo metodo restituisce l'insieme dei valori per la costruzione delle Query
-    * @return string $values nomi delle colonne della tabella
+    * metodo che restituisce l'insieme dei valori per la costruzione delle query
+    * @return string $values Nomi delle colonne della tabella
     */
     public static function getValues(){
         return self::$values;
     }
 
     /**
-    * Metodo che permette la store di un Utente
-    * @param $locale Locale da salvare
-    */
+     * metodo che permette il salvataggio di un Locale nel db
+     * @param ELocale $locale Locale da salvare
+     * @return void
+     */
     public static function store(ELocale $locale){
         $db=FDB::getInstance();
         $db->store(static::getClass() ,$locale);
