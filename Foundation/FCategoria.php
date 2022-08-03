@@ -6,11 +6,11 @@
  * @package Foundation
  */
 
-class FCategoria{
+class FCategoria {
     /** classe foundation */
     private static $class="FCategoria";
 	/** tabella con la quale opera */          
-    private static $table="categoria";
+    private static $table="Categoria";
     /** valori della tabella */
     private static $values="(:giorno,:orarioApertura,:orarioChiusura)";
 
@@ -51,13 +51,11 @@ class FCategoria{
         return self::$values;
     }
 
-    /**
-    * Metodo che permette la store di una categoria 
-    * @param $utente Utente da salvare
-    */
-    public static function store($utente){
+
+    public static function store(ECategoria $categoria){
+
         $db=FDB::getInstance();
-        $id=$db->store(static::getClass() ,$utente);
+        $db->store(static::getClass(), $categoria);
     }
 
 

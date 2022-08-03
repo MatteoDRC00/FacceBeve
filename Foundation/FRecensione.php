@@ -7,7 +7,7 @@
         /** tabella con la quale opera */
         private static $table = "Recensione";
         /** valori della tabella */
-        private static $values="(:codicerecensione,:titolo,:descrizione,:voto,:data,:segnalato,:counter,:utente,:nomelocale,:luogolocale)";
+        private static $values="(:titolo,:descrizione,:voto,:data,:segnalato,:counter,:utente,:nomelocale,:luogolocale)";
         /** costruttore */
         public function __construct() {
 
@@ -19,7 +19,6 @@
          * @param ERecensione $rec Recensione in cui i dati devono essere inseriti nel DB
          */
         public static function bind(PDOStatement $stmt, ERecensione $recensione) {
-            $stmt->bindValue(':codicerecensione',NULL, PDO::PARAM_INT);
             $stmt->bindValue(':titolo',$recensione->getTitolo(),PDO::PARAM_STR);
             $stmt->bindValue(':descrizione',$recensione->getDescrizione(),PDO::PARAM_STR);
             $stmt->bindValue(':voto',$recensione->getVoto(),PDO::PARAM_INT);
@@ -56,6 +55,16 @@
         }
 
         /**
+         * Metodo che permette di salvare una Recensione
+         * @param $rec Recensione da salvare
+         * @return $id della Recensione salvata
+         */
+        public static function store(ERecensione $recensione) {
+            $db = FDB::getInstance();
+            $db->store(static::getClass(), $recensione);
+        }
+
+        /**
          * Permette la load sul db
          * @param $id campo da confrontare per trovare l'oggetto
          * @return object $rec Recensione
@@ -81,19 +90,7 @@
             return $rec;
         }
 
-        /**
-         * Metodo che permette di salvare una Recensione
-         * @param $rec Recensione da salvare
-         * @return $id della Recensione salvata
-         */
-        public static function store(ERecensione $rec) {
-            $db = FDB::getInstance();
-            $id = $db->store(static::getClass(), $rec);
-            if($id)
-                return $id;
-            else
-                return null;
-        }
+
 
         /**
          * Funzione che permette di verificare se esiste una Recensione nel database

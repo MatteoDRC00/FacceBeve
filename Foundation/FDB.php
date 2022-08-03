@@ -2,36 +2,6 @@
 
 	//if(file_exists('config.php')) require_once 'config.php';
 
-	/** DIZIONARIO
-
-	1) beginTransaction(); toglie l'autocommit. le modifiche effettuate al database attraverso l'oggetto PDO non sono rese effettive finche' non si chiude la transazione chiamando PDO::commit(). return bool
-
-	2) prepare($query); prepara l'istruzione SQL per essere eseguita dal metodo PDO::execute(). return PDOStatement
-
-	3) $class::bind($stmt,$obj); serve per filtrare automaticamente le stringhe da passare alla query
-
-	4) execute(); esegue l'istruzione preparata. return bool
-
-	5) db->lastInsertId(); ritorna l'id dell'ultima riga inserita nel database. return string
-
-	6) $this->db->commit(); rende effettiva una transaction, rimettendo il database sulla modalità autocommit fino alla prossima chiamata PDO::beginTransaction(). return bool
-
-	7)closeDbConnection();  metodo implementato, non PDO. chiude la connessione col db.
-
-	8) rollBack(); si usa in caso di errore; azzera tutto ciò che era stato effettuato senza successo, riportando lo stato al precedente beginTransaction(). return bool
-
-	9) rowCount(); ritorna il numero delle righe interessate dalla precedente operazione di DELETE, INSERT o UPDATE. return int
-
-	10) fetch(); ritorna una riga dall'insieme di risultati. Il parametro PDO::FETCH_ASSOC dice a PDO di ritornare il risultato come un array associativo (prossima riga).
-
-	11) PDO::FETCH_ASSOC - ritorna un array indicizzato dal NOME delle colonne che vengono ritornate nell'elenco dei risultati
-
-	12) setFetchMode(); Imposta la modalità di default per quell'istruzione
-
-	13) fetchAll(); ritorna un array con le rimanenti righe della lista dei risultati. Ogni array rappresenta una riga.
-
-	*/
-
 	class FDB{
 
 		/** Oggetto PDO che permette la connessione al DBMS

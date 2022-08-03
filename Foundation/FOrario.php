@@ -6,13 +6,13 @@
  * @package Foundation
  */
 
-class FOrario{
+class FOrario {
     /** classe foundation */
     private static $class="FOrario";
 	/** tabella con la quale opera */          
-    private static $table="orario";
+    private static $table="Orario";
     /** valori della tabella */
-    private static $values="(:codicegiorno,:giorno,:orarioApertura,:orarioChiusura)";
+    private static $values="(:giorno,:orarioApertura,:orarioChiusura)";
 
     /** costruttore*/ 
     public function __construct(){}
@@ -23,7 +23,6 @@ class FOrario{
     * @param EOrario $orario Orario i cui i dati devono essere inseriti nel DB
     */
     public static function bind($stmt, EOrario $orario){
-        $stmt->bindValue(':codicegiorno', NULL, PDO::PARAM_INT);
 		$stmt->bindValue(':giorno', $orario->getGiornoSettimana(), PDO::PARAM_STR);    //Potrebbe dare problemi
 		$stmt->bindValue(':orarioApertura',$orario->getOrarioApertura(), PDO::PARAM_STR);
 		$stmt->bindValue(':orarioChiusura',$orario->getOrarioChiusura(), PDO::PARAM_STR);
@@ -53,11 +52,8 @@ class FOrario{
         return self::$values;
     }
 
-    /**
-    * Metodo che permette la store di un Utente
-    * @param Orario $orario da salvare
-    */
-    public static function store($orario){
+
+    public static function store(EOrario $orario){
         $db=FDB::getInstance();
         $id=$db->store(static::getClass() ,$orario);
     }

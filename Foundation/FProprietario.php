@@ -10,7 +10,7 @@ class FProprietario{
     /** classe foundation */
     private static $class="FProprietario";
 	/** tabella con la quale opera */          
-    private static $table="proprietario";
+    private static $table="Proprietario";
     /** valori della tabella */
     private static $values="(:username,:nome,:cognome,:email,:password)";
 
@@ -58,9 +58,9 @@ class FProprietario{
     * Metodo che permette la store di un Utente
     * @param $utente Utenteloggato da salvare
     */
-    public static function store($utente){
+    public static function store(EProprietario $proprietario){
         $db=FDB::getInstance();
-        $id=$db->store(static::getClass() ,$utente);
+        $db->store(static::getClass() ,$proprietario);
     }
 
 

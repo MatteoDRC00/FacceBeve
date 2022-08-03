@@ -6,13 +6,13 @@
  * @package Foundation
  */
 
-class FLocalizzazione{
+class FLocalizzazione {
     /** classe foundation */
     private static $class="FLocalizzazione";
 	/** tabella con la quale opera */          
-    private static $table="localizzazione";
+    private static $table="Localizzazione";
     /** valori della tabella */
-    private static $values="(:codiceluogo,:indirizzo,:numCivico,:citta,:nazione,:CAP)";
+    private static $values="(:indirizzo,:numCivico,:citta,:nazione,:CAP)";
 
     /** costruttore*/ 
     public function __construct(){}
@@ -23,13 +23,12 @@ class FLocalizzazione{
     * @param ELocalizzazione $luogo i cui i dati devono essere inseriti nel DB
     */
     public static function bind($stmt, ELocalizzazione $localizzazione){
-        $stmt->bindValue(':codiceluogo', NULL, PDO::PARAM_INT);
         $stmt->bindValue(':indirizzo', $localizzazione->getIndirizzo(), PDO::PARAM_STR); 
 		$stmt->bindValue(':numCivico',$localizzazione->getNumCivico(), PDO::PARAM_STR);
 		$stmt->bindValue(':citta',$localizzazione->getCitta(), PDO::PARAM_STR);
         $stmt->bindValue(':nazione', $localizzazione->getNazione(), PDO::PARAM_STR); 
         $stmt->bindValue(':CAP', $localizzazione->getCAP(), PDO::PARAM_BOOL);
-        }
+    }
 
     /**
     * questo metodo restituisce il nome della classe per la costruzione delle Query
@@ -55,13 +54,10 @@ class FLocalizzazione{
         return self::$values;
     }
 
-    /**
-    * Metodo che permette la store di un Utente
-    * @param $utente Utenteloggato da salvare
-    */
-    public static function store($utente){
+
+    public static function store(ELocalizzazione $localizzazione){
         $db=FDB::getInstance();
-        $id=$db->store(static::getClass() ,$utente);
+        $db->store(static::getClass() ,$localizzazione);
     }
 
 

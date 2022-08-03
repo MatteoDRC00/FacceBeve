@@ -120,8 +120,10 @@ CREATE TABLE `Evento` (
     `id` int(11) NOT NULL AUTO_INCREMENT, 
     `nome` VARCHAR(26),
     `descrizione` VARCHAR(120),
+
 	 `data` DATE,   
     PRIMARY KEY (`id`)
+
 )ENGINE=InnoDB;
 
 

@@ -1,5 +1,5 @@
 <?php
 
-class FImmagine{
+class FImmagine {
 
 }

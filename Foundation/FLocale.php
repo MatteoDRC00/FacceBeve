@@ -6,11 +6,11 @@
  * @package Foundation
  */
 
-class FLocale{
+class FLocale {
     /** classe foundation */
     private static $class="FUtente";
 	/** tabella con la quale opera */          
-    private static $table="utente";
+    private static $table="Locale";
     /** valori della tabella */
     /*,:categoria*/
     private static $values="(:nome,:numtelefono,:descrizione,:proprietario,:localizzazione)";
@@ -60,9 +60,9 @@ class FLocale{
     * Metodo che permette la store di un Utente
     * @param $locale Locale da salvare
     */
-    public static function store($locale){
+    public static function store(ELocale $locale){
         $db=FDB::getInstance();
-        $id=$db->store(static::getClass() ,$locale);
+        $db->store(static::getClass() ,$locale);
     }
 
 

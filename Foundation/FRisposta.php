@@ -7,7 +7,7 @@ class FRisposta{
     /** tabella con la quale opera */
     private static $table = "Risposta";
     /** valori della tabella */
-    private static $values="(:codicerisposta,:titolo,:descrizione,:proprietario,:recensione)";
+    private static $values="(:titolo,:descrizione,:proprietario,:recensione)";
     /** costruttore */
     public function __construct() {
 
@@ -19,7 +19,6 @@ class FRisposta{
      * @param ERisposta $rec Recensione in cui i dati devono essere inseriti nel DB
      */
     public static function bind(PDOStatement $stmt, ERisposta $risposta) {
-        $stmt->bindValue(':codicerisposta',NULL, PDO::PARAM_INT);
         $stmt->bindValue(':titolo',$risposta->getTitolo(),PDO::PARAM_STR);
         $stmt->bindValue(':descrizione',$risposta->getDescrizione(),PDO::PARAM_STR);
         $stmt->bindValue(':proprietario',$risposta->getProprietario());
@@ -51,6 +50,16 @@ class FRisposta{
     }
 
     /**
+     * Metodo che permette di salvare una Recensione
+     * @param $rec Recensione da salvare
+     * @return $id della Recensione salvata
+     */
+    public static function store(ERisposta $risposta) {
+        $db = FDB::getInstance();
+        $db->store(static::getClass(), $risposta);
+    }
+
+    /**
      * Permette la load sul db
      * @param $id campo da confrontare per trovare l'oggetto
      * @return object $rec Recensione
@@ -76,19 +85,7 @@ class FRisposta{
         return $ris;
     }
 
-    /**
-     * Metodo che permette di salvare una Recensione
-     * @param $rec Recensione da salvare
-     * @return $id della Recensione salvata
-     */
-    public static function store(ERecensione $rec) {
-        $db = FDB::getInstance();
-        $id = $db->store(static::getClass(), $rec);
-        if($id)
-            return $id;
-        else
-            return null;
-    }
+
 
     /**
      * Funzione che permette di verificare se esiste una Recensione nel database

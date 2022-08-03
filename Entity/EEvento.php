@@ -11,7 +11,6 @@
     class EEvento
     {
         private string $nome;
-        private string $tipo;
         private string $descrizione;
         private DateTime $data;
 
@@ -19,14 +18,12 @@
 
         /**
          * @param string $nome
-         * @param string $tipo
          * @param string $descrizione
          * @param DateTime $data
          */
-        public function __construct(string $nome, string $tipo, string $descrizione, DateTime $data)
+        public function __construct(string $nome, string $descrizione, DateTime $data)
         {
             $this->nome = $nome;
-            $this->tipo = $tipo;
             $this->descrizione = $descrizione;
             $this->data = $data;
         }
@@ -45,22 +42,6 @@
         public function setNome(string $nome): void
         {
             $this->nome = $nome;
-        }
-
-        /**
-         * @return string
-         */
-        public function getTipo(): string
-        {
-            return $this->tipo;
-        }
-
-        /**
-         * @param string $tipo
-         */
-        public function setTipo(string $tipo): void
-        {
-            $this->tipo = $tipo;
         }
 
         /**

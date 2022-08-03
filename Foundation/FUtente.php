@@ -10,7 +10,7 @@ class FUtente{
     /** classe foundation */
     private static $class="FUtente";
 	/** tabella con la quale opera */          
-    private static $table="utente";
+    private static $table="Utente";
     /** valori della tabella */
     private static $values="(:username,:nome,:cognome,:email,:password,:dataIscrizione)";
 
@@ -55,13 +55,10 @@ class FUtente{
         return self::$values;
     }
 
-    /**
-    * Metodo che permette la store di un Utente
-    * @param $utente Utenteloggato da salvare
-    */
-    public static function store($utente){
+    
+    public static function store(EUtente $utente){
         $db=FDB::getInstance();
-        $id=$db->store(static::getClass() ,$utente);
+        $db->store(static::getClass() ,$utente);
     }
 
 
