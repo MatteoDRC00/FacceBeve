@@ -14,7 +14,7 @@ class FRecensione{
     private static $table = "Recensione";
 
     /** valori della tabella nel DB */
-    private static $values="(:titolo,:descrizione,:voto,:data,:segnalato,:counter,:utente,:nomelocale,:luogolocale)";
+    private static $values="(:id,:titolo,:descrizione,:voto,:data,:segnalato,:counter,:utente,:locale)";
 
     /** costruttore */
     public function __construct() {
@@ -22,50 +22,49 @@ class FRecensione{
     }
 
     /**
-     * Questo metodo lega gli attributi della Recensione da inserire con i parametri della INSERT
+     * metodo che lega gli attributi della Recensione da inserire con i parametri della INSERT
      * @param PDOStatement $stmt
-     * @param ERecensione $rec Recensione in cui i dati devono essere inseriti nel DB
+     * @param ERecensione $recensione
      */
     public static function bind(PDOStatement $stmt, ERecensione $recensione) {
+        $stmt->bindValue(':id',NULL, PDO::PARAM_INT); //l'id è posto a NULL poichè viene dato automaticamente dal DBMS (AUTOINCREMENT_ID)
         $stmt->bindValue(':titolo',$recensione->getTitolo(),PDO::PARAM_STR);
         $stmt->bindValue(':descrizione',$recensione->getDescrizione(),PDO::PARAM_STR);
         $stmt->bindValue(':voto',$recensione->getVoto(),PDO::PARAM_INT);
         $stmt->bindValue(':data',$recensione->getData());
         $stmt->bindValue(':segnalato',$recensione->isSegnalata(),PDO::PARAM_BOOL);
         $stmt->bindValue(':counter',$recensione->getCounter(),PDO::PARAM_INT);
-        $stmt->bindValue(':utente',$recensione->getUtente()->getUsername());
-        $stmt->bindValue(':nomelocale',$recensione->getLocale()->getNome());
-        $stmt->bindValue(':luogolocale',$recensione->getLocale()->getLocalizzazione()->getCodice());
+        $stmt->bindValue(':utente',NULL,PDO::PARAM_INT);
+        $stmt->bindValue(':locale',NULL,PDO::PARAM_INT);
     }
 
     /**
-     * Questo metodo restituisce il nome della classe per la costruzione delle Query
-     * @return string $class nome della classe
+     * metodo che restituisce il nome della classe per la costruzione delle query
+     * @return string $class Nome della classe
      */
     public static function getClass(){
         return self::$class;
     }
 
     /**
-     * Questo metodo restituisce il nome della tabella per la costruzione delle Query
-     * @return string $table nome della tabella
+     * metodo che restituisce il nome della tabella per la costruzione delle query
+     * @return string $table Nome della tabella
      */
     public static function getTable(){
         return self::$table;
     }
 
     /**
-     * Questo metodo restituisce l'insieme dei valori per la costruzione delle Query
-     * @return string $values nomi delle colonne della tabella
+     * metodo che restituisce l'insieme dei valori per la costruzione delle query
+     * @return string $values Nomi delle colonne della tabella
      */
     public static function getValues(){
         return self::$values;
     }
 
     /**
-     * Metodo che permette di salvare una Recensione
-     * @param $rec Recensione da salvare
-     * @return $id della Recensione salvata
+     * metodo che permette il salvataggio una Recensione nel db
+     * @param ERecensione $recensione Recensione da salvare
      */
     public static function store(ERecensione $recensione) {
         $db = FDB::getInstance();

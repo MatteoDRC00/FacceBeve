@@ -143,11 +143,11 @@ CREATE TABLE `Recensione` (
 DROP TABLE IF EXISTS `Risposta`;
 
 CREATE TABLE `Risposta` (
-    `codicerisposta` INT(11) NOT NULL, 
+    `id` INT(11) NOT NULL,
     `descrizione` VARCHAR(120),
     `proprietario` INT(11) NOT NULL,
     `recensione` INT(11) NOT NULL,
-    PRIMARY KEY (`codicerisposta`),
+    PRIMARY KEY (`id`),
     FOREIGN KEY (`proprietario`) REFERENCES Proprietario(`id`) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (`recensione`) REFERENCES Recensione(`id`) ON DELETE CASCADE ON UPDATE CASCADE 
 )ENGINE=InnoDB;
@@ -191,21 +191,6 @@ CREATE TABLE `Locale_Orari` (
 	CONSTRAINT Locale_Orari_PK PRIMARY KEY ( `ID_Locale` ,`ID_Orario`),
     FOREIGN KEY (`ID_Orario`)
         REFERENCES Orario (`id`)
-        ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (`ID_Locale`)
-        REFERENCES Locale (`id`)
-        ON DELETE CASCADE ON UPDATE CASCADE
-)ENGINE=InnoDB;
-
-/*Tabella che mette in relazione il Locale con le Categorie assegnate*/
-DROP TABLE IF EXISTS `Locale_Categorie`;
-
-CREATE TABLE `Locale_Categorie` (
-    `ID_Locale` INT(11) NOT NULL,
-    `ID_Categoria` INT(11) NOT NULL,
-    CONSTRAINT Locale_Categorie_PK PRIMARY KEY ( `ID_Locale` ,`ID_Categoria`),
-    FOREIGN KEY (`ID_Categoria`)
-        REFERENCES Categoria (`id`)
         ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (`ID_Locale`)
         REFERENCES Locale (`id`)
