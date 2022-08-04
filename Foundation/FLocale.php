@@ -76,7 +76,7 @@ class FLocale {
     * @param $id campo da confrontare per trovare l'oggetto
     * @return object $locale
     */
-    public static function loadByField($field, $id){ //es: ricerca i locali di Pescara
+    public static function loadByField($field, $id){ //es: ricerca i locali di Pescara DA MODIFICARE
         $locale = null;
         $db=FDB::getInstance();
         $result=$db->load(static::getClass(), $field, $id);
@@ -154,7 +154,7 @@ class FLocale {
      * @param $parola valore da ricercare all'interno del campo text
      * @return object $rec Recensione
      */
-    public static function loadByKeyword($parola) {
+    public static function loadByKeyword($parola) {  //DA MODIFICARE
         $loc = null;
         $db = FDB::getInstance();
         list ($result, $rows_number)=$db->CercaByKeyword(static::getClass(), "campo",$parola);
