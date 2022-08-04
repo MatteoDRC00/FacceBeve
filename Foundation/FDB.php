@@ -140,37 +140,40 @@
 			}
 			return $result;
 		}
-	/**  Metodo che permette di aggiornare il valore di un attributo passato come parametro
-	 *@param class ,classe interessata
-	 *@param field campo da aggiornare
-	 *@param newvalue nuovo valore da inserire
-	 *@param pk chiave primaria della classe interessata
-	 */
-		public function update($class, $field, $newvalue, $pk, $id)
-		{
-			try {
-				$this->db->beginTransaction();
-				$query = "UPDATE " . $class::getTable() . " SET " . $field . "='" . $newvalue . "' WHERE " . $pk . "='" . $id . "';";
-				$stmt = $this->db->prepare($query); //Prepared Statement
-				$stmt->execute();
-				$this->db->commit();
-				$this->closeDbConnection();
-				return true;
-			} catch (PDOException $e) {
-				echo "Attenzione errore: " . $e->getMessage();
-				$this->db->rollBack();
-				return false;
-			}
-		}
 
-	/**  Metodo che ritorna tutti gli attributi di un'istanza dando come parametro di ricerca il valore di un attributo
-	 *passato come parametro
+	/**
+	 * Metodo che permette di aggiornare il valore di un attributo nel DB passato come parametro
+	 * @param string $class
+	 * @param string $attributo
+	 * @param string $newvalue
+	 * @param string $attributo_pk
+	 * @param string $value_pk
+	 * @return bool
+	 */
+	public function update(string $class, string $attributo, string $newvalue, string $attributo_pk, string $value_pk)
+	{
+		try {
+			$this->db->beginTransaction();
+			$query = "UPDATE " . $class::getTable() . " SET " . $attributo . "='" . $newvalue . "' WHERE " . $attributo_pk . "='" . $value_pk . "';";
+			$stmt = $this->db->prepare($query); //Prepared Statement
+			$stmt->execute();
+			$this->db->commit();
+			$this->closeDbConnection();
+			return true;
+		} catch (PDOException $e) {
+			echo "Attenzione errore: " . $e->getMessage();
+			$this->db->rollBack();
+			return false;
+		}
+	}
+
+	/**
+	 * Metodo che ritorna tutti gli attributi di un'istanza dando come parametro di ricerca il valore di un attributopassato come parametro
 	 * @param class ,nome della classe
 	 * @field campo della classe
 	 * @id ,id della classe
 	 */
-	public function exist($class, $attributo, $valore)
-	{
+	public function exist($class, $attributo, $valore){
 		try {
 			$query = "SELECT * FROM " . $class::getTable() . " WHERE " . $attributo . "='" . $valore . "'";
 			$stmt = $this->db->prepare($query); //Prepared Statement

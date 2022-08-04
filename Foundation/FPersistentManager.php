@@ -39,7 +39,7 @@ class FPersistentManager {
      * @param string $class
      * @param string $attributo
      * @param string $valore
-     * @return bool
+     * @return mixed
      */
     public static function exist(string $class, string $attributo, string $valore) {
         $result = $class::exist($attributo,$valore);
@@ -93,14 +93,18 @@ class FPersistentManager {
     }
 
 
-    /** Metodo che permette l'aggiornamento del valore di un campo passato per parametro */
-    public static function update($field, $newvalue, $pk, $val,$Fclass) {
-        $ris = null;
-        if ($Fclass == "FAnnuncio" || $Fclass == "FMezzo" || $Fclass == "FTappa" || $Fclass == "FTrasportatore" || $Fclass == "FUtenteloggato" || $Fclass == "FCliente")
-            $ris = $Fclass::update($field, $newvalue, $pk, $val);
-        else
-            print ("METODO NON SUPPORTATO DALLA CLASSE");
-        return $ris;
+    /**
+     * metodo che permette l'aggiornamento del valore di un campo passato per parametro
+     * @param string $class
+     * @param string $attributo
+     * @param string $newvalue
+     * @param string $attributo_pk
+     * @param string $value_pk
+     * @return mixed
+     */
+    public static function update(string $class, string $attributo, string $newvalue, string $attributo_pk, string $value_pk) {
+        $result = $class::update($attributo, $newvalue, $attributo_pk, $value_pk);
+        return $result;
     }
 
 

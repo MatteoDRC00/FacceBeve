@@ -1,5 +1,4 @@
 <?php
-
 /**
  * La classe FUtente fornisce query per gli oggetti EUtente
  * @author Gruppo 8
@@ -118,27 +117,29 @@ class FLocale {
      * @return bool
      */
     public static function exist(string $attributo,string $valore) {
-        $ris = false;
         $db = FDatabase::getInstance();
         $result = $db->exist(static::getClass(), $attributo, $valore);
         if($result!=null)
-            $ris = true;
-        return $ris;
+            return true;
+        else
+            return false;
     }
 
     /**
-    * Metodo che aggiorna i campi di un Utente
-    * @param $id valore della primary key da usare come riferimento per la riga
-    * @param $newvalue nuovo valore da assegnare
-    * @param $field campo in cui si vuo modificare il valore
-	* @param pk chiave primaria della classe interessata
-    * @return true se esiste il mezzo, altrimenti false
-    */
-    public static function update($field, $newvalue, $pk, $id){
-        $db=FDB::getInstance();
-        $result = $db->update(static::getClass(), $field, $newvalue, $pk, $id); //funzione richiamata,presente in FDB -->  Aggiorna una riga nel db che fa match con il campo id
-        if($result) return true;
-        else return false;
+     * metodo che aggiorna il valore di un attributo del Locale sul DB data la chiave primaria
+     * @param string $attributo
+     * @param string $newvalue
+     * @param string $attributo_pk
+     * @param string $value_pk
+     * @return bool
+     */
+    public static function update(string $attributo, string $newvalue, string $attributo_pk, string $value_pk){
+        $db=FDatabase::getInstance();
+        $result = $db->update(static::getClass(), $attributo, $newvalue, $attributo_pk, $value_pk);
+        if($result)
+            return true;
+        else
+            return false;
     }
 
     /**

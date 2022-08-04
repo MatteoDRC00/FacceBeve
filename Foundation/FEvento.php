@@ -1,5 +1,4 @@
 <?php
-
 /**
  * La classe FEvento fornisce query per gli oggetti EEvento
  * @author Gruppo8
@@ -74,12 +73,12 @@ class FEvento {
      * @return bool
      */
     public static function exist(string $attributo,string $valore) {
-        $ris = false;
         $db = FDatabase::getInstance();
         $result = $db->exist(static::getClass(), $attributo, $valore);
         if($result!=null)
-            $ris = true;
-        return $ris;
+            return true;
+        else
+            return false;
     }
 
 
@@ -107,5 +106,21 @@ class FEvento {
         return $evento;
     }
 
+    /**
+     * metodo che aggiorna il valore di un attributo dell'Evento sul DB data la chiave primaria
+     * @param string $attributo
+     * @param string $newvalue
+     * @param string $attributo_pk
+     * @param string $value_pk
+     * @return bool
+     */
+    public static function update(string $attributo, string $newvalue, string $attributo_pk, string $value_pk){
+        $db=FDatabase::getInstance();
+        $result = $db->update(static::getClass(), $attributo, $newvalue, $attributo_pk, $value_pk);
+        if($result)
+            return true;
+        else
+            return false;
+    }
 
 }
