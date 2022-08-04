@@ -34,15 +34,16 @@ class FPersistentManager {
         $Fclass::delete($field,$val);
     }
 
-    /**  Metodo che accerta l'esistenza di un valore di un campo passato come parametro
-     * @param campo da testare
-     * @param val ,valore da cercare
-     * @param Fclass, calsse Foundation interessata
+    /**
+     * metodo che accerta l'esistenza di un valore di un campo passato come parametro
+     * @param string $class
+     * @param string $attributo
+     * @param string $valore
+     * @return bool
      */
-    public static function exist($field, $val,$Fclass) {
-        $ris = null;
-        $ris = $Fclass::exist($field,$val);
-        return $ris;
+    public static function exist(string $class, string $attributo, string $valore) {
+        $result = $class::exist($attributo,$valore);
+        return $result;
     }
 
     /**  Metodo che permette di cercare/caricare un campo con un valore passato come parametro

@@ -169,21 +169,23 @@
 	 * @field campo della classe
 	 * @id ,id della classe
 	 */
-		public function exist($class, $field, $id)
-		{
-			try {
-				$query = "SELECT * FROM " . $class::getTable() . " WHERE " . $field . "='" . $id . "'";
-				$stmt = $this->db->prepare($query); //Prepared Statement
-				$stmt->execute();
-				$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-				if (count($result) == 1) return $result[0];  //rimane solo l'array interno
-				else if (count($result) > 1) return $result;  //resituisce array di array
-				$this->closeDbConnection();
-			} catch (PDOException $e) {
-				echo "Attenzione errore: " . $e->getMessage();
-				return null;
-			}
+	public function exist($class, $attributo, $valore)
+	{
+		try {
+			$query = "SELECT * FROM " . $class::getTable() . " WHERE " . $attributo . "='" . $valore . "'";
+			$stmt = $this->db->prepare($query); //Prepared Statement
+			$stmt->execute();
+			$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+			if (count($result) == 1)
+				return $result[0];  //rimane solo l'array interno
+			else if (count($result) > 1)
+				return $result;  //resituisce array di array
+			$this->closeDbConnection();
+		} catch (PDOException $e) {
+			echo "Attenzione errore: " . $e->getMessage();
+			return null;
 		}
+	}
 
 		public function getRecensioniLocali()
 		{

@@ -96,18 +96,18 @@ class FUtente{
     }
 
     /**
-    * Funzione che permette di verificare se esiste un Utente nel database
-    * @param  $id valore della riga di cui si vuol verificare l'esistenza
-    * @param  string $field colonna su ci eseguire la verifica
-    * @return bool $ris
-    */
-    public static function exist($field, $id){
-        $db=FDB::getInstance();
-        $result=$db->exist(static::getClass(), $field, $id);    //funzione richiamata,presente in FDB -->  ritorna tutti gli attributi di un'istanza dando come parametro di ricerca il valore di un attributo
+     * metodo che verifica l'esistenza di un Utente nel DB considerato un attributo
+     * @param string $attributo
+     * @param string $valore
+     * @return bool
+     */
+    public static function exist(string $attributo,string $valore) {
+        $ris = false;
+        $db = FDatabase::getInstance();
+        $result = $db->exist(static::getClass(), $attributo, $valore);
         if($result!=null)
-            return true;
-        else
-            return false;
+            $ris = true;
+        return $ris;
     }
 
     /**

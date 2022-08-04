@@ -95,15 +95,15 @@ class FRisposta{
 
 
     /**
-     * Funzione che permette di verificare se esiste una Recensione nel database
-     * @param  $id valore della riga di cui si vuol verificare l'esistenza
-     * @param  string $field colonna su ci eseguire la verifica
-     * @return bool $ris
+     * metodo che verifica l'esistenza di una Risposta nel DB considerato un attributo
+     * @param string $attributo
+     * @param string $valore
+     * @return bool
      */
-    public static function exist($field, $id) {
+    public static function exist(string $attributo,string $valore) {
         $ris = false;
-        $db = FDB::getInstance();
-        $result = $db->exist(static::getClass(), $field, $id);
+        $db = FDatabase::getInstance();
+        $result = $db->exist(static::getClass(), $attributo, $valore);
         if($result!=null)
             $ris = true;
         return $ris;

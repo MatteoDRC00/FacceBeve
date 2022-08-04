@@ -65,6 +65,20 @@ class FCategoria {
         $db->store(static::getClass(), $categoria);
     }
 
+    /**
+     * metodo che verifica l'esistenza di una Categoria nel DB considerato un attributo
+     * @param string $attributo
+     * @param string $valore
+     * @return bool
+     */
+    public static function exist(string $attributo,string $valore) {
+        $ris = false;
+        $db = FDatabase::getInstance();
+        $result = $db->exist(static::getClass(), $attributo, $valore);
+        if($result!=null)
+            $ris = true;
+        return $ris;
+    }
 
 
 }
