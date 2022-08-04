@@ -32,8 +32,8 @@ class FLocale {
         $stmt->bindValue(':nome', $locale->getNome(), PDO::PARAM_STR);
 		$stmt->bindValue(':numtelefono',$locale->getNumTelefono(), PDO::PARAM_STR);
 		$stmt->bindValue(':descrizione',$locale->getDescrizione(), PDO::PARAM_STR);
-        $stmt->bindValue(':proprietario', $locale->getProprietario()->getUsername(), PDO::PARAM_STR);
-        $stmt->bindValue(':localizzazione', $locale->getLocalizzazione()->getCodice(), PDO::PARAM_STR);
+        $stmt->bindValue(':proprietario', $locale->getProprietario()->getUsername(), PDO::PARAM_STR); //CI VUOLE L'ID
+        $stmt->bindValue(':localizzazione', $locale->getLocalizzazione()->getCodice(), PDO::PARAM_STR); //CI VUOLE L'ID
     }
 
     /**
@@ -72,11 +72,11 @@ class FLocale {
 
 
     /**
-    * Permette la load sul database
+    * Permette la load dal database
     * @param $id campo da confrontare per trovare l'oggetto
     * @return object $locale
     */
-    public static function loadByField($field, $id){ //es: ricerca i locali di Pescara
+    public static function loadByField($field, $id){ //es: ricerca i locali di Pescara DA MODIFICARE
         $locale = null;
         $db=FDB::getInstance();
         $result=$db->load(static::getClass(), $field, $id);
@@ -154,7 +154,7 @@ class FLocale {
      * @param $parola valore da ricercare all'interno del campo text
      * @return object $rec Recensione
      */
-    public static function loadByKeyword($parola) {
+    public static function loadByKeyword($parola) {  //DA MODIFICARE
         $loc = null;
         $db = FDB::getInstance();
         list ($result, $rows_number)=$db->CercaByKeyword(static::getClass(), "campo",$parola);
@@ -206,85 +206,44 @@ class FLocale {
         return $utente;
     } */
 
-    /*
-     /** Metodo che permette di caricare un annuncio che ha determinati parametri
-     public static function loadByForm ($nome, $citta,$attivita) {
-        $annuncio = null;
-        $intermedia = null;
-        $tappa = null;
+
+     /** Metodo che permette di caricare un locale che ha determinati parametri, i quali vengono passati in input da una form */
+     public static function loadByForm ($part1, $part2, $part3) {
+        $locale = null;
         $db=FDatabase::getInstance();
-        list ($result, $rows_number)=$db->loadMultipleAnnuncio($luogo1, $luogo2, $data1, $data2, $dim , $peso);
+        list ($result, $rows_number)=$db->loadMultipleLocale($part1, $part2, $part3);
         //print_r ($result);
         //print $rows_number;
         if(($result!=null) && ($rows_number == 1)) {
-            $part = FLuogo::loadByField("id" , $result["departure"]);
-            $arr = FLuogo::loadByField("id" , $result["arrival"]);
-            $ute = FUtenteloggato::loadByField("email" , $result["emailWriter"]);
-            $tappa = FTappa::loadByField("ad", $result["idAd"] );
-            if ($tappa != null ) {
-                $t = current($tappa);
-                if (is_array($t)) {
-                    foreach ($tappa as $t) {
-                        $intermedia[] = FLuogo::loadByField("id", $t['place']);
-                    }
-                }
-                else {
-                    $intermedia[] = FLuogo::loadByField("id", $tappa['place']);
-                }
-            }
-            $annuncio=new EAnnuncio($result['departureDate'], $result['arrivalDate'], $result['space'], $part , $arr ,$result['weight'],$result['description'],$ute);
-            if ($intermedia != null) {
-                foreach ($intermedia as $i)
-                    $annuncio->addTappa($i);
-            }
-            $annuncio->setIdAd($result['idAd']);
-            if($result['visibility']) $annuncio->setVis();
+            $proprietario = FProprietario::loadByField("id" , $result["proprietario"]);
+            $categorie = FCategoria::loadByLocale($result["id"]);
+            $localizzazione = FLocalizzazione::loadByField("id" , $result["localizzazione"]);
+            $eventi = FEvento::loadByLocale($result["id"]);
+            $orari = FOrario::loadByLocale($result["id"]);
+            $locale=new ELocale($result['nome'], $result['descrizione'], $result['numtelefono'], $proprietario ,$categorie, $localizzazione ,$eventi,$orari);
+            // $locale->setId($result['id']);
         }
         else {
             if(($result!=null) && ($rows_number > 1)){
-                $part = array();
-                $arr = array();
-                $annuncio = array();
+                $locale = array();
+                $proprietario = array();
+                $categorie = array();
+                $localizzazione = array();
+                $eventi = array();
+                $orari = array();
                 for($i=0; $i<count($result); $i++){
-                    $tappa = null;
-                    $intermedia = null;
-                    $part[] = FLuogo::loadByField("id" , $result[$i]["departure"]);
-                    $arr[] = FLuogo::loadByField("id" , $result[$i]["arrival"]);
-                    $ute[] = FUtenteloggato::loadByField("email" , $result[$i]["emailWriter"]);
-                    $tappa = FTappa::loadByField("ad", $result[$i]["idAd"]);
-                    if ($tappa != null ) {
-                        $t = current($tappa);
-                        if (is_array($t)) {
-                            foreach ($tappa as $t) {
-                                $intermedia[] = FLuogo::loadByField("id", $t['place']);
-                            }
-                        } else {
-                            $intermedia[] = FLuogo::loadByField("id", $tappa['place']);
-                        }
-                    }
-
-                    $annuncio[]=new EAnnuncio($result[$i]['departureDate'], $result[$i]['arrivalDate'], $result[$i]['space'], $part[$i] , $arr[$i] ,$result[$i]['weight'],$result[$i]['description'],$ute[$i]);
-                    $annuncio[$i]->setIdAd($result[$i]['idAd']);
-                    if($result[$i]['visibility']) $annuncio[$i]->setVis();
-                    if ( $intermedia != null ){
-                        foreach ($intermedia as $int)
-                            $annuncio[$i]->addTappa($int);
-                    }
-
+                    $proprietario[] = FProprietario::loadByField("id" , $result[$i]["proprietario"]);
+                    $categorie[] = FCategoria::loadByLocale($result[$i]["id"]);
+                    $localizzazione[] = FLocalizzazione::loadByField("id" , $result[$i]["localizzazione"]);
+                    $eventi[] = FEvento::loadByLocale($result[$i]["id"]);
+                    $orari[] = FOrario::loadByLocale($result[$i]["id"]);
+                    $locale[]=new ELocale($result[$i]['nome'], $result[$i]['descrizione'], $result[$i]['numtelefono'], $proprietario[$i] ,$categorie[$i], $localizzazione[$i] ,$eventi[$i], $orari[$i]);
+                  //  $locale[$i]->setIdAd($result[$i]['id']);
                 }
             }
         }
-        return $annuncio;
-
+        return $locale;
     }
-    */
-
-
-
-
-
-
-
 
 }
 ?>

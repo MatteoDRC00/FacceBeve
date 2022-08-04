@@ -59,22 +59,23 @@ class FPersistentManager {
 
 
     /**  Metodo che permette il caricamento di una form(modulo) riempita con i parametri passati in input alla funzione
-     * @param luogo 1 città di partenza
-     * @param luogo 2  città di arrivo
-     * @param data1 data ritiro
-     * @param data2 data consegna
-     * @param dim dimensione
-     * @param peso peso del pacco
+     * @param part1 nome locale / evento
+     * @param part2 città locale/ nome locale
+     * @param part3 categorie locale / citta evento
+     * @param part4 null per Locale / data evento
      */
-    public static function loadForm ($luogo1, $luogo2, $data1, $data2, $dim , $peso) {
+    public static function loadForm ($part1, $part2, $part3, $part4,$tipo) {
         $ris = null;
-        $ris = FAnnuncio::loadByForm ($luogo1, $luogo2, $data1, $data2, $dim , $peso);
+        if($tipo=="Locale")
+            $ris = FLocale::loadByForm ($part1, $part2, $part3);
+        else
+            $ris = FEvento::loadByForm ($part1, $part2, $part3, $part4);
         return $ris;
     }
 
 
 
-    /**  Metodo che permette il login di un utente ,date le credenziali (email e password)
+    /**  Metodo che permette il login di un utente date le credenziali (email e password)
      *
      */
     public static function loadLogin ($user, $pass) {

@@ -98,7 +98,7 @@ DROP TABLE IF EXISTS `Locale`;
 CREATE TABLE `Locale` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
     `nome` VARCHAR(26),
-    `numTelefono` CHAR(9),
+    `numtelefono` CHAR(9),
     `descrizione` VARCHAR(120),
 	`proprietario` INT(11),
 	`localizzazione` INT(11),

@@ -80,14 +80,14 @@ class FOrario {
         $rows_number = $db->interestedRows(static::getClass(), $field, $id);    //funzione richiamata,presente in FDB --> restituisce numero di righe interessate dalla query
         if(($result!=null) && ($rows_number == 1)) {           
 		    $orario=new EOrario($result['giorno'],$result['orarioApertura'],$result['orarioChiusura']); //Carica un Orario dal database
-            $orario->setCodice($result['codicegiorno']);
+           // $orario->setCodice($result['codicegiorno']);
         }
         else {
             if(($result!=null) && ($rows_number > 1)){
                 $utente = array();
         	    for($i=0; $i<count($result); $i++){
                     $orario[] =new EOrario($result[$i]['giorno'],$result[$i]['orarioApertura'],$result[$i]['orarioChiusura']); //Carica un array di oggetti UOrario dal database
-                    $orario[$i]->setCodice($result[$i]['codicegiorno']);
+                    //$orario[$i]->setCodice($result[$i]['codicegiorno']);
                 }
             }
         }
@@ -95,15 +95,39 @@ class FOrario {
     }
 
     /**
-     * metodo che verifica l'esistenza di un Orario nel DB considerato un attributo
-     * @param string $attributo
-     * @param string $valore
-     * @return bool
+     * Permette la load dal database
+     * @param $id campo da confrontare per trovare l'oggetto
+     * @return object $orario
      */
-    public static function exist(string $attributo,string $valore) {
-        $ris = false;
-        $db = FDatabase::getInstance();
-        $result = $db->exist(static::getClass(), $attributo, $valore);
+    public static function loadByLocale($id){
+        $orario = null;
+        $db=FDB::getInstance();
+        $result=$db->loadInfoLocale(static::getClass(),"Locale_Orari",$id);
+        $rows_number = $result->rowCount();    //funzione richiamata,presente in FDB --> restituisce numero di righe interessate dalla query
+        if(($result!=null) && ($rows_number == 1)) {
+            $orario=new EOrario($result['giorno'],$result['orarioApertura'],$result['orarioChiusura']); //Carica un Orario dal database
+        }
+        else {
+            if(($result!=null) && ($rows_number > 1)){
+                $utente = array();
+                for($i=0; $i<count($result); $i++){
+                    $orario[] =new EOrario($result[$i]['giorno'],$result[$i]['orarioApertura'],$result[$i]['orarioChiusura']); //Carica un array di oggetti UOrario dal database
+                }
+            }
+        }
+        return $orario;
+    }
+
+
+    /**
+    * Funzione che permette di verificare se esiste un Utente nel database
+    * @param  $id valore della riga di cui si vuol verificare l'esistenza
+    * @param  string $field colonna su ci eseguire la verifica
+    * @return bool $ris
+    */
+    public static function exist($field, $id){
+        $db=FDB::getInstance();
+        $result=$db->exist(static::getClass(), $field, $id);    //funzione richiamata,presente in FDB -->  ritorna tutti gli attributi di un'istanza dando come parametro di ricerca il valore di un attributo
         if($result!=null)
             $ris = true;
         return $ris;

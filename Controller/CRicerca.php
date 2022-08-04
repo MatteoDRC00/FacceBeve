@@ -2,60 +2,81 @@
 
 
 /**
- * La classe CRicerca implementa la funzionalitÃ  di filtraggio degli annunci.
+ * La classe CRicerca implementa la funzionalitÃ  di ricerca globale su locali ed eventi.
  * @author Gruppo8
  * @package Controller
  */
 class CRicerca{
 
     /**
-     * Metodo di ricerca che permette di filtrare gli annunci in base a 6 parametri (opzionali).
+     * Metodo di ricerca che permette di ricerca  su locali ed eventi.
      * Il filtraggio Ã¨ differente in base alla categoria di utente (trasportatore/cliente).
      */
     static function ricerca (){
         $vRicerca = new VRicerca();
-        $tipo = "Evento o Locale";
-        $nome = "Franco";
-        $citta= "Pescara";
-        $categoria = "eheheheh";
-        if ($nome != null || $citta != null || $categoria != null) {
+        //$tipo = $vRicerca->getType(); --> Nella homepage un campo nella barra di ricerca deve individuare il tipo di ricerca che si vuole effettuare
+        $tipo = "Locale";
             if ($tipo == "Locale") {
-                $pm = new FPersistentManager();
-                $part1 = null;
-                if ($nome != null) {
-                    $part1 = $pm->load("name", $nome, "FLocale");
-                    if ($part1)
-                        $part1 = $part1->getId();
-                }
-                $part2 = null;
-                if ($citta != null) {
-                    $part2 = $pm->load("localizzazione", $citta, "FLocale");
-                    if($part2)
-                        $part2 = $part2->getId();
-                }
-                $result = $pm->loadForm($part1, $part2,$categoria);
-             //   $vRicerca->showResult($result, $tipo);
-            }
-            if ($tipo == "Evento") {  //Ci sono cose da cambiare, in Locale ci vanno le attivita, in Evenmto ci va la data
-                if(CUtente::isLogged()){
+                $nomelocale = "Franco";
+                $citta= "Pescara";
+                $categoria = "eheheheh";
+                if ($nomelocale != null || $citta != null || $categoria != null){
                     $pm = new FPersistentManager();
                     $part1 = null;
-                    if ($nome != null) {
-                        $part1 = $pm->load("name", $nome, "FLocale");
+                    if ($nomelocale != null) {
+                        $part1 = $pm->load("name", $nomelocale, "FLocale");
                         if ($part1)
                             $part1 = $part1->getId();
                     }
                     $part2 = null;
                     if ($citta != null) {
-                        $part2 = $pm->load("name", $citta, "FLocale");
+                        $part2 = $pm->load("localizzazione", $citta, "FLocale");
                         if($part2)
                             $part2 = $part2->getId();
                     }
-                   // $result = $pm->loadForm($part1, $part2);
-                   // $vRicerca->showResult($result, $tipo);
-                }
+                    $result = $pm->loadForm($part1, $part2,$categoria,"tmp",$tipo);
+                    //   $vRicerca->showResult($result, $tipo);
+                }else
+                    header('Location: /FacceBeve/');
             }
-        } else
-            header('Location: /FillSpaceWEB/');
+            if ($tipo == "Evento") {
+                $nomelocale = "Franco";
+                $nomeevento="yeye";
+                $citta= "Pescara";
+                $data="ieri oggi domani";
+                if ($nomelocale != null || $nomeevento != null || $citta != null || $data != null){
+                    if(CUtente::isLogged()){
+                        $pm = new FPersistentManager();
+                        $part1 = null; //NomeLocale
+                        if ($nomelocale != null) {
+                            $part1 = $pm->load("nome", $nomelocale, "FLocale");
+                            if ($part1)
+                                $part1 = $part1->getId();
+                        }
+                        $part2 = null;
+                        if ($nomeevento != null) {
+                            $part2 = $pm->load("nome", $nomeevento, "FEvento");
+                            if($part2)
+                                $part2 = $part2->getId();
+                        }
+                        $part3 = null;
+                        if ($citta != null) {
+                            $part3 = $pm->load("localizzazione", $citta, "FLocale");
+                            if($part3)
+                                $part3 = $part3->getId();
+                        }
+                        $part4 = null;
+                        if ($data != null) {
+                            $part4 = $pm->load("data", $data, "FEvento");
+                            if($part4)
+                                $part4 = $part4->getId();
+                        }
+                        $result = $pm->loadForm($part1, $part2, $part3, $part4,$tipo);
+                        // $vRicerca->showResult($result, $tipo);
+                    }
+                }else
+                    header('Location: /FacceBeve/');
+            }
+
     }
 }

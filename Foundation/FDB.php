@@ -235,13 +235,13 @@
 								if ($query == null)
 									$query = "SELECT * FROM " . $class::getTable()  . " WHERE nome ='" . $nome . "'";
 								else
-									$query = $query . " AND l.nome ='" . $nome . "'";
+									$query = $query . " AND nome ='" . $nome . "'";
 								break;
 							case 2:
 								if ($query == null)
 									$query = "SELECT * FROM " . $class::getTable()  . " WHERE localizzazione ='" . $citta . "'";
 								else
-									$query = $query . " AND l.localizzazione ='" . $citta . "'";
+									$query = $query . " AND localizzazione ='" . $citta . "'";
 								break;
 						}
 					}
@@ -263,6 +263,108 @@
 						$result[] = $row;                    //ritorna un array di righe.
 				}
 				//  $this->closeDbConnection();
+				return array($result, $num);
+
+			} catch (PDOException $e) {
+				echo "Attenzione errore: " . $e->getMessage();
+				$this->db->rollBack();
+				return null;
+			}
+		}
+
+		/**   Metodo che restituisce gli eventi che rispettano alcuni parametri di ricerca ,passati come parametri alla funzione
+		 * @param nomelocale nome del locale
+		 * @param nomeevento nome evento
+		 * @param citta  città dove è situato il locale
+		 * @param data data evento
+		 */
+		public function loadMultipleEvento($nomelocale,$nomeevento, $citta, $data){
+			try{
+				$query = null;
+				$class = "FEvento";
+				$param = array($nomelocale,$nomeevento, $citta, $data);
+
+				//print_r ($param);
+				for ($i = 0; $i < count($param); $i++) {
+					if ($param[$i] != null) {
+						switch ($i) {
+							case 0:
+								if ($query == null)
+									$query = "SELECT * FROM " . $class::getTable()  . " INNER JOIN Locale_Eventi ON Locale_Eventi.ID_Locale='" . $nomelocale . "'";
+								else
+									$query = $query . " INNER JOIN Locale_Eventi ON Locale_Eventi.ID_Locale='" . $nomelocale . "'";
+								break;
+								break;
+							case 1:
+								if ($query == null)
+									$query = "SELECT * FROM " . $class::getTable()  . " WHERE nome ='" . $nomeevento . "'";
+								else
+									$query = $query . " AND nome ='" . $nomeevento . "'";
+								break;
+							case 2:
+								if ($query == null)
+									$query = "SELECT * FROM " . $class::getTable()  . " INNER JOIN Locale_Eventi ON Locale_Eventi.ID_Evento=".$class::getTable().id." INNER JOIN Locale ON Locale.id=Locale_Eventi.ID_Locale WHERE localizzazione ='" . $citta . "'";
+								else
+									$query = $query . " INNER JOIN Locale_Eventi ON Locale_Eventi.ID_Evento=".$class::getTable().id." INNER JOIN Locale ON Locale.id=Locale_Eventi.ID_Locale WHERE localizzazione ='" . $citta . "'";
+								break;
+							case 3:
+								if ($query == null)
+									$query = "SELECT * FROM " . $class::getTable()  . " WHERE data ='" . $data. "'";
+								else
+									$query = $query . " AND data ='" . $data . "'";
+								break;
+						}
+					}
+				}
+				$query = $query . ";";
+				//print $query;
+
+				$stmt = $this->db->prepare($query);
+				$stmt->execute();
+				$num = $stmt->rowCount();
+				if ($num == 0) {
+					$result = null;        //nessuna riga interessata. return null
+				} elseif ($num == 1) {                          //nel caso in cui una sola riga fosse interessata
+					$result = $stmt->fetch(PDO::FETCH_ASSOC);   //ritorna una sola riga
+				} else {
+					$result = array();                         //nel caso in cui piu' righe fossero interessate
+					$stmt->setFetchMode(PDO::FETCH_ASSOC);   //imposta la modalità di fetch come array associativo
+					while ($row = $stmt->fetch())
+						$result[] = $row;                    //ritorna un array di righe.
+				}
+				//  $this->closeDbConnection();
+				return array($result, $num);
+
+			} catch (PDOException $e) {
+				echo "Attenzione errore: " . $e->getMessage();
+				$this->db->rollBack();
+				return null;
+			}
+		}
+
+
+
+		/** Metodo che restituisce le categorie/eventi/orari che caratterizzano un determinato locale, individuato dal suo id
+		 * @param idlocale identificativo del locale
+		 * @return info del locale
+		 */
+		public function loadInfoLocale($class,$field,$idlocale){
+			try{
+				$query = ("SELECT * FROM " . $class::getTable() . " INNER JOIN ".$field." ON ".$field.".ID_Locale". "='" . $idlocale . "';");
+				$stmt = $this->db->prepare($query); //Prepared Statement
+				$stmt->execute();
+				$num = $stmt->rowCount();
+				if ($num == 0) {
+					$result = null;        //nessuna riga interessata. return null
+				} elseif ($num == 1) {                          //nel caso in cui una sola riga fosse interessata
+					$result = $stmt->fetch(PDO::FETCH_ASSOC);   //ritorna una sola riga
+				} else {
+					$result = array();                         //nel caso in cui piu' righe fossero interessate
+					$stmt->setFetchMode(PDO::FETCH_ASSOC);   //imposta la modalità di fetch come array associativo
+					while ($row = $stmt->fetch())
+						$result[] = $row;                    //ritorna un array di righe.
+				}
+
 				return array($result, $num);
 
 			} catch (PDOException $e) {
