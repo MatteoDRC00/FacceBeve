@@ -270,7 +270,7 @@
 			}
 		}
 
-		/**   Metodo che restituisce i locali che rispettano alcuni parametri di ricerca ,passati come parametri alla funzione
+		/**   Metodo che restituisce gli eventi che rispettano alcuni parametri di ricerca ,passati come parametri alla funzione
 		 * @param nomelocale nome del locale
 		 * @param nomeevento nome evento
 		 * @param citta  città dove è situato il locale
@@ -342,10 +342,35 @@
 
 
 
+		/** Metodo che restituisce le categorie/eventi/orari che caratterizzano un determinato locale, individuato dal suo id
+		 * @param idlocale identificativo del locale
+		 * @return info del locale
+		 */
+		public function loadInfoLocale($class,$field,$idlocale){
+			try{
+				$query = ("SELECT * FROM " . $class::getTable() . " INNER JOIN ".$field." ON ".$field.".ID_Locale". "='" . $idlocale . "';");
+				$stmt = $this->db->prepare($query); //Prepared Statement
+				$stmt->execute();
+				$num = $stmt->rowCount();
+				if ($num == 0) {
+					$result = null;        //nessuna riga interessata. return null
+				} elseif ($num == 1) {                          //nel caso in cui una sola riga fosse interessata
+					$result = $stmt->fetch(PDO::FETCH_ASSOC);   //ritorna una sola riga
+				} else {
+					$result = array();                         //nel caso in cui piu' righe fossero interessate
+					$stmt->setFetchMode(PDO::FETCH_ASSOC);   //imposta la modalità di fetch come array associativo
+					while ($row = $stmt->fetch())
+						$result[] = $row;                    //ritorna un array di righe.
+				}
 
+				return array($result, $num);
 
-
-
+			} catch (PDOException $e) {
+				echo "Attenzione errore: " . $e->getMessage();
+				$this->db->rollBack();
+				return null;
+			}
+		}
 
 	/**  Metodo che verifica l'accesso di un utente , controllando che le credenziali (email e password) siano presenti nel db
 	 *@param email ,email del utente

@@ -65,6 +65,30 @@ class FCategoria {
         $db->store(static::getClass(), $categoria);
     }
 
+    /**
+     * Permette la load dal database
+     * @param $id campo da confrontare per trovare l'oggetto
+     * @return object $categoria
+     */
+    public static function loadByLocale($id){
+        $categoria = null;
+        $db=FDB::getInstance();
+        $result=$db->loadInfoLocale(static::getClass(),"Locale_Categorie",$id);
+        $rows_number = $result->rowCount();    //funzione richiamata,presente in FDB --> restituisce numero di righe interessate dalla query
+        if(($result!=null) && ($rows_number == 1)) {
+            $categoria=new ECategoria($result['genere'], $result['descrizione']); //Carica una categoria dal database
+        }
+        else {
+            if(($result!=null) && ($rows_number > 1)){
+                $categoria = array();
+                for($i=0; $i<count($result); $i++){
+                    $categoria[]=new ECategoria($result[$i]['genere'], $result[$i]['descrizione']); //Carica un array di oggetti Categoria dal database
+                }
+            }
+        }
+        return $categoria;
+    }
+
 
 
 }

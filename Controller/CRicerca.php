@@ -34,7 +34,7 @@ class CRicerca{
                         if($part2)
                             $part2 = $part2->getId();
                     }
-                    $result = $pm->loadForm($part1, $part2,$categoria);
+                    $result = $pm->loadForm($part1, $part2,$categoria,"tmp",$tipo);
                     //   $vRicerca->showResult($result, $tipo);
                 }else
                     header('Location: /FacceBeve/');
@@ -71,7 +71,7 @@ class CRicerca{
                             if($part4)
                                 $part4 = $part4->getId();
                         }
-                        $result = $pm->loadForm($part1, $part2, $part3, $part4);
+                        $result = $pm->loadForm($part1, $part2, $part3, $part4,$tipo);
                         // $vRicerca->showResult($result, $tipo);
                     }
                 }else
