@@ -77,6 +77,51 @@ class CRicerca{
                 }else
                     header('Location: /FacceBeve/');
             }
-
     }
+
+    /**
+     * Funzione con il compito di indirizzare alla pagina pagina specifica del locale selezionato
+     * @param $id id dell'annuncio selezionato
+
+    static function dettagliLocale($id){
+        $tipo = null;
+        $vRicerca = new VRicerca();
+        $pm = new FPersistentManager();
+        $result = $pm->load("idAd", $id, "FAnnuncio");
+        $data_p = $result->getDepartureDate();
+        if ($data_p == "0000-00-00")
+            $tipo = "carichi";
+        else
+            $tipo = "trasporti";
+        $nome = $result->getEmailWriter()->getName();
+        $img_utente = $pm->load("emailutente",$result->getEmailWriter()->getEmail(),"FMediaUtente");
+        $cognome = $result->getEmailWriter()->getSurname();
+        $id = $result->getIdAd();
+        $tappa = null;
+        $med_annuncio = $pm->load("idann","$id","FMediaAnnuncio");
+        if ($tipo == "trasporti") {
+            $indici = $pm->load("ad", $id , "FTappa");
+            if (is_array($indici)) {
+                if (is_array(current($indici))) {
+                    $tappa = array();
+                    for ($i = 0; $i < count($indici); $i++) {
+                        $tappa[$i] = $pm->load("id", $indici[$i]['place'], "FLuogo");
+                    }
+                }
+                else
+                    $tappa = $pm->load("id", $indici['place'], "FLuogo");
+            }
+        }
+        if (CUtente::isLogged()) {
+            $utente = unserialize($_SESSION['utente']);
+            if ($result->getEmailWriter()->getEmail() == $utente->getEmail())
+                $vRicerca->showDetails($result, $tipo, $nome, $cognome, $tappa,$img_utente,$med_annuncio,"no");
+            else
+                $vRicerca->showDetails($result, $tipo, $nome, $cognome, $tappa,$img_utente,$med_annuncio,"si");
+        }
+        else
+            $vRicerca->showDetails($result, $tipo, $nome, $cognome, $tappa,$img_utente,$med_annuncio,"si");
+    }
+    */
+
 }

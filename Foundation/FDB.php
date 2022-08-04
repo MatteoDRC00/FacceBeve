@@ -404,38 +404,6 @@
 			static::$instance = null;
 		}
 
-
-		/**
-		 * Funzione utilizzata per ritornare solamente gli annunci riguardanti un trasporto.
-		 * Gli annunci di trasporti hanno la data di partenza sempre diversa dal valore nullo.
-		 * @param $query query da eseguire
-
-		public function loadTrasporti ()
-		{
-			try {
-				// $this->db->beginTransaction();
-				$query = "SELECT * FROM annuncio WHERE departureDate <> '0000-00-00'";
-				$stmt = $this->db->prepare($query);
-				$stmt->execute();
-				$num = $stmt->rowCount();
-				if ($num == 0) {
-					$result = null;        //nessuna riga interessata. return null
-				} elseif ($num == 1) {                          //nel caso in cui una sola riga fosse interessata
-					$result = $stmt->fetch(PDO::FETCH_ASSOC);   //ritorna una sola riga
-				} else {
-					$result = array();                         //nel caso in cui piu' righe fossero interessate
-					$stmt->setFetchMode(PDO::FETCH_ASSOC);   //imposta la modalità di fetch come array associativo
-					while ($row = $stmt->fetch())
-						$result[] = $row;                    //ritorna un array di righe.
-				}
-				//  $this->closeDbConnection();
-				return $result;
-			} catch (PDOException $e) {
-				echo "Attenzione errore: " . $e->getMessage();
-				$this->db->rollBack();
-				return null;
-			} */
-
 		/**
 		 * Funzione utilizzata per ritornare i soli annunci (attivi e inattivi) che contengono una parola inserita dall'admin.
 		 * @param  $input stringa inserita nel campo ricerca dall'admin
