@@ -130,6 +130,32 @@ class FDB{
 		}
 	}
 
+	/**
+	 * Metodo che va ad inserire le chiavi esterne in tabelle originate da una relazione molti-a-molti
+	 * @param $table Nome della tabella
+	 * @param $field1 Nome della prima chiave
+	 * @param $field2 Nome della seconda chiave
+	 * @param $fk1 Foreign key della prima classe
+	 * @param $fk2 Foreign key della seconda classe
+	 */
+	public function chiaviEsterne($table,$field1,$field2,$fk1,$fk2)
+	{
+		try {
+			$this->database->beginTransaction();
+			$query = "INSERT INTO " . $table . " (".$field1.",".$field2.") VALUES (".$fk1.",".$fk2.");";
+			$stmt = $this->database->prepare($query); //Prepared Statement
+			$stmt->execute();
+			$this->database->commit();
+			$this->closeDbConnection();
+		} catch (PDOException $e) {
+			echo "Attenzione errore: " . $e->getMessage();
+			$this->database->rollBack();
+			return null;
+		}
+	}
+
+
+
 	public function getidLocalizzazione(string $indirizzo, string $numCivico, string $citta){
 		try {
 			$class = "FLocalizzazione";
@@ -200,7 +226,7 @@ class FDB{
 		try {
 			$result = null;
 			$this->db->beginTransaction();
-			$esiste = $this->existDB($class, $field, $id);
+			$esiste = $this->exist($class, $field, $id);
 			if ($esiste) {
 				$query = "DELETE FROM " . $class::getTable() . " WHERE " . $field . "='" . $id . "';";
 				$stmt = $this->db->prepare($query); //Prepared Statement
@@ -220,7 +246,7 @@ class FDB{
 	/**  Metodo che verifica l'accesso di un utente , controllando che le credenziali (email e password) siano presenti nel db
 	 *@param email ,email del utente
 	 *@param pass, password dell utente
-	 */
+
 	public function loadVerificaAccesso ($email, $pass)
 	{
 		try {
@@ -242,7 +268,7 @@ class FDB{
 			return null;
 		}
 	}
-
+	*/
 
 	public function getRecensioniLocali()
 	{

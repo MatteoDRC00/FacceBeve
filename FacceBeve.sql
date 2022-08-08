@@ -98,7 +98,7 @@ DROP TABLE IF EXISTS `Locale`;
 CREATE TABLE `Locale` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
     `nome` VARCHAR(26),
-    `numtelefono` CHAR(9),
+    `numtelefono` CHAR(9) UNIQUE,
     `descrizione` VARCHAR(120),
 	`proprietario` INT(11),
 	`localizzazione` INT(11),
@@ -156,8 +156,8 @@ CREATE TABLE `Risposta` (
 DROP TABLE IF EXISTS `Utenti_Locali`;
 
 CREATE TABLE `Utenti_Locali` (
-	`ID_Utente` INT(11) NOT NULL,
 	`ID_Locale` INT(11) NOT NULL,
+    `ID_Utente` INT(11) NOT NULL,
 	CONSTRAINT Utenti_Locali_PK PRIMARY KEY (`ID_Utente` , `ID_Locale`),
     FOREIGN KEY (`ID_Utente`)
         REFERENCES Utente (`id`)
@@ -171,8 +171,8 @@ CREATE TABLE `Utenti_Locali` (
 DROP TABLE IF EXISTS `Locale_Eventi`;
 
 CREATE TABLE `Locale_Eventi` (
-	`ID_Evento` INT(11) NOT NULL,
 	`ID_Locale` INT(11) NOT NULL,
+    `ID_Evento` INT(11) NOT NULL,
 	CONSTRAINT Locale_Eventi_PK PRIMARY KEY (`ID_Evento` , `ID_Locale`),
     FOREIGN KEY (`ID_Evento`)
         REFERENCES Evento (`id`)
