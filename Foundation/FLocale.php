@@ -65,33 +65,9 @@ class FLocale {
      * @return void
      */
     public static function store(ELocale $locale){
-        $db=FDB::getInstance();
-        $idProprietario = $db->getIdProprietario($locale->getProprietario()->getUsername());
-        $idLocalizzazione = $db->getIdLocalizzazione($locale->getLocalizzazione()->getIndirizzo(),$locale->getLocalizzazione()->getNumCivico(),$locale->getLocalizzazione()->getCitta());
-        $idLocale = $db->store(static::getClass() ,$locale);
-        static::update("proprietario",$idProprietario,"id",$idLocale);
-        static::update("localizzazione",$idLocalizzazione,"id",$idLocale);
-        //Categorie Locale
-        if($locale->getCategoria()!=null){
-            foreach($locale->getCategoria() as $cat){
-                $idCat = $cat->getGenere();
-                $db->chiaviEsterne("Locale_Categorie","ID_Locale","ID_Categoria",$idLocale,$idCat);
-            }
-        }
-        //Orari Locale
-        if($locale->getOrario()!=null){
-            foreach($locale->getOrario() as $or){
-                $idOrario = $or->getCodiceOrario(); //Ipotetico
-                $db->chiaviEsterne("Locale_Categorie","ID_Locale","ID_Categoria",$idLocale,$idOrario);
-            }
-        }
-        //Locale Eventi
-        if($locale->getEventiOrganizzati()!=null){
-            foreach($locale->getEventiOrganizzati() as $ev){
-                $idEvento = $ev->getCodiceEvento(); //Ipotetico
-                $db->chiaviEsterne("Locale_Categorie","ID_Locale","ID_Categoria",$idLocale,$idEvento);
-            }
-        }
+        $db = FDB::getInstance();
+        $id = $db->store(static::getClass() ,$locale);
+        $locale->setId($id);
     }
 
 

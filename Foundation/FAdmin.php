@@ -64,8 +64,9 @@ class FAdmin{
      * @return void
      */
     public static function store(EAdmin $admin){
-        $db=FDB::getInstance();
-        $db->store(self::getClass(),$admin);
+        $db = FDB::getInstance();
+        $id = $db->store(self::getClass(),$admin);
+        $admin->setId($id);
     }
 
     /**

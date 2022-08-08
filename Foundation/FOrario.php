@@ -63,8 +63,9 @@ class FOrario {
      * @return void
      */
     public static function store(EOrario $orario){
-        $db=FDB::getInstance();
-        $db->store(static::getClass(), $orario);
+        $db = FDB::getInstance();
+        $id = $db->store(static::getClass(), $orario);
+        $orario->setId($id);
     }
 
 

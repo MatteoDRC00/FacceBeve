@@ -62,8 +62,9 @@ class FEvento {
      * @return void
      */
     public static function store(EEvento $evento){
-        $db=FDB::getInstance();
-        $db->store(self::getClass(), $evento);
+        $db = FDB::getInstance();
+        $id = $db->store(self::getClass(), $evento);
+        $evento->setId($id);
     }
 
     /**
