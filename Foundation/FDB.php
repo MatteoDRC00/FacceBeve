@@ -147,8 +147,10 @@ class FDB{
 			$stmt->execute();
 			$this->database->commit();
 			$this->closeDbConnection();
-		}catch (){
-
+		} catch (PDOException $e) {
+			echo "Attenzione errore: " . $e->getMessage();
+			$this->database->rollBack();
+			return null;
 		}
 	}
 	public function getIdCategoria(string $genere){
