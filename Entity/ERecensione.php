@@ -1,6 +1,7 @@
 <?php
 class ERecensione {
 
+    private int $id;
     private EUtente $utente;
 	private ELocale $locale;
     private string $titolo;
@@ -23,6 +24,7 @@ class ERecensione {
      * @param DateTime $data
      */
     public function __construct(EUtente $utente, string $titolo, string $descrizione, int $voto, DateTime $data,ELocale $locale){
+        $this->id = NULL;
         $this->utente = $utente;
         $this->titolo = $titolo;
         $this->descrizione = $descrizione;
@@ -32,6 +34,23 @@ class ERecensione {
 		$this->segnalata=false;
 		$this->counter=0;
     }
+
+    /**
+     * @return int|null
+     */
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int|null $id
+     */
+    public function setId(?int $id): void
+    {
+        $this->id = $id;
+    }
+
 
     /**
      * @return EUtente

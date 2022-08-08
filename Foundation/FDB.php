@@ -115,7 +115,7 @@ class FDB{
 	}
 
 
-	public function getidProprietario(string $username){
+	public function getIdProprietario(string $username){
 		try {
 			$class = "FProprietario";
 			$query = "SELECT id FROM " . $class::getTable() . " WHERE username ='" . $username . "';";
@@ -148,7 +148,7 @@ class FDB{
 			$this->database->commit();
 			$this->closeDbConnection();
 		}catch (){
-			
+
 		}
 	}
 	public function getIdCategoria(string $genere){

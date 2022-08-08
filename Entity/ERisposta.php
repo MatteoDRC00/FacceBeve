@@ -1,6 +1,7 @@
 <?php
 class ERisposta {
 
+    private int $id;
     private ERecensione $recensione;
 	private EProprietario $proprietario;
     private string $descrizione;
@@ -11,6 +12,7 @@ class ERisposta {
 	 * @param EProprietario $proprietario
      */
     public function __construct(ERecensione $recensione, string $descrizione, EProprietario $proprietario){
+        $this->id = NULL;
         $this->recensione = $recensione;
         $this->descrizione = $descrizione;
         $this->proprietario = $proprietario;

@@ -15,6 +15,7 @@
  */
 class  ELocale{
 
+    private int $id;
     private string $nome;
     private string $descrizione;
     private string $num_telefono;
@@ -34,8 +35,8 @@ class  ELocale{
      * @param array $eventi_organizzati
      * @param array $orario
      */
-    public function __construct(string $nome, string $descrizione, string $num_telefono, EProprietario $proprietario, array $categoria, ELocalizzazione $localizzazione, array $eventi_organizzati, array $orario)
-    {
+    public function __construct(string $nome, string $descrizione, string $num_telefono, EProprietario $proprietario, array $categoria, ELocalizzazione $localizzazione, array $eventi_organizzati, array $orario){
+        $this->id = NULL;
         $this->nome = $nome;
         $this->num_telefono = $num_telefono;
         $this->descrizione = $descrizione;
@@ -44,6 +45,22 @@ class  ELocale{
         $this->localizzazione = $localizzazione;
         $this->eventi_organizzati = $eventi_organizzati;
         $this->orario = $orario;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int|null $id
+     */
+    public function setId(?int $id): void
+    {
+        $this->id = $id;
     }
 
     /**
