@@ -61,8 +61,9 @@ class FCategoria {
      * @return void
      */
     public static function store(ECategoria $categoria){
-        $db=FDB::getInstance();
-        $db->store(static::getClass(), $categoria);
+        $db = FDB::getInstance();
+        $id = $db->store(static::getClass(), $categoria);
+        $categoria->setId($id);
     }
 
     /**

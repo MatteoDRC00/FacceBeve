@@ -66,7 +66,8 @@ class FLocalizzazione {
      */
     public static function store(ELocalizzazione $localizzazione){
         $db=FDB::getInstance();
-        $db->store(static::getClass() ,$localizzazione);
+        $id = $db->store(static::getClass() ,$localizzazione);
+        $localizzazione->setId($id);
     }
 
 
