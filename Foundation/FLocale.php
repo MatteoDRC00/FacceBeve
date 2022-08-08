@@ -66,10 +66,9 @@ class FLocale {
      */
     public static function store(ELocale $locale){
         $db=FDB::getInstance();
-        $idProprietario = $db->getidProprietario($locale->getProprietario()->getUsername());
-        $idLocalizzazione = $db->getidLocalizzazione($locale->getLocalizzazione()->getIndirizzo(),$locale->getLocalizzazione()->getNumCivico(),$locale->getLocalizzazione()->getCitta());
-        $db->store(static::getClass() ,$locale);
-        $idLocale = $db->getidLocale($locale->getNome(), $locale->getNumTelefono());
+        $idProprietario = $db->getIdProprietario($locale->getProprietario()->getUsername());
+        $idLocalizzazione = $db->getIdLocalizzazione($locale->getLocalizzazione()->getIndirizzo(),$locale->getLocalizzazione()->getNumCivico(),$locale->getLocalizzazione()->getCitta());
+        $idLocale = $db->store(static::getClass() ,$locale);
         static::update("proprietario",$idProprietario,"id",$idLocale);
         static::update("localizzazione",$idLocalizzazione,"id",$idLocale);
         //Categorie Locale
