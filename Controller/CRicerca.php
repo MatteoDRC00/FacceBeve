@@ -2,15 +2,15 @@
 
 
 /**
- * La classe CRicerca implementa la funzionalitÃ  di ricerca globale su locali ed eventi.
+ * La classe CRicerca implementa la funzionalità di ricerca globale su locali ed eventi.
  * @author Gruppo8
  * @package Controller
  */
 class CRicerca{
 
     /**
-     * Metodo di ricerca che permette di ricerca  su locali ed eventi.
-     * Il filtraggio Ã¨ differente in base alla categoria di utente (trasportatore/cliente).
+     * Metodo di ricerca che permette di ricerca su locali ed eventi.
+     * Il filtraggio è differente in base alla categoria di utente (trasportatore/cliente).
      */
     static function ricerca (){
         $vRicerca = new VRicerca();
@@ -80,38 +80,18 @@ class CRicerca{
     }
 
     /**
-     * Funzione con il compito di indirizzare alla pagina pagina specifica del locale selezionato
-     * @param $id id dell'annuncio selezionato
+     * Funzione con il compito di indirizzare alla pagina specifica del locale selezionato
+     * @param $id id del locale selezionato
+     */
 
     static function dettagliLocale($id){
-        $tipo = null;
         $vRicerca = new VRicerca();
-        $pm = new FPersistentManager();
-        $result = $pm->load("idAd", $id, "FAnnuncio");
-        $data_p = $result->getDepartureDate();
-        if ($data_p == "0000-00-00")
-            $tipo = "carichi";
-        else
-            $tipo = "trasporti";
-        $nome = $result->getEmailWriter()->getName();
-        $img_utente = $pm->load("emailutente",$result->getEmailWriter()->getEmail(),"FMediaUtente");
-        $cognome = $result->getEmailWriter()->getSurname();
+        $pm = new FPersistentManager(); //Istance ecc...
+        $result = $pm->load("id", $id, "FLocale");
+        //$img_utente = $pm->load("emailutente",$result->getEmailWriter()->getEmail(),"FMediaUtente");
         $id = $result->getIdAd();
         $tappa = null;
         $med_annuncio = $pm->load("idann","$id","FMediaAnnuncio");
-        if ($tipo == "trasporti") {
-            $indici = $pm->load("ad", $id , "FTappa");
-            if (is_array($indici)) {
-                if (is_array(current($indici))) {
-                    $tappa = array();
-                    for ($i = 0; $i < count($indici); $i++) {
-                        $tappa[$i] = $pm->load("id", $indici[$i]['place'], "FLuogo");
-                    }
-                }
-                else
-                    $tappa = $pm->load("id", $indici['place'], "FLuogo");
-            }
-        }
         if (CUtente::isLogged()) {
             $utente = unserialize($_SESSION['utente']);
             if ($result->getEmailWriter()->getEmail() == $utente->getEmail())
@@ -122,6 +102,6 @@ class CRicerca{
         else
             $vRicerca->showDetails($result, $tipo, $nome, $cognome, $tappa,$img_utente,$med_annuncio,"si");
     }
-    */
+
 
 }

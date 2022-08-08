@@ -163,7 +163,8 @@ class FDB{
 
 	/**
 	 * Funzione che viene utilizzata per la load quando ci si aspetta che la query produca un solo risultato (esempio load per id).
-	 *
+	 * @param $field campo della tabella  da confrontare
+	 * @param $id valore da confrontare
 	 * @param $query query da eseguire
 	 */
 	public function load($class, $field, $id){
@@ -193,7 +194,7 @@ class FDB{
 	/** Metodo che permette di eliminare un'istanza di una classe nel db
 	 * @param class classe interessata
 	 *@param field campo usato per la cancellazione
-	 *@param id ,id usato per la cancellazione
+	 *@param id id usato per la cancellazione
 	 */
 	public function delete($class, $field, $id)
 	{
