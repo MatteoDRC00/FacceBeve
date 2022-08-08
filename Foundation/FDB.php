@@ -142,12 +142,15 @@ class FDB{
 	{
 		try {
 			$this->database->beginTransaction();
-			$query = "INSERT INTO " . $table . " (".$field1.",".$field2.") VALUES (".$fk1.",".$fk2.");";
+			$query = "INSERT INTO " . $table . " (" . $field1 . "," . $field2 . ") VALUES (" . $fk1 . "," . $fk2 . ");";
 			$stmt = $this->database->prepare($query); //Prepared Statement
 			$stmt->execute();
 			$this->database->commit();
 			$this->closeDbConnection();
-
+		}catch (){
+			
+		}
+	}
 	public function getIdCategoria(string $genere){
 		try {
 			$class = "FCategoria";
