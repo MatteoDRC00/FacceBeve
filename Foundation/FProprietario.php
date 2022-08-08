@@ -66,7 +66,7 @@ class FProprietario{
      */
     public static function store(EProprietario $proprietario){
         $db=FDB::getInstance();
-        $db->store(static::getClass() ,$proprietario);
+        $db->store(static::getClass(), $proprietario);
     }
 
 

@@ -31,8 +31,8 @@ class FLocale {
         $stmt->bindValue(':nome', $locale->getNome(), PDO::PARAM_STR);
 		$stmt->bindValue(':numtelefono',$locale->getNumTelefono(), PDO::PARAM_STR);
 		$stmt->bindValue(':descrizione',$locale->getDescrizione(), PDO::PARAM_STR);
-        $stmt->bindValue(':proprietario', $locale->getProprietario()->getUsername(), PDO::PARAM_STR); //CI VUOLE L'ID
-        $stmt->bindValue(':localizzazione', $locale->getLocalizzazione()->getCodice(), PDO::PARAM_STR); //CI VUOLE L'ID
+        $stmt->bindValue(':proprietario', NULL, PDO::PARAM_INT);
+        $stmt->bindValue(':localizzazione', NULL, PDO::PARAM_INT);
     }
 
     /**
@@ -66,7 +66,11 @@ class FLocale {
      */
     public static function store(ELocale $locale){
         $db=FDB::getInstance();
+        $idProprietario = $db->getidProprietario($locale->getProprietario()->getUsername());
+        $idLocalizzazione = $db->getidLocalizzazione($locale->getLocalizzazione()->getIndirizzo(),$locale->getLocalizzazione()->getNumCivico(),$locale->getLocalizzazione()->getCitta());
         $db->store(static::getClass() ,$locale);
+
+
     }
 
 
