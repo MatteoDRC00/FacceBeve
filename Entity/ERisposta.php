@@ -17,7 +17,25 @@ class ERisposta {
         $this->descrizione = $descrizione;
         $this->proprietario = $proprietario;
     }
-	
+
+    /**
+     * @return int|null
+     */
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int|null $id
+     */
+    public function setId(?int $id): void
+    {
+        $this->id = $id;
+    }
+
+
+
 	//Metodi GET
 	public function getDescrizione($descrizione) : String{
 		return $this->descrizione;

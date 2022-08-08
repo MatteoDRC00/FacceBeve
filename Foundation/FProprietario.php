@@ -27,7 +27,7 @@ class FProprietario{
     * @param EProprietario $proprietario
     */
     public static function bind(PDOStatement $stmt, EProprietario $proprietario){
-        $stmt->bindValue(':id',NULL, PDO::PARAM_INT); //l'id è posto a NULL poichè viene dato automaticamente dal DBMS (AUTOINCREMENT_ID)
+        $stmt->bindValue(':id',$proprietario->getId(), PDO::PARAM_INT); //l'id è posto a NULL poichè viene dato automaticamente dal DBMS (AUTOINCREMENT_ID)
         $stmt->bindValue(':username', $proprietario->getUsername(), PDO::PARAM_STR); 
 		$stmt->bindValue(':nome',$proprietario->getNome(), PDO::PARAM_STR);
 		$stmt->bindValue(':cognome',$proprietario->getCognome(), PDO::PARAM_STR);

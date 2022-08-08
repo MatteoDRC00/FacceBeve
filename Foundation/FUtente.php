@@ -25,8 +25,8 @@ class FUtente{
     * @param PDOStatement $stmt
     * @param EUtente $utente
     */
-    public static function bind($stmt, EUtente $utente){
-        $stmt->bindValue(':id',NULL, PDO::PARAM_INT); //l'id è posto a NULL poichè viene dato automaticamente dal DBMS (AUTOINCREMENT_ID)
+    public static function bind(PDOStatement $stmt, EUtente $utente){
+        $stmt->bindValue(':id',$utente->getId(), PDO::PARAM_INT); //l'id è posto a NULL poichè viene dato automaticamente dal DBMS (AUTOINCREMENT_ID)
         $stmt->bindValue(':username', $utente->getUsername(), PDO::PARAM_STR); 
 		$stmt->bindValue(':nome',$utente->getNome(), PDO::PARAM_STR);
 		$stmt->bindValue(':cognome',$utente->getCognome(), PDO::PARAM_STR);

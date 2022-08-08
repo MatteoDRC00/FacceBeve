@@ -27,12 +27,12 @@ class FLocale {
      * @return void
      */
     public static function bind(PDOStatement $stmt, ELocale $locale){
-        $stmt->bindValue(':id',NULL, PDO::PARAM_INT); //l'id è posto a NULL poichè viene dato automaticamente dal DBMS (AUTOINCREMENT_ID)
+        $stmt->bindValue(':id',$locale->getId(), PDO::PARAM_INT); //l'id è posto a NULL poichè viene dato automaticamente dal DBMS (AUTOINCREMENT_ID)
         $stmt->bindValue(':nome', $locale->getNome(), PDO::PARAM_STR);
 		$stmt->bindValue(':numtelefono',$locale->getNumTelefono(), PDO::PARAM_STR);
 		$stmt->bindValue(':descrizione',$locale->getDescrizione(), PDO::PARAM_STR);
-        $stmt->bindValue(':proprietario', NULL, PDO::PARAM_INT);
-        $stmt->bindValue(':localizzazione', NULL, PDO::PARAM_INT);
+        $stmt->bindValue(':proprietario', $locale->getProprietario()->getId(), PDO::PARAM_INT);
+        $stmt->bindValue(':localizzazione', $locale->getLocalizzazione()->getId(), PDO::PARAM_INT);
     }
 
     /**

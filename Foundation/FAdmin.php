@@ -27,7 +27,7 @@ class FAdmin{
      * @param EAdmin $admin
      */
     public static function bind($stmt, EAdmin $admin){
-        $stmt->bindValue(':id',NULL, PDO::PARAM_INT); //l'id è posto a NULL poichè viene dato automaticamente dal DBMS (AUTOINCREMENT_ID)
+        $stmt->bindValue(':id',$admin->getId(), PDO::PARAM_INT); //l'id è posto a NULL poichè viene dato automaticamente dal DBMS (AUTOINCREMENT_ID)
         $stmt->bindValue(':username', $admin->getUsername(), PDO::PARAM_STR);
         $stmt->bindValue(':email', $admin->getEmail(), PDO::PARAM_STR);
         $stmt->bindValue(':password', $admin->getPassword(), PDO::PARAM_STR);
