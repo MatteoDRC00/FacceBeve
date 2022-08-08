@@ -115,7 +115,7 @@ class FDB{
 	}
 
 
-	public function getidProprietario(string $username){
+	public function getIdProprietario(string $username){
 		try {
 			$class = "FProprietario";
 			$query = "SELECT id FROM " . $class::getTable() . " WHERE username ='" . $username . "';";
@@ -130,7 +130,22 @@ class FDB{
 		}
 	}
 
-	public function getidLocalizzazione(string $indirizzo, string $numCivico, string $citta){
+	public function getIdCategoria(string $genere){
+		try {
+			$class = "FCategoria";
+			$query = "SELECT id FROM " . $class::getTable() . " WHERE genere ='" . $genere . "';";
+			$stmt = $this->database->prepare($query);
+			$stmt->execute();
+			$result = $stmt->fetch(PDO::FETCH_ASSOC);
+			return $result;
+		} catch (PDOException $e) {
+			echo "Attenzione errore: " . $e->getMessage();
+			$this->database->rollBack();
+			return null;
+		}
+	}
+
+	public function getIdLocalizzazione(string $indirizzo, string $numCivico, string $citta){
 		try {
 			$class = "FLocalizzazione";
 			$query = "SELECT id FROM " . $class::getTable() . " WHERE indirizzo ='" . $indirizzo . "' AND numCivico ='" . $numCivico . "' AND citta ='" . $citta . "';";
@@ -145,10 +160,25 @@ class FDB{
 		}
 	}
 
-	public function getidLocale(string $nome, string $numtelefono){
+	public function getIdLocale(string $nome, string $numtelefono){
 		try {
 			$class = "FLocale";
-			$query = "SELECT id FROM " . $class::getTable() . " WHERE $nome ='" . $nome . "' AND $numtelefono ='" . $numtelefono . "';";
+			$query = "SELECT id FROM " . $class::getTable() . " WHERE nome ='" . $nome . "' AND numtelefono ='" . $numtelefono . "';";
+			$stmt = $this->database->prepare($query);
+			$stmt->execute();
+			$result = $stmt->fetch(PDO::FETCH_ASSOC);
+			return $result;
+		} catch (PDOException $e) {
+			echo "Attenzione errore: " . $e->getMessage();
+			$this->database->rollBack();
+			return null;
+		}
+	}
+
+	public function getIdUtente(string $username){
+		try {
+			$class = "FUtente";
+			$query = "SELECT id FROM " . $class::getTable() . " WHERE username ='" . $username . "';";
 			$stmt = $this->database->prepare($query);
 			$stmt->execute();
 			$result = $stmt->fetch(PDO::FETCH_ASSOC);

@@ -68,7 +68,11 @@ class FRecensione{
      */
     public static function store(ERecensione $recensione) {
         $db = FDB::getInstance();
-        $db->store(static::getClass(), $recensione);
+        $idLocale = $db->getIdLocale($recensione->getLocale()->getNome(), $recensione->getLocale()->getNumTelefono());
+        $idUtente = $db->getIdUtente($recensione->getUtente()->getUsername());
+        $idRecensione = $db->store(static::getClass(), $recensione);
+        static::update("locale",$idLocale,"id",$idRecensione);
+        static::update("utente",$idUtente,"id",$idRecensione);
     }
 
     /**
