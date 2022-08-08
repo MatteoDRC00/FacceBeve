@@ -69,8 +69,9 @@ class FLocale {
         $idProprietario = $db->getidProprietario($locale->getProprietario()->getUsername());
         $idLocalizzazione = $db->getidLocalizzazione($locale->getLocalizzazione()->getIndirizzo(),$locale->getLocalizzazione()->getNumCivico(),$locale->getLocalizzazione()->getCitta());
         $db->store(static::getClass() ,$locale);
-
-
+        $idLocale = $db->getidLocale($locale->getNome(), $locale->getNumTelefono());
+        static::update("proprietario",$idProprietario,"id",$idLocale);
+        static::update("localizzazione",$idLocalizzazione,"id",$idLocale);
     }
 
 

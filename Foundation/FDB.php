@@ -75,8 +75,7 @@ class FDB{
 	 * @param string $value_pk
 	 * @return bool
 	 */
-	public function update(string $class, string $attributo, string $newvalue, string $attributo_pk, string $value_pk)
-	{
+	public function update(string $class, string $attributo, string $newvalue, string $attributo_pk, string $value_pk){
 		try {
 			$this->database->beginTransaction();
 			$query = "UPDATE " . $class::getTable() . " SET " . $attributo . "='" . $newvalue . "' WHERE " . $attributo_pk . "='" . $value_pk . "';";
@@ -146,10 +145,10 @@ class FDB{
 		}
 	}
 
-	public function getidLocale(string $username){
+	public function getidLocale(string $nome, string $numtelefono){
 		try {
-			$class = "FProprietario";
-			$query = "SELECT id FROM " . $class::getTable() . " WHERE username ='" . $username . "';";
+			$class = "FLocale";
+			$query = "SELECT id FROM " . $class::getTable() . " WHERE $nome ='" . $nome . "' AND $numtelefono ='" . $numtelefono . "';";
 			$stmt = $this->database->prepare($query);
 			$stmt->execute();
 			$result = $stmt->fetch(PDO::FETCH_ASSOC);
