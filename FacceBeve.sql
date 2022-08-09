@@ -130,7 +130,7 @@ CREATE TABLE `Recensione` (
     `utente` INT(11) NOT NULL,
     `locale` INT(11) NOT NULL,
     PRIMARY KEY (`id`),
-    FOREIGN KEY (`utente`) REFERENCES Utente(`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (`utente`) REFERENCES Utente(`username`) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (`locale`) REFERENCES Locale(`id`) ON DELETE CASCADE ON UPDATE CASCADE 
 )ENGINE=InnoDB;
 
@@ -143,7 +143,7 @@ CREATE TABLE `Risposta` (
     `proprietario` INT(11) NOT NULL,
     `recensione` INT(11) NOT NULL,
     PRIMARY KEY (`id`),
-    FOREIGN KEY (`proprietario`) REFERENCES Proprietario(`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (`proprietario`) REFERENCES Proprietario(`username`) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (`recensione`) REFERENCES Recensione(`id`) ON DELETE CASCADE ON UPDATE CASCADE 
 )ENGINE=InnoDB;
 
