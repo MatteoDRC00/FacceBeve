@@ -1,19 +1,14 @@
 <?php
+
+use Cassandra\Date;
+
 /**
- * La classe EUtente estende la classe EUser, essa contiene tutti gli attributi e metodi base riguardanti gli utenti. 
- * Gli attributi che la descrivono sono:
- * - name: nome dell'utente;
- * - cognome: cognome dell'utente;
- * - email: email utente; 
- * - iscrizione: data prima iscrizione di tale utente;
- * - localiprefe: locali preferiti dell'utente.
- *  @access public 
+ * La classe EUtente contiene tutti gli attributi e metodi base riguardanti gli utenti.
  *  @author Gruppo 8
  *  @package Entity
  */ 
 class EUtente {
 
-    private int $id;
     private string $password;
     private string $username;
     private string $email;
@@ -23,8 +18,14 @@ class EUtente {
     private date $iscrizione;
 
 
+    /**
+     * @param string $password
+     * @param string $nome
+     * @param string $cognome
+     * @param string $username
+     * @param string $email
+     */
     public function __construct(string $password, string $nome, string $cognome, string $username, string $email){
-        $this->id = NULL;
         $this->nome = $nome;
         $this->cognome = $cognome;
         $this->email = $email;
@@ -32,22 +33,6 @@ class EUtente {
         $this->password = $password;
         $this->localipreferiti = array();
         $this->iscrizione = date("d.m.y");
-    }
-
-    /**
-     * @return int|null
-     */
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param int|null $id
-     */
-    public function setId(?int $id): void
-    {
-        $this->id = $id;
     }
 
 

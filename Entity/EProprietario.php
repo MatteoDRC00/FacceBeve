@@ -1,17 +1,11 @@
 <?php
 /**
- * La classe EProprietario estende la classe EUser, essa contiene tutti gli attributi e metodi base riguardanti i proprietari di locali. 
- * Gli attributi che la descrivono sono:
- * - name: nome del proprietario;
- * - cognome: cognome del proprietario;
- * - email: email proprietario; 
- *  @access public 
+ * La classe EProprietario estende la classe EUser, essa contiene tutti gli attributi e metodi base riguardanti i proprietari di locali.
  *  @author Gruppo 8
  *  @package Entity
  */ 
 class EProprietario {
 
-    private int $id;
     private string $password;
     private string $username;
     private string $email;
@@ -19,7 +13,6 @@ class EProprietario {
     private string $cognome;
 
     public function __construct(string $nome, string $cognome, string $email,string $username, string $password){
-        $this->id = NULL;
         $this->nome = $nome;
         $this->cognome = $cognome;
         $this->username = $username;
@@ -27,21 +20,7 @@ class EProprietario {
         $this->password = $password;
     }
 
-    /**
-     * @return int|null
-     */
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
 
-    /**
-     * @param int|null $id
-     */
-    public function setId(?int $id): void
-    {
-        $this->id = $id;
-    }
 
 //----------------------METODI GET-----------------------------
 

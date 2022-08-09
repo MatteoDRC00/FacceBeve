@@ -13,7 +13,7 @@ class FUtente{
     private static $table="Utente";
 
     /** valori della tabella nel DB */
-    private static $values="(:id,:username,:nome,:cognome,:email,:password,:dataIscrizione)";
+    private static $values="(:username,:nome,:cognome,:email,:password,:dataIscrizione)";
 
     /** costruttore */
     public function __construct(){
@@ -26,8 +26,7 @@ class FUtente{
     * @param EUtente $utente
     */
     public static function bind(PDOStatement $stmt, EUtente $utente){
-        $stmt->bindValue(':id',$utente->getId(), PDO::PARAM_INT); //l'id è posto a NULL poichè viene dato automaticamente dal DBMS (AUTOINCREMENT_ID)
-        $stmt->bindValue(':username', $utente->getUsername(), PDO::PARAM_STR); 
+        $stmt->bindValue(':username', $utente->getUsername(), PDO::PARAM_STR);
 		$stmt->bindValue(':nome',$utente->getNome(), PDO::PARAM_STR);
 		$stmt->bindValue(':cognome',$utente->getCognome(), PDO::PARAM_STR);
         $stmt->bindValue(':email', $utente->getEmail(), PDO::PARAM_STR);
@@ -66,7 +65,15 @@ class FUtente{
      */
     public static function store(EUtente $utente){
         $db=FDB::getInstance();
-        $db->store(static::getClass() ,$utente);
+        $id = $db->store(static::getClass() ,$utente);
+        //Utenti Locali
+        if($utente->getLocalipreferiti()!=null){
+            foreach($utente->getLocalipreferiti() as $pref){
+                $idLoc = $pref->getId();
+                $db->chiaviEsterne("Utenti_Locali","ID_Locale","ID_Utente",$id,$idLoc);
+            }
+        }
+        return $id;
     }
 
 

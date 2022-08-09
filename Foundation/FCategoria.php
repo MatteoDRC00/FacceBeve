@@ -14,7 +14,7 @@ class FCategoria {
     private static $table="Categoria";
 
     /** valori della tabella nel DB */
-    private static $values="(:id,:genere,:descrizione)";
+    private static $values="(:genere,:descrizione)";
 
     /** costruttore*/ 
     public function __construct(){}
@@ -26,7 +26,6 @@ class FCategoria {
      * @return void
      */
     public static function bind(PDOStatement $stmt, ECategoria $categoria){
-        $stmt->bindValue(':id',$categoria->getId(), PDO::PARAM_INT); //l'id è posto a NULL poichè viene dato automaticamente dal DBMS (AUTOINCREMENT_ID)
         $stmt->bindValue(':genere', $categoria->getGenere(), PDO::PARAM_STR);
 		$stmt->bindValue(':descrizione',$categoria->getDescrizione(), PDO::PARAM_STR);
     }
@@ -62,8 +61,9 @@ class FCategoria {
      */
     public static function store(ECategoria $categoria){
         $db = FDB::getInstance();
-        $id = $db->store(static::getClass(), $categoria);
-        $categoria->setId($id);
+        $genere = $db->store(static::getClass(), $categoria);
+        //$categoria->setId($id);
+        return $genere;
     }
 
     /**

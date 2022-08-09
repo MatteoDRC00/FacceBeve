@@ -1,15 +1,9 @@
 <?php
-/** La classe ELocalizzazione caratterizza un luogo fisico di un locale attraverso:
- *  - indirizzo: identifica l'indirizzo
- *  - numCivico: identifica il numero civico
- *  - citta: identifica la città
- *  - nazione: identifica la nazione
- *  - CAP: identifica il CAP
+/** La classe ELocalizzazione caratterizza un luogo fisico di un locale
  *  @author Gruppo8
  *  @package Entity
  */
 class ELocalizzazione{
-
 
     private int $id;
     private string $indirizzo;

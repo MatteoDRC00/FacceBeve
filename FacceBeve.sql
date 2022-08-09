@@ -24,48 +24,44 @@ CREATE TABLE `Immangine` (
 DROP TABLE IF EXISTS `Utente`;
 
 CREATE TABLE `Utente` (
-	`id` int(11) NOT NULL AUTO_INCREMENT,
-    `username` VARCHAR(24) NOT NULL UNIQUE,
+    `username` VARCHAR(24) NOT NULL,
     `nome` VARCHAR(26),
     `cognome` VARCHAR(26),    
     `email` VARCHAR(40) NOT NULL,
     `password` VARCHAR(30) NOT NULL,
     `dataIscrizione` DATE NOT NULL,
-    PRIMARY KEY (`id`)
+    PRIMARY KEY (`username`)
 )ENGINE=InnoDB;
 
 /*Tabella relativa ai Proprietari dei Locali*/
 DROP TABLE IF EXISTS `Proprietario`;
 
 CREATE TABLE `Proprietario` (
-    `id` int(11) NOT NULL AUTO_INCREMENT,
-    `username` VARCHAR(24) UNIQUE,
+    `username` VARCHAR(24) NOT NULL,
     `nome` VARCHAR(26),
     `cognome` VARCHAR(26),    
     `email` VARCHAR(40) NOT NULL,
     `password` VARCHAR(30) NOT NULL,
-    PRIMARY KEY (`id`)
+    PRIMARY KEY (`username`)
 )ENGINE=InnoDB;
 
 /*Tabella relativa agli Admin del sito*/
 DROP TABLE IF EXISTS `Admin`;
 
 CREATE TABLE `Admin` (
-    `id` int(11) NOT NULL AUTO_INCREMENT,
-    `username` VARCHAR(24) NOT NULL UNIQUE,   
+    `username` VARCHAR(24) NOT NULL,
     `email` VARCHAR(40) NOT NULL,
     `password` VARCHAR(30) NOT NULL,
-    PRIMARY KEY (`id`)
+    PRIMARY KEY (`username`)
 )ENGINE=InnoDB;
 
 /*Tabella relativa alle Categorie a cui possono appartenere i locali(Bar, Ristorazione)*/
 DROP TABLE IF EXISTS `Categoria`;
 
 CREATE TABLE `Categoria` (
-    `id` int(11) NOT NULL AUTO_INCREMENT,
-    `genere` VARCHAR(30) NOT NULL UNIQUE,
+    `genere` VARCHAR(30) NOT NULL,
     `descrizione` VARCHAR(120),
-    PRIMARY KEY (`id`)
+    PRIMARY KEY (`genere`)
 )ENGINE=InnoDB;
 
 /*Tabella relativa alla Localizzazione*/
@@ -100,11 +96,11 @@ CREATE TABLE `Locale` (
     `nome` VARCHAR(26),
     `numtelefono` CHAR(9) UNIQUE,
     `descrizione` VARCHAR(120),
-	`proprietario` INT(11),
+	`proprietario` VARCHAR(24),
 	`localizzazione` INT(11),
     UNIQUE (`nome`,`localizzazione`),
     PRIMARY KEY (`id`),
-    FOREIGN KEY (`proprietario`) REFERENCES Proprietario(`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (`proprietario`) REFERENCES Proprietario(`username`) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (`localizzazione`) REFERENCES Localizzazione(`id`) ON DELETE CASCADE ON UPDATE CASCADE
 )ENGINE=InnoDB;
 
@@ -118,7 +114,6 @@ CREATE TABLE `Evento` (
 	`data` DATE,
     PRIMARY KEY (`id`)
 )ENGINE=InnoDB;
-
 
 
 /*Tabella relativa alle Recensioni*/
@@ -157,10 +152,10 @@ DROP TABLE IF EXISTS `Utenti_Locali`;
 
 CREATE TABLE `Utenti_Locali` (
 	`ID_Locale` INT(11) NOT NULL,
-    `ID_Utente` INT(11) NOT NULL,
+    `ID_Utente` VARCHAR(24) NOT NULL,
 	CONSTRAINT Utenti_Locali_PK PRIMARY KEY (`ID_Utente` , `ID_Locale`),
     FOREIGN KEY (`ID_Utente`)
-        REFERENCES Utente (`id`)
+        REFERENCES Utente (`username`)
         ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (`ID_Locale`)
         REFERENCES Locale (`id`)
@@ -206,7 +201,7 @@ CREATE TABLE `Locale_Categorie` (
 	`ID_Categoria` INT(11) NOT NULL,
 	CONSTRAINT Locale_Categorie_PK PRIMARY KEY ( `ID_Locale` ,`ID_Categoria`),
     FOREIGN KEY (`ID_Categoria`)
-        REFERENCES Categoria (`id`)
+        REFERENCES Categoria (`genere`)
         ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (`ID_Locale`)
         REFERENCES Locale (`id`)

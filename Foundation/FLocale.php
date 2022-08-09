@@ -27,11 +27,11 @@ class FLocale {
      * @return void
      */
     public static function bind(PDOStatement $stmt, ELocale $locale){
-        $stmt->bindValue(':id',$locale->getId(), PDO::PARAM_INT); //l'id è posto a NULL poichè viene dato automaticamente dal DBMS (AUTOINCREMENT_ID)
+        $stmt->bindValue(':id',NULL, PDO::PARAM_INT); //l'id è posto a NULL poichè viene dato automaticamente dal DBMS (AUTOINCREMENT_ID)
         $stmt->bindValue(':nome', $locale->getNome(), PDO::PARAM_STR);
 		$stmt->bindValue(':numtelefono',$locale->getNumTelefono(), PDO::PARAM_STR);
 		$stmt->bindValue(':descrizione',$locale->getDescrizione(), PDO::PARAM_STR);
-        $stmt->bindValue(':proprietario', $locale->getProprietario()->getId(), PDO::PARAM_INT);
+        $stmt->bindValue(':proprietario', $locale->getProprietario()->getUsername(), PDO::PARAM_INT);
         $stmt->bindValue(':localizzazione', $locale->getLocalizzazione()->getId(), PDO::PARAM_INT);
     }
 
@@ -65,33 +65,39 @@ class FLocale {
      * @return void
      */
     public static function store(ELocale $locale){
+        $id = NULL;
         $db = FDB::getInstance();
-        $id = $db->store(static::getClass() ,$locale);
-        $locale->setId($id);
+        $proprietario = $db->exist("FProprietario", "proprietario", $locale->getProprietario()->getUsername());
+        $localizzazione = $db->exist("FLocalizzazione", "localizzazione", $locale->getLocalizzazione()->getId());
+        if($proprietario && $localizzazione) {
+            $id = $db->store(static::getClass() ,$locale);
+            //Categorie Locale
+            if($locale->getCategoria()!=null){
+                foreach($locale->getCategoria() as $cat){
+                    $genere = $cat->getGenere();
+                    $db->chiaviEsterne("Locale_Categorie","ID_Locale","ID_Categoria",$id,$genere);
+                }
+            }
+            //Orari Locale
+            if($locale->getOrario()!=null){
+                foreach($locale->getOrario() as $or){
+                    $idOrario = $or->getId();
+                    $db->chiaviEsterne("Locale_Orari","ID_Locale","ID_Orario",$id,$idOrario);
+                }
+            }
+            //Locale Eventi
+            if($locale->getEventiOrganizzati()!=null){
+                foreach($locale->getEventiOrganizzati() as $ev){
+                    $idEvento = $ev->getId();
+                    $db->chiaviEsterne("Locale_Eventi","ID_Locale","ID_Evento",$id,$idEvento);
+                }
+            }
+        }
 
-        //Forse
-        $idLocale = $locale->getId();
-        //Categorie Locale
-        if($locale->getCategoria()!=null){
-            foreach($locale->getCategoria() as $cat){
-                $idCat = $cat->getGenere();
-                $db->chiaviEsterne("Locale_Categorie","ID_Locale","ID_Categoria",$idLocale,$idCat);
-            }
-        }
-        //Orari Locale
-        if($locale->getOrario()!=null){
-            foreach($locale->getOrario() as $or){
-                $idOrario = $or->getCodiceOrario(); //Ipotetico
-                $db->chiaviEsterne("Locale_Categorie","ID_Locale","ID_Categoria",$idLocale,$idOrario);
-            }
-        }
-        //Locale Eventi
-        if($locale->getEventiOrganizzati()!=null){
-            foreach($locale->getEventiOrganizzati() as $ev){
-                $idEvento = $ev->getCodiceEvento(); //Ipotetico
-                $db->chiaviEsterne("Locale_Categorie","ID_Locale","ID_Categoria",$idLocale,$idEvento);
-            }
-        }
+        //$locale->setId($id);
+
+
+        return $id;
 
 
     }

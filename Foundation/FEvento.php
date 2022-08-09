@@ -26,7 +26,7 @@ class FEvento {
      * @return void
      */
     public static function bind(PDOStatement $stmt, EEvento $evento){
-        $stmt->bindValue(':id',$evento->getId(), PDO::PARAM_INT); //l'id è posto a NULL poichè viene dato automaticamente dal DBMS (AUTOINCREMENT_ID)
+        $stmt->bindValue(':id',NULL, PDO::PARAM_INT);
         $stmt->bindValue(':nome', $evento->getNome(), PDO::PARAM_STR);
         $stmt->bindValue(':descrizione', $evento->getDescrizione(), PDO::PARAM_STR);
         $stmt->bindValue(':data', $evento->getData(), PDO::PARAM_STR);
@@ -64,7 +64,8 @@ class FEvento {
     public static function store(EEvento $evento){
         $db = FDB::getInstance();
         $id = $db->store(self::getClass(), $evento);
-        $evento->setId($id);
+        //$evento->setId($id);
+        return $id;
     }
 
     /**

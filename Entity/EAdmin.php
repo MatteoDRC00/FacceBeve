@@ -6,13 +6,11 @@
  */ 
 class EAdmin {
 
-    private int $id;
     private string $password;
     private string $username;
     private string $email;
 
     public function __construct(string $username, string $email, string $password ){
-        $this->id = NULL;
         $this->username = $username;
         $this->password = $password;
         $this->email = $email;
@@ -44,13 +42,6 @@ class EAdmin {
         return $this->email;
     }
 
-    /**
-     * @return int|null
-     */
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
 
 
 
@@ -79,16 +70,6 @@ class EAdmin {
     {
         $this->password = $password;
     }
-
-    /**
-     * @param int|null $id
-     */
-    public function setId(?int $id): void
-    {
-        $this->id = $id;
-    }
-    
-
 
 }
 ?>

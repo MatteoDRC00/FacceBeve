@@ -47,18 +47,23 @@ class FDB{
 	 * @param class classe da passare
 	 * @param obj oggetto da salvare
 	 */
-	public function store($class, $obj)
-	{
+	public function store($class, $obj){
 		try {
 			$this->database->beginTransaction();
 			$query = "INSERT INTO " . $class::getTable() . " VALUES " . $class::getValues();
 			$stmt = $this->database->prepare($query); //Prepared Statement
 			$class::bind($stmt, $obj);
 			$stmt->execute();
-			$id = $this->database->lastInsertId();
 			$this->database->commit();
 			$this->closeDbConnection();
-			return $id;
+			if($class == "FAdmin")
+				return $obj->getUsername();
+			elseif($class == "FCategoria")
+				return $obj->getCategoria();
+			else{
+				$id = $this->database->lastInsertId();
+				return $id;
+			}
 		} catch (PDOException $e) {
 			echo "Attenzione errore: " . $e->getMessage();
 			$this->database->rollBack();
@@ -103,10 +108,10 @@ class FDB{
 			$stmt = $this->database->prepare($query); //Prepared Statement
 			$stmt->execute();
 			$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-			if (count($result) == 1)
-				return $result[0];  //rimane solo l'array interno
-			else if (count($result) > 1)
-				return $result;  //resituisce array di array
+			if (count($result) >= 1)
+				return true;
+			else
+				return false;
 			$this->closeDbConnection();
 		} catch (PDOException $e) {
 			echo "Attenzione errore: " . $e->getMessage();
@@ -115,20 +120,8 @@ class FDB{
 	}
 
 
-	public function getIdProprietario(string $username){
-		try {
-			$class = "FProprietario";
-			$query = "SELECT id FROM " . $class::getTable() . " WHERE username ='" . $username . "';";
-			$stmt = $this->database->prepare($query);
-			$stmt->execute();
-			$result = $stmt->fetch(PDO::FETCH_ASSOC);
-			return $result;
-		} catch (PDOException $e) {
-			echo "Attenzione errore: " . $e->getMessage();
-			$this->database->rollBack();
-			return null;
-		}
-	}
+
+
 
 	/**
 	 * Metodo che va ad inserire le chiavi esterne in tabelle originate da una relazione molti-a-molti
@@ -153,39 +146,7 @@ class FDB{
 			return null;
 		}
 	}
-	public function getIdCategoria(string $genere){
-		try {
-			$class = "FCategoria";
-			$query = "SELECT id FROM " . $class::getTable() . " WHERE genere ='" . $genere . "';";
-			$stmt = $this->database->prepare($query);
-			$stmt->execute();
-			$result = $stmt->fetch(PDO::FETCH_ASSOC);
-			return $result;
 
-		} catch (PDOException $e) {
-			echo "Attenzione errore: " . $e->getMessage();
-			$this->database->rollBack();
-			return null;
-		}
-	}
-
-
-	//public function getidLocalizzazione(string $indirizzo, string $numCivico, string $citta){
-
-	public function getIdLocalizzazione(string $indirizzo, string $numCivico, string $citta){
-		try {
-			$class = "FLocalizzazione";
-			$query = "SELECT id FROM " . $class::getTable() . " WHERE indirizzo ='" . $indirizzo . "' AND numCivico ='" . $numCivico . "' AND citta ='" . $citta . "';";
-			$stmt = $this->database->prepare($query);
-			$stmt->execute();
-			$result = $stmt->fetch(PDO::FETCH_ASSOC);
-			return $result;
-		} catch (PDOException $e) {
-			echo "Attenzione errore: " . $e->getMessage();
-			$this->database->rollBack();
-			return null;
-		}
-	}
 
 	public function getIdLocale(string $nome, string $numtelefono){
 		try {

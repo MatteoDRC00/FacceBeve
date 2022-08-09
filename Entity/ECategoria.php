@@ -7,7 +7,6 @@
  */
 class ECategoria{
 
-    private int $id;
     private string $genere;
     private string $descrizione;
 
@@ -16,26 +15,10 @@ class ECategoria{
      * @param string $descrizione
      */
     public function __construct(string $genere, string $descrizione){
-        $this->id = NULL;
         $this->genere = $genere;
         $this->descrizione = $descrizione;
     }
 
-    /**
-     * @return int|null
-     */
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param int|null $id
-     */
-    public function setId(?int $id): void
-    {
-        $this->id = $id;
-    }
 
     /**
      * @return string

@@ -14,7 +14,7 @@ class FAdmin{
     private static $table="Admin";
 
     /** valori della tabella nel DB */
-    private static $values="(:id;:username,:email,:password)";
+    private static $values="(:username,:email,:password)";
 
     /** costruttore*/
     public function __construct(){
@@ -26,8 +26,7 @@ class FAdmin{
      * @param PDOStatement $stmt
      * @param EAdmin $admin
      */
-    public static function bind($stmt, EAdmin $admin){
-        $stmt->bindValue(':id',$admin->getId(), PDO::PARAM_INT); //l'id è posto a NULL poichè viene dato automaticamente dal DBMS (AUTOINCREMENT_ID)
+    public static function bind(PDOStatement $stmt, EAdmin $admin){
         $stmt->bindValue(':username', $admin->getUsername(), PDO::PARAM_STR);
         $stmt->bindValue(':email', $admin->getEmail(), PDO::PARAM_STR);
         $stmt->bindValue(':password', $admin->getPassword(), PDO::PARAM_STR);
@@ -65,8 +64,9 @@ class FAdmin{
      */
     public static function store(EAdmin $admin){
         $db = FDB::getInstance();
-        $id = $db->store(self::getClass(),$admin);
-        $admin->setId($id);
+        $username = $db->store(self::getClass(), $admin);
+        //$admin->setId($id);
+        return $username;
     }
 
     /**

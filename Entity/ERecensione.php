@@ -1,4 +1,9 @@
 <?php
+/**
+ *
+ * @author Gruppo8
+ * @package Entity
+ */
 class ERecensione {
 
     private int $id;
@@ -10,11 +15,6 @@ class ERecensione {
     private DateTime $data;
 	private boolean $segnalata;
 	private int $counter;
-	/**
-	* identificativo univoco della recensione 
-    * @AttributeType int
-    
-    private $id; */
 
     /**
      * @param EUtente $utente
@@ -22,6 +22,7 @@ class ERecensione {
      * @param string $descrizione
      * @param int $voto
      * @param DateTime $data
+     * @param ELocale $locale
      */
     public function __construct(EUtente $utente, string $titolo, string $descrizione, int $voto, DateTime $data,ELocale $locale){
         $this->id = NULL;

@@ -14,7 +14,7 @@ class FProprietario{
     private static $table="Proprietario";
 
     /** valori della tabella nel DB */
-    private static $values="(:id,:username,:nome,:cognome,:email,:password)";
+    private static $values="(:username,:nome,:cognome,:email,:password)";
 
     /** costruttore */
     public function __construct(){
@@ -27,8 +27,7 @@ class FProprietario{
     * @param EProprietario $proprietario
     */
     public static function bind(PDOStatement $stmt, EProprietario $proprietario){
-        $stmt->bindValue(':id',$proprietario->getId(), PDO::PARAM_INT); //l'id è posto a NULL poichè viene dato automaticamente dal DBMS (AUTOINCREMENT_ID)
-        $stmt->bindValue(':username', $proprietario->getUsername(), PDO::PARAM_STR); 
+        $stmt->bindValue(':username', $proprietario->getUsername(), PDO::PARAM_STR);
 		$stmt->bindValue(':nome',$proprietario->getNome(), PDO::PARAM_STR);
 		$stmt->bindValue(':cognome',$proprietario->getCognome(), PDO::PARAM_STR);
         $stmt->bindValue(':email', $proprietario->getEmail(), PDO::PARAM_STR);
@@ -67,7 +66,7 @@ class FProprietario{
     public static function store(EProprietario $proprietario){
         $db=FDB::getInstance();
         $id = $db->store(static::getClass(), $proprietario);
-
+        return $id;
     }
 
 

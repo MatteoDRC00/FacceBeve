@@ -27,7 +27,7 @@ class FLocalizzazione {
     * @param ELocalizzazione $localizzazione
     */
     public static function bind(PDOStatement $stmt, ELocalizzazione $localizzazione){
-        $stmt->bindValue(':id',$localizzazione->getId(), PDO::PARAM_INT); //l'id è posto a NULL poichè viene dato automaticamente dal DBMS (AUTOINCREMENT_ID)
+        $stmt->bindValue(':id', NULL, PDO::PARAM_INT);
         $stmt->bindValue(':indirizzo', $localizzazione->getIndirizzo(), PDO::PARAM_STR); 
 		$stmt->bindValue(':numCivico',$localizzazione->getNumCivico(), PDO::PARAM_STR);
 		$stmt->bindValue(':citta',$localizzazione->getCitta(), PDO::PARAM_STR);
@@ -67,7 +67,8 @@ class FLocalizzazione {
     public static function store(ELocalizzazione $localizzazione){
         $db=FDB::getInstance();
         $id = $db->store(static::getClass() ,$localizzazione);
-        $localizzazione->setId($id);
+        //$localizzazione->setId($id);
+        return $id;
     }
 
 

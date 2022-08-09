@@ -27,8 +27,8 @@ class FOrario {
     * @param EOrario $orario
     */
     public static function bind(PDOStatement $stmt, EOrario $orario){
-        $stmt->bindValue(':id',$orario->getId(), PDO::PARAM_INT); //l'id è posto a NULL poichè viene dato automaticamente dal DBMS (AUTOINCREMENT_ID)
-		$stmt->bindValue(':giorno', $orario->getGiornoSettimana(), PDO::PARAM_STR);    //Potrebbe dare problemi
+        $stmt->bindValue(':id',NULL, PDO::PARAM_INT);
+		$stmt->bindValue(':giorno', $orario->getGiornoSettimana(), PDO::PARAM_STR);
 		$stmt->bindValue(':orarioApertura',$orario->getOrarioApertura(), PDO::PARAM_STR);
 		$stmt->bindValue(':orarioChiusura',$orario->getOrarioChiusura(), PDO::PARAM_STR);
     }
@@ -65,7 +65,8 @@ class FOrario {
     public static function store(EOrario $orario){
         $db = FDB::getInstance();
         $id = $db->store(static::getClass(), $orario);
-        $orario->setId($id);
+        //$orario->setId($id);
+        return $id;
     }
 
 

@@ -14,7 +14,7 @@ class FRisposta{
     private static $table = "Risposta";
 
     /** valori della tabella nel DB */
-    private static $values="(:titolo,:descrizione,:proprietario,:recensione)";
+    private static $values="(:id,:descrizione,:proprietario,:recensione)";
 
     /** costruttore */
     public function __construct() {
@@ -27,9 +27,9 @@ class FRisposta{
      * @param ERisposta $risposta
      */
     public static function bind(PDOStatement $stmt, ERisposta $risposta) {
-        $stmt->bindValue(':id',$risposta->getId(), PDO::PARAM_INT); //l'id è posto a NULL poichè viene dato automaticamente dal DBMS (AUTOINCREMENT_ID)
+        $stmt->bindValue(':id', NULL, PDO::PARAM_INT);
         $stmt->bindValue(':descrizione',$risposta->getDescrizione(),PDO::PARAM_STR);
-        $stmt->bindValue(':proprietario',$risposta->getProprietario()->getId(),PDO::PARAM_INT);
+        $stmt->bindValue(':proprietario',$risposta->getProprietario()->getUsername(),PDO::PARAM_INT);
         $stmt->bindValue(':recensione',$risposta->getRecensione()->getId(),PDO::PARAM_INT);
     }
 
@@ -62,8 +62,14 @@ class FRisposta{
      * @param ERisposta $risposta Risposta da salvare
      */
     public static function store(ERisposta $risposta) {
+        $id = null;
         $db = FDB::getInstance();
-        $db->store(static::getClass(), $risposta);
+        $proprietario = $db->exist("FProprietario", "username", $risposta->getProprietario()->getUsername());
+        $recensione = $db->exist("FRecensione", "id", $risposta->getRecensione()->getId());
+        if($proprietario && $recensione){
+            $id = $db->store(static::getClass(), $risposta);
+        }
+        return $id;
     }
 
     /**

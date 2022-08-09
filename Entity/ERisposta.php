@@ -34,10 +34,8 @@ class ERisposta {
         $this->id = $id;
     }
 
-
-
 	//Metodi GET
-	public function getDescrizione($descrizione) : String{
+	public function getDescrizione() : String{
 		return $this->descrizione;
 	}
 	
