@@ -13,9 +13,9 @@ USE `FacceBeve`;
 DROP TABLE IF EXISTS `Immagine`;
 CREATE TABLE `Immangine` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
-    `nome` varchar(50) NOT NULL default "",
-    `size` varchar(25) NOT NULL default "",
-    `type` varchar(25) NOT NULL default "",
+    `nome` varchar(50) NOT NULL,
+    `size` varchar(25) NOT NULL,
+    `type` varchar(25) NOT NULL,
     `immagine` blob NOT NULL,
     PRIMARY KEY (id)
 );
