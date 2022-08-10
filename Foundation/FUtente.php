@@ -134,15 +134,17 @@ class FUtente{
     }
 
     /**
-    * Permette la delete sul db in base all'id
-    * @param int l'id dell'oggetto da eliminare dal db
-    * @return bool
-    */
-     public static function delete($field, $id){
-      $db=FDB::getInstance();
-      $result = $db->delete(static::getClass(), $field, $id);   //funzione richiamata,presente in FDatabase
-      if($result) return true;
-        else return false;
+     * @param string $attributo
+     * @param string $valore
+     * @return bool
+     */
+    public static function delete(string $attributo, string $valore){
+        $db=FDB::getInstance();
+        $result = $db->delete(static::getClass(), $attributo, $valore);
+        if($result)
+            return true;
+        else
+            return false;
     }
 	
     /**  Metodo che permette il caricamento del login di un utente,passati la sua email e la sua password

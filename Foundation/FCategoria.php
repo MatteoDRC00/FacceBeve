@@ -122,6 +122,20 @@ class FCategoria {
             return false;
     }
 
+    /**
+     * @param string $attributo
+     * @param string $valore
+     * @return bool
+     */
+    public static function delete(string $attributo, string $valore){
+        $db=FDB::getInstance();
+        $result = $db->delete(static::getClass(), $attributo, $valore);
+        if($result)
+            return true;
+        else
+            return false;
+    }
+
 }
 
 ?>

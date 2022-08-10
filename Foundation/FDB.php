@@ -56,7 +56,7 @@ class FDB{
 			$stmt->execute();
 			$this->database->commit();
 			$this->closeDbConnection();
-			if($class == "FAdmin")
+			if($class == "FAdmin" || $class == "FProprietario" || $class == "FUtente")
 				return $obj->getUsername();
 			elseif($class == "FCategoria")
 				return $obj->getCategoria();
@@ -125,14 +125,13 @@ class FDB{
 
 	/**
 	 * Metodo che va ad inserire le chiavi esterne in tabelle originate da una relazione molti-a-molti
-	 * @param $table Nome della tabella
-	 * @param $field1 Nome della prima chiave
-	 * @param $field2 Nome della seconda chiave
-	 * @param $fk1 Foreign key della prima classe
-	 * @param $fk2 Foreign key della seconda classe
+	 * @param string $table Nome della tabella
+	 * @param string $field1 Nome della prima chiave
+	 * @param string $field2 Nome della seconda chiave
+	 * @param string $fk1 Foreign key della prima classe
+	 * @param string $fk2 Foreign key della seconda classe
 	 */
-	public function chiaviEsterne($table,$field1,$field2,$fk1,$fk2)
-	{
+	public function chiaviEsterne(string $table, string $field1, string $field2, string $fk1, string $fk2){
 		try {
 			$this->database->beginTransaction();
 			$query = "INSERT INTO " . $table . " (" . $field1 . "," . $field2 . ") VALUES (" . $fk1 . "," . $fk2 . ");";
@@ -147,36 +146,6 @@ class FDB{
 		}
 	}
 
-
-	public function getIdLocale(string $nome, string $numtelefono){
-		try {
-			$class = "FLocale";
-			$query = "SELECT id FROM " . $class::getTable() . " WHERE nome ='" . $nome . "' AND numtelefono ='" . $numtelefono . "';";
-			$stmt = $this->database->prepare($query);
-			$stmt->execute();
-			$result = $stmt->fetch(PDO::FETCH_ASSOC);
-			return $result;
-		} catch (PDOException $e) {
-			echo "Attenzione errore: " . $e->getMessage();
-			$this->database->rollBack();
-			return null;
-		}
-	}
-
-	public function getIdUtente(string $username){
-		try {
-			$class = "FUtente";
-			$query = "SELECT id FROM " . $class::getTable() . " WHERE username ='" . $username . "';";
-			$stmt = $this->database->prepare($query);
-			$stmt->execute();
-			$result = $stmt->fetch(PDO::FETCH_ASSOC);
-			return $result;
-		} catch (PDOException $e) {
-			echo "Attenzione errore: " . $e->getMessage();
-			$this->database->rollBack();
-			return null;
-		}
-	}
 
 	/**
 	 * Funzione che viene utilizzata per la load quando ci si aspetta che la query produca un solo risultato (esempio load per id).
@@ -208,31 +177,30 @@ class FDB{
 		}
 	}
 
-	/** Metodo che permette di eliminare un'istanza di una classe nel db
-	 * @param class classe interessata
-	 *@param field campo usato per la cancellazione
-	 *@param id id usato per la cancellazione
+	/**
+	 * metodo che elimina un'istanza di una tabella dal DB
+	 * @param string $class
+	 * @param string $attributo
+	 * @param string $value
+	 * @return bool
 	 */
-	public function delete($class, $field, $id)
-	{
+	public function delete(string $class, string $attributo, string $value){
 		try {
-			$result = null;
-			$this->db->beginTransaction();
-			$esiste = $this->exist($class, $field, $id);
+			$this->database->beginTransaction();
+			$esiste = $this->exist($class, $attributo, $value);
 			if ($esiste) {
-				$query = "DELETE FROM " . $class::getTable() . " WHERE " . $field . "='" . $id . "';";
-				$stmt = $this->db->prepare($query); //Prepared Statement
+				$query = "DELETE FROM " . $class::getTable() . " WHERE " . $attributo . "='" . $value . "';";
+				$stmt = $this->database->prepare($query);
 				$stmt->execute();
-				$this->db->commit();
+				$this->database->commit();
 				$this->closeDbConnection();
-				$result = true;
+				return true;
 			}
 		} catch (PDOException $e) {
 			echo "Attenzione errore: " . $e->getMessage();
 			$this->db->rollBack();
-			//return false;
 		}
-		return $result;
+		return false;
 	}
 
 	/**  Metodo che verifica l'accesso di un utente , controllando che le credenziali (email e password) siano presenti nel db

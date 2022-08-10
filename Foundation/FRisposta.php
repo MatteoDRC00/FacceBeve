@@ -133,13 +133,13 @@ class FRisposta{
     }
 
     /**
-     * Permette la delete sul db in base all'id
-     * @param int l'id dell'oggetto da eliminare dal db
+     * @param string $attributo
+     * @param string $valore
      * @return bool
      */
-    public static function delete($field, $id) {
-        $db = FDB::getInstance();
-        $result = $db->delete(static::getClass(), $field, $id);
+    public static function delete(string $attributo, string $valore){
+        $db=FDB::getInstance();
+        $result = $db->delete(static::getClass(), $attributo, $valore);
         if($result)
             return true;
         else

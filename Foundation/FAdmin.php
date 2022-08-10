@@ -1,5 +1,4 @@
 <?php
-
 /**
  * La classe FAdmin fornisce query per gli oggetti EAdmin
  * @author Gruppo8
@@ -93,12 +92,26 @@ class FAdmin{
      * @return bool
      */
     public static function update(string $attributo, string $newvalue, string $attributo_pk, string $value_pk){
-      $db=FDatabase::getInstance();
-      $result = $db->update(static::getClass(), $attributo, $newvalue, $attributo_pk, $value_pk);
-      if($result)
-        return true;
-      else
-        return false;
+        $db=FDatabase::getInstance();
+        $result = $db->update(static::getClass(), $attributo, $newvalue, $attributo_pk, $value_pk);
+        if($result)
+            return true;
+        else
+            return false;
+    }
+
+    /**
+     * @param string $attributo
+     * @param string $valore
+     * @return bool
+     */
+    public static function delete(string $attributo, string $valore){
+        $db=FDB::getInstance();
+        $result = $db->delete(static::getClass(), $attributo, $valore);
+        if($result)
+            return true;
+        else
+            return false;
     }
 
 }

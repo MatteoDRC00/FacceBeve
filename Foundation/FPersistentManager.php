@@ -25,13 +25,14 @@ class FPersistentManager {
     }
 
 
-    /**  Metodo che permette di cancellare il valore di un campo passato come parametro
-     *   @param field , campo interessato
-     *   @param val ,valore da eliminare ,
-     *   @param Fclass ,classe Foundation interessata
+    /**
+     * @param string $attributo
+     * @param string $valore
+     * @param string $Fclass
+     * @return void
      */
-    public static function delete($field, $val,$Fclass) {
-        $Fclass::delete($field,$val);
+    public static function delete(string $attributo, string $valore, string $Fclass) {
+        $Fclass::delete($attributo,$valore);
     }
 
     /**
