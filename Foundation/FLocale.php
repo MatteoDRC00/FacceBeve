@@ -7,7 +7,7 @@
 class FLocale {
 
     /** classe Foundation */
-    private static $class="FUtente";
+    private static $class="FLocale";
 
 	/** tabella con la quale opera nel DB */
     private static $table="Locale";

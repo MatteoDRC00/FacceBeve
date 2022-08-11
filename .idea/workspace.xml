@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="AutoImportSettings">
-    <option name="autoReloadType" value="SELECTIVE" />
-  </component>
   <component name="ChangeListManager">
-<<<<<<< Updated upstream
-    <list default="true" id="152f96c7-1cf8-4e05-a3b8-32cadffc05df" name="Changes" comment="">
+    <list default="true" id="152f96c7-1cf8-4e05-a3b8-32cadffc05df" name="Changes" comment="get e set di qualcosa">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Entity/ELocalizzazione.php" beforeDir="false" afterPath="$PROJECT_DIR$/Entity/ELocalizzazione.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Entity/ERisposta.php" beforeDir="false" afterPath="$PROJECT_DIR$/Entity/ERisposta.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Foundation/FLocale.php" beforeDir="false" afterPath="$PROJECT_DIR$/Foundation/FLocale.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/greenhost-1.0.0/css/bootstrap.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/template/greenhost-1.0.0/css/bootstrap.min.css" afterDir="false" />
     </list>
-=======
-    <list default="true" id="152f96c7-1cf8-4e05-a3b8-32cadffc05df" name="Changes" comment="metodo exist nelle classi foundation" />
->>>>>>> Stashed changes
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -26,6 +22,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
+  </component>
   <component name="ProjectId" id="28QdjzE58SNYiWrkjmlxumi1Kuc" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -37,11 +36,8 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
     "php.override.implement.member.chooser.php.doc": "NONE",
-    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors.General",
+    "settings.editor.selected.configurable": "configurable.group.editor",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -63,21 +59,10 @@
       <workItem from="1656663740176" duration="451000" />
       <workItem from="1659425909103" duration="140000" />
       <workItem from="1659426067911" duration="4642000" />
-      <workItem from="1659512073811" duration="7183000" />
-<<<<<<< Updated upstream
-      <workItem from="1659606321767" duration="4631000" />
-=======
-      <workItem from="1659607317981" duration="2900000" />
->>>>>>> Stashed changes
+      <workItem from="1659512073811" duration="2427000" />
+      <workItem from="1659964799502" duration="4463000" />
+      <workItem from="1660212137365" duration="3129000" />
     </task>
-    <task id="LOCAL-00001" summary="metodo exist nelle classi foundation">
-      <created>1659610183447</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1659610183447</updated>
-    </task>
-    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -95,7 +80,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="metodo exist nelle classi foundation" />
-    <option name="LAST_COMMIT_MESSAGE" value="metodo exist nelle classi foundation" />
+    <MESSAGE value="get e set di qualcosa" />
+    <option name="LAST_COMMIT_MESSAGE" value="get e set di qualcosa" />
   </component>
 </project>
