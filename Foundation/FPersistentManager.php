@@ -75,25 +75,6 @@ class FPersistentManager {
     }
 
 
-
-    /**  Metodo che permette il login di un utente date le credenziali (email e password)
-     *
-     */
-    public static function loadLogin ($user, $pass) {
-        $ris = null;
-        $ris = FUtenteloggato::loadLogin($user, $pass);
-        return $ris;
-    }
-
-
-    /** Metodo che permette il caricamento dei soli annunci dei trasporti (utilizzata nella home) e nella parte mobile */
-    public static function loadTrasporti () {
-        $ris = null;
-        $ris = FAnnuncio::initialLoad();
-        return $ris;
-    }
-
-
     /**
      * metodo che permette l'aggiornamento del valore di un campo passato per parametro
      * @param string $class
