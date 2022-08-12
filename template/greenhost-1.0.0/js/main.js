@@ -10,6 +10,11 @@
         }, 1);
     };
     spinner();
+
+    //Funzione Login
+    $('.message a').click(function(){
+        $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
+    });
     
     
     // Initiate the wowjs
