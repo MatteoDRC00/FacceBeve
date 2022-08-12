@@ -123,21 +123,27 @@
                     <div class="col-lg-10">
                         <div class="section-title position-relative text-center mx-auto mb-4 pb-4 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
                             <h1 class="mb-3">Ricerca</h1>
-                            <p class="mb-1">Puoi ricercare per..</p>
+                            <label for="ricerca">Puoi ricercare per...</label>
+                            <select name="ricerca" class="ricerca" id="ricerca">
+                                <option value="eventi">Eventi</option>
+                                <option value="locali">Locali</option>
+                            </select>
+                          <!--  <p class="mb-1">Puoi ricercare per..</p> -->
                         </div>
                         <div class="position-relative w-100 my-3 wow fadeInUp" data-wow-delay="0.3s">
                           <!--  <input class="form-control bg-transparent w-100 py-3 ps-4 pe-5" type="text" placeholder="Enter your domain name"> -->
                             <input type="text" placeholder="Nome Locale" name="search">
                             <input type="text" placeholder="Città" name="search">
                             <input type="text" placeholder="Categoria" name="search">
+
                             <div class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Scegli</a>
-                                <div class="dropdown-menu m-0">
-                                 <!--   <input class="form" type="text" placeholder="Locali">
-                                    <input class="form" type="text" placeholder="Eventi">
+                                <!--<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Scegli</a> -->
+                                <!--  <div class="dropdown-menu m-0">
+                                      <input class="form" type="text" placeholder="Locali">
+                                      <input class="form" type="text" placeholder="Eventi">
                                     <button type="button" class="form">Locali</button>
-                                    <button type="button" class="form">Eventi</button> -->
-                                </div>
+                                    <button type="button" class="form">Eventi</button>
+                                </div> -->
                             </div>
                             <button type="button" class="btn btn-primary py-2 px-3 position-absolute top-0 end-0 mt-0 me-0">Search</button>
                         </div>

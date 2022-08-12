@@ -252,6 +252,18 @@ kbd kbd {
     font-weight: 700
 }
 
+.ricerca{
+    border-radius:6px;
+    font-size: 1rem;
+    color: #5A5A5A;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    text-effect: emboss;
+}
+
 figure {
     margin: 0 0 1rem
 }
