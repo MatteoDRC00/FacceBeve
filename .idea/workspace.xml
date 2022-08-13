@@ -5,17 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="152f96c7-1cf8-4e05-a3b8-32cadffc05df" name="Changes" comment="get e set di qualcosa">
-      <change afterPath="$PROJECT_DIR$/Controller/CUtente.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/View/VUtente.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/template/greenhost-1.0.0/img/hero.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/template/greenhost-1.0.0/img/hero1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/template/web-hosting-html-template.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/greenhost-1.0.0/css/bootstrap.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/template/greenhost-1.0.0/css/bootstrap.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/greenhost-1.0.0/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/template/greenhost-1.0.0/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/greenhost-1.0.0/img/hero.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/template/greenhost-1.0.0/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/template/greenhost-1.0.0/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/greenhost-1.0.0/web-hosting-html-template.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/template/greenhost-1.0.0/web-hosting-html-template.jpg" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,7 +89,7 @@
       <workItem from="1659964799502" duration="4463000" />
       <workItem from="1660212137365" duration="3129000" />
       <workItem from="1660290237057" duration="7353000" />
-      <workItem from="1660315334888" duration="6182000" />
+      <workItem from="1660315334888" duration="6979000" />
     </task>
     <servers />
   </component>
