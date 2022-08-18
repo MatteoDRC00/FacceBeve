@@ -121,8 +121,8 @@ class VUtente
      * Funzione che si occupa di gestire la visualizzazione della form di registrazione del cliente
      * @throws SmartyException
      */
-    public function registra_cliente() {
-        $this->smarty->display('registraz_cliente.tpl');
+    public function registra_utente() {
+        $this->smarty->display('registraz_utente.tpl');
     }
 
     /**
@@ -140,7 +140,7 @@ class VUtente
      * @param $error tipo di errore da visualizzare nella form
      * @throws SmartyException
      */
-    public function registrazioneTrasError ($email, $mezzo, $error) {
+    public function registrazionePropError ($email, $mezzo, $error) {
         if ($email)
             $this->smarty->assign('errorEmail',"errore");
         if ($mezzo)
@@ -167,7 +167,7 @@ class VUtente
      * @param $error tipo di errore da visualizzare
      * @throws SmartyException
      */
-    public function registrazioneCliError ($error) {
+    public function registrazioneUteError ($error) {
         switch ($error) {
             case "email":
                 $this->smarty->assign('errorEmail',"errore");

@@ -7,14 +7,14 @@
 <body>
 <div class="login-page">
   <div class="form">
-    <form class="login-form"action="/FacceBeve/Utente/regx" method="POST">
-       <input type="text" class="form-control" placeholder="nome " required name="nome" pattern="[a-zA-Z]+\" />
-       <input type="text" class="form-control" placeholder="cognome " required name="cognome" pattern="[a-zA-Z]+\" />
-        <input type="text" placeholder="email " required name=email">
-        <input type="text" placeholder="username " required name=username">
-       <input type="password" placeholder="password" required name="password"/>
-       <button type="submit">Registrati</button>
-       <p class="message">Hai gi&agrave un account? <a href="Login.html">Accedi</a></p>
+    <form class="login-form"action="/FacceBeve/Utente/regprop" method="POST">
+      <input type="text" class="form-control" placeholder="nome " required name="nome" pattern="[a-zA-Z]+\" />
+      <input type="text" class="form-control" placeholder="cognome " required name="cognome" pattern="[a-zA-Z]+\" />
+      <input type="text" placeholder="email " required name=email">
+      <input type="text" placeholder="username " required name=username">
+      <input type="password" placeholder="password" required name="password"/>
+      <button type="submit">Registrati</button>
+      <p class="message">Hai gi&agrave un account? <a href="Login.html">Accedi</a></p>
     </form>
     <!--  {if $errorSize!='ok'}
       <div style="color: red;">

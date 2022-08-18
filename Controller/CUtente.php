@@ -86,7 +86,114 @@ class CUtente
         }*/
     }
 
+    /**
+     * Funzione che provvede alla rimozione delle variabili di sessione, alla sua distruzione e a rinviare alla homepage
+     */
+    static function logout(){
+        session_start();
+        session_unset();
+        session_destroy();
+       // header('Location: /FacceBeve/Utente/login');
+    }
 
+    public function error() {
+        $view = new VError();
+        $view->error('1');
+    }
+
+    /**
+     * Funzione che si occupa di mostrare la form di registrazione per il trasportatore.
+     * 1) se il metodo della richiesta HTTP è GET e si è loggati, avviene il reindirizzamento alla homepage;
+     * 2) se il metodo della richiesta HTTP è GET e non si è loggati, avviene il reindirizzamento vero e proprio alla form di registrazione;
+     * 3) se il metodo della richiesta HTTP è POST viene invocato il metodo registra_proprietario() che si occupa della gestione dei dati inseriti nella form.
+     */
+    static function registrazioneProprietario() {
+        if($_SERVER['REQUEST_METHOD']=="GET") {
+            if (static::isLogged()) {
+                header('Location: /FillSpaceWEB/');
+            }
+            else {
+                $view = new VUtente();
+                $view->registra_proprietario();
+            }
+        }else if($_SERVER['REQUEST_METHOD']=="POST") {
+            static::regist_proprietario_verifica();
+        }
+    }
+
+    /**
+     * Funzione che si occupa di mostrare la form di registrazione per il cliente.
+     * 1) se il metodo della richiesta HTTP è GET e si è loggati, avviene il reindirizzamento alla homepage;
+     * 2) se il metodo della richiesta HTTP è GET e non si è loggati, avviene il reindirizzamento vero e proprio alla form di registrazione;
+     * 3) se il metodo della richiesta HTTP è POST viene invocato il metodo registra_utente() che si occupa della gestione dei dati inseriti nella form.
+     */
+    static function registrazioneUtente(){
+        if($_SERVER['REQUEST_METHOD']=="GET") {
+            $view = new VUtente();
+            $pm = new FPersistentManager();
+            if (static::isLogged()) {
+                $pm->loadEventi($_SESSION['utente']);
+            }
+            else {
+                $view->registra_utente();
+            }
+        }else if($_SERVER['REQUEST_METHOD']=="POST") {
+            static::regist_utente_verifica();
+        }
+    }
+
+
+    /**
+     * Funzione di supporto che si occupa di verificare i dati inseriti nella form di registrazione per il cliente .
+     * In questo metodo avviene la verifica sull'univocità dell'email inserita;
+     * se questa verifiche non riscontrano problemi, si passa verifica dell'immagine inserita e quindi alla store nel db vera e propria del cliente.
+     */
+    static function regist_utente_verifica () {
+        $pm = new FPersistentManager();
+        $veremail = $pm->exist("username", $_POST['username'],"FUtente");
+        $view = new VUtente();
+        if ($veremail){
+            $view->registrazioneCliError("email");
+        }
+        else {
+            $cliente = new ECliente($_POST['nome'], $_POST['cognome'], $_POST['email'], $_POST['password'], true);
+            if ($cliente != null) {
+                if (isset($_FILES['file'])) {
+                    $nome_file = 'file';
+                    $img = static::upload($cliente,"registrazioneCliente",$nome_file);
+                    switch ($img) {
+                        case "size":
+                            $view->registrazioneCliError("size");
+                            break;
+                        case "type":
+                            $view->registrazioneCliError("typeimg");
+                            break;
+                        case "ok":
+                            header('Location: /FillSpaceWEB/Utente/login');
+                            break;
+                    }
+                }
+            }
+            /*
+            list ($stato, $nome, $type) = CGestioneAnnuncio::upload('file');
+            if ($stato == "type")
+                $view->registrazioneCliError("typeimg");
+            elseif ($stato == "size")
+                $view->registrazioneCliError("size");
+            elseif ($stato == "no_img") {
+                $pm->store($cliente);
+                header('Location: /FillSpaceWEB/Utente/login');
+            }
+            elseif ($stato == "ok_img") {
+                $pm->store($cliente);
+                $m_utente = new EMediaUtente($nome, $cliente->getEmail());
+                $m_utente->setType($type);
+                $pm->storeMedia($m_utente,'file');
+                header('Location: /FillSpaceWEB/Utente/login');
+            }
+            */
+        }
+    }
 
 
 }
