@@ -120,6 +120,37 @@ class FDB{
 	}
 
 
+	/**
+	 * Funzione che viene utilizzata per far vedere ad un utente loggato gli eventi dei localli che segue
+	 * @param $field campo della tabella  da confrontare
+	 * @param $id valore da confrontare
+	 * @param $idU idutente-username
+	 */
+	public function loadEventiUtente($class,$id,$idU){
+		try {
+			$query = "SELECT * FROM " . $class::getTable() . " INNER JOIN Locali_Eventi ON Locali_Eventi.ID_Evento=" . $id . " INNER JOIN Utenti_Locali ON Utenti_Locali.ID_Locale=Locali_Eventi.ID_Locale WHERE Utenti_Locali.ID_Utente =" . $idU . ";";
+			$stmt = $this->db->prepare($query); //Prepared Statement
+			$stmt->execute();
+			$num = $stmt->rowCount();
+			if ($num == 0) {
+				$result = null;        //nessuna riga interessata. return null
+			} elseif ($num == 1) {                          //nel caso in cui una sola riga fosse interessata
+				$result = $stmt->fetch(PDO::FETCH_ASSOC);   //ritorna una sola riga
+			} else {
+				$result = array();                         //nel caso in cui piu' righe fossero interessate
+				$stmt->setFetchMode(PDO::FETCH_ASSOC);   //imposta la modalità di fetch come array associativo
+				while ($row = $stmt->fetch())
+					$result[] = $row;                    //ritorna un array di righe.
+			}
+			return $result;
+		} catch (PDOException $e) {
+			echo "Attenzione errore: " . $e->getMessage();
+			$this->db->rollBack();
+			return null;
+		}
+	}
+
+
 
 
 
@@ -206,13 +237,13 @@ class FDB{
 	/**  Metodo che verifica l'accesso di un utente , controllando che le credenziali (email e password) siano presenti nel db
 	 *@param email ,email del utente
 	 *@param pass, password dell utente
-
-	public function loadVerificaAccesso ($email, $pass)
+	 */
+	public function loadVerificaAccesso ($username, $pass)
 	{
 		try {
 			$query = null;
-			$class = "FUtenteloggato";
-			$query = "SELECT * FROM " . $class::getTable() . " WHERE email ='" . $email . "' AND password ='" . $pass . "';";
+			$class = "FUtente";
+			$query = "SELECT * FROM " . $class::getTable() . " WHERE username ='" . $username . "' AND password ='" . $pass . "';";
 			$stmt = $this->db->prepare($query);
 			$stmt->execute();
 			$num = $stmt->rowCount();
@@ -228,12 +259,12 @@ class FDB{
 			return null;
 		}
 	}
-	*/
+
 
 	public function getRecensioniLocali()
 	{
 		try {
-			$query = "SELECT * FROM recensione INNER JOIN locale ON (locale.nome == recensione.nomelocale AND locale.luogo==recensione.nomelocale)";
+			$query = "SELECT * FROM recensione INNER JOIN locale ON (locale.nome=recensione.nomelocale AND locale.luogo=recensione.nomelocale)";
 			$stmt = $this->db->prepare($query); //Prepared Statement
 			$stmt->execute();
 			$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -256,7 +287,7 @@ class FDB{
 		try {
 			$query = null;
 			$class = "FLocale";
-			$param = array( $categorie, $nome, $citta);
+			$param = array($categorie, $nome, $citta);
 
 			if(isset($categorie)){
 			  $nCategorie = sizeof($categorie);
@@ -326,8 +357,6 @@ class FDB{
 			$query = null;
 			$class = "FEvento";
 			$param = array($nomelocale,$nomeevento, $citta, $data);
-
-			//print_r ($param);
 			for ($i = 0; $i < count($param); $i++) {
 				if ($param[$i] != null) {
 					switch ($i) {

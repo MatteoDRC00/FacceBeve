@@ -131,7 +131,16 @@ class FPersistentManager {
      */
     public static function loadUtentiByString ($string) {
         $ris = null;
-        $ris = FUtenteloggato::loadUtentiByString($string);
+        $ris = FUtente::loadUtentiByString($string);
+        return $ris;
+    }
+
+    /**  Metodo che permette il login di un utente, date le credenziali (username e password)
+     *
+     */
+    public static function loadLogin ($user, $pass) {
+        $ris = null;
+        $ris = FUtente::loadLogin($user, $pass);
         return $ris;
     }
 
@@ -150,9 +159,9 @@ class FPersistentManager {
      *  *@param email ,email del utente
      *  @param pass, password dell utente
      */
-    public function loadChats ($email, $email2){
+    public function loadEventi($utentelogged){
         $ris = null;
-        $ris = FMessaggio::loadChats($email, $email2);
+        $ris = FEvento::loadByUtente($utentelogged.getUsername());
         return $ris;
     }
 

@@ -2,8 +2,6 @@
 
 class CUtente
 {
-
-
     /**
      * Metodo che verifica se l'utente è loggato
      */
@@ -30,12 +28,12 @@ class CUtente
      * 	 - se l'utente non è loggato si viene indirizzati alla form di login;
      * 2) se il metodo della richiesta HTTP è POST viene richiamata la funzione verifica().
      */
-    static function login (){
+    static function login(){
         if($_SERVER['REQUEST_METHOD']=="GET"){
             if(static::isLogged()) {
                 $pm = new FPersistentManager();
                 $view = new VUtente();
-                $result = $pm->loadTrasporti();
+                $result = $pm->loadEventi($_SESSION['utente']);
                 $view->loginOk($result);
             }
             else{
@@ -50,20 +48,20 @@ class CUtente
      * Funzione che si occupa di verifica l'esistenza di un utente con username e password inseriti nel form di login.
      * 1) se, dopo la ricerca nel db non si hanno risultati ($utente = null) oppure se l'utente si trova nel db ma ha lo stato false
      *    viene ricaricata la pagina con l'aggunta dell'errore nel login.
-     * 2) se l'utente ed è attivo, avviene il reindirizzamaneto alla homepage degli annunci;
+     * 2) se l'utente ed è attivo, avviene il reindirizzamaneto alla homepage;
      * 3) se le credenziali inserite rispettano i vincoli per l'amministratore, avviene il reindirizamento alla homepage dell'amministratore;
      * 4) se si verifica la presenza di particolari cookie avviene il reindirizzamento alla pagina specifica.
      */
     static function verifica() {
         $view = new VUtente();
         $pm = new FPersistentManager();
-        $utente = $pm->loadLogin($_POST['email'], $_POST['password']);
+        $utente = $pm->loadLogin($_POST['username'], $_POST['password']);
         if ($utente != null && $utente->getState() != false) {
             if (session_status() == PHP_SESSION_NONE) {
                 session_start();
                 $salvare = serialize($utente);
                 $_SESSION['utente'] = $salvare;
-                if ($_POST['email'] != 'admin@admin.com') {
+                if ($_POST['username'] != 'admin') {
                     if (isset($_COOKIE['chat']) && $_COOKIE['chat'] != $_POST['email']){
                         header('Location: /FillSpaceWEB/Messaggi/chat');
                     }

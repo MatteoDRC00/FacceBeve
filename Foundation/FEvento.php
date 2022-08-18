@@ -109,6 +109,31 @@ class FEvento {
     }
 
     /**
+     * Permette la load dal database
+     * @param $username campo da confrontare per trovare gli eventi per un utente
+     * @return object $evento
+     */
+    public static function loadByUtente($username){
+        $evento = null;
+        $db=FDB::getInstance();
+        $result=$db->loadEventiUtente(static::getClass(),static::getTable().id,$username);
+        $rows_number = $result->rowCount();    //funzione richiamata,presente in FDB --> restituisce numero di righe interessate dalla query
+        if(($result!=null) && ($rows_number == 1)) {
+            $evento=new EEvento($result['nome'], $result['descrizione'], $result['data']); //Carica un evento dal database
+        }
+        else {
+            if(($result!=null) && ($rows_number > 1)){
+                $evento = array();
+                for($i=0; $i<count($result); $i++){
+                    $evento[]=new EEvento($result[$i]['nome'], $result[$i]['descrizione'],$result[$i]['data']); //Carica un array di oggetti Evento dal database
+                }
+            }
+        }
+        return $evento;
+    }
+
+
+    /**
      * metodo che aggiorna il valore di un attributo dell'Evento sul DB data la chiave primaria
      * @param string $attributo
      * @param string $newvalue

@@ -39,7 +39,7 @@ class VUtente
         $this->smarty->assign('toSearch', 'trasporti');
         $this->smarty->display('home.tpl');
     }
-
+    
     /**
      * Funzione che si occupa di gestire la visualizzazione degli errori in fase login
      * @throws SmartyException

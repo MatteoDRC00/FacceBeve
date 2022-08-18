@@ -31,7 +31,7 @@ class FUtente{
 		$stmt->bindValue(':cognome',$utente->getCognome(), PDO::PARAM_STR);
         $stmt->bindValue(':email', $utente->getEmail(), PDO::PARAM_STR);
         $stmt->bindValue(':password', $utente->getPassword(), PDO::PARAM_STR); 
-        $stmt->bindValue(':dataIscrizione', $utente->getData());
+        $stmt->bindValue(':dataIscrizione', $utente->getIscrizione());
     }
 
     /**
@@ -150,24 +150,24 @@ class FUtente{
     /**  Metodo che permette il caricamento del login di un utente,passati la sua email e la sua password
     * @param user mail dell utente
     * @param pass password ell utente
-    
+    */
 	public static function loadLogin ($user, $pass) {
 		$utente = null;
-		$db=FDatabase::getInstance();
+		$db=FDB::getInstance();
 		$result=$db->loadVerificaAccesso($user, $pass);
 		if (isset($result)){
-			$tra = FTrasportatore::loadByField("emailUtente" , $result["email"]);
-			$cli = FCliente::loadByField("emailUtente" , $result["email"]);
-			$admin = static::loadByField("email", $result["email"]);
-			if ($tra)
-				$utente = $tra;
-			elseif ($cli)
-				$utente = $cli;
+			$ute = FUtente::loadByField("username" , $result["username"]);
+			$pro = FProprietario::loadByField("username" , $result["username"]);
+			$admin = static::loadByField("username", $result["username"]);
+			if ($ute)
+				$utente = $ute;
+			elseif ($pro)
+				$utente = $pro;
 			elseif ($admin)
                 $utente = $admin;
 		}
 		return $utente;
-	} */
+	}
 
 
     /**

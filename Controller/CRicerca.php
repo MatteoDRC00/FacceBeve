@@ -82,7 +82,7 @@ class CRicerca{
     /**
      * Funzione con il compito di indirizzare alla pagina specifica del locale selezionato
      * @param $id id del locale selezionato
-     */
+
 
     static function dettagliLocale($id){
         $vRicerca = new VRicerca();
@@ -101,7 +101,7 @@ class CRicerca{
         }
         else
             $vRicerca->showDetails($result, $tipo, $nome, $cognome, $tappa,$img_utente,$med_annuncio,"si");
-    }
+    }*/
 
 
 }
