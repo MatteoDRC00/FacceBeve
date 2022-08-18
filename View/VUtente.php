@@ -22,24 +22,25 @@ class VUtente
      * @throws SmartyException
      */
     public function showFormLogin(){
-        if (isset($_POST['username']))
-            $this->smarty->assign('email',$_POST['conveyor']);
+     //   if (isset($_POST['username']))
+       //     $this->smarty->assign('username',$_POST['proprietario']);
         $this->smarty->display('login.tpl');
     }
 
     /**
-     * Funzione che si occupa di gestire la visualizzazione della homepage dopo il login ( se Ã¨ andato a buon fine)
-     * @param $array elenco di Anunci da visualizzare
+     * Funzione che si occupa di gestire la visualizzazione della homepage dopo il login, i.e.,
+     * un utente registrato può adesso, se il login è andato bene, visualizzare gli eventi
+     * @param $array elenco di eventi da visualizzare
      * @throws SmartyException
      */
     public function loginOk($array) {
-        $this->smarty->assign('immagine', "/FillSpaceWEB/Smarty/immagini/truck.png");
+      //  $this->smarty->assign('immagine', "/FacceBeve/Smarty/img/truck.png");
         $this->smarty->assign('userlogged',"loggato");
         $this->smarty->assign('array', $array);
-        $this->smarty->assign('toSearch', 'trasporti');
-        $this->smarty->display('home.tpl');
+        //$this->smarty->assign('toSearch', 'trasporti');
+        $this->smarty->display('index.tpl');
     }
-    
+
     /**
      * Funzione che si occupa di gestire la visualizzazione degli errori in fase login
      * @throws SmartyException

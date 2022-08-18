@@ -147,12 +147,12 @@ class FPersistentManager {
     /** Metodo che permette l'inserimento di una nuova tappa nel db
      * @param ad , fk annuncio
      * @param place ,fk del luogo
-     */
+
     public function insertTappa ($ad,$place) {
         $ris = null;
         $ris = FTappa::insert($ad,$place);
         return $ris;
-    }
+    } */
 
     /**   Metodo che permette il caricamento di una chat e quindi lo scambio di messaggi tra due utenti che vengono identificati
      *dal sistema tramite la loro email

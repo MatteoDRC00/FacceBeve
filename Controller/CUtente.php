@@ -25,8 +25,9 @@ class CUtente
      * Funzione che consente il login di un utente registrato. Si possono avere diversi casi:
      * 1) se il metodo della richiesta HTTP è GET:
      *   - se l'utente è già loggato viene reindirizzato alla homepage;
-     * 	 - se l'utente non è loggato si viene indirizzati alla form di login;
+     *     - se l'utente non è loggato si viene indirizzati alla form di login;
      * 2) se il metodo della richiesta HTTP è POST viene richiamata la funzione verifica().
+     * @throws SmartyException
      */
     static function login(){
         if($_SERVER['REQUEST_METHOD']=="GET"){
@@ -56,7 +57,7 @@ class CUtente
         $view = new VUtente();
         $pm = new FPersistentManager();
         $utente = $pm->loadLogin($_POST['username'], $_POST['password']);
-        if ($utente != null && $utente->getState() != false) {
+      /*  if ($utente != null && $utente->getState() != false) {
             if (session_status() == PHP_SESSION_NONE) {
                 session_start();
                 $salvare = serialize($utente);
@@ -82,7 +83,7 @@ class CUtente
         }
         else {
             $view->loginError();
-        }
+        }*/
     }
 
 
