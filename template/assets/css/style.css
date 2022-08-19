@@ -109,6 +109,26 @@ h6,
   max-height: 35px;
 }
 
+#header .sign a {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0;
+  display: inline-block;
+  padding: 12px 32px;
+  border-radius: 50px;
+  line-height: 1;
+  margin: 10px;
+  color: #fff;
+  border: 3px solid #68A4C4;
+}
+
+#header .sign a:hover {
+  background: #68A4C4;
+  color: #fff;
+  text-decoration: none;
+}
+
 #main {
   margin-top: 80px;
 }
@@ -131,22 +151,6 @@ h6,
   align-items: center;
 }
 
-.navbar .sign {
-  font-family: "Roboto", sans-serif;
-  font-weight: 500;
-  font-size: 14px;
-  letter-spacing: 1px;
-  display: inline-block;
-  padding: 12px 32px;
-  border-radius: 50px;
-  transition: 0.5s;
-  line-height: 1;
-  margin: 10px;
-  color: #fff;
-  animation-delay: 0.8s;
-  border: 2px solid #68A4C4;
-}
-
 .navbar li {
   position: relative;
 }
@@ -159,6 +163,7 @@ h6,
   padding: 10px 0 10px 30px;
   font-family: "papyrus", sans-serif;
   text-transform: uppercase;
+  font-weight: bold;
   font-size: 10px;
   color: #fff;
   white-space: nowrap;
@@ -365,7 +370,7 @@ h6,
   top: 0;
   width: 130%;
   height: 95%;
-  background: linear-gradient(to right, rgba(30, 67, 86, 0.8), rgba(30, 67, 86, 0.6)), url("../img/hero-bg.jpg") center top no-repeat;
+  background: linear-gradient(to right, rgba(30, 67, 86, 0.8), rgba(30, 67, 86, 0.6)), url("../img/sfondo.jpg") center top no-repeat;
   z-index: 0;
   border-radius: 0 0 50% 50%;
   transform: translateX(-50%) rotate(0deg);
