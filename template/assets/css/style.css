@@ -402,6 +402,15 @@ h6,
   right: 0;
 }
 
+#hero .ricerca {
+  display: flex;
+  justify-content: center;
+}
+
+#hero .ricerca input{
+  width: 250px;
+}
+
 #hero h2 {
   color: #fff;
   margin-bottom: 30px;
