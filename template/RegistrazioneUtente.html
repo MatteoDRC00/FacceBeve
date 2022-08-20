@@ -35,7 +35,6 @@
 <body>
 <header id="header" class="fixed-top d-flex align-items-center header-transparent">
     <div class="container d-flex justify-content-between align-items-center">
-
         <div class="logo">
             <h1><a href="index.html"><img src="assets/img/logo.png" alt=""><span>FacceBeve</span></a></h1>
         </div>
@@ -45,21 +44,7 @@
 
 
 <div class="login-page">
-  <!--<div class="form">
-      <form>
-          <p>Selezionare se si è un proprietario o un utente:</p>
-          <div>
-              <input type="radio" id="utente"
-                     name="contact" value="utente">
-              <label for="utente">Utente</label>
-              <a href="RegistrazioneProprietario.html">
-                  <input type="radio" id="proprietario"
-                     name="contact" value="phone">
-              </a>
-              <label for="proprietario">Proprietario</label>
-          </div>
-      </form> -->
-
+  <div class="form">
       <form class="login-form"action="/FacceBeve/Utente/regx" method="POST">
        <input type="text" class="form-control" placeholder="nome " required name="nome" pattern="[a-zA-Z]+\" />
        <input type="text" class="form-control" placeholder="cognome " required name="cognome" pattern="[a-zA-Z]+\" />

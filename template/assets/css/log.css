@@ -161,8 +161,10 @@ h6,
 #header {
     height: 80px;
     transition: all 0.5s;
+
     z-index: 997;
     background: #1e4356;
+    position: static;
 }
 
 #header.header-transparent {
