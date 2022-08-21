@@ -8,6 +8,10 @@
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
+Search{
+  border-radius:12px;
+}
+
 body {
   font-family: "Open Sans", sans-serif;
   color: #444;
@@ -409,6 +413,7 @@ h6,
 
 #hero .ricerca input{
   width: 250px;
+  border-radius: 6px;
 }
 
 #hero h2 {

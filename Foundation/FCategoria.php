@@ -105,6 +105,25 @@ class FCategoria {
         return $categoria;
     }
 
+    public static function loadAll(){
+        $categoria = null;
+        $db=FDB::getInstance();
+        $result=$db->loadAll(static::getClass());
+        $rows_number = $result->rowCount();
+        if(($result!=null) && ($rows_number == 1)) {
+            $categoria=new ECategoria($result['genere'], $result['descrizione']); //Carica una categoria dal database
+        }
+        else {
+            if(($result!=null) && ($rows_number > 1)){
+                $categoria = array();
+                for($i=0; $i<count($result); $i++){
+                    $categoria[]=new ECategoria($result[$i]['genere'], $result[$i]['descrizione']); //Carica un array di oggetti Categoria dal database
+                }
+            }
+        }
+        return $categoria;
+    }
+
     /**
      * metodo che aggiorna il valore di un attributo della Categoria sul DB data la chiave primaria
      * @param string $attributo

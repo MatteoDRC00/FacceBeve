@@ -79,6 +79,12 @@ class CRicerca{
             }
     }
 
+    /**Funzione che restituisce tutte le categorie di locali presenti nel sito*/
+    static function categorie(){
+        $pm = new FPersistentManager(); //VA CAMBIATO CON ISTANCE QUALCOSA
+        $result = $pm->loadAll("FCategoria");
+    }
+
     /**
      * Funzione con il compito di indirizzare alla pagina specifica del locale selezionato
      * @param $id id del locale selezionato

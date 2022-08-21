@@ -150,10 +150,6 @@ class FDB{
 		}
 	}
 
-
-
-
-
 	/**
 	 * Metodo che va ad inserire le chiavi esterne in tabelle originate da una relazione molti-a-molti
 	 * @param string $table Nome della tabella
@@ -174,6 +170,29 @@ class FDB{
 			echo "Attenzione errore: " . $e->getMessage();
 			$this->database->rollBack();
 			return null;
+		}
+	}
+
+    public function loadAll($class){
+		try {
+			$query = "SELECT * FROM " . $class::getTable() . ";";
+			$stmt = $this->db->prepare($query); //Prepared Statement
+			$stmt->execute();
+			$num = $stmt->rowCount();
+			if ($num == 0) {
+				$result = null;        //nessuna riga interessata. return null
+			} elseif ($num == 1) {                          //nel caso in cui una sola riga fosse interessata
+				$result = $stmt->fetch(PDO::FETCH_ASSOC);   //ritorna una sola riga
+			} else {
+				$result = array();                         //nel caso in cui piu' righe fossero interessate
+				$stmt->setFetchMode(PDO::FETCH_ASSOC);   //imposta la modalità di fetch come array associativo
+				while ($row = $stmt->fetch())
+					$result[] = $row;                    //ritorna un array di righe.
+			}
+			return $result;
+		} catch (PDOException $e) {
+			echo "Attenzione errore: " . $e->getMessage();
+			$this->db->rollBack();
 		}
 	}
 
