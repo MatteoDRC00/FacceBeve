@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- {assign var='userlogged' value=$userlogged|default:'nouser'} -->
 <html lang="en">
 
 <head>
@@ -30,12 +31,41 @@
     <!-- Template Main CSS File -->
     <link href="assets/css/style.css" rel="stylesheet">
 
-    <!-- =======================================================
-    * Template Name: Moderna - v4.9.1
-    * Template URL: https://bootstrapmade.com/free-bootstrap-template-corporate-moderna/
-    * Author: BootstrapMade.com
-    * License: https://bootstrapmade.com/license/
-    ======================================================== -->
+    <!-- JavaScript-->
+    <script type="text/javascript">
+        function setList() {
+            var tipo,row1,select,row2,row3,row4;
+            const tbl = document.createElement("div");
+            tbl.setAttribute("class", "\"ricerca animate__animated animate__fadeInDown\"");
+            tipo = document.getElementById("tipo");
+            document.addEventListener( 'change',setList());
+            const tblBody = document.createElement("form");
+            tblBody.setAttribute("class", "\"Search\"");
+            if(tipo=="Locali"){
+                row1 = document.createElement("input");
+                row1.setAttribute("type", "text");
+                row1.setAttribute("placeholder", "Inserisci la città");
+                row1.setAttribute("name", "citta");
+
+                row2 = document.createElement("input");
+                row2.setAttribute("type", "text");
+                row2.setAttribute("placeholder", "Inserisci il nome del locale");
+                row2.setAttribute("name", "nomeLocale");
+
+                row1 = document.createElement("input");
+                row1.setAttribute("type", "text");
+                row1.setAttribute("placeholder", "Inserisci la città");
+                row1.setAttribute("name", "citta");
+            }
+
+        };
+
+
+    </script>
+
+
+
+
 </head>
 
 <body>
@@ -93,19 +123,25 @@
                 <p class="animate__animated animate__fadeInUp">È scientificamente provato che un aperitivo patatine e birretta non salveranno il mondo, ma la giornata sicuramente sì.</p>
             </div>
 
+            <!--{if $userlogged!='nouser'}-->
+            <h1 class="mb-0">Puoi ricercare...</h1>
+            <select name="tipo" id="tipo" onChange="setList()">
+                <option value="Locali" selected >Locali</option>
+                <option value="Eventi">Eventi</option>
+            </select>
+<!--
             <div class="ricerca animate__animated animate__fadeInDown">
-                <form class="example" action="">
+                <form class="Search" action="">
                     <input type="text" placeholder="Inserisci la città" name="citta">
-                    <input type="text" placeholder="Inserisci il nome" name="nome">
-                    <select name="tipo">
+                    <input type="text" placeholder="Inserisci il nome" name="nomeLocale">
+                    <select name="categorie" style="border-radius:6px;">
                         <option>Scegli il tipo</option>
                         <option value="bar">Bar</option>
                         <option value="pub">Pub</option>
                     </select>
-                    <button type="submit"><i class="fa fa-search"></i></button>
+                    <button type="submit" style="border-radius:10px;"><i class="fa fa-search"></i></button>
                 </form>
-            </div>
-
+            </div>-->
 
         </div>
 

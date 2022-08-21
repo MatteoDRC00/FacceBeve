@@ -90,10 +90,10 @@ class FPersistentManager {
     }
 
 
-    /** Metodo che permette il caricamento dei nomi di tutti i luoghi presenti nel db*/
-    public static function loadNomiLuoghi ($input) {
+    /** Metodo che permette il caricamento di tutti gli elementi di una classe/tabella*/
+    public static function loadAll(string $class) {
         $ris = null;
-        $ris = FLuogo::loadNames($input);
+        $ris = $class::loadNames();
         return $ris;
     }
 
