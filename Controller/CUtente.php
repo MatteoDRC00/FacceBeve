@@ -125,7 +125,7 @@ class CUtente
      * Funzione che si occupa di mostrare la form di registrazione per il cliente.
      * 1) se il metodo della richiesta HTTP è GET e si è loggati, avviene il reindirizzamento alla homepage;
      * 2) se il metodo della richiesta HTTP è GET e non si è loggati, avviene il reindirizzamento vero e proprio alla form di registrazione;
-     * 3) se il metodo della richiesta HTTP è POST viene invocato il metodo registra_utente() che si occupa della gestione dei dati inseriti nella form.
+     * 3) se il metodo della richiesta HTTP è POST viene invocato il metodo registra_cliente() che si occupa della gestione dei dati inseriti nella form.
      */
     static function registrazioneUtente(){
         if($_SERVER['REQUEST_METHOD']=="GET") {

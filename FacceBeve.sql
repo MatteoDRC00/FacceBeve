@@ -11,7 +11,7 @@ USE `FacceBeve`;
 
 /*Tabella relativa alle immagini utilizzate*/
 DROP TABLE IF EXISTS `Immagine`;
-CREATE TABLE `Immangine` (
+CREATE TABLE `Immagine` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
     `nome` varchar(50) NOT NULL,
     `size` varchar(25) NOT NULL,
@@ -30,6 +30,8 @@ CREATE TABLE `Utente` (
     `email` VARCHAR(40) NOT NULL,
     `password` VARCHAR(30) NOT NULL,
     `dataIscrizione` DATE NOT NULL,
+    `idImg` int(11),
+    FOREIGN KEY (`idImg`) REFERENCES Immagine(`id`) ON DELETE CASCADE ON UPDATE CASCADE,
     PRIMARY KEY (`username`)
 )ENGINE=InnoDB;
 
@@ -42,6 +44,8 @@ CREATE TABLE `Proprietario` (
     `cognome` VARCHAR(26),    
     `email` VARCHAR(40) NOT NULL,
     `password` VARCHAR(30) NOT NULL,
+     `idImg` int(11),
+    FOREIGN KEY (`idImg`) REFERENCES Immagine(`id`) ON DELETE CASCADE ON UPDATE CASCADE,
     PRIMARY KEY (`username`)
 )ENGINE=InnoDB;
 
@@ -205,5 +209,33 @@ CREATE TABLE `Locale_Categorie` (
         ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (`ID_Locale`)
         REFERENCES Locale (`id`)
+        ON DELETE CASCADE ON UPDATE CASCADE
+)ENGINE=InnoDB; 
+
+/*Tabella che mette in relazione il Locale con le immagini*/
+DROP TABLE IF EXISTS `Locale_Immagini`;
+CREATE TABLE `Locale_Immagini` (
+	`ID_Locale` INT(11) NOT NULL,
+	`ID_Immagine` INT(11) NOT NULL,
+	CONSTRAINT Locale_Immagini_PK PRIMARY KEY ( `ID_Locale` ,`ID_Immagine`),
+    FOREIGN KEY (`ID_Immagine`)
+        REFERENCES Immagine (`id`)
+        ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (`ID_Locale`)
+        REFERENCES Locale (`id`)
+        ON DELETE CASCADE ON UPDATE CASCADE
+)ENGINE=InnoDB; 
+
+/*Tabella che mette in relazione l'Evento con le immagini*/
+DROP TABLE IF EXISTS `Evento_Immagini`;
+CREATE TABLE `Evento_Immagini` (
+	`ID_Evento` INT(11) NOT NULL,
+	`ID_Immagine` INT(11) NOT NULL,
+	CONSTRAINT Evento_Immagini_PK PRIMARY KEY ( `ID_Evento` ,`ID_Immagine`),
+    FOREIGN KEY (`ID_Immagine`)
+        REFERENCES Immagine (`id`)
+        ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (`ID_Evento`)
+        REFERENCES Evento (`id`)
         ON DELETE CASCADE ON UPDATE CASCADE
 )ENGINE=InnoDB; 

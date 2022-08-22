@@ -93,15 +93,26 @@ class FLocale {
                 }
             }
         }
-
         //$locale->setId($id);
-
-
         return $id;
-
-
     }
 
+    /**
+     * metodo che permette il salvataggio di un Locale nel db
+     * @param ELocale $locale Locale da salvare
+     * @return void
+     */
+    public static function addImmagine(ELocale $locale){
+        $id = NULL;
+        $db = FDB::getInstance();
+        //Immagini Locale
+        if($locale->getImmagini()!=null){
+                foreach($locale->getImmagini() as $img){
+                    $idImg = $img->getId();
+                    $db->chiaviEsterne("Locale_Immagini","ID_Locale","ID_Immagine",$id,$idImg);
+                }
+        }
+    }
 
     /**
     * Permette la load dal database

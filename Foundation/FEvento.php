@@ -69,6 +69,23 @@ class FEvento {
     }
 
     /**
+     * metodo che permette il salvataggio di un Locale nel db
+     * @param ELocale $locale Locale da salvare
+     * @return void
+     */
+    public static function addImmagine(EEvento $evento){
+        $id = NULL;
+        $db = FDB::getInstance();
+        //Immagini Evento
+        if($evento->getImmagini()!=null){
+            foreach($evento->getImmagini() as $img){
+                $idImg = $img->getId();
+                $db->chiaviEsterne("Evento_Immagini","ID_Evento","ID_Immagine",$id,$idImg);
+            }
+        }
+    }
+
+    /**
      * metodo che verifica l'esistenza di un Evento nel DB considerato un attributo
      * @param string $attributo
      * @param string $valore

@@ -71,6 +71,30 @@ class FDB{
 		}
 	}
 
+	/**Metodo chr permette il salvataggio du un media di un oggetto passato come parametro alla funzione
+	 * @param $class, classe di cui si vuole salvare il media
+	 * @param obj oggetto interessato
+	 * @nome_file, nome del media da salvare
+	 */
+	public function storeMedia ($class , $obj, $nome_file) {
+		try {
+			$this->database->beginTransaction();
+			$query = "INSERT INTO ".$class::getTable()." VALUES ".$class::getValues().";";
+			$stmt = $this->database->prepare($query);
+			$class::bind($stmt,$obj,$nome_file);
+			$stmt->execute();
+			$id=$this->database->lastInsertId();
+			$this->database->commit();
+			$this->closeDbConnection();
+			return $id;
+		}
+		catch(PDOException $e) {
+			echo "Attenzione errore: ".$e->getMessage();
+			$this->db->rollBack();
+			return null;
+		}
+	}
+
 	/**
 	 * Metodo che permette di aggiornare il valore di un attributo nel DB passato come parametro
 	 * @param string $class
