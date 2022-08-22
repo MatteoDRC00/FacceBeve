@@ -2,7 +2,6 @@
 
 .login-page {
     width: 360px;
-    padding: 0 0 0;
     margin: auto;
 }
 .form {
@@ -10,7 +9,6 @@
     z-index: 1;
     background: #FFFFFF;
     max-width: 420px;
-    margin: -75px auto 100px;
     border-radius:20px;
     padding: 45px;
     text-align: center;
