@@ -459,7 +459,7 @@ class FDB{
 
 
 
-	/** Metodo che restituisce le categorie/eventi/orari che caratterizzano un determinato locale, individuato dal suo id
+	/** Metodo che restituisce le categorie/eventi/orari/immagini che caratterizzano un determinato locale, individuato dal suo id
 	 * @param idlocale identificativo del locale
 	 * @return info del locale
 	 */

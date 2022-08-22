@@ -89,22 +89,22 @@ class VRicerca
      * @param $tipo definisce il tipo di annuncio da visualizzare (carichi/trasporti)
      * @throws SmartyException
      */
-    public function dettagliLocale($result, $tipo, $nome, $cognome, $tappa,$img_utente,$med_annuncio,$cont) {
+    public function dettagliLocale($result, $logged) {
 
-        if ($cont == "no")
-            $this->smarty->assign('contatta', $cont);
+        if ($logged == "no")
+            $this->smarty->assign('userLogged', 'nouser'); //Solo gli utenti registrati possono vedere gli eventi
 
-        if (is_array($med_annuncio)) {
-            foreach ($med_annuncio as $item) {
-                $pic64ann[] = base64_encode($item->getData());
-                $typeA[] = $item->getType();
+        if (is_array($result->getImmagini())) {
+            foreach ($result->getImmagini() as $item) {
+                $pic64locale[] = base64_encode($item->getData());
+                //$typeA[] = $item->getType();
             }
         }
-        elseif (isset($med_annuncio)) {
-            $pic64ann = base64_encode($med_annuncio->getData());
-            $typeA = $med_annuncio->getType();
+        elseif ($result->getImmagini() !== null) {
+            $pic64ann = base64_encode($result->getImmagini()->getData());
+           // $typeA = $med_annuncio->getType();
         }
-        if (isset($med_annuncio)) {
+      /*  if (isset($med_annuncio)) {
             if (is_array($med_annuncio)) {
                 $this->smarty->assign('typeA', $typeA);
                 $this->smarty->assign('pic64ann', $pic64ann);
@@ -117,7 +117,20 @@ class VRicerca
             //$this->smarty->assign('n_img_annuncio', count($med_annuncio) - 1);
         }
         else
-            $this->smarty->assign('n_img_annuncio', 0);
+            $this->smarty->assign('n_img_annuncio', 0);*/
+
+        if ($logged == "si"){
+            if (is_array($result->getEventi())) {
+                foreach ($result->getEventi() as $evento) {
+                    if (is_array($evento->getImmagini())) {
+                        foreach ($evento->getImmagini() as $itemE) {
+                            $pic64evento[] = base64_encode($itemE->getData());
+                            //$typeA[] = $item->getType();
+                        }
+                    }
+                }
+            }
+        }
 
         $this->smarty->assign('media_ann', $med_annuncio);
         list($type,$pic64) = VUtente::setImage($img_utente, 'user');

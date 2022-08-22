@@ -101,7 +101,7 @@ class  ELocale{
      */
     public function getNumTelefono(): string
     {
-        return $this->num_telefono;
+    return $this->num_telefono;
     }
 
     /**

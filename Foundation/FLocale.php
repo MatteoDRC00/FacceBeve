@@ -130,6 +130,7 @@ class FLocale {
             $localizzazione = FLocalizzazione::loadByField("id" , $result["localizzazione"]);
             $eventi = FEvento::loadByLocale($result["id"]);
             $orari = FOrario::loadByLocale($result["id"]);
+            $immagini = FImmagine::loadByLocale($result["id"]);
             $locale=new ELocale($result['nome'], $result['descrizione'], $result['numtelefono'], $proprietario ,$categorie, $localizzazione ,$eventi,$orari); //Carica un Locale dal database
         }
         else {
@@ -139,6 +140,7 @@ class FLocale {
                 $categorie = array();
                 $localizzazione = array();
                 $eventi = array();
+                $immagini = array();
                 $orari = array();
         	    for($i=0; $i<count($result); $i++){
                     $proprietario[] = FProprietario::loadByField("id" , $result[$i]["proprietario"]);
@@ -146,6 +148,7 @@ class FLocale {
                     $localizzazione[] = FLocalizzazione::loadByField("id" , $result[$i]["localizzazione"]);
                     $eventi[] = FEvento::loadByLocale($result[$i]["id"]);
                     $orari[] = FOrario::loadByLocale($result[$i]["id"]);
+                    $immagini[] = FImmagine::loadByLocale($result[$i]["id"]);
                     $locale[]=new ELocale($result[$i]['nome'], $result[$i]['descrizione'], $result[$i]['numtelefono'], $proprietario[$i] ,$categorie[$i], $localizzazione[$i] ,$eventi[$i], $orari[$i]);
                     //$locale[$i]->setIdAd($result[$i]['id']); //Carica un array di oggetti Locale dal database
                 }
@@ -178,7 +181,7 @@ class FLocale {
      * @return bool
      */
     public static function update(string $attributo, string $newvalue, string $attributo_pk, string $value_pk){
-        $db=FDatabase::getInstance();
+        $db=FDB::getInstance();
         $result = $db->update(static::getClass(), $attributo, $newvalue, $attributo_pk, $value_pk);
         if($result)
             return true;

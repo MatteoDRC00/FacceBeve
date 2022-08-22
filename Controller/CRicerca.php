@@ -93,19 +93,13 @@ class CRicerca{
         $vRicerca = new VRicerca();
         $pm = new FPersistentManager(); //Istance ecc...
         $result = $pm->load("id", $id, "FLocale");
-        //$img_utente = $pm->load("emailutente",$result->getEmailWriter()->getEmail(),"FMediaUtente");
-        $id = $result->getIdAd();
-        $tappa = null;
-        $med_annuncio = $pm->load("idann","$id","FMediaAnnuncio");
+        $id = $result->getId();
         if (CUtente::isLogged()) {
-            $utente = unserialize($_SESSION['utente']);
-            if ($result->getEmailWriter()->getEmail() == $utente->getEmail())
-                $vRicerca->showDetails($result, $tipo, $nome, $cognome, $tappa,$img_utente,$med_annuncio,"no");
-            else
-                $vRicerca->showDetails($result, $tipo, $nome, $cognome, $tappa,$img_utente,$med_annuncio,"si");
+            //$utente = unserialize($_SESSION['utente']);
+                $vRicerca->dettagliLocale($result,"si");
         }
         else
-            $vRicerca->showDetails($result, $tipo, $nome, $cognome, $tappa,$img_utente,$med_annuncio,"si");
+            $vRicerca->dettagliLocale($result,"no");
     }
 
 

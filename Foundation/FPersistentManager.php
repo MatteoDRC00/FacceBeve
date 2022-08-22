@@ -50,7 +50,7 @@ class FPersistentManager {
     /**  Metodo che permette di cercare/caricare un campo con un valore passato come parametro
      *  @param field , campo da caricare
      *  @param  val , valore da caricare
-     *  @param  Fclass ,calsse Foundation interessata
+     *  @param  Fclass ,classe Foundation interessata
      */
     public static function load($field, $val,$Fclass) {
         $ris = null;
