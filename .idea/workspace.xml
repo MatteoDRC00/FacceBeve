@@ -6,6 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="152f96c7-1cf8-4e05-a3b8-32cadffc05df" name="Changes" comment="get e set di qualcosa">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Entity/EProprietario.php" beforeDir="false" afterPath="$PROJECT_DIR$/Entity/EProprietario.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Entity/EUtente.php" beforeDir="false" afterPath="$PROJECT_DIR$/Entity/EUtente.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/assets/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/template/assets/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/index-2.html" beforeDir="false" afterPath="$PROJECT_DIR$/template/index-2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/template/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,11 +61,14 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="JavaScript Debug.index.html (1)">
+  <component name="RunManager" selected="JavaScript Debug.index-2.html">
     <configuration name="Login.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/FacceBeve/template/Login.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
     <configuration name="RegistrazioneUtente.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/FacceBeve/template/RegistrazioneUtente.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="index-2.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/FacceBeve/template/index-2.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
     <configuration name="index.html (1)" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/FacceBeve/template/index.html" useBuiltInWebServerPort="true">
@@ -71,6 +79,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JavaScript Debug.index-2.html" />
         <item itemvalue="JavaScript Debug.index.html (1)" />
         <item itemvalue="JavaScript Debug.index.html" />
         <item itemvalue="JavaScript Debug.RegistrazioneUtente.html" />
@@ -107,7 +116,7 @@
       <workItem from="1661020640784" duration="1005000" />
       <workItem from="1661077809317" duration="2031000" />
       <workItem from="1661089410941" duration="1338000" />
-      <workItem from="1661152375278" duration="760000" />
+      <workItem from="1661152375278" duration="4791000" />
     </task>
     <servers />
   </component>

@@ -16,6 +16,7 @@ class EUtente {
     private string $cognome;
     private array $localipreferiti;
     private date $iscrizione;
+    private EImmagine $img_profilo;
 
 
     /**
@@ -137,6 +138,24 @@ class EUtente {
     {
         $this->cognome = $cognome;
     }
+
+    /**
+     * @return EImmagine
+     */
+    public function getImgProfilo(): EImmagine
+    {
+        return $this->img_profilo;
+    }
+
+    /**
+     * @param EImmagine $img_profilo
+     */
+    public function setImgProfilo(EImmagine $img_profilo): void
+    {
+        $this->img_profilo = $img_profilo;
+    }
+
+
 
 
 //-----------------------------Altri Metodi-----------------------------

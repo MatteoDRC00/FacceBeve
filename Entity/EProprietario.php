@@ -11,6 +11,7 @@ class EProprietario {
     private string $email;
     private string $nome;
     private string $cognome;
+    private EImmagine $img_profilo;
 
     public function __construct(string $nome, string $cognome, string $email,string $username, string $password){
         $this->nome = $nome;
@@ -107,6 +108,24 @@ class EProprietario {
     {
         $this->username = $username;
     }
+
+    /**
+     * @return EImmagine
+     */
+    public function getImgProfilo(): EImmagine
+    {
+        return $this->img_profilo;
+    }
+
+    /**
+     * @param EImmagine $img_profilo
+     */
+    public function setImgProfilo(EImmagine $img_profilo): void
+    {
+        $this->img_profilo = $img_profilo;
+    }
+
+
 
 }
 

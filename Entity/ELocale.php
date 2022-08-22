@@ -24,6 +24,7 @@ class  ELocale{
     private ELocalizzazione $localizzazione;
     private $eventi_organizzati = array();
     private $orario = array();
+    private $img = array();
 
     /**
      * @param string $nome
@@ -190,6 +191,24 @@ class  ELocale{
     {
         $this->orario = $orario;
     }
+
+    /**
+     * @return array
+     */
+    public function getImg(): array
+    {
+        return $this->img;
+    }
+
+    /**
+     * @param array $img
+     */
+    public function setImg(array $img): void
+    {
+        $this->img = $img;
+    }
+
+    
 
 
 }
