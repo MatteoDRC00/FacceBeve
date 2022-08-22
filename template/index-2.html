@@ -83,9 +83,6 @@
             <i class="bi bi-list mobile-nav-toggle"></i>
         </nav><!-- .navbar -->
 
-        <div class="sign">
-            <a href="Login.html">Esci</a>
-        </div>
 
     </div>
 </header><!-- End Header -->
@@ -97,9 +94,16 @@
         <div class="carousel-item active">
 
             <div class="carousel-container">
-                <h2 class="animate__animated animate__fadeInDown">Benvenuti in <span>FacceBeve</span></h2>
-                <p class="animate__animated animate__fadeInUp">È scientificamente provato che un aperitivo patatine e
-                    birretta non salveranno il mondo, ma la giornata sicuramente sì.</p>
+                <h2 class="animate__animated animate__fadeInDown">Bentornato $username</h2>
+                <form class="tipo animate__animated animate__fadeInUp">
+                    <p class="animate__animated animate__fadeInUp">Puoi effettuare ricerche per:</p>
+                    <input type="radio" id="locali" name="tipo" value="locali">
+                    <label for="locali">Locali</label>
+                    <input type="radio" id="eventi" name="tipo" value="eventi">
+                    <label for="eventi">Eventi</label>
+                    <input type="radio" id="entrambi" name="tipo" value="entrambi">
+                    <label for="entrambi">Entrambi</label>
+                </form>
             </div>
 
             <!--{if $userlogged!='nouser'}-->
@@ -111,7 +115,7 @@
             </select>
             -->
             <div class="ricerca animate__animated animate__fadeInDown">
-                <form class="Search" action="">
+                <form class="search" action="">
                     <input type="text" placeholder="Inserisci la città" name="citta">
                     <input type="text" placeholder="Inserisci il nome" name="nomeLocale">
                     <select name="categorie" style="border-radius:6px;">
