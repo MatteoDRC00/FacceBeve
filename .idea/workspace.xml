@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="152f96c7-1cf8-4e05-a3b8-32cadffc05df" name="Changes" comment="get e set di qualcosa">
+    <list default="true" id="176d4f1f-99ab-4a4c-8c43-565abefef6fe" name="Changes" comment="login e registrazione aggiunta logo in alto da completare">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controller/CRicerca.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/CRicerca.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Foundation/FRecensione.php" beforeDir="false" afterPath="$PROJECT_DIR$/Foundation/FRecensione.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/View/VRicerca.php" beforeDir="false" afterPath="$PROJECT_DIR$/View/VRicerca.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/assets/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/template/assets/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/risultatiRicerca.html" beforeDir="false" afterPath="$PROJECT_DIR$/template/risultatiRicerca.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +58,7 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="JavaScript Debug.index.html (1)">
+  <component name="RunManager" selected="JavaScript Debug.risultatiRicerca.html">
     <configuration name="Login.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/FacceBeve/template/Login.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
@@ -72,8 +71,12 @@
     <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/FacceBeve/template/greenhost-1.0.0/index.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
+    <configuration name="risultatiRicerca.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/FacceBeve/template/risultatiRicerca.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JavaScript Debug.risultatiRicerca.html" />
         <item itemvalue="JavaScript Debug.index.html (1)" />
         <item itemvalue="JavaScript Debug.index.html" />
         <item itemvalue="JavaScript Debug.RegistrazioneUtente.html" />
@@ -84,7 +87,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="152f96c7-1cf8-4e05-a3b8-32cadffc05df" name="Changes" comment="" />
+      <changelist id="176d4f1f-99ab-4a4c-8c43-565abefef6fe" name="Changes" comment="login e registrazione aggiunta logo in alto da completare" />
       <created>1651152882261</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -108,6 +111,7 @@
       <workItem from="1660844876318" duration="2389000" />
       <workItem from="1660896177487" duration="2951000" />
       <workItem from="1661020640784" duration="1005000" />
+      <workItem from="1661258637365" duration="1281000" />
     </task>
     <servers />
   </component>
