@@ -1647,6 +1647,7 @@ section {
 --------------------------------------------------------------*/
 .blog {
   padding: 40px 0 20px 0;
+  position: relative;
 }
 
 .blog .entry {
@@ -1717,7 +1718,7 @@ section {
   line-height: 1;
 }
 
-.blog .entry .entry-content p {
+.blog .entry .entry-content{
   position: relative;
   left: 200px;
   margin-top: 10px;
@@ -1725,7 +1726,6 @@ section {
 }
 
 .blog .entry .entry-content .read-more {
-  -moz-text-align-last: right;
   text-align-last: right;
 }
 
