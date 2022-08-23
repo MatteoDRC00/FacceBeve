@@ -91,9 +91,20 @@ class CRicerca{
      * */
      static function dettagliLocale($id){
         $vRicerca = new VRicerca();
-        $pm = new FPersistentManager(); //Istance ecc...
+        $pm = FPersistentManager::GetIstance(); //FARLO POI DAPPERTUTTO.
         $result = $pm->load("id", $id, "FLocale");
         $id = $result->getId();
+        $recensioni = $pm->load("locale",$id,"FRecensione");
+        if (is_array($recensioni) {
+             foreach ($recensioni as $item) {
+                 $id = $item->getId();
+                 $x = $pm->load("recensione",$id,"FRisposta");;
+                 $risposte[] = x;
+             }
+         //$this->smarty->assign('n_img_annuncio', count($med_annuncio) - 1);
+         // $this->smarty->assign('pic64locale', $pic64locale);
+        }
+
         if (CUtente::isLogged()) {
             //$utente = unserialize($_SESSION['utente']);
                 $vRicerca->dettagliLocale($result,"si");

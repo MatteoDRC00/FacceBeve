@@ -103,8 +103,6 @@ class FRecensione{
         return $rec;
     }
 
-
-
     /**
      * metodo che verifica l'esistenza di una Recensione nel DB considerato un attributo
      * @param string $attributo
