@@ -1,4 +1,10 @@
 <!DOCTYPE html>
+{assign var='tipo' value=$tipo|default:'locali'}
+{assign var='userlogged' value=$error|default:'nouser'}
+{assign var='citta' value=$citta|default:'a'}
+{assign var='nomeEvento' value=$nomeEvento|default:'a'}
+{assign var='categoria' value=$categoria|default:'a'}
+{assign var='data' value=$data|default:'a'}
 <html lang="en">
 
 <head>
@@ -56,7 +62,35 @@
         <div class="container">
 
             <div class="d-flex justify-content-between align-items-center">
-                <h2 style="font-weight: bold">Risultati per: $cosa_si_è_cercato</h2>
+                <h2 style="font-weight: bold">Risultati per:</h2>
+                <ul>
+                    {if $tipo=="Locali"}
+                      {if $nomeLocale!="a"}
+                         <li>$nomeLocale</li>
+                      {/if}
+                      {if $citta!="a"}
+                         <li>$citta</li>
+                      {/if}
+                      {if $categoria!="a"}
+                        <li>$categoria</li>
+                      {/if}
+                    {else}
+                      {if $nomeLocale!="a"}
+                        <li>$nomeLocale</li>
+                      {/if}
+                      {if $nomeEvento!="a"}
+                        <li>$nomeEvento</li>
+                      {/if}
+                      {if $citta!="a"}
+                        <li>$citta</li>
+                      {/if}
+                      {if $data!="a"}
+                       <li>data</li>
+                      {/if}
+                    {/if}
+                </ul>
+
+
             </div>
 
         </div>

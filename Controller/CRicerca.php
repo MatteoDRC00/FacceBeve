@@ -9,19 +9,18 @@
 class CRicerca{
 
     /**
-     * Metodo di ricerca che permette di ricerca su locali ed eventi.
-     * Il filtraggio è differente in base alla categoria di utente (trasportatore/cliente).
+     * Metodo di ricerca che permette la ricerca di locali o eventi, in base al tipo di ricerca che si vuole effettuare.
+     * In base al "tipo di ricerca" si andranno a prendere tre o quattro campi da passare al metodo della classe View(VRicerca)
      */
     static function ricerca (){
         $vRicerca = new VRicerca();
         $tipo = $vRicerca->getTipoRicerca(); // Nella homepage un campo nella barra di ricerca deve individuare il tipo di ricerca che si vuole effettuare
-        $tipo = "Locale";
-            if ($tipo == "Locale") {
-                $nomelocale = "Franco";
-                $citta= "Pescara";
-                $categoria = "eheheheh";
+            if ($tipo == "Locali") {
+                $nomelocale = vRicerca->getNomeLocale();
+                $citta= vRicerca->getCitta();
+                $categoria = vRicerca->getCategorie();
                 if ($nomelocale != null || $citta != null || $categoria != null){
-                    $pm = new FPersistentManager();
+                    $pm = FPersistentManager::GetIstance();
                     $part1 = null;
                     if ($nomelocale != null) {
                         $part1 = $pm->load("name", $nomelocale, "FLocale");
@@ -35,18 +34,18 @@ class CRicerca{
                             $part2 = $part2->getId();
                     }
                     $result = $pm->loadForm($part1, $part2,$categoria,"tmp",$tipo);
-                    //   $vRicerca->showResult($result, $tipo);
+                    $vRicerca->showResult($result, $tipo);
                 }else
                     header('Location: /FacceBeve/');
             }
             if ($tipo == "Evento") {
-                $nomelocale = "Franco";
-                $nomeevento="yeye";
-                $citta= "Pescara";
-                $data="ieri oggi domani";
+                $nomelocale = vRicerca->getNomeLocale();
+                $nomeevento= vRicerca->getNomeEvento();
+                $citta= vRicerca->getCitta();
+                $data= vRicerca->getDataEvento();
                 if ($nomelocale != null || $nomeevento != null || $citta != null || $data != null){
                     if(CUtente::isLogged()){
-                        $pm = new FPersistentManager();
+                        $pm = FPersistentManager::GetIstance();;
                         $part1 = null; //NomeLocale
                         if ($nomelocale != null) {
                             $part1 = $pm->load("nome", $nomelocale, "FLocale");
@@ -72,7 +71,7 @@ class CRicerca{
                                 $part4 = $part4->getId();
                         }
                         $result = $pm->loadForm($part1, $part2, $part3, $part4,$tipo);
-                        // $vRicerca->showResult($result, $tipo);
+                        $vRicerca->showResult($result, $tipo);
                     }
                 }else
                     header('Location: /FacceBeve/');
@@ -81,7 +80,7 @@ class CRicerca{
 
     /**Funzione che restituisce tutte le categorie di locali presenti nel sito*/
     static function categorie(){
-        $pm = new FPersistentManager(); //VA CAMBIATO CON ISTANCE QUALCOSA
+        $pm = FPersistentManager::GetIstance();
         $result = $pm->loadAll("FCategoria");
     }
 
@@ -93,24 +92,33 @@ class CRicerca{
         $vRicerca = new VRicerca();
         $pm = FPersistentManager::GetIstance(); //FARLO POI DAPPERTUTTO.
         $result = $pm->load("id", $id, "FLocale");
+
+        //Calcolo valutazione media locale + sue recensioni con le relative risposte
         $id = $result->getId();
         $recensioni = $pm->load("locale",$id,"FRecensione");
         if (is_array($recensioni)) {
-             $util=array();
-             foreach ($recensioni as $item) {
-                 $id = $item->getId();
-                 //Vettore bi-dimensionale dove le righe sono le recensioni e le colonne le risposte(o viceversa?)
-                 $risposte[] = $pm->load("recensione",$id,"FRisposta");
-                 $util[$item]=risposte; //-->Ogni elemento ha la recensione e le risposte associate a tale recensione
-             }
+            $util = array();
+            $sum = 0;
+            foreach ($recensioni as $item) {
+                $id = $item->getId();
+                $sum += $item->getVoto();
+                //Vettore bi-dimensionale dove le righe sono le recensioni e le colonne le risposte(o viceversa?)
+                //$risposte = $pm->load("recensione",$id,"FRisposta");
+                $util[$item] = $pm->load("recensione", $id, "FRisposta"); //-->Ogni elemento ha la recensione e le risposte associate a tale recensione
+            }
+            $rating=$sum/(count($recensioni));
+        }else{
+            $rating=$recensioni->getVoto();
+            $util[$recensioni]=$pm->load("recensione",$id,"FRisposta");
         }
+
         //$this->smarty->assign('recensioniLocale', $recensioni);
         if (CUtente::isLogged()) {
             //$utente = unserialize($_SESSION['utente']);
-            $vRicerca->dettagliLocale($result,$util,"si");
+            $vRicerca->dettagliLocale($result,$util,"si",$rating);
         }
         else
-            $vRicerca->dettagliLocale($result,$util,"no");
+            $vRicerca->dettagliLocale($result,$util,"no",$rating);
     }
 
 

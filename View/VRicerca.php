@@ -84,15 +84,32 @@ class VRicerca
     }
 
     /**
+     * Mostra i risultati del filtraggio della ricerca.
+     * @param $result contiene i risultati ottenuti dal database
+     * @param $tipo definisce il tipo di ricerca effettuata (Locali/Eventi)
+     * @throws SmartyException
+     */
+    public function showResult($result, $tipo){
+        if(CUtente::isLogged())
+            $this->smarty->assign('userlogged',"loggato");
+
+        $this->smarty->assign('array', $result);
+        $this->smarty->assign('tipo', $tipo);
+        //mostro la home con i risultati della query
+        $this->smarty->display('risultatiRicerca.tpl');
+    }
+
+    /**
      * Mostra la pagina contenente i dettagli del locale selezionato
      * @param array contiene l'id dell'array da visualizzare
      * @throws SmartyException
      */
-    public function dettagliLocale($result,$arrayRecensioni,$logged) {
+    public function dettagliLocale($result,$arrayRecensioni,$logged,$votoMedio) {
 
         if ($logged == "no")
             $this->smarty->assign('userLogged', 'nouser'); //Solo gli utenti registrati possono vedere gli eventi
 
+        //Caricamento immagini del locale
         if (is_array($result->getImmagini())) {
             foreach ($result->getImmagini() as $item) {
                 //Per la trasmissione via HTTP bisogna elaborare le img con base64
@@ -104,6 +121,7 @@ class VRicerca
             $pic64ann = base64_encode($result->getImmagini()->getData());
         }
         $this->smarty->assign('pic64locale', $pic64locale);
+        //Se l'utente è registrato puù vedere gli eventi organizzati dal locale
         if ($logged == "si"){
             if (is_array($result->getEventi())) {
                 foreach ($result->getEventi() as $evento) {
@@ -120,13 +138,13 @@ class VRicerca
             }
         }
         $this->smarty->assign('arrayRecensioni', $arrayRecensioni);
+        $this->smarty->assign('valutazioneLocale', $votoMedio);
         // list($type,$pic64) = VUtente::setImage($img_utente, 'user');
-        if(CUtente::isLogged())
+        if(CUtente::isLogged()) //Doppio controllo?
             $this->smarty->assign('userlogged',"loggato"); //Potrà cosi visualizzare gli eventi
 
-
         $this->smarty->assign('ris', $result);
-        $this->smarty->display('dettagli_loc.tpl');
+        $this->smarty->display('dettagliLocale.tpl');
 
 
     }

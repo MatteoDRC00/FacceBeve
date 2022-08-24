@@ -102,15 +102,15 @@ class FLocale {
      * @param ELocale $locale Locale da salvare
      * @return void
      */
-    public static function addImmagine(ELocale $locale){
+    public static function ValutazioneLocale($id){
         $id = NULL;
         $db = FDB::getInstance();
         //Immagini Locale
         if($locale->getImmagini()!=null){
-                foreach($locale->getImmagini() as $img){
-                    $idImg = $img->getId();
-                    $db->chiaviEsterne("Locale_Immagini","ID_Locale","ID_Immagine",$id,$idImg);
-                }
+            foreach($locale->getImmagini() as $img){
+                $idImg = $img->getId();
+                $db->chiaviEsterne("Locale_Immagini","ID_Locale","ID_Immagine",$id,$idImg);
+            }
         }
     }
 
