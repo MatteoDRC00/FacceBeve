@@ -118,23 +118,30 @@ class VRicerca
 
         }
         elseif ($result->getImmagini() !== null) {
-            $pic64ann = base64_encode($result->getImmagini()->getData());
+            $pic64locale = base64_encode($result->getImmagini()->getData());
         }
         $this->smarty->assign('pic64locale', $pic64locale);
-        //Se l'utente è registrato puù vedere gli eventi organizzati dal locale
+
+        //Se l'utente è registrato può vedere gli eventi organizzati dal locale
         if ($logged == "si"){
+            $eventi = array();
             if (is_array($result->getEventi())) {
+               //$this->smarty->assign('eventi', $result->getEventi());
                 foreach ($result->getEventi() as $evento) {
                     if (is_array($evento->getImmagini())) {
+                        $pic64evento=array();
                         foreach ($evento->getImmagini() as $itemE) {
-                            $pic64evento[] = base64_encode($itemE->getData());
+                            $pic64evento[] = base64_encode($itemE->getData()); //Non capisco perchè non funziona come sopra
                         }
                     }
-                    $this->smarty->assign('pic64evento', $pic64evento);
+                    $eventi.array_push($evento,$pic64evento); //eventi = evento + le sue foto per ogni evento del locale
                 }
+                $this->smarty->assign('eventi', $eventi);
             }
             elseif ($result->getEventi() !== null) {
                 $pic64evento = base64_encode($result->getEventi()->getImmagini()->getData());
+                $eventi.array_push($result->getEventi(),$pic64evento);
+                $this->smarty->assign('eventi', $eventi);
             }
         }
         $this->smarty->assign('arrayRecensioni', $arrayRecensioni);
