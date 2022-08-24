@@ -95,22 +95,22 @@ class CRicerca{
         $result = $pm->load("id", $id, "FLocale");
         $id = $result->getId();
         $recensioni = $pm->load("locale",$id,"FRecensione");
-        if (is_array($recensioni) {
+        if (is_array($recensioni)) {
+             $util=array();
              foreach ($recensioni as $item) {
                  $id = $item->getId();
-                 $x = $pm->load("recensione",$id,"FRisposta");;
-                 $risposte[] = x;
+                 //Vettore bi-dimensionale dove le righe sono le recensioni e le colonne le risposte(o viceversa?)
+                 $risposte[] = $pm->load("recensione",$id,"FRisposta");
+                 $util[$item]=risposte; //-->Ogni elemento ha la recensione e le risposte associate a tale recensione
              }
-         //$this->smarty->assign('n_img_annuncio', count($med_annuncio) - 1);
-         // $this->smarty->assign('pic64locale', $pic64locale);
         }
-
+        //$this->smarty->assign('recensioniLocale', $recensioni);
         if (CUtente::isLogged()) {
             //$utente = unserialize($_SESSION['utente']);
-                $vRicerca->dettagliLocale($result,"si");
+            $vRicerca->dettagliLocale($result,$util,"si");
         }
         else
-            $vRicerca->dettagliLocale($result,"no");
+            $vRicerca->dettagliLocale($result,$util,"no");
     }
 
 

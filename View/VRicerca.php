@@ -88,44 +88,42 @@ class VRicerca
      * @param array contiene l'id dell'array da visualizzare
      * @throws SmartyException
      */
-    public function dettagliLocale($result, $logged) {
+    public function dettagliLocale($result,$arrayRecensioni,$logged) {
 
         if ($logged == "no")
             $this->smarty->assign('userLogged', 'nouser'); //Solo gli utenti registrati possono vedere gli eventi
 
         if (is_array($result->getImmagini())) {
             foreach ($result->getImmagini() as $item) {
+                //Per la trasmissione via HTTP bisogna elaborare le img con base64
                 $pic64locale[] = base64_encode($item->getData());
-                //$typeA[] = $item->getType();
             }
-            //$this->smarty->assign('n_img_annuncio', count($med_annuncio) - 1);
-            $this->smarty->assign('pic64locale', $pic64locale);
+
         }
         elseif ($result->getImmagini() !== null) {
             $pic64ann = base64_encode($result->getImmagini()->getData());
-           // $typeA = $med_annuncio->getType();
         }
+        $this->smarty->assign('pic64locale', $pic64locale);
         if ($logged == "si"){
             if (is_array($result->getEventi())) {
                 foreach ($result->getEventi() as $evento) {
                     if (is_array($evento->getImmagini())) {
                         foreach ($evento->getImmagini() as $itemE) {
                             $pic64evento[] = base64_encode($itemE->getData());
-                            //$typeA[] = $item->getType();
                         }
                     }
                     $this->smarty->assign('pic64evento', $pic64evento);
                 }
             }
+            elseif ($result->getEventi() !== null) {
+                $pic64evento = base64_encode($result->getEventi()->getImmagini()->getData());
+            }
         }
-       // $this->smarty->assign('media_ann', $med_annuncio);
-       // list($type,$pic64) = VUtente::setImage($img_utente, 'user');
-       // $this->smarty->assign('type', $type);
-       // $this->smarty->assign('pic64', $pic64);
+        $this->smarty->assign('arrayRecensioni', $arrayRecensioni);
+        // list($type,$pic64) = VUtente::setImage($img_utente, 'user');
         if(CUtente::isLogged())
             $this->smarty->assign('userlogged',"loggato"); //Potrà cosi visualizzare gli eventi
 
-        //Recensioni
 
         $this->smarty->assign('ris', $result);
         $this->smarty->display('dettagli_loc.tpl');
