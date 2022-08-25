@@ -4,10 +4,6 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="176d4f1f-99ab-4a4c-8c43-565abefef6fe" name="Changes" comment="get e set di qualcosa">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/View/VRicerca.php" beforeDir="false" afterPath="$PROJECT_DIR$/View/VRicerca.php" afterDir="false" />
-    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -57,29 +53,48 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+<<<<<<< Updated upstream
   <component name="RunManager" selected="JavaScript Debug.risultatiRicerca.html">
     <configuration name="Login.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/FacceBeve/template/Login.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
     <configuration name="RegistrazioneUtente.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/FacceBeve/template/RegistrazioneUtente.html" useBuiltInWebServerPort="true">
+=======
+  <component name="RunManager" selected="JavaScript Debug.infoLocale.html">
+    <configuration name="bho.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/FacceBeve/template/bho.html" useBuiltInWebServerPort="true">
+>>>>>>> Stashed changes
       <method v="2" />
     </configuration>
     <configuration name="index.html (1)" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/FacceBeve/template/index.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
-    <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/FacceBeve/template/greenhost-1.0.0/index.html" useBuiltInWebServerPort="true">
+    <configuration name="infoLocale.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/FacceBeve/template/infoLocale.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
+<<<<<<< Updated upstream
+=======
+    <configuration name="portfolio.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/FacceBeve/template/portfolio.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+>>>>>>> Stashed changes
     <configuration name="risultatiRicerca.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/FacceBeve/template/risultatiRicerca.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+<<<<<<< Updated upstream
         <item itemvalue="JavaScript Debug.risultatiRicerca.html" />
         <item itemvalue="JavaScript Debug.index.html (1)" />
         <item itemvalue="JavaScript Debug.index.html" />
         <item itemvalue="JavaScript Debug.RegistrazioneUtente.html" />
         <item itemvalue="JavaScript Debug.Login.html" />
+=======
+        <item itemvalue="JavaScript Debug.infoLocale.html" />
+        <item itemvalue="JavaScript Debug.bho.html" />
+        <item itemvalue="JavaScript Debug.portfolio.html" />
+        <item itemvalue="JavaScript Debug.risultatiRicerca.html" />
+        <item itemvalue="JavaScript Debug.index.html (1)" />
+>>>>>>> Stashed changes
       </list>
     </recent_temporary>
   </component>
@@ -110,8 +125,14 @@
       <workItem from="1660844876318" duration="2389000" />
       <workItem from="1660896177487" duration="2951000" />
       <workItem from="1661020640784" duration="1005000" />
+<<<<<<< Updated upstream
       <workItem from="1661258637365" duration="3671000" />
       <workItem from="1661335668336" duration="1044000" />
+=======
+      <workItem from="1661258637365" duration="4023000" />
+      <workItem from="1661326537658" duration="1844000" />
+      <workItem from="1661409705876" duration="2587000" />
+>>>>>>> Stashed changes
     </task>
     <servers />
   </component>

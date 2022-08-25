@@ -1351,6 +1351,13 @@ section {
   padding-top: 40px;
 }
 
+.portfolio-details .stelline{
+  position: relative;
+  margin-top: -30px;
+  margin-bottom: 10px;
+  text-align: right;
+}
+
 .portfolio-details .portfolio-details-slider img {
   width: 100%;
 }
