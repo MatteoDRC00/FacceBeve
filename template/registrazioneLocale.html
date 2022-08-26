@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<!-- {assign var='error' value=$error|default:'ok'} -->
+<html lang="it">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Nuovo locale</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+
+    <!-- Favicons -->
+    <link href="assets/img/favicon.png" rel="icon">
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,700,700i&display=swap"
+          rel="stylesheet">
+
+
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="assets/css/log.css" rel="stylesheet">
+
+
+</head>
+<body>
+
+<header id="header" class="fixed-top d-flex align-items-center header-transparent">
+    <div class="container d-flex justify-content-between align-items-center">
+
+        <div class="logo">
+            <h1><a href="index.html"><img src="assets/img/logo.png" alt=""><span>FacceBeve</span></a></h1>
+        </div>
+    </div>
+</header>
+
+<div class="login-page">
+    <div class="form">
+        <form class="login-form"action="/FacceBeve/Utente/regprop" method="POST">
+            <h1>Raccontaci del tuo locale</h1>
+            <input type="text" class="form-control" placeholder="nome " required name="nome" pattern="[a-zA-Z]+\" />
+            <label>Categoria </label><select name="categoria">
+                <option value="ristorante">Ristorante</option>
+                <option value="pub">Pub</option>
+            </select>
+            <input type="tel" placeholder="N.telefono" required name="num_telefono" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" >
+            <div class="localizzazione">
+                <input type="text" placeholder="Indirizzo" required name="indirizzo"  />
+                <input type="text" class="n.civico" placeholder="N." required name="numcivico" />
+                <input type="text" placeholder="Città" required name="citta"/>
+                <input type="number" class="cap" placeholder="Cap" required name="cap" min="0"/>
+                <input type="text" placeholder="Nazione" required name="nazione">
+            </div>
+            <label>Raccontaci del tuo locale</label>
+            <div class="row">
+                <div class="col form-group">
+                    <textarea name="comment" class="form-control"
+                              placeholder="Descrizione"></textarea>
+                </div>
+            </div>
+            <button type="submit">Salva locale</button>
+
+        </form>
+        <!--  {if $errorSize!='ok'}
+          <div style="color: red;">
+              <p align="center">Attenzione! Formato immagine troppo grande!  </p>
+          </div>
+          {/if}
+          {if $errorType!='ok'}
+          <div style="color: red;">
+              <p align="center">Attenzione! Formato immagine non supportato (provare con .png o .jpg)!  </p>
+          </div>
+          {/if}
+          {if $errorEmail!='ok'}
+          <div style="color: red;">
+              <p align="center">Attenzione! Email già esistente!  </p>
+          </div>
+          {/if} -->
+    </div>
+</div>
+<script src="js/main.js"></script>
+</body>
+</html>
