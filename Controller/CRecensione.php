@@ -22,7 +22,20 @@ class CRecensione{
             } elseif ($_SERVER['REQUEST_METHOD'] == "POST") {
                 $utente = /*unserialize*/($_SESSION['utente']);
                 if (get_class($utente) == "EUtente") {
-                    //Prendi input
+                    $titolo = $view->getTitolo();
+                    $descrizione = $view->getDescrizione();
+                    $dataScrittura = $view->getDataScrittura();
+                    //$autore = $utente;
+                    $voto = $view->getValutazione();
+                    $nomeLocale = $view->getNomeLocale();
+                    $localizzazione = $view->getLocalizzazioneLocale();
+                    $pm = FPersistentManager::GetIstance();
+                    $locale = $pm->loadForm($nomeLocale,$localizzazione,null);
+
+                    $recensione = new ERecensione($utente,$titolo,$descrizione,$voto,$dataScrittura,$locale);
+                    $pm->store($recensione);
+                }elseif(get_class($utente) == "EProprietario"){
+                     //Qui che si fa?
                 }
             }
         }else{

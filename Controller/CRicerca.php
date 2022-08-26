@@ -14,7 +14,7 @@ class CRicerca{
      */
     static function ricerca(){
         $vRicerca = new VRicerca();
-        $tipo = $vRicerca->getTipoRicerca(); // Nella homepage un campo nella barra di ricerca deve individuare il tipo di ricerca che si vuole effettuare
+        $tipo = $vRicerca->getTipoRicerca(); //Nella homepage un campo nella barra di ricerca deve individuare il tipo di ricerca che si vuole effettuare
             if ($tipo == "Locali") {
                 $nomelocale = vRicerca->getNomeLocale();
                 $citta= vRicerca->getCitta();

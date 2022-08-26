@@ -26,11 +26,11 @@ class VRecensione{
     }
 
     /**
-     * Restituisce il titolo della recensione che si vuole scrivere
+     * Restituisce la data in cui la recensione viene scritta
      * Inviato con metodo post
-     * @return string
+     * @return DateTime|false|string
      */
-    public function getData()
+    public function getDataScrittura()
     {
         $value = null;
         if (isset($_POST['titolo']) && isset($_POST['valutazione']))
