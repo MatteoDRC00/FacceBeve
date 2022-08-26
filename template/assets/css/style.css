@@ -1531,6 +1531,36 @@ section {
   text-decoration: none;
 }
 
+.aggiorna {
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+}
+
+.aggiorna p{
+  font-weight: bold;
+  font-size: 20px;
+  color: #0d2735;
+}
+
+.form-example{
+  font-size: 16px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.btnAggiorna{
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0;
+  display: inline-block;
+  padding: 12px 32px;
+  border-radius: 50px;
+  line-height: 1;
+  color: #68A4C4;
+  border: 3px solid #fff;
+}
+
 .contact .breadcrumb a {
   text-decoration: none;
 }
