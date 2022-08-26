@@ -4,12 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="152f96c7-1cf8-4e05-a3b8-32cadffc05df" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/template/registrazioneLocale.html" afterDir="false" />
+    <list default="true" id="152f96c7-1cf8-4e05-a3b8-32cadffc05df" name="Changes" comment="login e registrazione aggiunta logo in alto da completare">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/areaPersonaleProprietario.html" beforeDir="false" afterPath="$PROJECT_DIR$/template/areaPersonaleProprietario.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/template/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/risultatiRicerca.html" beforeDir="false" afterPath="$PROJECT_DIR$/template/risultatiRicerca.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +61,7 @@
       <recent name="C:\Users\matte\Documents\GitHub\FacceBeve\template" />
     </key>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.areaPersonaleProprietario.html">
+  <component name="RunManager" selected="JavaScript Debug.registrazioneLocale.html">
     <configuration name="RegistrazioneProprietario.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/FacceBeve/template/RegistrazioneProprietario.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
@@ -83,8 +79,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JavaScript Debug.areaPersonaleProprietario.html" />
         <item itemvalue="JavaScript Debug.registrazioneLocale.html" />
+        <item itemvalue="JavaScript Debug.areaPersonaleProprietario.html" />
         <item itemvalue="JavaScript Debug.RegistrazioneProprietario.html" />
         <item itemvalue="JavaScript Debug.index.html (1)" />
         <item itemvalue="JavaScript Debug.services.html" />
