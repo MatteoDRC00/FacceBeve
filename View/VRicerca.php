@@ -123,37 +123,41 @@ class VRicerca
         $this->smarty->assign('pic64locale', $pic64locale);
 
         //Se l'utente è registrato può vedere gli eventi organizzati dal locale
-        if ($logged == "si"){
-            $eventi = array();
-            if (is_array($result->getEventi())) {
-               //$this->smarty->assign('eventi', $result->getEventi());
-                foreach ($result->getEventi() as $evento) {
-                    if (is_array($evento->getImmagini())) {
-                        $pic64evento=array();
-                        foreach ($evento->getImmagini() as $itemE) {
-                            $pic64evento[] = base64_encode($itemE->getData()); //Non capisco perchè non funziona come sopra
-                        }
-                    }
-                    $eventi.array_push($evento,$pic64evento); //eventi = evento + le sue foto per ogni evento del locale
-                }
-                $this->smarty->assign('eventi', $eventi);
-            }
-            elseif ($result->getEventi() !== null) {
-                $pic64evento = base64_encode($result->getEventi()->getImmagini()->getData());
-                $eventi.array_push($result->getEventi(),$pic64evento);
-                $this->smarty->assign('eventi', $eventi);
-            }
-        }
+        /* if ($logged == "si"){
+         $eventi = array();
+           if (is_array($result->getEventi())) {
+              //$this->smarty->assign('eventi', $result->getEventi());
+               foreach ($result->getEventi() as $evento) {
+                   if (is_array($evento->getImmagini())) {
+                       $pic64evento=array();
+                       foreach ($evento->getImmagini() as $itemE) {
+                           $pic64evento[] = base64_encode($itemE->getData()); //Non capisco perchè non funziona come sopra
+                       }
+                   }
+                   $eventi.array_push($evento,$pic64evento); //eventi = evento + le sue foto per ogni evento del locale
+
+               }
+               $this->smarty->assign('eventi', $eventi);
+           }
+           elseif ($result->getEventi() !== null) {
+               $pic64evento = base64_encode($result->getEventi()->getImmagini()->getData());
+               $eventi.array_push($result->getEventi(),$pic64evento);
+               $this->smarty->assign('eventi', $eventi);
+           }
+       }*/
         $this->smarty->assign('arrayRecensioni', $arrayRecensioni);
         $this->smarty->assign('valutazioneLocale', $votoMedio);
         // list($type,$pic64) = VUtente::setImage($img_utente, 'user');
         if(CUtente::isLogged()) //Doppio controllo?
             $this->smarty->assign('userlogged',"loggato"); //Potrà cosi visualizzare gli eventi
 
-        $this->smarty->assign('ris', $result);
-        $this->smarty->display('dettagliLocale.tpl');
+        /*
+        $myobj = new My_Object;
+        // registriamo l'oggetto (sarà usato per riferimento)
+        $smarty->register_object("foobar",$myobj);*/
+        $this->smarty->assign_by_refsign('locale', $result);
 
-
+        $this->smarty->display('InfoLocale.tpl');
     }
 
 }

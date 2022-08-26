@@ -40,7 +40,7 @@
     ======================================================== -->
 </head>
 
-<body>
+<body onLoad="document.forms[0].submit()"> <!-- -->
 
 <!-- ======= Header ======= -->
 <header id="header" class="fixed-top d-flex align-items-center ">
@@ -269,25 +269,27 @@
 
                         <div class="reply-form">
                             <h4>Scrivi una recensione</h4>
-                            <form action="">
+                            <form action=""  method="POST"> <!--Chiama Pag-->
+                                <input type="hidden" name="nomeLocale" value="$locale->getNome()"/>
+                                <input type="hidden" name="localizzazione" value="$locale->getLocalizzazione()"/>
                                 <div class="row">
                                     <div class="col-md-6 form-group">
-                                        <input name="name" type="text" class="form-control" placeholder="Titolo">
+                                        <input name="titolo" type="text" class="form-control" placeholder="Titolo">
                                     </div>
                                     <div class="col-md-6 form-group">
-                                        <select name="num_stelle" style="font-family: 'FontAwesome',Arial;">
+                                        <select name="valutazione" style="font-family: 'FontAwesome',Arial;">
                                             <option>-- Voto --</option>
-                                            <option value="uno">&#xf005;</option>
-                                            <option value="due">&#xf005;&#xf005;</option>
-                                            <option value="tre">&#xf005;&#xf005;&#xf005;</option>
-                                            <option value="quattro">&#xf005;&#xf005;&#xf005;&#xf005;</option>
-                                            <option value="cinque">&#xf005;&#xf005;&#xf005;&#xf005;&#xf005;</option>
+                                            <option value="1">&#xf005;</option>
+                                            <option value="2">&#xf005;&#xf005;</option>
+                                            <option value="3">&#xf005;&#xf005;&#xf005;</option>
+                                            <option value="4">&#xf005;&#xf005;&#xf005;&#xf005;</option>
+                                            <option value="5">&#xf005;&#xf005;&#xf005;&#xf005;&#xf005;</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col form-group">
-                                        <textarea name="comment" class="form-control"
+                                        <textarea name="descrizione" class="form-control"
                                                   placeholder="Descrizione"></textarea>
                                     </div>
                                 </div>

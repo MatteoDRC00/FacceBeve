@@ -78,7 +78,7 @@ class VUtente
      * @param $imgrec elenco di immagini degli utenti per le recensioni
      * @param $rec elenco di recensioni
      * @throws SmartyException
-     */
+
     public function profileTrasp($user,$ann,$img,$imgMezzo,$imgrec,$rec) {
         if (count($rec) == 0)
             $this->smarty->assign('media_voto', 0);
@@ -115,7 +115,7 @@ class VUtente
         $this->smarty->assign('ann',$ann);
         $this->smarty->assign('rec', $rec);
         $this->smarty->display('profilo_trasp_privato.tpl');
-    }
+    } */
 
     /**
      * Funzione che si occupa di gestire la visualizzazione della form di registrazione del cliente

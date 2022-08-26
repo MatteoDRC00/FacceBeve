@@ -12,7 +12,7 @@ class CRicerca{
      * Metodo di ricerca che permette la ricerca di locali o eventi, in base al tipo di ricerca che si vuole effettuare.
      * In base al "tipo di ricerca" si andranno a prendere tre o quattro campi da passare al metodo della classe View(VRicerca)
      */
-    static function ricerca (){
+    static function ricerca(){
         $vRicerca = new VRicerca();
         $tipo = $vRicerca->getTipoRicerca(); // Nella homepage un campo nella barra di ricerca deve individuare il tipo di ricerca che si vuole effettuare
             if ($tipo == "Locali") {
