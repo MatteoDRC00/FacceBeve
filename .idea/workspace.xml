@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="152f96c7-1cf8-4e05-a3b8-32cadffc05df" name="Changes" comment="login e registrazione aggiunta logo in alto da completare">
+    <list default="true" id="152f96c7-1cf8-4e05-a3b8-32cadffc05df" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/template/registrazioneLocale.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/areaPersonaleProprietario.html" beforeDir="false" afterPath="$PROJECT_DIR$/template/areaPersonaleProprietario.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/template/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/template/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/template/risultatiRicerca.html" beforeDir="false" afterPath="$PROJECT_DIR$/template/risultatiRicerca.html" afterDir="false" />
     </list>
@@ -59,8 +60,16 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="JavaScript Debug.registrazioneLocale.html">
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\matte\Documents\GitHub\FacceBeve\template" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JavaScript Debug.areaPersonaleProprietario.html">
     <configuration name="RegistrazioneProprietario.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/FacceBeve/template/RegistrazioneProprietario.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="areaPersonaleProprietario.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/FacceBeve/template/areaPersonaleProprietario.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
     <configuration name="index.html (1)" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/FacceBeve/template/index.html" useBuiltInWebServerPort="true">
@@ -72,16 +81,13 @@
     <configuration name="services.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/FacceBeve/template/services.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
-    <configuration name="team.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/FacceBeve/template/team.html" useBuiltInWebServerPort="true">
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JavaScript Debug.areaPersonaleProprietario.html" />
         <item itemvalue="JavaScript Debug.registrazioneLocale.html" />
         <item itemvalue="JavaScript Debug.RegistrazioneProprietario.html" />
         <item itemvalue="JavaScript Debug.index.html (1)" />
         <item itemvalue="JavaScript Debug.services.html" />
-        <item itemvalue="JavaScript Debug.team.html" />
       </list>
     </recent_temporary>
   </component>
