@@ -1351,6 +1351,25 @@ section {
   padding-top: 40px;
 }
 
+.portfolio-details input{
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0;
+  display: inline-block;
+  padding: 12px 12px;
+  border-radius: 50px;
+  line-height: 1;
+  color: #68A4C4;
+  border: 3px solid #fff;
+}
+
+.portfolio-details input:hover {
+  background: #68A4C4;
+  color: #fff;
+  text-decoration: none;
+}
+
 .portfolio-details .stelline{
   position: relative;
   margin-top: -30px;
