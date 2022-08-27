@@ -5,10 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="152f96c7-1cf8-4e05-a3b8-32cadffc05df" name="Changes" comment="login e registrazione aggiunta logo in alto da completare">
-      <change afterPath="$PROJECT_DIR$/template/getioneLocale.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/View/VGestioneLocale.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/areaPersonaleProprietario.html" beforeDir="false" afterPath="$PROJECT_DIR$/template/areaPersonaleProprietario.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/assets/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/template/assets/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controller/CGestioneLocale.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/CGestioneLocale.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/VUtente.php" beforeDir="false" afterPath="$PROJECT_DIR$/View/VUtente.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

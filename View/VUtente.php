@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Class VUtente si occupa
+ * Class VUtente si occupa di gestire l'input-output per le operazioni utente[sia Proprietaro che Utente semplice?]
  */
 class VUtente
 {
