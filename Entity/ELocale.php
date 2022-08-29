@@ -13,7 +13,7 @@
  *  @author Gruppo8
  *  @package Entity
  */
-class  ELocale{
+class  ELocale implements JsonSerializable{
 
     private int $id;
     private string $nome;
@@ -208,8 +208,32 @@ class  ELocale{
         $this->img = $img;
     }
 
-    
 
+    public function jsonSerialize()
+    {
+        return
+            [
+                'id'   => $this->getId(),
+                'nome' => $this->getNome(),
+                'numTelefono'   => $this->getNumTelefono(),
+                'descrizione'   => $this->getDescrizione(),
+                'proprietario'   => $this->getProprietario(),
+                'categoria'   => $this->getCategoria(),
+                'localizzazione'   => $this->getLocalizzazione(),
+                'eventi'   => $this->getEventiOrganizzati(),
+                'orario'   => $this->getOrario(),
+                'img'   => $this->getImg()
+            ];
+    }
 
+    /**
+     * @return $print String
+     */
+    public function __toString() {
+        $print = "\nid: ".$this->getId()."\n"."nome: ".$this->Nome()."\n"."numero di telefono: ".$this->getNumTelefono()."\n"."proprietario: ".$this->getProprietario()->getUsername()."\n"."descrizione: ".$this->getDescrizione()."\n"."categoria: ".$this->getCategoria()."\n"."Luogo: ".$this->getLocalizzazione()->getCodice()."\n"."Eventi: ".$this->getEventiOrganizzati()."\n"."Orario: ".$this->getOrario()."\n"."Img: ".$this->getImg()."\n";
+
+        return $print;
+    }
+}
 }
 ?>
