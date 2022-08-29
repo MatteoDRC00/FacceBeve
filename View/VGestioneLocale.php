@@ -151,11 +151,12 @@ array (
 0 => array('first_name'=>'john','last_name'=>'smith'),
 1 => array('first_name'=>'jane','last_name'=>'jones'),
 
-
+ */
     public function getOrario(){
-
         $value = null;
-        //var_dump($_POST['person']);
-    }  */
+        if (isset($_POST['Orario'])) //NON SO SE VANNO UTLIZZATI NOMI DIVERSI
+            $value = $_POST['Orario'];
+        return $value;
+    }
 
 }

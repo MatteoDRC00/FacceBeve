@@ -234,6 +234,6 @@ class  ELocale implements JsonSerializable{
 
         return $print;
     }
-}
+
 }
 ?>

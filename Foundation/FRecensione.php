@@ -198,5 +198,31 @@ class FRecensione{
         return $rec;
     }
 
+    /**
+     * metodo che permette il salvataggio di un Locale nel db
+     * @param int $id Locale
+     * @return float value
+     */
+    public static function ValutazioneLocale($id): float    {
+        $value=0;
+        $db = FDB::getInstance();
+        $result=$db->load(static::getClass(), "id", $id);
+        $rows_number = $db->interestedRows(static::getClass(), "locale", $id);    //funzione richiamata,presente in FDB --> restituisce numero di righe interessate dalla query
+        $sum = 0;
+        if(($result!=null) && ($rows_number == 1)) {
+            $value = $result['voto'];
+        }
+        else {
+            if(($result!=null) && ($rows_number > 1)){
+                for($i=0; $i<count($result); $i++){
+                    $sum=$sum+$result[$i]['voto'];
+                }
+                $value=$sum/count($result);
+            }
+        }
+        return $value;
+
+    }
+
 
 }

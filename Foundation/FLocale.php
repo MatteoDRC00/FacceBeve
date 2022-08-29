@@ -97,12 +97,12 @@ class FLocale {
         return $id;
     }
 
-    /**
+     /**
      * metodo che permette il salvataggio di un Locale nel db
      * @param ELocale $locale Locale da salvare
      * @return void
-     */
-    public static function ValutazioneLocale($id){
+
+    public static function ImmaginiLocale($id){
         $id = NULL;
         $db = FDB::getInstance();
         //Immagini Locale
@@ -112,7 +112,7 @@ class FLocale {
                 $db->chiaviEsterne("Locale_Immagini","ID_Locale","ID_Immagine",$id,$idImg);
             }
         }
-    }
+    }*/
 
     /**
     * Permette la load dal database

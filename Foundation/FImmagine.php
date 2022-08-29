@@ -7,10 +7,10 @@
  * @package Foundation
  */
 
-class FMediaUtente
+class FImmagine
 {
     /** nome della classe */
-    private static $class = "FImmagine";
+    private static string $class = "FImmagine";
     /** tabella con la quale opera */
     private static $table="Immagine";
     /** valori della tabella */
@@ -159,11 +159,6 @@ class FMediaUtente
         }
         return $img;
     }
-
-
-
-
-
 }
 
 ?>
