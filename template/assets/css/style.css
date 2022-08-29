@@ -526,6 +526,13 @@ section {
   padding: 60px 0;
 }
 
+.orario{
+  text-align: left;
+}
+
+.section .orario label,input{
+  margin: 4px;
+}
 .section-bg {
   background-color: #f3f8fa;
 }
@@ -635,20 +642,18 @@ section {
 }
 
 .services .items-body-content a{
+  color: black;
   padding: 10px;
   padding-right: 0px;
   display: grid;
-  grid-template-columns: 10fr 1fr;
   font-size: 17px;
   grid-gap: 10px;
-  border: 1px solid #3fcdc7;
-  cursor: pointer;
-
+  border-radius: 15px;
+  border: 1px solid black;
 }
 
-.services .items-body-content a:hover {
-  border-radius: 15px;
-  border: 1px solid #0B5AA2;
+.services .items-body-content a:hover{
+  color: #0a53be;
 }
 
 .services .items-body-content i {
