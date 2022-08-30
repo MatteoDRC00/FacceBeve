@@ -81,14 +81,21 @@ class EOrario{
     }
 
     /**
+     * Metodo che imposta l'orario di apertura del locale in un dato giorno, se viene passato un valore nullo allora il locale sarà chiuso;
+     * Quindi apertura : Chiusi
      * @param string $orario_apertura
      */
     public function setOrarioApertura(string $orario_apertura): void
     {
-        $this->orario_apertura = $orario_apertura;
+        if(isset($orario_apertura))
+            $this->orario_apertura = $orario_apertura;
+        else
+            $this->orario_apertura = "Chiusi";
     }
 
     /**
+     * Metodo che imposta l'orario di chiusura del locale in un dato giorno, se viene passato un valore nullo allora il locale sarà chiuso;
+     * Quindi apertura : stringa vuota(già l'apertura  ci dice che è chiuso)
      * @return string
      */
     public function getOrarioChiusura(): string
@@ -102,6 +109,10 @@ class EOrario{
     public function setOrarioChiusura(string $orario_chiusura): void
     {
         $this->orario_chiusura = $orario_chiusura;
+        if(isset($orario_chiusura))
+            $this->orario_chiusura = $orario_chiusura;
+        else
+            $this->orario_chiusura = "";
     }
 
     public function __toString(): string

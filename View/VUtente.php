@@ -122,7 +122,7 @@ class VUtente
      * @throws SmartyException
      */
     public function registra_utente() {
-        $this->smarty->display('registraz_utente.tpl');
+        $this->smarty->display('RegistrazioneUtente.tpl');
     }
 
     /**
@@ -130,7 +130,7 @@ class VUtente
      * @throws SmartyException
      */
     public function registra_trasportatore() {
-        $this->smarty->display('registraz_trasp.tpl');
+        $this->smarty->display('RegistrazioneProprietario.tpl');
     }
 
     /**
