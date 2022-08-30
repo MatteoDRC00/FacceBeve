@@ -91,6 +91,18 @@ class VRecensione{
     }
 
     /**
+     * Restituisce la descrizione della risposta ad una recensione
+     * Inviato con metodo post
+     * @return string
+     */
+    public function getDescrizioneRisposta(){
+        $value = null;
+        if (isset($_POST['descrizioneRisposta']))
+            $value = $_POST['descrizioneRisposta'];
+        return $value;
+    }
+
+    /**
      * Metodo richiamato quando un utente scrive/crea una recensione.
      * In caso di errori nella compilazione dei campi della recensione, verrÃ  ricaricata la stessa pagina con un messaggio esplicativo
      * dell'errore commesso in fase di compilazione.
@@ -99,7 +111,7 @@ class VRecensione{
      * di errore nella pagina di scrittura della recensione
      * @throws SmartyException
      */
-    public function showFormCreation($utente,$error)
+    public function showFormPost($utente,$error)
     {
         if (get_class($utente) == "EUtente") {
             //DA VEDERE GESTIONE ERRORI

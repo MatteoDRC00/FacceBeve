@@ -64,10 +64,10 @@ class ERecensione {
 	/**
          * @return int
          */
-        public function getCodice(): int
-        {
+    public function getCodice(): int
+    {
             return $this->codicerecensione;
-        }
+    }
 
     /**
      * @param EUtente $utente

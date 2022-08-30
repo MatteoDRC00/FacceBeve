@@ -202,7 +202,7 @@ class FRecensione{
      * metodo che permette il salvataggio di un Locale nel db
      * @param int $id Locale
      * @return float value
-     */
+
     public static function ValutazioneLocale($id): float    {
         $value=0;
         $db = FDB::getInstance();
@@ -221,8 +221,7 @@ class FRecensione{
             }
         }
         return $value;
-
-    }
+    } */
 
 
 }

@@ -1,6 +1,7 @@
 <?php
 
 class FPersistentManager {
+    private static FPersistentManager $_instance;
 
     /** Metodo che permette di salvare un oggetto sul db */
     public static function store($obj) {
@@ -9,8 +10,6 @@ class FPersistentManager {
         $FClass = $EClass;
         $FClass::store($obj);
     }
-
-
 
     /**   Metodo che permette di salvare un media di un oggetto sul db
      * @param obj oggetto di cui si vuole salavare il media
@@ -21,7 +20,13 @@ class FPersistentManager {
         $EClass = get_class($obj);
         $Fclass = str_replace("E", "F", $EClass);
         $Fclass::store($obj,$nome_file);
+    }
 
+    public static function getInstance(): FPersistentManager{
+        if ( !(self::$_instance instanceof self) ) {
+            self::$_instance = new self();
+        }
+        return self::$_instance;
     }
 
 

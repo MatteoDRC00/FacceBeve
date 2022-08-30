@@ -165,7 +165,6 @@ class CGestioneLocale{
             header('Location: /Faccebeve/Utente/login');
     }
 
-
     /**
      * Funzione utilizzata per eliminare un locale, di cui si è proprietari
      * @param $id id del locale da eliminare
@@ -175,14 +174,14 @@ class CGestioneLocale{
             $utente = unserialize($_SESSION['utente']);
             if (get_class($utente) == "EProprietario") {
                 $pm = FPersistentManager::getIstance();
-                if(pm->exist("id",$id)){
+                if(in_array($id,$pm->load("proprietario", $utente->getUsername(), "FLocale"))){
                     $pm->delete("id", $id, "FLocale");
                     header('Location: /FacceBeve/Utente/profile');
                 }else{
                     header('Location: /FacceBeve/'); //Dove ci rimanda?
                 }
 
-            }elseif(get_class($utente) == "ECliente"){
+            }elseif(get_class($utente) == "EUtente"){
                 header('Location: /FacceBeve/Utente/profile');
             }
         }
