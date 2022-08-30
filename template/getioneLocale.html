@@ -105,25 +105,25 @@
                             <label style="font-weight: bold">Aggiorna l'orario di apertura e chiusura: </label><br>
                             <div class="orario">
                                 <label>Lunedi: <input type="time" name="orario[0][0]"> <input type="time" name="orario[0][1]">
-                                    <input type="checkbox" id="close" name="close[0]" value="chiuso">
+                                    <input type="checkbox" id="close" name="orario[0][2]" value="chiuso">
                                     <label for="close"> Chiuso</label></label><br>
                                 <label>Martedi: <input type="time" name="orario[1][0]"> <input type="time" name="orario[1][1]">
-                                    <input type="checkbox" name="close[1]" value="chiuso">
+                                    <input type="checkbox" name="orario[1][2]" value="chiuso">
                                     <label for="close"> Chiuso</label></label><br>
                                 <label>Mercoledi: <input type="time" name="orario[2][0]"> <input type="time" name="orario[2][1]">
-                                    <input type="checkbox" name="close[2]" value="chiuso">
+                                    <input type="checkbox" name="orario[2][2]" value="chiuso">
                                     <label for="close"> Chiuso</label></label><br>
                                 <label>Giovedi: <input type="time" name="orario[3][0]"> <input type="time" name="orario[3][1]">
-                                    <input type="checkbox" name="close[3]" value="chiuso">
+                                    <input type="checkbox" name="orario[3][2]" value="chiuso">
                                     <label for="close"> Chiuso</label></label><br>
                                 <label>Venerdi: <input type="time" name="orario[4][0]"> <input type="time" name="orario[4][1]">
-                                    <input type="checkbox" name="close[4]" value="chiuso">
+                                    <input type="checkbox" name="orario[4][2]" value="chiuso">
                                     <label for="close"> Chiuso</label></label><br>
                                 <label>Sabato: <input type="time" name="orario[5][0]"> <input type="time" name="orario[5][1]">
-                                    <input type="checkbox" name="close[5]" value="chiuso">
+                                    <input type="checkbox" name="orario[5][2]" value="chiuso">
                                     <label for="close"> Chiuso</label></label><br>
                                 <label>Domenica: <input type="time" name="orario[6][0]"> <input type="time" name="orario[6][1]">
-                                    <input type="checkbox" name="close[6]" value="chiuso">
+                                    <input type="checkbox" name="orario[6][2]" value="chiuso">
                                     <label for="close"> Chiuso</label></label><br>
                             </div>
 
@@ -151,8 +151,8 @@
 
             <div class="items-body">
                 <div class="items-body-content row-cols-3">
-                    <a href="gestioneEvento.html">$Nome Evento</a>
-                    <input type="button" value="Gestisci evento">
+                    <p>$Nome Evento</p>
+                    <a href="gestioneEvento.html"><input type="button" value="Gestisci evento"></a>
                     <input type="button" value="Elimina evento">
                 </div>
             </div>
