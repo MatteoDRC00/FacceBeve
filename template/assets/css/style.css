@@ -641,36 +641,25 @@ section {
   grid-gap: 10px;
 }
 
-.services .items-body-content a{
+.services .items-body-content{
   color: black;
   padding: 10px;
-  padding-right: 0px;
-  display: grid;
+  display: inline-block;
   font-size: 17px;
   grid-gap: 10px;
-  border-radius: 15px;
+  border-radius: 10px;
   border: 1px solid black;
+  font-weight: bold;
+}
+
+.services .items-body-content input{
+  float: right;
+  width: 200px;
+  font-weight: bold;
 }
 
 .services .items-body-content a:hover{
   color: #0a53be;
-}
-
-.services .items-body-content i {
-  align-self: center;
-  font-size: 15px;
-  color: #0B5AA2;
-  font-weight: bold;
-  animation: icon 1.5s infinite forwards;
-}
-
-@keyframes icon {
-  0%,100%{
-    transform: translate(0px);
-  }
-  50% {
-    transform: translate(3px);
-  }
 }
 
 .services .icon-box {
