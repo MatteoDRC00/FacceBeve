@@ -4,7 +4,7 @@
  * @author Gruppo8
  * @package Entity
  */
-class ERecensione {
+class ERecensione implements JsonSerializable {
 
     private int $id;
     private EUtente $utente;
@@ -197,7 +197,23 @@ class ERecensione {
     {
         $this->counter = $counter;
     }
-	
+
+
+    public function jsonSerialize()
+    {
+        return
+            [
+                'id'   => $this->getId(),
+                'utente' => $this->getUtente(),
+                'locale'   => $this->getLocale(),
+                'descrizione'   => $this->getDescrizione(),
+                'titolo'   => $this->getTitolo(),
+                'voto'   => $this->getVoto(),
+                'data'   => $this->getData(),
+                'segnalata'   => $this->isSegnalata(),
+                'counter'   => $this->getCounter()
+            ];
+    }
 
 
 	// ----------------------------- TOSTRING --------------------------------

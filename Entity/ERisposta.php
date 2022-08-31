@@ -1,5 +1,5 @@
 <?php
-class ERisposta {
+class ERisposta implements JsonSerializable {
 
     private ERecensione $recensione;
 	private EProprietario $proprietario;
@@ -44,6 +44,27 @@ class ERisposta {
 	public function setProprietario(EProprietario $proprietario) : void{
         $this->proprietario=$proprietario;
 	}
+
+    public function jsonSerialize()
+    {
+        return
+            [
+                'recensione'   => $this->getRecensione(),
+                'proprietario' => $this->getProprietario(),
+                'descrizione'   => $this->getDescrizione()
+            ];
+    }
+
+
+    /**
+     * @return $print String
+     */
+    public function __toString() {
+        $print = "\nrecensione: ".$this->getRecensione()."\n"."proprietario: ".$this->getProprietario()."\n"."descrizione: ".$this->getDescrizione()."\n";
+
+        return $print;
+    }
+
 
 }
 ?>

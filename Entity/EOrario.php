@@ -4,7 +4,7 @@
  *  - orario_aperuta: indica l'ora di apertura del locale in base al giorno della settimana
  *  - orario_chiusura: indica l'ora di chiusura del locale in base al giorno della settimana
  */
-class EOrario{
+class EOrario implements JsonSerializable {
 
     private int $id;
     private string $giorno_settimana;
@@ -115,9 +115,26 @@ class EOrario{
             $this->orario_chiusura = "";
     }
 
-    public function __toString(): string
+
+
+    public function jsonSerialize()
     {
-        return $this->giorno_settimana.": ".$this->orario_apertura." - ".$this->orario_chiusura;
+        return
+            [
+                'is'   => $this->getId(),
+                'giorno_settimana' => $this->getGiornoSettimana(),
+                'orario_apertura'   => $this->getOrarioApertura(),
+                'orario_chiusura'   => $this->getOrarioChiusura()
+            ];
+    }
+
+    /**
+     * @return $print String
+     */
+    public function __toString() {
+        $print = "\nid: ".$this->getId()."\n"."giorno_settimana: ".$this->getGiornoSettimana()."\n"."orario_apertura: ".$this->getOrarioApertura()."\n"."orario_chiusura: ".$this->getOrarioChiusura()."\n";
+
+        return $print;
     }
 
 

@@ -9,7 +9,7 @@
      *  @author Gruppo8
      *  @package Entity
      */
-    class ELocalizzazione{
+    class ELocalizzazione implements JsonSerializable {
 		
 	//	private static int $contalo = 0;
 
@@ -135,10 +135,31 @@
             $this->CAP = $CAP;
         }
 
-        public function __toString(): string
+
+
+
+
+        public function jsonSerialize()
         {
-            return $this->indirizzo.", n°".$this->numCivico.", ".$this->citta.", ".$this->CAP.", ".$this->nazione;
+            return
+                [
+                    'codiceluogo'   => $this->getCodice(),
+                    'indirizzo' => $this->getIndirizzo(),
+                    'numCivico'   => $this->getNumCivico(),
+                    'citta'   => $this->getCitta(),
+                    'nazione'   => $this->getNazione(),
+                    'cap'   => $this->getCAP()
+                ];
         }
 
+
+        /**
+         * @return $print String
+         */
+        public function __toString() {
+            $print = "\ncodiceluogo: ".$this->getCodice()."\n"."indirizzo: ".$this->getIndirizzo()."\n"."numCivico: ".$this->getNumCivico()."\n"."citta: ".$this->getCitta()."\n"."nazione: ".$this->getNazione()."\n"."CAP: ".$this->getCAP()."\n";
+
+            return $print;
+        }
 
     }

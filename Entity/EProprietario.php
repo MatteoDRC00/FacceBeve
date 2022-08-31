@@ -4,7 +4,8 @@
  *  @author Gruppo 8
  *  @package Entity
  */ 
-class EProprietario {
+class EProprietario implements JsonSerializable
+{
 
     private string $password;
     private string $username;
@@ -125,7 +126,28 @@ class EProprietario {
         $this->img_profilo = $img_profilo;
     }
 
+    public function jsonSerialize()
+    {
+        return
+            [
+                'password'   => $this->getPassword(),
+                'username' => $this->getUsername(),
+                'email'   => $this->getEmail(),
+                'nome'   => $this->getNome(),
+                'cognome'   => $this->getCognome(),
+                'img_profilo'   => $this->getImgProfilo()
+            ];
+    }
 
+
+    /**
+     * @return $print String
+     */
+    public function __toString() {
+        $print = "\npassword: ".$this->getPassword()."\n"."username: ".$this->getUsername()."\n"."email: ".$this->getEmail()."\n"."nome: ".$this->getNome()."\n"."cognome: ".$this->getCognome()."\n"."img_profilo: ".$this->getImgProfilo()."\n";
+
+        return $print;
+    }
 
 }
 
