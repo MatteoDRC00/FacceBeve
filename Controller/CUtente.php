@@ -32,7 +32,7 @@ class CUtente
     static function login(){
         if($_SERVER['REQUEST_METHOD']=="GET"){
             if(static::isLogged()) {
-                $pm = new FPersistentManager();
+                $pm = FPersistentManager::getIstance();
                 $view = new VUtente();
                 $result = $pm->loadEventi($_SESSION['utente']);
                 $view->loginOk($result);
@@ -93,7 +93,7 @@ class CUtente
         session_start();
         session_unset();
         session_destroy();
-       // header('Location: /FacceBeve/Utente/login');
+        header('Location: /FacceBeve/Utente/login');
     }
 
     public function error() {

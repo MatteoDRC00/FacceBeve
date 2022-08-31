@@ -19,7 +19,7 @@ class CGestioneLocale{
     static function creaLocale(){
       if(CUtente::isLogged()){
           if ($_SERVER['REQUEST_METHOD'] == "GET") {
-              $view = new VGestioneAnnunci();
+              $view = new VGestioneLocale();
               $proprietario = unserialize($_SESSION['utente']);
               if (get_class(proprietario) == "EProprietario") {
                   $view->showFormCreation($proprietario,null);
@@ -32,7 +32,7 @@ class CGestioneLocale{
               if (get_class(proprietario) == "EProprietario") {
                   $view = new VGestioneLocale();
                   $nomeLocale = $view->getNomeLocale();
-                  $descrizione = $view->getDescrizione();
+                  $descrizione = $view->getDescrizioneLocale();
                   $numTelefono = $view->getNumTelefono();
                   $categoria = $view->getCategoria();
 
@@ -94,7 +94,7 @@ class CGestioneLocale{
                     $pm->update("nome", $a, "id", $locale->getId(), "FLocale");
                 }
                 //Descrizione Locale
-                $a = $view->getDescrizione();
+                $a = $view->getDescrizioneLocale();
                 if (($a != $locale->getDescrizione()) && isset($a)) {
                     $locale->setDescrizione($a);
                     $pm->update("descrizione", $a, "id", $locale->getId(), "FLocale");
@@ -189,6 +189,38 @@ class CGestioneLocale{
             header('Location: /FacceBeve/Utente/login');
     }
 
+    static function creaEvento(){
+        if(CUtente::isLogged()){
+            if ($_SERVER['REQUEST_METHOD'] == "GET") {
+                $view = new VGestioneAnnunci();
+                $proprietario = unserialize($_SESSION['utente']);
+                if (get_class(proprietario) == "EProprietario") {
+                    $view->showFormCreation($proprietario,null);
+                }elseif (get_class($proprietario) == "EUtente") {
+                    $view->showFormCreation($proprietario,"errore da definire");
+                }
+            } elseif ($_SERVER['REQUEST_METHOD'] == "POST"){
+                $pm = FPersistentManager::GetIstance();
+                $proprietario = unserialize($_SESSION['utente']);
+                if (get_class(proprietario) == "EProprietario") {
+                    $view = new VGestioneLocale();
+                    $nomeEvento = $view->getNomeEvento();
+                    $descrizioneEvento = $view->getDescrizioneEvento();
+                    $dataEvento = $view->getDataEvento();
+
+                    $Evento = new EEvento($nomeEvento,$descrizioneEvento,$dataEvento); //Poi salvalo nel locale
+
+                    list ($stato, $nome, $type) = static::upload('img'); //mo non mi sta tornando RIP
+
+
+                }elseif(get_class($proprietario) == "EUtente"){
+                    header('Location: /FacceBeve/');
+                }
+            }
+        }
+    }
+
+
 
     /**
      * Funzione che si preoccupa di verificare lo stato dell'immagine inserita
@@ -201,7 +233,7 @@ class CGestioneLocale{
         $type = null;
         $nome = null;
         $max_size = 300000;
-        $result = is_uploaded_file($_FILES[$nome_file]['tmp_name']);
+        $result = is_uploaded_file($_FILES[$nome_file]['tmp_name']); //true se è stato caricato via HTTP POST.
         if (!$result) {
             $ris = "no_img";
         } else {

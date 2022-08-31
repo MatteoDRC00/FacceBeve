@@ -69,8 +69,8 @@ class FEvento {
     }
 
     /**
-     * metodo che permette il salvataggio di un Locale nel db
-     * @param ELocale $locale Locale da salvare
+     * metodo che permette di salvare le immagini di un evento nel db
+     * @param EEVento $evento di cui si vuole salvare le img
      * @return void
      */
     public static function addImmagine(EEvento $evento){

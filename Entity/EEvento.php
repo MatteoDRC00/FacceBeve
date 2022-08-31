@@ -15,7 +15,6 @@ class EEvento{
     private DateTime $data;
 
 
-
     /**
      * @param string $nome
      * @param string $descrizione

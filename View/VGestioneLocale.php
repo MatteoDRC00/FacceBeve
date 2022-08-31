@@ -28,17 +28,110 @@ class VGestioneLocale{
     }
 
     /**
+     * Restituisce il nome dell'evento che si vuole creare
+     * Inviato con metodo post
+     * @return string
+     */
+    public function getNomeEvento(): ?string
+    {
+        $value = null;
+        if (isset($_POST['nomeEvento'])) //NON SO SE VANNO UTLIZZATI NOMI DIVERSI
+            $value = $_POST['nomeEvento'];
+        return $value;
+    }
+
+    /**
      * Restituisce la descrizione del locale che si vuole creare
      * Inviato con metodo post
      * @return string
      */
-    public function getDescrizione(): ?string
+    public function getDescrizioneLocale(): ?string
     {
         $value = null;
         if (isset($_POST['descrizioneLocale'])) //NON SO SE VANNO UTLIZZATI NOMI DIVERSI
             $value = $_POST['descrizioneLocale'];
         return $value;
     }
+
+    /**
+     * Restituisce la descrizione dell'evento che si vuole creare
+     * Inviato con metodo post
+     * @return string
+     */
+    public function getDescrizioneEvento(): ?string
+    {
+        $value = null;
+        if (isset($_POST['descrizioneEvento'])) //NON SO SE VANNO UTLIZZATI NOMI DIVERSI
+            $value = $_POST['descrizioneEvento'];
+        return $value;
+    }
+
+    /**
+     * Restituisce la descrizione dell'evento che si vuole creare
+     * Inviato con metodo post
+     * @return string contenente il valore inserito dall'utente
+     */
+    public function getDataEvento(): ?string
+    {
+        $value = null;
+        if (isset($_POST['dataEvento'])) //NON SO SE VANNO UTLIZZATI NOMI DIVERSI
+            $value = $_POST['dataEvento'];
+        return $value;
+    }
+
+
+
+
+    /**
+     *               DA MODIFICAREEE
+     * Metodo richiamato quando un cliente o un trasportatore creano un annuncio.
+     * In caso di errori nella compilazione dei campi dell'annuncio, verrÃ  ricaricata la stessa pagina con un messaggio esplicativo
+     * dell'errore commesso in fase di compilazione.
+     * @param $utente oggetto utente che effettua l'inserimento dei dati nei campi dell'annuncio
+     * @param $error codice di errore con svariati significati. In base al suo valore verrÃ  eventualmente visualizzato un messaggio
+     * di errore nella pagina di creazione dell'annuncio
+     * @throws SmartyException
+     */
+    public function showFormCreation($utente,$error)
+    {
+        if (get_class($utente) == "ETrasportatore") {
+            switch ($error) {
+                case "type" :
+                    $this->smarty->assign('errorType', "errore");
+                    break;
+                case "size" :
+                    $this->smarty->assign('errorSize', "errore");
+                    break;
+                case "no" :
+                    $this->smarty->assign('successo', "si");
+                    break;
+                case "no_part_arrivo":
+                    $this->smarty->assign('part_arrivo', "errore");
+                    break;
+                case "no_tappe":
+                    $this->smarty->assign('tappe', "errore");
+                    break;
+            }
+            $this->smarty->assign('nome', $utente->getName());
+            $this->smarty->assign('cognome', $utente->getSurname());
+            $this->smarty->assign('userlogged', "loggato");
+            $this->smarty->display('scrivi_annuncio_trasp.tpl');
+        }
+        elseif (get_class($utente) == "ECliente") {
+            $this->stato_form($error);
+            $this->smarty->assign('nome', $utente->getName());
+            $this->smarty->assign('cognome', $utente->getSurname());
+            $this->smarty->assign('userlogged', "loggato");
+            $this->smarty->display('scrivi_annuncio_cliente.tpl');
+        }
+
+    }
+
+
+
+
+
+
 
     /**
      * Restituisce il numero di telefono del locale che si vuole creare
