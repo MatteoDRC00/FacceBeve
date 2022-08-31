@@ -1,6 +1,6 @@
 <?php
 
-class EImmagine{
+class EImmagine implements JsonSerializable {
     /**
      * Nome del media
      * @AttributeType string
@@ -101,6 +101,28 @@ class EImmagine{
         $this->immagine = $immagine;
     }
 
+
+    public function jsonSerialize()
+    {
+        return
+            [
+                'nome' => $this->getNome(),
+                'size'   => $this->getSize(),
+                'type'   => $this->getType(),
+                'immagine'   => $this->getImmagine()
+            ];
+    }
+
+
+
+    /**
+     * @return $print String
+     */
+    public function __toString() {
+        $print = "\nome: ".$this->getNome()."\n"."size: ".$this->getSize()."\n"."type: ".$this->getType()->getUsername()."\n"."immagine: ".$this->getImmagine()."\n";
+
+        return $print;
+    }
 
 
 }

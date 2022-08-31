@@ -4,7 +4,7 @@
  *  @author Gruppo 8
  *  @package Entity
  */ 
-class EAdmin {
+class EAdmin implements JsonSerializable{
 
     private string $password;
     private string $username;
@@ -71,5 +71,25 @@ class EAdmin {
         $this->password = $password;
     }
 
+
+    public function jsonSerialize()
+    {
+        return
+            [
+                'password'   => $this->getPassword(),
+                'username' => $this->getUsername(),
+                'email'   => $this->getEmail(),
+            ];
+    }
+
+
+    /**
+     * @return $print String
+     */
+    public function __toString() {
+        $print = "\nusername: ".$this->getUsername()."\n"."email: ".$this->getEmail()."\n"."password: ".$this->getPassword()."\n";
+
+        return $print;
+    }
 }
 ?>

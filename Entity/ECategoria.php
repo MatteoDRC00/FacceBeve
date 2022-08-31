@@ -5,7 +5,7 @@
  *  @author Gruppo8
  *  @package Entity
  */
-class ECategoria{
+class ECategoria implements JsonSerializable{
 
     private string $genere;
     private string $descrizione;
@@ -51,6 +51,28 @@ class ECategoria{
     {
         $this->descrizione = $descrizione;
     }
+
+    public function jsonSerialize()
+    {
+        return
+            [
+                'genere'   => $this->getGenere(),
+                'descrizione' => $this->getDescrizione(),
+
+            ];
+    }
+
+
+
+    /**
+     * @return $print String
+     */
+    public function __toString() {
+        $print = "\ngenere: ".$this->getGenere()."\n"."descrizione: ".$this->getDescrizione()."\n";
+
+        return $print;
+    }
+
 
 }
 ?>

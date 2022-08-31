@@ -7,7 +7,7 @@
  *  @author Gruppo8
  *  @package Entity
  */
-class EEvento{
+class EEvento implements JsonSerializable{
 
     private int $id;
     private string $nome;
@@ -89,6 +89,27 @@ class EEvento{
     public function setData(DateTime $data): void
     {
         $this->data = $data;
+    }
+
+    public function jsonSerialize()
+    {
+        return
+            [
+                'id'   => $this->getId(),
+                'nome' => $this->getNome(),
+                'descrizione'   => $this->getNumTelefono(),
+                'data'  =>$this->getData()
+            ];
+    }
+
+
+    /**
+     * @return $print String
+     */
+    public function __toString() {
+        $print = "\nid: ".$this->getId()."\n"."nome: ".$this->Nome()."\n"."descrizione: ".$this->getDescrizione()."\n"."data: ".$this->getData()."\n";
+
+        return $print;
     }
 
 

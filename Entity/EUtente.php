@@ -158,6 +158,32 @@ class EUtente {
 
 
 
+    public function jsonSerialize()
+    {
+        return
+            [
+                'password'   => $this->getPassword(),
+                'username' => $this->getUsername(),
+                'email'   => $this->getEmail(),
+                'nome'   => $this->getNome(),
+                'cognome'   => $this->getCognome(),
+                'localipreferiti'   => $this->getLocalipreferiti(),
+                'iscrizione'   => $this->getIscrizione(),
+                'img_profilo'   => $this->getImgProfilo()
+            ];
+    }
+
+
+    /**
+     * @return $print String
+     */
+    public function __toString() {
+        $print = "\npassword: ".$this->getPassword()."\n"."username: ".$this->getUsername()."\n"."email: ".$this->getEmail()."\n"."nome: ".$this->getNome()."\n"."cognome: ".$this->getCognome()."\n"."localipreferiti: ".$this->getLocalipreferiti()."\n"."iscrizione: ".$this->getIscrizione()."\n";
+
+        return $print;
+    }
+
+
 //-----------------------------Altri Metodi-----------------------------
     /**
      * @param array $locale
