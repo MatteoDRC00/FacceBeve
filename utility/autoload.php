@@ -20,9 +20,9 @@ function my_autoload($className) {
             include_once( 'Controller/'. $className . '.php' );
             break;
 
-   /*     case 'I':
-            include_once( $className . '.php' );
-            break;*/
+        case 'U':
+            include_once ('Foundation/Utility/'.$className.'.php');
+            break;
 
     }
 }

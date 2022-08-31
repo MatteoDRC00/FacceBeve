@@ -47,33 +47,28 @@ class CUtente
 
     /**
      * Funzione che si occupa di verifica l'esistenza di un utente con username e password inseriti nel form di login.
-     * 1) se, dopo la ricerca nel db non si hanno risultati ($utente = null) oppure se l'utente si trova nel db ma ha lo stato false
-     *    viene ricaricata la pagina con l'aggunta dell'errore nel login.
-     * 2) se l'utente ed è attivo, avviene il reindirizzamaneto alla homepage;
+     * 1) se, dopo la ricerca nel db non si hanno risultati ($utente = null)  SI VEDRA' ALLA FINE DEL PROGETTOoppure se l'utente si trova nel db ma ha lo stato false //FACOLTATIVO
+     *    viene ricaricata la pagina con l'aggiunta dell'errore nel login.
+     * 2) se l'utente esiste ed è attivo(in sessione), avviene il reindirizzamaneto alla homepage;
      * 3) se le credenziali inserite rispettano i vincoli per l'amministratore, avviene il reindirizamento alla homepage dell'amministratore;
-     * 4) se si verifica la presenza di particolari cookie avviene il reindirizzamento alla pagina specifica.
+     * 4) se si verifica la presenza di particolari cookie avviene il reindirizzamento alla pagina specifica //FACOLTATIVO.
+     * @throws SmartyException
      */
     static function verifica() {
         $view = new VUtente();
         $pm = new FPersistentManager();
-        $utente = $pm->loadLogin($_POST['username'], $_POST['password']);
-      /*  if ($utente != null && $utente->getState() != false) {
-            if (session_status() == PHP_SESSION_NONE) {
-                session_start();
+        $UsernameLogin = $view->getUsername();
+        $PasswordLogin = $view->getPassword();
+        $utente = $pm->loadLogin($UsernameLogin, $PasswordLogin);
+        if ($utente != null) {
+            $sessione = USession::getInstance();
+            if (!($sessione->leggi_valore('utente'))) {
                 $salvare = serialize($utente);
-                $_SESSION['utente'] = $salvare;
+                $sessione->imposta_valore('utente',$salvare);
                 if ($_POST['username'] != 'admin') {
-                    if (isset($_COOKIE['chat']) && $_COOKIE['chat'] != $_POST['email']){
-                        header('Location: /FillSpaceWEB/Messaggi/chat');
-                    }
-                    elseif (isset($_COOKIE['nome_visitato'])) {
-                        header('Location: /FacceBeve/Utente/dettaglioutente');
-                    }
-                    else {
-                        if (isset($_COOKIE['chat']))
-                            setcookie("chat", null, time() - 900,"/");
-                        else
-                            header('Location: /FacceBeve/');
+                    //Ipoteticamente utile, per tornare nell'ultima pagina visitata
+                    if (isset($_COOKIE['nome_visitato'])) {
+                        header('Location: /FacceBeve/Utente/daVedere');
                     }
                 }
                 else {
@@ -83,16 +78,15 @@ class CUtente
         }
         else {
             $view->loginError();
-        }*/
+        }
     }
 
     /**
      * Funzione che provvede alla rimozione delle variabili di sessione, alla sua distruzione e a rinviare alla homepage
      */
     static function logout(){
-        session_start();
-        session_unset();
-        session_destroy();
+        $sessione = USession::getInstance();
+        $sessione->chiudi_sessione();
         header('Location: /FacceBeve/Utente/login');
     }
 

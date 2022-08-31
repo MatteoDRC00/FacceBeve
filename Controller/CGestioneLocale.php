@@ -63,6 +63,10 @@ class CGestioneLocale{
                   pm->store($localizzazioneLocale); //che sia giusto?
                   pm->store($Orario);
                   $Locale = new ELocale($nomeLocale,$descrizione,$numTelefono,$proprietario,$categoria,$localizzazioneLocale,null,$Orario);
+
+                  list ($stato, $nome, $type) = static::upload('img');
+
+
                   pm->store($Locale);
 
               }elseif(get_class($proprietario) == "EUtente"){
@@ -189,6 +193,15 @@ class CGestioneLocale{
             header('Location: /FacceBeve/Utente/login');
     }
 
+
+    /**
+     * Funzione che viene richiamata per la creazione di un evento. Si possono avere diverse situazioni:
+     * se l'utente non è loggato  viene reindirizzato alla pagina di login perchè solo gli utenti loggati possono interagire con gli eventi.
+     * se l'utente è loggato come Proprietario(solo loro possono aggiungere eventi):
+     * 1) se il metodo di richiesta HTTP è GET viene visualizzato il form di creazione della ricerca;
+     * 2) se il metodo di richiesta HTTP è POST viene richiamata la funzione Creation().
+     * 3) se il metodo di richiesta HTTP è diverso da uno dei precedenti -->errore.
+     */
     static function creaEvento(){
         if(CUtente::isLogged()){
             if ($_SERVER['REQUEST_METHOD'] == "GET") {
@@ -217,6 +230,8 @@ class CGestioneLocale{
                     header('Location: /FacceBeve/');
                 }
             }
+        }else{
+            header('Location: /FacceBeve/Utente/Login');
         }
     }
 

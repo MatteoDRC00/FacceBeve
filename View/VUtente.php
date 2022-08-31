@@ -18,6 +18,30 @@ class VUtente
     }
 
     /**
+     * Restituisce (se immesso) lo username inserito dall'utente(utilizzato nei login/registrazione/modifica profilo)
+     * Inviato con metodo post
+     * @return string contenente il valore inserito dall'utente
+     */
+    public function getUsername(){
+        $value = null;
+        if (isset($_POST['username']))
+            $value = $_POST['username'];
+        return $value;
+    }
+
+    /**
+     * Restituisce (se immesso) la password inserita dall'utente(utilizzato nei login/registrazione/modifica profilo)
+     * Inviato con metodo post
+     * @return string contenente il valore inserito dall'utente
+     */
+    public function getPassword(){
+        $value = null;
+        if (isset($_POST['password']))
+            $value = $_POST['password'];
+        return $value;
+    }
+
+    /**
      * Funzione che si occupa di gestire la visualizzazione della form di login
      * @throws SmartyException
      */
@@ -46,7 +70,7 @@ class VUtente
      * @throws SmartyException
      */
     public function loginError() {
-        $this->smarty->assign('error',"errore");
+        $this->smarty->assign('error',"errore"); //Utente inesistente
         $this->smarty->display('login.tpl');
     }
 
@@ -194,12 +218,12 @@ class VUtente
             $type = $image->getType();
         }
         elseif ($tipo == 'user') {
-            $data = file_get_contents( $_SERVER['DOCUMENT_ROOT'] . '/FillSpaceWEB/Smarty/immagini/user.png');
+            $data = file_get_contents( $_SERVER['DOCUMENT_ROOT'] . '/FacceBeve/Smarty/immagini/user.png'); //Immagine generica per l'utente
             $pic64= base64_encode($data);
             $type = "image/png";
         }
         else {
-            $data = file_get_contents( $_SERVER['DOCUMENT_ROOT'] . '/FillSpaceWEB/Smarty/immagini/truck2.png');
+            $data = file_get_contents( $_SERVER['DOCUMENT_ROOT'] . '/FillSpaceWEB/Smarty/immagini/truck2.png'); //Immagine generica per il proprietario
             $pic64= base64_encode($data);
             $type = "image/png";
         }

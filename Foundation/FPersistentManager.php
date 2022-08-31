@@ -1,6 +1,7 @@
 <?php
 
 class FPersistentManager {
+
     private static FPersistentManager $_instance;
 
     /** Metodo che permette di salvare un oggetto sul db */
