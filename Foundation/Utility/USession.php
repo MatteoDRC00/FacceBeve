@@ -35,7 +35,7 @@ class USession
         session_start();
         session_unset(); //Dealloca la RAM, i.e., libera tutte le variabili di sessione attualmente registrate.
         session_destroy(); //Distrugge il file sul file system del server,i.e., distrugge tutti i dati associati alla sessione corrente
-        setcookie(PHPSESSID,''); //Svuota il cookie su client
+        setcookie('PHPSESSID',''); //Svuota il cookie su client
     }
 
 

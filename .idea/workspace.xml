@@ -5,14 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f9f995ce-58bb-4300-892b-2c5d0510049d" name="Changes" comment="login e registrazione aggiunta logo in alto da completare">
-      <change afterPath="$PROJECT_DIR$/Foundation/Utility/USession.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controller/CGestioneLocale.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/CGestioneLocale.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controller/CUtente.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/CUtente.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Foundation/FPersistentManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/Foundation/FPersistentManager.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Foundation/Utility/USessioni.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/View/VUtente.php" beforeDir="false" afterPath="$PROJECT_DIR$/View/VUtente.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utility/autoload.php" beforeDir="false" afterPath="$PROJECT_DIR$/utility/autoload.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Foundation/Utility/USession.php" beforeDir="false" afterPath="$PROJECT_DIR$/Foundation/Utility/USession.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +63,10 @@
       <recent name="C:\Users\matte\Documents\GitHub\FacceBeve\template" />
     </key>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.getioneLocale.html">
+  <component name="RunManager" selected="JavaScript Debug.Login.html">
+    <configuration name="Login.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/FacceBeve/Smarty/html/Login.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
     <configuration name="areaPersonaleProprietario.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/FacceBeve/template/areaPersonaleProprietario.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
@@ -81,16 +79,13 @@
     <configuration name="infoLocale.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/FacceBeve/template/infoLocale.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
-    <configuration name="portfolio.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/FacceBeve/template/portfolio.html" useBuiltInWebServerPort="true">
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JavaScript Debug.Login.html" />
+        <item itemvalue="JavaScript Debug.infoLocale.html" />
         <item itemvalue="JavaScript Debug.getioneLocale.html" />
         <item itemvalue="JavaScript Debug.areaPersonaleProprietario.html" />
         <item itemvalue="JavaScript Debug.contact.html" />
-        <item itemvalue="JavaScript Debug.infoLocale.html" />
-        <item itemvalue="JavaScript Debug.portfolio.html" />
       </list>
     </recent_temporary>
   </component>

@@ -2,6 +2,7 @@
 
 class CUtente
 {
+    //DA RIVEDEREEEEEEEEEEEEEEEEEE
     /**
      * Metodo che verifica se l'utente è loggato
      */
@@ -12,10 +13,10 @@ class CUtente
                 //header('Cache-Control: no cache'); //no cache
                 //session_cache_limiter('private_no_expire'); // works
                 //session_cache_limiter('public'); // works too
-                session_start();
+                $sessione = USession::getInstance();
             }
         }
-        if (isset($_SESSION['utente'])) {
+        if (!($sessione->leggi_valore('utente'))) {
             $identificato = true;
         }
         return $identificato;
@@ -33,8 +34,9 @@ class CUtente
         if($_SERVER['REQUEST_METHOD']=="GET"){
             if(static::isLogged()) {
                 $pm = FPersistentManager::getIstance();
+                $sessione = USession::getInstance();
                 $view = new VUtente();
-                $result = $pm->loadEventi($_SESSION['utente']);
+                $result = $pm->loadEventi($sessione->leggi_valore('utente'));
                 $view->loginOk($result);
             }
             else{
