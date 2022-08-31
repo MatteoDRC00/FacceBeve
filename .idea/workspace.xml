@@ -4,15 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="152f96c7-1cf8-4e05-a3b8-32cadffc05df" name="Changes" comment="login e registrazione aggiunta logo in alto da completare">
+    <list default="true" id="152f96c7-1cf8-4e05-a3b8-32cadffc05df" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-<<<<<<< Updated upstream
-      <change beforePath="$PROJECT_DIR$/Entity/ELocale.php" beforeDir="false" afterPath="$PROJECT_DIR$/Entity/ELocale.php" afterDir="false" />
-=======
-      <change beforePath="$PROJECT_DIR$/template/areaPersonaleProprietario.html" beforeDir="false" afterPath="$PROJECT_DIR$/template/areaPersonaleProprietario.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/assets/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/template/assets/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/getioneLocale.html" beforeDir="false" afterPath="$PROJECT_DIR$/template/getioneLocale.html" afterDir="false" />
->>>>>>> Stashed changes
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
