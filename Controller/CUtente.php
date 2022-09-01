@@ -5,17 +5,24 @@ class CUtente
     //DA RIVEDEREEEEEEEEEEEEEEEEEE
     /**
      * Metodo che verifica se l'utente è loggato
+     * @return boolean $identificato indica se l'utente era già loggato o meno
      */
     static function isLogged() {
         $identificato = false;
-        if (isset($_COOKIE['PHPSESSID'])) {
-            if (session_status() == PHP_SESSION_NONE) {
-                //header('Cache-Control: no cache'); //no cache
-                //session_cache_limiter('private_no_expire'); // works
-                //session_cache_limiter('public'); // works too
-                $sessione = USession::getInstance();
-            }
-        }
+        $sessione = USession::getInstance();
+
+        /* if (isset($_COOKIE['PHPSESSID'])) {
+          //   Il PHPSESSID Viene utilizzato per stabilire una sessione utente e trasmettere dati di stato tramite un cookie temporaneo,
+          //   comunemente denominato cookie di sessione. (scade alla chiusura del browser)
+
+
+             if (session_status() == PHP_SESSION_NONE) {
+                 //header('Cache-Control: no cache'); //no cache
+                 //session_cache_limiter('private_no_expire'); // works
+                 //session_cache_limiter('public'); // works too
+             }
+        }*/
+
         if (!($sessione->leggi_valore('utente'))) {
             $identificato = true;
         }
@@ -102,11 +109,12 @@ class CUtente
      * 1) se il metodo della richiesta HTTP è GET e si è loggati, avviene il reindirizzamento alla homepage;
      * 2) se il metodo della richiesta HTTP è GET e non si è loggati, avviene il reindirizzamento vero e proprio alla form di registrazione;
      * 3) se il metodo della richiesta HTTP è POST viene invocato il metodo registra_proprietario() che si occupa della gestione dei dati inseriti nella form.
+     * @throws SmartyException
      */
     static function registrazioneProprietario() {
         if($_SERVER['REQUEST_METHOD']=="GET") {
             if (static::isLogged()) {
-                header('Location: /FillSpaceWEB/');
+                header('Location: /FacceBeve/');
             }
             else {
                 $view = new VUtente();
@@ -118,10 +126,11 @@ class CUtente
     }
 
     /**
-     * Funzione che si occupa di mostrare la form di registrazione per il cliente.
+     * Funzione che si occupa di mostrare la form di registrazione per l'utente.
      * 1) se il metodo della richiesta HTTP è GET e si è loggati, avviene il reindirizzamento alla homepage;
      * 2) se il metodo della richiesta HTTP è GET e non si è loggati, avviene il reindirizzamento vero e proprio alla form di registrazione;
      * 3) se il metodo della richiesta HTTP è POST viene invocato il metodo registra_cliente() che si occupa della gestione dei dati inseriti nella form.
+     * @throws SmartyException
      */
     static function registrazioneUtente(){
         if($_SERVER['REQUEST_METHOD']=="GET") {
@@ -146,11 +155,14 @@ class CUtente
      */
     static function regist_utente_verifica () {
         $pm = new FPersistentManager();
-        $veremail = $pm->exist("username", $_POST['username'],"FUtente");
         $view = new VUtente();
-        if ($veremail){
-            $view->registrazioneCliError("email");
+        $usercheck = $view->getUsername();
+        $verusername = $pm->exist("username", $usercheck,"FUtente");
+
+        if ($verusername){
+            $view->registrazioneCliError("username"); //username già esistente
         }
+
         else {
             $cliente = new ECliente($_POST['nome'], $_POST['cognome'], $_POST['email'], $_POST['password'], true);
             if ($cliente != null) {

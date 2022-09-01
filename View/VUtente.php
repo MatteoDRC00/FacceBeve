@@ -142,7 +142,7 @@ class VUtente
     } */
 
     /**
-     * Funzione che si occupa di gestire la visualizzazione della form di registrazione del cliente
+     * Funzione che si occupa di gestire la visualizzazione della form di registrazione del Utente
      * @throws SmartyException
      */
     public function registra_utente() {
@@ -150,10 +150,10 @@ class VUtente
     }
 
     /**
-     * Funzione che si occupa di gestire la visualizzazione della form di registrazione del trasportatore
+     * Funzione che si occupa di gestire la visualizzazione della form di registrazione del Proprietario
      * @throws SmartyException
      */
-    public function registra_trasportatore() {
+    public function registra_proprietario() {
         $this->smarty->display('RegistrazioneProprietario.tpl');
     }
 
