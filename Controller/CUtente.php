@@ -160,13 +160,13 @@ class CUtente
         $verusername = $pm->exist("username", $usercheck,"FUtente");
 
         if ($verusername){
-            $view->registrazioneCliError("username"); //username già esistente
+            $view->registrazioneUtenteError ("username"); //username già esistente
         }
-
         else {
-            $cliente = new ECliente($_POST['nome'], $_POST['cognome'], $_POST['email'], $_POST['password'], true);
-            if ($cliente != null) {
-                if (isset($_FILES['file'])) {
+            $utente = new EUtente($view->getPassword(),$view->getNome(),$view->getCognome(),$usercheck,$view->getEmail());
+            //$cliente = new ECliente($_POST['nome'], $_POST['cognome'], $_POST['email'], $_POST['password'], true);
+            if ($utente != null) {
+                if (isset($_FILES['Img'])) {
                     $nome_file = 'file';
                     $img = static::upload($cliente,"registrazioneCliente",$nome_file);
                     switch ($img) {

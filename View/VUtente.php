@@ -18,6 +18,42 @@ class VUtente
     }
 
     /**
+     * Restituisce (se immesso) il nome inserito dall'utente(utilizzato nei login/registrazione/modifica profilo)
+     * Inviato con metodo post
+     * @return string contenente il valore inserito dall'utente
+     */
+    public function getNome(){
+        $value = null;
+        if (isset($_POST['nomeUtente']))
+            $value = $_POST['nomeUtente'];
+        return $value;
+    }
+
+    /**
+     * Restituisce (se immesso) il cognome inserito dall'utente(utilizzato nei login/registrazione/modifica profilo)
+     * Inviato con metodo post
+     * @return string contenente il valore inserito dall'utente
+     */
+    public function getCognome(){
+        $value = null;
+        if (isset($_POST['cognomeUtente']))
+            $value = $_POST['cognomeUtente'];
+        return $value;
+    }
+
+    /**
+     * Restituisce (se immessa) la email inserita dall'utente(utilizzato nei login/registrazione/modifica profilo)
+     * Inviato con metodo post
+     * @return string contenente il valore inserito dall'utente
+     */
+    public function getEmail(){
+        $value = null;
+        if (isset($_POST['emailUtente']))
+            $value = $_POST['emailUtente'];
+        return $value;
+    }
+
+    /**
      * Restituisce (se immesso) lo username inserito dall'utente(utilizzato nei login/registrazione/modifica profilo)
      * Inviato con metodo post
      * @return string contenente il valore inserito dall'utente
@@ -191,7 +227,7 @@ class VUtente
      * @param $error tipo di errore da visualizzare
      * @throws SmartyException
      */
-    public function registrazioneUteError ($error) {
+    public function registrazioneUtenteError ($error) {
         switch ($error) {
             case "email":
                 $this->smarty->assign('errorEmail',"errore");
