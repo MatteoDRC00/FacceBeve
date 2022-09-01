@@ -190,8 +190,9 @@ class CUtente
                 header('Location: /FacceBeve/Utente/login');
             }
             elseif ($stato == "ok_img") {
+                $size = $_FILES['file']['size']; //mmh
                 $pm->store($utente);
-                $media = new EImmagine($nome, $size,$type,);
+                $media = new EImmagine($nome, $size,$type);
                 $media->setType($type);
                 $pm->storeMedia($media,'file');
                 header('Location: /FacceBeve/Utente/login');
