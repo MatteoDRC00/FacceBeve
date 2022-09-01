@@ -164,44 +164,111 @@ class CUtente
         }
         else {
             $utente = new EUtente($view->getPassword(),$view->getNome(),$view->getCognome(),$usercheck,$view->getEmail());
-            //$cliente = new ECliente($_POST['nome'], $_POST['cognome'], $_POST['email'], $_POST['password'], true);
-            if ($utente != null) {
-                if (isset($_FILES['Img'])) {
-                    $nome_file = 'file';
-                    $img = static::upload($cliente,"registrazioneCliente",$nome_file);
-                    switch ($img) {
-                        case "size":
-                            $view->registrazioneCliError("size");
-                            break;
-                        case "type":
-                            $view->registrazioneCliError("typeimg");
-                            break;
-                        case "ok":
-                            header('Location: /FillSpaceWEB/Utente/login');
-                            break;
-                    }
+            if (isset($_FILES['Img'])) { //ipoteticamente
+                $nome_file = 'file';
+                $img = static::upload($utente,"registrazioneUtente",$nome_file);
+                switch ($img) {
+                    case "size":
+                        $view->registrazioneUteenteError("size");
+                        break;
+                    case "type":
+                        $view->registrazioneUtenteError("typeimg");
+                        break;
+                    case "ok":
+                        header('Location: /FillSpaceWEB/Utente/login');
+                        break;
                 }
             }
-            /*
-            list ($stato, $nome, $type) = CGestioneAnnuncio::upload('file');
+            //VA VISTO IL BLOB
+            list ($stato, $nome, $type) = CGestioneLocale::upload('file');
             if ($stato == "type")
-                $view->registrazioneCliError("typeimg");
+                $view->registrazioneUtenteError("typeimg");
             elseif ($stato == "size")
-                $view->registrazioneCliError("size");
+                $view->registrazioneUtenteError("size");
             elseif ($stato == "no_img") {
-                $pm->store($cliente);
-                header('Location: /FillSpaceWEB/Utente/login');
+                $pm->store($utente);
+                header('Location: /FacceBeve/Utente/login');
             }
             elseif ($stato == "ok_img") {
-                $pm->store($cliente);
-                $m_utente = new EMediaUtente($nome, $cliente->getEmail());
-                $m_utente->setType($type);
-                $pm->storeMedia($m_utente,'file');
-                header('Location: /FillSpaceWEB/Utente/login');
+                $pm->store($utente);
+                $media = new EImmagine($nome, $size,$type,);
+                $media->setType($type);
+                $pm->storeMedia($media,'file');
+                header('Location: /FacceBeve/Utente/login');
             }
-            */
         }
     }
+
+
+    /**
+     * DA MODIFICAREEEEEE
+     * Funzione di supporto che si occupa di verificare la correttezza dell'immagine inserita nella form di registrazione.
+     * Nll caso in cui non ci sono errori di inserimento, avviene la store dell'utente e la corrispondente immagine nel database.
+     * @param $utente obj utente
+     * @param $funz tipo di funzione da svolgere
+     * @param $nome_file passato nella form pe l'immagine
+     * @return string stato verifa immagine
+     */
+    static function upload($utente,$funz,$nome_file) {
+        $pm = new FPersistentManager();
+        $ris = null;
+        $nome = '';
+        $max_size = 300000;
+        $result = is_uploaded_file($_FILES[$nome_file]['tmp_name']);
+        if (!$result) {
+            //no immagine
+            if ($funz == "registrazioneCliente") {
+                $pm->store($utente);
+                //return "ok";
+                $ris = "ok";
+            }
+            if ($funz == "registrazioneTrasportatore") {
+                $a = static:: reg_immagine_mezzo_tra($utente,$max_size,$nome,false,$nome_file);
+                //return $a;
+                $ris = $a;
+            }
+        } else {
+            $size = $_FILES[$nome_file]['size'];
+            $type = $_FILES[$nome_file]['type'];
+            if ($size > $max_size) {
+                //Il file è troppo grande
+                //return "size";
+                $ris = "size";
+            }
+            //$type = $_FILES[$nome_file]['type'];
+            elseif ($type == 'image/jpeg' || $type == 'image/png' || $type == 'image/jpg') {
+                $nome = $_FILES[$nome_file]['name'];
+                if ($funz == "registrazioneCliente") {
+                    $pm->store($utente);
+                    $mutente = new EMediaUtente($nome, $utente->getEmail());
+                    $mutente->setType($type);
+                    $pm->storeMedia($mutente,$nome_file);
+                    //return "ok";
+                    $ris = "ok";
+                }
+                elseif ($funz == "modificaUtente") {
+                    $pm->delete("emailutente",$utente->getEmail(),"FMediaUtente");
+                    $mutente = new EMediaUtente($nome, $utente->getEmail());
+                    $mutente->setType($type);
+                    $pm->storeMedia($mutente,$nome_file);
+                    //return "ok";
+                    $ris = "ok";
+                }
+                elseif ($funz = "registrazioneTrasportatore") {
+                    $a = static:: reg_immagine_mezzo_tra($utente,$max_size,$nome,true,$nome_file);
+                    //return $a;
+                    $ris = $a;
+                }
+            }
+            else {
+                //formato diverso
+                //return "type";
+                $ris = "type";
+            }
+        }
+        return $ris;
+    }
+
 
 
 }
