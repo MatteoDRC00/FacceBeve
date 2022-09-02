@@ -235,16 +235,14 @@ class CGestioneLocale{
         }
     }
 
-
-
     /**
      * Funzione che si preoccupa di verificare lo stato dell'immagine inserita
      * @param $nome_file
      * @return array , dove $ris è lo stato dell'immagine, $nome è il nome dell'immagine e $type è il MIME type dell'immagine
      */
-    static function upload($nome_file)
+    static function upload($nome_file): array
     {
-        $ris = "no_img";
+        //$ris = "no_img";
         $type = null;
         $nome = null;
         $max_size = 300000;
