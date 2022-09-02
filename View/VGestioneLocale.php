@@ -94,7 +94,7 @@ class VGestioneLocale{
      */
     public function showFormCreation($utente,$error)
     {
-        if (get_class($utente) == "ETrasportatore") {
+        if (get_class($utente) == "EProprietario") {
             switch ($error) {
                 case "type" :
                     $this->smarty->assign('errorType', "errore");
@@ -102,23 +102,14 @@ class VGestioneLocale{
                 case "size" :
                     $this->smarty->assign('errorSize', "errore");
                     break;
-                case "no" :
-                    $this->smarty->assign('successo', "si");
-                    break;
-                case "no_part_arrivo":
-                    $this->smarty->assign('part_arrivo', "errore");
-                    break;
-                case "no_tappe":
-                    $this->smarty->assign('tappe', "errore");
-                    break;
             }
             $this->smarty->assign('nome', $utente->getName());
             $this->smarty->assign('cognome', $utente->getSurname());
             $this->smarty->assign('userlogged', "loggato");
-            $this->smarty->display('scrivi_annuncio_trasp.tpl');
+            $this->smarty->display('qualcosasulocale.tpl');
         }
         elseif (get_class($utente) == "ECliente") {
-            $this->stato_form($error);
+            $this->smarty->assign('errorClas', $error);
             $this->smarty->assign('nome', $utente->getName());
             $this->smarty->assign('cognome', $utente->getSurname());
             $this->smarty->assign('userlogged', "loggato");
@@ -126,12 +117,6 @@ class VGestioneLocale{
         }
 
     }
-
-
-
-
-
-
 
     /**
      * Restituisce il numero di telefono del locale che si vuole creare

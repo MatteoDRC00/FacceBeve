@@ -17,18 +17,19 @@ class CGestioneLocale{
      * 3) se il metodo di richiesta HTTP è diverso da uno dei precedenti -->errore.
      */
     static function creaLocale(){
-      if(CUtente::isLogged()){
+        $sessione = USession::getInstance();
+        if($sessione->leggi_valore('utente')){
           if ($_SERVER['REQUEST_METHOD'] == "GET") {
               $view = new VGestioneLocale();
-              $proprietario = unserialize($_SESSION['utente']);
+              $proprietario = unserialize($sessione->leggi_valore('utente'));
               if (get_class(proprietario) == "EProprietario") {
                   $view->showFormCreation($proprietario,null);
               }elseif (get_class($proprietario) == "EUtente") {
-                  $view->showFormCreation($proprietario,"errore da definire");
+                  $view->showFormCreation($proprietario,"wrong_class");
               }
           } elseif ($_SERVER['REQUEST_METHOD'] == "POST"){
               $pm = FPersistentManager::GetIstance();
-              $proprietario = unserialize($_SESSION['utente']);
+              $proprietario = unserialize($sessione->leggi_valore('utente'));
               if (get_class(proprietario) == "EProprietario") {
                   $view = new VGestioneLocale();
                   $nomeLocale = $view->getNomeLocale();
@@ -84,15 +85,16 @@ class CGestioneLocale{
      * 3) se non si è loggati, si viene reindirizzati alla form di login.
      */
     static function modificaLocale() {
+        $sessione = USession::getInstance();
         if (CUtente::isLogged()) {
-            $utente = unserialize($_SESSION['utente']);
+            $utente = unserialize($proprietario = unserialize($sessione->leggi_valore('utente')));
             if (get_class($utente) == "EProprietario") {
                 $view = new VGestioneLocale();
                 $pm = FPersistentManager::getIstance();
-
                 $locale = $pm->load("proprietario", $utente->getUsername(), "FLocale");
                 //Nome Locale
                 $a = $view->getNomeLocale();
+                //controlli su locale?
                 if (($a != $locale->getNome()) && isset($a)) {
                     $locale->setNome($a);
                     $pm->update("nome", $a, "id", $locale->getId(), "FLocale");
@@ -174,8 +176,9 @@ class CGestioneLocale{
      * @param $id id del locale da eliminare
      */
     static function deleteLocale($id) {
-        if (CUtente::isLogged()) {
-            $utente = unserialize($_SESSION['utente']);
+        $sessione = USession::getInstance();
+        if ($proprietario = unserialize($sessione->leggi_valore('utente'))) {
+            $utente = unserialize($proprietario = unserialize($sessione->leggi_valore('utente')));
             if (get_class($utente) == "EProprietario") {
                 $pm = FPersistentManager::getIstance();
                 if(in_array($id,$pm->load("proprietario", $utente->getUsername(), "FLocale"))){
@@ -203,10 +206,11 @@ class CGestioneLocale{
      * 3) se il metodo di richiesta HTTP è diverso da uno dei precedenti -->errore.
      */
     static function creaEvento(){
-        if(CUtente::isLogged()){
+        $sessione = USession::getInstance();
+        if($proprietario = unserialize($sessione->leggi_valore('utente'))){
             if ($_SERVER['REQUEST_METHOD'] == "GET") {
                 $view = new VGestioneAnnunci();
-                $proprietario = unserialize($_SESSION['utente']);
+                $proprietario = unserialize($proprietario = unserialize($sessione->leggi_valore('utente')));
                 if (get_class(proprietario) == "EProprietario") {
                     $view->showFormCreation($proprietario,null);
                 }elseif (get_class($proprietario) == "EUtente") {
@@ -214,7 +218,7 @@ class CGestioneLocale{
                 }
             } elseif ($_SERVER['REQUEST_METHOD'] == "POST"){
                 $pm = FPersistentManager::GetIstance();
-                $proprietario = unserialize($_SESSION['utente']);
+                $proprietario = unserialize($proprietario = unserialize($sessione->leggi_valore('utente')));
                 if (get_class(proprietario) == "EProprietario") {
                     $view = new VGestioneLocale();
                     $nomeEvento = $view->getNomeEvento();

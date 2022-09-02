@@ -103,8 +103,8 @@ class VUtente
      * @throws SmartyException
      */
     public function showFormLogin(){
-     //   if (isset($_POST['username']))
-       //     $this->smarty->assign('username',$_POST['proprietario']);
+        if (isset($_POST['username']))
+           $this->smarty->assign('username',$_POST['username']);
         $this->smarty->display('login.tpl');
     }
 
@@ -112,13 +112,14 @@ class VUtente
      * Funzione che si occupa di gestire la visualizzazione della homepage dopo il login, i.e.,
      * un utente registrato può adesso, se il login è andato bene, visualizzare gli eventi
      * @param $array elenco di eventi da visualizzare
+     * @param $tipo tipo di utente che si è loggato, se Utente gli vengiono mostarti gli eventi a lui disponibili, se proprietario no.
      * @throws SmartyException
      */
-    public function loginOk($array) {
-      //  $this->smarty->assign('immagine', "/FacceBeve/Smarty/img/truck.png");
-        $this->smarty->assign('userlogged',"loggato");
-        $this->smarty->assign('array', $array);
-        //$this->smarty->assign('toSearch', 'trasporti');
+    public function loginOk($array,$tipo) {
+        $this->smarty->assign('userlogged',"loggato"); //Permette la ricerca di eventi
+        if($tipo == "EUtente"){
+            $this->smarty->assign('array', $array); //Visualizza eventi dei locali seguiti
+        }
         $this->smarty->display('index.tpl');
     }
 

@@ -14,8 +14,13 @@ class CRicerca{
      */
     static function ricerca(){
         $vRicerca = new VRicerca();
-        $tipo = $vRicerca->getTipoRicerca(); //Nella homepage un campo nella barra di ricerca deve individuare il tipo di ricerca che si vuole effettuare
-            if ($tipo == "Locali") {
+        $sessione = USession::getInstance();
+        if($sessione->leggi_valore('utente')){
+            $tipo = $vRicerca->getTipoRicerca(); //Nella homepage un campo nella barra di ricerca deve individuare il tipo di ricerca che si vuole effettuare
+        }else{
+            $tipo="Locali";
+        }
+        if ($tipo == "Locali") {
                 $nomelocale = vRicerca->getNomeLocale();
                 $citta= vRicerca->getCitta();
                 $categoria = vRicerca->getCategorie();
@@ -38,7 +43,7 @@ class CRicerca{
                 }else
                     header('Location: /FacceBeve/');
             }
-            if ($tipo == "Evento") {
+        elseif ($tipo == "Evento") {
                 $nomelocale = vRicerca->getNomeLocale();
                 $nomeevento= vRicerca->getNomeEvento();
                 $citta= vRicerca->getCitta();
@@ -75,7 +80,7 @@ class CRicerca{
                     }
                 }else
                     header('Location: /FacceBeve/');
-            }
+        }
     }
 
     /**Funzione che restituisce tutte le categorie di locali presenti nel sito*/
