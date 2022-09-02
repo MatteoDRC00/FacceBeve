@@ -117,7 +117,7 @@ class VUtente
      * @param $img immagine dell'utente
      * @throws SmartyException
      */
-    public function profileCli($user,$ann,$img) {
+    public function profileUtente($user,$ann,$img) {
         list($type,$pic64) = $this->setImage($img, 'user');
         $this->smarty->assign('type', $type);
         $this->smarty->assign('pic64', $pic64);
@@ -139,7 +139,7 @@ class VUtente
      * @param $rec elenco di recensioni
      * @throws SmartyException
 
-    public function profileTrasp($user,$ann,$img,$imgMezzo,$imgrec,$rec) {
+    public function profileProprietario($user,$ann,$img,$imgMezzo,$imgrec,$rec) {
         if (count($rec) == 0)
             $this->smarty->assign('media_voto', 0);
         else
@@ -200,26 +200,18 @@ class VUtente
      * @param $error tipo di errore da visualizzare nella form
      * @throws SmartyException
      */
-    public function registrazionePropError ($email, $mezzo, $error) {
-        if ($email)
-            $this->smarty->assign('errorEmail',"errore");
-        if ($mezzo)
-            $this->smarty->assign('errorTarga',"errore");
+    public function registrazionePropError ($username, $error) {
+        if ($username)
+            $this->smarty->assign('errorUsername',"errore");
         switch ($error) {
             case "typeimg" :
                 $this->smarty->assign('errorType',"errore");
                 break;
-            case "typeimgM" :
-                $this->smarty->assign('errorTypeM',"errore");
-                break;
             case "size" :
                 $this->smarty->assign('errorSize',"errore");
                 break;
-            case "sizeM" :
-                $this->smarty->assign('errorSizeM',"errore");
-                break;
         }
-        $this->smarty->display('registraz_trasp.tpl');
+        $this->smarty->display('registrazioneproprietario.tpl');
     }
 
     /**
@@ -230,16 +222,16 @@ class VUtente
     public function registrazioneUtenteError ($error) {
         switch ($error) {
             case "email":
-                $this->smarty->assign('errorEmail',"errore");
+                $this->smarty->assign('errorUsername',"errore"); //Username già esistente
                 break;
             case "typeimg" :
-                $this->smarty->assign('errorType',"errore");
+                $this->smarty->assign('errorType',"errore"); //Formato immagine non supportato
                 break;
             case "size" :
-                $this->smarty->assign('errorSize',"errore");
+                $this->smarty->assign('errorSize',"errore"); //Dimensione Immagine non supportata(troppo grande)
                 break;
         }
-        $this->smarty->display('registraz_cliente.tpl');
+        $this->smarty->display('registrazioneutente.tpl');
     }
 
     /**

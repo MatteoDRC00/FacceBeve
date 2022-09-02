@@ -86,7 +86,7 @@ class EImmagine implements JsonSerializable {
     }
 
     /**
-     * @return blob
+     * @return blob data del immagine
      */
     public function getImmagine(): blob
     {

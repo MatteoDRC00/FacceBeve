@@ -158,15 +158,16 @@ class CUtente
         $pm = new FPersistentManager();
         $view = new VUtente();
         $usercheck = $view->getUsername();
-        $verusername = $pm->exist("username", $usercheck,"FUtente");
-
-        if ($verusername){
+        $vereusername1 = $pm->exist("username", $usercheck,"FProprietario");
+        $vereusername2 = $pm->exist("username", $usercheck,"FUtente");
+        $view = new VUtente();
+        if (($vereusername1) || ($vereusername2)){
             $view->registrazioneUtenteError ("username"); //username già esistente
         }
         else {
             $utente = new EUtente($view->getPassword(),$view->getNome(),$view->getCognome(),$usercheck,$view->getEmail());
-            if (isset($_FILES['Img'])) { //ipoteticamente
-                $nome_file = 'file';
+            if (isset($_FILES['img_profilo'])) { //ipoteticamente
+                $nome_file = 'img_profilo';
                 $img = static::upload($utente,"registrazioneUtente",$nome_file);
                 switch ($img) {
                     case "size":
@@ -176,7 +177,7 @@ class CUtente
                         $view->registrazioneUtenteError("typeimg");
                         break;
                     case "ok":
-                        header('Location: /FillSpaceWEB/Utente/login');
+                        header('Location: /FacceBeve/Utente/login');
                         break;
                 }
             }
@@ -269,5 +270,87 @@ class CUtente
             }
         }
         return $ris;
+    }
+
+
+
+
+    /**
+     * Funzione di supporto che si occupa di verificare i dati inseriti nella form di registrazione per il trasportatore.
+     * In questo metodo avviene la verifica sull'univocità dell'email e la targa inseriti;
+     * se queste verifiche non riscontrano problemi, si passa verifica dell'immagine inserita e quindi alla store nel db vera e propria del trasportatore.
+     */
+    static function regist_proprietario_verifica() {
+        $error_username = false;
+        $error_mezzo = false;
+        $pm = new FPersistentManager();
+        $vereusername1 = $pm->exist("email", $_POST['username'],"FProprietario");
+        $vereusername2 = $pm->exist("email", $_POST['email'],"FUtente");
+        $view = new VUtente();
+        if (($vereusername1) || ($vereusername2)){
+            $view->registrazionePropError($error_username,"");
+        }
+        else {
+            $proprietario = new EProprietario($view->getNome(),$view->getCognome(),$view->getEmail(),$view->getUsername(),$view->getPassword());
+            if ($proprietario != null) {
+                if (isset($_FILES['img_profilo'])) {
+                    $nome_file = 'img_profilo';
+                    $img = static::upload($proprietario,"registrazioneTrasportatore",$nome_file);
+                    switch ($img) {
+                        case "size":
+                            $view->registrazionePropError($error_username,"size");
+                            break;
+                        case "type":
+                            $view->registrazionePropError($error_username,"typeimg");
+                            break;
+                        case "ok":
+                            header('Location: /FacceBeve/Utente/login');
+                            break;
+                    }
+                }
+            }
+            /*
+            list ($stato, $nome, $type) = CGestioneAnnuncio::upload('file');
+            list ($stato_1, $nome_1, $type_1) = CGestioneAnnuncio::upload('imm_mezzo');
+            if ($stato == "type")
+                $view->registrazioneTrasError($error_email,$error_mezzo,"typeimg");
+            elseif($stato_1 == "type")
+                $view->registrazioneTrasError($error_email,$error_mezzo,"typeimgM");
+            elseif ($stato == "size")
+                $view->registrazioneTrasError($error_email,$error_mezzo,"size");
+            elseif($stato_1 == "size")
+                $view->registrazioneTrasError($error_email,$error_mezzo,"sizeM");
+            elseif ($stato == "no_img" && $stato_1 == "no_img") {
+                $pm->store($trasportatore);
+                header('Location: /FillSpaceWEB/Utente/login');
+            }
+            elseif ($stato == "ok_img" && $stato_1 == "no_img") {
+                $pm->store($trasportatore);
+                $m_profilo = new EMediaUtente($nome, $trasportatore->getEmail());
+                $m_profilo->setType($type);
+                $pm->storeMedia($m_profilo,'file');
+                header('Location: /FillSpaceWEB/Utente/login');
+            }
+            elseif ($stato == "no_img" && $stato_1 == "ok_img") {
+                $pm->store($trasportatore);
+                $pm->store($mezzo);
+                $m_mezzo = new EMediaMezzo($nome_1, $mezzo->getPlate());
+                $m_mezzo->setType($type_1);
+                $pm->storeMedia($m_mezzo,'imm_mezzo');
+                header('Location: /FillSpaceWEB/Utente/login');
+            }
+            elseif ($stato == "ok_img" && $stato_1 == "ok_img") {
+                $pm->store($trasportatore);
+                $pm->store($mezzo);
+                $m_profilo = new EMediaUtente($nome, $trasportatore->getEmail());
+                $m_profilo->setType($type);
+                $m_mezzo = new EMediaMezzo($nome_1, $mezzo->getPlate());
+                $m_mezzo->setType($type_1);
+                $pm->storeMedia($m_profilo,'file');
+                $pm->storeMedia($m_mezzo,'imm_mezzo');
+                header('Location: /FillSpaceWEB/Utente/login');
+            }
+            */
+        }
     }
 }
