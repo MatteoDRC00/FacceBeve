@@ -77,6 +77,27 @@ class VUtente
         return $value;
     }
 
+    public function getNewPassword(){
+        $value = null;
+        if (isset($_POST['newpassword']))
+            $value = $_POST['newpassword'];
+        return $value;
+    }
+
+    public function getImgProfilo(){
+        $value = null;
+        if (isset($_FILES['img_profilo']))
+            $value = $_FILES['img_profilo'];
+        return $value;
+    }
+
+    public function getNewImg_Profilo(){
+        $value = null;
+        if (isset($_FILES['newimg_profilo']))
+            $value = $_FILES['newimg_profilo'];
+        return $value;
+    }
+
     /**
      * Funzione che si occupa di gestire la visualizzazione della form di login
      * @throws SmartyException
