@@ -24,8 +24,8 @@ class VUtente
      */
     public function getNome(){
         $value = null;
-        if (isset($_POST['nomeUtente']))
-            $value = $_POST['nomeUtente'];
+        if (isset($_POST['nome']))
+            $value = $_POST['nome'];
         return $value;
     }
 
@@ -36,8 +36,8 @@ class VUtente
      */
     public function getCognome(){
         $value = null;
-        if (isset($_POST['cognomeUtente']))
-            $value = $_POST['cognomeUtente'];
+        if (isset($_POST['cognome']))
+            $value = $_POST['cognome'];
         return $value;
     }
 
@@ -48,8 +48,8 @@ class VUtente
      */
     public function getEmail(){
         $value = null;
-        if (isset($_POST['emailUtente']))
-            $value = $_POST['emailUtente'];
+        if (isset($_POST['email']))
+            $value = $_POST['email'];
         return $value;
     }
 
