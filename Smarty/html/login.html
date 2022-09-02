@@ -52,14 +52,14 @@
 <div class="login-page">
     <div class="form">
         <form class="login-form"action="/FacceBeve/Utente/login" method="POST">
-            <input type="text" placeholder="username " required name=username">
-            <input type="password" placeholder="password" required name="password"/>
+            <input type="text" placeholder="username" name="username">
+            <input type="password" placeholder="password" name="password"/>
 
 
             <button  type="submit" >Login</button>
 
-            <p class="message">Non sei ancora registrato?<a href="RegistrazioneUtente.html">Crea un account utente</a></p>
-            <p class="message">Hai bisogno di pubblicizzare il tuo locale?<a href="RegistrazioneProprietario.html">Crea un account proprietario</a></p>
+            <p class="message">Non sei ancora registrato?<a href="registrazioneUtente.html">Crea un account utente</a></p>
+            <p class="message">Hai bisogno di pubblicizzare il tuo locale?<a href="registrazioneProprietario.html">Crea un account proprietario</a></p>
         </form>
         <div style="color: red;">
             <?php if $error!='ok'

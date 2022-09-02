@@ -29,14 +29,14 @@
     <link href="/Smarty/template/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
     <!-- Template Main CSS File -->
-    <link href="assets/css/log.css" rel="stylesheet">
+    <link href="/Smarty/template/assets/css/log.css" rel="stylesheet">
 
 </head>
 <body>
 <header id="header" class="fixed-top d-flex align-items-center header-transparent">
     <div class="container d-flex justify-content-between align-items-center">
         <div class="logo">
-            <h1><a href="index.html"><img src="assets/img/logo.png" alt=""><span>FacceBeve</span></a></h1>
+            <h1><a href="index.html"><img src="/Smarty/template/assets/img/logo.png" alt=""><span>FacceBeve</span></a></h1>
         </div>
     </div>
 </header>
@@ -45,15 +45,18 @@
 <div class="login-page">
     <div class="form">
         <form class="login-form" action="/FacceBeve/Utente/regx" method="POST">
-            <h1>Registrati come utente</h1>
-            <input type="text" class="form-control" placeholder="nome " required name="nome" pattern="[a-zA-Z]+\"/>
-            <input type="text" class="form-control" placeholder="cognome " required name="cognome"
-                   pattern="[a-zA-Z]+\"/>
-            <input type="text" placeholder="email " required name=email">
-            <input type="text" placeholder="username " required name=username">
-            <input type="password" placeholder="password" required name="password"/>
+            <h1 style="font-weight: bold">Registrati come utente</h1>
+            <input type="text" class="form-control" placeholder="nome" name="nome" pattern="[a-zA-Z]+\"/>
+            <input type="text" class="form-control" placeholder="cognome" name="cognome" pattern="[a-zA-Z]+\"/>
+            <input type="text" placeholder="email" name="email">
+            <input type="text" placeholder="username" name="username">
+            <input type="password" placeholder="password"  name="password"/>
+            <form action="" enctype="multipart/form-data" method="POST" class="aggiorna"> <!-- aggiungin i controlli -->
+                <h1>Aggiungi l'immagine di profilo</h1>
+                <input name="img_profilo" class="p-2" type="file">
+            </form>
             <button type="submit">Registrati</button>
-            <p class="message">Hai gi&agrave un account? <a href="Login.html">Accedi</a></p>
+            <p class="message">Hai gi&agrave un account? <a href="login.html">Accedi</a></p>
         </form>
         <!--  {if $errorSize!='ok'}
               <div style="color: red;">
