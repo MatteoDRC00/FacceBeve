@@ -152,6 +152,7 @@ class CUtente
      * Funzione di supporto che si occupa di verificare i dati inseriti nella form di registrazione per il cliente .
      * In questo metodo avviene la verifica sull'univocità dell'email inserita;
      * se questa verifiche non riscontrano problemi, si passa verifica dell'immagine inserita e quindi alla store nel db vera e propria del cliente.
+     * @throws SmartyException
      */
     static function regist_utente_verifica () {
         $pm = new FPersistentManager();
@@ -180,7 +181,7 @@ class CUtente
                 }
             }
             //VA VISTO IL BLOB
-            list ($stato, $nome, $type) = CGestioneLocale::upload('file');
+            list ($stato, $nome, $type) = CGestioneLocale::upload('img');
             if ($stato == "type")
                 $view->registrazioneUtenteError("typeimg");
             elseif ($stato == "size")
@@ -190,7 +191,7 @@ class CUtente
                 header('Location: /FacceBeve/Utente/login');
             }
             elseif ($stato == "ok_img") {
-                $size = $_FILES['file']['size']; //mmh
+                $size = $_FILES['img']['size']; //I GUESS, ALTRIMENTI SI CHIAMERA' 'file'
                 $pm->store($utente);
                 $media = new EImmagine($nome, $size,$type);
                 $media->setType($type);
@@ -269,7 +270,4 @@ class CUtente
         }
         return $ris;
     }
-
-
-
 }
