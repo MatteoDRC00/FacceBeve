@@ -76,7 +76,6 @@ CREATE TABLE `Localizzazione` (
     `indirizzo` VARCHAR(40) NOT NULL,
     `numCivico` VARCHAR(7) NOT NULL, /*es: via xyz, num 57-A*/
     `citta` VARCHAR(30) NOT NULL,
-    `nazione` VARCHAR(20) NOT NULL,
     `CAP` INT(5) NOT NULL,
     PRIMARY KEY (`id`)
 )ENGINE=InnoDB;

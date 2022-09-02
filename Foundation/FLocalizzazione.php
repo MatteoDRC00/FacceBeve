@@ -1,5 +1,4 @@
 <?php
-
 /**
  * La classe FLocalizzazione fornisce query per gli oggetti ELocalizzazione
  * @author Gruppo 8
@@ -14,7 +13,7 @@ class FLocalizzazione {
     private static $table="Localizzazione";
 
     /** valori della tabella nel DB */
-    private static $values="(:id,:indirizzo,:numCivico,:citta,:nazione,:CAP)";
+    private static $values="(:id,:indirizzo,:numCivico,:citta, :CAP)";
 
     /** costruttore */
     public function __construct(){
@@ -31,7 +30,6 @@ class FLocalizzazione {
         $stmt->bindValue(':indirizzo', $localizzazione->getIndirizzo(), PDO::PARAM_STR); 
 		$stmt->bindValue(':numCivico',$localizzazione->getNumCivico(), PDO::PARAM_STR);
 		$stmt->bindValue(':citta',$localizzazione->getCitta(), PDO::PARAM_STR);
-        $stmt->bindValue(':nazione', $localizzazione->getNazione(), PDO::PARAM_STR); 
         $stmt->bindValue(':CAP', $localizzazione->getCAP(), PDO::PARAM_INT);
     }
 
@@ -83,14 +81,14 @@ class FLocalizzazione {
         $result=$db->load(static::getClass(), $field, $id);
         $rows_number = $db->interestedRows(static::getClass(), $field, $id);    //funzione richiamata,presente in FDB --> restituisce numero di righe interessate dalla query
         if(($result!=null) && ($rows_number == 1)) {           
-		    $luogo=new ELocalizzazione($result['indirizzo'],$result['numCivico'],$result['citta'], $result['nazione'], $result['CAP']); //Carica un Luogo dal database
+		    $luogo=new ELocalizzazione($result['indirizzo'],$result['numCivico'],$result['citta'], $result['CAP']); //Carica un Luogo dal database
             $luogo->setCodice($result['codiceluogo']);
         }
         else {
             if(($result!=null) && ($rows_number > 1)){
                 $luogo = array();
         	    for($i=0; $i<count($result); $i++){
-                    $luogo[]=new ELocalizzazione($result[$i]['indirizzo'], $result[$i]['numCivico'], $result[$i]['citta'], $result[$i]['nazione'], $result[$i]['CAP']); //Carica un array di oggetti Localizzazione dal database
+                    $luogo[]=new ELocalizzazione($result[$i]['indirizzo'], $result[$i]['numCivico'], $result[$i]['citta'], $result[$i]['CAP']); //Carica un array di oggetti Localizzazione dal database
                     $luogo[$i]->setCodice($result[$i]['codiceluogo']);
                 }
             }

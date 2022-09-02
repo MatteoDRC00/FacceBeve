@@ -4,37 +4,29 @@
      *  - indirizzo: identifica l'indirizzo
      *  - numCivico: identifica il numero civico
      *  - citta: identifica la città
-     *  - nazione: identifica la nazione
      *  - CAP: identifica il CAP
      *  @author Gruppo8
      *  @package Entity
      */
     class ELocalizzazione implements JsonSerializable {
-		
-	//	private static int $contalo = 0;
 
         private int $codiceluogo;
         private string $indirizzo;
         private string $numCivico;
         private string $citta;
-        private string $nazione;
         private int $CAP;
 
         /**
          * @param string $indirizzo
          * @param string $numCivico
          * @param string $citta
-         * @param string $nazione
          * @param int $CAP
          */
-        public function __construct(string $indirizzo, string $numCivico, string $citta, string $nazione, int $CAP)
+        public function __construct(string $indirizzo, string $numCivico, string $citta, int $CAP)
         {
-			//$this->codiceluogo = self::$contalo;
-            //self::$contalo++;
             $this->indirizzo = $indirizzo;
             $this->numCivico = $numCivico;
             $this->citta = $citta;
-            $this->nazione = $nazione;
             $this->CAP = $CAP;
         }
 
@@ -101,22 +93,6 @@
         public function setCitta(string $citta): void
         {
             $this->citta = $citta;
-        }
-
-        /**
-         * @return string
-         */
-        public function getNazione(): string
-        {
-            return $this->nazione;
-        }
-
-        /**
-         * @param string $nazione
-         */
-        public function setNazione(string $nazione): void
-        {
-            $this->nazione = $nazione;
         }
 
         /**
