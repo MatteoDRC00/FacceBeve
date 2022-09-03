@@ -39,12 +39,24 @@ class CUtente
      */
     static function login(){
         if($_SERVER['REQUEST_METHOD']=="GET"){
-            if(static::isLogged()) {
+            $sessione = USession::getInstance();
+            if($sessione->leggi_valore('utente')) {
                 $pm = FPersistentManager::getIstance();
-                $sessione = USession::getInstance();
+
                 $view = new VUtente();
                 $result = $pm->loadEventi($sessione->leggi_valore('utente'));
-                $view->loginOk($result);
+
+                //Vengono mostrati, se presenti, solo gli eventi futuri, quelli passati visualizzabili nella pagina del locale
+                $eventi = array();
+                $oggi = date("d/m/Y");
+                foreach($result as $evento){
+                    if($evento->getData() > $oggi){
+                        $eventi[] = $evento;
+                    }
+                }
+                $classe = get_class($sessione->leggi_valore('utente'));
+
+                $view->loginOk($eventi,$classe);
             }
             else{
                 $view=new VUtente();
@@ -113,7 +125,8 @@ class CUtente
      */
     static function registrazioneProprietario() {
         if($_SERVER['REQUEST_METHOD']=="GET") {
-            if (static::isLogged()) {
+            $sessione = USession::getInstance();
+            if ($sessione->leggi_valore('utente')) {
                 header('Location: /FacceBeve/');
             }
             else {
@@ -136,7 +149,8 @@ class CUtente
         if($_SERVER['REQUEST_METHOD']=="GET") {
             $view = new VUtente();
             $pm = new FPersistentManager();
-            if (static::isLogged()) {
+            $sessione = USession::class;
+            if ($sessione->leggi_valore('utente')) {
                 $pm->loadEventi($_SESSION['utente']);
             }
             else {
@@ -166,22 +180,22 @@ class CUtente
         }
         else {
             $utente = new EUtente($view->getPassword(),$view->getNome(),$view->getCognome(),$usercheck,$view->getEmail());
-            if (isset($_FILES['img_profilo'])) { //ipoteticamente
+            if ($view->getImgProfilo() !== null) {
                 $nome_file = 'img_profilo';
                 $img = static::upload($utente,"registrazioneUtente",$nome_file);
                 switch ($img) {
                     case "size":
-                        $view->registrazioneUteenteError("size");
+                        $view->registrazioneUteenteError("size"); //Img troppo grande\piccola
                         break;
                     case "type":
-                        $view->registrazioneUtenteError("typeimg");
+                        $view->registrazioneUtenteError("typeimg"); //Formato non supportato
                         break;
                     case "ok":
                         header('Location: /FacceBeve/Utente/login');
                         break;
                 }
             }
-            //VA VISTO IL BLOB
+
             list ($stato, $nome, $type) = CGestioneLocale::upload('img');
             if ($stato == "type")
                 $view->registrazioneUtenteError("typeimg");

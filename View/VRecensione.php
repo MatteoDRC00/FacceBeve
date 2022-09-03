@@ -113,30 +113,29 @@ class VRecensione{
      */
     public function showFormPost($utente,$error)
     {
+        //RICORDARSIDI PIAZZARE LO SCRIPT SMARTY PER ERRORCLASS ED ERROREMPTY
         if (get_class($utente) == "EUtente") {
-            //DA VEDERE GESTIONE ERRORI
-            /* switch ($error) {
-                case "type" :
-                    $this->smarty->assign('errorType', "errore");
+             switch ($error) {
+                case "wrong_class" :
+                    $this->smarty->assign('errorClass', "errore");
                     break;
-                case "size" :
-                    $this->smarty->assign('errorSize', "errore");
+                case "vuoto" :
+                    $this->smarty->assign('errorEmpty', "errore");
                     break;
-                case "no" :
-                    $this->smarty->assign('successo', "si");
+            }
+        }elseif(get_class($utente) == "EProprietario"){
+            switch ($error) {
+                case "wrong_class" :
+                    $this->smarty->assign('errorClass', "errore");
                     break;
-                case "no_part_arrivo":
-                    $this->smarty->assign('part_arrivo', "errore");
+                case "vuoto" :
+                    $this->smarty->assign('errorEmpty', "errore");
                     break;
-                case "no_tappe":
-                    $this->smarty->assign('tappe', "errore");
-                    break;
-            }*/
-            $this->smarty->assign('username', $utente->getUsername());
-          //  $this->smarty->assign('cognome', $utente->getSurname());
-            $this->smarty->assign('userlogged', "loggato");
-            $this->smarty->display('InfoLocale.tpl');
+            }
         }
+        $this->smarty->assign('username', $utente->getUsername());
+        $this->smarty->assign('userlogged', "loggato");
+        $this->smarty->display('InfoLocale.tpl');
     }
 
 }

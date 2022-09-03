@@ -10,30 +10,36 @@ class CRecensione{
      * 3) se il metodo di richiesta HTTP è diverso da uno dei precedenti -->errore.
      */
     static function scrivi(){
-        if(CUtente::isLogged()){
+        $sessione = USession::getInstance();
+        if($sessione->leggi_valore('utente')){
            $view= new VRecensione();
             if ($_SERVER['REQUEST_METHOD'] == "GET") {
-                $utente = ($_SESSION['utente']);
+                $utente = $sessione->leggi_valore('utente');
                 if (get_class($utente) == "EUtente") {
                     $view->showFormPost($utente, null);
                 } elseif (get_class($utente) == "EProprietario") {
-                    $view->showFormPost($utente, qualcosa); //Che nome dare all'errore
+                    $view->showFormPost($utente, 'wrong_class'); //Proprietario prova, ma non può, a scrivere una recensione
                 }
             } elseif ($_SERVER['REQUEST_METHOD'] == "POST") {
-                $utente = ($_SESSION['utente']);
+                $utente = $sessione->leggi_valore('utente');
                 if (get_class($utente) == "EUtente") {
                     $titolo = $view->getTitolo();
                     $descrizione = $view->getDescrizione();
                     $dataScrittura = $view->getDataScrittura();
-                    //$autore = $utente;
                     $voto = $view->getValutazione();
-                    $nomeLocale = $view->getNomeLocale();
-                    $localizzazione = $view->getLocalizzazioneLocale();
-                    $pm = FPersistentManager::GetIstance();
-                    $locale = $pm->loadForm($nomeLocale,$localizzazione,null);
+                    if(($descrizione!=null) || ($voto!=null)){
+                        $nomeLocale = $view->getNomeLocale();
+                        $localizzazione = $view->getLocalizzazioneLocale();
+                        $pm = FPersistentManager::GetIstance();
+                        $locale = $pm->loadForm($nomeLocale,$localizzazione,null);
 
-                    $recensione = new ERecensione($utente,$titolo,$descrizione,$voto,$dataScrittura,$locale);
-                    $pm->store($recensione);
+                        $recensione = new ERecensione($utente,$titolo,$descrizione,$voto,$dataScrittura,$locale);
+                        $pm->store($recensione);
+                    }else{
+                        $view->showFormPost($utente, 'vuoto'); //Recensione vuota, i.e., senza voto e senza un testo, solo il titolo(che può invece mancare) non basta
+                    }
+
+
                 }elseif(get_class($utente) == "EProprietario"){
                      header('Location: /FacceBeve/');
                 }
@@ -53,17 +59,18 @@ class CRecensione{
      * @throws SmartyException
      */
     static function rispondi($id){
-        if(CUtente::isLogged()){
+        $sessione = USession::getInstance();
+        if($sessione->leggi_valore('utente')){
             $view= new VRecensione();
             if ($_SERVER['REQUEST_METHOD'] == "GET") {
-                $utente = ($_SESSION['utente']);
+                $utente = $sessione->leggi_valore('utente');
                 if (get_class($utente) == "EUtente") {
-                    $view->showFormPost($utente, qualcosa);
+                    $view->showFormPost($utente, 'wrong_class');
                 } elseif (get_class($utente) == "EProprietario") {
                     $view->showFormPost($utente, null);
                 }
             } elseif ($_SERVER['REQUEST_METHOD'] == "POST") {
-                $utente = unserialize($_SESSION['utente']);
+                $utente = unserialize($sessione->leggi_valore('utente'));
                 if (get_class($utente) == "EProprietario") {
                     $pm = FPersistentManager::GetIstance();
                     $descrizione = $view->getDescrizioneRisposta();
@@ -72,7 +79,7 @@ class CRecensione{
                         $risposta = new ERisposta($rec,$descrizione,$utente);
                         $pm->store($risposta);
                     }else{
-                        //Bisogna lanciare un errore
+                        $view->showFormPost($utente, 'vuoto'); //Risposta senza testo
                     }
 
                 }elseif(get_class($utente) == "EUtente"){
@@ -94,9 +101,10 @@ class CRecensione{
      * @throws SmartyException
      */
     static function cancella($tipo,$id){
-        if(CUtente::isLogged()){
+        $sessione = USession::getInstance();
+        if($sessione->leggi_valore('utente')){
             $view= new VRecensione();
-            $utente = unserialize($_SESSION['utente']);
+            $utente = unserialize($sessione->leggi_valore('utente'));
             $pm = FPersistentManager::GetIstance();
            if (($tipo == "recensione") && (get_class($utente) == "EUtente")) {
               $recensione = $pm->load("id",$id,"FRecensione");
@@ -109,7 +117,7 @@ class CRecensione{
                    $pm->delete("id",$id,"FRisposta");
                }
            }else{
-               header('Location: /FacceBeve/');
+               header('Location: /FacceBeve/'); //Qualcosa va mostrato però
            }
         }else{
             header('Location: /FacceBeve/Utente/login');
