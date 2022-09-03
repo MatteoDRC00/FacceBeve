@@ -168,7 +168,7 @@ class ERecensione implements JsonSerializable {
     /**
      * @param bool $segnalata
      */
-    public function setSegnalata(bool $segnalata): void
+    public function setSegnala(bool $segnalata): void
     {
         $this->segnalata = $segnalata;
     }
@@ -191,11 +191,11 @@ class ERecensione implements JsonSerializable {
     }
 
     /**
-     * @param int $counter
+     * Metodo che va a segnalare unan recensione
      */
-    public function setCounter(int $counter): void
+    public function segnala(): void
     {
-        $this->counter = $counter;
+        $this->counter += 1;
     }
 
 

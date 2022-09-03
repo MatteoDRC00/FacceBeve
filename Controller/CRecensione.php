@@ -124,4 +124,24 @@ class CRecensione{
         }
     }
 
+    public function segnala($i){
+        $sessione = USession::getInstance();
+        if($sessione->leggi_valore('utente')){
+            $view= new VRecensione();
+            $utente = unserialize($sessione->leggi_valore('utente'));
+            $pm = FPersistentManager::GetIstance();
+            if ((get_class($utente) == "EProprietario") || (get_class($utente) == "EUtente")) {
+               $recensione = pm->load("id",$i,"FRecensione");
+               if($recensione){
+                   $recensione->segnala;
+                   pm->update("FRecensione","counter",$recensione->getCounter(),"id",$i);
+               }else{
+                   header('Location: /FacceBeve/Utente/');
+               }
+            }
+        }else{
+            header('Location: /FacceBeve/Utente/login');
+        }
+    }
+
 }
