@@ -16,7 +16,8 @@ class VRicerca
      * Inviato con metodo post
      * @return string contenente il valore inserito dall'utente
      */
-    public function getNomeLocale(){
+    public function getNomeLocale(): ?string
+    {
         $value = null;
         if (isset($_POST['nomeLocale']))
             $value = $_POST['nomeLocale'];
@@ -28,7 +29,8 @@ class VRicerca
      * Inviato con metodo post
      * @return string contenente il valore inserito dall'utente
      */
-    public function getNomeEvento(){
+    public function getNomeEvento(): ?string
+    {
         $value = null;
         if (isset($_POST['nomeEvento']))
             $value = $_POST['nomeEvento'];
@@ -38,9 +40,10 @@ class VRicerca
     /**
      * Restituisce (se immesso) il valore del campo data di un evento
      * Inviato con metodo post
-     * @return string contenente il valore inserito dall'utente
+     * @return DateTime contenente il valore inserito dall'utente
      */
-    public function getDataEvento(){
+    public function getDataEvento(): ?DateTime
+    {
         $value = null;
         if (isset($_POST['dataEvento']))
             $value = $_POST['dataEvento'];
@@ -52,7 +55,8 @@ class VRicerca
      * Inviato con metodo post
      * @return string contenente il valore inserito dall'utente
      */
-    public function getCitta(){
+    public function getCitta(): ?string
+    {
         $value = null;
         if (isset($_POST['citta']))
             $value = $_POST['citta'];
@@ -64,7 +68,8 @@ class VRicerca
      * Inviato con metodo post
      * @return string contenente il valore inserito dall'utente
      */
-    public function getCategorie(){
+    public function getCategorie(): ?string
+    {
         $value = null;
         if (isset($_POST['categorie']))
             $value = $_POST['categorie'];
@@ -76,7 +81,8 @@ class VRicerca
      * Inviato con metodo post
      * @return string
      */
-    public function getTipoRicerca(){
+    public function getTipoRicerca(): ?string
+    {
         $value = null;
         if (isset($_POST['ricerca']))
             $value = $_POST['ricerca'];
@@ -90,6 +96,7 @@ class VRicerca
      * @throws SmartyException
      */
     public function showResult($result, $tipo){
+        $sessione = USession::getInstance();
         if(CUtente::isLogged())
             $this->smarty->assign('userlogged',"loggato");
 
@@ -109,6 +116,7 @@ class VRicerca
         if ($logged == "no")
             $this->smarty->assign('userLogged', 'nouser'); //Solo gli utenti registrati possono vedere gli eventi
 
+        $sessione = USession::getInstance();
         //Caricamento immagini del locale
         if (is_array($result->getImmagini())) {
             foreach ($result->getImmagini() as $item) {
@@ -148,12 +156,15 @@ class VRicerca
         $this->smarty->assign('arrayRecensioni', $arrayRecensioni);
         $this->smarty->assign('valutazioneLocale', $votoMedio);
         // list($type,$pic64) = VUtente::setImage($img_utente, 'user');
-        if(CUtente::isLogged()) //Doppio controllo?
+
+        //Non so
+
+        if($sessione->leggi_valore('utente')) //Doppio controllo?
             $this->smarty->assign('userlogged',"loggato"); //Potrà cosi visualizzare gli eventi
 
         /*
         $myobj = new My_Object;
-        // registriamo l'oggetto (sarà usato per riferimento)
+        // registriamo l'oggetto (sarà usato per riferimento)  DA VEDERE
         $smarty->register_object("foobar",$myobj);*/
         $this->smarty->assign_by_refsign('locale', $result);
 

@@ -2,16 +2,15 @@
 
 class CUtente
 {
-    //DA RIVEDEREEEEEEEEEEEEEEEEEE
     /**
-     * Metodo che verifica se l'utente è loggato
+     * Metodo che verifica se l'utente è loggato ---> credo obsoleto
      * @return boolean $identificato indica se l'utente era già loggato o meno
-     */
+
     static function isLogged() {
         $identificato = false;
         $sessione = USession::getInstance();
 
-        /* if (isset($_COOKIE['PHPSESSID'])) {
+         if (isset($_COOKIE['PHPSESSID'])) {
           //   Il PHPSESSID Viene utilizzato per stabilire una sessione utente e trasmettere dati di stato tramite un cookie temporaneo,
           //   comunemente denominato cookie di sessione. (scade alla chiusura del browser)
 
@@ -21,13 +20,13 @@ class CUtente
                  //session_cache_limiter('private_no_expire'); // works
                  //session_cache_limiter('public'); // works too
              }
-        }*/
+        }
 
         if (!($sessione->leggi_valore('utente'))) {
             $identificato = true;
         }
         return $identificato;
-    }
+    } */
 
     /**
      * Funzione che consente il login di un utente registrato. Si possono avere diversi casi:
@@ -86,7 +85,7 @@ class CUtente
             if (!($sessione->leggi_valore('utente'))) {
                 $salvare = serialize($utente);
                 $sessione->imposta_valore('utente',$salvare);
-                if ($_POST['username'] != 'admin') {
+                if ($UsernameLogin != 'admin') {
                     //Ipoteticamente utile, per tornare nell'ultima pagina visitata
                     if (isset($_COOKIE['nome_visitato'])) {
                         header('Location: /FacceBeve/Utente/daVedere');
@@ -220,61 +219,54 @@ class CUtente
     /**
      * DA MODIFICAREEEEEE
      * Funzione di supporto che si occupa di verificare la correttezza dell'immagine inserita nella form di registrazione.
-     * Nll caso in cui non ci sono errori di inserimento, avviene la store dell'utente e la corrispondente immagine nel database.
+     * Nel caso in cui non ci sono errori di inserimento, avviene la store dell'utente e la corrispondente immagine nel database.
      * @param $utente obj utente
      * @param $funz tipo di funzione da svolgere
      * @param $nome_file passato nella form pe l'immagine
      * @return string stato verifa immagine
      */
     static function upload($utente,$funz,$nome_file) {
-        $pm = new FPersistentManager();
+        $pm = FPersistentManager()::getIstance();
         $ris = null;
         $nome = '';
         $max_size = 300000;
         $result = is_uploaded_file($_FILES[$nome_file]['tmp_name']);
         if (!$result) {
             //no immagine
-            if ($funz == "registrazioneCliente") {
-                $pm->store($utente);
-                //return "ok";
-                $ris = "ok";
-            }
-            if ($funz == "registrazioneTrasportatore") {
-                $a = static:: reg_immagine_mezzo_tra($utente,$max_size,$nome,false,$nome_file);
-                //return $a;
-                $ris = $a;
-            }
+            $pm->store($utente);
+            //return "ok";
+            $ris = "ok";
         } else {
             $size = $_FILES[$nome_file]['size'];
             $type = $_FILES[$nome_file]['type'];
             if ($size > $max_size) {
                 //Il file è troppo grande
                 //return "size";
-                $ris = "size";
+                $ris = "size";  // -->Errore relativo alla dimensione del img
             }
             //$type = $_FILES[$nome_file]['type'];
             elseif ($type == 'image/jpeg' || $type == 'image/png' || $type == 'image/jpg') {
                 $nome = $_FILES[$nome_file]['name'];
-                if ($funz == "registrazioneCliente") {
+                if ($funz == "registrazioneUtente") {
                     $pm->store($utente);
-                    $mutente = new EMediaUtente($nome, $utente->getEmail());
-                    $mutente->setType($type);
+                    $mutente = new EImmagine($nome,$size,$type,"IMMAGINE VEDI DRC");
                     $pm->storeMedia($mutente,$nome_file);
                     //return "ok";
                     $ris = "ok";
                 }
                 elseif ($funz == "modificaUtente") {
-                    $pm->delete("emailutente",$utente->getEmail(),"FMediaUtente");
-                    $mutente = new EMediaUtente($nome, $utente->getEmail());
-                    $mutente->setType($type);
+                    $pm->delete("id",$utente->getImgProfilo(),"FImmagine"); //A EImmagine manca l'id
+                    $mutente = new EImmagine($nome,$size,$type,"IMMAGINE VEDI DRC");
                     $pm->storeMedia($mutente,$nome_file);
                     //return "ok";
                     $ris = "ok";
                 }
-                elseif ($funz = "registrazioneTrasportatore") {
-                    $a = static:: reg_immagine_mezzo_tra($utente,$max_size,$nome,true,$nome_file);
-                    //return $a;
-                    $ris = $a;
+                elseif ($funz = "registrazioneProprietario") {
+                    $pm->store($utente);
+                    $mutente = new EImmagine($nome,$size,$type,"IMMAGINE VEDI DRC");
+                    $pm->storeMedia($mutente,$nome_file);
+                    //return "ok";
+                    $ris = "ok";
                 }
             }
             else {
@@ -285,8 +277,6 @@ class CUtente
         }
         return $ris;
     }
-
-
 
 
     /**
@@ -306,21 +296,19 @@ class CUtente
         }
         else {
             $proprietario = new EProprietario($view->getNome(),$view->getCognome(),$view->getEmail(),$view->getUsername(),$view->getPassword());
-            if ($proprietario != null) {
-                if (isset($_FILES['img_profilo'])) {
-                    $nome_file = 'img_profilo';
-                    $img = static::upload($proprietario,"registrazioneTrasportatore",$nome_file);
-                    switch ($img) {
-                        case "size":
-                            $view->registrazionePropError($error_username,"size");
-                            break;
-                        case "type":
-                            $view->registrazionePropError($error_username,"typeimg");
-                            break;
-                        case "ok":
-                            header('Location: /FacceBeve/Utente/login');
-                            break;
-                    }
+            if ($view->getImgProfilo() !== null) {
+                $nome_file = 'img_profilo';
+                $img = static::upload($proprietario,"registrazioneTrasportatore",$nome_file);
+                switch ($img) {
+                    case "size":
+                        $view->registrazionePropError($error_username,"size");
+                        break;
+                    case "type":
+                        $view->registrazionePropError($error_username,"typeimg");
+                        break;
+                    case "ok":
+                        header('Location: /FacceBeve/Utente/login');
+                        break;
                 }
             }
             /*

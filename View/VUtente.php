@@ -133,13 +133,13 @@ class VUtente
     }
 
     /**
-     * Funzione che si occupa di gestire la visualizzazione del profilo cliente
+     * Funzione che si occupa di gestire la visualizzazione del profilo utente
      * @param $user informazioni sull' utente da visualizzare
-     * @param $ann elenco di annunci pubblicati dall'utente
+     * @param $locali elenco di locali seguiti dall'utente
      * @param $img immagine dell'utente
      * @throws SmartyException
      */
-    public function profileUtente($user,$ann,$img) {
+    public function profileUtente($user,$locali,$img) {
         list($type,$pic64) = $this->setImage($img, 'user');
         $this->smarty->assign('type', $type);
         $this->smarty->assign('pic64', $pic64);
@@ -147,8 +147,8 @@ class VUtente
         $this->smarty->assign('nome',$user->getName());
         $this->smarty->assign('cognome',$user->getSurname());
         $this->smarty->assign('email',$user->getEmail());
-        $this->smarty->assign('array',$ann);
-        $this->smarty->display('profilo_cliente_privato.tpl');
+        $this->smarty->assign('array',$locali);
+        $this->smarty->display('areaPersonaleUtente.tpl');
     }
 
     /**
@@ -156,16 +156,15 @@ class VUtente
      * @param $user informazioni sull' utente da visualizzare
      * @param $ann elenco di annunci pubblicati dall'utente
      * @param $img immagine dell'utente
-     * @param $imgMezzo immagine del mezzo
-     * @param $imgrec elenco di immagini degli utenti per le recensioni
-     * @param $rec elenco di recensioni
+     * @param $locali elenco dei locali gestiti
      * @throws SmartyException
+     * */
 
-    public function profileProprietario($user,$ann,$img,$imgMezzo,$imgrec,$rec) {
-        if (count($rec) == 0)
+    public function profileProprietario($user,$img,$locali) {
+      /**  if (count($rec) == 0)
             $this->smarty->assign('media_voto', 0);
         else
-            $this->smarty->assign('media_voto', $user->averageMark());
+            $this->smarty->assign('media_voto', $user->averageMark()); //mettilo in VGLocale o VRecensione
         list($typeR,$pic64rec) = $this->SetImageRecensione($imgrec);
         if ($typeR == null && $pic64rec == null)
             $this->smarty->assign('immagine', "/FillSpaceWEB/Smarty/immagini/user.png");
@@ -186,18 +185,17 @@ class VUtente
         else
             $this->smarty->assign('n_recensioni', 0);
         $rec = $user->getReview();
+        list($type,$pic64) = $this->setImage($img, 'user'); **/
         list($type,$pic64) = $this->setImage($img, 'user');
         $this->smarty->assign('type', $type);
-        $this->smarty->assign('pic64prof', $pic64);
-        list($typeM,$pic64mezzo) = $this->setImage($imgMezzo, 'mezzo');
-        $this->smarty->assign('typeM', $typeM);
-        $this->smarty->assign('pic64mezzo', $pic64mezzo);
-        $this->smarty->assign('user', $user);
+        $this->smarty->assign('pic64', $pic64);
         $this->smarty->assign('userlogged',"loggato");
-        $this->smarty->assign('ann',$ann);
-        $this->smarty->assign('rec', $rec);
-        $this->smarty->display('profilo_trasp_privato.tpl');
-    } */
+        $this->smarty->assign('nome',$user->getName());
+        $this->smarty->assign('cognome',$user->getSurname());
+        $this->smarty->assign('email',$user->getEmail());
+        $this->smarty->assign('array',$locali);
+        $this->smarty->display('areaPersonaleProprietario.tpl');
+    }
 
     /**
      * Funzione che si occupa di gestire la visualizzazione della form di registrazione del Utente
@@ -233,7 +231,7 @@ class VUtente
                 $this->smarty->assign('errorSize',"errore");
                 break;
         }
-        $this->smarty->display('registrazioneproprietario.tpl');
+        $this->smarty->display('registrazioneProprietario.tpl');
     }
 
     /**
@@ -253,7 +251,7 @@ class VUtente
                 $this->smarty->assign('errorSize',"errore"); //Dimensione Immagine non supportata(troppo grande)
                 break;
         }
-        $this->smarty->display('registrazioneutente.tpl');
+        $this->smarty->display('registrazioneUtente.tpl');
     }
 
     /**
@@ -264,16 +262,20 @@ class VUtente
      */
     public function setImage($image, $tipo) {
         if (isset($image)) {
-            $pic64 = base64_encode($image->getData());
+            $pic64 = base64_encode($image->getImmagine());
             $type = $image->getType();
         }
-        elseif ($tipo == 'user') {
-            $data = file_get_contents( $_SERVER['DOCUMENT_ROOT'] . '/FacceBeve/Smarty/immagini/user.png'); //Immagine generica per l'utente
+        elseif ($tipo == 'Utente') {
+            $data = file_get_contents( $_SERVER['DOCUMENT_ROOT'] . '/FacceBeve/Smarty/immagini/utente.png'); //Immagine generica per l'utente
+            $pic64= base64_encode($data);
+            $type = "image/png";
+        }elseif ($tipo == 'Proprietario'){
+            $data = file_get_contents( $_SERVER['DOCUMENT_ROOT'] . '/FillSpaceWEB/Smarty/immagini/proprietario.png'); //Immagine generica per il proprietario
             $pic64= base64_encode($data);
             $type = "image/png";
         }
-        else {
-            $data = file_get_contents( $_SERVER['DOCUMENT_ROOT'] . '/FillSpaceWEB/Smarty/immagini/truck2.png'); //Immagine generica per il proprietario
+        elseif($tipo == 'Locale') {
+            $data = file_get_contents( $_SERVER['DOCUMENT_ROOT'] . '/FillSpaceWEB/Smarty/immagini/locale.png'); //Immagine generica per il proprietario
             $pic64= base64_encode($data);
             $type = "image/png";
         }
@@ -281,11 +283,10 @@ class VUtente
     }
 
     /**
-     * Funzione di supporto per gestire le immagini presenti nell'elenco delle recensioni
+     * Funzione di supporto per gestire le immagini presenti nell'elenco delle recensioni || DIEEERRECCCCI non so se va in Recensione o in GestioneLocali
      * @param $imgrec elenco di immagini degli utenti presenti nelle recensioni
      * @return array
      */
-
     public function SetImageRecensione ($imgrec) {
         $type = null;
         $pic64 = null;
@@ -315,7 +316,7 @@ class VUtente
      * @param $img immagine dell'utente da visitare
      * @param $cont possibilitÃ  di contattare o meno il cliente
      * @throws SmartyException
-     */
+
     public function profilopubblico_cli($user,$img,$cont) {
         list($type,$pic64) = $this->setImage($img, 'user');
         $this->smarty->assign('type', $type);
@@ -329,6 +330,7 @@ class VUtente
         $this->smarty->assign('email',$user->getEmail());
         $this->smarty->display('profilo_cliente_pubblico.tpl');
     }
+     * */
 
     /**
      * Funzione che si occupa di gestire la visualizzazione del profilo pubblico di un trasportatore
@@ -340,7 +342,7 @@ class VUtente
      * @param $rec elenco delle recensioni dell'utente visitato
      * @param $cont possibilitÃ  di contattare o meno il cliente
      * @throws SmartyException
-     */
+
     public function profilopubblico_tra($user, $emailvisitato, $img,$imgMezzo,$imgrec,$rec,$cont) {
         if (count($rec) == 0)
             $this->smarty->assign('media_voto', 0);
@@ -388,7 +390,7 @@ class VUtente
         $this->smarty->assign('dim',$mezzo->getSize());
         $this->smarty->assign('full_load',$mezzo->getFullLoad());
         $this->smarty->display('profilo_trasp_pubblico.tpl');
-    }
+    } */
 
     /**
      * Funzione che si occupa di gestire la visualizzazione della form di modifica per il cliente
@@ -397,7 +399,7 @@ class VUtente
      * @param $error tipo di errore nel caso in cui le modifiche siano sbagliate
      * @throws SmartyException
      */
-    public function formmodificacli($user,$img,$error) {
+    public function formModificaUtente($user,$img,$error) {
         switch ($error) {
             case "errorEmail" :
                 $this->smarty->assign('errorEmail', "errore");

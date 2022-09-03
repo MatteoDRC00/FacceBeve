@@ -38,16 +38,20 @@ class USession
         setcookie('PHPSESSID',''); //Svuota il cookie su client
     }
 
-
+     /**
+      * Metodo che va a svuotare uno degli elementi del vettore $_SESSION, identificato dalla sua chiave
+      * @param $chiave identifica l'elemento del array
+     */
     function cancella_valore($chiave) {
         unset($_SESSION[$chiave]);
     }
 
+    /**
+     * Metodo utilizzato per accedere all'elemento di $_SESSION identificato dalla propria chiave
+     * @param $chiave identifica l'elemento del array
+    */
     function leggi_valore($chiave) {
-        if (isset($_SESSION[$chiave]))
-            return $_SESSION[$chiave];
-        else
-            return false;
+        return $_SESSION[$chiave] ?? false;
     }
 
     /**

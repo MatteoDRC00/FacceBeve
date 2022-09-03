@@ -147,6 +147,9 @@ class FPersistentManager {
     public static function loadLogin ($user, $pass) {
         $ris = null;
         $ris = FUtente::loadLogin($user, $pass);
+        if($ris==null){
+            $ris = FProprietario::loadLogin($user, $pass);
+        }
         return $ris;
     }
 

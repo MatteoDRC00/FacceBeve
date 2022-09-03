@@ -92,10 +92,13 @@ class CRicerca{
     /**
      * Funzione con il compito di indirizzare alla pagina specifica del locale selezionato
      * @param $id id del locale selezionato
-     * */
+     *
+     * @throws SmartyException
+     */
      static function dettagliLocale($id){
         $vRicerca = new VRicerca();
-        $pm = FPersistentManager::GetIstance(); //FARLO POI DAPPERTUTTO.
+        $pm = FPersistentManager::GetIstance();
+        $sessione = USession::getInstance();
         $result = $pm->load("id", $id, "FLocale");
 
         //Calcolo valutazione media locale + sue recensioni con le relative risposte
@@ -118,8 +121,7 @@ class CRicerca{
         }
 
         //$this->smarty->assign('recensioniLocale', $recensioni);
-        if (CUtente::isLogged()) {
-            //$utente = unserialize($_SESSION['utente']);
+        if ($sessione->leggi_valore('utente')) {
             $vRicerca->dettagliLocale($result,$util,"si",$rating);
         }
         else
