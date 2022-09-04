@@ -288,9 +288,10 @@ class CUtente
         $error_username = false;
         $error_mezzo = false;
         $pm = new FPersistentManager();
-        $vereusername1 = $pm->exist("email", $_POST['username'],"FProprietario");
-        $vereusername2 = $pm->exist("email", $_POST['email'],"FUtente");
         $view = new VUtente();
+        $usercheck = $view->getUsername();
+        $vereusername1 = $pm->exist("username", $usercheck,"FProprietario");
+        $vereusername2 = $pm->exist("username", $usercheck,"FUtente");
         if (($vereusername1) || ($vereusername2)){
             $view->registrazionePropError($error_username,"");
         }
