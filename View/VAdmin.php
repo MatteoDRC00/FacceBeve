@@ -213,10 +213,4 @@ class VAdmin
         $this->smarty->display('admin_annunci.tpl');
     }
 
-
-
-
-
-
-
 }

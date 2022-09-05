@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<!-- {assign var='userlogged' value=$userlogged|default:'nouser'} -->
+{assign var='userlogged' value=$userlogged|default:'nouser'}
+{assign var='tipo' value=$tipo|default:'nouser'}
 <html lang="en">
 
 <head>
@@ -39,9 +40,9 @@
             var z,q;
             q = document.getElementById(y);
             if(y==='Locali'){
-                 q.style.display = "flex";
-                 z = document.getElementById("Eventi");
-                 z.style.display = "none";
+                q.style.display = "flex";
+                z = document.getElementById("Eventi");
+                z.style.display = "none";
 
             }else{
                 q.style.display = "inline-block";
@@ -50,7 +51,7 @@
             }
         };
 
-       /** function defaultView() {
+        /** function defaultView() {
             var x = document.getElementById("Eventi");
             x.style.display = "none";
             var y = document.getElementById("Locali");
@@ -64,9 +65,7 @@
 
 
 </head>
-
 <body> <!--onload="defaultView()"-->
-
 <!-- ======= Header ======= -->
 <header id="header" class="fixed-top d-flex align-items-center header-transparent">
     <div class="container d-flex justify-content-between align-items-center">
@@ -75,11 +74,25 @@
             <h1><a href="index.html"><img src="/Smarty/template/assets/img/logo.png" alt=""><span>FacceBeve</span></a></h1>
         </div>
 
-        <div class="sign">
-            <a href="login.html">Accedi</a>
-            <a href="registrazioneUtente.html">Registrati</a>
-            <a href="registrazioneProprietario.html">Vuoi pubblicizzare il tuo locale?</a>
-        </div>
+        {if $userlogged=='nouser'}
+            <div class="sign">
+                <a href="login.html">Accedi</a>
+                <a href="registrazioneUtente.html">Registrati</a>
+                <a href="registrazioneProprietario.html">Vuoi pubblicizzare il tuo locale?</a>
+            </div>
+        {elseif $tipo=='EUtente'}
+            <div class="sign">
+                <a href="areaPersonaleUtente.html">Il tuo profilo personale</a>
+                <a href="areaPersonaleUtente.html">I tuoi locali preferiti</a> <!--Come si fa?-->
+                <a href="registrazioneProprietario.html">Logout</a> <!--Qui direi una semplice action  -->
+            </div>
+        {elseif $tipo=='EProprietario'}
+            <div class="sign">
+                <a href="areaPersonaleProprietario.html">Il tuo profilo personale</a>
+                <a href="areaPersonaleUtente.html">I tuoi locali gestiti</a> <!--Quasi quasi ne farei solo 2 di bottoni-->
+                <a href="registrazioneProprietario.html">Logout</a> <!--Qui direi una semplice action  -->
+            </div>
+        {/if}
 
     </div>
 </header><!-- End Header -->
@@ -89,47 +102,58 @@
     <div id="heroCarousel" class="container carousel carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
 
         <div class="carousel-item active">
-
-            <div class="carousel-container">
-                <h2 class="animate__animated animate__fadeInDown">Benvenuti in <span>FacceBeve</span></h2>
-                <p class="animate__animated animate__fadeInUp">È scientificamente provato che un aperitivo patatine e birretta non salveranno il mondo, ma la giornata sicuramente sì.</p>
-
-                <h4 class="mb-0" >Puoi ricercare...</h4>
-                <select name="tipo" id="tipo" onChange="setList()">
-                    <option  selected value="Locali">Locali</option>
-                    <option value="Eventi">Eventi</option>
-                </select>
-
-            </div>
-
-            <!--{if $userlogged!='nouser'}-->
-
-
-
-
-            <div class="ricerca animate__animated animate__fadeInDown" id="Locali" style="display: flex;justify-content: center;">
-                <form class="Search"  action="risultatiRicerca.html">
-                    <input type="text" placeholder="Inserisci la città" name="citta">
-                    <input type="text" placeholder="Inserisci il nome" name="nomeLocale">
-                    <select name="categorie" style="border-radius:6px;">
-                        <option>Scegli il tipo</option>
-                        <option value="bar">Bar</option>
-                        <option value="pub">Pub</option>
+            {if $userlogged!='nouser'}
+                <div class="carousel-container">
+                    <h2 class="animate__animated animate__fadeInDown">Benvenuti in <span>FacceBeve</span></h2>
+                    <p class="animate__animated animate__fadeInUp">È scientificamente provato che un aperitivo patatine e birretta non salveranno il mondo, ma la giornata sicuramente sì.</p>
+                    <h4 class="mb-0" >Puoi ricercare...</h4>
+                    <select name="tipo" id="tipo" onChange="setList()">
+                        <option  selected value="Locali">Locali</option>
+                        <option value="Eventi">Eventi</option>
                     </select>
-                    <button type="submit" style="border-radius:10px;"><i class="fa fa-search"></i></button>
-                </form>
-            </div>
+                </div>
+                <div class="ricerca animate__animated animate__fadeInDown" id="Locali" style="display: flex;justify-content: center;">
+                    <form class="Search"  action="risultatiRicerca.html">
+                        <input type="text" placeholder="Inserisci la città" name="citta">
+                        <input type="text" placeholder="Inserisci il nome" name="nomeLocale">
+                        <select name="categorie" style="border-radius:6px;">
+                            <option>Scegli il tipo</option>
+                            <option value="bar">Bar</option>
+                            <option value="pub">Pub</option>
+                        </select>
+                        <button type="submit" style="border-radius:10px;"><i class="fa fa-search"></i></button>
+                    </form>
+                </div>
+                <div class="ricerca animate__animated animate__fadeInDown" id="Eventi" style="display: none;justify-content: center;" >
+                    <form class="Search" action="risultatiRicerca.html">
+                        <input type="text" placeholder="Inserisci la città" name="citta">
+                        <input type="text" placeholder="Inserisci il nome del Locale" name="nomeLocale">
+                        <input type="text" placeholder="Inserisci il nome del Evento" name="nomeEvento">
+                        <input type="date" placeholder="Inserisci la data del Evento" name="dataEvento">
+                        <button type="submit" style="border-radius:10px;"><i class="fa fa-search"></i></button>
+                    </form>
+                </div>
+            {else}
+                <div class="carousel-container">
+                    <h2 class="animate__animated animate__fadeInDown">Benvenuti in <span>FacceBeve</span></h2>
+                    <p class="animate__animated animate__fadeInUp">È scientificamente provato che un aperitivo patatine e birretta non salveranno il mondo, ma la giornata sicuramente sì.</p>
+                    <h4 class="mb-0">Trova i locali della tua città</h4>
+                </div>
 
-            <div class="ricerca animate__animated animate__fadeInDown" id="Eventi" style="display: none;justify-content: center;" >
-                <form class="Search" action="risultatiRicerca.html">
-                    <input type="text" placeholder="Inserisci la città" name="citta">
-                    <input type="text" placeholder="Inserisci il nome del Locale" name="nomeLocale">
-                    <input type="text" placeholder="Inserisci il nome del Evento" name="nomeEvento">
-                    <input type="date" placeholder="Inserisci la data del Evento" name="dataEvento">
-                    <button type="submit" style="border-radius:10px;"><i class="fa fa-search"></i></button>
-                </form>
-            </div>
+                <div class="ricerca animate__animated animate__fadeInDown" style="display: flex;justify-content: center;">
+                    <form class="Search"  action="risultatiRicerca.html">
+                        <input type="text" placeholder="Inserisci la città" name="citta">
+                        <input type="text" placeholder="Inserisci il nome" name="nomeLocale">
+                        <select name="categorie" style="border-radius:6px;">
+                            <option>Scegli il tipo</option>
+                            <option value="bar">Bar</option>
+                            <option value="pub">Pub</option>
+                        </select>
+                        <button type="submit" style="border-radius:10px;"><i class="fa fa-search"></i></button>
+                    </form>
+                </div>
 
+            {/if}
         </div>
 
     </div>
@@ -188,61 +212,61 @@
 
 <!-- ======= Footer ======= -->
 <footer id="footer" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
-<!--
-    <div class="footer-top">
-        <div class="container">
-            <div class="row">
+    <!--
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
 
-                <div class="col-lg-3 col-md-6 footer-links">
-                    <h4>Useful Links</h4>
-                    <ul>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
-                    </ul>
-                </div>
-
-                <div class="col-lg-3 col-md-6 footer-links">
-                    <h4>Our Services</h4>
-                    <ul>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
-                    </ul>
-                </div>
-
-                <div class="col-lg-3 col-md-6 footer-contact">
-                    <h4>Contact Us</h4>
-                    <p>
-                        A108 Adam Street <br>
-                        New York, NY 535022<br>
-                        United States <br><br>
-                        <strong>Phone:</strong> +1 5589 55488 55<br>
-                        <strong>Email:</strong> info@example.com<br>
-                    </p>
-
-                </div>
-
-                <div class="col-lg-3 col-md-6 footer-info">
-                    <h3>About Moderna</h3>
-                    <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita
-                        valies darta donna mare fermentum iaculis eu non diam phasellus.</p>
-                    <div class="social-links mt-3">
-                        <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-                        <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-                        <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-                        <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                    <div class="col-lg-3 col-md-6 footer-links">
+                        <h4>Useful Links</h4>
+                        <ul>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+                        </ul>
                     </div>
-                </div>
 
+                    <div class="col-lg-3 col-md-6 footer-links">
+                        <h4>Our Services</h4>
+                        <ul>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 footer-contact">
+                        <h4>Contact Us</h4>
+                        <p>
+                            A108 Adam Street <br>
+                            New York, NY 535022<br>
+                            United States <br><br>
+                            <strong>Phone:</strong> +1 5589 55488 55<br>
+                            <strong>Email:</strong> info@example.com<br>
+                        </p>
+
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 footer-info">
+                        <h3>About Moderna</h3>
+                        <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita
+                            valies darta donna mare fermentum iaculis eu non diam phasellus.</p>
+                        <div class="social-links mt-3">
+                            <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                            <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                            <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                            <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </div>
-    </div>
--->
+    -->
     <div class="container">
         <div class="copyright">
             &copy; Copyright <strong><span>Moderna</span></strong>. All Rights Reserved
@@ -258,7 +282,7 @@
 </footer><!-- End Footer -->
 
 <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
-        class="bi bi-arrow-up-short"></i></a>
+            class="bi bi-arrow-up-short"></i></a>
 
 <!-- Vendor JS Files -->
 <script src="/Smarty/template/assets/vendor/purecounter/purecounter_vanilla.js"></script>

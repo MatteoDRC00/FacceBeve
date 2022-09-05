@@ -22,16 +22,16 @@ class FImmagine
     /**
      * Questo metodo lega gli attributi dell'oggetto multimediale da inserire con i parametri della INSERT
      * @param PDOStatement $stmt
-     * @param EMediaUtente $md media i cui dati devono essere inseriti nel DB
+     * @param EImmagine $md media i cui dati devono essere inseriti nel DB
      */
 
 
-    public static function bind($stmt, EMediaUtente $md,$nome_file){
+    public static function bind($stmt, EImmagine $md,$nome_file){
         //$path=$_FILES['file']['tmp_name'];
         $path = $_FILES[$nome_file]['tmp_name'];
         $file=fopen($path,'rb') or die ("Attenzione! Impossibile da aprire!");
         $stmt->bindValue(':id',NULL, PDO::PARAM_INT); //l'id � posto a NULL poich� viene dato automaticamente dal DBMS (AUTOINCREMENT_ID)
-        $stmt->bindValue(':nome',$md->getFname(), PDO::PARAM_STR);
+        $stmt->bindValue(':nome',$md->getNome(), PDO::PARAM_STR);
         $stmt->bindValue(':type',$md->getType(), PDO::PARAM_STR);
         $stmt->bindValue(':immagine', fread($file,filesize($path)), PDO::PARAM_LOB);
         unset($file);
@@ -123,7 +123,6 @@ class FImmagine
         else
             return false;
     }
-
 
 
     /**
