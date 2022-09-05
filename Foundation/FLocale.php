@@ -30,6 +30,7 @@ class FLocale {
         $stmt->bindValue(':id',NULL, PDO::PARAM_INT); //l'id è posto a NULL poichè viene dato automaticamente dal DBMS (AUTOINCREMENT_ID)
         $stmt->bindValue(':nome', $locale->getNome(), PDO::PARAM_STR);
 		$stmt->bindValue(':numtelefono',$locale->getNumTelefono(), PDO::PARAM_STR);
+        $stmt->bindValue(':visibility',$locale->getVisibility(), PDO::PARAM_INT);
 		$stmt->bindValue(':descrizione',$locale->getDescrizione(), PDO::PARAM_STR);
         $stmt->bindValue(':proprietario', $locale->getProprietario()->getUsername(), PDO::PARAM_INT);
         $stmt->bindValue(':localizzazione', $locale->getLocalizzazione()->getId(), PDO::PARAM_INT);
@@ -119,7 +120,7 @@ class FLocale {
     * @param $id campo da confrontare per trovare l'oggetto
     * @return object $locale
     */
-    public static function loadByField($field, $id){ //es: ricerca i locali di Pescara DA MODIFICARE
+    public static function loadByField($field, $id){
         $locale = null;
         $db=FDB::getInstance();
         $result=$db->load(static::getClass(), $field, $id);
@@ -132,6 +133,7 @@ class FLocale {
             $orari = FOrario::loadByLocale($result["id"]);
             $immagini = FImmagine::loadByLocale($result["id"]);
             $locale=new ELocale($result['nome'], $result['descrizione'], $result['numtelefono'], $proprietario ,$categorie, $localizzazione ,$eventi,$orari); //Carica un Locale dal database
+            $locale->setVisibility($result['visibility']);
         }
         else {
             if(($result!=null) && ($rows_number > 1)){
@@ -150,7 +152,8 @@ class FLocale {
                     $orari[] = FOrario::loadByLocale($result[$i]["id"]);
                     $immagini[] = FImmagine::loadByLocale($result[$i]["id"]);
                     $locale[]=new ELocale($result[$i]['nome'], $result[$i]['descrizione'], $result[$i]['numtelefono'], $proprietario[$i] ,$categorie[$i], $localizzazione[$i] ,$eventi[$i], $orari[$i]);
-                    //$locale[$i]->setIdAd($result[$i]['id']); //Carica un array di oggetti Locale dal database
+                    //$locale[$i]->setIdAd($result[$i]['id']); //Carica un array di oggetti Locale dal DB
+                    $locale[$i]->setVisibility($result[$i]['visibility']); //?
                 }
             }
         }
@@ -215,67 +218,10 @@ class FLocale {
         return $rece;
     }
 
-    /**
-     *
-     * @param $parola valore da ricercare all'interno del campo text
-     * @return object $rec Recensione
-
-    public static function loadByKeyword($parola) {  //DA MODIFICARE
-        $loc = null;
-        $db = FDB::getInstance();
-        list ($result, $rows_number)=$db->CercaByKeyword(static::getClass(), "campo",$parola);
-        if(($result != null) && ($rows_number == 1)) {
-            $rec = new ERecensione($result['text'],$result['mark'],$result['emailClient'],$result['emailConveyor']);
-            $rec->setId($result['id']);
-        }
-        else {
-            if(($result != null) && ($rows_number > 1)){
-                $rec = array();
-                for($i = 0; $i < count($result); $i++){
-                    $rec[] = new ERecensione($result[$i]['text'], $result[$i]['mark'],$result[$i]['emailClient'], $result[$i]['emailConveyor']);
-                    $rec[$i]->setId($result[$i]['id']);
-                }
-            }
-        }
-        return $rec;
-    } */
-
-
-    /**
-     *Metodo che  permette di ritornare gli utenti del db, filtrandoli per nome, cognome
-     * @param $string valore inserito nella barra di ricerca dell'admin
-     * @return object $utente Utente
-	 
-	 FORSE NON CI SERVE
-     
-    public static function loadUtentiByString($string){
-        $utente = null;
-        $toSearch = null;
-        $pieces = explode(" ", $string);
-        $lastElement = end($pieces);
-        if ($pieces[0] == $lastElement) {
-            $toSearch = 'nome';
-        }
-        $db=FDatabase::getInstance();
-        list ($result, $rows_number)=$db->utentiByString($pieces, $toSearch);
-        if(($result!=null) && ($rows_number == 1)) {
-            $utente=new EUtenteloggato($result['name'],$result['surname'], $result['email'], $result['password'],$result['state']);
-        }
-        else {
-            if(($result!=null) && ($rows_number > 1)){
-                $utente = array();
-                for($i=0; $i<count($result); $i++){
-                    $utente[]=new EUtenteloggato($result[$i]['name'],$result[$i]['surname'], $result[$i]['email'], $result[$i]['password'],$result[$i]['state']);
-                }
-            }
-        }
-        return $utente;
-    } */
-
      /** Metodo che permette di caricare un locale che ha determinati parametri, i quali vengono passati in input da una form */
      public static function loadByForm ($part1, $part2, $part3) {
         $locale = null;
-        $db=FDatabase::getInstance();
+        $db=FDB::getInstance();
         list ($result, $rows_number)=$db->loadMultipleLocale($part1, $part2, $part3);
         //print_r ($result);
         //print $rows_number;
@@ -309,6 +255,69 @@ class FLocale {
         }
         return $locale;
     }
+
+
+
+
+    /** Metodo che recupera dal db tutte le istanze che contengono il parametro passato in input
+     */
+    public static function loadByParola($parola){
+        $annuncio = null;
+        $intermedia = null;
+        $tappa = null;
+        $db=FDB::getInstance();
+        list ($result, $rows_number)=$db->CercaByKeyword($parola, static::getClass(), "description");
+        if(($result!=null) && ($rows_number == 1)) {
+            $part = FLuogo::loadByField("id" , $result["departure"]);
+            $arr = FLuogo::loadByField("id" , $result["arrival"]);
+            $ute = FUtenteloggato::loadByField("email" , $result["emailWriter"]);
+
+            $annuncio=new EAnnuncio($result['departureDate'], $result['arrivalDate'], $result['space'], $part , $arr ,$result['weight'],$result['description'],$ute);
+            if ($intermedia != null) {
+                foreach ($intermedia as $i)
+                    $annuncio->addTappa($i);
+            }
+            $annuncio->setIdAd($result['idAd']);
+            if($result['visibility']) $annuncio->setVis();
+        }
+        else {
+            if(($result!=null) && ($rows_number > 1)){
+                $part = array();
+                $arr = array();
+                $ute = array();
+                $annuncio = array();
+                for($i=0; $i<count($result); $i++){
+                    $tappa = null;
+                    $intermedia = null;
+                    $part[] = FLuogo::loadByField("id" , $result[$i]["departure"]);
+                    $arr[] = FLuogo::loadByField("id" , $result[$i]["arrival"]);
+                    $ute[] = FUtenteloggato::loadByField("email" , $result[$i]["emailWriter"]);
+                    $tappa = FTappa::loadByField("ad", $result[$i]["idAd"]);
+                    if ($tappa != null ) {
+                        $t = current($tappa);
+                        if (is_array($t)) {
+                            foreach ($tappa as $t) {
+                                $intermedia[] = FLuogo::loadByField("id", $t['place']);
+                            }
+                        } else {
+                            $intermedia[] = FLuogo::loadByField("id", $tappa['place']);
+                        }
+                    }
+
+                    $annuncio[]=new EAnnuncio($result[$i]['departureDate'], $result[$i]['arrivalDate'], $result[$i]['space'], $part[$i] , $arr[$i] ,$result[$i]['weight'],$result[$i]['description'],$ute[$i]);
+                    $annuncio[$i]->setIdAd($result[$i]['idAd']);
+                    if($result[$i]['visibility']) $annuncio[$i]->setVis();
+                    if ( $intermedia != null ){
+                        foreach ($intermedia as $int)
+                            $annuncio[$i]->addTappa($int);
+                    }
+
+                }
+            }
+        }
+        return $annuncio;
+    }
+
 
 }
 ?>

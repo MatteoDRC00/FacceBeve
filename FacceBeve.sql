@@ -98,6 +98,7 @@ CREATE TABLE `Locale` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
     `nome` VARCHAR(26),
     `numtelefono` CHAR(9) UNIQUE,
+    `visibility` CHAR(9) tinyint(1) DEFAULT NULL,
     `descrizione` VARCHAR(120),
 	`proprietario` VARCHAR(24),
 	`localizzazione` INT(11),

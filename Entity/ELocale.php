@@ -9,6 +9,7 @@
  *  - categoria: identifica la categoria del locale, cioè il tipo
  *  - localizzazione: identifica la posizione geografica in cui si trova il locale
  *  - eventi_organizzati: è l'insieme degli eventi organizzati dal locale
+ *  - visibility: indica se un locale è bannato o no
  *  - orario_apertura: indica gli orari in cui il locale è aperto in base al giorno della settimana
  *  @author Gruppo8
  *  @package Entity
@@ -20,6 +21,7 @@ class  ELocale implements JsonSerializable{
     private string $descrizione;
     private string $num_telefono;
     private EProprietario $proprietario;
+    private int $visibility = 1;
     private $categoria = array();
     private ELocalizzazione $localizzazione;
     private $eventi_organizzati = array();
@@ -78,6 +80,22 @@ class  ELocale implements JsonSerializable{
     public function setNome(string $nome): void
     {
         $this->nome = $nome;
+    }
+
+    /**
+     * @return int
+     */
+    public function getVisibility(): int
+    {
+        return $this->visibility;
+    }
+
+    /**
+     * @param int $x
+     */
+    public function setVisibility(int $x): void
+    {
+        $this->visibility = $x;
     }
 
     /**
@@ -222,6 +240,7 @@ class  ELocale implements JsonSerializable{
                 'localizzazione'   => $this->getLocalizzazione(),
                 'eventi'   => $this->getEventiOrganizzati(),
                 'orario'   => $this->getOrario(),
+                'visibility'  => $this->getVisibility(),
                 'img'   => $this->getImg()
             ];
     }
@@ -230,7 +249,7 @@ class  ELocale implements JsonSerializable{
      * @return $print String
      */
     public function __toString() {
-        $print = "\nid: ".$this->getId()."\n"."nome: ".$this->Nome()."\n"."numero di telefono: ".$this->getNumTelefono()."\n"."proprietario: ".$this->getProprietario()->getUsername()."\n"."descrizione: ".$this->getDescrizione()."\n"."categoria: ".$this->getCategoria()."\n"."Luogo: ".$this->getLocalizzazione()->getCodice()."\n"."Eventi: ".$this->getEventiOrganizzati()."\n"."Orario: ".$this->getOrario()."\n"."Img: ".$this->getImg()."\n";
+        $print = "\nid: ".$this->getId()."\n"."nome: ".$this->Nome()."\n"."numero di telefono: ".$this->getNumTelefono()."\n"."proprietario: ".$this->getProprietario()->getUsername()."\n"."descrizione: ".$this->getDescrizione()."\n"."categoria: ".$this->getCategoria()."\n"."Luogo: ".$this->getLocalizzazione()->getCodice()."\n"."Eventi: ".$this->getEventiOrganizzati()."\n"."Orario: ".$this->getOrario()."\n"."Visibilità: ".$this->getVisibility()."\n"."Img: ".$this->getImg()."\n";
 
         return $print;
     }

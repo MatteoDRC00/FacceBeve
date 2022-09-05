@@ -174,7 +174,7 @@ class CUtente
         $vereusername1 = $pm->exist("username", $usercheck,"FProprietario");
         $vereusername2 = $pm->exist("username", $usercheck,"FUtente");
         $view = new VUtente();
-        if (($vereusername1) || ($vereusername2)){
+        if (($vereusername1) || ($vereusername2) && ($usercheck!="admin") && ($usercheck!="Admin")){
             $view->registrazioneUtenteError ("username"); //username già esistente
         }
         else {
@@ -292,14 +292,14 @@ class CUtente
         $usercheck = $view->getUsername();
         $vereusername1 = $pm->exist("username", $usercheck,"FProprietario");
         $vereusername2 = $pm->exist("username", $usercheck,"FUtente");
-        if (($vereusername1) || ($vereusername2)){
+        if (($vereusername1) || ($vereusername2) && ($usercheck!="admin") && ($usercheck!="Admin")){
             $view->registrazionePropError($error_username,"");
         }
         else {
             $proprietario = new EProprietario($view->getNome(),$view->getCognome(),$view->getEmail(),$view->getUsername(),$view->getPassword());
             if ($view->getImgProfilo() !== null) {
                 $nome_file = 'img_profilo';
-                $img = static::upload($proprietario,"registrazioneTrasportatore",$nome_file);
+                $img = static::upload($proprietario,"registrazioneProprietario",$nome_file);
                 switch ($img) {
                     case "size":
                         $view->registrazionePropError($error_username,"size");

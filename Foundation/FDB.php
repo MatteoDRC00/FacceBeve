@@ -14,7 +14,6 @@ class FDB{
 	 */
 	private static FDB $instance;
 
-
 	/**
 	 * 	Il costruttore è messo privato perché vogliamo un unico oggetto di questa classe
 	 */
@@ -548,7 +547,6 @@ class FDB{
 		}
 		return array($result, $num);
 	}
-
 }
 
 ?>

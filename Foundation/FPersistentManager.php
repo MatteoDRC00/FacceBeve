@@ -153,16 +153,6 @@ class FPersistentManager {
         return $ris;
     }
 
-    /** Metodo che permette l'inserimento di una nuova tappa nel db
-     * @param ad , fk annuncio
-     * @param place ,fk del luogo
-
-    public function insertTappa ($ad,$place) {
-        $ris = null;
-        $ris = FTappa::insert($ad,$place);
-        return $ris;
-    } */
-
     /**   Metodo che permette il caricamento di una chat e quindi lo scambio di messaggi tra due utenti che vengono identificati
      *dal sistema tramite la loro email
      *  *@param email ,email del utente
@@ -170,7 +160,7 @@ class FPersistentManager {
      */
     public function loadEventi($utentelogged){
         $ris = null;
-        $ris = FEvento::loadByUtente($utentelogged.getUsername());
+        $ris = FEvento::loadByUtente($utentelogged->getUsername());
         return $ris;
     }
 

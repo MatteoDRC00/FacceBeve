@@ -29,6 +29,18 @@ class VAdmin
     }
 
     /**
+     * Restituisce la username dell'utente da bannare/riattivare dal campo hidden input
+     * Inviato con metodo post
+     * @return string contenente l'email dell'utente
+     */
+    function getUsername(){
+        $value = null;
+        if (isset($_POST['username']))
+            $value = $_POST['username'];
+        return $value;
+    }
+
+    /**
      * Restituisce l'id della recensione da eliminare (proviene dal campo input hidden)
      * Inviato con metodo post
      * @return string contenente l'id della recensione
@@ -41,13 +53,26 @@ class VAdmin
     }
 
     /**
+     * Restituisce la parola immessa nella barra di ricerca
+     * Inviato con metodo post
+     * @return string contenente l'id della recensione
+     */
+    function getParola(){
+        $value = null;
+        if (isset($_POST['parola']))
+            $value = $_POST['parola'];
+        return $value;
+    }
+
+
+    /**
      * Funzione che permette di visualizzare la pagina home dell'admin (contenente tutti gli utenti della piattaforma),divisi in attivi e bannati.
      * @param $utentiAttivi array di utenti attivi
      * @param $utentiBannati array di utenti bannati
      * @param $img_attivi array di immagini degli utenti attivi
      * @param $img_bann array di immagini degli utenti bannati
      * @throws SmartyException
-     */
+
     public function HomeAdmin($utentiAttivi, $utentiBannati,$img_attivi,$img_bann) {
         list($typeA,$pic64att) = $this->SetImageRecensione($img_attivi);
         if ($typeA == null && $pic64att == null)
@@ -84,10 +109,10 @@ class VAdmin
         $this->smarty->assign('utenti',$utentiAttivi);
         $this->smarty->assign('utentiBan',$utentiBannati);
         $this->smarty->display('admin_HP.tpl');
-    }
+    }*/
 
     /**
-     * Funzione di supporto che si occupa gestire le immgini degli utenti presenti nell'elenco delle recensioni
+     * Funzione di supporto che si occupa gestire le immagini degli utenti presenti nell'elenco delle recensioni
      * @param $imgrec
      * @return array $type array dei MIME type delle immagini, $pic64 array dei dati delle immagini
      */
@@ -97,17 +122,17 @@ class VAdmin
         if (is_array($imgrec)) {
             foreach ($imgrec as $item) {
                 if (isset($item)) {
-                    $pic64[] = base64_encode($item->getData());
+                    $pic64[] = base64_encode($item->getImmagine());
                     $type[] = $item->getType();
                 } else {
-                    $data = file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/FillSpaceWEB/Smarty/immagini/user.png');
+                    $data = file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/FacceBeve/Smarty/immagini/user.png');
                     $pic64[] = base64_encode($data);
                     $type[] = "image/png";
                 }
             }
         }
         elseif (isset($imgrec)) {
-            $pic64 = base64_encode($imgrec->getData());
+            $pic64 = base64_encode($imgrec->getImmagine());
             $type = $imgrec->getType();
         }
         return array($type, $pic64);
@@ -121,33 +146,33 @@ class VAdmin
      */
     public function showRevPage($rec,$img){
 
-        list($typeA,$pic64att) = $this->SetImageRecensione($img);
-        if ($typeA == null && $pic64att == null)
+        list($type,$pic64att) = $this->SetImageRecensione($img);
+        if ($type == null && $pic64att == null)
             $this->smarty->assign('immagine', "no");
         if (isset($img)) {
             if (is_array($img)) {
-                $this->smarty->assign('typeA', $typeA);
+                $this->smarty->assign('typeA', $type);
                 $this->smarty->assign('pic64att', $pic64att);
                 $this->smarty->assign('n_attivi', count($img) - 1);
             }
             else {
-                $this->smarty->assign('typeA', $typeA);
+                $this->smarty->assign('typeA', $type);
                 $this->smarty->assign('pic64att', $pic64att);
             }
         }
         $this->smarty->assign('recensioni',$rec);
-        $this->smarty->display('admin_recensioni.tpl');
+        $this->smarty->display('dashboardAdmin.tpl');
     }
 
     /**
      * Funzione che si occupa di presentare l'elenco degli annunci presenti nel database
-     * @param $annAttivi array di annunci attivi
-     * @param $annBan array di annunci bannati
+     * @param $localiAttivi array di locali attivi
+     * @param $localiBan array di locali bannati
      * @param $img_attivi array di immagini relative agli annunci attivi
      * @param $img_bann array di immagini relative agli annunci bannati
      * @throws SmartyException
      */
-    public function showAdsPage($annAttivi, $annBan,$img_attivi,$img_bann){
+    public function showLocalPage($localiAttivi, $localiBan,$img_attivi,$img_bann){
         list($typeA,$pic64att) = $this->SetImageRecensione($img_attivi);
         if ($typeA == null && $pic64att == null)
             $this->smarty->assign('immagine', "no");
@@ -182,8 +207,8 @@ class VAdmin
         else
             $this->smarty->assign('n_bannati', 0);
 
-        $this->smarty->assign('annunci',$annAttivi);
-        $this->smarty->assign('annunciBan',$annBan);
+        $this->smarty->assign('annunci',$localiAttivi);
+        $this->smarty->assign('annunciBan',$localiBan);
 
         $this->smarty->display('admin_annunci.tpl');
     }
