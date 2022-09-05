@@ -120,7 +120,7 @@ class VUtente
         if($tipo == "EUtente"){
             $this->smarty->assign('array', $array); //Visualizza eventi dei locali seguiti
         }
-        $this->smarty->display('index.tpl');
+        $this->smarty->display('home.tpl');
     }
 
     /**
