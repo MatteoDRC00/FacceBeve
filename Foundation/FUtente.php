@@ -13,7 +13,7 @@ class FUtente{
     private static $table="Utente";
 
     /** valori della tabella nel DB */
-    private static $values="(:username,:nome,:cognome,:email,:password,:dataIscrizione,:idImg)";
+    private static $values="(:username,:nome,:cognome,:email,:password,:dataIscrizione,:idImg,:state)";
 
     /** costruttore */
     public function __construct(){
@@ -33,6 +33,7 @@ class FUtente{
         $stmt->bindValue(':password', $utente->getPassword(), PDO::PARAM_STR);
         $stmt->bindValue(':idImg', NULL, PDO::PARAM_INT);
         $stmt->bindValue(':dataIscrizione', $utente->getIscrizione());
+        $stmt->bindValue(':state', $utente->getState(), PDO::PARAM_BOOL);
     }
 
     /**

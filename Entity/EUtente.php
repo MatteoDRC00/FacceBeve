@@ -17,6 +17,7 @@ class EUtente {
     private array $localipreferiti;
     private date $iscrizione;
     private EImmagine $img_profilo;
+    private $state;
 
 
     /**
@@ -26,13 +27,14 @@ class EUtente {
      * @param string $username
      * @param string $email
      */
-    public function __construct(string $password, string $nome, string $cognome, string $username, string $email){
+    public function __construct(string $password, string $nome, string $cognome, string $username, string $email, bool $state){
         $this->nome = $nome;
         $this->cognome = $cognome;
         $this->email = $email;
         $this->username = $username;
         $this->password = $password;
         $this->localipreferiti = array();
+        $this->state=$state;
         $this->iscrizione = date("d.m.y");
     }
 
@@ -92,6 +94,14 @@ class EUtente {
     public function getIscrizione(): date
     {
         return $this->iscrizione;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getState(): bool
+    {
+        return $this->state;
     }
 
 
@@ -155,6 +165,15 @@ class EUtente {
         $this->img_profilo = $img_profilo;
     }
 
+    /**
+     * @param bool $state
+     */
+    public function setState(): void
+    {
+        $this->state=0;
+    }
+
+
 
 
 
@@ -169,7 +188,8 @@ class EUtente {
                 'cognome'   => $this->getCognome(),
                 'localipreferiti'   => $this->getLocalipreferiti(),
                 'iscrizione'   => $this->getIscrizione(),
-                'img_profilo'   => $this->getImgProfilo()
+                'img_profilo'   => $this->getImgProfilo(),
+                'state' =>$this->getState()
             ];
     }
 
@@ -178,7 +198,7 @@ class EUtente {
      * @return $print String
      */
     public function __toString() {
-        $print = "\npassword: ".$this->getPassword()."\n"."username: ".$this->getUsername()."\n"."email: ".$this->getEmail()."\n"."nome: ".$this->getNome()."\n"."cognome: ".$this->getCognome()."\n"."localipreferiti: ".$this->getLocalipreferiti()."\n"."iscrizione: ".$this->getIscrizione()."\n";
+        $print = "\npassword: ".$this->getPassword()."\n"."username: ".$this->getUsername()."\n"."email: ".$this->getEmail()."\n"."nome: ".$this->getNome()."\n"."cognome: ".$this->getCognome()."\n"."localipreferiti: ".$this->getLocalipreferiti()."\n"."iscrizione: ".$this->getIscrizione()."\n"."stato: ".$this->StaToString()."\n";
 
         return $print;
     }
@@ -194,5 +214,18 @@ class EUtente {
     }
 
 
+
+    /**
+     * Stampa lo stato dell'utenete
+     * @return String
+     */
+    protected function StaToString () {
+        $vis = null;
+        if ($this->getState())
+            $vis = "visibile";
+        else
+            $vis = "bannato";
+        return $vis;
+    }
 }
 ?>

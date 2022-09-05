@@ -33,7 +33,7 @@ class CAdmin{
                 }
                 else {
                     $view = new VError();
-                    $view->error('1');
+                    $view->error(1);
                 }
             }
             else
@@ -71,35 +71,35 @@ class CAdmin{
      * Funzione utile per cambiare lo stato di visibilità di un utente (nel caso specifico porta la visibilità a false).
      * 1) se il metodo di richiesta HTTP è GET e si è loggati come amministratore, avviene il reindirizzamento alla homepage dell'amministratore;
      * 2) se il metodo di richiesta HTTP è POST (ovviamente per fare ciò bisogna già essere loggati come amminstratore), avviene l'azione vera e propria di bannare l'utente
-     * 	  cambiando il suo stato di visibilità a false con conseguente blocco degli annunci da lui pubblicati;
+     * 	  cambiando il suo stato di visibilità a false con conseguente bannamento delle sue recensioni;
      * 3) se il metodo di richiesta HTTP è GET e non si è loggati, avviene il reindirizzamento verso la pagina di login;
      * 4) se il metodo di richiesta HTTP è GET e si è loggati come utente (non amministratore) compare una pagina di errore 401.
-
+**/
     static function bannaUtente(){
         if($_SERVER['REQUEST_METHOD'] == "POST") {
             $view = new VAdmin();
             $pm = new FPersistentManager();
-            $email = $view->getEmail();
-            $utente = $pm->load("email", $email, "FUtenteloggato");
-            $pm->update("state", $utente->setHid(), "email", $email, "FUtenteloggato");
-            $pm->update("visibility",false,"emailWriter",$email,"FAnnuncio");
-            header('Location: /FillSpaceWEB/Admin/homepage');
+            $username = $view->getUsername();
+            $utente = $pm->load("username", $username, "FUtente");
+            $pm->update( "FUtente","state", $utente->setState(), "username", $username);
+            //$pm->update("FRecensioni","visibilita",false,"id",);
+            header('Location: /FacceBeve/Admin/homepage');
         }
         elseif($_SERVER['REQUEST_METHOD'] == "GET") {
             if (CUtente::isLogged()) {
                 $utente = unserialize($_SESSION['utente']);
                 if ($utente->getEmail() == "admin@admin.com") {
-                    header('Location: /FillSpaceWEB/Admin/homepage');
+                    header('Location: /FacceBeve/Admin/homepage');
                 }
                 else {
                     $view = new VError();
-                    $view->error('1');
+                    $view->error(1);
                 }
             }
             else
-                header('Location: /FillSpaceWEB/Utente/login');
+                header('Location: /FacceBeve/Utente/login');
         }
-    } */
+    }
 
     /**
      * Funzione utile per cambiare lo stato di visibilità di un utente (nel caso specifico porta la visibilità a true).
@@ -108,32 +108,32 @@ class CAdmin{
      * 	  cambiando il suo stato di visibilità a true con conseguente attivazione degli annunci (prima in stato di blocco) da lui pubblicati;
      * 3) se il metodo di richiesta HTTP è GET e non si è loggati, avviene il reindirizzamento verso la pagina di login;
      * 4) se il metodo di richiesta HTTP è GET e si è loggati come utente (non amministratore) compare una pagina di errore 401.
-
+    */
     static function attivaUtente(){
         if($_SERVER['REQUEST_METHOD'] == "POST") {
             $view = new VAdmin();
             $pm = new FPersistentManager();
-            $email = $view->getEmail();
-            //$utente = $pm->load("email", $email, "FUtenteloggato");
-            $pm->update("state", 1, "email", $email, "FUtenteloggato");
-            $pm->update("visibility",true,"emailWriter",$email,"FAnnuncio");
-            header('Location: /FillSpaceWEB/Admin/homepage');
+            $username = $view->getUsername();
+            $utente = $pm->load("username", $username, "Futente");
+            $pm->update("FUtente", "state", 1, "username", $username);
+           // $pm->update("visibility",true,"emailWriter",$email,"FAnnuncio");
+            header('Location: /FacceBeve/Admin/homepage');
         }
         elseif($_SERVER['REQUEST_METHOD'] == "GET") {
             if (CUtente::isLogged()) {
                 $utente = unserialize($_SESSION['utente']);
                 if ($utente->getEmail() == "admin@admin.com") {
-                    header('Location: /FillSpaceWEB/Admin/homepage');
+                    header('Location: /FacceBeve/Admin/homepage');
                 }
                 else {
                     $view = new VError();
-                    $view->error('1');
+                    $view->error(1);
                 }
             }
             else
-                header('Location: /FillSpaceWEB/Utente/login');
+                header('Location: /FacceBeve/Utente/login');
         }
-    } */
+    }
 
     /**
      * Funzione che permette la visualizzazione dell'elenco delle recensioni pubblicate.
@@ -164,7 +164,7 @@ class CAdmin{
                 }
                 else {
                     $view = new VError();
-                    $view->error('1');
+                    $view->error(1);
                 }
             }
             else

@@ -120,7 +120,7 @@ class FPersistentManager {
      */
     public static function loadUtenti ($input) {
         $ris = null;
-        $ris = FUtenteloggato::loadUtenti($input);
+        $ris = FUtente::loadUtenti($input);
         return $ris;
     }
 

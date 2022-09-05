@@ -31,6 +31,7 @@ CREATE TABLE `Utente` (
     `password` VARCHAR(30) NOT NULL,
     `dataIscrizione` DATE NOT NULL,
     `idImg` int(11),
+    `state` tinyint(1) NOT NULL,
     FOREIGN KEY (`idImg`) REFERENCES Immagine(`id`) ON DELETE CASCADE ON UPDATE CASCADE,
     PRIMARY KEY (`username`)
 )ENGINE=InnoDB;
@@ -133,6 +134,7 @@ CREATE TABLE `Recensione` (
     `counter` BOOLEAN  DEFAULT 0, /*Conta il numero di segnalazioni alla recensione*/
     `utente` INT(11) NOT NULL,
     `locale` INT(11) NOT NULL,
+    `visibilita` tinyint(1) NOT NULL,
     PRIMARY KEY (`id`),
     FOREIGN KEY (`utente`) REFERENCES Utente(`username`) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (`locale`) REFERENCES Locale(`id`) ON DELETE CASCADE ON UPDATE CASCADE 

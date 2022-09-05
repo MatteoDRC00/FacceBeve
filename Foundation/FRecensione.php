@@ -36,6 +36,7 @@ class FRecensione{
         $stmt->bindValue(':counter',$recensione->getCounter(),PDO::PARAM_INT);
         $stmt->bindValue(':utente',$recensione->getUtente()->getUsername(),PDO::PARAM_INT);
         $stmt->bindValue(':locale',$recensione->getLocale()->getId(),PDO::PARAM_INT);
+        //$stmt->bindValue(':visibilità',$recensione->getVisibilita,PDO::PARAM_BOOL);
     }
 
     /**
