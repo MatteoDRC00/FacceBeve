@@ -119,6 +119,7 @@ class VUtente
         $this->smarty->assign('userlogged',"loggato"); //Permette la ricerca di eventi
         if($tipo == "EUtente"){
             $this->smarty->assign('array', $array); //Visualizza eventi dei locali seguiti
+            $this->smarty->assign('tipo',$tipo);
         }
         $this->smarty->display('home.tpl');
     }
@@ -270,12 +271,12 @@ class VUtente
             $pic64= base64_encode($data);
             $type = "image/png";
         }elseif ($tipo == 'Proprietario'){
-            $data = file_get_contents( $_SERVER['DOCUMENT_ROOT'] . '/FillSpaceWEB/Smarty/immagini/proprietario.png'); //Immagine generica per il proprietario
+            $data = file_get_contents( $_SERVER['DOCUMENT_ROOT'] . '/FacceBeve/Smarty/immagini/proprietario.png'); //Immagine generica per il proprietario
             $pic64= base64_encode($data);
             $type = "image/png";
         }
         elseif($tipo == 'Locale') {
-            $data = file_get_contents( $_SERVER['DOCUMENT_ROOT'] . '/FillSpaceWEB/Smarty/immagini/locale.png'); //Immagine generica per il proprietario
+            $data = file_get_contents( $_SERVER['DOCUMENT_ROOT'] . '/FacceBeve/Smarty/immagini/locale.png'); //Immagine generica per il proprietario
             $pic64= base64_encode($data);
             $type = "image/png";
         }
@@ -296,7 +297,7 @@ class VUtente
                     $pic64[] = base64_encode($item->getData());
                     $type[] = $item->getType();
                 } else {
-                    $data = file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/FillSpaceWEB/Smarty/immagini/user.png');
+                    $data = file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/FacceBeve/Smarty/immagini/user.png');
                     $pic64[] = base64_encode($data);
                     $type[] = "image/png";
                 }
@@ -333,66 +334,6 @@ class VUtente
      * */
 
     /**
-     * Funzione che si occupa di gestire la visualizzazione del profilo pubblico di un trasportatore
-     * @param $user informazioni sull'utente da visitare
-     * @param $emailvisitato email dell'utente visitato
-     * @param $img immagine dell'utente da visitare
-     * @param $imgMezzo immagine del mezzo dell'utente visitato
-     * @param $imgrec immagini degli utenti che hanno scritto delle recensioni
-     * @param $rec elenco delle recensioni dell'utente visitato
-     * @param $cont possibilitÃ  di contattare o meno il cliente
-     * @throws SmartyException
-
-    public function profilopubblico_tra($user, $emailvisitato, $img,$imgMezzo,$imgrec,$rec,$cont) {
-        if (count($rec) == 0)
-            $this->smarty->assign('media_voto', 0);
-        else
-            $this->smarty->assign('media_voto', $user->averageMark());
-        list($typeR,$pic64rec) = $this->SetImageRecensione($imgrec);
-        if ($cont == "no")
-            $this->smarty->assign('contatta', $cont);
-        if ($typeR == null && $pic64rec == null)
-            $this->smarty->assign('immagine', "/FillSpaceWEB/Smarty/immagini/user.png");
-        if (isset($imgrec)) {
-            if (is_array($imgrec)) {
-                $this->smarty->assign('typeR', $typeR);
-                $this->smarty->assign('pic64rec', $pic64rec);
-                $this->smarty->assign('n_recensioni', count($imgrec) - 1);
-            }
-            else {
-                $t[] = $typeR;
-                $im[] = $pic64rec;
-                $this->smarty->assign('typeR', $t);
-                $this->smarty->assign('pic64rec', $im);
-                $this->smarty->assign('n_recensioni', 0);
-            }
-        }
-        else
-            $this->smarty->assign('n_recensioni', 0);
-        $this->smarty->assign('rec',$rec);
-        list($type,$pic64) = $this->setImage($img, 'user');
-        $this->smarty->assign('type', $type);
-        $this->smarty->assign('pic64', $pic64);
-        list($typeM,$pic64mezzo) = $this->setImage($imgMezzo, 'mezzo');
-        $this->smarty->assign('typeM', $typeM);
-        $this->smarty->assign('pic64mezzo', $pic64mezzo);
-        $mezzo = $user->getVehicle();
-        if(CUtente::isLogged())
-            $this->smarty->assign('userlogged',"loggato");
-        $this->smarty->assign('email',$emailvisitato);
-        $this->smarty->assign('nome',$user->getName());
-        $this->smarty->assign('email',$user->getEmail());
-        $this->smarty->assign('cognome',$user->getSurname());
-        $this->smarty->assign('company',$user->getCompany());
-        $this->smarty->assign('piva',$user->getPiva());
-        $this->smarty->assign('model',$mezzo->getModel());
-        $this->smarty->assign('plate',$mezzo->getPlate());
-        $this->smarty->assign('dim',$mezzo->getSize());
-        $this->smarty->assign('full_load',$mezzo->getFullLoad());
-        $this->smarty->display('profilo_trasp_pubblico.tpl');
-    } */
-
-    /**
      * Funzione che si occupa di gestire la visualizzazione della form di modifica per il cliente
      * @param $user informazioni sull'utente che desidera mdificare i suoi dati
      * @param $img immagine dell'utente
@@ -418,7 +359,7 @@ class VUtente
             $pic64 = base64_encode($img->getData());
         }
         else {
-            $data = file_get_contents( $_SERVER['DOCUMENT_ROOT'] . '/FillSpaceWEB/Smarty/immagini/user.png');
+            $data = file_get_contents( $_SERVER['DOCUMENT_ROOT'] . '/FacceBeve/Smarty/immagini/user.png');
             $pic64 = base64_encode($data);
         }
         $this->smarty->assign('userlogged',"loggato");
@@ -438,7 +379,7 @@ class VUtente
      * @param $imgmezzo immagine del mezzo
      * @param $error tipo di errore
      * @throws SmartyException
-     */
+
     public function formmodificatrasp($user,$mezzo,$imgutente,$imgmezzo,$error) {
         switch ($error) {
             case "errorEmail" :
@@ -498,7 +439,7 @@ class VUtente
         $this->smarty->assign('mezzo',$mezzo);
         $this->smarty->display('modifica_prof_trasp.tpl');
     }
-
+     */
 
 
 }

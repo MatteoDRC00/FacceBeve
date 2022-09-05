@@ -13,7 +13,7 @@ class FPersistentManager {
     }
 
     /**   Metodo che permette di salvare un media di un oggetto sul db
-     * @param obj oggetto di cui si vuole salavare il media
+     * @param obj oggetto di cui si vuole salvare il media
      * @param nome_file ,nome del media da salvare
      */
 
