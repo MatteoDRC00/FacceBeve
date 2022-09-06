@@ -113,16 +113,21 @@ class VRecensione{
      */
     public function showFormPost($utente,$error)
     {
-        //RICORDARSIDI PIAZZARE LO SCRIPT SMARTY PER ERRORCLASS ED ERROREMPTY
+        //RICORDARSI DI PIAZZARE LO SCRIPT SMARTY PER ERRORCLASS ED ERROREMPTY e vedere se l'utente è bannato
         if (get_class($utente) == "EUtente") {
-             switch ($error) {
-                case "wrong_class" :
-                    $this->smarty->assign('errorClass', "errore");
-                    break;
-                case "vuoto" :
-                    $this->smarty->assign('errorEmpty', "errore");
-                    break;
+            if(!$utente->getState()){
+                $this->smarty->assign('bannato', true);
+            }else{
+                switch ($error) {
+                    case "wrong_class" :
+                        $this->smarty->assign('errorClass', "errore");
+                        break;
+                    case "vuoto" :
+                        $this->smarty->assign('errorEmpty', "errore");
+                        break;
+                }
             }
+
         }elseif(get_class($utente) == "EProprietario"){
             switch ($error) {
                 case "wrong_class" :
