@@ -202,32 +202,25 @@ class FUtente{
      *Metodo che  permette di ritornare gli utenti del db, filtrandoli per nome, cognome
      * @param $string valore inserito nella barra di ricerca dell'admin
      * @return object $utente Utente
-	 
-	 FORSE NON CI SERVE
-     
+     */
     public static function loadUtentiByString($string){
         $utente = null;
         $toSearch = null;
-        $pieces = explode(" ", $string);
-        $lastElement = end($pieces);
-        if ($pieces[0] == $lastElement) {
-            $toSearch = 'nome';
-        }
-        $db=FDatabase::getInstance();
-        list ($result, $rows_number)=$db->utentiByString($pieces, $toSearch);
+        $db=FDB::getInstance();
+        list ($result, $rows_number)=$db->utentiByString($string);
         if(($result!=null) && ($rows_number == 1)) {
-            $utente=new EUtenteloggato($result['name'],$result['surname'], $result['email'], $result['password'],$result['state']);
+            $utente=new EUtente($result['password'],$result['nome'],$result['cognome'],$result['username'],$result['state']);
         }
         else {
             if(($result!=null) && ($rows_number > 1)){
                 $utente = array();
                 for($i=0; $i<count($result); $i++){
-                    $utente[]=new EUtenteloggato($result[$i]['name'],$result[$i]['surname'], $result[$i]['email'], $result[$i]['password'],$result[$i]['state']);
+                    $utente[]=new EUtente($result[$i]['password'],$result[$i]['nome'],$result[$i]['cognome'],$result[$i]['username'],$result[$i]['state']);
                 }
             }
         }
         return $utente;
-    } */
+    }
     
 
 }

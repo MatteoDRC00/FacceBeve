@@ -15,9 +15,9 @@ class EUtente {
     private string $nome;
     private string $cognome;
     private array $localipreferiti;
-    private date $iscrizione;
+    private string $iscrizione;
     private EImmagine $img_profilo;
-    private $state;
+    private bool $state;
 
 
     /**
@@ -35,9 +35,12 @@ class EUtente {
         $this->password = $password;
         $this->localipreferiti = array();
         $this->state=$state;
-        $this->iscrizione = date("d.m.y");
     }
 
+
+     public function Iscrizione(){
+         $this->iscrizione = date("d/m/Y");  //Andranno fatte prove
+     }
 
 
 //----------------------METODI GET-----------------------------

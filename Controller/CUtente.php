@@ -3,32 +3,6 @@
 class CUtente
 {
     /**
-     * Metodo che verifica se l'utente è loggato ---> credo obsoleto
-     * @return boolean $identificato indica se l'utente era già loggato o meno
-
-    static function isLogged() {
-        $identificato = false;
-        $sessione = USession::getInstance();
-
-         if (isset($_COOKIE['PHPSESSID'])) {
-          //   Il PHPSESSID Viene utilizzato per stabilire una sessione utente e trasmettere dati di stato tramite un cookie temporaneo,
-          //   comunemente denominato cookie di sessione. (scade alla chiusura del browser)
-
-
-             if (session_status() == PHP_SESSION_NONE) {
-                 //header('Cache-Control: no cache'); //no cache
-                 //session_cache_limiter('private_no_expire'); // works
-                 //session_cache_limiter('public'); // works too
-             }
-        }
-
-        if (!($sessione->leggi_valore('utente'))) {
-            $identificato = true;
-        }
-        return $identificato;
-    } */
-
-    /**
      * Funzione che consente il login di un utente registrato. Si possono avere diversi casi:
      * 1) se il metodo della richiesta HTTP è GET:
      *   - se l'utente è già loggato viene reindirizzato alla homepage;
@@ -195,17 +169,19 @@ class CUtente
                 }
             }
 
-            list ($stato, $nome, $type) = CGestioneLocale::upload('img');
+            list ($stato, $nome, $type) = CGestioneLocale::upload('img'); //DA CHIARIRE
             if ($stato == "type")
                 $view->registrazioneUtenteError("typeimg");
             elseif ($stato == "size")
                 $view->registrazioneUtenteError("size");
             elseif ($stato == "no_img") {
+                $utente->Iscrizione();
                 $pm->store($utente);
                 header('Location: /FacceBeve/Utente/login');
             }
             elseif ($stato == "ok_img") {
                 $size = $_FILES['img']['size']; //I GUESS, ALTRIMENTI SI CHIAMERA' 'file'
+                $utente->Iscrizione();
                 $pm->store($utente);
                 $media = new EImmagine($nome, $size,$type);
                 $media->setType($type);

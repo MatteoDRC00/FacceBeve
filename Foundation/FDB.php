@@ -149,7 +149,8 @@ class FDB{
 	 * @param $id valore da confrontare
 	 * @param $idU idutente-username
 	 */
-	public function loadEventiUtente($class,$id,$idU){
+	public function loadEventiUtente($class,$id,$idU): ?array
+	{
 		try {
 			$query = "SELECT * FROM " . $class::getTable() . " INNER JOIN Locali_Eventi ON Locali_Eventi.ID_Evento=" . $id . " INNER JOIN Utenti_Locali ON Utenti_Locali.ID_Locale=Locali_Eventi.ID_Locale WHERE Utenti_Locali.ID_Utente =" . $idU . ";";
 			$stmt = $this->db->prepare($query); //Prepared Statement
@@ -547,6 +548,35 @@ class FDB{
 		}
 		return array($result, $num);
 	}
+
+
+
+	/**
+	 * Funzione utilizzata per ritornare tutti gli utenti che verificano determinate caratteristiche date in input
+	 * Utilizzata nella pagina admin
+	 * @param $state valore booleano in input che esprime la visibilità o meno di un annuncio
+	 * @param $query query da eseguire
+	 */
+	public function utentiByString ($string)
+	{
+		$query = "SELECT * FROM utente where  username = '" . $string . "';";
+
+		$stmt = $this->db->prepare($query);
+		$stmt->execute();
+		$num = $stmt->rowCount();
+		if ($num == 0)
+			$result = null;
+		elseif ($num == 1)
+			$result = $stmt->fetch(PDO::FETCH_ASSOC);
+		else {
+			$result = array();
+			$stmt->setFetchMode(PDO::FETCH_ASSOC);
+			while ($row = $stmt->fetch())
+				$result[] = $row;
+		}
+		return array($result, $num);
+	}
+
 }
 
 ?>

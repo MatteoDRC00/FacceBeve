@@ -15,21 +15,22 @@ class CAdmin{
      * 1) se il metodo di richiesta HTTP è GET e si è loggati con le credenziali dell'amministratore viene visualizzata la homepage con l'elenco di tutti gli utenti;
      * 2) se il metodo di richiesta HTTP è GET e si è loggati ma non come amministratore, viene visualizzata una pagina di errore 401;
      * 3) altrimenti, reindirizza alla pagina di login.
+     * @throws SmartyException
      */
     static function homepage () {
         $sessione = USession::getInstance();
         if($_SERVER['REQUEST_METHOD'] == "GET") {
             if ($sessione->leggi_valore('utente')) {
                 $utente = unserialize($sessione->leggi_valore('utente'));
-                if ($utente->getEmail() == "admin@admin.com") {
+                if (($utente->getUsername() == "admin") || ($utente->getUsername() == "Admin")) {
                     $view = new VAdmin();
-                    $pm = new FPersistentManager();
-                    /**visualizza elenco utenti attivi e bannati
+                    $pm = FPersistentManager()::getIstance();
+                   // visualizza elenco utenti attivi e bannati
                     $utentiAttivi = $pm->loadUtenti(1);
                     $utentiBannati = $pm->loadUtenti(0);
                     $img_attivi = static::set_immagini($utentiAttivi);
                     $img_bann = static::set_immagini($utentiBannati);
-                    $view->HomeAdmin($utentiAttivi, $utentiBannati,$img_attivi,$img_bann);*/
+                    $view->HomeAdmin($utentiAttivi, $utentiBannati,$img_attivi,$img_bann);
                 }
                 else {
                     $view = new VError();
@@ -52,7 +53,7 @@ class CAdmin{
      * @return array|null|object
      */
     static function set_immagini($utenti, $tipo){
-        $pm = new FPersistentManager();
+        $pm = FPersistentManager()::getIstance();
         $img = null;
         if (isset($utenti)) {
             if (is_array($utenti)) {
@@ -76,9 +77,10 @@ class CAdmin{
      * 4) se il metodo di richiesta HTTP è GET e si è loggati come utente (non amministratore) compare una pagina di errore 401.
 **/
     static function bannaUtente(){
+        $sessione = USession::getInstance();
         if($_SERVER['REQUEST_METHOD'] == "POST") {
             $view = new VAdmin();
-            $pm = new FPersistentManager();
+            $pm = FPersistentManager()::getIstance();
             $username = $view->getUsername();
             $utente = $pm->load("username", $username, "FUtente");
             $pm->update( "FUtente","state", $utente->setState(), "username", $username);
@@ -86,9 +88,9 @@ class CAdmin{
             header('Location: /FacceBeve/Admin/homepage');
         }
         elseif($_SERVER['REQUEST_METHOD'] == "GET") {
-            if (CUtente::isLogged()) {
-                $utente = unserialize($_SESSION['utente']);
-                if ($utente->getEmail() == "admin@admin.com") {
+            if ($sessione->leggi_valore('utente')) {
+                $utente = unserialize($sessione->leggi_valore('utente'));
+                if (($utente->getUsername() == "admin") || ($utente->getUsername() == "Admin"))  {
                     header('Location: /FacceBeve/Admin/homepage');
                 }
                 else {
@@ -110,9 +112,10 @@ class CAdmin{
      * 4) se il metodo di richiesta HTTP è GET e si è loggati come utente (non amministratore) compare una pagina di errore 401.
     */
     static function attivaUtente(){
+        $sessione = USession::getInstance();
         if($_SERVER['REQUEST_METHOD'] == "POST") {
             $view = new VAdmin();
-            $pm = new FPersistentManager();
+            $pm = FPersistentManager()::getIstance();
             $username = $view->getUsername();
             $utente = $pm->load("username", $username, "Futente");
             $pm->update("FUtente", "state", 1, "username", $username);
@@ -120,9 +123,9 @@ class CAdmin{
             header('Location: /FacceBeve/Admin/homepage');
         }
         elseif($_SERVER['REQUEST_METHOD'] == "GET") {
-            if (CUtente::isLogged()) {
-                $utente = unserialize($_SESSION['utente']);
-                if ($utente->getEmail() == "admin@admin.com") {
+            if ($sessione->leggi_valore('utente')) {
+                $utente = unserialize($sessione->leggi_valore('utente'));
+                if (($utente->getUsername() == "admin") || ($utente->getUsername() == "Admin")) {
                     header('Location: /FacceBeve/Admin/homepage');
                 }
                 else {
@@ -146,9 +149,9 @@ class CAdmin{
         if($_SERVER['REQUEST_METHOD'] == "GET") {
             if ($sessione->leggi_valore('utente')) {
                 $utente = unserialize($sessione->leggi_valore('utente'));
-                if ($utente->getEmail() == "admin@admin.com") {
+                if (($utente->getUsername() == "admin") || ($utente->getUsername() == "Admin")) {
                     $view = new VAdmin();
-                    $pm = new FPersistentManager();
+                    $pm = FPersistentManager()::getIstance();
                     $recensione = $pm->loadAllRec();
                     $img = null;
                     if (is_array($recensione)) {
@@ -185,14 +188,14 @@ class CAdmin{
     static function eliminaRec($id){
         $sessione = USession::getInstance();
         if($_SERVER['REQUEST_METHOD'] == "POST") {
-            $pm = new FPersistentManager();
+            $pm = FPersistentManager()::getIstance();
             $pm->delete("id", $id, "FRecensione");
             header('Location: /FacceBeve/Admin/recensioni');
         }
         elseif($_SERVER['REQUEST_METHOD'] == "GET") {
             if ($sessione->leggi_valore('utente')) {
                 $utente = unserialize($sessione->leggi_valore('utente'));
-                if ($utente->getEmail() == "admin@admin.com") {
+                if (($utente->getUsername() == "admin") || ($utente->getUsername() == "Admin")) {
                     header('Location: /FacceBeve/Admin/recensioni');
                 }
                 else {
@@ -219,7 +222,7 @@ class CAdmin{
                 $utente = unserialize($sessione->leggi_valore('utente'));
                 if ($utente->getEmail() == "admin@admin.com") {
                     $view = new VAdmin();
-                    $pm = new FPersistentManager();
+                    $pm = FPersistentManager()::getIstance();
                     $localiAttivi = $pm->load("visibility", 1, "FLocale");
                     $Proprietari = null;
                     if (is_array($localiAttivi)) {
@@ -263,15 +266,14 @@ class CAdmin{
     static function bannaLocale($id){
         $sessione = USession::getInstance();
         if($_SERVER['REQUEST_METHOD'] == "POST") {
-            $pm = new FPersistentManager();
-            //$annuncio = $pm->load("idAd", $id, "FAnnuncio");
+            $pm = FPersistentManager()::getIstance();
             $pm->update("visibility", 0, "id", $id, "FLocali");
             header('Location: /FillSpaceWEB/Admin/annunci');
         }
         elseif($_SERVER['REQUEST_METHOD'] == "GET") {
             if ($sessione->leggi_valore('utente')) {
                 $utente = unserialize($sessione->leggi_valore('utente'));
-                if ($utente->getEmail() == "admin@admin.com") {
+                if (($utente->getUsername() == "admin") || ($utente->getUsername() == "Admin")) {
                     header('Location: /FacceBeve/Admin/locali');
                 }
                 else {
@@ -297,15 +299,14 @@ class CAdmin{
     static function ripristinaLocale($id){
         $sessione = USession::getInstance();
         if($_SERVER['REQUEST_METHOD'] == "POST") {
-            $pm = new FPersistentManager();
-            //$annuncio = $pm->load("idAd", $id, "FAnnuncio");
+            $pm = FPersistentManager()::getIstance();
             $pm->update("visibility", 1, "id", $id, "FLocale");
             header('Location: /FillSpaceWEB/Admin/annunci');
         }
         elseif($_SERVER['REQUEST_METHOD'] == "GET") {
             if ($sessione->leggi_valore('utente')) {
                 $utente = unserialize($sessione->leggi_valore('utente'));
-                if ($utente->getEmail() == "admin@admin.com") {
+                if (($utente->getUsername() == "admin") || ($utente->getUsername() == "Admin")) {
                     header('Location: /FacceBeve/Admin/locali');
                 }
                 else {
@@ -332,7 +333,7 @@ class CAdmin{
         $sessione = USession::getInstance();
         if($_SERVER['REQUEST_METHOD'] == "POST") {
             $view = new VAdmin();
-            $pm = new FPersistentManager();
+            $pm = FPersistentManager()::getIstance();
             $parola = $view->getParola();
             $result = $pm->loadByParola($parola, "FLocale");
             $utentiAttivi = null;
@@ -374,8 +375,8 @@ class CAdmin{
         elseif($_SERVER['REQUEST_METHOD'] == "GET") {
             if ($sessione->leggi_valore('utente')) {
                 $utente = unserialize($sessione->leggi_valore('utente'));
-                if ($utente->getEmail() == "admin@admin.com") {
-                    header('Location: /FacceBeve/Admin/annunci');
+                if (($utente->getUsername() == "admin") || ($utente->getUsername() == "Admin")){
+                    header('Location: /FacceBeve/Admin/locali');
                 }
                 else {
                     //header('Location: /FillSpaceWEB/Utente/error');
@@ -398,7 +399,7 @@ class CAdmin{
     static function ricercaParolaRecensione(){
         $sessione = USession::getInstance();
         if($_SERVER['REQUEST_METHOD'] == "POST") {
-            $pm = new FPersistentManager();
+            $pm = FPersistentManager()::getIstance();
             $view = new VAdmin();
             $parola = $_POST['parola'];
             $recensione = $pm->loadByParola($parola, "FRecensione");
@@ -417,7 +418,7 @@ class CAdmin{
         elseif($_SERVER['REQUEST_METHOD'] == "GET") {
             if ($sessione->leggi_valore('utente')) {
                 $utente = unserialize($sessione->leggi_valore('utente'));
-                if ($utente->getEmail() == "admin@admin.com") {
+                if (($utente->getUsername() == "admin") || ($utente->getUsername() == "Admin")) {
                     header('Location: /FacceBeve/Admin/recensioni');
                 }
                 else {
@@ -431,17 +432,18 @@ class CAdmin{
     }
 
     /**
-     * Funzione utile per eseguire delle ricerche mirate sul nome/cognome degli utenti.
+     * Funzione utile per eseguire ricerche degli utenti.
      * 1) se il metodo di richiesta HTTP è GET e si è loggati come amministratore, avviene il reindirizzamento alla homepage dell'amministratore;
      * 2) se il metodo di richiesta HTTP è POST (ovviamente per fare ciò bisogna già essere loggati come amminstratore), avviene l'azione vera e propria di ricerca della parola tra i nomi/cognomi degli utenti;
      * 3) se il metodo di richiesta HTTP è GET e non si è loggati, avviene il reindirizzamento verso la pagina di login;
      * 4) se il metodo di richiesta HTTP è GET e si è loggati come utente (non amministratore) compare una pagina di errore 401.
-
+     */
     static function ricercaUtente() {
+        $sessione = USession::getInstance();
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $view = new VAdmin();
-            $pm = new FPersistentManager();
-            $stringa = $_POST['parola'];
+            $pm = FPersistentManager()::getIstance();
+            $stringa = $view->getParola();
             $result = $pm->loadUtentiByString($stringa);
             $utentiBan = array();
             $utentiAttivi = array();
@@ -463,10 +465,10 @@ class CAdmin{
             $view->HomeAdmin($utentiAttivi, $utentiBan,$img_attivi,$img_bann);
         }
         elseif($_SERVER['REQUEST_METHOD'] == "GET") {
-            if (CUtente::isLogged()) {
-                $utente = unserialize($_SESSION['utente']);
-                if ($utente->getEmail() == "admin@admin.com") {
-                    header('Location: /FillSpaceWEB/Admin/homepage');
+            if ($sessione->leggi_valore('utente')) {
+                $utente = unserialize($sessione->leggi_valore('utente'));
+                if (($utente->getUsername() == "admin") || ($utente->getUsername() == "Admin")){
+                    header('Location: /FacceBeve/Admin/homepage');
                 }
                 else {
                     $view = new VError();
@@ -474,7 +476,7 @@ class CAdmin{
                 }
             }
             else
-                header('Location: /FillSpaceWEB/Utente/login');
+                header('Location: /FacceBeve/Utente/login');
         }
-    }*/
+    }
 }
