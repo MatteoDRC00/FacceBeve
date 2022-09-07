@@ -35,6 +35,9 @@ class EUtente {
         $this->password = $password;
         $this->localipreferiti = array();
         $this->state = true;
+    }
+
+    public function Iscrizione(){
         $this->iscrizione = (string) date("d/m/Y");
     }
 
