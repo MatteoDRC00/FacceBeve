@@ -17,7 +17,7 @@ class CAdmin{
      * 3) altrimenti, reindirizza alla pagina di login.
      * @throws SmartyException
      */
-    static function homepage () {
+    static function homepage() {
         $sessione = USession::getInstance();
         if($_SERVER['REQUEST_METHOD'] == "GET") {
             if ($sessione->leggi_valore('utente')) {
@@ -66,6 +66,39 @@ class CAdmin{
                 $img[] = $pm->load("id",$x->getImgProfilo(),"FImmagine");
         }
         return $img;
+    }
+
+    public function aggiungiCategoria(){
+        $sessione = USession::getInstance();
+        if($_SERVER['REQUEST_METHOD'] == "POST") {
+            $view = new VAdmin();
+            $pm = FPersistentManager()::getIstance();
+            $genere = $view->getGenere();
+            $descrizione = $view->getDescrizione();
+            $categoria = $pm->load("genere", $genere, "FCategoria");
+            if(!$categoria){
+                $Categoria = new ECategoria($genere,$descrizione);
+                $pm->store($Categoria);
+                $error = null;
+            }else{
+                $error = "wrongCategory";
+            }
+            header('Location: /FacceBeve/Admin/homepage');
+        }
+        elseif($_SERVER['REQUEST_METHOD'] == "GET") {
+            if ($sessione->leggi_valore('utente')) {
+                $utente = unserialize($sessione->leggi_valore('utente'));
+                if (($utente->getUsername() == "admin") || ($utente->getUsername() == "Admin"))  {
+                    header('Location: /FacceBeve/Admin/homepage');
+                }
+                else {
+                    $view = new VError();
+                    $view->error(1);
+                }
+            }
+            else
+                header('Location: /FacceBeve/Utente/login');
+        }
     }
 
     /**

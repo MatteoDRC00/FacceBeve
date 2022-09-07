@@ -28,6 +28,31 @@ class VAdmin
         return $value;
     }
 
+    //POI SCRIVI BENE
+    /**
+     * Restituisce l'email dell'utente da bannare/riattivare dal campo hidden input
+     * Inviato con metodo post
+     * @return string contenente l'email dell'utente
+     */
+    function getGenere(){
+        $value = null;
+        if (isset($_POST['genere']))
+            $value = $_POST['genere'];
+        return $value;
+    }
+
+    /**
+     * Restituisce l'email dell'utente da bannare/riattivare dal campo hidden input
+     * Inviato con metodo post
+     * @return string contenente l'email dell'utente
+     */
+    function getDescrizione(){
+        $value = null;
+        if (isset($_POST['descrizione']))
+            $value = $_POST['descrizione'];
+        return $value;
+    }
+
     /**
      * Restituisce la username dell'utente da bannare/riattivare dal campo hidden input
      * Inviato con metodo post
@@ -116,7 +141,8 @@ class VAdmin
      * @param $imgrec
      * @return array $type array dei MIME type delle immagini, $pic64 array dei dati delle immagini
      */
-    public function SetImageRecensione ($imgrec) {
+    public function SetImageRecensione ($imgrec): array
+    {
         $type = null;
         $pic64 = null;
         if (is_array($imgrec)) {
@@ -165,7 +191,7 @@ class VAdmin
     }
 
     /**
-     * Funzione che si occupa di presentare l'elenco degli annunci presenti nel database
+     * Funzione che si occupa di presentare l'elenco dei locali presenti nel database
      * @param $localiAttivi array di locali attivi
      * @param $localiBan array di locali bannati
      * @param $img_attivi array di immagini relative agli annunci attivi
