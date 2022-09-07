@@ -99,7 +99,6 @@ CREATE TABLE `Locale` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
     `nome` VARCHAR(26),
     `numtelefono` CHAR(9) UNIQUE,
-    `visibility` CHAR(9) tinyint(1) DEFAULT NULL,
     `descrizione` VARCHAR(120),
 	`proprietario` VARCHAR(24),
 	`localizzazione` INT(11),
@@ -134,7 +133,6 @@ CREATE TABLE `Recensione` (
     `counter` BOOLEAN  DEFAULT 0, /*Conta il numero di segnalazioni alla recensione*/
     `utente` INT(11) NOT NULL,
     `locale` INT(11) NOT NULL,
-    `visibilita` tinyint(1) NOT NULL,
     PRIMARY KEY (`id`),
     FOREIGN KEY (`utente`) REFERENCES Utente(`username`) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (`locale`) REFERENCES Locale(`id`) ON DELETE CASCADE ON UPDATE CASCADE 

@@ -66,8 +66,15 @@ class CGestioneLocale{
                   $Locale = new ELocale($nomeLocale,$descrizione,$numTelefono,$proprietario,$categoria,$localizzazioneLocale,null,$Orario);
 
                   list ($stato, $nome, $type) = static::upload('img');
-
-
+                  if ($stato == "type")
+                      $view->showFormCreation($proprietario, "type");
+                  elseif ($stato == "size")
+                      $view->showFormCreation($proprietario, "size");
+                  elseif ($stato == "ok") {
+                      $view->showFormCreation($proprietario, "no");
+                      $size = $_FILES[img]['size'];
+                      $imgLocale = new EImmagine($nome,$size,$type,);
+                  }
                   pm->store($Locale);
 
               }elseif(get_class($proprietario) == "EUtente"){
@@ -164,6 +171,16 @@ class CGestioneLocale{
                         $pm->update("OrarioChiusura", $orari[$i][1], "id", $locale->getOrario()[$i]->getId(), "FOrario");
                     }
                 }
+
+                list ($stato, $nome, $type) = static::upload('img');
+                if ($stato == "type")
+                    $view->showFormCreation($proprietario, "type");
+                elseif ($stato == "size")
+                    $view->showFormCreation($proprietario, "size");
+                elseif ($stato == "ok") {
+                    $view->showFormCreation($proprietario, "no");
+                }
+
             } elseif (get_class($utente) == "ECliente") {
                 header('Location: /Faccebeve/Utente/profile');
             }

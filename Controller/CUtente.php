@@ -59,7 +59,7 @@ class CUtente
             if (!($sessione->leggi_valore('utente'))) {
                 $salvare = serialize($utente);
                 $sessione->imposta_valore('utente',$salvare);
-                if ($UsernameLogin != 'admin') {
+                if (($UsernameLogin != 'admin') && ($UsernameLogin != 'Admin')) {
                     //Ipoteticamente utile, per tornare nell'ultima pagina visitata
                     if (isset($_COOKIE['nome_visitato'])) {
                         header('Location: /FacceBeve/Utente/daVedere');

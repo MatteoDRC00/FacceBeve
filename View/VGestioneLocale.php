@@ -92,7 +92,7 @@ class VGestioneLocale{
      */
     public function showFormCreation($utente,$error)
     {
-        if (get_class($utente) == "EProprietario") {
+        if (($utente->getUsername() == "admin") || ($utente->getUsername() == "Admin")) {
             switch ($error) {
                 case "type" :
                     $this->smarty->assign('errorType', "errore");
@@ -104,16 +104,15 @@ class VGestioneLocale{
             $this->smarty->assign('nome', $utente->getName());
             $this->smarty->assign('cognome', $utente->getSurname());
             $this->smarty->assign('userlogged', "loggato");
-            $this->smarty->display('qualcosasulocale.tpl');
+            $this->smarty->display('infoLocale.tpl');
         }
         elseif (get_class($utente) == "ECliente") {
             $this->smarty->assign('errorClas', $error);
             $this->smarty->assign('nome', $utente->getName());
             $this->smarty->assign('cognome', $utente->getSurname());
             $this->smarty->assign('userlogged', "loggato");
-            $this->smarty->display('scrivi_annuncio_cliente.tpl');
+            $this->smarty->display('infoLocale.tpl');
         }
-
     }
 
     /**
@@ -212,22 +211,6 @@ class VGestioneLocale{
 
     //Alla creazione non ha eventi organizzati
 
-    /* adattarlo al input sul html --> LO FAREI DIRETTAMENTE SUL CONTROLLER
-     <form ....>
-<input name="person[0][first_name]" value="john" />
-<input name="person[0][last_name]" value="smith" />
-...
-<input name="person[1][first_name]" value="jane" />
-<input name="person[1][last_name]" value="jones" />
-</form>
-
-    var_dump($_POST['person']);
-//will get you something like:
-array (
-0 => array('first_name'=>'john','last_name'=>'smith'),
-1 => array('first_name'=>'jane','last_name'=>'jones'),
-
- */
     public function getOrario(){
         $value = null;
         if (isset($_POST['Orario'])) //NON SO SE VANNO UTLIZZATI NOMI DIVERSI

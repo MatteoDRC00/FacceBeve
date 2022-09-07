@@ -5,14 +5,14 @@
 class FDB{
 
 	/** Oggetto PDO che permette la connessione al DBMS
-	 * 	@var PDOStatement|PDO
+	 * 	@var PDO
 	 */
-	private PDOStatement $database;
+	private ?PDO $database = null;
 
 	/**	Unica instanza della classe
 	 * 	@var FDB
 	 */
-	private static FDB $instance;
+	private static ?FDB $_instance = null;
 
 	/**
 	 * 	Il costruttore è messo privato perché vogliamo un unico oggetto di questa classe
@@ -22,8 +22,9 @@ class FDB{
 		try {
 			//global $config;
 			//$this->database = new PDO ("mysql:dbname=".$config['database'].";host=localhost; charset=utf8;", $config['username'], $config['password']);
-			$this->database = new PDO ("mysql:dbname=FacceBeve;host=localhost; charset=utf8;", "root", "");
-
+			$db_host = "127.0.0.1";
+			$db_name = "faccebeve";
+			$this->database = new PDO("mysql:host=$db_host;dbname=$db_name", "root", "");
 		} catch (PDOException $e) {
 			echo "Attenzione errore: " . $e->getMessage();
 			die;
@@ -34,11 +35,11 @@ class FDB{
 	/**	Metodo che instanzia un unico oggetto di questa classe richiamando il costruttore se non è stato già istanziato un oggetto
 	 * 	@return FDB
 	 */
-	public static function getInstance ()	{
-		if (self::$instance == null) {
-			self::$instance = new FDB();
+	public static function getInstance(): FDB{
+		if ( !(self::$_instance instanceof self) ) {
+			self::$_instance = new FDB();
 		}
-		return self::$instance;
+		return self::$_instance;
 	}
 
 	/**
@@ -492,7 +493,7 @@ class FDB{
 
 	/**  Metodo che chiude la connesione con il db */
 	public function closeDbConnection (){
-		static::$instance = null;
+		static::$_instance = null;
 	}
 
 	/**
