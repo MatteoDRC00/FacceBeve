@@ -128,6 +128,15 @@ class CRicerca{
             $rating=$recensioni->getVoto();
             $util[$recensioni]=$pm->load("recensione",$id,"FRisposta");
         }
+        if($sessione->leggi_valore('utente')){
+            $utente = unserialize($sessione->leggi_valore('utente'));
+            if(get_class($utente)=="EUtente"){
+                if($vRicerca->preferiti()){
+                    $utente->addLocale($result);
+                    $pm->store();
+                }
+            }
+        }
 
         //$this->smarty->assign('recensioniLocale', $recensioni);
          $vRicerca->dettagliLocale($result,$util,$rating);

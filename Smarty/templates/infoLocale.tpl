@@ -73,7 +73,7 @@
                 <div class="col-lg-8">
                     <div class="portfolio-details-slider swiper">
                         <h2>$Nome_locale</h2>
-                        <input onclick="change()" type="button" value="Aggiungi ai preferiti" id="pref">                      <div class="stelline star-rating" data-rating="4.6">
+                        <input onclick="change()" type="button" value="Aggiungi ai preferiti" id="pref" name="pref">                      <div class="stelline star-rating" data-rating="4.6">
                             <div class="empty-stars">
                                 <i class="far fa-star"></i>
                                 <i class="far fa-star"></i>

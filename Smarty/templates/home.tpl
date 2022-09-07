@@ -49,7 +49,7 @@
                 z = document.getElementById("Locali");
                 z.style.display = "none";
             }
-        };
+        }
 
         /** function defaultView() {
             var x = document.getElementById("Eventi");

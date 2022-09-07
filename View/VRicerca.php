@@ -11,6 +11,13 @@ class VRicerca
         $this->smarty = StartSmarty::configuration();
     }
 
+    public function preferiti(){
+        $value = null;
+        if (isset($_POST['pref']))
+            $value = $_POST['pref'];
+        return $value;
+    }
+
     /**
      * Restituisce (se immesso) il valore del campo nome locale
      * Inviato con metodo post
