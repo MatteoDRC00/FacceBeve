@@ -53,8 +53,8 @@ class FDB{
 			$this->database->beginTransaction();
 			$query = "INSERT INTO " . $class::getTable() . " VALUES " . $class::getValues();
 			$stmt = $this->database->prepare($query); //Prepared Statement
-			print(get_class($stmt));
 			$class::bind($stmt,$obj);
+			print_r($stmt);
 			$stmt->execute();
 			$this->database->commit();
 			$this->closeDbConnection();

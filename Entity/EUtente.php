@@ -1,7 +1,5 @@
 <?php
 
-use Cassandra\Date;
-
 /**
  * La classe EUtente contiene tutti gli attributi e metodi base riguardanti gli utenti.
  *  @author Gruppo 8

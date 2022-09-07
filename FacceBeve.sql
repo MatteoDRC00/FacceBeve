@@ -27,7 +27,7 @@ CREATE TABLE `Utente` (
     `cognome` VARCHAR(26),    
     `email` VARCHAR(40) NOT NULL,
     `password` VARCHAR(30) NOT NULL,
-    `dataIscrizione` DATE NOT NULL,
+    `dataIscrizione` CHAR(11) NOT NULL,
     `idImg` int(11),
     `state` tinyint(1) NOT NULL,
     FOREIGN KEY (`idImg`) REFERENCES Immagine(`id`) ON DELETE CASCADE ON UPDATE CASCADE,
