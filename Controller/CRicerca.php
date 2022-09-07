@@ -121,11 +121,7 @@ class CRicerca{
         }
 
         //$this->smarty->assign('recensioniLocale', $recensioni);
-        if ($sessione->leggi_valore('utente')) {
-            $vRicerca->dettagliLocale($result,$util,"si",$rating);
-        }
-        else
-            $vRicerca->dettagliLocale($result,$util,"no",$rating);
+         $vRicerca->dettagliLocale($result,$util,$rating);
     }
 
 

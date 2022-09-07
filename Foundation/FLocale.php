@@ -166,8 +166,9 @@ class FLocale {
      * @param string $valore
      * @return bool
      */
-    public static function exist(string $attributo,string $valore) {
-        $db = FDatabase::getInstance();
+    public static function exist(string $attributo,string $valore): bool
+    {
+        $db = FDB::getInstance();
         $result = $db->exist(static::getClass(), $attributo, $valore);
         if($result!=null)
             return true;
@@ -183,7 +184,8 @@ class FLocale {
      * @param string $value_pk
      * @return bool
      */
-    public static function update(string $attributo, string $newvalue, string $attributo_pk, string $value_pk){
+    public static function update(string $attributo, string $newvalue, string $attributo_pk, string $value_pk): bool
+    {
         $db=FDB::getInstance();
         $result = $db->update(static::getClass(), $attributo, $newvalue, $attributo_pk, $value_pk);
         if($result)
@@ -197,7 +199,8 @@ class FLocale {
      * @param string $valore
      * @return bool
      */
-    public static function delete(string $attributo, string $valore){
+    public static function delete(string $attributo, string $valore): bool
+    {
         $db=FDB::getInstance();
         $result = $db->delete(static::getClass(), $attributo, $valore);
         if($result)
@@ -206,6 +209,9 @@ class FLocale {
             return false;
     }
 
+    /**
+     * Funzione con il compito di caricare le recensioni di un locale, obsoleto.
+     */
     public static function RecensioniLocale ($nomelocal,$luogo) {
         $db=FDB::getInstance();
         $result = $db->getRecensioniLocali();
@@ -256,66 +262,45 @@ class FLocale {
         return $locale;
     }
 
-
-
-
-    /** Metodo che recupera dal db tutte le istanze che contengono il parametro passato in input
+    /** Metodo che recupera dal db tutte le istanze che contengono il parametro passato in inpu
+     * @param $parola input ricevuto
      */
     public static function loadByParola($parola){
         $annuncio = null;
         $intermedia = null;
         $tappa = null;
         $db=FDB::getInstance();
-        list ($result, $rows_number)=$db->CercaByKeyword($parola, static::getClass(), "description");
+        list ($result, $rows_number)=$db->CercaByKeyword($parola, static::getClass(), "descrizione");
         if(($result!=null) && ($rows_number == 1)) {
-            $part = FLuogo::loadByField("id" , $result["departure"]);
-            $arr = FLuogo::loadByField("id" , $result["arrival"]);
-            $ute = FUtenteloggato::loadByField("email" , $result["emailWriter"]);
+            $luogo = FLocalizzazione::loadByField("id" , $result["localizzazione"]);
+            $proprietario = FProprietario::loadByField("id" , $result["proprietario"]);
+            $categoria = FCategoria::loadByLocale($result["id"]);
+            $orario = FOrario::loadByLocale($result["id"]);
+            $eventi = FEvento::loadByLocale($result["id"]);
 
-            $annuncio=new EAnnuncio($result['departureDate'], $result['arrivalDate'], $result['space'], $part , $arr ,$result['weight'],$result['description'],$ute);
-            if ($intermedia != null) {
-                foreach ($intermedia as $i)
-                    $annuncio->addTappa($i);
-            }
-            $annuncio->setIdAd($result['idAd']);
-            if($result['visibility']) $annuncio->setVis();
+            $locale = new ELocale($result['nome'],$result['descrizione'],$result['numtelefono'],$proprietario,$categoria,$luogo,$eventi,$orario);
         }
         else {
             if(($result!=null) && ($rows_number > 1)){
-                $part = array();
-                $arr = array();
-                $ute = array();
-                $annuncio = array();
+                $luogo = array();
+                $proprietario = array();
+                $categoria = array();
+                $orario = array();
+                $eventi = array();
+                $locale = array();
                 for($i=0; $i<count($result); $i++){
-                    $tappa = null;
-                    $intermedia = null;
-                    $part[] = FLuogo::loadByField("id" , $result[$i]["departure"]);
-                    $arr[] = FLuogo::loadByField("id" , $result[$i]["arrival"]);
-                    $ute[] = FUtenteloggato::loadByField("email" , $result[$i]["emailWriter"]);
-                    $tappa = FTappa::loadByField("ad", $result[$i]["idAd"]);
-                    if ($tappa != null ) {
-                        $t = current($tappa);
-                        if (is_array($t)) {
-                            foreach ($tappa as $t) {
-                                $intermedia[] = FLuogo::loadByField("id", $t['place']);
-                            }
-                        } else {
-                            $intermedia[] = FLuogo::loadByField("id", $tappa['place']);
-                        }
-                    }
-
-                    $annuncio[]=new EAnnuncio($result[$i]['departureDate'], $result[$i]['arrivalDate'], $result[$i]['space'], $part[$i] , $arr[$i] ,$result[$i]['weight'],$result[$i]['description'],$ute[$i]);
-                    $annuncio[$i]->setIdAd($result[$i]['idAd']);
-                    if($result[$i]['visibility']) $annuncio[$i]->setVis();
-                    if ( $intermedia != null ){
-                        foreach ($intermedia as $int)
-                            $annuncio[$i]->addTappa($int);
-                    }
+                    $luogo[] = FLocalizzazione::loadByField("id" , $result[$i]["localizzazione"]);
+                    $proprietario[] = FProprietario::loadByField("id" , $result[$i]["proprietario"]);
+                    $categoria[] = FCategoria::loadByLocale($result[$i]["id"]);
+                    $orario[] = FOrario::loadByLocale($result[$i]["id"]);
+                    $eventi[] = FEvento::loadByLocale($result[$i]["id"]);
+                    $locale[] = new ELocale($result[$i]['nome'],$result[$i]['descrizione'],$result[$i]['numtelefono'],$proprietario[$i],$categoria[$i],$luogo[$i],$eventi[$i],$orario[$i]);
+                    $locale[$i]->setId($result[$i]['id']);
 
                 }
             }
         }
-        return $annuncio;
+        return $locale;
     }
 
 

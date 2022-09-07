@@ -40,9 +40,9 @@ class VRicerca
     /**
      * Restituisce (se immesso) il valore del campo data di un evento
      * Inviato con metodo post
-     * @return DateTime contenente il valore inserito dall'utente
+     * @return string|null contenente il valore inserito dall'utente
      */
-    public function getDataEvento(): ?DateTime
+    public function getDataEvento(): ?string
     {
         $value = null;
         if (isset($_POST['dataEvento']))
@@ -97,7 +97,7 @@ class VRicerca
      */
     public function showResult($result, $tipo){
         $sessione = USession::getInstance();
-        if(CUtente::isLogged())
+        if($sessione->leggi_valore('utente'))
             $this->smarty->assign('userlogged',"loggato");
 
         $this->smarty->assign('array', $result);
@@ -111,27 +111,23 @@ class VRicerca
      * @param array contiene l'id dell'array da visualizzare
      * @throws SmartyException
      */
-    public function dettagliLocale($result,$arrayRecensioni,$logged,$votoMedio) {
-
-        if ($logged == "no")
-            $this->smarty->assign('userLogged', 'nouser'); //Solo gli utenti registrati possono vedere gli eventi
-
+    public function dettagliLocale($result,$arrayRecensioni,$votoMedio) {
         $sessione = USession::getInstance();
         //Caricamento immagini del locale
         if (is_array($result->getImmagini())) {
             foreach ($result->getImmagini() as $item) {
                 //Per la trasmissione via HTTP bisogna elaborare le img con base64
-                $pic64locale[] = base64_encode($item->getData());
+                $pic64locale[] = base64_encode($item->getImmagine());
             }
 
         }
         elseif ($result->getImmagini() !== null) {
-            $pic64locale = base64_encode($result->getImmagini()->getData());
+            $pic64locale = base64_encode($result->getImmagini()->getImmagine());
         }
         $this->smarty->assign('pic64locale', $pic64locale);
 
         //Se l'utente è registrato può vedere gli eventi organizzati dal locale
-        /* if ($logged == "si"){
+        if ($sessione->leggi_valore('utente')){
          $eventi = array();
            if (is_array($result->getEventi())) {
               //$this->smarty->assign('eventi', $result->getEventi());
@@ -139,7 +135,7 @@ class VRicerca
                    if (is_array($evento->getImmagini())) {
                        $pic64evento=array();
                        foreach ($evento->getImmagini() as $itemE) {
-                           $pic64evento[] = base64_encode($itemE->getData()); //Non capisco perchè non funziona come sopra
+                           $pic64evento[] = base64_encode($itemE->getImmagine()); //Non capisco perchè non funziona come sopra
                        }
                    }
                    $eventi.array_push($evento,$pic64evento); //eventi = evento + le sue foto per ogni evento del locale
@@ -152,15 +148,17 @@ class VRicerca
                $eventi.array_push($result->getEventi(),$pic64evento);
                $this->smarty->assign('eventi', $eventi);
            }
-       }*/
+       }
         $this->smarty->assign('arrayRecensioni', $arrayRecensioni);
         $this->smarty->assign('valutazioneLocale', $votoMedio);
         // list($type,$pic64) = VUtente::setImage($img_utente, 'user');
 
         //Non so
 
-        if($sessione->leggi_valore('utente')) //Doppio controllo?
+        if($sessione->leggi_valore('utente'))
             $this->smarty->assign('userlogged',"loggato"); //Potrà cosi visualizzare gli eventi
+        else
+            $this->smarty->assign('userlogged',"nouser");
 
         /*
         $myobj = new My_Object;

@@ -83,8 +83,8 @@ class CAdmin{
             $pm = FPersistentManager()::getIstance();
             $username = $view->getUsername();
             $utente = $pm->load("username", $username, "FUtente");
-            $pm->update( "FUtente","state", $utente->setState(), "username", $username);
-            //$pm->update("FRecensioni","visibilita",false,"id",);
+            $utente->setState(0);
+            $pm->update( "FUtente","state", $utente->getState(), "username", $username);
             header('Location: /FacceBeve/Admin/homepage');
         }
         elseif($_SERVER['REQUEST_METHOD'] == "GET") {
@@ -118,7 +118,8 @@ class CAdmin{
             $pm = FPersistentManager()::getIstance();
             $username = $view->getUsername();
             $utente = $pm->load("username", $username, "Futente");
-            $pm->update("FUtente", "state", 1, "username", $username);
+            $utente->setState(1);
+            $pm->update("FUtente", "state", $utente->getState(1), "username", $username);
            // $pm->update("visibility",true,"emailWriter",$email,"FAnnuncio");
             header('Location: /FacceBeve/Admin/homepage');
         }
@@ -321,12 +322,11 @@ class CAdmin{
 
 
     /**
-     * Funzione utile per ricercare tutti gli annunci che contengano una determinata espressione nel loro campo descrizione
+     * Funzione utile per ricercare tutti i locali che contengano una determinata espressione nel loro campo descrizione
      * 1) se il metodo di richiesta HTTP è GET e si è loggati come amministratore, avviene il reindirizzamento alla pagina contenente l'elenco degli annunci;
      * 2) se il metodo di richiesta HTTP è POST (ovviamente per fare ciò bisogna già essere loggati come amminstratore), avviene l'azione della ricerca degli annunci;
      * 3) se il metodo di richiesta HTTP è GET e non si è loggati, avviene il reindirizzamento verso la pagina di login;
      * 4) se il metodo di richiesta HTTP è GET e si è loggati come utente (non amministratore) compare una pagina di errore 401.
-     * @param $id annuncio da bannare
      * @throws SmartyException
      */
     static function ricercaParolaLocale(){
@@ -339,7 +339,7 @@ class CAdmin{
             $utentiAttivi = null;
             $localiAttivi = null;
             $localiBannati = null;
-            $utentiBannati = null;
+            $utentiBannati = null; //Proprietari di locali bannati, cosa ci facciamo???????
             if (is_object($result)){
                 if ($result->getVisibility()) {
                     $localiAttivi = $result;
@@ -356,7 +356,7 @@ class CAdmin{
                 for ($i = 0; $i<count($result); $i++){
                     if ($result[$i]->getVisibility()) {
                         $localiAttivi[$a] = $result[$i];
-                        $localiAttivi[$a] = $result[$i]->getProprietario();
+                        $utentiAttivi[$a] = $result[$i]->getProprietario();
                         $i++;
                         $a++;
                     }
@@ -395,6 +395,7 @@ class CAdmin{
      * 2) se il metodo di richiesta HTTP è POST (ovviamente per fare ciò bisogna già essere loggati come amminstratore), avviene l'azione vera e propria di ricerca della parola nel testo della recensione;
      * 3) se il metodo di richiesta HTTP è GET e non si è loggati, avviene il reindirizzamento verso la pagina di login;
      * 4) se il metodo di richiesta HTTP è GET e si è loggati come utente (non amministratore) compare una pagina di errore 401.
+     * @throws SmartyException
      */
     static function ricercaParolaRecensione(){
         $sessione = USession::getInstance();
@@ -437,6 +438,7 @@ class CAdmin{
      * 2) se il metodo di richiesta HTTP è POST (ovviamente per fare ciò bisogna già essere loggati come amminstratore), avviene l'azione vera e propria di ricerca della parola tra i nomi/cognomi degli utenti;
      * 3) se il metodo di richiesta HTTP è GET e non si è loggati, avviene il reindirizzamento verso la pagina di login;
      * 4) se il metodo di richiesta HTTP è GET e si è loggati come utente (non amministratore) compare una pagina di errore 401.
+     * @throws SmartyException
      */
     static function ricercaUtente() {
         $sessione = USession::getInstance();

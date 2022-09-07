@@ -169,11 +169,12 @@ class EUtente {
     }
 
     /**
+     * Metodo che va a modificare lo stato di un utente(bannato/attivo)
      * @param bool $state
      */
-    public function setState(): void
+    public function setState($state): void
     {
-        $this->state=0;
+        $this->state=$state;
     }
 
 
