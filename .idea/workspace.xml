@@ -4,11 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="738f3067-f10b-412f-8e5a-244184617b0d" name="Changes" comment="Implementato il ban gli utente da parte dell'admin, aggiunta anche la pagina di errore, implementato anche il far ritornare l'utente attivo">
+    <list default="true" id="738f3067-f10b-412f-8e5a-244184617b0d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/html/dashboardAdmin.html" beforeDir="false" afterPath="$PROJECT_DIR$/Smarty/html/dashboardAdmin.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/css/admin.css" beforeDir="false" afterPath="$PROJECT_DIR$/Smarty/template/assets/css/admin.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/templates/home.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/Smarty/templates/home.tpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controller/CRicerca.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/CRicerca.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Foundation/FPersistentManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/Foundation/FPersistentManager.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Foundation/FUtente.php" beforeDir="false" afterPath="$PROJECT_DIR$/Foundation/FUtente.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Smarty/templates/infoLocale.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/Smarty/templates/infoLocale.tpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/VRicerca.php" beforeDir="false" afterPath="$PROJECT_DIR$/View/VRicerca.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/VUtente.php" beforeDir="false" afterPath="$PROJECT_DIR$/View/VUtente.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,6 +36,7 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP 7.4.1" />
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>

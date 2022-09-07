@@ -162,31 +162,6 @@ class VUtente
      * */
 
     public function profileProprietario($user,$img,$locali) {
-      /**  if (count($rec) == 0)
-            $this->smarty->assign('media_voto', 0);
-        else
-            $this->smarty->assign('media_voto', $user->averageMark()); //mettilo in VGLocale o VRecensione
-        list($typeR,$pic64rec) = $this->SetImageRecensione($imgrec);
-        if ($typeR == null && $pic64rec == null)
-            $this->smarty->assign('immagine', "/FillSpaceWEB/Smarty/immagini/user.png");
-        if (isset($imgrec)) {
-            if (is_array($imgrec)) {
-                $this->smarty->assign('typeR', $typeR);
-                $this->smarty->assign('pic64rec', $pic64rec);
-                $this->smarty->assign('n_recensioni', count($imgrec) - 1);
-            }
-            else {
-                $t[] = $typeR;
-                $im[] = $pic64rec;
-                $this->smarty->assign('typeR', $t);
-                $this->smarty->assign('pic64rec', $im);
-                $this->smarty->assign('n_recensioni', 0);
-            }
-        }
-        else
-            $this->smarty->assign('n_recensioni', 0);
-        $rec = $user->getReview();
-        list($type,$pic64) = $this->setImage($img, 'user'); **/
         list($type,$pic64) = $this->setImage($img, 'user');
         $this->smarty->assign('type', $type);
         $this->smarty->assign('pic64', $pic64);

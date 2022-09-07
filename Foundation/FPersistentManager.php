@@ -12,11 +12,14 @@ class FPersistentManager {
         $FClass::store($obj);
     }
 
+    public function addPreferiti(){
+
+    }
+
     /**   Metodo che permette di salvare un media di un oggetto sul db
      * @param obj oggetto di cui si vuole salvare il media
      * @param nome_file ,nome del media da salvare
      */
-
     public static function storeMedia($obj,$nome_file) {
         $EClass = get_class($obj);
         $Fclass = str_replace("E", "F", $EClass);
