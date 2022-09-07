@@ -4,15 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="738f3067-f10b-412f-8e5a-244184617b0d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+    <list default="true" id="610c6203-30f3-490b-afa7-719606c23e94" name="Changes" comment="login e registrazione aggiunta logo in alto da completare">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controller/CRicerca.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/CRicerca.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Foundation/FPersistentManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/Foundation/FPersistentManager.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Entity/EUtente.php" beforeDir="false" afterPath="$PROJECT_DIR$/Entity/EUtente.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Foundation/FDB.php" beforeDir="false" afterPath="$PROJECT_DIR$/Foundation/FDB.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Foundation/FUtente.php" beforeDir="false" afterPath="$PROJECT_DIR$/Foundation/FUtente.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/templates/infoLocale.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/Smarty/templates/infoLocale.tpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/View/VRicerca.php" beforeDir="false" afterPath="$PROJECT_DIR$/View/VRicerca.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/View/VUtente.php" beforeDir="false" afterPath="$PROJECT_DIR$/View/VUtente.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,7 +32,7 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP 7.4.1" />
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP" />
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -70,14 +66,11 @@
       <recent name="C:\Users\matte\Documents\GitHub\FacceBeve\template" />
     </key>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.dashboardAdmin.html">
+  <component name="RunManager" selected="PHP Script.index.php">
     <configuration name="Login.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/FacceBeve/Smarty/html/Login.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
     <configuration name="dashboardAdmin.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/FacceBeve/Smarty/html/dashboardAdmin.html" useBuiltInWebServerPort="true">
-      <method v="2" />
-    </configuration>
-    <configuration name="infoLocale.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/FacceBeve/template/infoLocale.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
     <configuration name="registrazioneEvento.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/FacceBeve/Smarty/html/registrazioneEvento.html" useBuiltInWebServerPort="true">
@@ -86,20 +79,23 @@
     <configuration name="registrazioneLocale.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/FacceBeve/Smarty/html/registrazioneLocale.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
+    <configuration name="index.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/index.php">
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="PHP Script.index.php" />
         <item itemvalue="JavaScript Debug.dashboardAdmin.html" />
         <item itemvalue="JavaScript Debug.registrazioneLocale.html" />
         <item itemvalue="JavaScript Debug.registrazioneEvento.html" />
         <item itemvalue="JavaScript Debug.Login.html" />
-        <item itemvalue="JavaScript Debug.infoLocale.html" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="738f3067-f10b-412f-8e5a-244184617b0d" name="Changes" comment="login e registrazione aggiunta logo in alto da completare" />
+      <changelist id="610c6203-30f3-490b-afa7-719606c23e94" name="Changes" comment="login e registrazione aggiunta logo in alto da completare" />
       <created>1651152882261</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -126,6 +122,7 @@
       <workItem from="1661584348820" duration="6662000" />
       <workItem from="1661953620532" duration="2555000" />
       <workItem from="1662460733829" duration="5099000" />
+      <workItem from="1662569239096" duration="1765000" />
     </task>
     <servers />
   </component>

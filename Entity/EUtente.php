@@ -35,12 +35,8 @@ class EUtente {
         $this->password = $password;
         $this->localipreferiti = array();
         $this->state = true;
+        $this->iscrizione = (string) date("d/m/Y");
     }
-
-
-     public function addIscrizione(){
-         $this->iscrizione = date("d/m/Y");  //Andranno fatte prove
-     }
 
 
 //----------------------METODI GET-----------------------------
@@ -94,7 +90,7 @@ class EUtente {
     /**
      * @return date
      */
-    public function getIscrizione(): date
+    public function getIscrizione()
     {
         return $this->iscrizione;
     }
