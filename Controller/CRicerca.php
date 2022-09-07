@@ -90,6 +90,21 @@ class CRicerca{
     }
 
     /**
+     * Funzione che si occupa di recuperare gli eventi visualizzabili dagli utenti
+     * @throws SmartyException
+     */
+    static function Home($utente) {
+        if(isset($utente) && get_class($utente)=="EUtente"){
+            $pm = FPersistentManager::GetIstance();
+            $result = $pm->loadEventi($utente);
+        }else{
+            $result=null;
+        }
+        $vRicerca = new VRicerca();
+        $vRicerca->showHomepage(static::categorie(),$result);
+    }
+
+    /**
      * Funzione con il compito di indirizzare alla pagina specifica del locale selezionato
      * @param $id id del locale selezionato
      *
