@@ -15,7 +15,7 @@ class EUtente {
     private string $nome;
     private string $cognome;
     private array $localipreferiti;
-    private string $iscrizione;
+    private date $iscrizione;
     private EImmagine $img_profilo;
     private bool $state;
 

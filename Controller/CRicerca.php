@@ -133,7 +133,7 @@ class CRicerca{
             if(get_class($utente)=="EUtente"){
                 if($vRicerca->preferiti()){
                     $utente->addLocale($result);
-                    $pm->store();
+                    $pm->store($utente);
                 }
             }
         }

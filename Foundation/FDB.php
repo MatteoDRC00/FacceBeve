@@ -7,7 +7,7 @@ class FDB{
 	/** Oggetto PDO che permette la connessione al DBMS
 	 * 	@var PDO
 	 */
-	private ?PDO $database = null;
+	private PDO $database;
 
 	/**	Unica instanza della classe
 	 * 	@var FDB
@@ -53,8 +53,8 @@ class FDB{
 			$this->database->beginTransaction();
 			$query = "INSERT INTO " . $class::getTable() . " VALUES " . $class::getValues();
 			$stmt = $this->database->prepare($query); //Prepared Statement
+			print(get_class($stmt));
 			$class::bind($stmt,$obj);
-			print_r($stmt);
 			$stmt->execute();
 			$this->database->commit();
 			$this->closeDbConnection();
