@@ -134,7 +134,7 @@ class CRecensione{
                $recensione = pm->load("id",$i,"FRecensione");
                if($recensione){
                    $recensione->segnala;
-                   pm->update("FRecensione","counter",$recensione->getCounter(),"id",$i);
+                   $pm->update("FRecensione","counter",$recensione->getCounter(),"id",$i);
                }else{
                    header('Location: /FacceBeve/Utente/');
                }

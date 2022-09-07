@@ -30,6 +30,13 @@ class FPersistentManager {
         return self::$_instance;
     }
 
+    /**
+     * Metodo utilizzato per caricare TUTTE le categorie di locale presenti sul sito
+    */
+    public function getCategorie(){
+        $return = FCategoria::loadAll();
+        return $return;
+    }
 
     /**
      * @param string $attributo
@@ -79,7 +86,6 @@ class FPersistentManager {
             $ris = FEvento::loadByForm ($part1, $part2, $part3, $part4);
         return $ris;
     }
-
 
     /**
      * metodo che permette l'aggiornamento del valore di un campo passato per parametro

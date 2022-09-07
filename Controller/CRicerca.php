@@ -83,25 +83,19 @@ class CRicerca{
         }
     }
 
-    /**Funzione che restituisce tutte le categorie di locali presenti nel sito*/
-    static function categorie(){
-        $pm = FPersistentManager::GetIstance();
-        $result = $pm->loadAll("FCategoria");
-    }
-
     /**
      * Funzione che si occupa di recuperare gli eventi visualizzabili dagli utenti
      * @throws SmartyException
      */
     static function Home($utente) {
+        $pm = FPersistentManager::GetIstance();
         if(isset($utente) && get_class($utente)=="EUtente"){
-            $pm = FPersistentManager::GetIstance();
             $result = $pm->loadEventi($utente);
         }else{
             $result=null;
         }
         $vRicerca = new VRicerca();
-        $vRicerca->showHomepage(static::categorie(),$result);
+        $vRicerca->showHomepage($pm->loadAll("FCategoria"),$result);
     }
 
     /**

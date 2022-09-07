@@ -96,45 +96,51 @@ class VAdmin
      * @param $utentiBannati array di utenti bannati
      * @param $img_attivi array di immagini degli utenti attivi
      * @param $img_bann array di immagini degli utenti bannati
+     * @param $categorie array di oggetti ECategoria --> categorie del sito
      * @throws SmartyException
-
-    public function HomeAdmin($utentiAttivi, $utentiBannati,$img_attivi,$img_bann) {
-        list($typeA,$pic64att) = $this->SetImageRecensione($img_attivi);
-        if ($typeA == null && $pic64att == null)
+     */
+    public function HomeAdmin(array $utentiAttivi, $utentiBannati, $img_attivi, $img_bann, $categorie) {
+        //Gestione immagini degli utenti attivi
+        list($typeAttivi,$pic64att) = $this->SetImageRecensione($img_attivi);
+        if ($typeAttivi == null && $pic64att == null)
             $this->smarty->assign('immagine', "no");
         if (isset($img_attivi)) {
             if (is_array($img_attivi)) {
-                $this->smarty->assign('typeA', $typeA);
+                $this->smarty->assign('typeAttivi', $typeAttivi);
                 $this->smarty->assign('pic64att', $pic64att);
                 $this->smarty->assign('n_attivi', count($img_attivi) - 1);
             }
             else {
-                $this->smarty->assign('typeA', $typeA);
+                $this->smarty->assign('typeA', $typeAttivi);
                 $this->smarty->assign('pic64att', $pic64att);
             }
         }
         else
             $this->smarty->assign('n_attivi', 0);
-        list($typeB,$pic64ban) = $this->SetImageRecensione($img_bann);
-        if ($typeB == null && $pic64ban == null)
+
+        //Gestione immagini degli utenti bannati
+        list($typeBannati,$pic64ban) = $this->SetImageRecensione($img_bann);
+        if ($typeBannati == null && $pic64ban == null)
             $this->smarty->assign('immagine_1', "no");
         if (isset($img_bann)) {
             if (is_array($img_bann)) {
-                $this->smarty->assign('typeB', $typeB);
+                $this->smarty->assign('typeBannati', $typeBannati);
                 $this->smarty->assign('pic64ban', $pic64ban);
                 $this->smarty->assign('n_bannati', count($img_bann) - 1);
             }
             else {
-                $this->smarty->assign('typeB', $typeB);
+                $this->smarty->assign('typeB', $typeBannati);
                 $this->smarty->assign('pic64ban', $pic64ban);
             }
         }
         else
             $this->smarty->assign('n_bannati', 0);
+
+        $this->smarty->assign('categorie',$categorie);
         $this->smarty->assign('utenti',$utentiAttivi);
         $this->smarty->assign('utentiBan',$utentiBannati);
         $this->smarty->display('admin_HP.tpl');
-    }*/
+    }
 
     /**
      * Funzione di supporto che si occupa gestire le immagini degli utenti presenti nell'elenco delle recensioni
@@ -238,5 +244,26 @@ class VAdmin
 
         $this->smarty->display('admin_annunci.tpl');
     }
+
+
+    /**
+     * Metodo richiamato quando l'Admin va a creare una nuova Categoria per il sito.
+     * In caso di errori nella compilazione dei campi del locale, verrÃ  ricaricata la stessa pagina con un messaggio esplicativo
+     * dell'errore commesso in fase di compilazione.
+     * @param $utente oggetto utente che effettua l'inserimento dei dati nei campi del locale
+     * @param $error codice di errore con svariati significati. In base al suo valore verrÃ  eventualmente visualizzato un messaggio
+     * di errore nella pagina di creazione del locale
+     * @throws SmartyException
+     */
+    public function showFormCategoria($utente,$error)
+    {
+            switch ($error) {
+                case "wrongCategory":
+                    $this->smarty->assign('errorType', $error);
+                    break;
+            }
+            $this->smarty->display('pagina.tpl');
+    }
+
 
 }

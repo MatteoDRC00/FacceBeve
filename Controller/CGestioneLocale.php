@@ -72,12 +72,9 @@ class CGestioneLocale{
                       $view->showFormCreation($proprietario, "size");
                   elseif ($stato == "ok") {
                       $view->showFormCreation($proprietario, "no");
-
                       $size = $_FILES[img]['size'];
                       $imgLocale = new EImmagine($nome,$size,$type,);
-
                   }
-
                   pm->store($Locale);
 
               }elseif(get_class($proprietario) == "EUtente"){

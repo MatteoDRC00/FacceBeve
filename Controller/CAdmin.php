@@ -17,7 +17,7 @@ class CAdmin{
      * 3) altrimenti, reindirizza alla pagina di login.
      * @throws SmartyException
      */
-    static function homepage() {
+    public function homepage() {
         $sessione = USession::getInstance();
         if($_SERVER['REQUEST_METHOD'] == "GET") {
             if ($sessione->leggi_valore('utente')) {
@@ -30,7 +30,8 @@ class CAdmin{
                     $utentiBannati = $pm->loadUtenti(0);
                     $img_attivi = static::set_immagini($utentiAttivi);
                     $img_bann = static::set_immagini($utentiBannati);
-                    $view->HomeAdmin($utentiAttivi, $utentiBannati,$img_attivi,$img_bann);
+                    $categorie = $pm->loadAll("FCategoria");
+                    $view->HomeAdmin($utentiAttivi, $utentiBannati,$img_attivi,$img_bann,$categorie);
                 }
                 else {
                     $view = new VError();
@@ -52,7 +53,7 @@ class CAdmin{
      * @param $tipo se FUtente o FProprietario
      * @return array|null|object
      */
-    static function set_immagini($utenti, $tipo){
+    public function set_immagini($utenti, $tipo){
         $pm = FPersistentManager()::getIstance();
         $img = null;
         if (isset($utenti)) {
@@ -68,28 +69,45 @@ class CAdmin{
         return $img;
     }
 
+    /**
+     * Metodo utilizzato dal Admin per aggiungere categorie sul sito.
+     * @throws SmartyException
+     */
     public function aggiungiCategoria(){
         $sessione = USession::getInstance();
         if($_SERVER['REQUEST_METHOD'] == "POST") {
-            $view = new VAdmin();
-            $pm = FPersistentManager()::getIstance();
-            $genere = $view->getGenere();
-            $descrizione = $view->getDescrizione();
-            $categoria = $pm->load("genere", $genere, "FCategoria");
-            if(!$categoria){
-                $Categoria = new ECategoria($genere,$descrizione);
-                $pm->store($Categoria);
-                $error = null;
+            if($sessione->leggi_valore('utente')){
+                $utente = unserialize($sessione->leggi_valore('utente'));
+                $view = new VAdmin();
+                if(($utente->getUsername() == "admin") || ($utente->getUsername() == "Admin")){
+                    $pm = FPersistentManager()::getIstance();
+                    $genere = $view->getGenere();
+                    $descrizione = $view->getDescrizione();
+                    $categoria = $pm->exist("FCategoria", genere,$genere );
+                    if(!$categoria){
+                        $Categoria = new ECategoria($genere,$descrizione);
+                        $pm->store($Categoria);
+                        $error = null;
+                    }else{
+                        $error = "wrongCategory";
+                    }
+                    $view->showFormCategoria($utente,$error);
+                }else{
+                    $view = new VError();
+                    $view->error(1);
+                }
             }else{
-                $error = "wrongCategory";
+                header('Location: /FacceBeve/');
             }
-            header('Location: /FacceBeve/Admin/homepage');
+
         }
         elseif($_SERVER['REQUEST_METHOD'] == "GET") {
             if ($sessione->leggi_valore('utente')) {
                 $utente = unserialize($sessione->leggi_valore('utente'));
+                $view = new VAdmin();
                 if (($utente->getUsername() == "admin") || ($utente->getUsername() == "Admin"))  {
-                    header('Location: /FacceBeve/Admin/homepage');
+                    //header('Location: /FacceBeve/Admin/homepage');
+                    $view->showFormCategoria($sessione->leggi_valore('utente'), null);
                 }
                 else {
                     $view = new VError();
@@ -102,38 +120,66 @@ class CAdmin{
     }
 
     /**
+     * Metodo utilizzato dal Admin per cancellare categorie dal sito.
+     */
+    public function rimuoviCategoria($id)
+    {
+        $sessione = USession::getInstance();
+        $utente = unserialize($sessione->leggi_valore('utente'));
+        if (($utente->getUsername() == "admin") || ($utente->getUsername() == "Admin")) {
+            $pm = FPersistentManager::getIstance();
+            $x = $pm->loadAll("FCategoria");
+            if (is_array($x)) {
+                foreach ($x as $y) {
+                    if ($id == $y->getGenere()) {
+                        $pm->delete("genere", $id, "FCategoria");
+                        header('Location: /FacceBeve/Admin/homepage');
+                    }
+                }
+            } elseif (isset($x)) {
+                if ($id == $x->getGenere()) {
+                    $pm->delete("genere", $id, "FCategoria");
+                    header('Location: /FacceBeve/Admin/homepage');
+                }
+            } else {
+                header('Location: /FacceBeve/Admin/homepage');
+            }
+        }else{
+            header('Location: /FacceBeve/Utente/login');
+        }
+    }
+
+
+    /**
      * Funzione utile per cambiare lo stato di visibilità di un utente (nel caso specifico porta la visibilità a false).
      * 1) se il metodo di richiesta HTTP è GET e si è loggati come amministratore, avviene il reindirizzamento alla homepage dell'amministratore;
      * 2) se il metodo di richiesta HTTP è POST (ovviamente per fare ciò bisogna già essere loggati come amminstratore), avviene l'azione vera e propria di bannare l'utente
      * 	  cambiando il suo stato di visibilità a false con conseguente bannamento delle sue recensioni;
      * 3) se il metodo di richiesta HTTP è GET e non si è loggati, avviene il reindirizzamento verso la pagina di login;
      * 4) se il metodo di richiesta HTTP è GET e si è loggati come utente (non amministratore) compare una pagina di errore 401.
-**/
-    static function bannaUtente(){
-        $sessione = USession::getInstance();
-        if($_SERVER['REQUEST_METHOD'] == "POST") {
-            $view = new VAdmin();
-            $pm = FPersistentManager()::getIstance();
-            $username = $view->getUsername();
-            $utente = $pm->load("username", $username, "FUtente");
-            $utente->setState(0);
-            $pm->update( "FUtente","state", $utente->getState(), "username", $username);
-            header('Location: /FacceBeve/Admin/homepage');
-        }
-        elseif($_SERVER['REQUEST_METHOD'] == "GET") {
-            if ($sessione->leggi_valore('utente')) {
-                $utente = unserialize($sessione->leggi_valore('utente'));
-                if (($utente->getUsername() == "admin") || ($utente->getUsername() == "Admin"))  {
-                    header('Location: /FacceBeve/Admin/homepage');
-                }
-                else {
-                    $view = new VError();
-                    $view->error(1);
-                }
+     **/
+    public function bannaUtente(){
+    $sessione = USession::getInstance();
+    if ($_SERVER['REQUEST_METHOD'] == "POST") {
+        $view = new VAdmin();
+        $pm = FPersistentManager()::getIstance();
+        $username = $view->getUsername();
+        $utente = $pm->load("username", $username, "FUtente");
+        $utente->setState(0);
+        $pm->update("FUtente", "state", $utente->getState(), "username", $username);
+        header('Location: /FacceBeve/Admin/homepage');
+    } elseif ($_SERVER['REQUEST_METHOD'] == "GET") {
+        if ($sessione->leggi_valore('utente')) {
+            $utente = unserialize($sessione->leggi_valore('utente'));
+            if (($utente->getUsername() == "admin") || ($utente->getUsername() == "Admin")) {
+                header('Location: /FacceBeve/Admin/homepage');
+            } else {
+                $view = new VError();
+                $view->error(1);
             }
-            else
-                header('Location: /FacceBeve/Utente/login');
-        }
+        } else
+            header('Location: /FacceBeve/Utente/login');
+    }
     }
 
     /**
@@ -144,7 +190,7 @@ class CAdmin{
      * 3) se il metodo di richiesta HTTP è GET e non si è loggati, avviene il reindirizzamento verso la pagina di login;
      * 4) se il metodo di richiesta HTTP è GET e si è loggati come utente (non amministratore) compare una pagina di errore 401.
     */
-    static function attivaUtente(){
+    public function attivaUtente(){
         $sessione = USession::getInstance();
         if($_SERVER['REQUEST_METHOD'] == "POST") {
             $view = new VAdmin();
