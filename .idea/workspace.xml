@@ -4,20 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bc4e91cc-1db1-4aea-8848-23547a2387fd" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Controller/CFrontController.php" afterDir="false" />
+    <list default="true" id="738f3067-f10b-412f-8e5a-244184617b0d" name="Changes" comment="Implementato il ban gli utente da parte dell'admin, aggiunta anche la pagina di errore, implementato anche il far ritornare l'utente attivo">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-<<<<<<< Updated upstream
-      <change beforePath="$PROJECT_DIR$/Controller/CAdmin.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/CAdmin.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controller/CRicerca.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/CRicerca.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Entity/EUtente.php" beforeDir="false" afterPath="$PROJECT_DIR$/Entity/EUtente.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Foundation/FLocale.php" beforeDir="false" afterPath="$PROJECT_DIR$/Foundation/FLocale.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/View/VGestioneLocale.php" beforeDir="false" afterPath="$PROJECT_DIR$/View/VGestioneLocale.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/View/VRicerca.php" beforeDir="false" afterPath="$PROJECT_DIR$/View/VRicerca.php" afterDir="false" />
-=======
       <change beforePath="$PROJECT_DIR$/Smarty/html/dashboardAdmin.html" beforeDir="false" afterPath="$PROJECT_DIR$/Smarty/html/dashboardAdmin.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Smarty/template/assets/css/admin.css" beforeDir="false" afterPath="$PROJECT_DIR$/Smarty/template/assets/css/admin.css" afterDir="false" />
->>>>>>> Stashed changes
+      <change beforePath="$PROJECT_DIR$/Smarty/templates/home.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/Smarty/templates/home.tpl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,29 +65,29 @@
       <recent name="C:\Users\matte\Documents\GitHub\FacceBeve\template" />
     </key>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.Login.html">
+  <component name="RunManager" selected="JavaScript Debug.dashboardAdmin.html">
     <configuration name="Login.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/FacceBeve/Smarty/html/Login.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
-    <configuration name="areaPersonaleProprietario.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/FacceBeve/template/areaPersonaleProprietario.html" useBuiltInWebServerPort="true">
-      <method v="2" />
-    </configuration>
-    <configuration name="contact.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/FacceBeve/template/contact.html" useBuiltInWebServerPort="true">
-      <method v="2" />
-    </configuration>
-    <configuration name="getioneLocale.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/FacceBeve/template/getioneLocale.html" useBuiltInWebServerPort="true">
+    <configuration name="dashboardAdmin.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/FacceBeve/Smarty/html/dashboardAdmin.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
     <configuration name="infoLocale.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/FacceBeve/template/infoLocale.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
+    <configuration name="registrazioneEvento.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/FacceBeve/Smarty/html/registrazioneEvento.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="registrazioneLocale.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/FacceBeve/Smarty/html/registrazioneLocale.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JavaScript Debug.dashboardAdmin.html" />
+        <item itemvalue="JavaScript Debug.registrazioneLocale.html" />
+        <item itemvalue="JavaScript Debug.registrazioneEvento.html" />
         <item itemvalue="JavaScript Debug.Login.html" />
         <item itemvalue="JavaScript Debug.infoLocale.html" />
-        <item itemvalue="JavaScript Debug.getioneLocale.html" />
-        <item itemvalue="JavaScript Debug.areaPersonaleProprietario.html" />
-        <item itemvalue="JavaScript Debug.contact.html" />
       </list>
     </recent_temporary>
   </component>
@@ -129,8 +120,7 @@
       <workItem from="1661020640784" duration="1005000" />
       <workItem from="1661584348820" duration="6662000" />
       <workItem from="1661953620532" duration="2555000" />
-      <workItem from="1662460733829" duration="5145000" />
-      <workItem from="1662535604627" duration="2607000" />
+      <workItem from="1662460733829" duration="5099000" />
     </task>
     <servers />
   </component>
