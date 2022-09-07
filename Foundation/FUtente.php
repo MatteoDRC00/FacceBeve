@@ -1,4 +1,6 @@
 <?php
+
+require_once 'utility/autoload.php';
 /**
  * La classe FUtente fornisce query per gli oggetti EUtente
  * @author Gruppo 8
@@ -32,7 +34,7 @@ class FUtente{
         $stmt->bindValue(':email', $utente->getEmail(), PDO::PARAM_STR);
         $stmt->bindValue(':password', $utente->getPassword(), PDO::PARAM_STR);
         $stmt->bindValue(':idImg', NULL, PDO::PARAM_INT);
-        $stmt->bindValue(':dataIscrizione', $utente->getIscrizione(),PDO::PARAM_STR);
+        $stmt->bindValue(':dataIscrizione', $utente->getIscrizione());
         $stmt->bindValue(':state', $utente->getState(), PDO::PARAM_BOOL);
     }
 

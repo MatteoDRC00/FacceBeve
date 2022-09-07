@@ -15,7 +15,7 @@ class EUtente {
     private string $nome;
     private string $cognome;
     private array $localipreferiti;
-    private date $iscrizione;
+    private ?string $iscrizione = null;
     private EImmagine $img_profilo;
     private bool $state;
 
@@ -90,9 +90,7 @@ class EUtente {
         return $this->localipreferiti;
     }
 
-    /**
-     * @return date
-     */
+
     public function getIscrizione()
     {
         return $this->iscrizione;
