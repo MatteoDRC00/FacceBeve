@@ -27,18 +27,18 @@ class EUtente {
      * @param string $username
      * @param string $email
      */
-    public function __construct(string $password, string $nome, string $cognome, string $username, string $email, bool $state){
+    public function __construct(string $password, string $nome, string $cognome, string $username, string $email){
         $this->nome = $nome;
         $this->cognome = $cognome;
         $this->email = $email;
         $this->username = $username;
         $this->password = $password;
         $this->localipreferiti = array();
-        $this->state=$state;
+        $this->state = true;
     }
 
 
-     public function Iscrizione(){
+     public function addIscrizione(){
          $this->iscrizione = date("d/m/Y");  //Andranno fatte prove
      }
 
