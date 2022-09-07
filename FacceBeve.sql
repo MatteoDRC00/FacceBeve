@@ -1,12 +1,10 @@
-DROP DATABASE IF EXISTS `FacceBeve`;
+DROP DATABASE IF EXISTS `faccebeve`;
 
-CREATE DATABASE `FacceBeve`;
+CREATE DATABASE `faccebeve`;
 
-/*DROP USER IF EXISTS 'website'@'localhost';
-CREATE USER 'website'@'localhost' IDENTIFIED BY 'webpass';
-GRANT ALL ON collection_site.* TO 'website'@'localhost';*/
+GRANT ALL ON faccebeve.* TO root;
 
-USE `FacceBeve`;
+USE `faccebeve`;
 
 
 /*Tabella relativa alle immagini utilizzate*/
@@ -34,7 +32,7 @@ CREATE TABLE `Utente` (
     `state` tinyint(1) NOT NULL,
     FOREIGN KEY (`idImg`) REFERENCES Immagine(`id`) ON DELETE CASCADE ON UPDATE CASCADE,
     PRIMARY KEY (`username`)
-)ENGINE=InnoDB;
+);
 
 /*Tabella relativa ai Proprietari dei Locali*/
 DROP TABLE IF EXISTS `Proprietario`;
@@ -48,7 +46,7 @@ CREATE TABLE `Proprietario` (
      `idImg` int(11),
     FOREIGN KEY (`idImg`) REFERENCES Immagine(`id`) ON DELETE CASCADE ON UPDATE CASCADE,
     PRIMARY KEY (`username`)
-)ENGINE=InnoDB;
+);
 
 /*Tabella relativa agli Admin del sito*/
 DROP TABLE IF EXISTS `Admin`;
@@ -58,7 +56,7 @@ CREATE TABLE `Admin` (
     `email` VARCHAR(40) NOT NULL,
     `password` VARCHAR(30) NOT NULL,
     PRIMARY KEY (`username`)
-)ENGINE=InnoDB;
+);
 
 /*Tabella relativa alle Categorie a cui possono appartenere i locali(Bar, Ristorazione)*/
 DROP TABLE IF EXISTS `Categoria`;
@@ -67,7 +65,7 @@ CREATE TABLE `Categoria` (
     `genere` VARCHAR(30) NOT NULL,
     `descrizione` VARCHAR(120),
     PRIMARY KEY (`genere`)
-)ENGINE=InnoDB;
+);
 
 /*Tabella relativa alla Localizzazione*/
 DROP TABLE IF EXISTS `Localizzazione`;
@@ -79,7 +77,7 @@ CREATE TABLE `Localizzazione` (
     `citta` VARCHAR(30) NOT NULL,
     `CAP` INT(5) NOT NULL,
     PRIMARY KEY (`id`)
-)ENGINE=InnoDB;
+);
 
 /*Tabella relativa agli Orari */
 DROP TABLE IF EXISTS `Orario`;
@@ -90,7 +88,7 @@ CREATE TABLE `Orario` (
     `OrarioApertura` CHAR(5),
     `OrarioChiusura` CHAR(5),
     PRIMARY KEY (`id`)
-)ENGINE=InnoDB;
+);
 
 /*Tabella relativa ai Locali*/
 DROP TABLE IF EXISTS `Locale`;
@@ -106,7 +104,7 @@ CREATE TABLE `Locale` (
     PRIMARY KEY (`id`),
     FOREIGN KEY (`proprietario`) REFERENCES Proprietario(`username`) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (`localizzazione`) REFERENCES Localizzazione(`id`) ON DELETE CASCADE ON UPDATE CASCADE
-)ENGINE=InnoDB;
+);
 
 /*Tabella relativa agli Eventi !!!POI RICONTROLLARE PER LE IMMAGINI */
 DROP TABLE IF EXISTS `Evento`; /*Poi fare seconda tabella / aggiornamento evento*/
@@ -117,7 +115,7 @@ CREATE TABLE `Evento` (
     `descrizione` VARCHAR(120),
 	`data` DATE,
     PRIMARY KEY (`id`)
-)ENGINE=InnoDB;
+);
 
 
 /*Tabella relativa alle Recensioni*/
@@ -131,12 +129,12 @@ CREATE TABLE `Recensione` (
     `data` DATE NOT NULL,
     `segnalato` BOOLEAN  DEFAULT 0,
     `counter` BOOLEAN  DEFAULT 0, /*Conta il numero di segnalazioni alla recensione*/
-    `utente` INT(11) NOT NULL,
+    `utente` VARCHAR(24) NOT NULL,
     `locale` INT(11) NOT NULL,
     PRIMARY KEY (`id`),
     FOREIGN KEY (`utente`) REFERENCES Utente(`username`) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (`locale`) REFERENCES Locale(`id`) ON DELETE CASCADE ON UPDATE CASCADE 
-)ENGINE=InnoDB;
+);
 
 /*Tabella relativa alle Risposte alle recensioni*/
 DROP TABLE IF EXISTS `Risposta`;
@@ -144,12 +142,12 @@ DROP TABLE IF EXISTS `Risposta`;
 CREATE TABLE `Risposta` (
     `id` INT(11) NOT NULL,
     `descrizione` VARCHAR(120),
-    `proprietario` INT(11) NOT NULL,
+    `proprietario` VARCHAR(24) NOT NULL,
     `recensione` INT(11) NOT NULL,
     PRIMARY KEY (`id`),
     FOREIGN KEY (`proprietario`) REFERENCES Proprietario(`username`) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (`recensione`) REFERENCES Recensione(`id`) ON DELETE CASCADE ON UPDATE CASCADE 
-)ENGINE=InnoDB;
+);
 
 /*Tabella che mette in relazione l'Utente con i suoi Locali Preferiti*/
 DROP TABLE IF EXISTS `Utenti_Locali`;
@@ -164,7 +162,7 @@ CREATE TABLE `Utenti_Locali` (
     FOREIGN KEY (`ID_Locale`)
         REFERENCES Locale (`id`)
         ON DELETE CASCADE ON UPDATE CASCADE
-)ENGINE=InnoDB; 
+);
 
 /*Tabella che mette in relazione il Locale con gli Eventi che organizza*/
 DROP TABLE IF EXISTS `Locale_Eventi`;
@@ -179,7 +177,7 @@ CREATE TABLE `Locale_Eventi` (
     FOREIGN KEY (`ID_Locale`)
         REFERENCES Locale (`id`)
         ON DELETE CASCADE ON UPDATE CASCADE
-)ENGINE=InnoDB; 
+);
 
 /*Tabella che mette in relazione il Locale con l'Orario settimanale*/
 DROP TABLE IF EXISTS `Locale_Orari`;
@@ -194,7 +192,7 @@ CREATE TABLE `Locale_Orari` (
     FOREIGN KEY (`ID_Locale`)
         REFERENCES Locale (`id`)
         ON DELETE CASCADE ON UPDATE CASCADE
-)ENGINE=InnoDB;
+);
 
 
 /*Tabella che mette in relazione il Locale con le attività svolte*/
@@ -202,7 +200,7 @@ DROP TABLE IF EXISTS `Locale_Categorie`;
 
 CREATE TABLE `Locale_Categorie` (
 	`ID_Locale` INT(11) NOT NULL,
-	`ID_Categoria` INT(11) NOT NULL,
+	`ID_Categoria` VARCHAR(30) NOT NULL,
 	CONSTRAINT Locale_Categorie_PK PRIMARY KEY ( `ID_Locale` ,`ID_Categoria`),
     FOREIGN KEY (`ID_Categoria`)
         REFERENCES Categoria (`genere`)
@@ -210,7 +208,7 @@ CREATE TABLE `Locale_Categorie` (
     FOREIGN KEY (`ID_Locale`)
         REFERENCES Locale (`id`)
         ON DELETE CASCADE ON UPDATE CASCADE
-)ENGINE=InnoDB; 
+);
 
 /*Tabella che mette in relazione il Locale con le immagini*/
 DROP TABLE IF EXISTS `Locale_Immagini`;
@@ -224,7 +222,7 @@ CREATE TABLE `Locale_Immagini` (
     FOREIGN KEY (`ID_Locale`)
         REFERENCES Locale (`id`)
         ON DELETE CASCADE ON UPDATE CASCADE
-)ENGINE=InnoDB; 
+);
 
 /*Tabella che mette in relazione l'Evento con le immagini*/
 DROP TABLE IF EXISTS `Evento_Immagini`;
@@ -238,4 +236,4 @@ CREATE TABLE `Evento_Immagini` (
     FOREIGN KEY (`ID_Evento`)
         REFERENCES Evento (`id`)
         ON DELETE CASCADE ON UPDATE CASCADE
-)ENGINE=InnoDB; 
+);

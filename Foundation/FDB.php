@@ -22,7 +22,7 @@ class FDB{
 		try {
 			//global $config;
 			//$this->database = new PDO ("mysql:dbname=".$config['database'].";host=localhost; charset=utf8;", $config['username'], $config['password']);
-			$db_host = "127.0.0.1";
+			$db_host = "localhost";
 			$db_name = "faccebeve";
 			$this->database = new PDO("mysql:host=$db_host;dbname=$db_name", "root", "");
 		} catch (PDOException $e) {
@@ -44,15 +44,18 @@ class FDB{
 
 	/**
 	 * Metodo che permette di salvare informazioni contenute in un oggetto Entity sul database.
-	 * @param class classe da passare
-	 * @param obj oggetto da salvare
+	 * @param string $class
+	 * @param object $obj
+	 * @return false|string|null
 	 */
-	public function store($class, $obj){
+	public function store(string $class,object $obj){
 		try {
 			$this->database->beginTransaction();
 			$query = "INSERT INTO " . $class::getTable() . " VALUES " . $class::getValues();
 			$stmt = $this->database->prepare($query); //Prepared Statement
+			$class = get_class($obj);
 			$class::bind($stmt, $obj);
+			print_r($stmt);
 			$stmt->execute();
 			$this->database->commit();
 			$this->closeDbConnection();

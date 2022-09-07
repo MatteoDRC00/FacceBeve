@@ -66,7 +66,7 @@ class FUtente{
      * @return void
      */
     public static function store(EUtente $utente){
-        $db=FDB::getInstance();
+        $db = FDB::getInstance();
         $id = $db->store(static::getClass() ,$utente);
         //Utenti Locali
         if($utente->getLocalipreferiti()!=null){
