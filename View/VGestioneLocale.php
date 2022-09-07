@@ -92,7 +92,7 @@ class VGestioneLocale{
      */
     public function showFormCreation($utente,$error)
     {
-        if (get_class($utente) == "EProprietario") {
+        if (($utente->getUsername() == "admin") || ($utente->getUsername() == "Admin")) {
             switch ($error) {
                 case "type" :
                     $this->smarty->assign('errorType', "errore");
@@ -113,7 +113,6 @@ class VGestioneLocale{
             $this->smarty->assign('userlogged', "loggato");
             $this->smarty->display('infoLocale.tpl');
         }
-
     }
 
     /**
