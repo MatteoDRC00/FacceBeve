@@ -29,8 +29,9 @@
 }
 .sidebar .logo-details .logo_name{
     color: #fff;
-    font-size: 24px;
+    font-size: 30px;
     font-weight: 500;
+    font-family: 'papyrus', cursive;
 }
 .sidebar .nav-links{
     margin-top: 10px;
@@ -119,6 +120,15 @@ nav .sidebar-button i{
     max-width: 550px;
     width: 100%;
     margin: 0 20px;
+}
+.home-section nav .logout input{
+    background: #F5F6FA;
+    border: 2px solid #EFEEF1;
+    border-radius: 6px;
+    height: 50px;
+    margin: 10px;
+    padding: 10px;
+    font-size: 18px;
 }
 nav .search-box input{
     height: 100%;
