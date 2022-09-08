@@ -240,16 +240,16 @@ class VUtente
             $pic64 = base64_encode($image->getImmagine());
             $type = $image->getType();
         }
-        elseif ($tipo == 'Utente') {
+        elseif ($tipo == 'EUtente') {
             $data = file_get_contents( $_SERVER['DOCUMENT_ROOT'] . '/FacceBeve/Smarty/immagini/utente.png'); //Immagine generica per l'utente
             $pic64= base64_encode($data);
             $type = "image/png";
-        }elseif ($tipo == 'Proprietario'){
+        }elseif ($tipo == 'EProprietario'){
             $data = file_get_contents( $_SERVER['DOCUMENT_ROOT'] . '/FacceBeve/Smarty/immagini/proprietario.png'); //Immagine generica per il proprietario
             $pic64= base64_encode($data);
             $type = "image/png";
         }
-        elseif($tipo == 'Locale') {
+        elseif($tipo == 'ELocale') {
             $data = file_get_contents( $_SERVER['DOCUMENT_ROOT'] . '/FacceBeve/Smarty/immagini/locale.png'); //Immagine generica per il proprietario
             $pic64= base64_encode($data);
             $type = "image/png";

@@ -48,6 +48,7 @@ class CProfilo{
     /**
      * Funzione che gestisce la modifica della password del Utente/Proprietario. Preleva la vecchia e la nuova password dalla View, verifica la correttezza della vecchia e procede alla modifica.
      * @return false|void False se la vecchia password inserita non è corretta, altrimenti lancia un errore che rimanda alla View del errore.
+     * @throws SmartyException
      */
     public function modificaPassword(){
         $view = new VProfilo();
@@ -55,18 +56,19 @@ class CProfilo{
         $pm = FPersistentManager::getInstance();
         if($sessione->leggi_valore('utente')){
             $utente = unserialize($sessione->leggi_valore('utente'));
+            $locali = static::caricaLocali($utente);
             $passwordVecchia = $view->getPasswordVecchia();
             $passwordNuova = $view->getPasswordNuova();
             if(md5($passwordVecchia)==$utente->getPassword()) {
                 if($passwordNuova!=$passwordVecchia){
                     $utente->setPassword($passwordNuova);
                     $pm->update(get_class($utente),"password",$passwordNuova,"username",$utente->getUsername());
-                    header('Location: /Profilo/profilo'); //profilo!!!
+                    header('Location: /Profilo/profilo');
                 }else{
-                    $view->errorePassword($utente); //? farei come in FillSpace
+                    $view->profilo($utente,$locali,"password_old");
                 }
             }else{
-                $view->erroreModifica("password");
+                $view->profilo($utente,$locali,"password_error");
                 //return false;
             }
         }else{
@@ -78,6 +80,7 @@ class CProfilo{
     /**
      * Funzione che gestisce la modifica dello Username del Utente/Proprietario. Preleva lo username nuovo dalla view e procede alla modifica.
      * @return void
+     * @throws SmartyException
      */
     public function modificaUsername(){
         $view = new VProfilo();
@@ -99,7 +102,8 @@ class CProfilo{
                 $pm->update(get_class($utente),"username",$usernameNuova,"username",$utente->getUsername());
                 header('Location: /Profilo/profilo'); //profilo!!!
             }else{
-                $view->erroreModifica("username");
+                $locali = static::caricaLocali($utente);
+                $view->profilo($utente,$locali,"username");
             }
         }else{
             $view = new VError();
@@ -129,25 +133,62 @@ class CProfilo{
     }
 
 
-
     /**
      * Gestisce la modifica dell'immagine del cliente. Preleva la nuova immagine dalla view e procede alla modifica.
      * @return void
+     * @throws SmartyException
      */
     public function modificaImmagineProfilo(){
         $view = new VProfilo();
         $sessione = USession::getInstance();
         if($sessione->leggi_valore('utente')){
             $utente = unserialize($sessione->leggi_valore('utente'));
+            $locali = static::caricaLocali($utente);
             $nome = $view->getNewImgProfilo();
             $check = static::upload($utente,$nome);
-
-
-            header('Location: /Areapersonale/mostraAreaPersonale');
+            if($check=="type"){
+                $view->profilo($utente,$locali,"type");
+            }elseif($check=="size"){
+                $view->profilo($utente,$locali,"size");
+            }elseif($check=="ok"){
+                header('Location: /Profilo/profilo'); //profilo!!!
+            }else{
+                $view = new VError();
+                $view->error(1);   //Accesso proibito
+            }
         }
     }
 
 
+    /**
+     * Gestisce la visualizzazione dell'area personale degli utenti in base al tipo di utente. Se nessun utente è loggato reindirizza al login.
+     * @return void
+     * @throws SmartyException
+     */
+    public function profilo(){
+        $sessione = USession::getInstance();
+        if(!$sessione->leggi_valore('utente')){
+            $sessione->imposta_valore("last_visited","/Profilo/profilo");
+            $log = CAccesso::getInstance();
+            $log->mostraLogin();
+        }else{
+            if ((get_class($sessione->leggi_valore('utente')) == 'EUtente') || (get_class($sessione->leggi_valore('utente')) == 'EProprietario') ) {
+                $sessione->cancella_valore("last_visited");
+                $utente = unserialize($sessione->leggi_valore('utente'));
+                $view = new VProfilo();
+                $locali = static::caricaLocali($utente);
+                $view->profilo($utente,$locali,null);
+            }
+            if (get_class($sessione->leggi_valore('utente')) == 'EAdmin') {
+                $sessione->cancella_valore("last_visited");
+                $admin = CAdmin::getInstance();
+                $admin->homepage();
+            }
+        }
+    }
+
+
+    ///////////////////////////////////////////////METODI STATICI///////////////////////////////////////////////////////////
     /**
      * Funzione di supporto che si occupa di verificare la correttezza dell'immagine inserita nella form di registrazione.
      * Nel caso in cui non ci sono errori di inserimento, avviene la store dell'utente e la corrispondente immagine nel database.
@@ -163,7 +204,7 @@ class CProfilo{
         $result = is_uploaded_file($_FILES[$nome_file]['tmp_name']);
         if (!$result) {
             //no immagine
-            $pm->store($utente);
+            //$pm->store($utente);
             //return "ok";
             $ris = "ok";
         } else {
@@ -190,6 +231,22 @@ class CProfilo{
             }
         }
         return $ris;
+    }
+
+    /**
+     * Metodo richiamato per individuare i locali collegati ad un utente, se questo èun Proprietario allora saranno i locali da l*i gestiti,
+     * se invece è un Utente saranno i suoi locali preferiti
+     * @return array|null
+    */
+    static function caricaLocali($utente): ?array
+    {
+        $pm = FPersistentManager::getInstance();
+        if(get_class($utente) == "EProprietario"){
+            $locali = $pm->load("proprietario",$utente->getUsername(),"FLocale");
+            return $locali;
+        }else{
+            return null;
+        }
     }
 
 
