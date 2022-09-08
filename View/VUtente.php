@@ -125,7 +125,7 @@ class VUtente
     }
 
     public function showHome(){
-        $this->smarty->display('home.tpl');
+        $this->smarty->display('login.tpl');
     }
 
     /**

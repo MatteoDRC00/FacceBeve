@@ -1,5 +1,28 @@
-<!DOCTYPE html>
-<!--{assign var='error' value=$error|default:'ok'}-->
+<?php
+/* Smarty version 4.2.0, created on 2022-09-08 11:06:28
+  from 'C:\xampp\htdocs\FacceBeve\Smarty\templates\login.tpl' */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '4.2.0',
+  'unifunc' => 'content_6319b09467f147_48818956',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    '97ad653f3f9e86e1ebac670f7800114319eaa04c' => 
+    array (
+      0 => 'C:\\xampp\\htdocs\\FacceBeve\\Smarty\\templates\\login.tpl',
+      1 => 1662114143,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+),false)) {
+function content_6319b09467f147_48818956 (Smarty_Internal_Template $_smarty_tpl) {
+?><!DOCTYPE html>
+<!--<?php $_smarty_tpl->_assignInScope('error', (($tmp = $_smarty_tpl->tpl_vars['error']->value ?? null)===null||$tmp==='' ? 'ok' ?? null : $tmp));?>-->
 <html lang="it">
 <head>
     <meta charset="utf-8">
@@ -43,7 +66,7 @@
     <div class="container d-flex justify-content-between align-items-center">
 
         <div class="logo">
-            <h1><a href="/Smarty/templates/home.tpl"><img src="/Smarty/template/assets/img/logo.png" alt=""><span>FacceBeve</span></a></h1>
+            <h1><a href="index.html"><img src="/Smarty/template/assets/img/logo.png" alt=""><span>FacceBeve</span></a></h1>
         </div>
     </div>
 
@@ -59,11 +82,17 @@
             <p class="message">Hai bisogno di pubblicizzare il tuo locale?<a href="registrazioneProprietario.html">Crea un account proprietario</a></p>
         </form>
         <div style="color: red;">
-            <?php if $error!='ok'
-                    echo "Attenzione! Username e/o password errati!" ?>
+            <?php echo '<?php'; ?>
+ if $error!='ok'
+                    echo "Attenzione! Username e/o password errati!" <?php echo '?>'; ?>
+
         </div>
     </div>
 </div>
-<!--<script src="/Smarty/template/assets/js/main.js"></script>-->
+<!--<?php echo '<script'; ?>
+ src="/Smarty/template/assets/js/main.js"><?php echo '</script'; ?>
+>-->
 </body>
 </html>
+<?php }
+}

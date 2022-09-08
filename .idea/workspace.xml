@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c26a7dfa-0602-4989-a1a2-5d0dff0684f8" name="Changes" comment="login e registrazione aggiunta logo in alto da completare">
-      <change afterPath="$PROJECT_DIR$/Smarty/html/error.html" afterDir="false" />
+    <list default="true" id="9faf1e6e-9a10-4944-a36b-80aebaa0a7ea" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Smarty/templates_c/97ad653f3f9e86e1ebac670f7800114319eaa04c_0.file.login.tpl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Smarty/templates_c/a9c388b26f6de66a025e1299ab39b1a61ff761e7_0.file.infoLocale.tpl.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/html/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/Smarty/html/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/css/error.css" beforeDir="false" afterPath="$PROJECT_DIR$/Smarty/template/assets/css/error.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/VUtente.php" beforeDir="false" afterPath="$PROJECT_DIR$/View/VUtente.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,7 +76,7 @@
       <recent name="C:\Users\matte\Documents\GitHub\FacceBeve\template" />
     </key>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.error.html">
+  <component name="RunManager" selected="PHP Script.index.php">
     <configuration name="FacceBeve.sql" type="DatabaseScript" editBeforeRun="true" temporary="true" nameIsGenerated="true">
       <script-file value="$PROJECT_DIR$/FacceBeve.sql" />
       <script-mode>FILE</script-mode>
@@ -85,10 +86,15 @@
     <configuration name="dashboardAdmin.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/FacceBeve/Smarty/html/dashboardAdmin.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
-    <configuration name="error.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/FacceBeve/Smarty/html/error.html" useBuiltInWebServerPort="true">
+    <configuration name="9fd5117cec31f915dc8a0cd678895ba48305579d_0.file.home.tpl.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/Smarty/templates_c/9fd5117cec31f915dc8a0cd678895ba48305579d_0.file.home.tpl.php">
       <method v="2" />
     </configuration>
     <configuration name="e0d453e7a1f0c920ec477a85879fb20fee5ef751_0.file.home.tpl.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/Smarty/templates_c/e0d453e7a1f0c920ec477a85879fb20fee5ef751_0.file.home.tpl.php">
+      <CommandLine>
+        <PhpTestInterpreterSettings>
+          <option name="interpreterName" value="PHP" />
+        </PhpTestInterpreterSettings>
+      </CommandLine>
       <method v="2" />
     </configuration>
     <configuration name="index.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/index.php">
@@ -96,9 +102,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JavaScript Debug.error.html" />
-        <item itemvalue="PHP Script.e0d453e7a1f0c920ec477a85879fb20fee5ef751_0.file.home.tpl.php" />
         <item itemvalue="PHP Script.index.php" />
+        <item itemvalue="PHP Script.9fd5117cec31f915dc8a0cd678895ba48305579d_0.file.home.tpl.php" />
+        <item itemvalue="PHP Script.e0d453e7a1f0c920ec477a85879fb20fee5ef751_0.file.home.tpl.php" />
         <item itemvalue="Database Script.FacceBeve.sql" />
         <item itemvalue="JavaScript Debug.dashboardAdmin.html" />
       </list>
