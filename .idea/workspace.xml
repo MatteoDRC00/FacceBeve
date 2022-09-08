@@ -5,9 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c26a7dfa-0602-4989-a1a2-5d0dff0684f8" name="Changes" comment="login e registrazione aggiunta logo in alto da completare">
+      <change afterPath="$PROJECT_DIR$/Smarty/html/gestioneLocale.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Smarty/templates/gestioneLocale.tpl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/View/VUtente.php" beforeDir="false" afterPath="$PROJECT_DIR$/View/VUtente.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Smarty/html/areaPersonaleProprietario.html" beforeDir="false" afterPath="$PROJECT_DIR$/Smarty/html/areaPersonaleProprietario.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Smarty/html/getioneLocale.html" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,8 +22,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="CSS File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
