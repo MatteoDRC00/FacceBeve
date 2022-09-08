@@ -27,7 +27,8 @@ class FUtente{
     * @param PDOStatement $stmt
     * @param EUtente $utente
     */
-    public static function bind(PDOStatement $stmt, EUtente $utente){
+    public static function bind($stmt, EUtente $utente){
+        //var_dump($utente);
         $stmt->bindValue(':username', $utente->getUsername(), PDO::PARAM_STR);
 		$stmt->bindValue(':nome',$utente->getNome(), PDO::PARAM_STR);
 		$stmt->bindValue(':cognome',$utente->getCognome(), PDO::PARAM_STR);
@@ -36,6 +37,7 @@ class FUtente{
         $stmt->bindValue(':idImg', NULL, PDO::PARAM_INT);
         $stmt->bindValue(':dataIscrizione', $utente->getIscrizione());
         $stmt->bindValue(':state', $utente->getState(), PDO::PARAM_BOOL);
+
     }
 
     /**
