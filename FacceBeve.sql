@@ -113,7 +113,7 @@ CREATE TABLE `Evento` (
     `id` int(11) NOT NULL AUTO_INCREMENT, 
     `nome` VARCHAR(26),
     `descrizione` VARCHAR(120),
-	`data` DATE,
+	`data` CHAR(11),
     PRIMARY KEY (`id`)
 );
 

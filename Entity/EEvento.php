@@ -9,18 +9,18 @@
  */
 class EEvento implements JsonSerializable{
 
-    private int $id;
+    private ?int $id;
     private string $nome;
     private string $descrizione;
-    private DateTime $data;
+    private string $data;
 
 
     /**
      * @param string $nome
      * @param string $descrizione
-     * @param DateTime $data
+     * @param string $data
      */
-    public function __construct(string $nome, string $descrizione, DateTime $data){
+    public function __construct(string $nome, string $descrizione, string $data){
         $this->id = NULL;
         $this->nome = $nome;
         $this->descrizione = $descrizione;
@@ -76,17 +76,17 @@ class EEvento implements JsonSerializable{
     }
 
     /**
-     * @return DateTime
+     * @return string
      */
-    public function getData(): DateTime
+    public function getData()
     {
         return $this->data;
     }
 
     /**
-     * @param DateTime $data
+     * @param string $data
      */
-    public function setData(DateTime $data): void
+    public function setData(string $data): void
     {
         $this->data = $data;
     }

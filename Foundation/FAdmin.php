@@ -59,9 +59,10 @@ class FAdmin{
     /**
      * metodo che permette il salvataggio di un Admin nel db
      * @param EAdmin $admin Admin da salvare
-     * @return void
+     * @return string
      */
-    public static function store(EAdmin $admin){
+    public static function store(EAdmin $admin): string
+    {
         $db = FDB::getInstance();
         $username = $db->store(self::getClass(), $admin);
         //$admin->setId($id);
@@ -75,7 +76,7 @@ class FAdmin{
      * @return bool
      */
     public static function exist(string $attributo,string $valore) {
-        $db = FDatabase::getInstance();
+        $db = FDB::getInstance();
         $result = $db->exist(static::getClass(), $attributo, $valore);
         if($result!=null)
             return true;
@@ -92,7 +93,7 @@ class FAdmin{
      * @return bool
      */
     public static function update(string $attributo, string $newvalue, string $attributo_pk, string $value_pk){
-        $db=FDatabase::getInstance();
+        $db=FDB::getInstance();
         $result = $db->update(static::getClass(), $attributo, $newvalue, $attributo_pk, $value_pk);
         if($result)
             return true;

@@ -54,18 +54,17 @@ class FDB{
 			$query = "INSERT INTO " . $class::getTable() . " VALUES " . $class::getValues();
 			$stmt = $this->database->prepare($query); //Prepared Statement
 			$class::bind($stmt,$obj);
-			print_r($stmt);
 			$stmt->execute();
-			$this->database->commit();
-			$this->closeDbConnection();
 			if($class == "FAdmin" || $class == "FProprietario" || $class == "FUtente")
-				return $obj->getUsername();
+				$id = $obj->getUsername();
 			elseif($class == "FCategoria")
-				return $obj->getCategoria();
+				$id = $obj->getCategoria();
 			else{
 				$id = $this->database->lastInsertId();
-				return $id;
 			}
+			$this->database->commit();
+			$this->closeDbConnection();
+			return $id;
 		} catch (PDOException $e) {
 			echo "Attenzione errore: " . $e->getMessage();
 			$this->database->rollBack();

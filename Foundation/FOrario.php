@@ -60,7 +60,7 @@ class FOrario {
     /**
      * metodo che permette il salvataggio di una Orario nel db
      * @param EOrario $orario Orario da salvare
-     * @return void
+     * @return string
      */
     public static function store(EOrario $orario){
         $db = FDB::getInstance();
@@ -128,7 +128,7 @@ class FOrario {
      * @return bool
      */
     public static function exist(string $attributo,string $valore) {
-        $db = FDatabase::getInstance();
+        $db = FDB::getInstance();
         $result = $db->exist(static::getClass(), $attributo, $valore);
         if($result!=null)
             return true;
@@ -145,7 +145,7 @@ class FOrario {
      * @return bool
      */
     public static function update(string $attributo, string $newvalue, string $attributo_pk, string $value_pk){
-        $db=FDatabase::getInstance();
+        $db=FDB::getInstance();
         $result = $db->update(static::getClass(), $attributo, $newvalue, $attributo_pk, $value_pk);
         if($result)
             return true;

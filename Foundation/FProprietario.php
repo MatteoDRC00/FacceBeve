@@ -102,7 +102,7 @@ class FProprietario{
      * @return bool
      */
     public static function exist(string $attributo,string $valore) {
-        $db = FDatabase::getInstance();
+        $db = FDB::getInstance();
         $result = $db->exist(static::getClass(), $attributo, $valore);
         if($result!=null)
             return true;
@@ -119,7 +119,7 @@ class FProprietario{
      * @return bool
      */
     public static function update(string $attributo, string $newvalue, string $attributo_pk, string $value_pk){
-        $db=FDatabase::getInstance();
+        $db=FDB::getInstance();
         $result = $db->update(static::getClass(), $attributo, $newvalue, $attributo_pk, $value_pk);
         if($result)
             return true;

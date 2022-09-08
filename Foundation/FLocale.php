@@ -63,7 +63,7 @@ class FLocale {
     /**
      * metodo che permette il salvataggio di un Locale nel db
      * @param ELocale $locale Locale da salvare
-     * @return void
+     * @return string
      */
     public static function store(ELocale $locale){
         $id = NULL;
