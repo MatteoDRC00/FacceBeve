@@ -93,7 +93,7 @@ class CGestioneLocale{
      */
     static function modificaLocale() {
         $sessione = USession::getInstance();
-        if (CUtente::isLogged()) {
+        if ($sessione->leggi_valore('utente')) {
             $utente = unserialize($proprietario = unserialize($sessione->leggi_valore('utente')));
             if (get_class($utente) == "EProprietario") {
                 $view = new VGestioneLocale();
@@ -182,6 +182,7 @@ class CGestioneLocale{
                 }
 
             } elseif (get_class($utente) == "ECliente") {
+
                 header('Location: /Faccebeve/Utente/profile');
             }
         } else

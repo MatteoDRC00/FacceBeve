@@ -80,23 +80,9 @@ class CFrontController{
             }
         }
         else {
-            //Se il path è sbagliato, i.e., Controller non presente, l'applicazione rimanda alla homepage dei rispettivi tipi di utenti:
-            //Admin --> Sua homepage
-            //Proprietario/Utente --> la loro homepage con i rispettivi dettagli
-            //Utente non loggato --> homepage di default
-            if ($sessione->leggi_valore('utente')) {
-                $utente = unserialize($sessione->leggi_valore('utente'));
-                if (($utente->getUsername() == "admin") || ($utente->getUsername() == "Admin"))
-                    header('Location: /FacceBeve/Admin/homepage');
-                else {
-                    //$smarty = StartSmarty::configuration();
-                    CRicerca::Home($utente);
-                }
-            }
-            else {
-                //$smarty = StartSmarty::configuration();
-                CRicerca::Home();
-            }
+            //Se il path è sbagliato, i.e., Controller non presente, l'applicazione rimanda alla pagina di errore 404, dalla quale si può poi tornare alla homepage
+            $view = new VError();
+            $view->error(4);
         }
 
     }
