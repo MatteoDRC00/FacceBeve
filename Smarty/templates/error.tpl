@@ -1,55 +1,42 @@
-
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="/Faccebeve/Smarty/template/assets/img/logo.png">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Errore!</title>
+    <title>FacceBeve</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/4.1/examples/cover/">
+    <!-- Favicons -->
+    <link href="/Smarty/template/assets/img/favicon.png" rel="icon">
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <!--Css-->
+    <link rel="stylesheet" href="/Smarty/template/assets/css/error.css">
 
-    <!-- Custom styles for this template -->
-    <link href="/FacceBeve/Smarty/template/assets/css/error.css" rel="stylesheet">
+
 </head>
 
-<body class="text-center">
+<section class="page_404">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 ">
+                <div class="col-sm-10 col-sm-offset-1  text-center">
+                    <h1>$error</h1>
+                    <div class="four_zero_four_bg">
+                    </div>
 
-<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-    <header class="masthead mb-auto">
-        <div class="inner">
+                    <div class="contant_box_404">
+                        <h3 class="h2">
+                            Look like you're lost
+                        </h3>
 
+                        <p class="p">$testo</p>
+                        <a href="home.html" class="link_404">Cliccami per tornare alla home :( </a>
+                    </div>
+                </div>
+            </div>
         </div>
-    </header>
-
-    <main role="main" class="inner cover">
-        <img src="/FacceBeve/Smarty/template/assets/img/logo.png" width="400" height="300"/>
-
-        <p style="font-size: 100px;">ERRORE 40{$i}</p>
-        <h1 class="cover-heading">Qualcosa è andato storto</h1>
-        <p class="lead">{$testo}</p>
-        <p class="lead">
-        </p>
-    </main>
-
-    <footer class="mastfoot mt-auto">
-    </footer>
-</div>
-
-
-{*
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-*}
-</body>
-
+    </div>
+</section>
 </html>

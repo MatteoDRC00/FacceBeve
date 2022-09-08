@@ -49,7 +49,7 @@
                 z = document.getElementById("Locali");
                 z.style.display = "none";
             }
-        }
+        };
 
         /** function defaultView() {
             var x = document.getElementById("Eventi");
@@ -61,11 +61,10 @@
 
     </script>
 
-
-
-
 </head>
+
 <body> <!--onload="defaultView()"-->
+
 <!-- ======= Header ======= -->
 <header id="header" class="fixed-top d-flex align-items-center header-transparent">
     <div class="container d-flex justify-content-between align-items-center">
@@ -106,22 +105,22 @@
                 <div class="carousel-container">
                     <h2 class="animate__animated animate__fadeInDown">Benvenuti in <span>FacceBeve</span></h2>
                     <p class="animate__animated animate__fadeInUp">È scientificamente provato che un aperitivo patatine e birretta non salveranno il mondo, ma la giornata sicuramente sì.</p>
-                    <h4 class="mb-0" >Puoi ricercare...</h4>
-                    <select name="tipo" id="tipo" onChange="setList()">
+                    <h4 class="mb-0" style="color:white">Puoi ricercare...</h4>
+                    <select name="tipo" id="tipo" style="border-radius:10px;" onChange="setList()">
                         <option  selected value="Locali">Locali</option>
                         <option value="Eventi">Eventi</option>
                     </select>
                 </div>
                 <div class="ricerca animate__animated animate__fadeInDown" id="Locali" style="display: flex;justify-content: center;">
                     <form class="Search"  action="risultatiRicerca.html">
-                        <input type="text" placeholder="Inserisci la città" name="citta">
+                        <input type="text" placeholder="Inserisci la città">
                         <input type="text" placeholder="Inserisci il nome" name="nomeLocale">
-                        <select name="categorie" style="border-radius:6px;">
+                        <select  name="categorie" style="border-radius:7px; height: 50px  ;">
                             <option>Scegli il tipo</option>
                             <option value="bar">Bar</option>
                             <option value="pub">Pub</option>
                         </select>
-                        <button type="submit" style="border-radius:10px;"><i class="fa fa-search"></i></button>
+                        <button class="input" type="submit" style="border-radius:10px;"><i class="fa fa-search"></i></button>
                     </form>
                 </div>
                 <div class="ricerca animate__animated animate__fadeInDown" id="Eventi" style="display: none;justify-content: center;" >
@@ -137,19 +136,19 @@
                 <div class="carousel-container">
                     <h2 class="animate__animated animate__fadeInDown">Benvenuti in <span>FacceBeve</span></h2>
                     <p class="animate__animated animate__fadeInUp">È scientificamente provato che un aperitivo patatine e birretta non salveranno il mondo, ma la giornata sicuramente sì.</p>
-                    <h4 class="mb-0">Trova i locali della tua città</h4>
+                    <h4 class="mb-0" style="color:white;">Trova i locali della tua città</h4>
                 </div>
 
                 <div class="ricerca animate__animated animate__fadeInDown" style="display: flex;justify-content: center;">
                     <form class="Search"  action="risultatiRicerca.html">
                         <input type="text" placeholder="Inserisci la città" name="citta">
-                        <input type="text" placeholder="Inserisci il nome" name="nomeLocale">
-                        <select name="categorie" style="border-radius:6px;">
+                        <input type="text" placeholder="Inserisci il nome" name="nomeLo.cale">
+                        <select name="categorie" style="border-radius:7px; height: 50px ">
                             <option>Scegli il tipo</option>
                             <option value="bar">Bar</option>
                             <option value="pub">Pub</option>
                         </select>
-                        <button type="submit" style="border-radius:10px;"><i class="fa fa-search"></i></button>
+                        <button type="submit" style="border-radius:7px; height: 50px"><i class="fa fa-search"></i></button>
                     </form>
                 </div>
 
