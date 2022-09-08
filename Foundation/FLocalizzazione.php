@@ -119,7 +119,8 @@ class FLocalizzazione {
      * @param string $value_pk
      * @return bool
      */
-    public static function update(string $attributo, string $newvalue, string $attributo_pk, string $value_pk){
+    public static function update(string $attributo, string $newvalue, string $attributo_pk, string $value_pk): bool
+    {
         $db=FDB::getInstance();
         $result = $db->update(static::getClass(), $attributo, $newvalue, $attributo_pk, $value_pk);
         if($result)

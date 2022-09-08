@@ -104,6 +104,16 @@ class FPersistentManager {
         return $result;
     }
 
+    /**
+     * metodo che permette l'aggiornamento di un immagine
+     * @param EImmagine $img
+     * @param string $nome_file
+     * @return bool
+     */
+    public static function updateMedia(EImmagine $img,string $nome_file){
+        return FImmagine::update($img,$nome_file);
+    }
+
 
     /** Metodo che permette il caricamento di tutti gli elementi di una classe/tabella*/
     public static function loadAll(string $class) {
