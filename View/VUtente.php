@@ -124,6 +124,10 @@ class VUtente
         $this->smarty->display('home.tpl');
     }
 
+    public function showHome(){
+        $this->smarty->display('home.tpl');
+    }
+
     /**
      * Funzione che si occupa di gestire la visualizzazione degli errori in fase login
      * @throws SmartyException
