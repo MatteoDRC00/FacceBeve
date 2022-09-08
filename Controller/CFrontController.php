@@ -1,6 +1,10 @@
 <?php
 
+require_once 'utility/autoload.php';
+require_once 'StartSmarty.php';
+
 class CFrontController{
+
     public function run ($path)
     {
         $sessione = USession::getInstance();

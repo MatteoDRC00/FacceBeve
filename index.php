@@ -3,7 +3,7 @@
 require_once 'utility/autoload.php';
 require_once 'StartSmarty.php';
 
-$view = new VUtente();
+$controller = new CFrontController();
+$controller->run($_SERVER['REQUEST_URI']);
 
-$view->showFormLogin();
-
+print $_SERVER['REQUEST_URI'];
