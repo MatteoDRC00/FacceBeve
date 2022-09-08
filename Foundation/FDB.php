@@ -81,7 +81,7 @@ class FDB{
 	public function storeMedia ($class , $obj, $nome_file) {
 		try {
 			$this->database->beginTransaction();
-			$query = "INSERT INTO ".$class::getTable()." VALUES ".$class::getValues().";";
+			$query = "INSERT INTO Immagine VALUES ".$class::getValues().";";
 			$stmt = $this->database->prepare($query);
 			$class::bind($stmt,$obj,$nome_file);
 			$stmt->execute();
@@ -119,6 +119,30 @@ class FDB{
 			echo "Attenzione errore: " . $e->getMessage();
 			$this->database->rollBack();
 			return false;
+		}
+	}
+
+	/**Metodo chr permette l'aggiornamento dui un immagine
+	 * @param $class, classe di cui si vuole salvare il media
+	 * @param obj oggetto interessato
+	 * @nome_file, nome del media da salvare
+	 */
+	public function updateMedia ($class , $obj, $nome_file) {
+		try {
+			$this->database->beginTransaction();
+			$query = "UPDATE Immagine SET nome= ".$obj->getNome().", type=".$obj->getType().",size=".$obj->getSize().",immagine=".$obj->getImmagine()." where id=".$obj->getId().";";
+			$stmt = $this->database->prepare($query);
+			$class::bind($stmt,$obj,$nome_file);
+			$stmt->execute();
+			$id=$this->database->lastInsertId();
+			$this->database->commit();
+			$this->closeDbConnection();
+			return $id;
+		}
+		catch(PDOException $e) {
+			echo "Attenzione errore: ".$e->getMessage();
+			$this->db->rollBack();
+			return null;
 		}
 	}
 

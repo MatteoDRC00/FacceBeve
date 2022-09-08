@@ -75,15 +75,6 @@ class CUtente
         }
     }
 
-    /**
-     * Funzione che provvede alla rimozione delle variabili di sessione, alla sua distruzione e a rinviare alla homepage
-     */
-    static function logout(){
-        $sessione = USession::getInstance();
-        $sessione->chiudi_sessione();
-        header('Location: /FacceBeve/Utente/login');
-    }
-
     public function error() {
         $view = new VError();
         $view->error('1');
@@ -216,7 +207,6 @@ class CUtente
             $type = $_FILES[$nome_file]['type'];
             if ($size > $max_size) {
                 //Il file è troppo grande
-                //return "size";
                 $ris = "size";  // -->Errore relativo alla dimensione del img
             }
             //$type = $_FILES[$nome_file]['type'];

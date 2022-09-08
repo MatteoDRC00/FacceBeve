@@ -91,12 +91,7 @@ class VUtente
         return $value;
     }
 
-    public function getNewImg_Profilo(){
-        $value = null;
-        if (isset($_FILES['newimg_profilo']))
-            $value = $_FILES['newimg_profilo'];
-        return $value;
-    }
+
 
     /**
      * Funzione che si occupa di gestire la visualizzazione della form di login

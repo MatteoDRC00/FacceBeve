@@ -27,11 +27,11 @@ class FImmagine
 
 
     public static function bind($stmt, EImmagine $md,$nome_file){
-        //$path=$_FILES['file']['tmp_name'];
         $path = $_FILES[$nome_file]['tmp_name'];
         $file=fopen($path,'rb') or die ("Attenzione! Impossibile da aprire!");
         $stmt->bindValue(':id',NULL, PDO::PARAM_INT); //l'id � posto a NULL poich� viene dato automaticamente dal DBMS (AUTOINCREMENT_ID)
         $stmt->bindValue(':nome',$md->getNome(), PDO::PARAM_STR);
+        $stmt->bindValue(':size',$md->getSize(), PDO::PARAM_INT);
         $stmt->bindValue(':type',$md->getType(), PDO::PARAM_STR);
         $stmt->bindValue(':immagine', fread($file,filesize($path)), PDO::PARAM_LOB);
         unset($file);
@@ -56,8 +56,7 @@ class FImmagine
     }
 
     /**
-     *
-     * questo metodo restituisce la stringa dei valori della tabella sul DB per la costruzione delle Query
+     * Metodo che restituisce la stringa dei valori della tabella sul DB per la costruzione delle Query
      * @return string $values valori della tabella
      */
     public static function getValues(){
@@ -69,10 +68,29 @@ class FImmagine
      * @param object $media
      * @return int $id dell'oggetto salvato
      */
-    public static function store(EImmagine $media, $nome_file){
+    public static function store(EImmagine $media, $nome_file): int
+    {
         $db = FDB::getInstance();
-        $db->storeMedia(static::getClass(), $media, $nome_file);
+        $id = $db->storeMedia(static::getClass(), $media, $nome_file);
+        return $id;
     }
+
+    /**
+     * metodo che aggiorna il valore di un attributo della Localizzazione sul DB data la chiave primaria
+     * @param EImmagine $img
+     * @param string $nome_file
+     * @return bool
+     */
+    public static function update(EImmagine $img,string $nome_file): bool
+    {
+        $db=FDB::getInstance();
+        $result = $db->updateMedia(static::getClass(), $img, $nome_file);
+        if($result)
+            return true;
+        else
+            return false;
+    }
+
 
     /**
      * Metodo che consente la load del media di un locale/evento in base all'id di quest'ultimo
