@@ -279,8 +279,6 @@ class CGestioneLocale{
                 $type = $_FILES[$nome_file]['type'];
                 if ($type == 'image/jpeg' || $type == 'image/png' || $type == 'image/jpg') {
                     $nome = $_FILES[$nome_file]['name'];
-                    //$immagine = file_get_contents($_FILES[$nome_file]['tmp_name']);
-                    //$immagine = addslashes($immagine);
                     $ris = "ok_img";
                 } else {
                     $ris = "type";

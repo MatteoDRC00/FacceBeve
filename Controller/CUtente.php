@@ -61,9 +61,9 @@ class CUtente
                 $sessione->imposta_valore('utente',$salvare);
                 if (($UsernameLogin != 'admin') && ($UsernameLogin != 'Admin')) {
                     //Ipoteticamente utile, per tornare nell'ultima pagina visitata
-                    if (isset($_COOKIE['nome_visitato'])) {
-                        header('Location: /FacceBeve/Utente/daVedere');
-                    }
+                    //if (isset($_COOKIE['ultimo_visitato'])) {
+                        header('Location: /FacceBeve/Utente/home');
+                    //}
                 }
                 else {
                     header('Location: /FacceBeve/Admin/homepage');
@@ -223,23 +223,31 @@ class CUtente
             //$type = $_FILES[$nome_file]['type'];
             elseif ($type == 'image/jpeg' || $type == 'image/png' || $type == 'image/jpg') {
                 $nome = $_FILES[$nome_file]['name'];
+                $immagine = @file_get_contents($_FILES[$nome_file]['tmp_name']);
+                $immagine = addslashes ($immagine);
                 if ($funz == "registrazioneUtente") {
                     $pm->store($utente);
-                    $mutente = new EImmagine($nome,$size,$type,"IMMAGINE VEDI DRC");
+                    $mutente = new EImmagine($nome,$size,$type,$immagine);
                     $pm->storeMedia($mutente,$nome_file);
                     //return "ok";
                     $ris = "ok";
                 }
                 elseif ($funz == "modificaUtente") {
                     $pm->delete("id",$utente->getImgProfilo(),"FImmagine"); //A EImmagine manca l'id
-                    $mutente = new EImmagine($nome,$size,$type,"IMMAGINE VEDI DRC");
+                    $mutente = new EImmagine($nome,$size,$type,$immagine);
                     $pm->storeMedia($mutente,$nome_file);
                     //return "ok";
                     $ris = "ok";
                 }
                 elseif ($funz = "registrazioneProprietario") {
                     $pm->store($utente);
-                    $mutente = new EImmagine($nome,$size,$type,"IMMAGINE VEDI DRC");
+                    $mutente = new EImmagine($nome,$size,$type,$immagine);
+                    $pm->storeMedia($mutente,$nome_file);
+                    //return "ok";
+                    $ris = "ok";
+                }elseif ($funz == "modificaProprietario") {
+                    $pm->delete("id",$utente->getImgProfilo(),"FImmagine"); //A EImmagine manca l'id
+                    $mutente = new EImmagine($nome,$size,$type,$immagine);
                     $pm->storeMedia($mutente,$nome_file);
                     //return "ok";
                     $ris = "ok";
@@ -288,48 +296,6 @@ class CUtente
                         break;
                 }
             }
-            /*
-            list ($stato, $nome, $type) = CGestioneAnnuncio::upload('file');
-            list ($stato_1, $nome_1, $type_1) = CGestioneAnnuncio::upload('imm_mezzo');
-            if ($stato == "type")
-                $view->registrazioneTrasError($error_email,$error_mezzo,"typeimg");
-            elseif($stato_1 == "type")
-                $view->registrazioneTrasError($error_email,$error_mezzo,"typeimgM");
-            elseif ($stato == "size")
-                $view->registrazioneTrasError($error_email,$error_mezzo,"size");
-            elseif($stato_1 == "size")
-                $view->registrazioneTrasError($error_email,$error_mezzo,"sizeM");
-            elseif ($stato == "no_img" && $stato_1 == "no_img") {
-                $pm->store($trasportatore);
-                header('Location: /FillSpaceWEB/Utente/login');
-            }
-            elseif ($stato == "ok_img" && $stato_1 == "no_img") {
-                $pm->store($trasportatore);
-                $m_profilo = new EMediaUtente($nome, $trasportatore->getEmail());
-                $m_profilo->setType($type);
-                $pm->storeMedia($m_profilo,'file');
-                header('Location: /FillSpaceWEB/Utente/login');
-            }
-            elseif ($stato == "no_img" && $stato_1 == "ok_img") {
-                $pm->store($trasportatore);
-                $pm->store($mezzo);
-                $m_mezzo = new EMediaMezzo($nome_1, $mezzo->getPlate());
-                $m_mezzo->setType($type_1);
-                $pm->storeMedia($m_mezzo,'imm_mezzo');
-                header('Location: /FillSpaceWEB/Utente/login');
-            }
-            elseif ($stato == "ok_img" && $stato_1 == "ok_img") {
-                $pm->store($trasportatore);
-                $pm->store($mezzo);
-                $m_profilo = new EMediaUtente($nome, $trasportatore->getEmail());
-                $m_profilo->setType($type);
-                $m_mezzo = new EMediaMezzo($nome_1, $mezzo->getPlate());
-                $m_mezzo->setType($type_1);
-                $pm->storeMedia($m_profilo,'file');
-                $pm->storeMedia($m_mezzo,'imm_mezzo');
-                header('Location: /FillSpaceWEB/Utente/login');
-            }
-            */
         }
     }
 }

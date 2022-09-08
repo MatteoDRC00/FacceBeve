@@ -269,7 +269,7 @@ class VUtente
         if (is_array($imgrec)) {
             foreach ($imgrec as $item) {
                 if (isset($item)) {
-                    $pic64[] = base64_encode($item->getData());
+                    $pic64[] = base64_encode($item->getImmagine());
                     $type[] = $item->getType();
                 } else {
                     $data = file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/FacceBeve/Smarty/immagini/user.png');
@@ -285,31 +285,8 @@ class VUtente
         return array($type, $pic64);
     }
 
-
     /**
-     * Funzione che si occupa di gestire la visualizzazione del profilo pubblico di un trasportatore
-     * @param $user informazioni sull'utente da visitare
-     * @param $img immagine dell'utente da visitare
-     * @param $cont possibilitÃ  di contattare o meno il cliente
-     * @throws SmartyException
-
-    public function profilopubblico_cli($user,$img,$cont) {
-        list($type,$pic64) = $this->setImage($img, 'user');
-        $this->smarty->assign('type', $type);
-        $this->smarty->assign('pic64', $pic64);
-        if ($cont == "no")
-            $this->smarty->assign('contatta', $cont);
-        if(CUtente::isLogged())
-            $this->smarty->assign('userlogged',"loggato");
-        $this->smarty->assign('nome',$user->getName());
-        $this->smarty->assign('cognome',$user->getSurname());
-        $this->smarty->assign('email',$user->getEmail());
-        $this->smarty->display('profilo_cliente_pubblico.tpl');
-    }
-     * */
-
-    /**
-     * Funzione che si occupa di gestire la visualizzazione della form di modifica per il cliente
+     * Funzione che si occupa di gestire la visualizzazione della form di modifica del profilo di un Utente
      * @param $user informazioni sull'utente che desidera mdificare i suoi dati
      * @param $img immagine dell'utente
      * @param $error tipo di errore nel caso in cui le modifiche siano sbagliate
@@ -331,7 +308,7 @@ class VUtente
                 break;
         }
         if (isset($img)) {
-            $pic64 = base64_encode($img->getData());
+            $pic64 = base64_encode($img->getImmagine());
         }
         else {
             $data = file_get_contents( $_SERVER['DOCUMENT_ROOT'] . '/FacceBeve/Smarty/immagini/user.png');
@@ -343,31 +320,20 @@ class VUtente
         $this->smarty->assign('surname',$user->getSurname());
         $this->smarty->assign('email',$user->getEmail());
         $this->smarty->assign('name',$user->getName());
-        $this->smarty->display('modifica_prof_cliente.tpl');
+        $this->smarty->display('areaPersonaleUtente.tpl');
     }
 
     /**
-     * Funzione che si occupa di gestire la visualizzazione della form di modifica per il trasportatore
-     * @param $user informazioni sull'utente
-     * @param $mezzo informazioni sul mezzo
-     * @param $imgutente immagine dell'utente
-     * @param $imgmezzo immagine del mezzo
-     * @param $error tipo di errore
+     * Funzione che si occupa di gestire la visualizzazione della form di modifica del profilo di un Proprietario
+     * @param $user informazioni sull'utente che desidera modificare i suoi dati
+     * @param $img immagine del proprietario
+     * @param $error tipo di errore nel caso in cui le modifiche siano sbagliate
      * @throws SmartyException
-
-    public function formmodificatrasp($user,$mezzo,$imgutente,$imgmezzo,$error) {
+     */
+    public function formModificaUProprietario($user,$img,$error) {
         switch ($error) {
             case "errorEmail" :
-                $this->smarty->assign('errorKey', "errore");
-                $this->smarty->assign('key', "Email");
-                break;
-            case "errorPiva" :
-                $this->smarty->assign('errorKey', "errore");
-                $this->smarty->assign('key', "Piva");
-                break;
-            case "errorTarga" :
-                $this->smarty->assign('errorKey', "errore");
-                $this->smarty->assign('key', "Targa");
+                $this->smarty->assign('errorEmail', "errore");
                 break;
             case "errorPassw":
                 $this->smarty->assign('errorPassw', "errore");
@@ -375,46 +341,25 @@ class VUtente
             case "errorSize" :
                 $this->smarty->assign('errorSize', "errore");
                 break;
-            case "errorSizeM" :
-                $this->smarty->assign('errorSizeM', "errore");
-                break;
-            case "errorTypeM" :
-                $this->smarty->assign('errorTypeM', "errore");
-                break;
             case "errorType" :
                 $this->smarty->assign('errorType', "errore");
                 break;
         }
-        if (isset($imgmezzo)) {
-            $pic64M = base64_encode($imgmezzo->getData());
-            $this->smarty->assign('typeM', $imgmezzo->getType());
+        if (isset($img)) {
+            $pic64 = base64_encode($img->getImmagine());
         }
         else {
-            $data = file_get_contents( $_SERVER['DOCUMENT_ROOT'] . '/FillSpaceWEB/Smarty/immagini/truck.png');
-            $pic64M = base64_encode($data);
-            $this->smarty->assign('typeM', "image/png");
-        }
-        if (isset($imgutente)) {
-            $pic64 = base64_encode($imgutente->getData());
-            $this->smarty->assign('type', $imgutente->getType());
-        }
-        else {
-            $data = file_get_contents( $_SERVER['DOCUMENT_ROOT'] . '/FillSpaceWEB/Smarty/immagini/user.png');
+            $data = file_get_contents( $_SERVER['DOCUMENT_ROOT'] . '/FacceBeve/Smarty/immagini/user.png');
             $pic64 = base64_encode($data);
-            $this->smarty->assign('type', "image/png");
         }
         $this->smarty->assign('userlogged',"loggato");
         $this->smarty->assign('pic64',$pic64);
-        $this->smarty->assign('pic64M',$pic64M);
         $this->smarty->assign('name',$user->getName());
         $this->smarty->assign('surname',$user->getSurname());
         $this->smarty->assign('email',$user->getEmail());
-        $this->smarty->assign('company',$user->getCompany());
-        $this->smarty->assign('piva',$user->getPiva());
-        $this->smarty->assign('mezzo',$mezzo);
-        $this->smarty->display('modifica_prof_trasp.tpl');
+        $this->smarty->assign('name',$user->getName());
+        $this->smarty->display('areaPersonaleProprietario.tpl');
     }
-     */
 
 
 }
