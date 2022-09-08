@@ -1,6 +1,7 @@
 <?php
 
-require_once('utility/autoload.php');
+
+
 
 /**
  * La classe CRicerca implementa la funzionalità di ricerca globale su locali ed eventi.
@@ -8,29 +9,6 @@ require_once('utility/autoload.php');
  * @package Controller
  */
 class CRicerca{
-
-    /**
-     * @var CRicerca|null Variabile di classe che mantiene l'istanza della classe.
-     */
-    private static ?CRicerca $instance = null;
-
-    /**
-     * Costruttore di classe.
-     */
-    private function __construct(){}
-
-    /**
-     * Restituisce l'istanza della classe.
-     * @return CRicerca|null
-     */
-    public static function getInstance(): ?CRicerca {
-        if(!isset(self::$instance)) {
-            self::$instance = new CRicerca();
-        }
-        return self::$instance;
-    }
-
-
 
     /**
      * Metodo di ricerca che permette la ricerca di locali o eventi, in base al tipo di ricerca che si vuole effettuare.

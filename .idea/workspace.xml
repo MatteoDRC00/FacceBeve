@@ -1,29 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="AutoImportSettings">
-    <option name="autoReloadType" value="SELECTIVE" />
-  </component>
   <component name="ChangeListManager">
-    <list default="true" id="c26a7dfa-0602-4989-a1a2-5d0dff0684f8" name="Changes" comment="login e registrazione aggiunta logo in alto da completare">
-      <change afterPath="$PROJECT_DIR$/Controller/CGestioneRecensione.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Smarty/templates_c/99275d69a4c20272506089c41763d7e89a02c411_0.file.error.tpl.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/View/VGestioneRecensione.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controller/CFrontController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/CFrontController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controller/CGestioneLocale.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/CGestioneLocale.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controller/CRecensione.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controller/CRicerca.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/CRicerca.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Entity/ERecensione.php" beforeDir="false" afterPath="$PROJECT_DIR$/Entity/ERecensione.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/Smarty.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/Smarty/Smarty.class.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/SmartyBC.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/Smarty/SmartyBC.class.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/html/infoLocale.html" beforeDir="false" afterPath="$PROJECT_DIR$/Smarty/html/infoLocale.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/html/registrazioneLocale.html" beforeDir="false" afterPath="$PROJECT_DIR$/Smarty/html/registrazioneLocale.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/StartSmarty.php" beforeDir="false" afterPath="$PROJECT_DIR$/StartSmarty.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/View/VRecensione.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/View/VRicerca.php" beforeDir="false" afterPath="$PROJECT_DIR$/View/VRicerca.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utility/autoload.php" beforeDir="false" afterPath="$PROJECT_DIR$/utility/autoload.php" afterDir="false" />
-    </list>
+    <list default="true" id="9b9dc9a9-b323-4b45-835b-2a2c423efdeb" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -32,14 +10,6 @@
   <component name="ComposerSettings">
     <execution />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="CSS File" />
-        <option value="HTML File" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -47,139 +17,51 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP" />
-  <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
-  </component>
-  <component name="ProjectId" id="28QdjzE58SNYiWrkjmlxumi1Kuc" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
-    <ConfirmationsSetting value="2" id="Add" />
-  </component>
+  <component name="ProjectId" id="2EUpLEUztZieUL9s6kkAUnIiEtB" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/xampp/htdocs/FacceBeve&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;php.override.implement.member.chooser.php.doc&quot;: &quot;NONE&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.webide.settings.project.settings.php.debug&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
-  },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;
-    ],
-    &quot;RunConfigurationTargetLRU&quot;: [
-      &quot;063e7489-89be-42e4-bbe3-a5ecc915e49f&quot;
-    ]
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/xampp/htdocs/FacceBeve",
+    "settings.editor.selected.configurable": "reference.webide.settings.project.settings.php",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\matte\Documents\GitHub\FacceBeve\template" />
+      <recent name="C:\xampp\htdocs\FacceBeve" />
+      <recent name="C:\xampp\htdocs\FacceBeve\template" />
     </key>
   </component>
-  <component name="RunManager" selected="PHP Script.index.php">
-    <configuration name="areaPersonaleUtente.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/FacceBeve/Smarty/html/areaPersonaleUtente.html" useBuiltInWebServerPort="true">
-      <method v="2" />
-    </configuration>
-    <configuration name="error.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/FacceBeve/Smarty/html/error.html" useBuiltInWebServerPort="true">
-      <method v="2" />
-    </configuration>
-    <configuration name="gestioneLocale.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/FacceBeve/Smarty/html/gestioneLocale.html" useBuiltInWebServerPort="true">
-      <method v="2" />
-    </configuration>
-    <configuration name="infoLocale.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/FacceBeve/Smarty/html/infoLocale.html" useBuiltInWebServerPort="true">
-      <method v="2" />
-    </configuration>
+  <component name="RunManager">
     <configuration name="index.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/index.php">
-      <CommandLine>
-        <PhpTestInterpreterSettings>
-          <option name="interpreterName" value="PHP" />
-        </PhpTestInterpreterSettings>
-      </CommandLine>
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="PHP Script.index.php" />
-        <item itemvalue="JavaScript Debug.gestioneLocale.html" />
-        <item itemvalue="JavaScript Debug.infoLocale.html" />
-        <item itemvalue="JavaScript Debug.areaPersonaleUtente.html" />
-        <item itemvalue="JavaScript Debug.error.html" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="c26a7dfa-0602-4989-a1a2-5d0dff0684f8" name="Changes" comment="login e registrazione aggiunta logo in alto da completare" />
-      <created>1651152882261</created>
+      <changelist id="9b9dc9a9-b323-4b45-835b-2a2c423efdeb" name="Changes" comment="" />
+      <created>1662659958695</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1651152882261</updated>
-      <workItem from="1651152883719" duration="20000" />
-      <workItem from="1651155143324" duration="577000" />
-      <workItem from="1652772306403" duration="3183000" />
-      <workItem from="1652781708332" duration="6000" />
-      <workItem from="1652791741132" duration="6951000" />
-      <workItem from="1653560223238" duration="666000" />
-      <workItem from="1653560911120" duration="22000" />
-      <workItem from="1656663740176" duration="451000" />
-      <workItem from="1659425909103" duration="140000" />
-      <workItem from="1659426067911" duration="4642000" />
-      <workItem from="1659512073811" duration="2427000" />
-      <workItem from="1659964799502" duration="4463000" />
-      <workItem from="1660212137365" duration="3129000" />
-      <workItem from="1660290237057" duration="7353000" />
-      <workItem from="1660315334888" duration="6979000" />
-      <workItem from="1660720024137" duration="1296000" />
-      <workItem from="1660844876318" duration="2389000" />
-      <workItem from="1660896177487" duration="2951000" />
-      <workItem from="1661020640784" duration="1005000" />
-      <workItem from="1661584348820" duration="6662000" />
-      <workItem from="1661953620532" duration="2555000" />
-      <workItem from="1662460733829" duration="5099000" />
-      <workItem from="1662575406275" duration="797000" />
-      <workItem from="1662618357874" duration="5950000" />
-      <workItem from="1662640826039" duration="10005000" />
-      <workItem from="1662652160539" duration="2555000" />
-      <workItem from="1662654901816" duration="1343000" />
+      <updated>1662659958695</updated>
+      <workItem from="1662659959923" duration="2358000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="get e set di qualcosa" />
-    <MESSAGE value="login e registrazione aggiunta logo in alto da completare" />
-    <option name="LAST_COMMIT_MESSAGE" value="login e registrazione aggiunta logo in alto da completare" />
-  </component>
-  <component name="XSLT-Support.FileAssociations.UIState">
-    <expand />
-    <select />
   </component>
 </project>

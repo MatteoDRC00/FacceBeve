@@ -8,7 +8,7 @@ class CFrontController{
     public function run ($path)
     {
         if($path !='/'){
-            $sessione = USession::getInstance();
+            $sessione = new USession();
 
             $method = $_SERVER['REQUEST_METHOD'];
 

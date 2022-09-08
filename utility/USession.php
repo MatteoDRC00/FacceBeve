@@ -1,6 +1,6 @@
 <?php
 
-require('Smarty/Smarty.class.php');
+require_once 'Smarty/libs/Smarty.class.php';
 
 /** La classe USession si occupa di gestire tutte le operazioni legate alla gestione delle sessioni PHP.
  *  @author Gruppo8
@@ -8,22 +8,6 @@ require('Smarty/Smarty.class.php');
  */
 class USession
 {
-    /**
-     * La variabile statica privata che conterrà l'istanza univoca
-     * della classe.
-     */
-    private static USession $instance;
-
-    /**
-     * Funzione con il compito di restituire la singola istanza della classe
-     * @return USession l'istanza della classe USession
-     */
-    public static function getInstance(): USession{
-        if ( !(self::$instance instanceof self) ) {
-            self::$instance = new USession();
-        }
-        return self::$instance;
-    }
 
     /**
      * Il costruttore della classe USession, si occupa d'inizializzare la sessione per l'utente.
