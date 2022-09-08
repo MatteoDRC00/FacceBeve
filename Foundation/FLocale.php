@@ -116,10 +116,11 @@ class FLocale {
     }
 
     /**
-    * Permette la load dal database
-    * @param $id campo da confrontare per trovare l'oggetto
-    * @return object $locale
-    */
+     * Permette la load dal database
+     * @param $field
+     * @param $id
+     * @return array|ELocale
+     */
     public static function loadByField($field, $id){
         $locale = null;
         $db=FDB::getInstance();

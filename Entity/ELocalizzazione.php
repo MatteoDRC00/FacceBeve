@@ -10,7 +10,7 @@
      */
     class ELocalizzazione implements JsonSerializable {
 
-        private int $codiceluogo;
+        private int $id;
         private string $indirizzo;
         private string $numCivico;
         private string $citta;
@@ -24,6 +24,7 @@
          */
         public function __construct(string $indirizzo, string $numCivico, string $citta, int $CAP)
         {
+            $this->id = null;
             $this->indirizzo = $indirizzo;
             $this->numCivico = $numCivico;
             $this->citta = $citta;
@@ -37,22 +38,23 @@
         {
             return $this->indirizzo;
         }
-		
-		 /**
-         * @return int
+
+        /**
+         * @return int|null
          */
-        public function getCodice(): int
+        public function getId(): ?int
         {
-            return $this->codiceluogo;
+            return $this->id;
         }
 
         /**
-         * @param int $codice
+         * @param int|null $id
          */
-        public function setCodice(int $codice): void
+        public function setId(?int $id): void
         {
-            $this->codiceluogo=$codice;
+            $this->id = $id;
         }
+
 
 
         /**

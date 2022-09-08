@@ -5,23 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c26a7dfa-0602-4989-a1a2-5d0dff0684f8" name="Changes" comment="login e registrazione aggiunta logo in alto da completare">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/d9830d30-2235-4e14-8461-b97cff5bbe0a/storage_v2/_src_/schema/mysql.osA4Bg.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/d9830d30-2235-4e14-8461-b97cff5bbe0a/storage_v2/_src_/schema/mysql.osA4Bg.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Entity/EEvento.php" beforeDir="false" afterPath="$PROJECT_DIR$/Entity/EEvento.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FacceBeve.sql" beforeDir="false" afterPath="$PROJECT_DIR$/FacceBeve.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Foundation/FAdmin.php" beforeDir="false" afterPath="$PROJECT_DIR$/Foundation/FAdmin.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Foundation/FCategoria.php" beforeDir="false" afterPath="$PROJECT_DIR$/Foundation/FCategoria.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Foundation/FDB.php" beforeDir="false" afterPath="$PROJECT_DIR$/Foundation/FDB.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Foundation/FEvento.php" beforeDir="false" afterPath="$PROJECT_DIR$/Foundation/FEvento.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Foundation/FLocale.php" beforeDir="false" afterPath="$PROJECT_DIR$/Foundation/FLocale.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Foundation/FLocalizzazione.php" beforeDir="false" afterPath="$PROJECT_DIR$/Foundation/FLocalizzazione.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Foundation/FOrario.php" beforeDir="false" afterPath="$PROJECT_DIR$/Foundation/FOrario.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Foundation/FProprietario.php" beforeDir="false" afterPath="$PROJECT_DIR$/Foundation/FProprietario.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Foundation/FRecensione.php" beforeDir="false" afterPath="$PROJECT_DIR$/Foundation/FRecensione.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Foundation/FRisposta.php" beforeDir="false" afterPath="$PROJECT_DIR$/Foundation/FRisposta.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Foundation/FUtente.php" beforeDir="false" afterPath="$PROJECT_DIR$/Foundation/FUtente.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -147,7 +131,7 @@
       <workItem from="1661953620532" duration="2555000" />
       <workItem from="1662460733829" duration="5099000" />
       <workItem from="1662575406275" duration="797000" />
-      <workItem from="1662618357874" duration="2575000" />
+      <workItem from="1662618357874" duration="2949000" />
     </task>
     <servers />
   </component>
