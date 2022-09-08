@@ -159,7 +159,7 @@ class SmartyBC extends Smarty
      * @param bool   $cacheable
      * @param mixed  $cache_attrs
      *
-     * @throws \SmartyException
+     * @throws SmartyException
      */
     public function register_block($block, $block_impl, $cacheable = true, $cache_attrs = null)
     {

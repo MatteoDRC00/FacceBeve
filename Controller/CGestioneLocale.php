@@ -5,8 +5,8 @@
  * @author Gruppo 8
  * @package Controller
  */
-
-class CGestioneLocale{
+class CGestioneLocale
+{
 
     /**
      * Funzione che viene richiamata per la creazione di un locale. Si possono avere diverse situazioni:
@@ -16,72 +16,73 @@ class CGestioneLocale{
      * 2) se il metodo di richiesta HTTP è POST viene richiamata la funzione Creation().
      * 3) se il metodo di richiesta HTTP è diverso da uno dei precedenti -->errore.
      */
-    static function creaLocale(){
+    static function creaLocale()
+    {
         $sessione = USession::getInstance();
-        if($sessione->leggi_valore('utente')){
-          if ($_SERVER['REQUEST_METHOD'] == "GET") {
-              $view = new VGestioneLocale();
-              $proprietario = unserialize($sessione->leggi_valore('utente'));
-              if (get_class(proprietario) == "EProprietario") {
-                  $view->showFormCreation($proprietario,null);
-              }elseif (get_class($proprietario) == "EUtente") {
-                  $view->showFormCreation($proprietario,"wrong_class");
-              }
-          } elseif ($_SERVER['REQUEST_METHOD'] == "POST"){
-              $pm = FPersistentManager::GetIstance();
-              $proprietario = unserialize($sessione->leggi_valore('utente'));
-              if (get_class(proprietario) == "EProprietario") {
-                  $view = new VGestioneLocale();
-                  $nomeLocale = $view->getNomeLocale();
-                  $descrizione = $view->getDescrizioneLocale();
-                  $numTelefono = $view->getNumTelefono();
-                  $categoria = $view->getCategoria();
+        if ($sessione->leggi_valore('utente')) {
+            if ($_SERVER['REQUEST_METHOD'] == "GET") {
+                $view = new VGestioneLocale();
+                $proprietario = unserialize($sessione->leggi_valore('utente'));
+                if (get_class(proprietario) == "EProprietario") {
+                    $view->showFormCreation($proprietario, null);
+                } elseif (get_class($proprietario) == "EUtente") {
+                    $view->showFormCreation($proprietario, "wrong_class");
+                }
+            } elseif ($_SERVER['REQUEST_METHOD'] == "POST") {
+                $pm = FPersistentManager::GetIstance();
+                $proprietario = unserialize($sessione->leggi_valore('utente'));
+                if (get_class(proprietario) == "EProprietario") {
+                    $view = new VGestioneLocale();
+                    $nomeLocale = $view->getNomeLocale();
+                    $descrizione = $view->getDescrizioneLocale();
+                    $numTelefono = $view->getNumTelefono();
+                    $categoria = $view->getCategoria();
 
-                  //LOCALIZZAZIONE
-                  $indirizzo = $view->getIndirizzo();
-                  $numeroCivico = $view->getNumeroCivico();
-                  $citta = $view->getCitta();
-                  $nazione = $view->getNazione();
-                  $CAP = $view->getCAP();
-                  $localizzazioneLocale = new ELocalizzazione($indirizzo,$numeroCivico,$citta,$nazione,$CAP);
-                  //
+                    //LOCALIZZAZIONE
+                    $indirizzo = $view->getIndirizzo();
+                    $numeroCivico = $view->getNumeroCivico();
+                    $citta = $view->getCitta();
+                    $nazione = $view->getNazione();
+                    $CAP = $view->getCAP();
+                    $localizzazioneLocale = new ELocalizzazione($indirizzo, $numeroCivico, $citta, $nazione, $CAP);
+                    //
 
-                  //ORARIO
-                  $Orario = array();
-                  $tmp = $view->getOrario();
-                  $nomi = array_keys($tmp);
-                  $orari = array_values($tmp);
-                  for($i=0;$i<count($tmp);$i++){
-                     // $orario = new EOrario($nomi[$i],$orari[$i][0],$orari[$i][1]);
-                      $orario = new EOrario();
-                      $orario->setGiornoSettimana($nomi[$i]);
-                      $orario->setOrarioApertura($orari[$i][0]);
-                      $orario->setOrarioChiusura($orari[$i][1]);
-                      $Orario[] = $orario;
-                  }
-                  //
+                    //ORARIO
+                    $Orario = array();
+                    $tmp = $view->getOrario();
+                    $nomi = array_keys($tmp);
+                    $orari = array_values($tmp);
+                    for ($i = 0; $i < count($tmp); $i++) {
+                        // $orario = new EOrario($nomi[$i],$orari[$i][0],$orari[$i][1]);
+                        $orario = new EOrario();
+                        $orario->setGiornoSettimana($nomi[$i]);
+                        $orario->setOrarioApertura($orari[$i][0]);
+                        $orario->setOrarioChiusura($orari[$i][1]);
+                        $Orario[] = $orario;
+                    }
+                    //
 
-                  pm->store($localizzazioneLocale); //che sia giusto?
-                  pm->store($Orario);
-                  $Locale = new ELocale($nomeLocale,$descrizione,$numTelefono,$proprietario,$categoria,$localizzazioneLocale,null,$Orario);
+                    pm->store($localizzazioneLocale); //che sia giusto?
+                    pm->store($Orario);
+                    $Locale = new ELocale($nomeLocale, $descrizione, $numTelefono, $proprietario, $categoria, $localizzazioneLocale, null, $Orario);
 
-                  list ($stato, $nome, $type) = static::upload('img');
-                  if ($stato == "type")
-                      $view->showFormCreation($proprietario, "type");
-                  elseif ($stato == "size")
-                      $view->showFormCreation($proprietario, "size");
-                  elseif ($stato == "ok") {
-                      $view->showFormCreation($proprietario, "no");
-                      $size = $_FILES[img]['size'];
-                      $imgLocale = new EImmagine($nome,$size,$type,);
-                  }
-                  pm->store($Locale);
+                    list ($stato, $nome, $type) = static::upload('img');
+                    if ($stato == "type")
+                        $view->showFormCreation($proprietario, "type");
+                    elseif ($stato == "size")
+                        $view->showFormCreation($proprietario, "size");
+                    elseif ($stato == "ok") {
+                        $view->showFormCreation($proprietario, "no");
+                        $size = $_FILES[img]['size'];
+                        $imgLocale = new EImmagine($nome, $size, $type,);
+                    }
+                    pm->store($Locale);
 
-              }elseif(get_class($proprietario) == "EUtente"){
-                  header('Location: /FacceBeve/');
-              }
-          }
-      }
+                } elseif (get_class($proprietario) == "EUtente") {
+                    header('Location: /FacceBeve/');
+                }
+            }
+        }
     }
 
 
@@ -91,7 +92,8 @@ class CGestioneLocale{
      * 2) se il metodo di richiesta HTTP è GET e non si è loggati come proprietario, avviene il reindirizzamento alla pagina del proprio profilo;
      * 3) se non si è loggati, si viene reindirizzati alla form di login.
      */
-    static function modificaLocale() {
+    static function modificaLocale()
+    {
         $sessione = USession::getInstance();
         if ($sessione->leggi_valore('utente')) {
             $utente = unserialize($proprietario = unserialize($sessione->leggi_valore('utente')));
@@ -193,24 +195,24 @@ class CGestioneLocale{
      * Funzione utilizzata per eliminare un locale, di cui si è proprietari
      * @param $id id del locale da eliminare
      */
-    static function deleteLocale($id) {
+    static function deleteLocale($id)
+    {
         $sessione = USession::getInstance();
         if ($proprietario = unserialize($sessione->leggi_valore('utente'))) {
             $utente = unserialize($proprietario = unserialize($sessione->leggi_valore('utente')));
             if (get_class($utente) == "EProprietario") {
                 $pm = FPersistentManager::getIstance();
-                if(in_array($id,$pm->load("proprietario", $utente->getUsername(), "FLocale"))){
+                if (in_array($id, $pm->load("proprietario", $utente->getUsername(), "FLocale"))) {
                     $pm->delete("id", $id, "FLocale");
                     header('Location: /FacceBeve/Utente/profile');
-                }else{
+                } else {
                     header('Location: /FacceBeve/'); //Dove ci rimanda?
                 }
 
-            }elseif(get_class($utente) == "EUtente"){
+            } elseif (get_class($utente) == "EUtente") {
                 header('Location: /FacceBeve/Utente/profile');
             }
-        }
-        else
+        } else
             header('Location: /FacceBeve/Utente/login');
     }
 
@@ -223,18 +225,19 @@ class CGestioneLocale{
      * 2) se il metodo di richiesta HTTP è POST viene richiamata la funzione Creation().
      * 3) se il metodo di richiesta HTTP è diverso da uno dei precedenti -->errore.
      */
-    static function creaEvento(){
+    static function creaEvento()
+    {
         $sessione = USession::getInstance();
-        if($proprietario = unserialize($sessione->leggi_valore('utente'))){
+        if ($proprietario = unserialize($sessione->leggi_valore('utente'))) {
             if ($_SERVER['REQUEST_METHOD'] == "GET") {
                 $view = new VGestioneAnnunci();
                 $proprietario = unserialize($proprietario = unserialize($sessione->leggi_valore('utente')));
                 if (get_class(proprietario) == "EProprietario") {
-                    $view->showFormCreation($proprietario,null);
-                }elseif (get_class($proprietario) == "EUtente") {
-                    $view->showFormCreation($proprietario,"errore da definire");
+                    $view->showFormCreation($proprietario, null);
+                } elseif (get_class($proprietario) == "EUtente") {
+                    $view->showFormCreation($proprietario, "errore da definire");
                 }
-            } elseif ($_SERVER['REQUEST_METHOD'] == "POST"){
+            } elseif ($_SERVER['REQUEST_METHOD'] == "POST") {
                 $pm = FPersistentManager::GetIstance();
                 $proprietario = unserialize($proprietario = unserialize($sessione->leggi_valore('utente')));
                 if (get_class(proprietario) == "EProprietario") {
@@ -243,16 +246,16 @@ class CGestioneLocale{
                     $descrizioneEvento = $view->getDescrizioneEvento();
                     $dataEvento = $view->getDataEvento();
 
-                    $Evento = new EEvento($nomeEvento,$descrizioneEvento,$dataEvento); //Poi salvalo nel locale
+                    $Evento = new EEvento($nomeEvento, $descrizioneEvento, $dataEvento); //Poi salvalo nel locale
 
                     list ($stato, $nome, $type) = static::upload('img'); //mo non mi sta tornando RIP
 
 
-                }elseif(get_class($proprietario) == "EUtente"){
+                } elseif (get_class($proprietario) == "EUtente") {
                     header('Location: /FacceBeve/');
                 }
             }
-        }else{
+        } else {
             header('Location: /FacceBeve/Utente/Login');
         }
     }

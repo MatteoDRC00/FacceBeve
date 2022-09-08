@@ -21,7 +21,7 @@ function my_autoload($className) {
             break;
 
         case 'U':
-            include_once ('Foundation/Utility/'.$className.'.php');
+            include_once ('utility/'.$className.'.php');
             break;
 
     }

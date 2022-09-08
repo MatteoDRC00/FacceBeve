@@ -182,10 +182,9 @@ class VRicerca
         else
             $this->smarty->assign('userlogged',"nouser");
 
-        /*
-        $myobj = new My_Object;
-        // registriamo l'oggetto (sarà usato per riferimento)  DA VEDERE
-        $smarty->register_object("foobar",$myobj);*/
+
+
+        $this->register_object("locale",$result);
         $this->smarty->assign_by_refsign('locale', $result);
 
         $this->smarty->display('InfoLocale.tpl');

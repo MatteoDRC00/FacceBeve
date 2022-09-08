@@ -1,6 +1,8 @@
 <?php
 
 
+
+
 /**
  * La classe CRicerca implementa la funzionalità di ricerca globale su locali ed eventi.
  * @author Gruppo8

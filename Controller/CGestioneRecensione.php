@@ -1,6 +1,49 @@
 <?php
 
-class CRecensione{
+require_once("utility/autoload.php");
+require_once("utility/USession.php");
+
+
+class CGestioneRecensione{
+
+    private static ?CGestioneRecensione $instance = null;
+
+    private function __construct(){
+
+    }
+
+    public static function getInstance(): CGestioneRecensione
+    {
+        if ( !(self::$instance instanceof self) ) {
+            self::$instance = new CGestioneRecensione();
+        }
+        return self::$instance;
+    }
+
+
+    public static function scriviRecensione(){
+        $sessione = USession::getInstance();
+        $utente = $sessione->leggi_valore('utente');
+        $locale = $sessione->leggi_valore('locale');
+
+        $view = new VGestioneRecensione();
+
+        $value = $view->getFormRecensione();
+
+        $titolo = $value[0];
+        $valutazione = $value[1];
+        $descrizione = $value[2];
+
+        $data = (string) date("d/m/Y");
+
+        $recensione = new ERecensione($utente, $titolo, $descrizione, $valutazione, $data, $locale);
+
+        FRecensione::store($recensione);
+
+        header('Location: '); //da aggiungere qualcosa per farlo tornare alla infoLocale
+    }
+
+
      /**
      * Funzione che viene richiamata per la scrittura di una recensione. Si possono avere diverse situazioni:
      * se l'utente non è loggato viene reindirizzato alla pagina di login perchè solo gli utenti registrati possono scrivere recensioni.
@@ -8,11 +51,14 @@ class CRecensione{
      * 1) se il metodo di richiesta HTTP è GET viene visualizzato il form di creazione della recensione;
      * 2) se il metodo di richiesta HTTP è POST viene richiamata la funzione Creation().
      * 3) se il metodo di richiesta HTTP è diverso da uno dei precedenti -->errore.
-     */
-    static function scrivi(){
+      */
+    /*static function scriviRecensione()
+    {
         $sessione = USession::getInstance();
-        if($sessione->leggi_valore('utente')){
-           $view= new VRecensione();
+        $utente = $sessione->leggi_valore('utente');
+
+        if($utente) {
+            $view = new VGestioneRecensione();
             if ($_SERVER['REQUEST_METHOD'] == "GET") {
                 $utente = $sessione->leggi_valore('utente');
                 if (get_class($utente) == "EUtente") {
@@ -47,7 +93,7 @@ class CRecensione{
         }else{
             header('Location: /FacceBeve/Utente/login');
         }
-    }
+    }*/
 
     /**
      * Funzione richiamata quando il proprietario di un locale risponde ad una recensione. Si possono avere diverse situazioni:
@@ -61,7 +107,7 @@ class CRecensione{
     static function rispondi($id){
         $sessione = USession::getInstance();
         if($sessione->leggi_valore('utente')){
-            $view= new VRecensione();
+            $view= new VGestioneRecensione();
             if ($_SERVER['REQUEST_METHOD'] == "GET") {
                 $utente = $sessione->leggi_valore('utente');
                 if (get_class($utente) == "EUtente") {
@@ -103,7 +149,7 @@ class CRecensione{
     static function cancella($tipo,$id){
         $sessione = USession::getInstance();
         if($sessione->leggi_valore('utente')){
-            $view= new VRecensione();
+            $view= new VGestioneRecensione();
             $utente = unserialize($sessione->leggi_valore('utente'));
             $pm = FPersistentManager::GetIstance();
            if (($tipo == "recensione") && (get_class($utente) == "EUtente")) {
@@ -127,7 +173,7 @@ class CRecensione{
     public function segnala($i){
         $sessione = USession::getInstance();
         if($sessione->leggi_valore('utente')){
-            $view= new VRecensione();
+            $view= new VGestioneRecensione();
             $utente = unserialize($sessione->leggi_valore('utente'));
             $pm = FPersistentManager::GetIstance();
             if ((get_class($utente) == "EProprietario") || (get_class($utente) == "EUtente")) {

@@ -6,25 +6,24 @@
  */
 class ERecensione implements JsonSerializable {
 
-    private int $id;
+    private ?int $id;
     private EUtente $utente;
 	private ELocale $locale;
     private string $titolo;
     private string $descrizione;
     private int $voto;
-    private DateTime $data;
+    private string $data;
 	private boolean $segnalata;
-	private int $counter;
 
     /**
      * @param EUtente $utente
      * @param string $titolo
      * @param string $descrizione
      * @param int $voto
-     * @param DateTime $data
+     * @param string $data
      * @param ELocale $locale
      */
-    public function __construct(EUtente $utente, string $titolo, string $descrizione, int $voto, DateTime $data,ELocale $locale){
+    public function __construct(EUtente $utente, string $titolo, string $descrizione, int $voto, string $data,ELocale $locale){
         $this->id = NULL;
         $this->utente = $utente;
         $this->titolo = $titolo;
@@ -33,7 +32,6 @@ class ERecensione implements JsonSerializable {
         $this->data = $data;
 		$this->locale=$locale;
 		$this->segnalata=false;
-		$this->counter=0;
     }
 
     /**
@@ -60,14 +58,7 @@ class ERecensione implements JsonSerializable {
     {
         return $this->utente;
     }
-	
-	/**
-         * @return int
-         */
-    public function getCodice(): int
-    {
-            return $this->codicerecensione;
-    }
+
 
     /**
      * @param EUtente $utente
@@ -126,17 +117,17 @@ class ERecensione implements JsonSerializable {
     }
 
     /**
-     * @return DateTime
+     * @return string
      */
-    public function getData(): DateTime
+    public function getData(): string
     {
         return $this->data;
     }
 
     /**
-     * @param DateTime $data
+     * @param string $data
      */
-    public function setData(DateTime $data): void
+    public function setData(string $data): void
     {
         $this->data = $data;
     }
@@ -172,32 +163,6 @@ class ERecensione implements JsonSerializable {
     {
         $this->segnalata = $segnalata;
     }
-
-    /**
-     * @param int $codice
-     */
-    public function setCodice(int $codice): void
-    {
-        $this->codicerecensione = $codice;
-    }
-
-    //Gestione segnalazioni a recensione
-    /**
-     * @return int
-     */
-    public function getCounter(): int
-    {
-        return $this->counter;
-    }
-
-    /**
-     * Metodo che va a segnalare unan recensione
-     */
-    public function segnala(): void
-    {
-        $this->counter += 1;
-    }
-
 
     public function jsonSerialize()
     {

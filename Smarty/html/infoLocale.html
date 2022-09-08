@@ -279,8 +279,6 @@
                         <div class="reply-form">
                             <h4>Scrivi una recensione</h4>
                             <form action=""  method="POST">
-                                <input type="hidden" name="nomeLocale" value="$locale->getNome()"/>
-                                <input type="hidden" name="localizzazione" value="$locale->getLocalizzazione()"/>
                                 <div class="row">
                                     <div class="col-md-6 form-group">
                                         <input name="titolo" type="text" class="form-control" placeholder="Titolo">
@@ -298,8 +296,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col form-group">
-                                        <textarea name="descrizione" class="form-control"
-                                                  placeholder="Descrizione"></textarea>
+                                        <textarea name="descrizione" class="form-control" placeholder="Descrizione"></textarea>
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Aggiungi recensione</button>

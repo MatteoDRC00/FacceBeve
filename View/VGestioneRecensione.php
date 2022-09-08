@@ -1,6 +1,6 @@
 <?php
 
-class VRecensione{
+class VGestioneRecensione{
     /**
      * @var Smarty
      */
@@ -141,6 +141,15 @@ class VRecensione{
         $this->smarty->assign('username', $utente->getUsername());
         $this->smarty->assign('userlogged', "loggato");
         $this->smarty->display('InfoLocale.tpl');
+    }
+
+    public function getFormRecensione(){
+        $titolo = $_POST['titolo'];
+        $valutazione = $_POST['valutazione'];
+        $descrizione = $_POST['descrizione'];
+
+        $value = array($titolo, $valutazione, $descrizione);
+        return $value;
     }
 
 }
