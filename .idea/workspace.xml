@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="55e8af68-c2d8-45a3-98a5-ddd0a2cdd4bd" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.htaccess" afterDir="false" />
+    <list default="true" id="c26a7dfa-0602-4989-a1a2-5d0dff0684f8" name="Changes" comment="login e registrazione aggiunta logo in alto da completare">
+      <change afterPath="$PROJECT_DIR$/Controller/CProfilo.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controller/CFrontController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/CFrontController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/Smarty.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/Smarty/Smarty.class.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/templates/login.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/Smarty/templates/login.tpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Foundation/Utility/USession.php" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,7 +73,7 @@
       <recent name="C:\Users\matte\Documents\GitHub\FacceBeve\template" />
     </key>
   </component>
-  <component name="RunManager" selected="PHP Script.index.php">
+  <component name="RunManager" selected="JavaScript Debug.error.html">
     <configuration name="FacceBeve.sql" type="DatabaseScript" editBeforeRun="true" temporary="true" nameIsGenerated="true">
       <script-file value="$PROJECT_DIR$/FacceBeve.sql" />
       <script-mode>FILE</script-mode>
@@ -102,8 +99,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="PHP Script.index.php" />
         <item itemvalue="JavaScript Debug.error.html" />
+        <item itemvalue="PHP Script.index.php" />
         <item itemvalue="PHP Script.e0d453e7a1f0c920ec477a85879fb20fee5ef751_0.file.home.tpl.php" />
         <item itemvalue="Database Script.FacceBeve.sql" />
         <item itemvalue="JavaScript Debug.dashboardAdmin.html" />
