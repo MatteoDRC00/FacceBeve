@@ -81,14 +81,7 @@ class VUtente
     }
 
 
-    /**
-     * Funzione che si occupa di gestire la visualizzazione degli errori in fase login
-     * @throws SmartyException
-     */
-    public function loginError() {
-        $this->smarty->assign('error',"errore"); //Utente inesistente
-        $this->smarty->display('login.tpl');
-    }
+
 
     /**
      * Funzione che si occupa di gestire la visualizzazione del profilo utente

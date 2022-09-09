@@ -1,6 +1,6 @@
 <?php
 
-require_once "Smarty/autoloader.php";
+require_once "Smarty/libs/autoloader.php";
 require_once "StartSmarty.php";
 
 /**
@@ -10,6 +10,22 @@ require_once "StartSmarty.php";
 class VAccesso
 {
 
+    /**
+     * Oggetto _Smarty_ per la compilazione e visualizzazione dei template.
+     * @var Smarty
+     */
+    private Smarty $smarty;
+
+    /**
+     * Costruttore di classe. Crea l'oggetto ed esegue la configurazione dell'attributo _$smarty_.
+     */
+    public function __construct()
+    {
+        $this->smarty = StartSmarty::configuration();
+    }
+
+
+    //Metodi su Login\\
     /**
      * Funzione che si occupa di gestire la visualizzazione della homepage dopo il login, i.e.,
      * un utente registrato può adesso, se il login è andato bene, visualizzare gli eventi
@@ -25,6 +41,18 @@ class VAccesso
         $this->smarty->assign('tipo',$tipo);
         $this->smarty->display('home.tpl');
     }
+
+    /**
+     * Funzione che si occupa di gestire la visualizzazione degli errori in fase login
+     * @throws SmartyException
+     */
+    public function loginError() {
+        $this->smarty->assign('error',"errore"); //Utente inesistente
+        $this->smarty->display('login.tpl');
+    }
+
+
+    //Metodi GET\\
 
     /**
      * Restituisce (se immesso) lo username inserito dall'utente(utilizzato nei login/registrazione/modifica profilo)

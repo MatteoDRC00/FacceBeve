@@ -27,7 +27,8 @@ class USession
     }
 
     /**
-     * Va ad eliminare la sessione, rimuovendo ogni traccia.
+     * Va ad eliminare la sessione, rimuovendone ogni traccia.
+     * @return void
      */
     function chiudi_sessione() {
         //session_start();

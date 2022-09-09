@@ -1,9 +1,10 @@
 <?php
 
-require_once "Smarty/autoloader.php";
+require_once "Smarty/libs/autoloader.php";
 require_once "StartSmarty.php";
 
 class VProfilo{
+
     /**
      * Oggetto _Smarty_ per la compilazione e visualizzazione dei template.
      * @var Smarty

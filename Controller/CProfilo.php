@@ -40,7 +40,7 @@ class CProfilo{
         header('Location: /FacceBeve/Utente/login');
     }
 
-    //Forse non serve
+
     public function error() {
         $view = new VError();
         $view->error('1');
@@ -194,11 +194,10 @@ class CProfilo{
     /**
      * Funzione di supporto che si occupa di verificare la correttezza dell'immagine inserita nella form di registrazione.
      * Nel caso in cui non ci sono errori di inserimento, avviene la store dell'utente e la corrispondente immagine nel database.
-     * @param $utente obj utente
      * @param $nome_file passato nella form pe l'immagine
      * @return string stato verifica immagine
      */
-    static function upload($utente,$nome_file) {
+    static function upload($nome_file) {
         $pm = FPersistentManager()::getIstance();
         $ris = null;
         $nome = '';

@@ -32,7 +32,7 @@ class FProprietario{
 		$stmt->bindValue(':cognome',$proprietario->getCognome(), PDO::PARAM_STR);
         $stmt->bindValue(':email', $proprietario->getEmail(), PDO::PARAM_STR);
         $stmt->bindValue(':password', $proprietario->getPassword(), PDO::PARAM_STR);
-        $stmt->bindValue(':idImg', NULL, PDO::PARAM_INT);
+        $stmt->bindValue(':idImg', $proprietario-getImgProfilo(), PDO::PARAM_INT);
     }
 
     /**

@@ -1,6 +1,6 @@
 <?php
 
-require_once "utility/autoload.php";
+require_once "autoload.php";
 require_once "utility/USession.php";
 
 /**
@@ -227,7 +227,7 @@ class CAccesso
      * @throws SmartyException
      */
     static function registrazioneUtente() {
-        $pm = new FPersistentManager();
+        $pm = FPersistentManager()::getIstance();
         $view = new VAccesso();
 
         //Controllo dell'unicità dello Username scelto
@@ -247,7 +247,7 @@ class CAccesso
                 list($img,$foto) = static::upload($nome_file);
                 switch ($img) {
                     case "size":
-                        $view->registrazioneUteenteError("size"); //Img troppo grande\piccola
+                        $view->registrazioneUtenteError("size"); //Img troppo grande\piccola
                         break;
                     case "type":
                         $view->registrazioneUtenteError("typeimg"); //Formato non supportato
@@ -274,7 +274,7 @@ class CAccesso
      * @throws SmartyException
      */
     static function registrazioneProprietario() {
-        $pm = new FPersistentManager();
+        $pm = FPersistentManager()::getIstance();;
         $view = new VAccesso();
 
         //Controllo dell'unicità dello Username scelto
@@ -283,15 +283,15 @@ class CAccesso
         $vereusername2 = $pm->exist("username", $usercheck,"FUtente");
         $view = new VUtente();
         if (($vereusername1) || ($vereusername2) && ($usercheck!="admin")){
-            $view->registrazioneUtenteError ("username"); //username già esistente
+            $view->registrazionePropError ("username"); //username già esistente
         }
         else {
             //FARE CONTROLLO VIA CLIENT
-            $utente = new EUtente($view->getPassword(),$view->getNome(),$view->getCognome(),$usercheck,$view->getEmail());
-            $utente->Iscrizione();
+            $proprietario = new EProprietario($view->getNome(),$view->getCognome(),$usercheck,$view->getEmail(),$view->getPassword());
+            //$utente->Iscrizione();
             if ($view->getImgProfilo() !== null) {
                 $nome_file = 'img_profilo';
-                list($img,$foto) = static::upload($utente,$nome_file);
+                list($img,$foto) = static::upload($proprietario,$nome_file);
                 switch ($img) {
                     case "size":
                         $view->registrazionePropError("size"); //Img troppo grande\piccola
@@ -303,9 +303,9 @@ class CAccesso
                         if($foto){
                             $idImg = $pm->storeMedia($foto,$nome_file);
                             $foto->setId($idImg);
-                            $utente->setImgProfilo($foto);
+                            $proprietario->setImgProfilo($foto);
                         }
-                        $pm->store($utente);
+                        $pm->store($proprietario);
                         header('Location: /FacceBeve/Utente/');
                         break;
                 }
@@ -350,7 +350,7 @@ class CAccesso
      * Funzione di supporto che si occupa di verificare la correttezza dell'immagine inserita nella form di registrazione.
      * Nel caso in cui non ci sono errori di inserimento, avviene la store dell'utente e la corrispondente immagine nel database.
      * @param $nome_file passato nella form pe l'immagine
-     * @return array stato verifa immagine
+     * @return array stato verifica immagine
      */
     static function upload($nome_file) {
         $pm = FPersistentManager()::getIstance();
@@ -391,6 +391,14 @@ class CAccesso
         return array($ris,$mutente);
     }
 
+    /**
+     * Effettua il logout dell'utente eliminando dalla sessione le variabili deputate al mantenimento dell'autenticazione.
+     * @return void
+
+    public function logout()
+    {
+        $sessione->distruggi();
+    }*/
 
 
 }
