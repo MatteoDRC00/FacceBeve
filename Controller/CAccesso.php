@@ -367,12 +367,12 @@ class CAccesso
      * @param $nome_file passato nella form pe l'immagine
      * @return array stato verifica immagine
      */
-    static function upload($nome_file) {
+    static function upload($img) {
         $pm = FPersistentManager()::getIstance();
         $ris = null;
         $nome = '';
         $max_size = 300000;
-        $result = is_uploaded_file($_FILES[$nome_file]['tmp_name']);
+        $result = is_uploaded_file($img[2]);
         if (!$result) {
             //no immagine
             //$pm->store($utente);
@@ -380,16 +380,15 @@ class CAccesso
             //return "ok";
             $ris = "ok";
         } else {
-            $size = $_FILES[$nome_file]['size'];
-            $type = $_FILES[$nome_file]['type'];
+            $size = $img[3];
+            $type = $img[0];
             if ($size > $max_size) {
                 //Il file è troppo grande
                 $ris = "size";  // -->Errore relativo alla dimensione del img
             }
             //$type = $_FILES[$nome_file]['type'];
             elseif ($type == 'image/jpeg' || $type == 'image/png' || $type == 'image/jpg') {
-                $nome = $_FILES[$nome_file]['name'];
-                $immagine = @file_get_contents($_FILES[$nome_file]['tmp_name']);
+                $immagine = @file_get_contents($img[2]);
                 $immagine = addslashes ($immagine);
                 //$pm->store($utente);
                 $mutente = new EImmagine($nome,$size,$type,$immagine);

@@ -80,20 +80,19 @@ class VAccesso
 
     /**
      * Funzione che si occupa di gestire la visualizzazione degli errori nella form di registrazione per il trasportatore
-     * @param $email tipo di errore derivante dall'email inserita
-     * @param $mezzo tipo di errore derivante dall'immagine inserita
      * @param $error tipo di errore da visualizzare nella form
      * @throws SmartyException
      */
-    public function registrazionePropError ($username, $error) {
-        if ($username)
-            $this->smarty->assign('errorUsername',"errore");
+    public function registrazionePropError ($error) {
         switch ($error) {
+            case "email":
+                $this->smarty->assign('errorUsername',"errore"); //Username già esistente
+                break;
             case "typeimg" :
-                $this->smarty->assign('errorType',"errore");
+                $this->smarty->assign('errorType',"errore"); //Formato immagine non supportato
                 break;
             case "size" :
-                $this->smarty->assign('errorSize',"errore");
+                $this->smarty->assign('errorSize',"errore"); //Dimensione Immagine non supportata(troppo grande)
                 break;
         }
         $this->smarty->display('registrazioneProprietario.tpl');
@@ -186,7 +185,7 @@ class VAccesso
      * Restituisce un array contenente le informazioni sul immagine da caricare, contenuto nel array _$_FILES, questo verrà poi passato al metodo upload per controllare la correttezza del file caricato
      * @return array
      */
-    public function getNewImgProfilo(): array
+    public function getImgProfilo(): array
     {
         $type = $_FILES['img_profilo']['type'];
         $nome = $_FILES['img_profilo']['name'];

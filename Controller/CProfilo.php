@@ -147,12 +147,13 @@ class CProfilo{
             $utente = unserialize($sessione->leggi_valore('utente'));
             $locali = static::caricaLocali($utente);
             $img = $view->getNewImgProfilo();
-            $check = static::upload($utente,$img);
+            $check = static::upload($img);
             if($check=="type"){
                 $view->profilo($utente,$locali,"type");
             }elseif($check=="size"){
                 $view->profilo($utente,$locali,"size");
             }elseif($check=="ok"){
+                //$utente->setImgProfilo($img);
                 header('Location: /Profilo/profilo'); //profilo!!!
             }else{
                 $view = new VError();
