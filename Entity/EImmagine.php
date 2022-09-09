@@ -1,6 +1,12 @@
 <?php
 
 class EImmagine implements JsonSerializable {
+
+    /**
+     * id del media
+     * @AttributeType int
+     */
+    private string $id;
     /**
      * Nome del media
      * @AttributeType string
@@ -67,6 +73,22 @@ class EImmagine implements JsonSerializable {
     public function setSize(string $size): void
     {
         $this->size = $size;
+    }
+
+    /**
+     * @return string
+     */
+    public function getId(): string
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param string $id
+     */
+    public function setId(string $id): void
+    {
+        $this->id = $id;
     }
 
     /**

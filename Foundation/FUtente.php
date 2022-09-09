@@ -34,7 +34,7 @@ class FUtente{
 		$stmt->bindValue(':cognome',$utente->getCognome(), PDO::PARAM_STR);
         $stmt->bindValue(':email', $utente->getEmail(), PDO::PARAM_STR);
         $stmt->bindValue(':password', $utente->getPassword(), PDO::PARAM_STR);
-        $stmt->bindValue(':idImg', NULL, PDO::PARAM_INT);
+        $stmt->bindValue(':idImg', $utente->getId(), PDO::PARAM_INT);
         $stmt->bindValue(':dataIscrizione', $utente->getIscrizione());
         $stmt->bindValue(':state', $utente->getState(), PDO::PARAM_BOOL);
 

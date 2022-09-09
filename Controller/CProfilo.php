@@ -1,9 +1,11 @@
 <?php
-require_once "autoloader.php";
+require_once "utility/autoload.php";
 require_once "utility/USession.php";
 
 /**
- * Classe per la gestione delle operazioni all'interno dell'area personale dell'utente.
+ * Classe utilizzata per la gestione delle operazioni all'interno dell'area personale dell'utente:
+ * -Modifica del profilo
+ * -Visualizzazione del profilo
  * @package Controller
  */
 class CProfilo{
@@ -220,7 +222,7 @@ class CProfilo{
                 $immagine = @file_get_contents($_FILES["img"]['tmp_name']);
                 $immagine = addslashes ($immagine);
                 $mutente = new EImmagine($nome,$size,$type,$immagine);
-                $pm->updateMedia($mutente);
+                $pm->updateMedia($mutente,$nome_file);
                 //return "ok";
                 $ris = "ok";
             }
