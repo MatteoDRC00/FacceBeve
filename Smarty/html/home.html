@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-{assign var='userlogged' value=$userlogged|default:'nouser'}
-{assign var='tipo' value=$tipo|default:'nouser'}
+{assign var='tipo' value=$tipo}
 <html lang="en">
 
 <head>
@@ -12,8 +11,8 @@
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link href="/Smarty/template/assets/img/favicon.png" rel="icon">
-    <link href="/Smarty/template/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <link href="/template/img/favicon.png" rel="icon">
+    <link href="/template/img/apple-touch-icon.png" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,700,700i&display=swap"
@@ -21,16 +20,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- Vendor CSS Files -->
-    <link href="/Smarty/template/assets/vendor/animate.css/animate.min.css" rel="stylesheet">
-    <link href="/Smarty/template/assets/vendor/aos/aos.css" rel="stylesheet">
-    <link href="/Smarty/template/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/Smarty/template/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="/Smarty/template/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-    <link href="/Smarty/template/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-    <link href="/Smarty/template/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link href="/template/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="/template/vendor/aos/aos.css" rel="stylesheet">
+    <link href="/template/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/template/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/template/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/template/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/template/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
     <!-- Template Main CSS File -->
-    <link href="/Smarty/template/assets/css/style.css" rel="stylesheet">
+    <link href="/template/css/style.css" rel="stylesheet">
 
     <!-- JavaScript-->
     <script type="text/javascript">
@@ -70,12 +69,12 @@
     <div class="container d-flex justify-content-between align-items-center">
 
         <div class="logo">
-            <h1><a href="index.html"><img src="/Smarty/template/assets/img/logo.png" alt=""><span>FacceBeve</span></a></h1>
+            <h1><a href="index.html"><img src="/template/img/logo.png" alt=""><span>FacceBeve</span></a></h1>
         </div>
 
-        {if $userlogged=='nouser'}
+        {if $tipo=='nouser'}
         <div class="sign">
-            <a href="login.html">Accedi</a>
+            <a href="Accesso/formLogin">Accedi</a>
             <a href="registrazioneUtente.html">Registrati</a>
             <a href="registrazioneProprietario.html">Vuoi pubblicizzare il tuo locale?</a>
         </div>
@@ -101,7 +100,7 @@
     <div id="heroCarousel" class="container carousel carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
 
         <div class="carousel-item active">
-            {if $userlogged!='nouser'}
+            {if $tipo!='nouser'}
             <div class="carousel-container">
                 <h2 class="animate__animated animate__fadeInDown">Benvenuti in <span>FacceBeve</span></h2>
                 <p class="animate__animated animate__fadeInUp">È scientificamente provato che un aperitivo patatine e birretta non salveranno il mondo, ma la giornata sicuramente sì.</p>
@@ -115,10 +114,11 @@
                 <form class="Search"  action="risultatiRicerca.html">
                     <input type="text" placeholder="Inserisci la città">
                     <input type="text" placeholder="Inserisci il nome" name="nomeLocale">
-                    <select  name="categorie" style="border-radius:7px; height: 45px  ;">
-                        <option>Scegli il tipo</option>
-                        <option value="bar">Bar</option>
-                        <option value="pub">Pub</option>
+                    <select  name="categorie" style="border-radius:7px; height: 50px  ;">
+                        <option>--Scegli il tipo--</option>
+                        {foreach $genere_cat as $genere}
+                        <option><input type="radio" name="genere" value="{$genere}"> {$genere}</option>
+                        {/foreach}
                     </select>
                     <button class="input" type="submit" style="border-radius:10px;"><i class="fa fa-search"></i></button>
                 </form>
@@ -142,13 +142,14 @@
             <div class="ricerca animate__animated animate__fadeInDown" style="display: flex;justify-content: center;">
                 <form class="Search"  action="risultatiRicerca.html">
                     <input type="text" placeholder="Inserisci la città" name="citta">
-                    <input type="text" placeholder="Inserisci il nome" name="nomeLo.cale">
-                    <select name="categorie" style="border-radius:6px;">
-                        <option>Scegli il tipo</option>
-                        <option value="bar">Bar</option>
-                        <option value="pub">Pub</option>
+                    <input type="text" placeholder="Inserisci il nome" name="nomeLocale">
+                    <select name="categorie" style="border-radius:7px; height: 50px ">
+                        <option>--Scegli il tipo--</option>
+                        {foreach $genere_cat as $genere}
+                        <option type="radio" name="genere" value="{$genere}"> {$genere}</option>
+                        {/foreach}
                     </select>
-                    <button type="submit" style="border-radius:10px;"><i class="fa fa-search"></i></button>
+                    <button type="submit" style="border-radius:7px; height: 50px"><i class="fa fa-search"></i></button>
                 </form>
             </div>
 
@@ -166,41 +167,14 @@
 
             <div class="row">
                 <h2>Ecco i TOP 4 locali in Italia:</h2>
+                {foreach $locali as $locale}
                 <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up">
                     <div class="icon-box icon-box-pink">
-                        <div class="icon"><i class="bx bxl-dribbble"></i></div>
-                        <h4 class="title"><a href="">Lorem Ipsum</a></h4>
-                        <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias
-                            excepturi sint occaecati cupiditate non provident</p>
+                        <h4 class="title"><a href="">{$locale.nome}</a></h4>
+                        <p class="description">{$locale.descrizione}</p>
                     </div>
                 </div>
-
-                <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
-                    <div class="icon-box icon-box-cyan">
-                        <div class="icon"><i class="bx bx-file"></i></div>
-                        <h4 class="title"><a href="">Sed ut perspiciatis</a></h4>
-                        <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                            dolore eu fugiat nulla pariatur</p>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
-                    <div class="icon-box icon-box-green">
-                        <div class="icon"><i class="bx bx-tachometer"></i></div>
-                        <h4 class="title"><a href="">Magni Dolores</a></h4>
-                        <p class="description">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                            deserunt mollit anim id est laborum</p>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
-                    <div class="icon-box icon-box-blue">
-                        <div class="icon"><i class="bx bx-world"></i></div>
-                        <h4 class="title"><a href="">Nemo Enim</a></h4>
-                        <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis
-                            praesentium voluptatum deleniti atque</p>
-                    </div>
-                </div>
+                {/foreach}
 
             </div>
 
@@ -211,61 +185,6 @@
 
 <!-- ======= Footer ======= -->
 <footer id="footer" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
-    <!--
-        <div class="footer-top">
-            <div class="container">
-                <div class="row">
-
-                    <div class="col-lg-3 col-md-6 footer-links">
-                        <h4>Useful Links</h4>
-                        <ul>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 footer-links">
-                        <h4>Our Services</h4>
-                        <ul>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 footer-contact">
-                        <h4>Contact Us</h4>
-                        <p>
-                            A108 Adam Street <br>
-                            New York, NY 535022<br>
-                            United States <br><br>
-                            <strong>Phone:</strong> +1 5589 55488 55<br>
-                            <strong>Email:</strong> info@example.com<br>
-                        </p>
-
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 footer-info">
-                        <h3>About Moderna</h3>
-                        <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita
-                            valies darta donna mare fermentum iaculis eu non diam phasellus.</p>
-                        <div class="social-links mt-3">
-                            <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-                            <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-                            <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-                            <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    -->
     <div class="container">
         <div class="copyright">
             &copy; Copyright <strong><span>Moderna</span></strong>. All Rights Reserved
@@ -284,17 +203,17 @@
         class="bi bi-arrow-up-short"></i></a>
 
 <!-- Vendor JS Files -->
-<script src="/Smarty/template/assets/vendor/purecounter/purecounter_vanilla.js"></script>
-<script src="/Smarty/template/assets/vendor/aos/aos.js"></script>
-<script src="/Smarty/template/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="/Smarty/template/assets/vendor/glightbox/js/glightbox.min.js"></script>
-<script src="/Smarty/template/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-<script src="/Smarty/template/assets/vendor/swiper/swiper-bundle.min.js"></script>
-<script src="/Smarty/template/assets/vendor/waypoints/noframework.waypoints.js"></script>
-<script src="/Smarty/template/assets/vendor/php-email-form/validate.js"></script>
+<script src="/template/vendor/purecounter/purecounter_vanilla.js"></script>
+<script src="/template/vendor/aos/aos.js"></script>
+<script src="/template/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/template/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="/template/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+<script src="/template/vendor/swiper/swiper-bundle.min.js"></script>
+<script src="/template/vendor/waypoints/noframework.waypoints.js"></script>
+<script src="/template/vendor/php-email-form/validate.js"></script>
 
 <!-- Template Main JS File -->
-<script src="/Smarty/template/assets/js/main.js"></script>
+<script src="/template/js/main.js"></script>
 
 </body>
 

@@ -1,5 +1,7 @@
 <?php
 
+require_once "autoload.php";
+
 class FPersistentManager {
 
     private static FPersistentManager $_instance;
@@ -43,14 +45,13 @@ class FPersistentManager {
     /**
      * Metodo utilizzato per caricare TUTTE le categorie di locale presenti sul sito
     */
-    public function getCategorie(){
+    public function getCategorie(): array
+    {
         $return = FCategoria::loadAll();
-
         $genere = array();
         foreach ($return as $c){
             $genere[] = $c['genere'];
         }
-
         return $genere;
     }
 
