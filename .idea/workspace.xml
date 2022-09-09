@@ -5,10 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9b9dc9a9-b323-4b45-835b-2a2c423efdeb" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.htaccess" beforeDir="false" afterPath="$PROJECT_DIR$/.htaccess" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controller/CAccesso.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/CAccesso.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controller/CProfilo.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/CProfilo.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/View/VAccesso.php" beforeDir="false" afterPath="$PROJECT_DIR$/View/VAccesso.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controller/CFrontController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/CFrontController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Smarty/templates_c/c953834e2bd280dacf9fe734edc7529afcd03f09_0.file.home.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/Smarty/templates_c/c953834e2bd280dacf9fe734edc7529afcd03f09_0.file.home.tpl.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,11 +37,10 @@
   </component>
   <component name="PhpServers">
     <servers>
-      <server id="772d48a3-142e-4d6a-9544-6d4f3d12dcc0" name="Unnamed" />
-      <server deployment_server="186f819a-6dfe-4df0-9c50-935808b7b9b2" host="localhost" id="16aca8b2-fb59-4bce-a161-6dbc5a5a0aa2" name="XAMPP" />
+      <server deployment_server="669f3491-b61b-4ffd-8925-c393c0208fa7" host="localhost" id="cea12ba4-8f8d-4d09-83b0-3f17d22c467f" name="XAMPP" />
     </servers>
   </component>
-  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP 7.4.1" />
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP" />
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>

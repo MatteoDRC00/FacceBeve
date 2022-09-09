@@ -5,15 +5,34 @@ require_once 'StartSmarty.php';
 
 class CFrontController{
 
-    public function run($path){
-        if($path != "/"){
+    public function run ($path)
+    {
+        $resource = explode('/', $path);
 
+        array_shift($resource);
+        array_shift($resource);
+
+        if($resource[0] != "index.php") {
+            $controller = "C" . $resource[0];
+            $dir = 'Controller';
+            $eledir = scandir($dir);
+
+            if (in_array($controller . ".php", $eledir)) {
+                if (isset($resource[1])) {
+                    $objController = $controller::getInstance();
+                    $function = $resource[1];
+                    if (method_exists($objController, $function)) {
+                        $objController->$function();
+                    }
+                }
+            }
         }else{
             $controller = CRicerca::getInstance();
             $controller->mostraHome();
         }
-
     }
+
+
 
 
     /*public function run ($path)

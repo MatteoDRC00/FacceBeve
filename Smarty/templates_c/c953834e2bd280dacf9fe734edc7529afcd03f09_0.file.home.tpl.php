@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-09 16:41:22
+/* Smarty version 4.2.0, created on 2022-09-09 18:33:21
   from 'C:\xampp\htdocs\FacceBeve\template\home.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_631b50927f8132_48672499',
+  'unifunc' => 'content_631b6ad19c68f2_24620706',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c953834e2bd280dacf9fe734edc7529afcd03f09' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\home.tpl',
-      1 => 1662734361,
+      1 => 1662741182,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_631b50927f8132_48672499 (Smarty_Internal_Template $_smarty_tpl) {
+function content_631b6ad19c68f2_24620706 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <?php $_smarty_tpl->_assignInScope('tipo', $_smarty_tpl->tpl_vars['tipo']->value);?>
 <html lang="en">
