@@ -12,3 +12,4 @@ $path = "/";
 $controller->run($path);*/
 $c = CRicerca::getInstance();
 $c->mostraHome();
+

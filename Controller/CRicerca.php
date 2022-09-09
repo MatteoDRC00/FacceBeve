@@ -47,8 +47,15 @@ class CRicerca{
         $genere_cat = $pm->getCategorie();
         $topLocali = $pm->top4Locali();
 
+        $locali = array();
+
+        foreach($topLocali as $locale){
+            $locale = $pm::load("id", $locale["id"], "FLocale");
+            $locali[] = $locale;
+        }
+
         $view = new VRicerca();
-        $view->mostraHome($tipo, $genere_cat, $topLocali);
+        $view->mostraHome($tipo, $genere_cat, $locali);
     }
 
     /**
