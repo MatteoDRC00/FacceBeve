@@ -1,7 +1,6 @@
 <?php
 
-
-
+require_once 'autoload.php';
 
 /**
  * La classe CRicerca implementa la funzionalità di ricerca globale su locali ed eventi.
@@ -11,9 +10,51 @@
 class CRicerca{
 
     /**
+     * @var CRicerca|null Variabile di classe che mantiene l'istanza della classe.
+     */
+    private static ?CRicerca $instance = null;
+
+    /**
+     * Costruttore di classe.
+     */
+    private function __construct(){
+
+    }
+
+    /**
+     * Restituisce l'istanza della classe.
+     * @return CRicerca|null
+     */
+    public static function getInstance(): ?CRicerca {
+        if(!isset(self::$instance)) {
+            self::$instance = new CRicerca();
+        }
+        return self::$instance;
+    }
+
+    public function mostraHome(){
+        $sessione = new USession();
+        $user = $sessione->leggi_valore('utente');
+
+        if($user == null)
+            $tipo = "nouser";
+        elseif(get_class($user) == "EUtente")
+            $tipo = "EUtente";
+        else
+            $tipo = "EProprietario";
+
+        $pm = FPersistentManager::getInstance();
+        $genere_cat = $pm->getCategorie();
+        $topLocali = $pm->top4Locali();
+
+        $view = new VRicerca();
+        $view->mostraHome($tipo, $genere_cat, $topLocali);
+    }
+
+    /**
      * Metodo di ricerca che permette la ricerca di locali o eventi, in base al tipo di ricerca che si vuole effettuare.
      * In base al "tipo di ricerca" si andranno a prendere tre o quattro campi da passare al metodo della classe View(VRicerca)
-     */
+
     static function ricerca(){
         $vRicerca = new VRicerca();
         $sessione = USession::getInstance();
@@ -23,9 +64,9 @@ class CRicerca{
             $tipo="Locali";
         }
         if ($tipo == "Locali") {
-                $nomelocale = vRicerca->getNomeLocale();
-                $citta= vRicerca->getCitta();
-                $categoria = vRicerca->getCategorie();
+                $nomelocale = $vRicerca->getNomeLocale();
+                $citta= $vRicerca->getCitta();
+                $categoria = $vRicerca->getCategorie();
                 if ($nomelocale != null || $citta != null || $categoria != null){
                     $pm = FPersistentManager::GetIstance();
                     $part1 = null;
@@ -83,14 +124,14 @@ class CRicerca{
                 }else
                     header('Location: /FacceBeve/');
         }
-    }
+    }*/
 
     /**
      * Funzione che si occupa di recuperare gli eventi visualizzabili dagli utenti
      * @throws SmartyException
      */
     static function Home($utente) {
-        $pm = FPersistentManager::GetIstance();
+        $pm = FPersistentManager::getInstance();
         if(isset($utente) && get_class($utente)=="EUtente"){
             $result = $pm->loadEventi($utente);
         }else{

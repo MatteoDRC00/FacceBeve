@@ -112,19 +112,12 @@ class VRicerca
         $this->smarty->display('risultatiRicerca.tpl');
     }
 
-    /**
-     * Mostra la homepage del sito, eventualmente mostrando gli eventi dei locali seguti dal Utente collegato.
-     * @param $categorie contiene le categorie di locale presenti sul sito
-     * @param $result contiene gli eventuali eventi dei locali seguiti dal utente
-     * @throws SmartyException
-     */
-    public function showHomepage($categorie, $eventi){
-        $sessione = USession::getInstance();
-        if($sessione->leggi_valore('utente'))
-            $this->smarty->assign('userlogged',"loggato");
 
-        $this->smarty->assign('categorie', $categorie);
-        $this->smarty->assign('arrayEventi', $eventi);
+    public function mostraHome($tipo, $genere_cat, $locali){
+        $this->smarty->assign('tipo',$tipo);
+        $this->smarty->assign('genere_cat',$genere_cat);
+        $this->smarty->assign('locali',$locali);
+
         $this->smarty->display('home.tpl');
     }
 

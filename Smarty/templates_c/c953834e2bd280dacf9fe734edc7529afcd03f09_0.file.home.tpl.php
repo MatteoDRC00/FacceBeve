@@ -1,6 +1,28 @@
-<!DOCTYPE html>
-{assign var='userlogged' value=$userlogged|default:'nouser'}
-{assign var='tipo' value=$tipo|default:'nouser'}
+<?php
+/* Smarty version 4.2.0, created on 2022-09-09 12:53:32
+  from 'C:\xampp\htdocs\FacceBeve\template\home.tpl' */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '4.2.0',
+  'unifunc' => 'content_631b1b2ceb9f74_84090508',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    'c953834e2bd280dacf9fe734edc7529afcd03f09' => 
+    array (
+      0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\home.tpl',
+      1 => 1662720812,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+),false)) {
+function content_631b1b2ceb9f74_84090508 (Smarty_Internal_Template $_smarty_tpl) {
+?><!DOCTYPE html>
+<?php $_smarty_tpl->_assignInScope('tipo', $_smarty_tpl->tpl_vars['tipo']->value);?>
 <html lang="en">
 
 <head>
@@ -12,8 +34,8 @@
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link href="/Smarty/template/assets/img/favicon.png" rel="icon">
-    <link href="/Smarty/template/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <link href="/template/img/favicon.png" rel="icon">
+    <link href="/template/img/apple-touch-icon.png" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,700,700i&display=swap"
@@ -21,19 +43,20 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- Vendor CSS Files -->
-    <link href="/Smarty/template/assets/vendor/animate.css/animate.min.css" rel="stylesheet">
-    <link href="/Smarty/template/assets/vendor/aos/aos.css" rel="stylesheet">
-    <link href="/Smarty/template/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/Smarty/template/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="/Smarty/template/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-    <link href="/Smarty/template/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-    <link href="/Smarty/template/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link href="/template/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="/template/vendor/aos/aos.css" rel="stylesheet">
+    <link href="/template/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/template/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/template/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/template/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/template/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
     <!-- Template Main CSS File -->
-    <link href="/Smarty/template/assets/css/style.css" rel="stylesheet">
+    <link href="/template/css/style.css" rel="stylesheet">
 
     <!-- JavaScript-->
-    <script type="text/javascript">
+    <?php echo '<script'; ?>
+ type="text/javascript">
         function setList() {    //In input le categorie
             var x = document.getElementById("tipo");
             var y = x.value;
@@ -59,7 +82,8 @@
         };**/
 
 
-    </script>
+    <?php echo '</script'; ?>
+>
 
 </head>
 
@@ -70,28 +94,28 @@
     <div class="container d-flex justify-content-between align-items-center">
 
         <div class="logo">
-            <h1><a href="index.html"><img src="/Smarty/template/assets/img/logo.png" alt=""><span>FacceBeve</span></a></h1>
+            <h1><a href="index.html"><img src="/template/img/logo.png" alt=""><span>FacceBeve</span></a></h1>
         </div>
 
-        {if $userlogged=='nouser'}
+        <?php if ($_smarty_tpl->tpl_vars['tipo']->value == 'nouser') {?>
             <div class="sign">
                 <a href="login.html">Accedi</a>
                 <a href="registrazioneUtente.html">Registrati</a>
                 <a href="registrazioneProprietario.html">Vuoi pubblicizzare il tuo locale?</a>
             </div>
-        {elseif $tipo=='EUtente'}
+        <?php } elseif ($_smarty_tpl->tpl_vars['tipo']->value == 'EUtente') {?>
             <div class="sign">
                 <a href="areaPersonaleUtente.html">Il tuo profilo personale</a>
                 <a href="areaPersonaleUtente.html">I tuoi locali preferiti</a> <!--Come si fa?-->
                 <a href="registrazioneProprietario.html">Logout</a> <!--Qui direi una semplice action  -->
             </div>
-        {elseif $tipo=='EProprietario'}
+        <?php } elseif ($_smarty_tpl->tpl_vars['tipo']->value == 'EProprietario') {?>
             <div class="sign">
                 <a href="areaPersonaleProprietario.html">Il tuo profilo personale</a>
                 <a href="areaPersonaleUtente.html">I tuoi locali gestiti</a> <!--Quasi quasi ne farei solo 2 di bottoni-->
                 <a href="registrazioneProprietario.html">Logout</a> <!--Qui direi una semplice action  -->
             </div>
-        {/if}
+        <?php }?>
 
     </div>
 </header><!-- End Header -->
@@ -101,7 +125,7 @@
     <div id="heroCarousel" class="container carousel carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
 
         <div class="carousel-item active">
-            {if $userlogged!='nouser'}
+            <?php if ($_smarty_tpl->tpl_vars['tipo']->value != 'nouser') {?>
                 <div class="carousel-container">
                     <h2 class="animate__animated animate__fadeInDown">Benvenuti in <span>FacceBeve</span></h2>
                     <p class="animate__animated animate__fadeInUp">È scientificamente provato che un aperitivo patatine e birretta non salveranno il mondo, ma la giornata sicuramente sì.</p>
@@ -116,9 +140,19 @@
                         <input type="text" placeholder="Inserisci la città">
                         <input type="text" placeholder="Inserisci il nome" name="nomeLocale">
                         <select  name="categorie" style="border-radius:7px; height: 50px  ;">
-                            <option>Scegli il tipo</option>
-                            <option value="bar">Bar</option>
-                            <option value="pub">Pub</option>
+                            <option>--Scegli il tipo--</option>
+                            <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['genere_cat']->value, 'genere');
+$_smarty_tpl->tpl_vars['genere']->do_else = true;
+if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['genere']->value) {
+$_smarty_tpl->tpl_vars['genere']->do_else = false;
+?>
+                                <option><input type="radio" name="genere" value="<?php echo $_smarty_tpl->tpl_vars['genere']->value;?>
+"> <?php echo $_smarty_tpl->tpl_vars['genere']->value;?>
+</option>
+                            <?php
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                         </select>
                         <button class="input" type="submit" style="border-radius:10px;"><i class="fa fa-search"></i></button>
                     </form>
@@ -132,7 +166,7 @@
                         <button type="submit" style="border-radius:10px;"><i class="fa fa-search"></i></button>
                     </form>
                 </div>
-            {else}
+            <?php } else { ?>
                 <div class="carousel-container">
                     <h2 class="animate__animated animate__fadeInDown">Benvenuti in <span>FacceBeve</span></h2>
                     <p class="animate__animated animate__fadeInUp">È scientificamente provato che un aperitivo patatine e birretta non salveranno il mondo, ma la giornata sicuramente sì.</p>
@@ -144,15 +178,25 @@
                         <input type="text" placeholder="Inserisci la città" name="citta">
                         <input type="text" placeholder="Inserisci il nome" name="nomeLo.cale">
                         <select name="categorie" style="border-radius:7px; height: 50px ">
-                            <option>Scegli il tipo</option>
-                            <option value="bar">Bar</option>
-                            <option value="pub">Pub</option>
+                            <option>--Scegli il tipo--</option>
+                            <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['genere_cat']->value, 'genere');
+$_smarty_tpl->tpl_vars['genere']->do_else = true;
+if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['genere']->value) {
+$_smarty_tpl->tpl_vars['genere']->do_else = false;
+?>
+                                <option type="radio" name="genere" value="<?php echo $_smarty_tpl->tpl_vars['genere']->value;?>
+"> <?php echo $_smarty_tpl->tpl_vars['genere']->value;?>
+</option>
+                            <?php
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                         </select>
                         <button type="submit" style="border-radius:7px; height: 50px"><i class="fa fa-search"></i></button>
                     </form>
                 </div>
 
-            {/if}
+            <?php }?>
         </div>
 
     </div>
@@ -166,41 +210,24 @@
 
             <div class="row">
                 <h2>Ecco i TOP 4 locali in Italia:</h2>
-                <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up">
-                    <div class="icon-box icon-box-pink">
-                        <div class="icon"><i class="bx bxl-dribbble"></i></div>
-                        <h4 class="title"><a href="">Lorem Ipsum</a></h4>
-                        <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias
-                            excepturi sint occaecati cupiditate non provident</p>
+                <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['locali']->value, 'locale');
+$_smarty_tpl->tpl_vars['locale']->do_else = true;
+if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['locale']->value) {
+$_smarty_tpl->tpl_vars['locale']->do_else = false;
+?>
+                    <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up">
+                        <div class="icon-box icon-box-pink">
+                            <div class="icon"><i class="bx bxl-dribbble"></i></div>
+                            <h4 class="title"><a href=""><?php echo $_smarty_tpl->tpl_vars['locale']->value[0];?>
+</a></h4>
+                            <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias
+                                excepturi sint occaecati cupiditate non provident</p>
+                        </div>
                     </div>
-                </div>
-
-                <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
-                    <div class="icon-box icon-box-cyan">
-                        <div class="icon"><i class="bx bx-file"></i></div>
-                        <h4 class="title"><a href="">Sed ut perspiciatis</a></h4>
-                        <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                            dolore eu fugiat nulla pariatur</p>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
-                    <div class="icon-box icon-box-green">
-                        <div class="icon"><i class="bx bx-tachometer"></i></div>
-                        <h4 class="title"><a href="">Magni Dolores</a></h4>
-                        <p class="description">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                            deserunt mollit anim id est laborum</p>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
-                    <div class="icon-box icon-box-blue">
-                        <div class="icon"><i class="bx bx-world"></i></div>
-                        <h4 class="title"><a href="">Nemo Enim</a></h4>
-                        <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis
-                            praesentium voluptatum deleniti atque</p>
-                    </div>
-                </div>
+                <?php
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 
             </div>
 
@@ -284,18 +311,37 @@
             class="bi bi-arrow-up-short"></i></a>
 
 <!-- Vendor JS Files -->
-<script src="/Smarty/template/assets/vendor/purecounter/purecounter_vanilla.js"></script>
-<script src="/Smarty/template/assets/vendor/aos/aos.js"></script>
-<script src="/Smarty/template/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="/Smarty/template/assets/vendor/glightbox/js/glightbox.min.js"></script>
-<script src="/Smarty/template/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-<script src="/Smarty/template/assets/vendor/swiper/swiper-bundle.min.js"></script>
-<script src="/Smarty/template/assets/vendor/waypoints/noframework.waypoints.js"></script>
-<script src="/Smarty/template/assets/vendor/php-email-form/validate.js"></script>
+<?php echo '<script'; ?>
+ src="/template/vendor/purecounter/purecounter_vanilla.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ src="/template/vendor/aos/aos.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ src="/template/vendor/bootstrap/js/bootstrap.bundle.min.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ src="/template/vendor/glightbox/js/glightbox.min.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ src="/template/vendor/isotope-layout/isotope.pkgd.min.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ src="/template/vendor/swiper/swiper-bundle.min.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ src="/template/vendor/waypoints/noframework.waypoints.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ src="/template/vendor/php-email-form/validate.js"><?php echo '</script'; ?>
+>
 
 <!-- Template Main JS File -->
-<script src="/Smarty/template/assets/js/main.js"></script>
+<?php echo '<script'; ?>
+ src="/template/js/main.js"><?php echo '</script'; ?>
+>
 
 </body>
 
-</html>
+</html><?php }
+}

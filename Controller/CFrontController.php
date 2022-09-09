@@ -5,12 +5,19 @@ require_once 'StartSmarty.php';
 
 class CFrontController{
 
-    public function run ($path)
+    public function run($path){
+        if($path == "/"){
+            CRicerca::Home();
+        }
+    }
+
+
+    /*public function run ($path)
     {
         if($path !='/'){
-            $sessione = new USession();
+            //$sessione = new USession();
 
-            $method = $_SERVER['REQUEST_METHOD'];
+            //$method = $_SERVER['REQUEST_METHOD'];
 
             $resource = explode('/', $path); //Divide l'URL ricevuto in sezioni
 
@@ -94,6 +101,5 @@ class CFrontController{
             $view = new VUtente();
             $view->showHome();
         }
-
-    }
+    }*/
 }

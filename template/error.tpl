@@ -9,10 +9,10 @@
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link href="/Smarty/template/assets/img/favicon.png" rel="icon">
+    <link href="/template/img/favicon.png" rel="icon">
 
     <!--Css-->
-    <link rel="stylesheet" href="/Smarty/template/assets/css/error.css">
+    <link rel="stylesheet" href="/template/css/error.css">
 
 
 </head>

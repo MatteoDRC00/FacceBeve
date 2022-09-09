@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-08 10:38:15
-  from 'C:\xampp\htdocs\FacceBeve\Smarty\templates\home.tpl' */
+/* Smarty version 4.2.0, created on 2022-09-09 10:38:38
+  from 'C:\xampp1\htdocs\FacceBeve\template\home.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_6319a9f7b7aa16_94349723',
+  'unifunc' => 'content_631afb8e2cdc19_67118406',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    '9fd5117cec31f915dc8a0cd678895ba48305579d' => 
+    '85a4253371d35a6c110cf2fab98475519d466319' => 
     array (
-      0 => 'C:\\xampp\\htdocs\\FacceBeve\\Smarty\\templates\\home.tpl',
-      1 => 1662567644,
+      0 => 'C:\\xampp1\\htdocs\\FacceBeve\\template\\home.tpl',
+      1 => 1662712717,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6319a9f7b7aa16_94349723 (Smarty_Internal_Template $_smarty_tpl) {
+function content_631afb8e2cdc19_67118406 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <?php $_smarty_tpl->_assignInScope('userlogged', (($tmp = $_smarty_tpl->tpl_vars['userlogged']->value ?? null)===null||$tmp==='' ? 'nouser' ?? null : $tmp));
 $_smarty_tpl->_assignInScope('tipo', (($tmp = $_smarty_tpl->tpl_vars['tipo']->value ?? null)===null||$tmp==='' ? 'nouser' ?? null : $tmp));?>
@@ -35,8 +35,8 @@ $_smarty_tpl->_assignInScope('tipo', (($tmp = $_smarty_tpl->tpl_vars['tipo']->va
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link href="/Smarty/template/assets/img/favicon.png" rel="icon">
-    <link href="/Smarty/template/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <link href="/template/img/favicon.png" rel="icon">
+    <link href="/template/img/apple-touch-icon.png" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,700,700i&display=swap"
@@ -44,16 +44,16 @@ $_smarty_tpl->_assignInScope('tipo', (($tmp = $_smarty_tpl->tpl_vars['tipo']->va
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- Vendor CSS Files -->
-    <link href="/Smarty/template/assets/vendor/animate.css/animate.min.css" rel="stylesheet">
-    <link href="/Smarty/template/assets/vendor/aos/aos.css" rel="stylesheet">
-    <link href="/Smarty/template/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/Smarty/template/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="/Smarty/template/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-    <link href="/Smarty/template/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-    <link href="/Smarty/template/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link href="/template/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="/template/vendor/aos/aos.css" rel="stylesheet">
+    <link href="/template/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/template/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/template/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/template/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/template/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
     <!-- Template Main CSS File -->
-    <link href="/Smarty/template/assets/css/style.css" rel="stylesheet">
+    <link href="/template/css/style.css" rel="stylesheet">
 
     <!-- JavaScript-->
     <?php echo '<script'; ?>
@@ -73,7 +73,7 @@ $_smarty_tpl->_assignInScope('tipo', (($tmp = $_smarty_tpl->tpl_vars['tipo']->va
                 z = document.getElementById("Locali");
                 z.style.display = "none";
             }
-        }
+        };
 
         /** function defaultView() {
             var x = document.getElementById("Eventi");
@@ -86,17 +86,16 @@ $_smarty_tpl->_assignInScope('tipo', (($tmp = $_smarty_tpl->tpl_vars['tipo']->va
     <?php echo '</script'; ?>
 >
 
-
-
-
 </head>
+
 <body> <!--onload="defaultView()"-->
+
 <!-- ======= Header ======= -->
 <header id="header" class="fixed-top d-flex align-items-center header-transparent">
     <div class="container d-flex justify-content-between align-items-center">
 
         <div class="logo">
-            <h1><a href="index.html"><img src="/Smarty/template/assets/img/logo.png" alt=""><span>FacceBeve</span></a></h1>
+            <h1><a href="index.html"><img src="/template/img/logo.png" alt=""><span>FacceBeve</span></a></h1>
         </div>
 
         <?php if ($_smarty_tpl->tpl_vars['userlogged']->value == 'nouser') {?>
@@ -131,22 +130,22 @@ $_smarty_tpl->_assignInScope('tipo', (($tmp = $_smarty_tpl->tpl_vars['tipo']->va
                 <div class="carousel-container">
                     <h2 class="animate__animated animate__fadeInDown">Benvenuti in <span>FacceBeve</span></h2>
                     <p class="animate__animated animate__fadeInUp">È scientificamente provato che un aperitivo patatine e birretta non salveranno il mondo, ma la giornata sicuramente sì.</p>
-                    <h4 class="mb-0" >Puoi ricercare...</h4>
-                    <select name="tipo" id="tipo" onChange="setList()">
+                    <h4 class="mb-0" style="color:white">Puoi ricercare...</h4>
+                    <select name="tipo" id="tipo" style="border-radius:10px;" onChange="setList()">
                         <option  selected value="Locali">Locali</option>
                         <option value="Eventi">Eventi</option>
                     </select>
                 </div>
                 <div class="ricerca animate__animated animate__fadeInDown" id="Locali" style="display: flex;justify-content: center;">
                     <form class="Search"  action="risultatiRicerca.html">
-                        <input type="text" placeholder="Inserisci la città" name="citta">
+                        <input type="text" placeholder="Inserisci la città">
                         <input type="text" placeholder="Inserisci il nome" name="nomeLocale">
-                        <select name="categorie" style="border-radius:6px;">
+                        <select  name="categorie" style="border-radius:7px; height: 50px  ;">
                             <option>Scegli il tipo</option>
                             <option value="bar">Bar</option>
                             <option value="pub">Pub</option>
                         </select>
-                        <button type="submit" style="border-radius:10px;"><i class="fa fa-search"></i></button>
+                        <button class="input" type="submit" style="border-radius:10px;"><i class="fa fa-search"></i></button>
                     </form>
                 </div>
                 <div class="ricerca animate__animated animate__fadeInDown" id="Eventi" style="display: none;justify-content: center;" >
@@ -162,19 +161,19 @@ $_smarty_tpl->_assignInScope('tipo', (($tmp = $_smarty_tpl->tpl_vars['tipo']->va
                 <div class="carousel-container">
                     <h2 class="animate__animated animate__fadeInDown">Benvenuti in <span>FacceBeve</span></h2>
                     <p class="animate__animated animate__fadeInUp">È scientificamente provato che un aperitivo patatine e birretta non salveranno il mondo, ma la giornata sicuramente sì.</p>
-                    <h4 class="mb-0">Trova i locali della tua città</h4>
+                    <h4 class="mb-0" style="color:white;">Trova i locali della tua città</h4>
                 </div>
 
                 <div class="ricerca animate__animated animate__fadeInDown" style="display: flex;justify-content: center;">
                     <form class="Search"  action="risultatiRicerca.html">
                         <input type="text" placeholder="Inserisci la città" name="citta">
-                        <input type="text" placeholder="Inserisci il nome" name="nomeLocale">
-                        <select name="categorie" style="border-radius:6px;">
+                        <input type="text" placeholder="Inserisci il nome" name="nomeLo.cale">
+                        <select name="categorie" style="border-radius:7px; height: 50px ">
                             <option>Scegli il tipo</option>
                             <option value="bar">Bar</option>
                             <option value="pub">Pub</option>
                         </select>
-                        <button type="submit" style="border-radius:10px;"><i class="fa fa-search"></i></button>
+                        <button type="submit" style="border-radius:7px; height: 50px"><i class="fa fa-search"></i></button>
                     </form>
                 </div>
 
@@ -311,33 +310,33 @@ $_smarty_tpl->_assignInScope('tipo', (($tmp = $_smarty_tpl->tpl_vars['tipo']->va
 
 <!-- Vendor JS Files -->
 <?php echo '<script'; ?>
- src="/Smarty/template/assets/vendor/purecounter/purecounter_vanilla.js"><?php echo '</script'; ?>
+ src="/template/vendor/purecounter/purecounter_vanilla.js"><?php echo '</script'; ?>
 >
 <?php echo '<script'; ?>
- src="/Smarty/template/assets/vendor/aos/aos.js"><?php echo '</script'; ?>
+ src="/template/vendor/aos/aos.js"><?php echo '</script'; ?>
 >
 <?php echo '<script'; ?>
- src="/Smarty/template/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"><?php echo '</script'; ?>
+ src="/template/vendor/bootstrap/js/bootstrap.bundle.min.js"><?php echo '</script'; ?>
 >
 <?php echo '<script'; ?>
- src="/Smarty/template/assets/vendor/glightbox/js/glightbox.min.js"><?php echo '</script'; ?>
+ src="/template/vendor/glightbox/js/glightbox.min.js"><?php echo '</script'; ?>
 >
 <?php echo '<script'; ?>
- src="/Smarty/template/assets/vendor/isotope-layout/isotope.pkgd.min.js"><?php echo '</script'; ?>
+ src="/template/vendor/isotope-layout/isotope.pkgd.min.js"><?php echo '</script'; ?>
 >
 <?php echo '<script'; ?>
- src="/Smarty/template/assets/vendor/swiper/swiper-bundle.min.js"><?php echo '</script'; ?>
+ src="/template/vendor/swiper/swiper-bundle.min.js"><?php echo '</script'; ?>
 >
 <?php echo '<script'; ?>
- src="/Smarty/template/assets/vendor/waypoints/noframework.waypoints.js"><?php echo '</script'; ?>
+ src="/template/vendor/waypoints/noframework.waypoints.js"><?php echo '</script'; ?>
 >
 <?php echo '<script'; ?>
- src="/Smarty/template/assets/vendor/php-email-form/validate.js"><?php echo '</script'; ?>
+ src="/template/vendor/php-email-form/validate.js"><?php echo '</script'; ?>
 >
 
 <!-- Template Main JS File -->
 <?php echo '<script'; ?>
- src="/Smarty/template/assets/js/main.js"><?php echo '</script'; ?>
+ src="/template/js/main.js"><?php echo '</script'; ?>
 >
 
 </body>

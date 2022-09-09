@@ -16,8 +16,8 @@
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link href="/Smarty/template/assets/img/favicon.png" rel="icon">
-    <link href="/Smarty/template/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <link href="/template/img/favicon.png" rel="icon">
+    <link href="/template/img/apple-touch-icon.png" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,700,700i&display=swap"
@@ -25,16 +25,16 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 
     <!-- Vendor CSS Files -->
-    <link href="/Smarty/template/assets/vendor/animate.css/animate.min.css" rel="stylesheet">
-    <link href="/Smarty/template/assets/vendor/aos/aos.css" rel="stylesheet">
-    <link href="/Smarty/template/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/Smarty/template/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="/Smarty/template/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-    <link href="/Smarty/template/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-    <link href="/Smarty/template/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link href="/template/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="/template/vendor/aos/aos.css" rel="stylesheet">
+    <link href="/template/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/template/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/template/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/template/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/template/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
     <!-- Template Main CSS File -->
-    <link href="/Smarty/template/assets/css/style.css" rel="stylesheet">
+    <link href="/template/css/style.css" rel="stylesheet">
 
     <!-- =======================================================
     * Template Name: Moderna - v4.9.1
@@ -49,7 +49,7 @@
     <div class="container d-flex justify-content-between align-items-center">
 
         <div class="logo">
-            <h1><a href="index.html"><img src="/Smarty/template/assets/img/logo.png" alt=""><span>FacceBeve</span></a></h1>
+            <h1><a href="index.html"><img src="/template/img/logo.png" alt=""><span>FacceBeve</span></a></h1>
         </div>
 
     </div>
@@ -107,7 +107,7 @@
                     <article class="entry">
 
                         <div class="entry-img">
-                            <img src="/Smarty/template/assets/img/blog/blog-1.jpg" alt="" class="img-fluid">
+                            <img src="/template/img/blog/blog-1.jpg" alt="" class="img-fluid">
                         </div>
 
                         <h2 class="entry-title">
@@ -118,7 +118,7 @@
                             <ul>
                                 <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a
                                         href="">$Proprietario</a></li>
-                                <li class="d-flex align-items-center"><i class="fas fa-map-marker-alt"></i></i> <a
+                                <li class="d-flex align-items-center"><i class="fas fa-map-marker-alt"></i> <a
                                         href="">$Localizzazione</a></li>
                             </ul>
                         </div>
@@ -195,17 +195,17 @@
         class="bi bi-arrow-up-short"></i></a>
 
 <!-- Vendor JS Files -->
-<script src="/Smarty/template/assets/vendor/purecounter/purecounter_vanilla.js"></script>
-<script src="/Smarty/template/assets/vendor/aos/aos.js"></script>
-<script src="/Smarty/template/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="/Smarty/template/assets/vendor/glightbox/js/glightbox.min.js"></script>
-<script src="/Smarty/template/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-<script src="/Smarty/template/assets/vendor/swiper/swiper-bundle.min.js"></script>
-<script src="/Smarty/template/assets/vendor/waypoints/noframework.waypoints.js"></script>
-<script src="/Smarty/template/assets/vendor/php-email-form/validate.js"></script>
+<script src="/template/vendor/purecounter/purecounter_vanilla.js"></script>
+<script src="/template/vendor/aos/aos.js"></script>
+<script src="/template/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/template/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="/template/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+<script src="/template/vendor/swiper/swiper-bundle.min.js"></script>
+<script src="/template/vendor/waypoints/noframework.waypoints.js"></script>
+<script src="/template/vendor/php-email-form/validate.js"></script>
 
 <!-- Template Main JS File -->
-<script src="/Smarty/template/assets/js/main.js"></script>
+<script src="/template/js/main.js"></script>
 
 </body>
 
