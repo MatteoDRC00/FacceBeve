@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-09 12:53:32
+/* Smarty version 4.2.0, created on 2022-09-09 15:33:14
   from 'C:\xampp\htdocs\FacceBeve\template\home.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_631b1b2ceb9f74_84090508',
+  'unifunc' => 'content_631b409ae85123_83855385',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c953834e2bd280dacf9fe734edc7529afcd03f09' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\home.tpl',
-      1 => 1662720812,
+      1 => 1662730394,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_631b1b2ceb9f74_84090508 (Smarty_Internal_Template $_smarty_tpl) {
+function content_631b409ae85123_83855385 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <?php $_smarty_tpl->_assignInScope('tipo', $_smarty_tpl->tpl_vars['tipo']->value);?>
 <html lang="en">
@@ -218,11 +218,10 @@ $_smarty_tpl->tpl_vars['locale']->do_else = false;
 ?>
                     <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up">
                         <div class="icon-box icon-box-pink">
-                            <div class="icon"><i class="bx bxl-dribbble"></i></div>
-                            <h4 class="title"><a href=""><?php echo $_smarty_tpl->tpl_vars['locale']->value[0];?>
+                            <h4 class="title" style="font-weight: bold"><a href=""><?php echo $_smarty_tpl->tpl_vars['locale']->value['nome'];?>
 </a></h4>
-                            <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias
-                                excepturi sint occaecati cupiditate non provident</p>
+                            <p class="description"><?php echo $_smarty_tpl->tpl_vars['locale']->value['descrizione'];?>
+</p>
                         </div>
                     </div>
                 <?php

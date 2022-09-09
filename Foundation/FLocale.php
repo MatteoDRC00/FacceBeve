@@ -122,10 +122,10 @@ class FLocale {
      * @return array|ELocale
      */
     public static function loadByField($field, $id){
-        $locale = null;
-        $db=FDB::getInstance();
-        $result=$db->load(static::getClass(), $field, $id);
-        $rows_number = $db->interestedRows(static::getClass(), $field, $id);    //funzione richiamata,presente in FDB --> restituisce numero di righe interessate dalla query
+        //$locale = null;
+        $db = FDB::getInstance();
+        return $db->load(static::getClass(), $field, $id);
+        /*$rows_number = $db->interestedRows(static::getClass(), $field, $id);    //funzione richiamata,presente in FDB --> restituisce numero di righe interessate dalla query
         if(($result!=null) && ($rows_number == 1)) {
             $proprietario = FProprietario::loadByField("id" , $result["proprietario"]);
             $categorie = FCategoria::loadByLocale($result["id"]);
@@ -158,7 +158,7 @@ class FLocale {
                 }
             }
         }
-        return $locale;
+        return $locale;*/
     }
 
     /**
