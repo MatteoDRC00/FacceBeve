@@ -1,6 +1,6 @@
 <?php
 
-require_once 'utility/autoload.php';
+require_once'utility/autoload.php';
 require_once 'StartSmarty.php';
 
 class CFrontController{
@@ -10,7 +10,7 @@ class CFrontController{
         if($path !='/'){
             $sessione = new USession();
 
-            $method = $_SERVER['REQUEST_METHOD'];
+            //$method = $_SERVER['REQUEST_METHOD'];
 
             $resource = explode('/', $path); //Divide l'URL ricevuto in sezioni
 

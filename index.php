@@ -3,7 +3,8 @@
 require_once 'utility\autoload.php';
 require_once 'StartSmarty.php';
 
-$controller = new CFrontController();
+//$controller = new CFrontController();
+$vista=new VUtente();
+$vista->showHome();
+;
 
-$path = $_SERVER['REQUEST_URI'];
-$controller->run($path);
