@@ -74,7 +74,7 @@
 
         {if $tipo=='nouser'}
             <div class="sign">
-                <a href="login.html">Accedi</a>
+                <a href="Accesso/formLogin">Accedi</a>
                 <a href="registrazioneUtente.html">Registrati</a>
                 <a href="registrazioneProprietario.html">Vuoi pubblicizzare il tuo locale?</a>
             </div>
@@ -142,7 +142,7 @@
                 <div class="ricerca animate__animated animate__fadeInDown" style="display: flex;justify-content: center;">
                     <form class="Search"  action="risultatiRicerca.html">
                         <input type="text" placeholder="Inserisci la città" name="citta">
-                        <input type="text" placeholder="Inserisci il nome" name="nomeLo.cale">
+                        <input type="text" placeholder="Inserisci il nome" name="nomeLocale">
                         <select name="categorie" style="border-radius:7px; height: 50px ">
                             <option>--Scegli il tipo--</option>
                             {foreach $genere_cat as $genere}

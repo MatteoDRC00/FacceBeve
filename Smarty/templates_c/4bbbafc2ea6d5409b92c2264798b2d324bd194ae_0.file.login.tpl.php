@@ -1,5 +1,28 @@
-<!DOCTYPE html>
-<!--{assign var='error' value=$error|default:'ok'}-->
+<?php
+/* Smarty version 4.2.0, created on 2022-09-09 16:39:21
+  from 'C:\xampp\htdocs\FacceBeve\template\login.tpl' */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '4.2.0',
+  'unifunc' => 'content_631b5019b463e6_64704715',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    '4bbbafc2ea6d5409b92c2264798b2d324bd194ae' => 
+    array (
+      0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\login.tpl',
+      1 => 1662734361,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+),false)) {
+function content_631b5019b463e6_64704715 (Smarty_Internal_Template $_smarty_tpl) {
+?><!DOCTYPE html>
+<!--<?php $_smarty_tpl->_assignInScope('error', (($tmp = $_smarty_tpl->tpl_vars['error']->value ?? null)===null||$tmp==='' ? 'ok' ?? null : $tmp));?>-->
 <html lang="it">
 <head>
     <meta charset="utf-8">
@@ -59,11 +82,17 @@
             <p class="message">Hai bisogno di pubblicizzare il tuo locale?<a href="registrazioneProprietario.html">Crea un account proprietario</a></p>
         </form>
         <div style="color: red;">
-            <?php if $error!='ok'
-                    echo "Attenzione! Username e/o password errati!" ?>
+            <?php echo '<?php'; ?>
+ if $error!='ok'
+                    echo "Attenzione! Username e/o password errati!" <?php echo '?>'; ?>
+
         </div>
     </div>
 </div>
-<!--<script src="/Smarty/template/assets/js/main.js"></script>-->
+<!--<?php echo '<script'; ?>
+ src="/Smarty/template/assets/js/main.js"><?php echo '</script'; ?>
+>-->
 </body>
 </html>
+<?php }
+}

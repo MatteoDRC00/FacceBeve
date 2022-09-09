@@ -177,11 +177,10 @@ class FPersistentManager {
     /**  Metodo che permette il login di un utente, date le credenziali (username e password)
      *
      */
-    public static function loadLogin ($user, $pass) {
-        $ris = null;
-        $ris = FUtente::loadLogin($user, $pass);
-        if($ris==null){
-            $ris = FProprietario::loadLogin($user, $pass);
+    public static function verificaLogin($user, $pass) {
+        $ris = FUtente::verificaLogin($user, $pass);
+        if($ris == null){
+            $ris = FProprietario::verificaLogin($user, $pass);
         }
         return $ris;
     }

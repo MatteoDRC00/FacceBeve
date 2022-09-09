@@ -105,6 +105,11 @@ class CAccesso
         }
     } */
 
+    public function formLogin(){
+        $view = new VAccesso();
+        $view->showFormLogin();
+    }
+
 
     /**
      * Funzione che gestisce il login dell'utente, prelevando le credenziali di accesso dalla view, verifica se un utente con queste credenziali esiste,
@@ -113,29 +118,23 @@ class CAccesso
      */
     public function login() {
         $view = new VAccesso();
-        $view->showFormLogin();
-        $pm = FPersistentManager()::getIstance();
+        $pm = FPersistentManager::getInstance();
         $UsernameLogin = $view->getUsername();
         $PasswordLogin = $view->getPassword();
-        $utente = $pm->loadLogin($UsernameLogin, $PasswordLogin);
-        if ($utente != null) {
+        $user = $pm->verificaLogin($UsernameLogin, $PasswordLogin);
+        if ($user != null) {
             $sessione = new USession();
-            if (!($sessione->leggi_valore('utente'))) {
-                $salvare = serialize($utente);
-                $sessione->imposta_valore('utente',$salvare);
-                if (get_class($utente)=="EUtente") {
-                    $eventi = static::eventiUtente($utente);
-                    $view->loginOk($eventi,"EUtente");
-                }
-                elseif(get_class($utente)=="EProprietario")  {
-                    $view->loginOk(null,"EUtente");
-                }elseif(($UsernameLogin=="admin") && ($PasswordLogin=="admin"))  {
-                    header('Location: /FacceBeve/Admin/homepage');
-                }
+            $salvare = serialize($user);
+            $sessione->imposta_valore('utente',$salvare);
+            if (get_class($user)=="EUtente") {
+                $eventi = static::eventiUtente($user);
+                $view->loginOk($eventi,"EUtente");
             }
-        }
-        else {
-            $view->loginError();
+            elseif(get_class($user)=="EProprietario")  {
+                $view->loginOk(null,"EUtente");
+            }elseif(($UsernameLogin=="admin") && ($PasswordLogin=="admin"))  {
+                header('Location: /FacceBeve/Admin/homepage');
+            }
         }
     }
 

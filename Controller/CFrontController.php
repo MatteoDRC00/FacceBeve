@@ -1,14 +1,18 @@
 <?php
 
-require_once 'utility/autoload.php';
+require_once 'autoload.php';
 require_once 'StartSmarty.php';
 
 class CFrontController{
 
     public function run($path){
-        if($path == "/"){
-            CRicerca::Home();
+        if($path != "/"){
+
+        }else{
+            $controller = CRicerca::getInstance();
+            $controller->mostraHome();
         }
+
     }
 
 

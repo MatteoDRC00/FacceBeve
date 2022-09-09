@@ -1,6 +1,6 @@
 <?php
 
-require_once 'utility/autoload.php';
+require_once 'autoload.php';
 /**
  * La classe FUtente fornisce query per gli oggetti EUtente
  * @author Gruppo 8
@@ -157,22 +157,9 @@ class FUtente{
     * @param user mail dell utente
     * @param pass password ell utente
     */
-	public static function loadLogin ($user, $pass) {
-		$utente = null;
-		$db=FDB::getInstance();
-		$result=$db->loadVerificaAccesso($user, $pass);
-		if (isset($result)){
-			$ute = FUtente::loadByField("username" , $result["username"]);
-			$pro = FProprietario::loadByField("username" , $result["username"]);
-			$admin = static::loadByField("username", $result["username"]);
-			if ($ute)
-				$utente = $ute;
-			elseif ($pro)
-				$utente = $pro;
-			elseif ($admin)
-                $utente = $admin;
-		}
-		return $utente;
+	public static function verificaLogin($user, $pass) {
+		$db = FDB::getInstance();
+		return  $db->loadVerificaAccesso($user, $pass, static::getClass());
 	}
 
 

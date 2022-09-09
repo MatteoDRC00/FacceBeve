@@ -308,13 +308,10 @@ class FDB{
 	 *@param email ,email del utente
 	 *@param pass, password dell utente
 	 */
-	public function loadVerificaAccesso ($username, $pass)
-	{
+	public function loadVerificaAccesso($username, $pass, $class){
 		try {
-			$query = null;
-			$class = "FUtente";
 			$query = "SELECT * FROM " . $class::getTable() . " WHERE username ='" . $username . "' AND password ='" . $pass . "';";
-			$stmt = $this->db->prepare($query);
+			$stmt = $this->database->prepare($query);
 			$stmt->execute();
 			$num = $stmt->rowCount();
 			if ($num == 0) {
@@ -325,7 +322,7 @@ class FDB{
 			return $result;
 		} catch (PDOException $e) {
 			echo "Attenzione errore: " . $e->getMessage();
-			$this->db->rollBack();
+			$this->database->rollBack();
 			return null;
 		}
 	}

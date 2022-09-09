@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-09 15:33:14
+/* Smarty version 4.2.0, created on 2022-09-09 16:41:22
   from 'C:\xampp\htdocs\FacceBeve\template\home.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_631b409ae85123_83855385',
+  'unifunc' => 'content_631b50927f8132_48672499',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c953834e2bd280dacf9fe734edc7529afcd03f09' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\home.tpl',
-      1 => 1662730394,
+      1 => 1662734361,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_631b409ae85123_83855385 (Smarty_Internal_Template $_smarty_tpl) {
+function content_631b50927f8132_48672499 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <?php $_smarty_tpl->_assignInScope('tipo', $_smarty_tpl->tpl_vars['tipo']->value);?>
 <html lang="en">
@@ -99,7 +99,7 @@ function content_631b409ae85123_83855385 (Smarty_Internal_Template $_smarty_tpl)
 
         <?php if ($_smarty_tpl->tpl_vars['tipo']->value == 'nouser') {?>
             <div class="sign">
-                <a href="login.html">Accedi</a>
+                <a href="Accesso/formLogin">Accedi</a>
                 <a href="registrazioneUtente.html">Registrati</a>
                 <a href="registrazioneProprietario.html">Vuoi pubblicizzare il tuo locale?</a>
             </div>
@@ -176,7 +176,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                 <div class="ricerca animate__animated animate__fadeInDown" style="display: flex;justify-content: center;">
                     <form class="Search"  action="risultatiRicerca.html">
                         <input type="text" placeholder="Inserisci la città" name="citta">
-                        <input type="text" placeholder="Inserisci il nome" name="nomeLo.cale">
+                        <input type="text" placeholder="Inserisci il nome" name="nomeLocale">
                         <select name="categorie" style="border-radius:7px; height: 50px ">
                             <option>--Scegli il tipo--</option>
                             <?php
@@ -218,7 +218,7 @@ $_smarty_tpl->tpl_vars['locale']->do_else = false;
 ?>
                     <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up">
                         <div class="icon-box icon-box-pink">
-                            <h4 class="title" style="font-weight: bold"><a href=""><?php echo $_smarty_tpl->tpl_vars['locale']->value['nome'];?>
+                            <h4 class="title"><a href=""><?php echo $_smarty_tpl->tpl_vars['locale']->value['nome'];?>
 </a></h4>
                             <p class="description"><?php echo $_smarty_tpl->tpl_vars['locale']->value['descrizione'];?>
 </p>
@@ -237,61 +237,6 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 
 <!-- ======= Footer ======= -->
 <footer id="footer" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
-    <!--
-        <div class="footer-top">
-            <div class="container">
-                <div class="row">
-
-                    <div class="col-lg-3 col-md-6 footer-links">
-                        <h4>Useful Links</h4>
-                        <ul>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 footer-links">
-                        <h4>Our Services</h4>
-                        <ul>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 footer-contact">
-                        <h4>Contact Us</h4>
-                        <p>
-                            A108 Adam Street <br>
-                            New York, NY 535022<br>
-                            United States <br><br>
-                            <strong>Phone:</strong> +1 5589 55488 55<br>
-                            <strong>Email:</strong> info@example.com<br>
-                        </p>
-
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 footer-info">
-                        <h3>About Moderna</h3>
-                        <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita
-                            valies darta donna mare fermentum iaculis eu non diam phasellus.</p>
-                        <div class="social-links mt-3">
-                            <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-                            <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-                            <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-                            <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    -->
     <div class="container">
         <div class="copyright">
             &copy; Copyright <strong><span>Moderna</span></strong>. All Rights Reserved
