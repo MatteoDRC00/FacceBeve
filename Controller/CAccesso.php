@@ -105,9 +105,28 @@ class CAccesso
         }
     } */
 
+    /**
+     * @throws SmartyException
+     */
     public function formLogin(){
         $view = new VAccesso();
         $view->showFormLogin();
+    }
+
+    /**
+     * @throws SmartyException
+     */
+    public function formRegistrazioneUtente(){
+        $view = new VAccesso();
+        $view->registra_utente();
+    }
+
+    /**
+     * @throws SmartyException
+     */
+    public function formRegistrazioneProprietario(){
+        $view = new VAccesso();
+        $view->registra_proprietario();
     }
 
 
@@ -229,12 +248,10 @@ class CAccesso
     static function registrazioneUtente() {
         $pm = FPersistentManager()::getIstance();
         $view = new VAccesso();
-
         //Controllo dell'unicità dello Username scelto
         $usercheck = $view->getUsername();
         $vereusername1 = $pm->exist("username", $usercheck,"FProprietario");
         $vereusername2 = $pm->exist("username", $usercheck,"FUtente");
-        $view = new VUtente();
         if (($vereusername1) || ($vereusername2) && ($usercheck!="admin")){
             $view->registrazioneUtenteError ("username"); //username già esistente
         }
@@ -276,18 +293,16 @@ class CAccesso
     static function registrazioneProprietario() {
         $pm = FPersistentManager()::getIstance();;
         $view = new VAccesso();
-
         //Controllo dell'unicità dello Username scelto
         $usercheck = $view->getUsername();
         $vereusername1 = $pm->exist("username", $usercheck,"FProprietario");
         $vereusername2 = $pm->exist("username", $usercheck,"FUtente");
-        $view = new VUtente();
         if (($vereusername1) || ($vereusername2) && ($usercheck!="admin")){
             $view->registrazionePropError ("username"); //username già esistente
         }
         else {
             //FARE CONTROLLO VIA CLIENT
-            $proprietario = new EProprietario($view->getNome(),$view->getCognome(),$usercheck,$view->getEmail(),$view->getPassword());
+            $proprietario = new EProprietario($view->getNome(),$view->getCognome(),$view->getEmail(),$usercheck,$view->getPassword());
             //$utente->Iscrizione();
             if ($view->getImgProfilo() !== null) {
                 $nome_file = 'img_profilo';

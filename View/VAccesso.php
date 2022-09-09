@@ -60,6 +60,64 @@ class VAccesso
         //    $this->smarty->assign('username',$_POST['username']);
         $this->smarty->display('login.tpl');
     }
+    //\\
+
+    /**
+     * Funzione che si occupa di gestire la visualizzazione della form di registrazione del Utente
+     * @throws SmartyException
+     */
+    public function registra_utente() {
+        $this->smarty->display('RegistrazioneUtente.tpl');
+    }
+
+    /**
+     * Funzione che si occupa di gestire la visualizzazione della form di registrazione del Proprietario
+     * @throws SmartyException
+     */
+    public function registra_proprietario() {
+        $this->smarty->display('RegistrazioneProprietario.tpl');
+    }
+
+    /**
+     * Funzione che si occupa di gestire la visualizzazione degli errori nella form di registrazione per il trasportatore
+     * @param $email tipo di errore derivante dall'email inserita
+     * @param $mezzo tipo di errore derivante dall'immagine inserita
+     * @param $error tipo di errore da visualizzare nella form
+     * @throws SmartyException
+     */
+    public function registrazionePropError ($username, $error) {
+        if ($username)
+            $this->smarty->assign('errorUsername',"errore");
+        switch ($error) {
+            case "typeimg" :
+                $this->smarty->assign('errorType',"errore");
+                break;
+            case "size" :
+                $this->smarty->assign('errorSize',"errore");
+                break;
+        }
+        $this->smarty->display('registrazioneProprietario.tpl');
+    }
+
+    /**
+     * Funzione che si occupa di gestire la visualizzazione degli errori nella form di registrazione per il cliente
+     * @param $error tipo di errore da visualizzare
+     * @throws SmartyException
+     */
+    public function registrazioneUtenteError ($error) {
+        switch ($error) {
+            case "email":
+                $this->smarty->assign('errorUsername',"errore"); //Username già esistente
+                break;
+            case "typeimg" :
+                $this->smarty->assign('errorType',"errore"); //Formato immagine non supportato
+                break;
+            case "size" :
+                $this->smarty->assign('errorSize',"errore"); //Dimensione Immagine non supportata(troppo grande)
+                break;
+        }
+        $this->smarty->display('registrazioneUtente.tpl');
+    }
 
 
     //Metodi GET\\
@@ -86,6 +144,56 @@ class VAccesso
         if (isset($_POST['password']))
             $value = $_POST['password'];
         return $value;
+    }
+
+    /**
+     * Restituisce (se immesso) il nome inserito dall'utente(utilizzato nei login/registrazione/modifica profilo)
+     * Inviato con metodo post
+     * @return string contenente il valore inserito dall'utente
+     */
+    public function getNome(){
+        $value = null;
+        if (isset($_POST['nome']))
+            $value = $_POST['nome'];
+        return $value;
+    }
+
+    /**
+     * Restituisce (se immesso) il cognome inserito dall'utente(utilizzato nei login/registrazione/modifica profilo)
+     * Inviato con metodo post
+     * @return string contenente il valore inserito dall'utente
+     */
+    public function getCognome(){
+        $value = null;
+        if (isset($_POST['cognome']))
+            $value = $_POST['cognome'];
+        return $value;
+    }
+
+    /**
+     * Restituisce (se immessa) la email inserita dall'utente(utilizzato nei login/registrazione/modifica profilo)
+     * Inviato con metodo post
+     * @return string contenente il valore inserito dall'utente
+     */
+    public function getEmail(){
+        $value = null;
+        if (isset($_POST['email']))
+            $value = $_POST['email'];
+        return $value;
+    }
+
+    /**
+     * Restituisce un array contenente le informazioni sul immagine da caricare, contenuto nel array _$_FILES, questo verrà poi passato al metodo upload per controllare la correttezza del file caricato
+     * @return array
+     */
+    public function getNewImgProfilo(): array
+    {
+        $type = $_FILES['img_profilo']['type'];
+        $nome = $_FILES['img_profilo']['name'];
+        $file = $_FILES['img_profilo']['tmp_name'];
+        $dimensione = $_FILES['img_profilo']['size'];
+        $arrayImg = array($nome,$type, $file, $dimensione);
+        return $arrayImg;
     }
 
 

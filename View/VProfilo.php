@@ -98,7 +98,6 @@ class VProfilo{
 
         }
 
-
         //Se Utente locali->suoi preferiti, se invece Proprietario locali->suoi gestiti
         if($locali==null){
             $this->smarty->assign('array',$utente->getLocalipreferiti());
@@ -109,7 +108,7 @@ class VProfilo{
         }
     }
 
-    //Metodi GET della View
+    //Metodi GET\\
 
     /**
      * Metodo che restituisce la email inserita nel campo "Nuova EMail", utilizzata nella modifica del profilo, e prelevata dal vettore $_FILES
@@ -149,11 +148,16 @@ class VProfilo{
 
 
     /**
-     * Restituisce il nome del immagine da caricare, contenuto nel array _$_FILES, questo verrà poi passato al metodo upload per controllare la correttezza del file caricato
+     * Restituisce un array contenente le informazioni sul immagine da caricare, contenuto nel array _$_FILES, questo verrà poi passato al metodo upload per controllare la correttezza del file caricato
      * @return array
      */
     public function getNewImgProfilo(): array
     {
-        return $_FILES['img']['name'];
+        $type = $_FILES['img_profilo']['type'];
+        $nome = $_FILES['img_profilo']['name'];
+        $file = $_FILES['img_profilo']['tmp_name'];
+        $dimensione = $_FILES['img_profilo']['size'];
+        $arrayImg = array($nome,$type, $file, $dimensione);
+        return $arrayImg;
     }
 }

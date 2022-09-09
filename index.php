@@ -5,9 +5,9 @@ require_once 'StartSmarty.php';
 
 
 $controller = new CFrontController();
-
+print ($_SERVER['REQUEST_URI']);
 //$path = $_SERVER['REQUEST_URI'];
-$path = "Accesso/login";
+//$path = "Accesso/login";
 
-$controller->run($path);
+//$controller->run($_SERVER['REQUEST_URI']);
 

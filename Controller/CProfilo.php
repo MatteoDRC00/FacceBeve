@@ -1,5 +1,5 @@
 <?php
-require_once "utility/autoload.php";
+require_once "autoload.php";
 require_once "utility/USession.php";
 
 /**
@@ -146,8 +146,8 @@ class CProfilo{
         if($sessione->leggi_valore('utente')){
             $utente = unserialize($sessione->leggi_valore('utente'));
             $locali = static::caricaLocali($utente);
-            $nome = $view->getNewImgProfilo();
-            $check = static::upload($utente,$nome);
+            $img = $view->getNewImgProfilo();
+            $check = static::upload($utente,$img);
             if($check=="type"){
                 $view->profilo($utente,$locali,"type");
             }elseif($check=="size"){
@@ -194,34 +194,32 @@ class CProfilo{
     /**
      * Funzione di supporto che si occupa di verificare la correttezza dell'immagine inserita nella form di registrazione.
      * Nel caso in cui non ci sono errori di inserimento, avviene la store dell'utente e la corrispondente immagine nel database.
-     * @param $nome_file passato nella form pe l'immagine
+     * @param $img array  nella form pe l'immagine
      * @return string stato verifica immagine
      */
-    static function upload($nome_file) {
+    static function upload($img) {
         $pm = FPersistentManager()::getIstance();
         $ris = null;
         $nome = '';
         $max_size = 300000;
-        $result = is_uploaded_file($_FILES[$nome_file]['tmp_name']);
+        $result = is_uploaded_file($img[2]);
         if (!$result) {
-            //no immagine
-            //$pm->store($utente);
-            //return "ok";
+            //No img
             $ris = "ok";
         } else {
-            $size = $_FILES[$nome_file]['size'];
-            $type = $_FILES[$nome_file]['type'];
+            $size = $img[3];
+            $type = $img[0];
             if ($size > $max_size) {
                 //Il file è troppo grande
                 $ris = "size";  // -->Errore relativo alla dimensione del img
             }
             //$type = $_FILES[$nome_file]['type'];
             elseif ($type == 'image/jpeg' || $type == 'image/png' || $type == 'image/jpg') {
-                $nome = $_FILES[$nome_file]['name'];
-                $immagine = @file_get_contents($_FILES["img"]['tmp_name']);
+                $nome = $img[1];
+                $immagine = @file_get_contents($img[2]);
                 $immagine = addslashes ($immagine);
                 $mutente = new EImmagine($nome,$size,$type,$immagine);
-                $pm->updateMedia($mutente,$nome_file);
+                $pm->updateMedia($mutente,$nome);
                 //return "ok";
                 $ris = "ok";
             }
@@ -235,7 +233,7 @@ class CProfilo{
     }
 
     /**
-     * Metodo richiamato per individuare i locali collegati ad un utente, se questo èun Proprietario allora saranno i locali da l*i gestiti,
+     * Metodo richiamato per individuare i locali collegati ad un utente, se questo è un Proprietario allora saranno i locali da l*i gestiti,
      * se invece è un Utente saranno i suoi locali preferiti
      * @return array|null
     */
