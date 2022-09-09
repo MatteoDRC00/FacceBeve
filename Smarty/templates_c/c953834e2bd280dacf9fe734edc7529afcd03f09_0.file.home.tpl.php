@@ -1,5 +1,28 @@
-<!DOCTYPE html>
-{assign var='tipo' value=$tipo}
+<?php
+/* Smarty version 4.2.0, created on 2022-09-09 12:53:32
+  from 'C:\xampp\htdocs\FacceBeve\template\home.tpl' */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '4.2.0',
+  'unifunc' => 'content_631b1b2ceb9f74_84090508',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    'c953834e2bd280dacf9fe734edc7529afcd03f09' => 
+    array (
+      0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\home.tpl',
+      1 => 1662720812,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+),false)) {
+function content_631b1b2ceb9f74_84090508 (Smarty_Internal_Template $_smarty_tpl) {
+?><!DOCTYPE html>
+<?php $_smarty_tpl->_assignInScope('tipo', $_smarty_tpl->tpl_vars['tipo']->value);?>
 <html lang="en">
 
 <head>
@@ -32,7 +55,8 @@
     <link href="/template/css/style.css" rel="stylesheet">
 
     <!-- JavaScript-->
-    <script type="text/javascript">
+    <?php echo '<script'; ?>
+ type="text/javascript">
         function setList() {    //In input le categorie
             var x = document.getElementById("tipo");
             var y = x.value;
@@ -58,7 +82,8 @@
         };**/
 
 
-    </script>
+    <?php echo '</script'; ?>
+>
 
 </head>
 
@@ -72,25 +97,25 @@
             <h1><a href="index.html"><img src="/template/img/logo.png" alt=""><span>FacceBeve</span></a></h1>
         </div>
 
-        {if $tipo=='nouser'}
+        <?php if ($_smarty_tpl->tpl_vars['tipo']->value == 'nouser') {?>
             <div class="sign">
                 <a href="login.html">Accedi</a>
                 <a href="registrazioneUtente.html">Registrati</a>
                 <a href="registrazioneProprietario.html">Vuoi pubblicizzare il tuo locale?</a>
             </div>
-        {elseif $tipo=='EUtente'}
+        <?php } elseif ($_smarty_tpl->tpl_vars['tipo']->value == 'EUtente') {?>
             <div class="sign">
                 <a href="areaPersonaleUtente.html">Il tuo profilo personale</a>
                 <a href="areaPersonaleUtente.html">I tuoi locali preferiti</a> <!--Come si fa?-->
                 <a href="registrazioneProprietario.html">Logout</a> <!--Qui direi una semplice action  -->
             </div>
-        {elseif $tipo=='EProprietario'}
+        <?php } elseif ($_smarty_tpl->tpl_vars['tipo']->value == 'EProprietario') {?>
             <div class="sign">
                 <a href="areaPersonaleProprietario.html">Il tuo profilo personale</a>
                 <a href="areaPersonaleUtente.html">I tuoi locali gestiti</a> <!--Quasi quasi ne farei solo 2 di bottoni-->
                 <a href="registrazioneProprietario.html">Logout</a> <!--Qui direi una semplice action  -->
             </div>
-        {/if}
+        <?php }?>
 
     </div>
 </header><!-- End Header -->
@@ -100,7 +125,7 @@
     <div id="heroCarousel" class="container carousel carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
 
         <div class="carousel-item active">
-            {if $tipo!='nouser'}
+            <?php if ($_smarty_tpl->tpl_vars['tipo']->value != 'nouser') {?>
                 <div class="carousel-container">
                     <h2 class="animate__animated animate__fadeInDown">Benvenuti in <span>FacceBeve</span></h2>
                     <p class="animate__animated animate__fadeInUp">È scientificamente provato che un aperitivo patatine e birretta non salveranno il mondo, ma la giornata sicuramente sì.</p>
@@ -116,9 +141,18 @@
                         <input type="text" placeholder="Inserisci il nome" name="nomeLocale">
                         <select  name="categorie" style="border-radius:7px; height: 50px  ;">
                             <option>--Scegli il tipo--</option>
-                            {foreach $genere_cat as $genere}
-                                <option><input type="radio" name="genere" value="{$genere}"> {$genere}</option>
-                            {/foreach}
+                            <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['genere_cat']->value, 'genere');
+$_smarty_tpl->tpl_vars['genere']->do_else = true;
+if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['genere']->value) {
+$_smarty_tpl->tpl_vars['genere']->do_else = false;
+?>
+                                <option><input type="radio" name="genere" value="<?php echo $_smarty_tpl->tpl_vars['genere']->value;?>
+"> <?php echo $_smarty_tpl->tpl_vars['genere']->value;?>
+</option>
+                            <?php
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                         </select>
                         <button class="input" type="submit" style="border-radius:10px;"><i class="fa fa-search"></i></button>
                     </form>
@@ -132,7 +166,7 @@
                         <button type="submit" style="border-radius:10px;"><i class="fa fa-search"></i></button>
                     </form>
                 </div>
-            {else}
+            <?php } else { ?>
                 <div class="carousel-container">
                     <h2 class="animate__animated animate__fadeInDown">Benvenuti in <span>FacceBeve</span></h2>
                     <p class="animate__animated animate__fadeInUp">È scientificamente provato che un aperitivo patatine e birretta non salveranno il mondo, ma la giornata sicuramente sì.</p>
@@ -145,15 +179,24 @@
                         <input type="text" placeholder="Inserisci il nome" name="nomeLo.cale">
                         <select name="categorie" style="border-radius:7px; height: 50px ">
                             <option>--Scegli il tipo--</option>
-                            {foreach $genere_cat as $genere}
-                                <option type="radio" name="genere" value="{$genere}"> {$genere}</option>
-                            {/foreach}
+                            <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['genere_cat']->value, 'genere');
+$_smarty_tpl->tpl_vars['genere']->do_else = true;
+if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['genere']->value) {
+$_smarty_tpl->tpl_vars['genere']->do_else = false;
+?>
+                                <option type="radio" name="genere" value="<?php echo $_smarty_tpl->tpl_vars['genere']->value;?>
+"> <?php echo $_smarty_tpl->tpl_vars['genere']->value;?>
+</option>
+                            <?php
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                         </select>
                         <button type="submit" style="border-radius:7px; height: 50px"><i class="fa fa-search"></i></button>
                     </form>
                 </div>
 
-            {/if}
+            <?php }?>
         </div>
 
     </div>
@@ -167,16 +210,24 @@
 
             <div class="row">
                 <h2>Ecco i TOP 4 locali in Italia:</h2>
-                {foreach $locali as $locale}
+                <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['locali']->value, 'locale');
+$_smarty_tpl->tpl_vars['locale']->do_else = true;
+if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['locale']->value) {
+$_smarty_tpl->tpl_vars['locale']->do_else = false;
+?>
                     <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up">
                         <div class="icon-box icon-box-pink">
                             <div class="icon"><i class="bx bxl-dribbble"></i></div>
-                            <h4 class="title"><a href="">{$locale[0]}</a></h4>
+                            <h4 class="title"><a href=""><?php echo $_smarty_tpl->tpl_vars['locale']->value[0];?>
+</a></h4>
                             <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias
                                 excepturi sint occaecati cupiditate non provident</p>
                         </div>
                     </div>
-                {/foreach}
+                <?php
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 
             </div>
 
@@ -260,18 +311,37 @@
             class="bi bi-arrow-up-short"></i></a>
 
 <!-- Vendor JS Files -->
-<script src="/template/vendor/purecounter/purecounter_vanilla.js"></script>
-<script src="/template/vendor/aos/aos.js"></script>
-<script src="/template/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="/template/vendor/glightbox/js/glightbox.min.js"></script>
-<script src="/template/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-<script src="/template/vendor/swiper/swiper-bundle.min.js"></script>
-<script src="/template/vendor/waypoints/noframework.waypoints.js"></script>
-<script src="/template/vendor/php-email-form/validate.js"></script>
+<?php echo '<script'; ?>
+ src="/template/vendor/purecounter/purecounter_vanilla.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ src="/template/vendor/aos/aos.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ src="/template/vendor/bootstrap/js/bootstrap.bundle.min.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ src="/template/vendor/glightbox/js/glightbox.min.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ src="/template/vendor/isotope-layout/isotope.pkgd.min.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ src="/template/vendor/swiper/swiper-bundle.min.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ src="/template/vendor/waypoints/noframework.waypoints.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ src="/template/vendor/php-email-form/validate.js"><?php echo '</script'; ?>
+>
 
 <!-- Template Main JS File -->
-<script src="/template/js/main.js"></script>
+<?php echo '<script'; ?>
+ src="/template/js/main.js"><?php echo '</script'; ?>
+>
 
 </body>
 
-</html>
+</html><?php }
+}

@@ -4,391 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c26a7dfa-0602-4989-a1a2-5d0dff0684f8" name="Changes" comment="login e registrazione aggiunta logo in alto da completare">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_01_09_2022_15_55_[Changes]/shelved.patch" beforeDir="false" />
+    <list default="true" id="9b9dc9a9-b323-4b45-835b-2a2c423efdeb" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.htaccess" beforeDir="false" afterPath="$PROJECT_DIR$/.htaccess" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controller/CFrontController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/CFrontController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/Autoloader.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/Smarty.class.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/bootstrap.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/debug.tpl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/html/areaPersonaleProprietario.html" beforeDir="false" afterPath="$PROJECT_DIR$/Smarty/html/areaPersonaleProprietario.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/plugins/block.textformat.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/plugins/function.counter.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/plugins/function.cycle.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/plugins/function.fetch.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/plugins/function.html_checkboxes.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/plugins/function.html_image.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/plugins/function.html_options.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/plugins/function.html_radios.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/plugins/function.html_select_date.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/plugins/function.html_select_time.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/plugins/function.html_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/plugins/function.mailto.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/plugins/function.math.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/plugins/modifier.capitalize.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/plugins/modifier.date_format.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/plugins/modifier.debug_print_var.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/plugins/modifier.escape.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/plugins/modifier.mb_wordwrap.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/plugins/modifier.regex_replace.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/plugins/modifier.replace.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/plugins/modifier.spacify.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/plugins/modifier.truncate.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/plugins/modifiercompiler.cat.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/plugins/modifiercompiler.count_characters.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/plugins/modifiercompiler.count_paragraphs.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/plugins/modifiercompiler.count_sentences.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/plugins/modifiercompiler.count_words.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/plugins/modifiercompiler.default.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/plugins/modifiercompiler.escape.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/plugins/modifiercompiler.from_charset.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/plugins/modifiercompiler.indent.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/plugins/modifiercompiler.lower.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/plugins/modifiercompiler.noprint.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/plugins/modifiercompiler.string_format.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/plugins/modifiercompiler.strip.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/plugins/modifiercompiler.strip_tags.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/plugins/modifiercompiler.to_charset.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/plugins/modifiercompiler.unescape.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/plugins/modifiercompiler.upper.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/plugins/modifiercompiler.wordwrap.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/plugins/outputfilter.trimwhitespace.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/plugins/shared.escape_special_chars.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/plugins/shared.literal_compiler_param.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/plugins/shared.make_timestamp.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/plugins/shared.mb_str_replace.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/plugins/shared.mb_unicode.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/plugins/variablefilter.htmlspecialchars.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_cacheresource.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_cacheresource_custom.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_cacheresource_keyvaluestore.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_data.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_block.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_cacheresource_file.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_compile_append.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_compile_assign.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_compile_block.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_compile_block_child.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_compile_block_parent.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_compile_break.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_compile_call.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_compile_capture.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_compile_child.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_compile_config_load.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_compile_continue.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_compile_debug.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_compile_eval.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_compile_extends.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_compile_for.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_compile_foreach.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_compile_function.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_compile_if.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_compile_include.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_compile_insert.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_compile_ldelim.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_compile_make_nocache.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_compile_nocache.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_compile_parent.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_compile_private_block_plugin.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_compile_private_foreachsection.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_compile_private_function_plugin.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_compile_private_modifier.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_compile_private_object_block_function.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_compile_private_object_function.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_compile_private_print_expression.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_compile_private_registered_block.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_compile_private_registered_function.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_compile_private_special_variable.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_compile_rdelim.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_compile_section.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_compile_setfilter.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_compile_shared_inheritance.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_compile_while.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_compilebase.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_config_file_compiler.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_configfilelexer.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_configfileparser.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_data.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_debug.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_errorhandler.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_extension_handler.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_method_addautoloadfilters.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_method_adddefaultmodifiers.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_method_append.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_method_appendbyref.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_method_assignbyref.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_method_assignglobal.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_method_clearallassign.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_method_clearallcache.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_method_clearassign.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_method_clearcache.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_method_clearcompiledtemplate.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_method_clearconfig.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_method_compileallconfig.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_method_compilealltemplates.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_method_configload.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_method_createdata.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_method_getautoloadfilters.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_method_getconfigvariable.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_method_getconfigvars.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_method_getdebugtemplate.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_method_getdefaultmodifiers.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_method_getglobal.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_method_getregisteredobject.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_method_getstreamvariable.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_method_gettags.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_method_gettemplatevars.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_method_literals.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_method_loadfilter.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_method_loadplugin.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_method_mustcompile.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_method_registercacheresource.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_method_registerclass.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_method_registerdefaultconfighandler.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_method_registerdefaultpluginhandler.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_method_registerdefaulttemplatehandler.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_method_registerfilter.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_method_registerobject.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_method_registerplugin.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_method_registerresource.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_method_setautoloadfilters.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_method_setdebugtemplate.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_method_setdefaultmodifiers.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_method_unloadfilter.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_method_unregistercacheresource.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_method_unregisterfilter.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_method_unregisterobject.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_method_unregisterplugin.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_method_unregisterresource.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_nocache_insert.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_parsetree.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_parsetree_code.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_parsetree_dq.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_parsetree_dqcontent.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_parsetree_tag.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_parsetree_template.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_parsetree_text.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_resource_eval.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_resource_extends.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_resource_file.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_resource_php.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_resource_stream.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_resource_string.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_runtime_cachemodify.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_runtime_cacheresourcefile.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_runtime_capture.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_runtime_codeframe.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_runtime_filterhandler.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_runtime_foreach.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_runtime_getincludepath.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_runtime_inheritance.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_runtime_make_nocache.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_runtime_tplfunction.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_runtime_updatecache.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_runtime_updatescope.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_runtime_writefile.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_smartytemplatecompiler.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_template.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_templatebase.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_templatecompilerbase.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_templatelexer.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_templateparser.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_testinstall.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_internal_undefined.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_resource.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_resource_custom.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_resource_recompiled.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_resource_uncompiled.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_security.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_template_cached.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_template_compiled.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_template_config.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_template_resource_base.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_template_source.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_undefined_variable.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smarty_variable.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smartycompilerexception.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/sysplugins/smartyexception.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/Readme.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/css/admin.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/css/error.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/css/log.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/css/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/img/about.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/img/apple-touch-icon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/img/blog/blog-1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/img/blog/blog-2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/img/blog/blog-3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/img/blog/blog-4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/img/blog/blog-author.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/img/blog/blog-inside-post.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/img/blog/blog-recent-1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/img/blog/blog-recent-2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/img/blog/blog-recent-3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/img/blog/blog-recent-4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/img/blog/blog-recent-5.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/img/blog/comments-1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/img/blog/comments-2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/img/blog/comments-3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/img/blog/comments-4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/img/blog/comments-5.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/img/blog/comments-6.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/img/favicon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/img/features-1.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/img/features-2.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/img/features-3.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/img/features-4.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/img/hero-bg.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/img/hero-bg23.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/img/logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/img/portfolio/portfolio-1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/img/portfolio/portfolio-2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/img/portfolio/portfolio-3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/img/portfolio/portfolio-4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/img/portfolio/portfolio-5.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/img/portfolio/portfolio-6.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/img/portfolio/portfolio-7.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/img/portfolio/portfolio-8.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/img/portfolio/portfolio-9.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/img/portfolio/portfolio-details-1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/img/portfolio/portfolio-details-2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/img/portfolio/portfolio-details-3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/img/search_lens.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/img/service-details-1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/img/service-details-2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/img/service-details-3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/img/service-details-4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/img/sfondo.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/img/team/team-1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/img/team/team-2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/img/team/team-3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/img/team/team-4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/img/team/team-5.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/img/team/team-6.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/img/testimonials/testimonials-1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/img/testimonials/testimonials-2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/img/testimonials/testimonials-3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/img/testimonials/testimonials-4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/img/testimonials/testimonials-5.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/img/why-us.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/js/main.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/scss/Readme.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/scss/_reboot.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/animate.css/animate.compat.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/animate.css/animate.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/animate.css/animate.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/aos/aos.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/aos/aos.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/bootstrap-icons/bootstrap-icons.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/bootstrap-icons/bootstrap-icons.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/bootstrap-icons/fonts/bootstrap-icons.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/bootstrap-icons/fonts/bootstrap-icons.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/bootstrap-icons/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/bootstrap/css/bootstrap-grid.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/bootstrap/css/bootstrap-grid.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/bootstrap/css/bootstrap-grid.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/bootstrap/css/bootstrap-grid.min.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/bootstrap/css/bootstrap-grid.rtl.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/bootstrap/css/bootstrap-grid.rtl.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/bootstrap/css/bootstrap-grid.rtl.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/bootstrap/css/bootstrap-grid.rtl.min.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/bootstrap/css/bootstrap-reboot.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/bootstrap/css/bootstrap-reboot.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/bootstrap/css/bootstrap-reboot.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/bootstrap/css/bootstrap-reboot.min.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/bootstrap/css/bootstrap-reboot.rtl.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/bootstrap/css/bootstrap-reboot.rtl.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/bootstrap/css/bootstrap-reboot.rtl.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/bootstrap/css/bootstrap-reboot.rtl.min.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/bootstrap/css/bootstrap-utilities.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/bootstrap/css/bootstrap-utilities.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/bootstrap/css/bootstrap-utilities.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/bootstrap/css/bootstrap-utilities.min.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/bootstrap/css/bootstrap-utilities.rtl.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/bootstrap/css/bootstrap-utilities.rtl.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/bootstrap/css/bootstrap-utilities.rtl.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/bootstrap/css/bootstrap-utilities.rtl.min.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/bootstrap/css/bootstrap.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/bootstrap/css/bootstrap.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/bootstrap/css/bootstrap.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/bootstrap/css/bootstrap.min.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/bootstrap/css/bootstrap.rtl.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/bootstrap/css/bootstrap.rtl.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/bootstrap/css/bootstrap.rtl.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/bootstrap/css/bootstrap.rtl.min.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/bootstrap/js/bootstrap.bundle.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/bootstrap/js/bootstrap.bundle.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/bootstrap/js/bootstrap.bundle.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/bootstrap/js/bootstrap.bundle.min.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/bootstrap/js/bootstrap.esm.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/bootstrap/js/bootstrap.esm.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/bootstrap/js/bootstrap.esm.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/bootstrap/js/bootstrap.esm.min.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/bootstrap/js/bootstrap.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/bootstrap/js/bootstrap.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/bootstrap/js/bootstrap.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/bootstrap/js/bootstrap.min.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/boxicons/css/animations.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/boxicons/css/boxicons.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/boxicons/css/boxicons.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/boxicons/css/transformations.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/boxicons/fonts/boxicons.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/boxicons/fonts/boxicons.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/boxicons/fonts/boxicons.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/boxicons/fonts/boxicons.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/boxicons/fonts/boxicons.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/glightbox/css/glightbox.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/glightbox/css/glightbox.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/glightbox/css/plyr.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/glightbox/css/plyr.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/glightbox/js/glightbox.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/glightbox/js/glightbox.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/isotope-layout/isotope.pkgd.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/isotope-layout/isotope.pkgd.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/php-email-form/validate.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/purecounter/purecounter_vanilla.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/swiper/swiper-bundle.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/swiper/swiper-bundle.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/assets/vendor/waypoints/noframework.waypoints.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/changelog.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/forms/Readme.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/template/forms/contact.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/templates/areaPersonaleProprietario.tpl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/templates/areaPersonaleUtente.tpl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/templates/error.tpl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/templates/gestioneEvento.tpl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/templates/gestioneLocale.tpl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/templates/home.tpl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/templates/infoLocale.tpl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/templates/login.tpl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/templates/registrazioneEvento.tpl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/templates/registrazioneLocale.tpl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/templates/registrazioneProprietario.tpl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/templates/registrazioneUtente.tpl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/templates/risultatiRicerca.tpl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/templates_c/30df5ca2fc2aed6ba9b9c2ca893fe37b5c7fbd9e_0.file.error.tpl.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/templates_c/97ad653f3f9e86e1ebac670f7800114319eaa04c_0.file.login.tpl.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/templates_c/99275d69a4c20272506089c41763d7e89a02c411_0.file.error.tpl.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/templates_c/9fd5117cec31f915dc8a0cd678895ba48305579d_0.file.home.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/Smarty/templates_c/85a4253371d35a6c110cf2fab98475519d466319_0.file.home.tpl.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/templates_c/a9c388b26f6de66a025e1299ab39b1a61ff761e7_0.file.infoLocale.tpl.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/templates_c/c701774acbf576e9d2ce2ce083dfa03664afb139_0.file.login.tpl.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controller/CRicerca.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/CRicerca.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Foundation/FCategoria.php" beforeDir="false" afterPath="$PROJECT_DIR$/Foundation/FCategoria.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Foundation/FDB.php" beforeDir="false" afterPath="$PROJECT_DIR$/Foundation/FDB.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Foundation/FLocale.php" beforeDir="false" afterPath="$PROJECT_DIR$/Foundation/FLocale.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Foundation/FPersistentManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/Foundation/FPersistentManager.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Smarty/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/Smarty/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/areaPersonaleProprietario.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/template/areaPersonaleProprietario.tpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/areaPersonaleUtente.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/template/areaPersonaleUtente.tpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/template/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/error.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/template/error.tpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/gestioneEvento.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/template/gestioneEvento.tpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/gestioneLocale.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/template/gestioneLocale.tpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/home.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/template/home.tpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/infoLocale.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/template/infoLocale.tpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/login.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/template/login.tpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/registrazioneEvento.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/template/registrazioneEvento.tpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/registrazioneLocale.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/template/registrazioneLocale.tpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/registrazioneProprietario.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/template/registrazioneProprietario.tpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/registrazioneUtente.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/template/registrazioneUtente.tpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/risultatiRicerca.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/template/risultatiRicerca.tpl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -396,6 +22,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="ComposerSettings">
+    <pharConfigPath>$PROJECT_DIR$/Smarty/composer.json</pharConfigPath>
     <execution />
   </component>
   <component name="FileTemplateManagerImpl">
@@ -426,28 +53,12 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/xampp/htdocs/FacceBeve&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;php.override.implement.member.chooser.php.doc&quot;: &quot;NONE&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.webide.settings.project.settings.php.debug&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.webide.settings.project.settings.php&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
-  },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;
-    ],
-    &quot;RunConfigurationTargetLRU&quot;: [
-      &quot;063e7489-89be-42e4-bbe3-a5ecc915e49f&quot;
-    ]
   }
 }</component>
   <component name="RecentsManager">
@@ -496,34 +107,9 @@
       <created>1651152882261</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1651152882261</updated>
-      <workItem from="1651152883719" duration="20000" />
-      <workItem from="1651155143324" duration="577000" />
-      <workItem from="1652772306403" duration="3183000" />
-      <workItem from="1652781708332" duration="6000" />
-      <workItem from="1652791741132" duration="6951000" />
-      <workItem from="1653560223238" duration="666000" />
-      <workItem from="1653560911120" duration="22000" />
-      <workItem from="1656663740176" duration="451000" />
-      <workItem from="1659425909103" duration="140000" />
-      <workItem from="1659426067911" duration="4642000" />
-      <workItem from="1659512073811" duration="2427000" />
-      <workItem from="1659964799502" duration="4463000" />
-      <workItem from="1660212137365" duration="3129000" />
-      <workItem from="1660290237057" duration="7353000" />
-      <workItem from="1660315334888" duration="6979000" />
-      <workItem from="1660720024137" duration="1296000" />
-      <workItem from="1660844876318" duration="2389000" />
-      <workItem from="1660896177487" duration="2951000" />
-      <workItem from="1661020640784" duration="1005000" />
-      <workItem from="1661584348820" duration="6662000" />
-      <workItem from="1661953620532" duration="2555000" />
-      <workItem from="1662460733829" duration="5099000" />
-      <workItem from="1662575406275" duration="797000" />
-      <workItem from="1662618357874" duration="5950000" />
-      <workItem from="1662640826039" duration="10005000" />
-      <workItem from="1662652160539" duration="2555000" />
-      <workItem from="1662654901816" duration="1343000" />
+      <updated>1662659958695</updated>
+      <workItem from="1662659959923" duration="2358000" />
+      <workItem from="1662707097584" duration="10288000" />
     </task>
     <servers />
   </component>

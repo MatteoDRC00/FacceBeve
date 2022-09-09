@@ -4,6 +4,20 @@ class FPersistentManager {
 
     private static FPersistentManager $_instance;
 
+    /**
+     * Costruttore di classe.
+     */
+    private function __construct(){
+
+    }
+
+    public static function getInstance(): FPersistentManager{
+        if ( !isset(self::$_instance) ) {
+            self::$_instance = new FPersistentManager();
+        }
+        return self::$_instance;
+    }
+
     /** Metodo che permette di salvare un oggetto sul db */
     public static function store($obj) {
         $EClass = get_class($obj);
@@ -26,20 +40,20 @@ class FPersistentManager {
         $Fclass::store($obj,$nome_file);
     }
 
-    public static function getInstance(): FPersistentManager{
-        if ( !(self::$_instance instanceof self) ) {
-            self::$_instance = new self();
-        }
-        return self::$_instance;
-    }
-
     /**
      * Metodo utilizzato per caricare TUTTE le categorie di locale presenti sul sito
     */
     public function getCategorie(){
         $return = FCategoria::loadAll();
-        return $return;
+
+        $genere = array();
+        foreach ($return as $c){
+            $genere[] = $c['genere'];
+        }
+
+        return $genere;
     }
+
 
     /**
      * @param string $attributo
@@ -181,6 +195,18 @@ class FPersistentManager {
         $ris = null;
         $ris = FEvento::loadByUtente($utentelogged->getUsername());
         return $ris;
+    }
+
+    public function top4Locali(){
+        $result = FLocale::getTopLocali();
+        if(count($result)>4){
+            for($i=0; $i<4; $i++){
+                $locali[]= $result[i];
+            }
+        }else
+            $locali = $result;
+        return $locali;
+
     }
 
 }

@@ -213,8 +213,8 @@ class FLocale {
     /**
      * Funzione con il compito di caricare le recensioni di un locale, obsoleto.
      */
-    public static function RecensioniLocale ($nomelocal,$luogo) {
-        $db=FDB::getInstance();
+    public static function recensioniLocale() {
+        $db = FDB::getInstance();
         $result = $db->getRecensioniLocali();
         //$rows_number = $result->rowCount();
         if (($result!=null)/* && ($rows_number == 1)*/){
@@ -302,6 +302,12 @@ class FLocale {
             }
         }
         return $locale;
+    }
+
+
+    public static function getTopLocali(){
+        $db = FDB::getInstance();
+        return $db->getLocaliPerValutazione();
     }
 
 

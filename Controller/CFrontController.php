@@ -1,14 +1,21 @@
 <?php
 
-require_once'utility/autoload.php';
+require_once 'utility/autoload.php';
 require_once 'StartSmarty.php';
 
 class CFrontController{
 
-    public function run ($path)
+    public function run($path){
+        if($path == "/"){
+            CRicerca::Home();
+        }
+    }
+
+
+    /*public function run ($path)
     {
         if($path !='/'){
-            $sessione = new USession();
+            //$sessione = new USession();
 
             //$method = $_SERVER['REQUEST_METHOD'];
 
@@ -94,6 +101,5 @@ class CFrontController{
             $view = new VUtente();
             $view->showHome();
         }
-
-    }
+    }*/
 }

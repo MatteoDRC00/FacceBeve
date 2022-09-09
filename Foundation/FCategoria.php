@@ -106,9 +106,10 @@ class FCategoria {
     }
 
     public static function loadAll(){
-        $categoria = null;
-        $db=FDB::getInstance();
-        $result=$db->loadAll(static::getClass());
+
+        $db = FDB::getInstance();
+        return $db->loadAll(static::getClass());
+        /*
         $rows_number = $result->rowCount();
         if(($result!=null) && ($rows_number == 1)) {
             $categoria=new ECategoria($result['genere'], $result['descrizione']); //Carica una categoria dal database
@@ -121,7 +122,7 @@ class FCategoria {
                 }
             }
         }
-        return $categoria;
+        return $categoria;*/
     }
 
     /**

@@ -227,7 +227,7 @@ class FDB{
     public function loadAll($class){
 		try {
 			$query = "SELECT * FROM " . $class::getTable() . ";";
-			$stmt = $this->db->prepare($query); //Prepared Statement
+			$stmt = $this->database->prepare($query); //Prepared Statement
 			$stmt->execute();
 			$num = $stmt->rowCount();
 			if ($num == 0) {
@@ -243,7 +243,7 @@ class FDB{
 			return $result;
 		} catch (PDOException $e) {
 			echo "Attenzione errore: " . $e->getMessage();
-			$this->db->rollBack();
+			$this->database->rollBack();
 		}
 	}
 
@@ -257,7 +257,7 @@ class FDB{
 	public function load($class, $field, $id){
 		try {
 			$query = "SELECT * FROM " . $class::getTable() . " WHERE " . $field . "='" . $id . "';";
-			$stmt = $this->db->prepare($query); //Prepared Statement
+			$stmt = $this->database->prepare($query); //Prepared Statement
 			$stmt->execute();
 			$num = $stmt->rowCount();
 			if ($num == 0) {
@@ -273,7 +273,7 @@ class FDB{
 			return $result;
 		} catch (PDOException $e) {
 			echo "Attenzione errore: " . $e->getMessage();
-			$this->db->rollBack();
+			$this->database->rollBack();
 			return null;
 		}
 	}
@@ -299,7 +299,7 @@ class FDB{
 			}
 		} catch (PDOException $e) {
 			echo "Attenzione errore: " . $e->getMessage();
-			$this->db->rollBack();
+			$this->database->rollBack();
 		}
 		return false;
 	}
@@ -335,7 +335,7 @@ class FDB{
 	{
 		try {
 			$query = "SELECT * FROM recensione INNER JOIN locale ON (locale.nome=recensione.nomelocale AND locale.luogo=recensione.nomelocale)";
-			$stmt = $this->db->prepare($query); //Prepared Statement
+			$stmt = $this->database->prepare($query); //Prepared Statement
 			$stmt->execute();
 			$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 			if (count($result) == 1) return $result[0];  //rimane solo l'array interno
@@ -588,7 +588,7 @@ class FDB{
 	{
 		$query = "SELECT * FROM utente where  username = '" . $string . "';";
 
-		$stmt = $this->db->prepare($query);
+		$stmt = $this->database->prepare($query);
 		$stmt->execute();
 		$num = $stmt->rowCount();
 		if ($num == 0)
@@ -602,6 +602,34 @@ class FDB{
 				$result[] = $row;
 		}
 		return array($result, $num);
+	}
+
+	/**
+	 * @return PDO
+	 */
+	public function getLocaliPerValutazione(){
+		try {
+			$query = "SELECT locale.id,AVG(recensione.voto) AS ValutazioneMedia FROM locale INNER JOIN recensione ON locale.id = recensione.locale GROUP BY locale.id ORDER BY AVG(recensione.voto) DESC;";
+			$stmt = $this->database->prepare($query);
+			$stmt->execute();
+			$num = $stmt->rowCount();
+			if ($num == 0) {
+				$result = null;        //nessuna riga interessata. return null
+			} elseif ($num == 1) {                          //nel caso in cui una sola riga fosse interessata
+				$result = $stmt->fetch(PDO::FETCH_ASSOC);   //ritorna una sola riga
+			} else {
+				$result = array();                         //nel caso in cui piu' righe fossero interessate
+				$stmt->setFetchMode(PDO::FETCH_ASSOC);   //imposta la modalità di fetch come array associativo
+				while ($row = $stmt->fetch())
+					$result[] = $row;                    //ritorna un array di righe.
+			}
+			return $result;
+		}catch (PDOException $e) {
+			echo "Attenzione errore: " . $e->getMessage();
+			$this->database->rollBack();
+		}
+
+
 	}
 
 }
