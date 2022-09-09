@@ -51,6 +51,16 @@ class VAccesso
         $this->smarty->display('login.tpl');
     }
 
+    /**
+     * Funzione che si occupa di gestire la visualizzazione della form di login
+     * @throws SmartyException
+     */
+    public function showFormLogin(){
+        // if (isset($_POST['username']))
+        //    $this->smarty->assign('username',$_POST['username']);
+        $this->smarty->display('login.tpl');
+    }
+
 
     //Metodi GET\\
 

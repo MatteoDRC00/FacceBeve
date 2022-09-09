@@ -113,6 +113,7 @@ class CAccesso
      */
     public function login() {
         $view = new VAccesso();
+        $view->showFormLogin();
         $pm = FPersistentManager()::getIstance();
         $UsernameLogin = $view->getUsername();
         $PasswordLogin = $view->getPassword();
