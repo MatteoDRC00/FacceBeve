@@ -37,7 +37,7 @@ class FPersistentManager {
     public static function storeMedia($obj,$nome_file) {
         $EClass = get_class($obj);
         $Fclass = str_replace("E", "F", $EClass);
-        $Fclass::store($obj,$nome_file);
+        return $Fclass::store($obj,$nome_file);
     }
 
     /**
