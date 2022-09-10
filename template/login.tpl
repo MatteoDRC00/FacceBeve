@@ -28,7 +28,7 @@
     <link href="/template/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
     <!-- Template Main CSS File -->
-    <link href="/FacceBeve/template/css/log.css" rel="stylesheet">
+    <link href="/template/css/log.css" rel="stylesheet">
 
     <!-- =======================================================
     * Template Name: Moderna - v4.9.1
@@ -51,7 +51,7 @@
 
 <div class="login-page">
     <div class="form">
-        <form class="login-form" action="Accesso/login" method="POST">
+        <form class="login-form" action="/Accesso/login" method="POST">
             <input type="text" placeholder="username" name="username">
             <input type="password" placeholder="password" name="password"/>
             <button  type="submit" >Login</button>

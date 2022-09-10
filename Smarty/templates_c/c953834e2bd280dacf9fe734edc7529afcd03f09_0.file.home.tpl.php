@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-10 11:04:07
+/* Smarty version 4.2.0, created on 2022-09-10 15:32:23
   from 'C:\xampp\htdocs\FacceBeve\template\home.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_631c53072f6cf9_20486626',
+  'unifunc' => 'content_631c91e7c711b7_14104052',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c953834e2bd280dacf9fe734edc7529afcd03f09' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\home.tpl',
-      1 => 1662797284,
+      1 => 1662816731,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_631c53072f6cf9_20486626 (Smarty_Internal_Template $_smarty_tpl) {
+function content_631c91e7c711b7_14104052 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <?php $_smarty_tpl->_assignInScope('tipo', $_smarty_tpl->tpl_vars['tipo']->value);?>
 <html lang="en">
@@ -52,7 +52,7 @@ function content_631c53072f6cf9_20486626 (Smarty_Internal_Template $_smarty_tpl)
     <link href="/template/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
     <!-- Template Main CSS File -->
-    <link href="/FacceBeve/template/css/style.css" rel="stylesheet">
+    <link href="/template/css/style.css" rel="stylesheet">
 
     <!-- JavaScript-->
     <?php echo '<script'; ?>

@@ -138,8 +138,6 @@ class CAccesso
     public function login() {
         $view = new VAccesso();
         $pm = FPersistentManager::getInstance();
-        header('Location: /');
-        /*
         $UsernameLogin = $view->getUsername();
         $PasswordLogin = $view->getPassword();
 
@@ -157,7 +155,7 @@ class CAccesso
             }elseif(($UsernameLogin=="admin") && ($PasswordLogin=="admin"))  {
                 header('Location: /FacceBeve/Admin/homepage');
             }
-        }*/
+        }
     }
 
 
