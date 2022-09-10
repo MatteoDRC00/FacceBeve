@@ -27,18 +27,7 @@ class VGestioneLocale{
         return $value;
     }
 
-    /**
-     * Restituisce il nome dell'evento che si vuole creare
-     * Inviato con metodo post
-     * @return string
-     */
-    public function getNomeEvento(): ?string
-    {
-        $value = null;
-        if (isset($_POST['nomeEvento'])) //NON SO SE VANNO UTLIZZATI NOMI DIVERSI
-            $value = $_POST['nomeEvento'];
-        return $value;
-    }
+
 
     /**
      * Restituisce la descrizione del locale che si vuole creare
@@ -53,35 +42,8 @@ class VGestioneLocale{
         return $value;
     }
 
-    /**
-     * Restituisce la descrizione dell'evento che si vuole creare
-     * Inviato con metodo post
-     * @return string
-     */
-    public function getDescrizioneEvento(): ?string
-    {
-        $value = null;
-        if (isset($_POST['descrizioneEvento'])) //NON SO SE VANNO UTLIZZATI NOMI DIVERSI
-            $value = $_POST['descrizioneEvento'];
-        return $value;
-    }
 
     /**
-     * Restituisce la descrizione dell'evento che si vuole creare
-     * Inviato con metodo post
-     * @return string contenente il valore inserito dall'utente
-     */
-    public function getDataEvento(): ?string
-    {
-        $value = null;
-        if (isset($_POST['dataEvento'])) //NON SO SE VANNO UTLIZZATI NOMI DIVERSI
-            $value = $_POST['dataEvento'];
-        return $value;
-    }
-
-
-    /**
-     *               DA MODIFICAREEE
      * Metodo richiamato quando un Proprietario crea un locale.
      * In caso di errori nella compilazione dei campi del locale, verrÃ  ricaricata la stessa pagina con un messaggio esplicativo
      * dell'errore commesso in fase di compilazione.
@@ -207,15 +169,26 @@ class VGestioneLocale{
         return $value;
     }
 
-    //RELATIVO ALLA LOCALIZZAZIONE, DA DISCUTERE
-
-    //Alla creazione non ha eventi organizzati
 
     public function getOrario(){
         $value = null;
         if (isset($_POST['Orario'])) //NON SO SE VANNO UTLIZZATI NOMI DIVERSI
             $value = $_POST['Orario'];
         return $value;
+    }
+
+    /**
+     * Restituisce un array contenente le informazioni sul immagine da caricare, contenuto nel array _$_FILES, questo verrà poi passato al metodo upload per controllare la correttezza del file caricato
+     * @return array
+     */
+    public function getImgLocale(): array
+    {
+        $type = $_FILES['img_locale']['type'];
+        $nome = $_FILES['img_locale']['name'];
+        $file = $_FILES['img_locale']['tmp_name'];
+        $dimensione = $_FILES['img_locale']['size'];
+        $arrayImg = array($nome,$type, $file, $dimensione);
+        return $arrayImg;
     }
 
 }

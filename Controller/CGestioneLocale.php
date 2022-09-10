@@ -1,7 +1,7 @@
 <?php
 
 /**
- * La classe CGestioneLocale viene utilizzata per la creazione del locale con tutte le relative informazioni (orario, immagini, …).
+ * La classe CGestioneLocale viene utilizzata per eseguire le operazioni CRUD sul locale con tutte le relative informazioni (orario, immagini, …).
  * @author Gruppo 8
  * @package Controller
  */
@@ -216,50 +216,7 @@ class CGestioneLocale
             header('Location: /FacceBeve/Utente/login');
     }
 
-
-    /**
-     * Funzione che viene richiamata per la creazione di un evento. Si possono avere diverse situazioni:
-     * se l'utente non è loggato  viene reindirizzato alla pagina di login perchè solo gli utenti loggati possono interagire con gli eventi.
-     * se l'utente è loggato come Proprietario(solo loro possono aggiungere eventi):
-     * 1) se il metodo di richiesta HTTP è GET viene visualizzato il form di creazione della ricerca;
-     * 2) se il metodo di richiesta HTTP è POST viene richiamata la funzione Creation().
-     * 3) se il metodo di richiesta HTTP è diverso da uno dei precedenti -->errore.
-     */
-    static function creaEvento()
-    {
-        $sessione = USession::getInstance();
-        if ($proprietario = unserialize($sessione->leggi_valore('utente'))) {
-            if ($_SERVER['REQUEST_METHOD'] == "GET") {
-                $view = new VGestioneAnnunci();
-                $proprietario = unserialize($proprietario = unserialize($sessione->leggi_valore('utente')));
-                if (get_class(proprietario) == "EProprietario") {
-                    $view->showFormCreation($proprietario, null);
-                } elseif (get_class($proprietario) == "EUtente") {
-                    $view->showFormCreation($proprietario, "errore da definire");
-                }
-            } elseif ($_SERVER['REQUEST_METHOD'] == "POST") {
-                $pm = FPersistentManager::GetIstance();
-                $proprietario = unserialize($proprietario = unserialize($sessione->leggi_valore('utente')));
-                if (get_class(proprietario) == "EProprietario") {
-                    $view = new VGestioneLocale();
-                    $nomeEvento = $view->getNomeEvento();
-                    $descrizioneEvento = $view->getDescrizioneEvento();
-                    $dataEvento = $view->getDataEvento();
-
-                    $Evento = new EEvento($nomeEvento, $descrizioneEvento, $dataEvento); //Poi salvalo nel locale
-
-                    list ($stato, $nome, $type) = static::upload('img'); //mo non mi sta tornando RIP
-
-
-                } elseif (get_class($proprietario) == "EUtente") {
-                    header('Location: /FacceBeve/');
-                }
-            }
-        } else {
-            header('Location: /FacceBeve/Utente/Login');
-        }
-    }
-
+    //Metodi Statici\\
     /**
      * Funzione che si preoccupa di verificare lo stato dell'immagine inserita
      * @param $nome_file
