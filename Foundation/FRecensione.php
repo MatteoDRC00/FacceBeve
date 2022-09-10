@@ -79,14 +79,15 @@ class FRecensione{
     }
 
     /**
-     * Permette la load sul db
-     * @param $id campo da confrontare per trovare l'oggetto
-     * @return object $rec Recensione
+     * Permette il caricamento dal db dato un campo e il valore di quel campo
+     * @param $campo mixed
+     * @param $valore mixed
+     * @return array|mixed|null
      */
-    public static function loadByField($field, $id) {
-        $rec = null;
+    public static function loadByField($campo, $valore) {
         $db = FDB::getInstance();
-        $result = $db->load(static::getClass(), $field, $id);
+        return $db->load(static::getClass(), $campo, $valore);
+        /*
         $rows_number = $db->interestedRows(static::getClass(), $field, $id);
         if(($result != null) && ($rows_number == 1)) {
             $rec = new ERecensione($result['titolo'],$result['descrizione'],$result['data'],$result['segnalato'],$result['counter'],$result['utente'],$result['nomelocale'],$result['luogolocale']);
@@ -101,7 +102,7 @@ class FRecensione{
                 }
             }
         }
-        return $rec;
+        return $rec;*/
     }
 
     /**

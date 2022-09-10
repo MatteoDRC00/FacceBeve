@@ -7,12 +7,11 @@ class CFrontController{
 
     public function run ($path)
     {
-        $resource = explode('/', $path);
+        if($path !='/') {
+            $resource = explode('/', $path);
 
-        array_shift($resource);
-        array_shift($resource);
+            array_shift($resource);
 
-        if($resource[0] != "index.php") {
             $controller = "C" . $resource[0];
             $dir = 'Controller';
             $eledir = scandir($dir);
@@ -31,8 +30,6 @@ class CFrontController{
             $controller->mostraHome();
         }
     }
-
-
 
 
     /*public function run ($path)

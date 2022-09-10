@@ -1,9 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PhpProjectServersManager">
-    <servers>
-      <server deployment_server="669f3491-b61b-4ffd-8925-c393c0208fa7" host="localhost" id="cea12ba4-8f8d-4d09-83b0-3f17d22c467f" name="XAMPP" />
-    </servers>
-  </component>
-  <component name="PhpProjectSharedConfiguration" php_language_level="7.4" />
+  <component name="PhpProjectSharedConfiguration" php_language_level="7.1" />
 </project>

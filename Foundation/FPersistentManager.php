@@ -209,4 +209,10 @@ class FPersistentManager {
 
     }
 
+
+    public function loadRecensioniByLocale($id){
+        $result = FRecensione::loadByField("locale", $id);
+        return $result;
+    }
+
 }

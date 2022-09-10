@@ -22,7 +22,7 @@ class CGestioneRecensione{
 
 
     public static function scriviRecensione(){
-        $sessione = USession::getInstance();
+        $sessione = new USession();
         $utente = $sessione->leggi_valore('utente');
         $locale = $sessione->leggi_valore('locale');
 
@@ -188,6 +188,21 @@ class CGestioneRecensione{
         }else{
             header('Location: /FacceBeve/Utente/login');
         }
+    }
+
+    public function mostraRecensioni(){
+        $sessione = new USession();
+        $locale = $sessione->leggi_valore('locale');
+
+        $l = unserialize($locale);
+        $id = $l["id"];
+
+        $pm = FPersistentManager::getInstance();
+        $recensioni_locale = $pm->loadRecensioniByLocale($id);
+
+        $view = new VGestioneRecensione();
+        $view->mostraRecensioniLocale();
+
     }
 
 }

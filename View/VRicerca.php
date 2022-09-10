@@ -184,7 +184,6 @@ class VRicerca
         $this->smarty->display('InfoLocale.tpl');
     }
 
-
     //Dubbio
     /**
      * Funzione di supporto per gestire le immagini presenti nell'elenco delle recensioni ||  GestioneLocali
