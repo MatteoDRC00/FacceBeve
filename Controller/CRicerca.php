@@ -161,7 +161,7 @@ class CRicerca{
         $result = $pm->load("id", $id, "FLocale");
 
         //Calcolo valutazione media locale + sue recensioni con le relative risposte
-        $id = $result->getId();
+        //$id = $result->getId();
         $recensioni = $pm->load("locale",$id,"FRecensione");
         if (is_array($recensioni)) {
             $util = array();
