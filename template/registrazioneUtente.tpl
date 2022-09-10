@@ -29,7 +29,7 @@
     <link href="/Smarty/template/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
     <!-- Template Main CSS File -->
-    <link href="/Smarty/template/assets/css/log.css" rel="stylesheet">
+    <link href="/FacceBeve/template/css/log.css" rel="stylesheet">
 
 </head>
 <body>

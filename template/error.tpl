@@ -12,7 +12,7 @@
     <link href="/template/img/favicon.png" rel="icon">
 
     <!--Css-->
-    <link rel="stylesheet" href="/template/css/error.css">
+    <link rel="stylesheet" href="/FacceBeve/template/css/error.css">
 
 
 </head>

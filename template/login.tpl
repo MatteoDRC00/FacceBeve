@@ -28,7 +28,7 @@
     <link href="/template/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
     <!-- Template Main CSS File -->
-    <link href="/template/css/log.css" rel="stylesheet">
+    <link href="/FacceBeve/template/css/log.css" rel="stylesheet">
 
     <!-- =======================================================
     * Template Name: Moderna - v4.9.1

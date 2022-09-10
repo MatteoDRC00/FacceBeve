@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-09 10:38:38
+/* Smarty version 4.2.0, created on 2022-09-10 03:11:12
   from 'C:\xampp1\htdocs\FacceBeve\template\home.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_631afb8e2cdc19_67118406',
+  'unifunc' => 'content_631be430d96e95_00311766',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '85a4253371d35a6c110cf2fab98475519d466319' => 
     array (
       0 => 'C:\\xampp1\\htdocs\\FacceBeve\\template\\home.tpl',
-      1 => 1662712717,
+      1 => 1662772141,
       2 => 'file',
     ),
   ),
@@ -20,10 +20,9 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_631afb8e2cdc19_67118406 (Smarty_Internal_Template $_smarty_tpl) {
+function content_631be430d96e95_00311766 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
-<?php $_smarty_tpl->_assignInScope('userlogged', (($tmp = $_smarty_tpl->tpl_vars['userlogged']->value ?? null)===null||$tmp==='' ? 'nouser' ?? null : $tmp));
-$_smarty_tpl->_assignInScope('tipo', (($tmp = $_smarty_tpl->tpl_vars['tipo']->value ?? null)===null||$tmp==='' ? 'nouser' ?? null : $tmp));?>
+<?php $_smarty_tpl->_assignInScope('tipo', $_smarty_tpl->tpl_vars['tipo']->value);?>
 <html lang="en">
 
 <head>
@@ -53,7 +52,7 @@ $_smarty_tpl->_assignInScope('tipo', (($tmp = $_smarty_tpl->tpl_vars['tipo']->va
     <link href="/template/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
     <!-- Template Main CSS File -->
-    <link href="/template/css/style.css" rel="stylesheet">
+    <link href="/FacceBeve/template/css/style.css" rel="stylesheet">
 
     <!-- JavaScript-->
     <?php echo '<script'; ?>
@@ -95,26 +94,26 @@ $_smarty_tpl->_assignInScope('tipo', (($tmp = $_smarty_tpl->tpl_vars['tipo']->va
     <div class="container d-flex justify-content-between align-items-center">
 
         <div class="logo">
-            <h1><a href="index.html"><img src="/template/img/logo.png" alt=""><span>FacceBeve</span></a></h1>
+            <h1><a href="/Smarty/html/home.html"><img src="/template/img/logo.png" alt=""><span>FacceBeve</span></a></h1>
         </div>
 
-        <?php if ($_smarty_tpl->tpl_vars['userlogged']->value == 'nouser') {?>
+        <?php if ($_smarty_tpl->tpl_vars['tipo']->value == 'nouser') {?>
             <div class="sign">
-                <a href="login.html">Accedi</a>
-                <a href="registrazioneUtente.html">Registrati</a>
-                <a href="registrazioneProprietario.html">Vuoi pubblicizzare il tuo locale?</a>
+                <a href="Accesso/formLogin">Accedi</a>
+                <a href="/Smarty/html/registrazioneUtente.html">Registrati</a>
+                <a href="/Smarty/html/registrazioneProprietario.html">Vuoi pubblicizzare il tuo locale?</a>
             </div>
         <?php } elseif ($_smarty_tpl->tpl_vars['tipo']->value == 'EUtente') {?>
             <div class="sign">
-                <a href="areaPersonaleUtente.html">Il tuo profilo personale</a>
-                <a href="areaPersonaleUtente.html">I tuoi locali preferiti</a> <!--Come si fa?-->
-                <a href="registrazioneProprietario.html">Logout</a> <!--Qui direi una semplice action  -->
+                <a href="/Smarty/html/areaPersonaleUtente.html">Il tuo profilo personale</a>
+                <a href="/Smarty/html/areaPersonaleUtente.html">I tuoi locali preferiti</a> <!--Come si fa?-->
+                <a href="/Smarty/html/registrazioneProprietario.html">Logout</a> <!--Qui direi una semplice action  -->
             </div>
         <?php } elseif ($_smarty_tpl->tpl_vars['tipo']->value == 'EProprietario') {?>
             <div class="sign">
-                <a href="areaPersonaleProprietario.html">Il tuo profilo personale</a>
-                <a href="areaPersonaleUtente.html">I tuoi locali gestiti</a> <!--Quasi quasi ne farei solo 2 di bottoni-->
-                <a href="registrazioneProprietario.html">Logout</a> <!--Qui direi una semplice action  -->
+                <a href="/Smarty/html/areaPersonaleProprietario.html">Il tuo profilo personale</a>
+                <a href="/Smarty/html/areaPersonaleUtente.html">I tuoi locali gestiti</a> <!--Quasi quasi ne farei solo 2 di bottoni-->
+                <a href="/Smarty/html/registrazioneProprietario.html">Logout</a> <!--Qui direi una semplice action  -->
             </div>
         <?php }?>
 
@@ -126,7 +125,7 @@ $_smarty_tpl->_assignInScope('tipo', (($tmp = $_smarty_tpl->tpl_vars['tipo']->va
     <div id="heroCarousel" class="container carousel carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
 
         <div class="carousel-item active">
-            <?php if ($_smarty_tpl->tpl_vars['userlogged']->value != 'nouser') {?>
+            <?php if ($_smarty_tpl->tpl_vars['tipo']->value != 'nouser') {?>
                 <div class="carousel-container">
                     <h2 class="animate__animated animate__fadeInDown">Benvenuti in <span>FacceBeve</span></h2>
                     <p class="animate__animated animate__fadeInUp">È scientificamente provato che un aperitivo patatine e birretta non salveranno il mondo, ma la giornata sicuramente sì.</p>
@@ -137,22 +136,32 @@ $_smarty_tpl->_assignInScope('tipo', (($tmp = $_smarty_tpl->tpl_vars['tipo']->va
                     </select>
                 </div>
                 <div class="ricerca animate__animated animate__fadeInDown" id="Locali" style="display: flex;justify-content: center;">
-                    <form class="Search"  action="risultatiRicerca.html">
-                        <input type="text" placeholder="Inserisci la città">
-                        <input type="text" placeholder="Inserisci il nome" name="nomeLocale">
+                    <form class="Search"  action="/Smarty/html/risultatiRicerca.html">
+                        <input class="homeinput" type="text" placeholder="Inserisci la città">
+                        <input class="homeinput" type="text" placeholder="Inserisci il nome" name="nomeLocale">
                         <select  name="categorie" style="border-radius:7px; height: 50px  ;">
-                            <option>Scegli il tipo</option>
-                            <option value="bar">Bar</option>
-                            <option value="pub">Pub</option>
+                            <option>--Scegli il tipo--</option>
+                            <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['genere_cat']->value, 'genere');
+$_smarty_tpl->tpl_vars['genere']->do_else = true;
+if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['genere']->value) {
+$_smarty_tpl->tpl_vars['genere']->do_else = false;
+?>
+                                <option><input class="homeinput" type="radio" name="genere" value="<?php echo $_smarty_tpl->tpl_vars['genere']->value;?>
+"> <?php echo $_smarty_tpl->tpl_vars['genere']->value;?>
+</option>
+                            <?php
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                         </select>
                         <button class="input" type="submit" style="border-radius:10px;"><i class="fa fa-search"></i></button>
                     </form>
                 </div>
                 <div class="ricerca animate__animated animate__fadeInDown" id="Eventi" style="display: none;justify-content: center;" >
                     <form class="Search" action="risultatiRicerca.html">
-                        <input type="text" placeholder="Inserisci la città" name="citta">
-                        <input type="text" placeholder="Inserisci il nome del Locale" name="nomeLocale">
-                        <input type="text" placeholder="Inserisci il nome del Evento" name="nomeEvento">
+                        <input class="homeinput" type="text" placeholder="Inserisci la città" name="citta">
+                        <input class="homeinput" type="text" placeholder="Inserisci il nome del Locale" name="nomeLocale">
+                        <input class="homeinput" type="text" placeholder="Inserisci il nome del Evento" name="nomeEvento">
                         <input type="date" placeholder="Inserisci la data del Evento" name="dataEvento">
                         <button type="submit" style="border-radius:10px;"><i class="fa fa-search"></i></button>
                     </form>
@@ -165,13 +174,23 @@ $_smarty_tpl->_assignInScope('tipo', (($tmp = $_smarty_tpl->tpl_vars['tipo']->va
                 </div>
 
                 <div class="ricerca animate__animated animate__fadeInDown" style="display: flex;justify-content: center;">
-                    <form class="Search"  action="risultatiRicerca.html">
-                        <input type="text" placeholder="Inserisci la città" name="citta">
-                        <input type="text" placeholder="Inserisci il nome" name="nomeLo.cale">
+                    <form class="Search"  action="/Smarty/html/risultatiRicerca.html">
+                        <input class="homeinput" type="text" placeholder="Inserisci la città" name="citta">
+                        <input class="homeinput" type="text" placeholder="Inserisci il nome" name="nomeLocale">
                         <select name="categorie" style="border-radius:7px; height: 50px ">
-                            <option>Scegli il tipo</option>
-                            <option value="bar">Bar</option>
-                            <option value="pub">Pub</option>
+                            <option>--Scegli il tipo--</option>
+                            <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['genere_cat']->value, 'genere');
+$_smarty_tpl->tpl_vars['genere']->do_else = true;
+if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['genere']->value) {
+$_smarty_tpl->tpl_vars['genere']->do_else = false;
+?>
+                                <option type="radio" name="genere" value="<?php echo $_smarty_tpl->tpl_vars['genere']->value;?>
+"> <?php echo $_smarty_tpl->tpl_vars['genere']->value;?>
+</option>
+                            <?php
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                         </select>
                         <button type="submit" style="border-radius:7px; height: 50px"><i class="fa fa-search"></i></button>
                     </form>
@@ -191,41 +210,23 @@ $_smarty_tpl->_assignInScope('tipo', (($tmp = $_smarty_tpl->tpl_vars['tipo']->va
 
             <div class="row">
                 <h2>Ecco i TOP 4 locali in Italia:</h2>
-                <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up">
-                    <div class="icon-box icon-box-pink">
-                        <div class="icon"><i class="bx bxl-dribbble"></i></div>
-                        <h4 class="title"><a href="">Lorem Ipsum</a></h4>
-                        <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias
-                            excepturi sint occaecati cupiditate non provident</p>
+                <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['locali']->value, 'locale');
+$_smarty_tpl->tpl_vars['locale']->do_else = true;
+if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['locale']->value) {
+$_smarty_tpl->tpl_vars['locale']->do_else = false;
+?>
+                    <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up">
+                        <div class="icon-box icon-box-pink">
+                            <h4 class="title"><a href=""><?php echo $_smarty_tpl->tpl_vars['locale']->value['nome'];?>
+</a></h4>
+                            <p class="description"><?php echo $_smarty_tpl->tpl_vars['locale']->value['descrizione'];?>
+</p>
+                        </div>
                     </div>
-                </div>
-
-                <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
-                    <div class="icon-box icon-box-cyan">
-                        <div class="icon"><i class="bx bx-file"></i></div>
-                        <h4 class="title"><a href="">Sed ut perspiciatis</a></h4>
-                        <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                            dolore eu fugiat nulla pariatur</p>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
-                    <div class="icon-box icon-box-green">
-                        <div class="icon"><i class="bx bx-tachometer"></i></div>
-                        <h4 class="title"><a href="">Magni Dolores</a></h4>
-                        <p class="description">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                            deserunt mollit anim id est laborum</p>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
-                    <div class="icon-box icon-box-blue">
-                        <div class="icon"><i class="bx bx-world"></i></div>
-                        <h4 class="title"><a href="">Nemo Enim</a></h4>
-                        <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis
-                            praesentium voluptatum deleniti atque</p>
-                    </div>
-                </div>
+                <?php
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 
             </div>
 
@@ -236,61 +237,6 @@ $_smarty_tpl->_assignInScope('tipo', (($tmp = $_smarty_tpl->tpl_vars['tipo']->va
 
 <!-- ======= Footer ======= -->
 <footer id="footer" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
-    <!--
-        <div class="footer-top">
-            <div class="container">
-                <div class="row">
-
-                    <div class="col-lg-3 col-md-6 footer-links">
-                        <h4>Useful Links</h4>
-                        <ul>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 footer-links">
-                        <h4>Our Services</h4>
-                        <ul>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 footer-contact">
-                        <h4>Contact Us</h4>
-                        <p>
-                            A108 Adam Street <br>
-                            New York, NY 535022<br>
-                            United States <br><br>
-                            <strong>Phone:</strong> +1 5589 55488 55<br>
-                            <strong>Email:</strong> info@example.com<br>
-                        </p>
-
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 footer-info">
-                        <h3>About Moderna</h3>
-                        <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita
-                            valies darta donna mare fermentum iaculis eu non diam phasellus.</p>
-                        <div class="social-links mt-3">
-                            <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-                            <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-                            <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-                            <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    -->
     <div class="container">
         <div class="copyright">
             &copy; Copyright <strong><span>Moderna</span></strong>. All Rights Reserved

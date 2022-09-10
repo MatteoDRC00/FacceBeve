@@ -29,7 +29,7 @@
     <link href="/template/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
     <!-- Template Main CSS File -->
-    <link href="/template/css/style.css" rel="stylesheet">
+    <link href="/FacceBeve/template/css/style.css" rel="stylesheet">
 
     <!-- JavaScript-->
     <script type="text/javascript">
@@ -69,26 +69,26 @@
     <div class="container d-flex justify-content-between align-items-center">
 
         <div class="logo">
-            <h1><a href="index.html"><img src="/template/img/logo.png" alt=""><span>FacceBeve</span></a></h1>
+            <h1><a href="/Smarty/html/home.html"><img src="/template/img/logo.png" alt=""><span>FacceBeve</span></a></h1>
         </div>
 
         {if $tipo=='nouser'}
         <div class="sign">
             <a href="Accesso/formLogin">Accedi</a>
-            <a href="registrazioneUtente.html">Registrati</a>
-            <a href="registrazioneProprietario.html">Vuoi pubblicizzare il tuo locale?</a>
+            <a href="/Smarty/html/registrazioneUtente.html">Registrati</a>
+            <a href="/Smarty/html/registrazioneProprietario.html">Vuoi pubblicizzare il tuo locale?</a>
         </div>
         {elseif $tipo=='EUtente'}
         <div class="sign">
-            <a href="areaPersonaleUtente.html">Il tuo profilo personale</a>
-            <a href="areaPersonaleUtente.html">I tuoi locali preferiti</a> <!--Come si fa?-->
-            <a href="registrazioneProprietario.html">Logout</a> <!--Qui direi una semplice action  -->
+            <a href="/Smarty/html/areaPersonaleUtente.html">Il tuo profilo personale</a>
+            <a href="/Smarty/html/areaPersonaleUtente.html">I tuoi locali preferiti</a> <!--Come si fa?-->
+            <a href="/Smarty/html/registrazioneProprietario.html">Logout</a> <!--Qui direi una semplice action  -->
         </div>
         {elseif $tipo=='EProprietario'}
         <div class="sign">
-            <a href="areaPersonaleProprietario.html">Il tuo profilo personale</a>
-            <a href="areaPersonaleUtente.html">I tuoi locali gestiti</a> <!--Quasi quasi ne farei solo 2 di bottoni-->
-            <a href="registrazioneProprietario.html">Logout</a> <!--Qui direi una semplice action  -->
+            <a href="/Smarty/html/areaPersonaleProprietario.html">Il tuo profilo personale</a>
+            <a href="/Smarty/html/areaPersonaleUtente.html">I tuoi locali gestiti</a> <!--Quasi quasi ne farei solo 2 di bottoni-->
+            <a href="/Smarty/html/registrazioneProprietario.html">Logout</a> <!--Qui direi una semplice action  -->
         </div>
         {/if}
 
@@ -111,13 +111,13 @@
                 </select>
             </div>
             <div class="ricerca animate__animated animate__fadeInDown" id="Locali" style="display: flex;justify-content: center;">
-                <form class="Search"  action="risultatiRicerca.html">
-                    <input type="text" placeholder="Inserisci la città">
-                    <input type="text" placeholder="Inserisci il nome" name="nomeLocale">
+                <form class="Search"  action="/Smarty/html/risultatiRicerca.html">
+                    <input class="homeinput" type="text" placeholder="Inserisci la città">
+                    <input class="homeinput" type="text" placeholder="Inserisci il nome" name="nomeLocale">
                     <select  name="categorie" style="border-radius:7px; height: 50px  ;">
                         <option>--Scegli il tipo--</option>
                         {foreach $genere_cat as $genere}
-                        <option><input type="radio" name="genere" value="{$genere}"> {$genere}</option>
+                        <option><input class="homeinput" type="radio" name="genere" value="{$genere}"> {$genere}</option>
                         {/foreach}
                     </select>
                     <button class="input" type="submit" style="border-radius:10px;"><i class="fa fa-search"></i></button>
@@ -125,9 +125,9 @@
             </div>
             <div class="ricerca animate__animated animate__fadeInDown" id="Eventi" style="display: none;justify-content: center;" >
                 <form class="Search" action="risultatiRicerca.html">
-                    <input type="text" placeholder="Inserisci la città" name="citta">
-                    <input type="text" placeholder="Inserisci il nome del Locale" name="nomeLocale">
-                    <input type="text" placeholder="Inserisci il nome del Evento" name="nomeEvento">
+                    <input class="homeinput" type="text" placeholder="Inserisci la città" name="citta">
+                    <input class="homeinput" type="text" placeholder="Inserisci il nome del Locale" name="nomeLocale">
+                    <input class="homeinput" type="text" placeholder="Inserisci il nome del Evento" name="nomeEvento">
                     <input type="date" placeholder="Inserisci la data del Evento" name="dataEvento">
                     <button type="submit" style="border-radius:10px;"><i class="fa fa-search"></i></button>
                 </form>
@@ -140,9 +140,9 @@
             </div>
 
             <div class="ricerca animate__animated animate__fadeInDown" style="display: flex;justify-content: center;">
-                <form class="Search"  action="risultatiRicerca.html">
-                    <input type="text" placeholder="Inserisci la città" name="citta">
-                    <input type="text" placeholder="Inserisci il nome" name="nomeLocale">
+                <form class="Search"  action="/Smarty/html/risultatiRicerca.html">
+                    <input class="homeinput" type="text" placeholder="Inserisci la città" name="citta">
+                    <input class="homeinput" type="text" placeholder="Inserisci il nome" name="nomeLocale">
                     <select name="categorie" style="border-radius:7px; height: 50px ">
                         <option>--Scegli il tipo--</option>
                         {foreach $genere_cat as $genere}
