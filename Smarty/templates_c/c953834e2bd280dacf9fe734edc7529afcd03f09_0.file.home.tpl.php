@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-09 18:33:21
+/* Smarty version 4.2.0, created on 2022-09-10 12:21:06
   from 'C:\xampp\htdocs\FacceBeve\template\home.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_631b6ad19c68f2_24620706',
+  'unifunc' => 'content_631c6512368499_75187096',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c953834e2bd280dacf9fe734edc7529afcd03f09' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\home.tpl',
-      1 => 1662741182,
+      1 => 1662805253,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_631b6ad19c68f2_24620706 (Smarty_Internal_Template $_smarty_tpl) {
+function content_631c6512368499_75187096 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <?php $_smarty_tpl->_assignInScope('tipo', $_smarty_tpl->tpl_vars['tipo']->value);?>
 <html lang="en">
@@ -94,26 +94,26 @@ function content_631b6ad19c68f2_24620706 (Smarty_Internal_Template $_smarty_tpl)
     <div class="container d-flex justify-content-between align-items-center">
 
         <div class="logo">
-            <h1><a href="index.html"><img src="/template/img/logo.png" alt=""><span>FacceBeve</span></a></h1>
+            <h1><a href="/Smarty/html/home.html"><img src="/template/img/logo.png" alt=""><span>FacceBeve</span></a></h1>
         </div>
 
         <?php if ($_smarty_tpl->tpl_vars['tipo']->value == 'nouser') {?>
             <div class="sign">
                 <a href="Accesso/formLogin">Accedi</a>
-                <a href="registrazioneUtente.html">Registrati</a>
-                <a href="registrazioneProprietario.html">Vuoi pubblicizzare il tuo locale?</a>
+                <a href="/Smarty/html/registrazioneUtente.html">Registrati</a>
+                <a href="/Smarty/html/registrazioneProprietario.html">Vuoi pubblicizzare il tuo locale?</a>
             </div>
         <?php } elseif ($_smarty_tpl->tpl_vars['tipo']->value == 'EUtente') {?>
             <div class="sign">
-                <a href="areaPersonaleUtente.html">Il tuo profilo personale</a>
-                <a href="areaPersonaleUtente.html">I tuoi locali preferiti</a> <!--Come si fa?-->
-                <a href="registrazioneProprietario.html">Logout</a> <!--Qui direi una semplice action  -->
+                <a href="/Smarty/html/areaPersonaleUtente.html">Il tuo profilo personale</a>
+                <a href="/Smarty/html/areaPersonaleUtente.html">I tuoi locali preferiti</a> <!--Come si fa?-->
+                <a href="/Smarty/html/registrazioneProprietario.html">Logout</a> <!--Qui direi una semplice action  -->
             </div>
         <?php } elseif ($_smarty_tpl->tpl_vars['tipo']->value == 'EProprietario') {?>
             <div class="sign">
-                <a href="areaPersonaleProprietario.html">Il tuo profilo personale</a>
-                <a href="areaPersonaleUtente.html">I tuoi locali gestiti</a> <!--Quasi quasi ne farei solo 2 di bottoni-->
-                <a href="registrazioneProprietario.html">Logout</a> <!--Qui direi una semplice action  -->
+                <a href="/Smarty/html/areaPersonaleProprietario.html">Il tuo profilo personale</a>
+                <a href="/Smarty/html/areaPersonaleUtente.html">I tuoi locali gestiti</a> <!--Quasi quasi ne farei solo 2 di bottoni-->
+                <a href="/Smarty/html/registrazioneProprietario.html">Logout</a> <!--Qui direi una semplice action  -->
             </div>
         <?php }?>
 
@@ -136,9 +136,9 @@ function content_631b6ad19c68f2_24620706 (Smarty_Internal_Template $_smarty_tpl)
                     </select>
                 </div>
                 <div class="ricerca animate__animated animate__fadeInDown" id="Locali" style="display: flex;justify-content: center;">
-                    <form class="Search"  action="risultatiRicerca.html">
-                        <input type="text" placeholder="Inserisci la città">
-                        <input type="text" placeholder="Inserisci il nome" name="nomeLocale">
+                    <form class="Search"  action="/Smarty/html/risultatiRicerca.html">
+                        <input class="homeinput" type="text" placeholder="Inserisci la città">
+                        <input class="homeinput" type="text" placeholder="Inserisci il nome" name="nomeLocale">
                         <select  name="categorie" style="border-radius:7px; height: 50px  ;">
                             <option>--Scegli il tipo--</option>
                             <?php
@@ -147,7 +147,7 @@ $_smarty_tpl->tpl_vars['genere']->do_else = true;
 if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['genere']->value) {
 $_smarty_tpl->tpl_vars['genere']->do_else = false;
 ?>
-                                <option><input type="radio" name="genere" value="<?php echo $_smarty_tpl->tpl_vars['genere']->value;?>
+                                <option><input class="homeinput" type="radio" name="genere" value="<?php echo $_smarty_tpl->tpl_vars['genere']->value;?>
 "> <?php echo $_smarty_tpl->tpl_vars['genere']->value;?>
 </option>
                             <?php
@@ -159,9 +159,9 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                 </div>
                 <div class="ricerca animate__animated animate__fadeInDown" id="Eventi" style="display: none;justify-content: center;" >
                     <form class="Search" action="risultatiRicerca.html">
-                        <input type="text" placeholder="Inserisci la città" name="citta">
-                        <input type="text" placeholder="Inserisci il nome del Locale" name="nomeLocale">
-                        <input type="text" placeholder="Inserisci il nome del Evento" name="nomeEvento">
+                        <input class="homeinput" type="text" placeholder="Inserisci la città" name="citta">
+                        <input class="homeinput" type="text" placeholder="Inserisci il nome del Locale" name="nomeLocale">
+                        <input class="homeinput" type="text" placeholder="Inserisci il nome del Evento" name="nomeEvento">
                         <input type="date" placeholder="Inserisci la data del Evento" name="dataEvento">
                         <button type="submit" style="border-radius:10px;"><i class="fa fa-search"></i></button>
                     </form>
@@ -174,9 +174,9 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                 </div>
 
                 <div class="ricerca animate__animated animate__fadeInDown" style="display: flex;justify-content: center;">
-                    <form class="Search"  action="risultatiRicerca.html">
-                        <input type="text" placeholder="Inserisci la città" name="citta">
-                        <input type="text" placeholder="Inserisci il nome" name="nomeLocale">
+                    <form class="Search"  action="/Smarty/html/risultatiRicerca.html">
+                        <input class="homeinput" type="text" placeholder="Inserisci la città" name="citta">
+                        <input class="homeinput" type="text" placeholder="Inserisci il nome" name="nomeLocale">
                         <select name="categorie" style="border-radius:7px; height: 50px ">
                             <option>--Scegli il tipo--</option>
                             <?php

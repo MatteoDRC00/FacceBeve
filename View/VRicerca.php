@@ -183,4 +183,7 @@ class VRicerca
         $this->smarty->display('InfoLocale.tpl');
     }
 
+    public function mostraRisultati(){
+        $this->smarty->display('risultatiRicerca.tpl');
+    }
 }
