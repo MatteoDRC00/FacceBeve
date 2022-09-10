@@ -8,6 +8,26 @@
 class CGestioneLocale
 {
 
+
+//----------------------------------CREAZIONE DEL LOCALE------------------------------------------------------\\
+    /**
+     * @throws SmartyException
+     */
+    public function formCreaLocale(){
+        $view = new VGestioneLocale();
+        $sessione = new USession();
+        if($sessione->leggi_valore('utente')){
+            $proprietario = unserialize(($sessione->leggi_valore('utente')));
+            if(get_class($proprietario) == "EProprietario")
+                $view->showFormCreation($proprietario,null);
+            else
+                $view->showFormCreation($proprietario,'wrong_class');
+        }else{
+            $error = new VError();
+            $error->error(1); //401 -> Forbidden Access
+        }
+    }
+
     /**
      * Funzione che viene richiamata per la creazione di un locale. Si possono avere diverse situazioni:
      * se l'utente non è loggato come Proprietario viene reindirizzato alla pagina di login perchè solo i Proprietari possono gestire i (propri) locali.
@@ -16,180 +36,246 @@ class CGestioneLocale
      * 2) se il metodo di richiesta HTTP è POST viene richiamata la funzione Creation().
      * 3) se il metodo di richiesta HTTP è diverso da uno dei precedenti -->errore.
      */
-    static function creaLocale()
+    public static function creaLocale()
     {
-        $sessione = USession::getInstance();
-        if ($sessione->leggi_valore('utente')) {
-            if ($_SERVER['REQUEST_METHOD'] == "GET") {
-                $view = new VGestioneLocale();
-                $proprietario = unserialize($sessione->leggi_valore('utente'));
-                if (get_class(proprietario) == "EProprietario") {
-                    $view->showFormCreation($proprietario, null);
-                } elseif (get_class($proprietario) == "EUtente") {
-                    $view->showFormCreation($proprietario, "wrong_class");
-                }
-            } elseif ($_SERVER['REQUEST_METHOD'] == "POST") {
-                $pm = FPersistentManager::GetIstance();
-                $proprietario = unserialize($sessione->leggi_valore('utente'));
-                if (get_class(proprietario) == "EProprietario") {
-                    $view = new VGestioneLocale();
-                    $nomeLocale = $view->getNomeLocale();
-                    $descrizione = $view->getDescrizioneLocale();
-                    $numTelefono = $view->getNumTelefono();
-                    $categoria = $view->getCategoria();
+        $sessione = new USession();
+        $pm = FPersistentManager::GetIstance();
+        $proprietario = unserialize($sessione->leggi_valore('utente'));
 
-                    //LOCALIZZAZIONE
-                    $indirizzo = $view->getIndirizzo();
-                    $numeroCivico = $view->getNumeroCivico();
-                    $citta = $view->getCitta();
-                    $nazione = $view->getNazione();
-                    $CAP = $view->getCAP();
-                    $localizzazioneLocale = new ELocalizzazione($indirizzo, $numeroCivico, $citta, $nazione, $CAP);
-                    //
+        $view = new VGestioneLocale();
+        $nomeLocale = $view->getNomeLocale();
+        $descrizione = $view->getDescrizioneLocale();
+        $numTelefono = $view->getNumTelefono();
+        $categoria = $view->getCategoria();
 
-                    //ORARIO
-                    $Orario = array();
-                    $tmp = $view->getOrario();
-                    $nomi = array_keys($tmp);
-                    $orari = array_values($tmp);
-                    for ($i = 0; $i < count($tmp); $i++) {
-                        // $orario = new EOrario($nomi[$i],$orari[$i][0],$orari[$i][1]);
-                        $orario = new EOrario();
-                        $orario->setGiornoSettimana($nomi[$i]);
-                        $orario->setOrarioApertura($orari[$i][0]);
-                        $orario->setOrarioChiusura($orari[$i][1]);
-                        $Orario[] = $orario;
-                    }
-                    //
+        //LOCALIZZAZIONE
+        $indirizzo = $view->getIndirizzo();
+        $numeroCivico = $view->getNumeroCivico();
+        $citta = $view->getCitta();
+        $nazione = $view->getNazione();
+        $CAP = $view->getCAP();
+        $localizzazioneLocale = new ELocalizzazione($indirizzo, $numeroCivico, $citta, $nazione, $CAP);
+        pm->store($localizzazioneLocale);
+        //
 
-                    pm->store($localizzazioneLocale); //che sia giusto?
-                    pm->store($Orario);
-                    $Locale = new ELocale($nomeLocale, $descrizione, $numTelefono, $proprietario, $categoria, $localizzazioneLocale, null, $Orario);
+        //ORARIO
+        $Orario = array();
+        $tmp = $view->getOrario();
+        $nomi = array_keys($tmp);
+        $orari = array_values($tmp);
+        for ($i = 0; $i < count($tmp); $i++) {
+            // $orario = new EOrario($nomi[$i],$orari[$i][0],$orari[$i][1]);
+            $orario = new EOrario();
+            $orario->setGiornoSettimana($nomi[$i]);
+            $orario->setOrarioApertura($orari[$i][0]);
+            $orario->setOrarioChiusura($orari[$i][1]);
+            $Orario[] = $orario;
+        }
+        pm->store($Orario);
 
-                    list ($stato, $nome, $type) = static::upload('img');
-                    if ($stato == "type")
-                        $view->showFormCreation($proprietario, "type");
-                    elseif ($stato == "size")
-                        $view->showFormCreation($proprietario, "size");
-                    elseif ($stato == "ok") {
-                        $view->showFormCreation($proprietario, "no");
-                        $size = $_FILES[img]['size'];
-                        $imgLocale = new EImmagine($nome, $size, $type,);
-                    }
-                    pm->store($Locale);
+        $Locale = new ELocale($nomeLocale, $descrizione, $numTelefono, $proprietario, $categoria, $localizzazioneLocale, null, $Orario);
+        $img = $view->getImgLocale();
+        list($check, $media) = static::upload($img);
+        if ($check == "type") {
+            $view->showFormCreation($proprietario, "size");
+        } elseif ($check == "size") {
+            $view->showFormCreation($proprietario, "size");
+        } elseif ($check == "ok") {
+            $pm = FPersistentManager::getInstance();
+            $pm->storeMedia($media, $img[1]); //Salvataggio dell'immagine sul db
+            $pm->storeEsterne($media); //Salvataggio sulla tabella generata dalla relazione N:N
+            header('Location: /Profilo/profilo'); //?
+        }
+        $id = pm->store($Locale);
+        header('Location: /FacceBeve/Utente/');
 
-                } elseif (get_class($proprietario) == "EUtente") {
-                    header('Location: /FacceBeve/');
-                }
-            }
+
+    }
+//----------------------------------CREAZIONE DEL LOCALE------------------------------------------------------\\
+
+
+//----------------------------------MODIFICA DEL LOCALE------------------------------------------------------\\
+    /**
+     * @throws SmartyException
+     */
+    public function formModificaLocale(){
+        $view = new VGestioneLocale();
+        $sessione = new USession();
+        if($sessione->leggi_valore('utente')){
+            $proprietario = unserialize(($sessione->leggi_valore('utente')));
+            if(get_class($proprietario) == "EProprietario")
+                $view->showFormCreation($proprietario,null);
+            else
+                $view->showFormCreation($proprietario,'wrong_class');
+        }else{
+            $error = new VError();
+            $error->error(1); //401 -> Forbidden Access
         }
     }
 
+    /**
+     * Funzione che gestisce la modifica del nome del Locale. Preleva il nuovo nome dalla View e procede alla modifica.
+     * @return void
+     */
+    public function modificaNomeLocale(){
+        $sessione = new USession();
+        $view = new VGestioneLocale();
+
+        $utente = unserialize($sessione->leggi_valore('utente'));
+        $pm = FPersistentManager::getInstance();
+        $locale = $pm->load("id",$view->getIdLocale(),"FLocale");
+        $nomeNuovo = $view->getNomeLocale();
+        $locale->setNome($nomeNuovo);
+        $pm->update("FLocale","nome",$nomeNuovo,"id",$locale->getId());
+
+        //$view->showFormModify();
+    }
 
     /**
-     * Funzione invocata per modificare le informazioni del locale di cui si è proprietari
-     * 1) se il metodo di richiesta HTTP è POST e si è loggati come proprietario, si applicano le modifiche;
-     * 2) se il metodo di richiesta HTTP è GET e non si è loggati come proprietario, avviene il reindirizzamento alla pagina del proprio profilo;
-     * 3) se non si è loggati, si viene reindirizzati alla form di login.
+     * Funzione che gestisce la modifica della descrizione del Locale. Preleva la nuova descrizione dalla View e procede alla modifica.
+     * @return void
      */
-    static function modificaLocale()
-    {
-        $sessione = USession::getInstance();
-        if ($sessione->leggi_valore('utente')) {
-            $utente = unserialize($proprietario = unserialize($sessione->leggi_valore('utente')));
-            if (get_class($utente) == "EProprietario") {
-                $view = new VGestioneLocale();
-                $pm = FPersistentManager::getIstance();
-                $locale = $pm->load("proprietario", $utente->getUsername(), "FLocale");
-                //Nome Locale
-                $a = $view->getNomeLocale();
-                //controlli su locale?
-                if (($a != $locale->getNome()) && isset($a)) {
-                    $locale->setNome($a);
-                    $pm->update("nome", $a, "id", $locale->getId(), "FLocale");
-                }
-                //Descrizione Locale
-                $a = $view->getDescrizioneLocale();
-                if (($a != $locale->getDescrizione()) && isset($a)) {
-                    $locale->setDescrizione($a);
-                    $pm->update("descrizione", $a, "id", $locale->getId(), "FLocale");
-                }
-                //Numero di telefono Locale
-                $a = $view->getNumTelefono();
-                if (($a != $locale->getNumTelefono()) && isset($a)) {
-                    $locale->setNumTelefono($a);
-                    $pm->update("numtelefono", $a, "id", $locale->getId(), "FLocale");
-                }
-                //Categoria Locale
-                $a = $view->getCategoria();
-                if (($a != $locale->getCategoria()) && isset($a)) {
-                    $pm->update("genere", $a, "genere", $locale->getCategoria()->getGenere(), "FCategoria");
-                    $locale->setCategoria($a);
-                }
+    public function modificaDescrizioneLocale(){
+        $sessione = new USession();
+        $view = new VGestioneLocale();
 
-                //LOCALIZZAZIONE
-                //Indirizzo Locale
-                $a = $view->getIndirizzo();
-                if (($a != $locale->getLocalizzazione()->getIndirizzo()) && isset($a)) {
-                    $locale->getLocalizzazione()->setIndirizzo($a);
-                    $pm->update("indirizzo", $a, "id", $locale->getLocalizzazione()->getCodice(), "FLocalizzazione");
-                }
-                //Numero civico Locale
-                $a = $view->getNumeroCivico();
-                if (($a != $locale->getLocalizzazione()->getNumCivico()) && isset($a)) {
-                    $locale->getLocalizzazione()->setNumCivico($a);
-                    $pm->update("numCivico", $a, "id", $locale->getLocalizzazione()->getCodice(), "FLocalizzazione");
-                }
-                //Citta Locale
-                $a = $view->getCitta();
-                if (($a != $locale->getLocalizzazione()->getNumCitta()) && isset($a)) {
-                    $locale->getLocalizzazione()->setCitta($a);
-                    $pm->update("citta", $a, "id", $locale->getLocalizzazione()->getCodice(), "FLocalizzazione");
-                }
-                //$nazione = $view->getNazione();
+        $utente = unserialize($sessione->leggi_valore('utente'));
+        $pm = FPersistentManager::getInstance();
+        $locale = $pm->load("id",$view->getIdLocale(),"FLocale");
+        $newDescrizione = $view->getDescrizioneLocale();
+        $locale->setNome($newDescrizione);
+        $pm->update("FLocale","descrizione",$newDescrizione,"id",$locale->getId());
 
-                //CAP Locale
-                $a = $view->getCAP();
-                if (($a != $locale->getLocalizzazione()->getCAP()) && isset($a)) {
-                    $locale->getLocalizzazione()->setCAP($a);
-                    $pm->update("CAP", $a, "id", $locale->getLocalizzazione()->getCodice(), "FLocalizzazione");
-                }
-                //
-
-                //ORARIO
-                $Orario = $locale->getOrario();
-                $tmp = $view->getOrario();
-                $nomi = array_keys($tmp);
-                $orari = array_values($tmp);
-                for ($i = 0; $i < count($tmp); $i++) {
-                    // $orario = new EOrario($nomi[$i],$orari[$i][0],$orari[$i][1]);
-                    $orario = new EOrario();
-                    $orario->setGiornoSettimana($nomi[$i]);
-                    $orario->setOrarioApertura($orari[$i][0]);
-                    $orario->setOrarioChiusura($orari[$i][1]);
-                    if ($Orario[$i] != $orario) {
-                        $Orario[] = $orario;
-                        $pm->update("OrarioApertura", $orari[$i][0], "id", $locale->getOrario()[$i]->getId(), "FOrario");
-                        $pm->update("OrarioChiusura", $orari[$i][1], "id", $locale->getOrario()[$i]->getId(), "FOrario");
-                    }
-                }
-
-                list ($stato, $nome, $type) = static::upload('img');
-                if ($stato == "type")
-                    $view->showFormCreation($proprietario, "type");
-                elseif ($stato == "size")
-                    $view->showFormCreation($proprietario, "size");
-                elseif ($stato == "ok") {
-                    $view->showFormCreation($proprietario, "no");
-                }
-
-            } elseif (get_class($utente) == "ECliente") {
-
-                header('Location: /Faccebeve/Utente/profile');
-            }
-        } else
-            header('Location: /Faccebeve/Utente/login');
+        //$view->showFormModify();
     }
+
+    /**
+     * Funzione che gestisce la modifica il numero di telefono del Locale. Preleva il nuovo numero di telefono dalla View e procede alla modifica.
+     * @return void
+     */
+    public function modificaNumeroLocale(){
+        $sessione = new USession();
+        $view = new VGestioneLocale();
+
+        $utente = unserialize($sessione->leggi_valore('utente'));
+        $pm = FPersistentManager::getInstance();
+        $locale = $pm->load("id",$view->getIdLocale(),"FLocale");
+        $numeroTelefono = $view->getNumTelefono();
+        $locale->setNome($numeroTelefono);
+        $pm->update("FLocale","numtelefono",$numeroTelefono,"id",$locale->getId());
+
+        //$view->showFormModify();
+    }
+
+    /**
+     * Funzione che gestisce la modifica della categoria del locale. Preleva il nuovo nome dalla View e procede alla modifica.
+     * @return void
+     */
+    public function modificaCatLocale(){
+        $sessione = new USession();
+        $view = new VGestioneLocale();
+
+        $utente = unserialize($sessione->leggi_valore('utente'));
+        $pm = FPersistentManager::getInstance();
+        $locale = $pm->load("id",$view->getIdLocale(),"FLocale");
+        $newCat = $view->getCategoria();
+        foreach($locale->getCategoria() as $cat1){
+            $pm->deleteEsterne($cat1);
+        }
+        foreach($newCat as $cat2){
+            $pm->storeEsterne($cat2);
+        }
+        //$view->showFormModify();
+    }
+
+    /**
+     * Funzione che gestisce la modifica della categoria del locale. Preleva il nuovo nome dalla View e procede alla modifica.
+     * @return void
+     */
+    public function modificaLocalizzazioneLocale(){
+        $sessione = new USession();
+        $view = new VGestioneLocale();
+
+        $utente = unserialize($sessione->leggi_valore('utente'));
+        $pm = FPersistentManager::getInstance();
+        $locale = $pm->load("id",$view->getIdLocale(),"FLocale");
+        $localizzazione = $locale->getLocalizzazione();
+
+        $a = $view->getIndirizzo();
+        $pm->update("FLocalizzazione","indirizzo",$a,"id",$localizzazione->getId());
+
+        $b = $view->getNumeroCivico();
+        $pm->update("FLocalizzazione","numCivico",$b,"id",$localizzazione->getId());
+
+        $c = $view->getCitta();
+        $pm->update("FLocalizzazione","citta",$c,"id",$localizzazione->getId());
+
+        $d = $view->getCAP();
+        $pm->update("FLocalizzazione","CAP",$d,"id",$localizzazione->getId());
+
+        //$view->showFormModify();
+    }
+
+    /**
+     * Funzione che gestisce la modifica dell'orario del locale. Preleva il nuovo orario dalla View e procede alla modifica.
+     * @return void
+     */
+    public function modificaOrarioLocale(){
+        $sessione = new USession();
+        $view = new VGestioneLocale();
+
+        //$utente = unserialize($sessione->leggi_valore('utente'));
+        $pm = FPersistentManager::getInstance();
+        $locale = $pm->load("id",$view->getIdLocale(),"FLocale");
+        //ORARIO
+        $Orario = $locale->getOrario();
+        $tmp = $view->getOrario();
+        $nomi = array_keys($tmp);
+        $orari = array_values($tmp);
+        for ($i = 0; $i < count($tmp); $i++) {
+            $orario = new EOrario();
+            $orario->setGiornoSettimana($nomi[$i]);
+            $orario->setOrarioApertura($orari[$i][0]);
+            $orario->setOrarioChiusura($orari[$i][1]);
+            if ($Orario[$i] != $orario) {
+                $Orario[] = $orario;
+                $pm->update("OrarioApertura", $orari[$i][0], "id", $locale->getOrario()[$i]->getId(), "FOrario");
+                $pm->update("OrarioChiusura", $orari[$i][1], "id", $locale->getOrario()[$i]->getId(), "FOrario");
+            }
+        }
+        //$view->showFormModify();
+    }
+
+    /**
+     * Gestisce la modifica dell'immagine del locale. Preleva la nuova immagine dalla view e procede alla modifica.
+     * @return void
+     * @throws SmartyException
+     */
+    public function addImmagineLocale()
+    {
+        $view = new VGestioneLocale();
+        $sessione = USession::getInstance();
+        $utente = unserialize($sessione->leggi_valore('utente'));
+        $pm = FPersistentManager::getInstance();
+        $locale = $pm->load("id", $view->getIdLocale(), "FLocale");
+
+        $img = $view->getImgLocale();
+        list($check, $media) = static::upload($img);
+        if ($check == "type") {
+            $view->showFormModify($utente, "size");
+        } elseif ($check == "size") {
+            $view->showFormModify($utente, "size");
+        } elseif ($check == "ok") {
+            $pm = FPersistentManager::getInstance();
+            $pm->storeMedia($media, $img[1]); //Salvataggio dell'immagine sul db
+            $pm->storeEsterne($media); //Salvataggio sulla tabella generata dalla relazione N:N
+            header('Location: /Profilo/profilo'); //?
+        }
+    }
+
+    //Delete Immagine, va fatta?
+
+//----------------------------------MODIFICA DEL LOCALE------------------------------------------------------\\
 
     /**
      * Funzione utilizzata per eliminare un locale, di cui si è proprietari
@@ -222,31 +308,31 @@ class CGestioneLocale
      * @param $nome_file
      * @return array , dove $ris è lo stato dell'immagine, $nome è il nome dell'immagine e $type è il MIME type dell'immagine
      */
-    static function upload($nome_file): array
+    static function upload($img): array
     {
         //$ris = "no_img";
         $type = null;
         $nome = null;
         $max_size = 300000;
-        $result = is_uploaded_file($_FILES[$nome_file]['tmp_name']); //true se è stato caricato via HTTP POST.
+        $result = is_uploaded_file($result = is_uploaded_file($img[2])); //true se è stato caricato via HTTP POST.
         if (!$result) {
             $ris = "no_img";
         } else {
-            $size = $_FILES[$nome_file]['size'];
-            //$type = $_FILES[$nome_file]['type'];
+            $size = $img[3];
+            $type = $img[0];
             if ($size > $max_size) {
                 $ris = "size";
             } else {
-                $type = $_FILES[$nome_file]['type'];
                 if ($type == 'image/jpeg' || $type == 'image/png' || $type == 'image/jpg') {
-                    $nome = $_FILES[$nome_file]['name'];
-                    $ris = "ok_img";
+                    $immagine = @file_get_contents($img[2]);
+                    $immagine = addslashes ($immagine);
+                    $mutente = new EImmagine($nome,$size,$type,$immagine);;
                 } else {
                     $ris = "type";
                 }
             }
         }
-        return array($ris, $nome, $type);
+        return array($ris,$mutente);
     }
 
 }

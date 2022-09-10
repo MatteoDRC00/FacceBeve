@@ -226,6 +226,14 @@ class  ELocale implements JsonSerializable{
         $this->img = $img;
     }
 
+    /**
+     * @param array $img
+     */
+    public function addImg(EImmagine $img): void
+    {
+        $this->img[] = $img;
+    }
+
 
     public function jsonSerialize()
     {

@@ -97,7 +97,7 @@ class VProfilo{
                     break;
                 }
                 case ("username"):{
-                    $this->smarty->assign('errorType',"Username già presente");
+                    $this->smarty->assign('errorUsername',"Username già presente");
                     break;
                 }
             }

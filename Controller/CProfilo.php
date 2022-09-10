@@ -136,7 +136,7 @@ class CProfilo{
 
 
     /**
-     * Gestisce la modifica dell'immagine del cliente. Preleva la nuova immagine dalla view e procede alla modifica.
+     * Gestisce la modifica dell'immagine del utente/proprietario. Preleva la nuova immagine dalla view e procede alla modifica.
      * @return void
      * @throws SmartyException
      */
@@ -147,13 +147,15 @@ class CProfilo{
             $utente = unserialize($sessione->leggi_valore('utente'));
             $locali = static::caricaLocali($utente);
             $img = $view->getNewImgProfilo();
-            $check = static::upload($img);
+            list($check,$media) = static::upload($img);
             if($check=="type"){
                 $view->profilo($utente,$locali,"type");
             }elseif($check=="size"){
                 $view->profilo($utente,$locali,"size");
             }elseif($check=="ok"){
                 //$utente->setImgProfilo($img);
+                $pm = FPersistentManager::getInstance();
+                $pm->updateMedia($media,$img[1]);
                 header('Location: /Profilo/profilo'); //profilo!!!
             }else{
                 $view = new VError();
@@ -168,16 +170,26 @@ class CProfilo{
      * @throws SmartyException
      */
     public function formModificaUtente(){
-        $view = new VAccesso();
-        $view->registra_utente();
+        $view = new VProfilo();
+        $sessione = new USession();
+        if($sessione->leggi_valore('utente')){
+            $utente = unserialize(($sessione->leggi_valore('utente')));
+            $localiUtente = static::caricaLocali($utente);
+            $view->profilo($utente,$localiUtente,null);
+        }
     }
 
     /**
      * @throws SmartyException
      */
     public function formModificaProprietario(){
-        $view = new VAccesso();
-        $view->registra_proprietario();
+        $view = new VProfilo();
+        $sessione = new USession();
+        if($sessione->leggi_valore('utente')){
+            $proprietario = unserialize(($sessione->leggi_valore('utente')));
+            $localiProprietario = static::caricaLocali($proprietario);
+            $view->profilo($proprietario,$localiProprietario,null);
+        }
     }
 
     /**
@@ -237,7 +249,7 @@ class CProfilo{
                 $immagine = @file_get_contents($img[2]);
                 $immagine = addslashes ($immagine);
                 $mutente = new EImmagine($nome,$size,$type,$immagine);
-                $pm->updateMedia($mutente,$nome);
+                //$pm->updateMedia($mutente,$nome);
                 //return "ok";
                 $ris = "ok";
             }
@@ -247,7 +259,7 @@ class CProfilo{
                 $ris = "type";
             }
         }
-        return $ris;
+        return array($ris,$mutente);
     }
 
     /**

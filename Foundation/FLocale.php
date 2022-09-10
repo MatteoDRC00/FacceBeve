@@ -69,7 +69,7 @@ class FLocale {
         $id = NULL;
         $db = FDB::getInstance();
         $proprietario = $db->exist("FProprietario", "proprietario", $locale->getProprietario()->getUsername());
-        $localizzazione = $db->exist("FLocalizzazione", "localizzazione", $locale->getLocalizzazione()->getId());
+        //DA VEDERE $localizzazione = $db->exist("FLocalizzazione", "localizzazione", $locale->getLocalizzazione()->getId());
         if($proprietario && $localizzazione) {
             $id = $db->store(static::getClass() ,$locale);
             //Categorie Locale
@@ -93,25 +93,47 @@ class FLocale {
                     $db->chiaviEsterne("Locale_Eventi","ID_Locale","ID_Evento",$id,$idEvento);
                 }
             }
+            //Locale Immag
+            if($locale->getImg()!=null){
+                foreach($locale->getImg() as $img){
+                    $idImg = $img->getId();
+                    $db->chiaviEsterne("Locale_Immagini","ID_Locale","ID_Immagine",$id,$idImg);
+                }
+            }
         }
         //$locale->setId($id);
         return $id;
     }
 
     /**
-     * metodo che permette di salvare le immagini di un locale nel db
-     * @param ELocale $locale Locale da salvare
+     * metodo che permette di cancellare tuple nelle tabelle generate da relazioni N:N
+     * @param Object $obj oggetto da cancellare
      * @return void
      */
-    public static function ImmaginiLocale(ELocale $locale){
+    public static function deleteEsterne(Object $obj){
         $id = NULL;
         $db = FDB::getInstance();
         //Immagini Locale
-        if($locale->getImmagini()!=null){
-            foreach($locale->getImmagini() as $img){
-                $idImg = $img->getId();
-                $db->chiaviEsterne("Locale_Immagini","ID_Locale","ID_Immagine",$id,$idImg);
-            }
+        if(get_class($obj)=="ECategoria"){
+            $db->delete("Locale_Categorie","ID_Categoria",$obj->getGenere());
+        }
+    }
+
+    /**
+     * metodo che permette di cancellare tuple nelle tabelle generate da relazioni N:N
+     * @param Object $obj oggetto da cancellare
+     * @return void
+     */
+    public static function storeEsterne(Object $obj){
+        $id = NULL;
+        $db = FDB::getInstance();
+        //Immagini Locale
+        if(get_class($obj)=="ECategoria"){
+            $genere = $obj->getGenere();
+            $db->chiaviEsterne("Locale_Categorie","ID_Locale","ID_Categoria",$id,$genere);
+        }elseif(get_class($obj)=="EImmagine"){
+            $idImg = $obj->getId();
+            $db->chiaviEsterne("Locale_Immagini","ID_Locale","ID_Immagine",$id,$idImg);
         }
     }
 

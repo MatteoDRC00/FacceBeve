@@ -28,10 +28,6 @@ class FPersistentManager {
         $FClass::store($obj);
     }
 
-    public function addPreferiti(){
-
-    }
-
     /**   Metodo che permette di salvare un media di un oggetto sul db
      * @param obj oggetto di cui si vuole salvare il media
      * @param nome_file ,nome del media da salvare
@@ -40,6 +36,15 @@ class FPersistentManager {
         $EClass = get_class($obj);
         $Fclass = str_replace("E", "F", $EClass);
         return $Fclass::store($obj,$nome_file);
+    }
+
+    /**
+     * @param Object $obj
+     * @param string $Fclass
+     * @return void
+     */
+    public static function storeEsterne(string $Fclass, Object $obj) {
+        $Fclass::storeEsterne($obj);
     }
 
     /**
@@ -55,7 +60,6 @@ class FPersistentManager {
         return $genere;
     }
 
-
     /**
      * @param string $attributo
      * @param string $valore
@@ -64,6 +68,15 @@ class FPersistentManager {
      */
     public static function delete(string $attributo, string $valore, string $Fclass) {
         $Fclass::delete($attributo,$valore);
+    }
+
+    /**
+     * @param Object $obj
+     * @param string $Fclass
+     * @return void
+     */
+    public static function deleteEsterne(string $Fclass, Object $obj) {
+        $Fclass::deleteEsterne($obj);
     }
 
     /**
@@ -118,6 +131,7 @@ class FPersistentManager {
         $result = $class::update($attributo, $newvalue, $attributo_pk, $value_pk);
         return $result;
     }
+
 
     /**
      * metodo che permette l'aggiornamento di un immagine
