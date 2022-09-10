@@ -145,21 +145,22 @@ class VRicerca
         if ($sessione->leggi_valore('utente')){
          $eventi = array();
            if (is_array($result->getEventi())) {
-              //$this->smarty->assign('eventi', $result->getEventi());
                foreach ($result->getEventi() as $evento) {
-                   if (is_array($evento->getImmagini())) {
+                   /**if (is_array($evento->getImmagini())) {
                        $pic64evento=array();
                        foreach ($evento->getImmagini() as $itemE) {
                            $pic64evento[] = base64_encode($itemE->getImmagine()); //Non capisco perchè non funziona come sopra
                        }
                    }
                    $eventi.array_push($evento,$pic64evento); //eventi = evento + le sue foto per ogni evento del locale
-
+                  */
+                   $pic64evento = base64_encode($evento->getImmagine()); //Non capisco perchè non funziona come sopra
+                   $eventi.array_push($evento,$pic64evento);
                }
                $this->smarty->assign('eventi', $eventi);
            }
            elseif ($result->getEventi() !== null) {
-               $pic64evento = base64_encode($result->getEventi()->getImmagini()->getData());
+               $pic64evento = base64_encode($result->getEventi()->getImmagine());
                $eventi.array_push($result->getEventi(),$pic64evento);
                $this->smarty->assign('eventi', $eventi);
            }
@@ -181,6 +182,35 @@ class VRicerca
         $this->smarty->assign_by_refsign('locale', $result);
 
         $this->smarty->display('InfoLocale.tpl');
+    }
+
+
+    //Dubbio
+    /**
+     * Funzione di supporto per gestire le immagini presenti nell'elenco delle recensioni ||  GestioneLocali
+     * @param $imgrec elenco di immagini degli utenti presenti nelle recensioni
+     * @return array
+     */
+    public function SetImageRecensione ($imgrec) {
+        $type = null;
+        $pic64 = null;
+        if (is_array($imgrec)) {
+            foreach ($imgrec as $item) {
+                if (isset($item)) {
+                    $pic64[] = base64_encode($item->getImmagine());
+                    $type[] = $item->getType();
+                } else {
+                    $data = file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/FacceBeve/Smarty/immagini/user.png');
+                    $pic64[] = base64_encode($data);
+                    $type[] = "image/png";
+                }
+            }
+        }
+        elseif (isset($imgrec)) {
+            $pic64 = base64_encode($imgrec->getData());
+            $type = $imgrec->getType();
+        }
+        return array($type, $pic64);
     }
 
 }

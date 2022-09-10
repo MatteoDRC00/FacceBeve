@@ -162,6 +162,23 @@ class CProfilo{
         }
     }
 
+    //Gestione visualizzazione
+
+    /**
+     * @throws SmartyException
+     */
+    public function formModificaUtente(){
+        $view = new VAccesso();
+        $view->registra_utente();
+    }
+
+    /**
+     * @throws SmartyException
+     */
+    public function formModificaProprietario(){
+        $view = new VAccesso();
+        $view->registra_proprietario();
+    }
 
     /**
      * Gestisce la visualizzazione dell'area personale degli utenti in base al tipo di utente. Se nessun utente è loggato reindirizza al login.
