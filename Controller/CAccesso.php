@@ -264,9 +264,9 @@ class CAccesso
      * @throws SmartyException
      */
     static function registrazioneUtente() {
-        $pm = FPersistentManager()::getIstance();
+        $pm = FPersistentManager::getInstance();
         $view = new VAccesso();
-        //Controllo dell'unicità dello Username scelto
+
         $usercheck = $view->getUsername();
         $vereusername1 = $pm->exist("username", $usercheck,"FProprietario");
         $vereusername2 = $pm->exist("username", $usercheck,"FUtente");
@@ -277,7 +277,7 @@ class CAccesso
             //FARE CONTROLLO VIA CLIENT
             $utente = new EUtente($view->getPassword(),$view->getNome(),$view->getCognome(),$usercheck,$view->getEmail());
             $utente->Iscrizione();
-            if ($view->getImgProfilo() !== null) {
+            if ($view->getImgProfilo() != null) {
                 $nome_file = 'img_profilo';
                 list($img,$foto) = static::upload($nome_file);
                 switch ($img) {
@@ -424,8 +424,7 @@ class CAccesso
     }
 
 
-    public function logout()
-    {
+    public function logout(){
         $sessione = new USession();
         $sessione->chiudi_sessione();
         header("Location: /");

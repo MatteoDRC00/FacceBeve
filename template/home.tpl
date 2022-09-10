@@ -83,12 +83,12 @@
         {elseif $tipo=='EUtente'}
             <div class="sign">
                 <a href="/Smarty/html/areaPersonaleUtente.html">Il tuo profilo personale</a>
-                <a href="/Accesso/logout">Logout</a> <!--Qui direi una semplice action  -->
+                <a href="/Accesso/logout">Logout</a>
             </div>
         {elseif $tipo=='EProprietario'}
             <div class="sign">
                 <a href="/Smarty/html/areaPersonaleProprietario.html">Il tuo profilo personale</a>
-                <a href="/Smarty/html/registrazioneProprietario.html">Logout</a> <!--Qui direi una semplice action  -->
+                <a href="/Accesso/logout">Logout</a>
             </div>
         {/if}
 
@@ -175,7 +175,18 @@
                         </div>
                     </div>
                 {/foreach}
+            </div>
 
+            <div class="row">
+                <h2>Eventi più vicini ad oggi:</h2>
+                {foreach $locali as $locale}
+                    <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up">
+                        <div class="icon-box icon-box-pink">
+                            <h4 class="title"><a href="">{$locale.nome}</a></h4>
+                            <p class="description">{$locale.descrizione}</p>
+                        </div>
+                    </div>
+                {/foreach}
             </div>
 
         </div>

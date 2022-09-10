@@ -59,7 +59,7 @@ class FDB{
 			if($class == "FAdmin" || $class == "FProprietario" || $class == "FUtente")
 				$id = $obj->getUsername();
 			elseif($class == "FCategoria")
-				$id = $obj->getCategoria();
+				$id = $obj->getGenere();
 			else{
 				$id = $this->database->lastInsertId();
 			}
