@@ -34,6 +34,7 @@ class CRicerca{
 
     public function mostraHome(){
         $sessione = new USession();
+        $sessione->cancella_valore('utente');
         $user = $sessione->leggi_valore('utente');
 
         if($user == null)

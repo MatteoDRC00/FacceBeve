@@ -138,23 +138,40 @@ class CAccesso
     public function login() {
         $view = new VAccesso();
         $pm = FPersistentManager::getInstance();
-        $UsernameLogin = $view->getUsername();
-        $PasswordLogin = $view->getPassword();
 
-        $user = $pm->verificaLogin($UsernameLogin, $PasswordLogin);
+        $usernameLogin = $view->getUsername();
+        $passwordLogin = $view->getPassword();
+
+        $user = $pm->verificaLogin($usernameLogin, $passwordLogin);
+
         if ($user != null) {
             $sessione = new USession();
             $salvare = serialize($user);
             $sessione->imposta_valore('utente',$salvare);
+
+            $tipo = get_class($user);
+
+            $pm = FPersistentManager::getInstance();
+
+            $genere_cat = $pm->getCategorie();
+            $topLocali = $pm->top4Locali();
+            $locali = array();
+            foreach($topLocali as $locale){
+                $locale = $pm::load("id", $locale["id"], "FLocale");
+                $locali[] = $locale;
+            }
+
+            $view2 = new VRicerca();
+            $view2->mostraHome($tipo, $genere_cat, $locali);
+            /*
             if (get_class($user)=="EUtente") {
-                $eventi = static::eventiUtente($user);
-                $view->loginOk($eventi,"EUtente");
+
             }
             elseif(get_class($user)=="EProprietario")  {
                 $view->loginOk(null,"EUtente");
             }elseif(($UsernameLogin=="admin") && ($PasswordLogin=="admin"))  {
                 header('Location: /FacceBeve/Admin/homepage');
-            }
+            }*/
         }
     }
 
@@ -406,14 +423,13 @@ class CAccesso
         return array($ris,$mutente);
     }
 
-    /**
-     * Effettua il logout dell'utente eliminando dalla sessione le variabili deputate al mantenimento dell'autenticazione.
-     * @return void
 
     public function logout()
     {
-        $sessione->distruggi();
-    }*/
+        $sessione = new USession();
+        $sessione->chiudi_sessione();
+        header("Location: /");
+    }
 
 
 }

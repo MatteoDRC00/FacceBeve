@@ -90,17 +90,23 @@ class FUtente{
     */
     public static function loadByField($field, $id){
         $utente = null;
-        $db=FDB::getInstance();
-        $result=$db->load(static::getClass(), $field, $id);
-        $rows_number = $db->interestedRows(static::getClass(), $field, $id);    //funzione richiamata,presente in FDB --> restituisce numero di righe interessate dalla query
-        if(($result!=null) && ($rows_number == 1)) {
+        $db = FDB::getInstance();
+        $result = $db->load(static::getClass(), $field, $id);
+        $num = count($result);//funzione richiamata,presente in FDB --> restituisce numero di righe interessate dalla query
+        if(($result!=null) && ($num == 1)) {
             $utente=new EUtente($result['username'],$result['nome'],$result['cognome'], $result['email'], $result['password'],$result['dataIscrizione']); //Carica un Utente dal database
         }
         else {
-            if(($result!=null) && ($rows_number > 1)){
+            if(($result!=null) && ($num > 1)){
                 $utente = array();
         	    for($i=0; $i<count($result); $i++){
-                    $utente[]=new EUtente($result[$i]['username'],$result[$i]['nome'],$result[$i]['cognome'], $result[$i]['email'], $result[$i]['password'],$result[$i]['dataIscrizione']); //Carica un array di oggetti Utente dal database
+                    $utente = new EUtente($result['password'], $result['nome'], $result['cognome'], $result['username'], $result['email']);
+                    $utente->setIscrizione($result['dataIscrizione']);
+                    if($result['idImg'] == null )
+                        $utente->setImgProfilo($result['idImg']);
+                    else{
+                        $utente->setImgProfilo(FImmagine::loadByField('id',$result['idImg']));
+                    }
                 }
             }
         }
@@ -159,7 +165,10 @@ class FUtente{
     */
 	public static function verificaLogin($user, $pass) {
 		$db = FDB::getInstance();
-		return  $db->loadVerificaAccesso($user, $pass, static::getClass());
+		$utente = $db->loadVerificaAccesso($user, $pass, static::getClass());
+
+        return self::loadByField("username", $utente["username"]);
+
 	}
 
 

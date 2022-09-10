@@ -121,6 +121,7 @@ class VRicerca
         $this->smarty->display('home.tpl');
     }
 
+
     /**
      * Mostra la pagina contenente i dettagli del locale selezionato
      * @param array contiene l'id dell'array da visualizzare
