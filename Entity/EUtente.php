@@ -14,7 +14,7 @@ class EUtente {
     private string $cognome;
     private array $localipreferiti;
     private ?string $iscrizione = null;
-    private EImmagine $img_profilo;
+    private ?EImmagine $img_profilo = null;
     private bool $state;
 
 
@@ -148,20 +148,22 @@ class EUtente {
     }
 
     /**
-     * @return EImmagine
+     * @return EImmagine|null
      */
-    public function getImgProfilo(): EImmagine
+    public function getImgProfilo(): ?EImmagine
     {
         return $this->img_profilo;
     }
 
     /**
-     * @param EImmagine $img_profilo
+     * @param EImmagine|null $img_profilo
      */
-    public function setImgProfilo(EImmagine $img_profilo): void
+    public function setImgProfilo(?EImmagine $img_profilo): void
     {
         $this->img_profilo = $img_profilo;
     }
+
+
 
     /**
      * Metodo che va a modificare lo stato di un utente(bannato/attivo)
@@ -170,6 +172,14 @@ class EUtente {
     public function setState($state): void
     {
         $this->state=$state;
+    }
+
+    /**
+     * @param string|null $iscrizione
+     */
+    public function setIscrizione(?string $iscrizione): void
+    {
+        $this->iscrizione = $iscrizione;
     }
 
 
@@ -218,7 +228,8 @@ class EUtente {
      * Stampa lo stato dell'utenete
      * @return String
      */
-    protected function StaToString () {
+    protected function StaToString ()
+    {
         $vis = null;
         if ($this->getState())
             $vis = "visibile";
@@ -226,5 +237,6 @@ class EUtente {
             $vis = "bannato";
         return $vis;
     }
+
 }
 ?>

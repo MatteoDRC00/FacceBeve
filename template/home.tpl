@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-{assign var='tipo' value=$tipo}
+{assign var='tipo' value=$tipo|default:'nouser'}
+{assign var='genere_cat' value=$genere_cat}
+{assign var='locali' value=$locali}
 <html lang="en">
 
 <head>
@@ -81,13 +83,11 @@
         {elseif $tipo=='EUtente'}
             <div class="sign">
                 <a href="/Smarty/html/areaPersonaleUtente.html">Il tuo profilo personale</a>
-                <a href="/Smarty/html/areaPersonaleUtente.html">I tuoi locali preferiti</a> <!--Come si fa?-->
-                <a href="/Smarty/html/registrazioneProprietario.html">Logout</a> <!--Qui direi una semplice action  -->
+                <a href="/Accesso/logout">Logout</a> <!--Qui direi una semplice action  -->
             </div>
         {elseif $tipo=='EProprietario'}
             <div class="sign">
                 <a href="/Smarty/html/areaPersonaleProprietario.html">Il tuo profilo personale</a>
-                <a href="/Smarty/html/areaPersonaleUtente.html">I tuoi locali gestiti</a> <!--Quasi quasi ne farei solo 2 di bottoni-->
                 <a href="/Smarty/html/registrazioneProprietario.html">Logout</a> <!--Qui direi una semplice action  -->
             </div>
         {/if}
@@ -117,7 +117,7 @@
                         <select  name="categorie" style="border-radius:7px; height: 50px  ;">
                             <option>--Scegli il tipo--</option>
                             {foreach $genere_cat as $genere}
-                                <option><input class="homeinput" type="radio" name="genere" value="{$genere}"> {$genere}</option>
+                                <option type="radio" name="genere" value="{$genere}"> {$genere}</option>
                             {/foreach}
                         </select>
                         <button class="input" type="submit" style="border-radius:10px;"><i class="fa fa-search"></i></button>

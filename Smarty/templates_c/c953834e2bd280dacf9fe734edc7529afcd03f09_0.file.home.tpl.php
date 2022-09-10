@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-10 15:32:23
+/* Smarty version 4.2.0, created on 2022-09-10 18:10:37
   from 'C:\xampp\htdocs\FacceBeve\template\home.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_631c91e7c711b7_14104052',
+  'unifunc' => 'content_631cb6fda950c0_51401961',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c953834e2bd280dacf9fe734edc7529afcd03f09' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\home.tpl',
-      1 => 1662816731,
+      1 => 1662826230,
       2 => 'file',
     ),
   ),
@@ -20,9 +20,11 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_631c91e7c711b7_14104052 (Smarty_Internal_Template $_smarty_tpl) {
+function content_631cb6fda950c0_51401961 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
-<?php $_smarty_tpl->_assignInScope('tipo', $_smarty_tpl->tpl_vars['tipo']->value);?>
+<?php $_smarty_tpl->_assignInScope('tipo', (($tmp = $_smarty_tpl->tpl_vars['tipo']->value ?? null)===null||$tmp==='' ? 'nouser' ?? null : $tmp));
+$_smarty_tpl->_assignInScope('genere_cat', $_smarty_tpl->tpl_vars['genere_cat']->value);
+$_smarty_tpl->_assignInScope('locali', $_smarty_tpl->tpl_vars['locali']->value);?>
 <html lang="en">
 
 <head>
@@ -106,13 +108,11 @@ function content_631c91e7c711b7_14104052 (Smarty_Internal_Template $_smarty_tpl)
         <?php } elseif ($_smarty_tpl->tpl_vars['tipo']->value == 'EUtente') {?>
             <div class="sign">
                 <a href="/Smarty/html/areaPersonaleUtente.html">Il tuo profilo personale</a>
-                <a href="/Smarty/html/areaPersonaleUtente.html">I tuoi locali preferiti</a> <!--Come si fa?-->
-                <a href="/Smarty/html/registrazioneProprietario.html">Logout</a> <!--Qui direi una semplice action  -->
+                <a href="/Accesso/logout">Logout</a> <!--Qui direi una semplice action  -->
             </div>
         <?php } elseif ($_smarty_tpl->tpl_vars['tipo']->value == 'EProprietario') {?>
             <div class="sign">
                 <a href="/Smarty/html/areaPersonaleProprietario.html">Il tuo profilo personale</a>
-                <a href="/Smarty/html/areaPersonaleUtente.html">I tuoi locali gestiti</a> <!--Quasi quasi ne farei solo 2 di bottoni-->
                 <a href="/Smarty/html/registrazioneProprietario.html">Logout</a> <!--Qui direi una semplice action  -->
             </div>
         <?php }?>
@@ -147,7 +147,7 @@ $_smarty_tpl->tpl_vars['genere']->do_else = true;
 if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['genere']->value) {
 $_smarty_tpl->tpl_vars['genere']->do_else = false;
 ?>
-                                <option><input class="homeinput" type="radio" name="genere" value="<?php echo $_smarty_tpl->tpl_vars['genere']->value;?>
+                                <option type="radio" name="genere" value="<?php echo $_smarty_tpl->tpl_vars['genere']->value;?>
 "> <?php echo $_smarty_tpl->tpl_vars['genere']->value;?>
 </option>
                             <?php

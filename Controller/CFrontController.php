@@ -16,7 +16,6 @@ class CFrontController{
             $dir = 'Controller';
             $eledir = scandir($dir);
 
-            echo $resource[0];
 
             if (in_array($controller . ".php", $eledir)) {
                 if (isset($resource[1])) {
