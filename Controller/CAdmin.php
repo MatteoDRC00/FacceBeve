@@ -18,29 +18,24 @@ class CAdmin{
      * @throws SmartyException
      */
     public function homepage() {
-        $sessione = USession::getInstance();
-        if($_SERVER['REQUEST_METHOD'] == "GET") {
-            if ($sessione->leggi_valore('utente')) {
-                $utente = unserialize($sessione->leggi_valore('utente'));
-                if (($utente->getUsername() == "admin") || ($utente->getUsername() == "Admin")) {
-                    $view = new VAdmin();
-                    $pm = FPersistentManager()::getIstance();
-                   // visualizza elenco utenti attivi e bannati
-                    $utentiAttivi = $pm->loadUtenti(1);
-                    $utentiBannati = $pm->loadUtenti(0);
-                    $img_attivi = static::set_immagini($utentiAttivi);
-                    $img_bann = static::set_immagini($utentiBannati);
-                    $categorie = $pm->loadAll("FCategoria");
-                    $view->HomeAdmin($utentiAttivi, $utentiBannati,$img_attivi,$img_bann,$categorie);
-                }
-                else {
-                    $view = new VError();
-                    $view->error(1);
-                }
-            }
-            else
-                header('Location: /FacceBeve/Utente/login');
+        $sessione = new USession();
+        $utente = unserialize($sessione->leggi_valore('utente'));
+        if (($utente->getUsername() == "admin") || ($utente->getUsername() == "Admin")) { //aggiustare
+            $view = new VAdmin();
+            $pm = FPersistentManager()::getIstance();
+            // visualizza elenco utenti attivi e bannati
+            $utentiAttivi = $pm->loadUtenti(1);
+            $utentiBannati = $pm->loadUtenti(0);
+            $img_attivi = static::set_immagini($utentiAttivi);
+            $img_bann = static::set_immagini($utentiBannati);
+            $categorie = $pm->loadAll("FCategoria");
+            $view->HomeAdmin($utentiAttivi, $utentiBannati,$img_attivi,$img_bann,$categorie);
         }
+        else {
+                $view = new VError();
+                $view->error(1);
+        }
+        header('Location: /FacceBeve/Utente/login');
     }
 
     /**

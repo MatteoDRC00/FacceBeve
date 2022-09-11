@@ -115,4 +115,9 @@ class FAdmin{
             return false;
     }
 
+    public static function verificaLogin($user, $pass) {
+        $db = FDB::getInstance();
+        return  $db->loadVerificaAccesso($user, $pass, static::getClass());
+    }
+
 }

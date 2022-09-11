@@ -197,6 +197,9 @@ class FPersistentManager {
         $ris = FUtente::verificaLogin($user, $pass);
         if($ris == null){
             $ris = FProprietario::verificaLogin($user, $pass);
+            if($ris == null){
+                $ris = FAdmin::verificaLogin($user, $pass);
+            }
         }
         return $ris;
     }
