@@ -271,7 +271,12 @@ class VProfilo{
         return $arrayImg;
     }
 
-    public function mostraProfiloUtente($utente, $locali_preferiti){
+    public function mostraProfiloUtente(EUtente $utente, $locali_preferiti){
+        $pic64 = $utente->getImgProfilo()->getImmagine();
+        $type = $utente->getImgProfilo()->getType();
+
+        $this->smarty->assign("pic64",$pic64);
+        $this->smarty->assign("type",$type);
         $this->smarty->assign("utente",$utente);
         $this->smarty->assign("locali_preferiti",$locali_preferiti);
 

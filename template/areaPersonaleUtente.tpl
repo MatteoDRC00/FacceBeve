@@ -1,6 +1,4 @@
 <!DOCTYPE html>
-{assign var='utente' value=$utente}
-{assign var='locali_preferiti' value=$locali_preferiti}
 <html lang="en">
 
 <head>
@@ -81,7 +79,7 @@
                     <div class="row">
                         <div class="col-12 bg-white p-0 px-3 py-3 mb-3">
                             <div class="d-flex flex-column align-items-center">
-                                <img class="photo" src="/template/img/team/team-3.jpg" alt="">
+                                <img class="photo" src="data:{$type};base64,{$pic64}" alt="immagine profilo">
                                 <p class="fw-bold h4 mt-3">{$utente.nome} {$utente.cognome}</p>
                                 <p class="text-muted" style="font-weight: bold">{$utente.username}</p>
                                 <p class="text-muted mb-3">{$utente.email}</p>
