@@ -9,6 +9,33 @@
  * @package Controller
  */
 class CAdmin{
+
+
+    /**
+     * @var CAdmin|null Variabile di classe che mantiene l'istanza della classe.
+     */
+    private static ?CAdmin $instance = null;
+
+    /**
+     * Costruttore di classe.
+     */
+    private function __construct(){
+
+    }
+
+    /**
+     * Restituisce l'istanza della classe.
+     * @return CAdmin|null
+     */
+    public static function getInstance(): ?CAdmin {
+        if(!isset(self::$instance)) {
+            self::$instance = new CAdmin();
+        }
+        return self::$instance;
+    }
+
+
+
     /**
      * Funzione utilizzata per visualizzare la homepage dell'amministratore, nella quale sono presenti tutti gli utenti della piattaforma.
      * Gli utenti sono divisi in due liste: bannati e attivi.
@@ -17,12 +44,14 @@ class CAdmin{
      * 3) altrimenti, reindirizza alla pagina di login.
      * @throws SmartyException
      */
-    public function homepage() {
+    public function dashboard() {
+        echo "sorpresina baby il mio cazzo è un ciccarelli";
+        /*
         $sessione = new USession();
         $utente = unserialize($sessione->leggi_valore('utente'));
-        if (($utente->getUsername() == "admin") || ($utente->getUsername() == "Admin")) { //aggiustare
+        //if (($utente->getUsername() == "admin") || ($utente->getUsername() == "Admin")) { //aggiustare
             $view = new VAdmin();
-            $pm = FPersistentManager()::getIstance();
+            $pm = FPersistentManager::getInstance();
             // visualizza elenco utenti attivi e bannati
             $utentiAttivi = $pm->loadUtenti(1);
             $utentiBannati = $pm->loadUtenti(0);
@@ -30,12 +59,10 @@ class CAdmin{
             $img_bann = static::set_immagini($utentiBannati);
             $categorie = $pm->loadAll("FCategoria");
             $view->HomeAdmin($utentiAttivi, $utentiBannati,$img_attivi,$img_bann,$categorie);
-        }
-        else {
+      /*  } else {
                 $view = new VError();
                 $view->error(1);
-        }
-        header('Location: /FacceBeve/Utente/login');
+        }*/
     }
 
     /**
@@ -49,7 +76,7 @@ class CAdmin{
      * @return array|null|object
      */
     public function set_immagini($utenti, $tipo){
-        $pm = FPersistentManager()::getIstance();
+        $pm = FPersistentManager::getInstance();
         $img = null;
         if (isset($utenti)) {
             if (is_array($utenti)) {
@@ -69,13 +96,13 @@ class CAdmin{
      * @throws SmartyException
      */
     public function aggiungiCategoria(){
-        $sessione = USession::getInstance();
+        $sessione = new USession();
         if($_SERVER['REQUEST_METHOD'] == "POST") {
             if($sessione->leggi_valore('utente')){
                 $utente = unserialize($sessione->leggi_valore('utente'));
                 $view = new VAdmin();
                 if(($utente->getUsername() == "admin") || ($utente->getUsername() == "Admin")){
-                    $pm = FPersistentManager()::getIstance();
+                    $pm = FPersistentManager::getInstance();
                     $genere = $view->getGenere();
                     $descrizione = $view->getDescrizione();
                     $categoria = $pm->exist("FCategoria", genere,$genere );

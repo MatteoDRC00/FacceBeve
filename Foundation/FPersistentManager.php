@@ -190,8 +190,8 @@ class FPersistentManager {
         return $ris;
     }
 
-    /**  Metodo che permette il login di un utente, date le credenziali (username e password)
-     *
+    /**
+     * Metodo che permette il login di un utente, date le credenziali (username e password)
      */
     public static function verificaLogin($user, $pass) {
         $ris = FUtente::verificaLogin($user, $pass);

@@ -21,7 +21,6 @@ class  ELocale implements JsonSerializable{
     private string $descrizione;
     private string $num_telefono;
     private EProprietario $proprietario;
-    private int $visibility = 1;
     private $categoria = array();
     private ELocalizzazione $localizzazione;
     private $eventi_organizzati = array();
@@ -80,22 +79,6 @@ class  ELocale implements JsonSerializable{
     public function setNome(string $nome): void
     {
         $this->nome = $nome;
-    }
-
-    /**
-     * @return int
-     */
-    public function getVisibility(): int
-    {
-        return $this->visibility;
-    }
-
-    /**
-     * @param int $x
-     */
-    public function setVisibility(int $x): void
-    {
-        $this->visibility = $x;
     }
 
     /**

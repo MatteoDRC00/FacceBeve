@@ -30,7 +30,6 @@ class FLocale {
         $stmt->bindValue(':id',NULL, PDO::PARAM_INT); //l'id è posto a NULL poichè viene dato automaticamente dal DBMS (AUTOINCREMENT_ID)
         $stmt->bindValue(':nome', $locale->getNome(), PDO::PARAM_STR);
 		$stmt->bindValue(':numtelefono',$locale->getNumTelefono(), PDO::PARAM_STR);
-        $stmt->bindValue(':visibility',$locale->getVisibility(), PDO::PARAM_INT);
 		$stmt->bindValue(':descrizione',$locale->getDescrizione(), PDO::PARAM_STR);
         $stmt->bindValue(':proprietario', $locale->getProprietario()->getUsername(), PDO::PARAM_INT);
         $stmt->bindValue(':localizzazione', $locale->getLocalizzazione()->getId(), PDO::PARAM_INT);
@@ -160,7 +159,6 @@ class FLocale {
             $orari = FOrario::loadByLocale($result["id"]);
             $immagini = FImmagine::loadByLocale($result["id"]);
             $locale=new ELocale($result['nome'], $result['descrizione'], $result['numtelefono'], $proprietario ,$categorie, $localizzazione ,$eventi,$orari); //Carica un Locale dal database
-            $locale->setVisibility($result['visibility']);
         }
         else {
             if(($result!=null) && ($rows_number > 1)){
@@ -180,7 +178,6 @@ class FLocale {
                     $immagini[] = FImmagine::loadByLocale($result[$i]["id"]);
                     $locale[]=new ELocale($result[$i]['nome'], $result[$i]['descrizione'], $result[$i]['numtelefono'], $proprietario[$i] ,$categorie[$i], $localizzazione[$i] ,$eventi[$i], $orari[$i]);
                     //$locale[$i]->setIdAd($result[$i]['id']); //Carica un array di oggetti Locale dal DB
-                    $locale[$i]->setVisibility($result[$i]['visibility']); //?
                 }
             }
         }
@@ -267,7 +264,6 @@ class FLocale {
                     $eventi[] = FEvento::loadByLocale($result[$i]["id"]);
                     $orari[] = FOrario::loadByLocale($result[$i]["id"]);
                     $locale[]=new ELocale($result[$i]['nome'], $result[$i]['descrizione'], $result[$i]['numtelefono'], $proprietario[$i] ,$categorie[$i], $localizzazione[$i] ,$eventi[$i], $orari[$i]);
-                    //  $locale[$i]->setIdAd($result[$i]['id']);
                 }
             }
         }

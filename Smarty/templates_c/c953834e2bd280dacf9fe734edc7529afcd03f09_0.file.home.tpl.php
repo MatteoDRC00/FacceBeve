@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-11 18:30:12
+/* Smarty version 4.2.0, created on 2022-09-11 19:56:58
   from 'C:\xampp\htdocs\FacceBeve\template\home.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_631e0d1422bc65_02353727',
+  'unifunc' => 'content_631e216af10ae5_93481653',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c953834e2bd280dacf9fe734edc7529afcd03f09' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\home.tpl',
-      1 => 1662913804,
+      1 => 1662914369,
       2 => 'file',
     ),
   ),
@@ -20,9 +20,9 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_631e0d1422bc65_02353727 (Smarty_Internal_Template $_smarty_tpl) {
+function content_631e216af10ae5_93481653 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
-<?php $_smarty_tpl->_assignInScope('tipo', (($tmp = $_smarty_tpl->tpl_vars['tipo']->value ?? null)===null||$tmp==='' ? 'userlogged' ?? null : $tmp));
+<?php $_smarty_tpl->_assignInScope('tipo', (($tmp = $_smarty_tpl->tpl_vars['tipo']->value ?? null)===null||$tmp==='' ? 'nouser' ?? null : $tmp));
 $_smarty_tpl->_assignInScope('genere_cat', $_smarty_tpl->tpl_vars['genere_cat']->value);
 $_smarty_tpl->_assignInScope('locali', $_smarty_tpl->tpl_vars['locali']->value);?>
 <html lang="en">
@@ -35,8 +35,6 @@ $_smarty_tpl->_assignInScope('locali', $_smarty_tpl->tpl_vars['locali']->value);
     <meta content="" name="description">
     <meta content="" name="keywords">
 
-    <!-- Template Main JS File -->
-    <link href="/template/js/main.js" rel="script">
 
     <!-- Favicons -->
     <link href="/template/img/favicon.png" rel="icon">
@@ -277,7 +275,10 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>-->
  src="/template/vendor/php-email-form/validate.js"><?php echo '</script'; ?>
 >
 
-
+<!-- Template Main JS File -->
+<?php echo '<script'; ?>
+ src="/template/js/main.js"><?php echo '</script'; ?>
+>
 
 </body>
 
