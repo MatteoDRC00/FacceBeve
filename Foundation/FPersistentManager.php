@@ -45,7 +45,7 @@ class FPersistentManager {
      * @return void
      */
     public static function storeEsterne(string $Fclass, Object $obj,int $id) {
-        $Fclass::storeEsterne($obj);
+        $Fclass::storeEsterne($obj,$id);
     }
 
     /**
