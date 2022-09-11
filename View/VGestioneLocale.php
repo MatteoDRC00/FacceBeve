@@ -217,6 +217,18 @@ class VGestioneLocale{
     }
 
     /**
+     * Preleva l'id del immagine del locale, caricata in un campo hidden e prelevata dal vettore $_POST
+     * @return int|null
+     */
+    public function getIdImmagine(): ?int
+    {
+        $value = null;
+        if (isset($_POST['idImg']))
+            $value = $_POST['idImg'];
+        return $value;
+    }
+
+    /**
      * Restituisce un array contenente le informazioni sul immagine da caricare, contenuto nel array _$_FILES, questo verrà poi passato al metodo upload per controllare la correttezza del file caricato
      * @return array
      */

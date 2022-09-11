@@ -69,7 +69,7 @@ class FLocale {
         $id = NULL;
         $db = FDB::getInstance();
         $proprietario = $db->exist("FProprietario", "proprietario", $locale->getProprietario()->getUsername());
-        //DA VEDERE $localizzazione = $db->exist("FLocalizzazione", "localizzazione", $locale->getLocalizzazione()->getId());
+        $localizzazione = $db->exist("FLocalizzazione", "localizzazione", $locale->getLocalizzazione()->getId());
         if($proprietario && $localizzazione) {
             $id = $db->store(static::getClass() ,$locale);
             //Categorie Locale
@@ -116,6 +116,8 @@ class FLocale {
         //Immagini Locale
         if(get_class($obj)=="ECategoria"){
             $db->delete("Locale_Categorie","ID_Categoria",$obj->getGenere());
+        }elseif(get_class($obj)=="EImmagine") {
+            $db->delete("Locale_Immagini", "ID_Immagine", $obj->getId());
         }
     }
 
@@ -234,21 +236,6 @@ class FLocale {
             return false;
     }
 
-    /**
-     * Funzione con il compito di caricare le recensioni di un locale, obsoleto.
-
-    public static function recensioniLocale() {
-        $db = FDB::getInstance();
-        $result = $db->getRecensioniLocali();
-        //$rows_number = $result->rowCount();
-        if (($result!=null) && ($rows_number == 1)){
-            $rece = array();
-            if($result["nomelocale"]==$nomelocal && $result["luogolocale"]==$luogo)
-               $rece[] = FRecensione::loadByField("codicerecensione" , $result["codicerecensione"]);
-        }
-        return $rece;
-    }*/
-
      /** Metodo che permette di caricare un locale che ha determinati parametri, i quali vengono passati in input da una form */
      public static function loadByForm ($part1, $part2, $part3) {
         $locale = null;
@@ -291,9 +278,6 @@ class FLocale {
      * @param $parola input ricevuto
      */
     public static function loadByParola($parola){
-        $annuncio = null;
-        $intermedia = null;
-        $tappa = null;
         $db=FDB::getInstance();
         list ($result, $rows_number)=$db->CercaByKeyword($parola, static::getClass(), "descrizione");
         if(($result!=null) && ($rows_number == 1)) {

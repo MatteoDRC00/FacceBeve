@@ -86,6 +86,32 @@ class FEvento {
     }
 
     /**
+     * metodo che permette di cancellare tuple nelle tabelle generate da relazioni N:N
+     * @param Object $obj oggetto da cancellare
+     * @return void
+     */
+    public static function deleteEsterne(Object $obj){;
+        $db = FDB::getInstance();
+        if(get_class($obj)=="EImmagine") {
+            $db->delete("Evento_Immagini", "ID_Immagine", $obj->getId());
+        }
+    }
+
+    /**
+     * metodo che permette di cancellare tuple nelle tabelle generate da relazioni N:N
+     * @param Object $obj oggetto da cancellare
+     * @return void
+     */
+    public static function storeEsterne(Object $obj,$id){
+        $db = FDB::getInstance();
+        if(get_class($obj)=="EImmagine"){
+            $idImg = $obj->getId();
+            $db->chiaviEsterne("Evento_Immagini","ID_Evento","ID_Immagine",$id,$idImg);
+        }
+    }
+
+
+    /**
      * metodo che verifica l'esistenza di un Evento nel DB considerato un attributo
      * @param string $attributo
      * @param string $valore

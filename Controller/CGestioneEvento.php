@@ -28,6 +28,7 @@ class CGestioneEvento{
     }
 
 //----------------------------------CREAZIONE EVENTO------------------------------------------------------\\
+
     /**
      * Funzione che viene richiamata per la creazione di un evento. Si possono avere diverse situazioni:
      * se l'utente non è loggato  viene reindirizzato alla pagina di login perchè solo gli utenti loggati possono interagire con gli eventi.
@@ -35,6 +36,7 @@ class CGestioneEvento{
      * 1) se il metodo di richiesta HTTP è GET viene visualizzato il form di creazione della ricerca;
      * 2) se il metodo di richiesta HTTP è POST viene richiamata la funzione Creation().
      * 3) se il metodo di richiesta HTTP è diverso da uno dei precedenti -->errore.
+     * @throws SmartyException
      */
     static function creaEvento()
     {
@@ -142,6 +144,75 @@ class CGestioneEvento{
         $pm->update("FEvento","descrizione",$dataNuova,"id",$evento->getId());
 
         $view->showFormModify(null,$evento);
+    }
+
+    //IMG EVENTO\\
+
+    /**
+     * Gestisce la modifica dell'immagine del locale. Preleva la nuova immagine dalla view e procede alla modifica.
+     * @return void
+     * @throws SmartyException
+     */
+    public function addImmagineEvento()
+    {
+        $view = new VGestioneEvento();
+        //$sessione = USession::getInstance();
+        //$utente = unserialize($sessione->leggi_valore('utente'));
+        $pm = FPersistentManager::getInstance();
+        $locale = $pm->load("id", $view->getIdEvento(), "FLocale");
+
+        $img = $view->getImgEvento();
+        list($check, $media) = static::upload($img);
+        if ($check == "type") {
+            $view->showFormModify( "size",$locale);
+        } elseif ($check == "size") {
+            $view->showFormModify( "size",$locale);
+        } elseif ($check == "ok") {
+            $pm = FPersistentManager::getInstance();
+            $pm->storeMedia($media, $img[1]); //Salvataggio dell'immagine sul db
+            $pm->storeEsterne("FEvento",$media,$view->getIdEvento()); //Salvataggio sulla tabella generata dalla relazione N:N
+            header('Location: /Ricerca/dettaglioEvento');
+        }
+    }
+
+
+    /**
+     * Gestisce la modifica dell'immagine del evento. Preleva la nuova immagine dalla view e procede alla modifica.
+     * @return void
+     * @throws SmartyException
+     */
+    public function modificaImmagineEvento(){
+        $view = new VGestioneEvento();
+        $pm = FPersistentManager::getInstance();
+        $sessione = new USession();
+        //$utente = unserialize($sessione->leggi_valore('utente'));
+        $evento = $pm->load("id", $view->getIdEvento(), "FEvento");
+        $img = $view->getImgLocale();
+        list($check,$media) = static::upload($img);
+        if($check=="type"){
+            $view->showFormModify("type",$evento);
+        }elseif($check=="size"){
+            $view->showFormModify("size",$evento);
+        }elseif($check=="ok"){
+            $pm->updateMedia($media,$img[1]);
+            header('Location: /Ricerca/infoLocale'); //profilo!!!
+        }
+    }
+
+
+    /**
+     * Gestisce la cancellazione dell'immagine del evento.
+     * @return void
+     * @throws SmartyException
+     */
+    public function deleteImmagineEvento()
+    {
+        $view = new VGestioneEvento();
+        $pm = FPersistentManager::getInstance();
+        $img = $pm->load("id", $view->getIdImmagine(), "FImmagine"); //Serve per l'eliminazione delle chiavi esterne
+        $Y = $pm->delete("id",$view->getIdImmagine(),"FImmagine");
+        $pm->deleteEsterne("FEvento",$img);
+        header('Location: /Ricerca/dettaglioEvento');
     }
 
 

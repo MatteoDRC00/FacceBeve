@@ -282,6 +282,8 @@ class CGestioneLocale
         $view->showFormModify(null,$locale);
     }
 
+
+    //IMG LOCALE\\
     /**
      * Gestisce la modifica dell'immagine del locale. Preleva la nuova immagine dalla view e procede alla modifica.
      * @return void
@@ -291,7 +293,7 @@ class CGestioneLocale
     {
         $view = new VGestioneLocale();
         $sessione = USession::getInstance();
-        $utente = unserialize($sessione->leggi_valore('utente'));
+        //$utente = unserialize($sessione->leggi_valore('utente'));
         $pm = FPersistentManager::getInstance();
         $locale = $pm->load("id", $view->getIdLocale(), "FLocale");
 
@@ -309,7 +311,44 @@ class CGestioneLocale
         }
     }
 
-    //Delete Immagine, va fatta?
+    /**
+     * Gestisce la modifica dell'immagine del locale. Preleva la nuova immagine dalla view e procede alla modifica.
+     * @return void
+     * @throws SmartyException
+     */
+    public function modificaImmagineLocale(){
+        $view = new VGestioneLocale();
+        $pm = FPersistentManager::getInstance();
+        $sessione = new USession();
+        //$utente = unserialize($sessione->leggi_valore('utente'));
+        $locale = $pm->load("id", $view->getIdLocale(), "FLocale");
+        $img = $view->getImgLocale();
+        list($check,$media) = static::upload($img);
+        if($check=="type"){
+            $view->showFormModify("type",$locale);
+        }elseif($check=="size"){
+            $view->showFormModify("size",$locale);
+        }elseif($check=="ok"){
+            $pm->updateMedia($media,$img[1]);
+            header('Location: /Ricerca/infoLocale'); //profilo!!!
+        }
+    }
+
+
+    /**
+     * Gestisce la cancellazione dell'immagine del locale. Preleva la nuova immagine dalla view e procede alla modifica.
+     * @return void
+     * @throws SmartyException
+     */
+    public function deleteImmagineLocale()
+    {
+        $view = new VGestioneLocale();
+        $pm = FPersistentManager::getInstance();
+        $img = $pm->load("id", $view->getIdImmagine(), "FImmagine"); //Serve per l'eliminazione delle chiavi esterne
+        $Y = $pm->delete("id",$view->getIdImmagine(),"FImmagine");
+        $pm->deleteEsterne("FLocale",$img);
+        header('Location: /Ricerca/dettaglioLocale');
+    }
 
 //----------------------------------MODIFICA DEL LOCALE------------------------------------------------------\\
 
