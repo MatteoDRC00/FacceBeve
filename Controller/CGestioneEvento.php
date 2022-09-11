@@ -27,7 +27,7 @@ class CGestioneEvento{
         return self::$instance;
     }
 
-
+//----------------------------------CREAZIONE EVENTO------------------------------------------------------\\
     /**
      * Funzione che viene richiamata per la creazione di un evento. Si possono avere diverse situazioni:
      * se l'utente non è loggato  viene reindirizzato alla pagina di login perchè solo gli utenti loggati possono interagire con gli eventi.
@@ -38,71 +38,144 @@ class CGestioneEvento{
      */
     static function creaEvento()
     {
-        $sessione = USession::getInstance();
-        if ($proprietario = unserialize($sessione->leggi_valore('utente'))) {
-            if ($_SERVER['REQUEST_METHOD'] == "GET") {
-                $view = new VGestioneAnnunci();
-                $proprietario = unserialize($proprietario = unserialize($sessione->leggi_valore('utente')));
-                if (get_class(proprietario) == "EProprietario") {
-                    $view->showFormCreation($proprietario, null);
-                } elseif (get_class($proprietario) == "EUtente") {
-                    $view->showFormCreation($proprietario, "errore da definire");
-                }
-            } elseif ($_SERVER['REQUEST_METHOD'] == "POST") {
-                $pm = FPersistentManager::GetIstance();
-                $proprietario = unserialize($proprietario = unserialize($sessione->leggi_valore('utente')));
-                if (get_class(proprietario) == "EProprietario") {
-                    $view = new VGestioneLocale();
-                    $nomeEvento = $view->getNomeEvento();
-                    $descrizioneEvento = $view->getDescrizioneEvento();
-                    $dataEvento = $view->getDataEvento();
+        $sessione = new USession();
+        $proprietario = unserialize($sessione->leggi_valore('utente'));
+        $pm = FPersistentManager::GetIstance();
+        $view = new VGestioneEvento();
+        $nomeEvento = $view->getNomeEvento();
+        $descrizioneEvento = $view->getDescrizioneEvento();
+        $dataEvento = $view->getDataEvento();
 
-                    $Evento = new EEvento($nomeEvento, $descrizioneEvento, $dataEvento); //Poi salvalo nel locale
+        $Evento = new EEvento($nomeEvento, $descrizioneEvento, $dataEvento); //Poi salvalo nel locale
 
-                    list ($stato, $nome, $type) = static::upload('img'); //mo non mi sta tornando RIP
-
-
-                } elseif (get_class($proprietario) == "EUtente") {
-                    header('Location: /FacceBeve/');
-                }
-            }
-        } else {
-            header('Location: /FacceBeve/Utente/Login');
+        $img = $view->getImgEvento();
+        list($check, $media) = static::upload($img);
+        if ($check == "type") {
+            $view->showFormCreation($proprietario, "size");
+        } elseif ($check == "size") {
+            $view->showFormCreation($proprietario, "size");
+        } elseif ($check == "ok") {
+            $pm->store($Evento);
+            $pm->storeMedia($media, $img[1]); //Salvataggio dell'immagine sul db
+            $pm->storeEsterne("FEvento",$media); //Salvataggio sulla tabella generata dalla relazione N:N
+            //$locale = $pm->load("id",$view->getIdLocale(),"FLocale");
+            $pm->storeEsterne("FLocale",$media,$view->getIdLocale());
+            header('Location: /Ricerca/dettaglioLocale'); //?
         }
+    }
+//----------------------------------CREAZIONE EVENTO------------------------------------------------------\\
+
+
+//----------------------------------MODIFICA EVENTO------------------------------------------------------\\
+    /**
+     * @throws SmartyException
+     */
+    public function formModificaEvento(){
+        $view = new VGestioneEvento();
+        $pm = FPersistentManager::getInstance();
+        /**if($sessione->leggi_valore('utente')){
+        $proprietario = unserialize(($sessione->leggi_valore('utente')));
+        if(get_class($proprietario) == "EProprietario")
+        $view->showFormCreation($proprietario,null);
+        else
+        $view->showFormCreation($proprietario,'wrong_class');
+        }else{
+        $error = new VError();
+        $error->error(1); //401 -> Forbidden Access
+        }*/
+        $evento = $pm->load("id",$view->getIdEvento(),"FEvento");
+        $view->showFormModify(null,$evento);
+    }
+
+    /**
+     * Funzione che gestisce la modifica del nome del Evento. Preleva il nuovo nome dalla View e procede alla modifica.
+     * @return void
+     * @throws SmartyException
+     */
+    public function modificaNomeEvento(){
+        $sessione = new USession();
+        $view = new VGestioneEvento();
+
+        //$utente = unserialize($sessione->leggi_valore('utente'));
+        $pm = FPersistentManager::getInstance();
+        $evento = $pm->load("id",$view->getIdEvento(),"FEvento");
+        $nomeNuovo = $view->getNomeEvento();
+        $evento->setNome($nomeNuovo);
+        $pm->update("FEvento","nome",$nomeNuovo,"id",$evento->getId());
+
+        $view->showFormModify(null,$evento);
+    }
+
+    /**
+     * Funzione che gestisce la modifica del nome del Evento. Preleva la nuova descrizione dalla View e procede alla modifica.
+     * @return void
+     * @throws SmartyException
+     */
+    public function modificaDescrizioneEvento(){
+        $sessione = new USession();
+        $view = new VGestioneEvento();
+
+        //$utente = unserialize($sessione->leggi_valore('utente'));
+        $pm = FPersistentManager::getInstance();
+        $evento = $pm->load("id",$view->getIdEvento(),"FEvento");
+        $descrizioneNuova = $view->getDescrizioneEvento();
+        $evento->setDescrizione($descrizioneNuova);
+        $pm->update("FEvento","descrizione",$descrizioneNuova,"id",$evento->getId());
+
+        $view->showFormModify(null,$evento);
+    }
+
+    /**
+     * Funzione che gestisce la modifica della data del Evento. Preleva la nuova data dalla View e procede alla modifica.
+     * @return void
+     * @throws SmartyException
+     */
+    public function modificaDataEvento(){
+        $sessione = new USession();
+        $view = new VGestioneEvento();
+
+        //$utente = unserialize($sessione->leggi_valore('utente'));
+        $pm = FPersistentManager::getInstance();
+        $evento = $pm->load("id",$view->getIdEvento(),"FEvento");
+        $dataNuova = $view->getDataEvento();
+        $evento->setData($dataNuova);
+        $pm->update("FEvento","descrizione",$dataNuova,"id",$evento->getId());
+
+        $view->showFormModify(null,$evento);
     }
 
 
-    //Metodi Statici\\
+//----------------------------------METODI STATICI--------------------------------------------------------\\
     /**
      * Funzione che si preoccupa di verificare lo stato dell'immagine inserita
      * @param $nome_file
      * @return array , dove $ris è lo stato dell'immagine, $nome è il nome dell'immagine e $type è il MIME type dell'immagine
      */
-    static function upload($nome_file): array
+    static function upload($img): array
     {
         //$ris = "no_img";
-        $type = null;
         $nome = null;
         $max_size = 300000;
-        $result = is_uploaded_file($_FILES[$nome_file]['tmp_name']); //true se è stato caricato via HTTP POST.
+        $result = is_uploaded_file($result = is_uploaded_file($img[2])); //true se è stato caricato via HTTP POST.
         if (!$result) {
             $ris = "no_img";
         } else {
-            $size = $_FILES[$nome_file]['size'];
-            //$type = $_FILES[$nome_file]['type'];
+            $size = $img[3];
+            $type = $img[0];
             if ($size > $max_size) {
                 $ris = "size";
             } else {
-                $type = $_FILES[$nome_file]['type'];
                 if ($type == 'image/jpeg' || $type == 'image/png' || $type == 'image/jpg') {
-                    $nome = $_FILES[$nome_file]['name'];
-                    $ris = "ok_img";
+                    $immagine = @file_get_contents($img[2]);
+                    $immagine = addslashes ($immagine);
+                    $mutente = new EImmagine($nome,$size,$type,$immagine);;
                 } else {
                     $ris = "type";
                 }
             }
         }
-        return array($ris, $nome, $type);
+        return array($ris,$mutente);
     }
+
 
 }

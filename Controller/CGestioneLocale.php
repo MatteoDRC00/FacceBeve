@@ -7,7 +7,29 @@
  */
 class CGestioneLocale
 {
+    /**
+     * @var CGestioneLocale|null Variabile di classe che mantiene l'istanza della classe.
+     */
+    public static ?CGestioneLocale $instance = null;
 
+    /**
+     * Costruttore della classe.
+     */
+    private function __construct()
+    {
+    }
+
+    /**
+     * Restituisce l'istanza della classe.
+     * @return CAccesso|null
+     */
+    public static function getInstance(): ?CGestioneLocale
+    {
+        if (!isset(self::$instance)) {
+            self::$instance = new CGestioneLocale();
+        }
+        return self::$instance;
+    }
 
 //----------------------------------CREAZIONE DEL LOCALE------------------------------------------------------\\
     /**
@@ -16,7 +38,7 @@ class CGestioneLocale
     public function formCreaLocale(){
         $view = new VGestioneLocale();
         $sessione = new USession();
-        if($sessione->leggi_valore('utente')){
+        /**if($sessione->leggi_valore('utente')){
             $proprietario = unserialize(($sessione->leggi_valore('utente')));
             if(get_class($proprietario) == "EProprietario")
                 $view->showFormCreation($proprietario,null);
@@ -25,7 +47,9 @@ class CGestioneLocale
         }else{
             $error = new VError();
             $error->error(1); //401 -> Forbidden Access
-        }
+        }*/
+        $proprietario = unserialize(($sessione->leggi_valore('utente')));
+        $view->showFormCreation($proprietario,null);
     }
 
     /**
@@ -35,6 +59,7 @@ class CGestioneLocale
      * 1) se il metodo di richiesta HTTP è GET viene visualizzato il form di creazione della ricerca;
      * 2) se il metodo di richiesta HTTP è POST viene richiamata la funzione Creation().
      * 3) se il metodo di richiesta HTTP è diverso da uno dei precedenti -->errore.
+     * @throws SmartyException
      */
     public static function creaLocale()
     {
@@ -81,12 +106,13 @@ class CGestioneLocale
         } elseif ($check == "size") {
             $view->showFormCreation($proprietario, "size");
         } elseif ($check == "ok") {
+            $pm->store($Locale);
             $pm = FPersistentManager::getInstance();
             $pm->storeMedia($media, $img[1]); //Salvataggio dell'immagine sul db
-            $pm->storeEsterne($media); //Salvataggio sulla tabella generata dalla relazione N:N
+            $pm->storeEsterne("FLocale",$media,$Locale->getId()); //Salvataggio sulla tabella generata dalla relazione N:N
             header('Location: /Profilo/profilo'); //?
         }
-        $id = pm->store($Locale);
+
         header('Location: /FacceBeve/Utente/');
 
 
@@ -101,7 +127,8 @@ class CGestioneLocale
     public function formModificaLocale(){
         $view = new VGestioneLocale();
         $sessione = new USession();
-        if($sessione->leggi_valore('utente')){
+        $pm = FPersistentManager::getInstance();
+        /**if($sessione->leggi_valore('utente')){
             $proprietario = unserialize(($sessione->leggi_valore('utente')));
             if(get_class($proprietario) == "EProprietario")
                 $view->showFormCreation($proprietario,null);
@@ -110,12 +137,16 @@ class CGestioneLocale
         }else{
             $error = new VError();
             $error->error(1); //401 -> Forbidden Access
-        }
+        }*/
+        //$proprietario = unserialize(($sessione->leggi_valore('utente')));
+        $locale = $pm->load("id",$view->getIdLocale(),"FLocale");
+        $view->showFormModify(null,$locale);
     }
 
     /**
      * Funzione che gestisce la modifica del nome del Locale. Preleva il nuovo nome dalla View e procede alla modifica.
      * @return void
+     * @throws SmartyException
      */
     public function modificaNomeLocale(){
         $sessione = new USession();
@@ -128,12 +159,13 @@ class CGestioneLocale
         $locale->setNome($nomeNuovo);
         $pm->update("FLocale","nome",$nomeNuovo,"id",$locale->getId());
 
-        //$view->showFormModify();
+        $view->showFormModify(null,$locale);
     }
 
     /**
      * Funzione che gestisce la modifica della descrizione del Locale. Preleva la nuova descrizione dalla View e procede alla modifica.
      * @return void
+     * @throws SmartyException
      */
     public function modificaDescrizioneLocale(){
         $sessione = new USession();
@@ -146,12 +178,13 @@ class CGestioneLocale
         $locale->setNome($newDescrizione);
         $pm->update("FLocale","descrizione",$newDescrizione,"id",$locale->getId());
 
-        //$view->showFormModify();
+        $view->showFormModify(null,$locale);
     }
 
     /**
      * Funzione che gestisce la modifica il numero di telefono del Locale. Preleva il nuovo numero di telefono dalla View e procede alla modifica.
      * @return void
+     * @throws SmartyException
      */
     public function modificaNumeroLocale(){
         $sessione = new USession();
@@ -164,12 +197,13 @@ class CGestioneLocale
         $locale->setNome($numeroTelefono);
         $pm->update("FLocale","numtelefono",$numeroTelefono,"id",$locale->getId());
 
-        //$view->showFormModify();
+        $view->showFormModify(null,$locale);
     }
 
     /**
      * Funzione che gestisce la modifica della categoria del locale. Preleva il nuovo nome dalla View e procede alla modifica.
      * @return void
+     * @throws SmartyException
      */
     public function modificaCatLocale(){
         $sessione = new USession();
@@ -183,14 +217,15 @@ class CGestioneLocale
             $pm->deleteEsterne($cat1);
         }
         foreach($newCat as $cat2){
-            $pm->storeEsterne($cat2);
+            $pm->storeEsterne("FLocale",$cat2,$locale->getId());
         }
-        //$view->showFormModify();
+        $view->showFormModify(null,$locale);
     }
 
     /**
      * Funzione che gestisce la modifica della categoria del locale. Preleva il nuovo nome dalla View e procede alla modifica.
      * @return void
+     * @throws SmartyException
      */
     public function modificaLocalizzazioneLocale(){
         $sessione = new USession();
@@ -213,12 +248,13 @@ class CGestioneLocale
         $d = $view->getCAP();
         $pm->update("FLocalizzazione","CAP",$d,"id",$localizzazione->getId());
 
-        //$view->showFormModify();
+        $view->showFormModify(null,$locale);
     }
 
     /**
      * Funzione che gestisce la modifica dell'orario del locale. Preleva il nuovo orario dalla View e procede alla modifica.
      * @return void
+     * @throws SmartyException
      */
     public function modificaOrarioLocale(){
         $sessione = new USession();
@@ -243,7 +279,7 @@ class CGestioneLocale
                 $pm->update("OrarioChiusura", $orari[$i][1], "id", $locale->getOrario()[$i]->getId(), "FOrario");
             }
         }
-        //$view->showFormModify();
+        $view->showFormModify(null,$locale);
     }
 
     /**
@@ -262,14 +298,14 @@ class CGestioneLocale
         $img = $view->getImgLocale();
         list($check, $media) = static::upload($img);
         if ($check == "type") {
-            $view->showFormModify($utente, "size");
+            $view->showFormModify( "size",$locale);
         } elseif ($check == "size") {
-            $view->showFormModify($utente, "size");
+            $view->showFormModify( "size",$locale);
         } elseif ($check == "ok") {
             $pm = FPersistentManager::getInstance();
             $pm->storeMedia($media, $img[1]); //Salvataggio dell'immagine sul db
-            $pm->storeEsterne($media); //Salvataggio sulla tabella generata dalla relazione N:N
-            header('Location: /Profilo/profilo'); //?
+            $pm->storeEsterne("FLocale",$media,$view->getIdLocale()); //Salvataggio sulla tabella generata dalla relazione N:N
+            header('Location: /Ricerca/dettaglioLocale');
         }
     }
 
@@ -277,14 +313,20 @@ class CGestioneLocale
 
 //----------------------------------MODIFICA DEL LOCALE------------------------------------------------------\\
 
+//----------------------------------CANCELLAZIONE DEL LOCALE------------------------------------------------------\\
     /**
      * Funzione utilizzata per eliminare un locale, di cui si è proprietari
      * @param $id id del locale da eliminare
      */
     static function deleteLocale($id)
     {
-        $sessione = USession::getInstance();
-        if ($proprietario = unserialize($sessione->leggi_valore('utente'))) {
+        $sessione = new USession();
+        $proprietario = unserialize($sessione->leggi_valore('utente'));
+        $pm = FPersistentManager::getIstance();
+        $pm->delete("id", $id, "FLocale");
+        header('Location: /FacceBeve/Ricerca/dettaglioLocale');
+
+        /**if ($proprietario = unserialize($sessione->leggi_valore('utente'))) {
             $utente = unserialize($proprietario = unserialize($sessione->leggi_valore('utente')));
             if (get_class($utente) == "EProprietario") {
                 $pm = FPersistentManager::getIstance();
@@ -299,10 +341,10 @@ class CGestioneLocale
                 header('Location: /FacceBeve/Utente/profile');
             }
         } else
-            header('Location: /FacceBeve/Utente/login');
+            header('Location: /FacceBeve/Utente/login');*/
     }
 
-    //Metodi Statici\\
+//----------------------------------METODI STATICI------------------------------------------------------\\
     /**
      * Funzione che si preoccupa di verificare lo stato dell'immagine inserita
      * @param $nome_file
@@ -326,7 +368,7 @@ class CGestioneLocale
                 if ($type == 'image/jpeg' || $type == 'image/png' || $type == 'image/jpg') {
                     $immagine = @file_get_contents($img[2]);
                     $immagine = addslashes ($immagine);
-                    $mutente = new EImmagine($nome,$size,$type,$immagine);;
+                    $mutente = new EImmagine($nome,$size,$type,$immagine);
                 } else {
                     $ris = "type";
                 }

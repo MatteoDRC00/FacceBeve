@@ -41,10 +41,11 @@ class FPersistentManager {
     /**
      * @param Object $obj
      * @param string $Fclass
+     * @param int $id del Locale
      * @return void
      */
-    public static function storeEsterne(string $Fclass, Object $obj) {
-        $Fclass::storeEsterne($obj);
+    public static function storeEsterne(string $Fclass, Object $obj,int $id) {
+        $Fclass::storeEsterne($obj,$id);
     }
 
     /**
