@@ -40,7 +40,7 @@ class CGestioneRecensione{
 
         FRecensione::store($recensione);
 
-        header('Location: '); //da aggiungere qualcosa per farlo tornare alla infoLocale
+        header('Location: ');
     }
 
 

@@ -40,11 +40,11 @@ class CProfilo{
         header('Location: /FacceBeve/Utente/login');
     }
 
-
+/*
     public function error() {
         $view = new VError();
         $view->error('1');
-    }
+    } */
 
 
     /**
@@ -56,26 +56,20 @@ class CProfilo{
         $view = new VProfilo();
         $sessione = USession::getInstance();
         $pm = FPersistentManager::getInstance();
-        if($sessione->leggi_valore('utente')){
-            $utente = unserialize($sessione->leggi_valore('utente'));
-            $locali = static::caricaLocali($utente);
-            $passwordVecchia = $view->getPasswordVecchia();
-            $passwordNuova = $view->getPasswordNuova();
-            if(md5($passwordVecchia)==$utente->getPassword()) {
-                if($passwordNuova!=$passwordVecchia){
-                    $utente->setPassword($passwordNuova);
-                    $pm->update(get_class($utente),"password",$passwordNuova,"username",$utente->getUsername());
-                    header('Location: /Profilo/profilo');
-                }else{
-                    $view->profilo($utente,$locali,"password_old");
-                }
+        $utente = unserialize($sessione->leggi_valore('utente'));
+        $locali = static::caricaLocali($utente);
+        $passwordVecchia = $view->getPasswordVecchia();
+        $passwordNuova = $view->getPasswordNuova();
+        if(md5($passwordVecchia)==$utente->getPassword()) {
+            if($passwordNuova!=$passwordVecchia){
+                $utente->setPassword($passwordNuova);
+                $pm->update(get_class($utente),"password",$passwordNuova,"username",$utente->getUsername());
+                header('Location: /Profilo/profilo');
             }else{
-                $view->profilo($utente,$locali,"password_error");
-                //return false;
+                $view->profilo($utente,$locali,"password_old");
             }
         }else{
-            $view = new VError();
-            $view->error(1);   //Accesso proibito
+            $view->profilo($utente,$locali,"password_error");
         }
     }
 
@@ -86,32 +80,26 @@ class CProfilo{
      */
     public function modificaUsername(){
         $view = new VProfilo();
-        $sessione = USession::getInstance();
-        if($sessione->leggi_valore('utente')){
-            $utente = unserialize($sessione->leggi_valore('utente'));
-            $pm = FPersistentManager::getInstance();
-            $usernameNuova = $view->getUsernameNuova();
-            //Controllo sulla Username, essendo identificativa, che quella immessa non sia già stata scelta(da errore anche se inserisco la vecchia username)
-            $bool = false;
-            $check = $pm->loadAll(get_class($utente));
-            foreach($check as $x){
-                if($x->getUsername()==$usernameNuova){
+        $sessione = new USession();
+        $utente = unserialize($sessione->leggi_valore('utente'));
+        $pm = FPersistentManager::getInstance();
+        $usernameNuova = $view->getUsernameNuova();
+        //Controllo sulla Username, essendo identificativa, che quella immessa non sia già stata scelta(da errore anche se inserisco la vecchia username)
+        $bool = false;
+        $check = $pm->loadAll(get_class($utente));
+        foreach ($check as $x) {
+            if ($x->getUsername() == $usernameNuova) {
                     $bool = true;
-                }
             }
-            if(!$bool){
-                $utente->setUsername($usernameNuova);
-                $pm->update(get_class($utente),"username",$usernameNuova,"username",$utente->getUsername());
-                header('Location: /Profilo/profilo'); //profilo!!!
-            }else{
-                $locali = static::caricaLocali($utente);
-                $view->profilo($utente,$locali,"username");
-            }
-        }else{
-            $view = new VError();
-            $view->error(1);   //Accesso proibito
         }
-
+        if (!$bool) {
+            $utente->setUsername($usernameNuova);
+            $pm->update(get_class($utente), "username", $usernameNuova, "username", $utente->getUsername());
+            header('Location: /Profilo/profilo'); //profilo!!!
+        } else {
+            $locali = static::caricaLocali($utente);
+            $view->profilo($utente, $locali, "username");
+        }
     }
 
     /**
@@ -121,17 +109,12 @@ class CProfilo{
     public function modificaEmail(){
         $view = new VProfilo();
         $sessione = USession::getInstance();
-        if($sessione->leggi_valore('utente')){
-            $utente = unserialize($sessione->leggi_valore('utente'));
-            $pm = FPersistentManager::getInstance();
-            $emailNuova = $view->getEmailNuova();
-            $utente->setEmail($emailNuova);
-            $pm->update(get_class($utente),"email",$emailNuova,"username",$utente->getUsername());
-            header('Location: /Profilo/profilo'); //profilo!!!
-        }else{
-            $view = new VError();
-            $view->error(1);   //Accesso proibito
-        }
+        $utente = unserialize($sessione->leggi_valore('utente'));
+        $pm = FPersistentManager::getInstance();
+        $emailNuova = $view->getEmailNuova();
+        $utente->setEmail($emailNuova);
+        $pm->update(get_class($utente),"email",$emailNuova,"username",$utente->getUsername());
+        header('Location: /Profilo/profilo'); //profilo!!!
     }
 
 
@@ -143,24 +126,18 @@ class CProfilo{
     public function modificaImmagineProfilo(){
         $view = new VProfilo();
         $sessione = USession::getInstance();
-        if($sessione->leggi_valore('utente')){
-            $utente = unserialize($sessione->leggi_valore('utente'));
-            $locali = static::caricaLocali($utente);
-            $img = $view->getNewImgProfilo();
-            list($check,$media) = static::upload($img);
-            if($check=="type"){
-                $view->profilo($utente,$locali,"type");
-            }elseif($check=="size"){
-                $view->profilo($utente,$locali,"size");
-            }elseif($check=="ok"){
-                //$utente->setImgProfilo($img);
-                $pm = FPersistentManager::getInstance();
-                $pm->updateMedia($media,$img[1]);
-                header('Location: /Profilo/profilo'); //profilo!!!
-            }else{
-                $view = new VError();
-                $view->error(1);   //Accesso proibito
-            }
+        $utente = unserialize($sessione->leggi_valore('utente'));
+        $locali = static::caricaLocali($utente);
+        $img = $view->getNewImgProfilo();
+        list($check,$media) = static::upload($img);
+        if($check=="type"){
+            $view->profilo($utente,$locali,"type");
+        }elseif($check=="size"){
+                view->profilo($utente,$locali,"size");
+        }elseif($check=="ok"){
+            $pm = FPersistentManager::getInstance();
+            $pm->updateMedia($media,$img[1]);
+            header('Location: /Profilo/profilo'); //profilo!!!
         }
     }
 
@@ -172,11 +149,9 @@ class CProfilo{
     public function formModificaUtente(){
         $view = new VProfilo();
         $sessione = new USession();
-        if($sessione->leggi_valore('utente')){
-            $utente = unserialize(($sessione->leggi_valore('utente')));
-            $localiUtente = static::caricaLocali($utente);
-            $view->profilo($utente,$localiUtente,null);
-        }
+        $utente = unserialize(($sessione->leggi_valore('utente')));
+        $localiUtente = static::caricaLocali($utente);
+        $view->profilo($utente,$localiUtente,null);
     }
 
     /**
@@ -200,7 +175,6 @@ class CProfilo{
     public function profilo(){
         $sessione = USession::getInstance();
         if(!$sessione->leggi_valore('utente')){
-            $sessione->imposta_valore("last_visited","/Profilo/profilo");
             $log = CAccesso::getInstance();
             $log->mostraLogin();
         }else{
@@ -243,7 +217,6 @@ class CProfilo{
                 //Il file è troppo grande
                 $ris = "size";  // -->Errore relativo alla dimensione del img
             }
-            //$type = $_FILES[$nome_file]['type'];
             elseif ($type == 'image/jpeg' || $type == 'image/png' || $type == 'image/jpg') {
                 $nome = $img[1];
                 $immagine = @file_get_contents($img[2]);
@@ -271,8 +244,7 @@ class CProfilo{
     {
         $pm = FPersistentManager::getInstance();
         if(get_class($utente) == "EProprietario"){
-            $locali = $pm->load("proprietario",$utente->getUsername(),"FLocale");
-            return $locali;
+            return $pm->load("proprietario",$utente->getUsername(),"FLocale");
         }else{
             return null;
         }

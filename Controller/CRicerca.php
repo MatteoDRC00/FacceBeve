@@ -67,7 +67,8 @@ class CRicerca{
     /**
      * Metodo di ricerca che permette la ricerca di locali o eventi, in base al tipo di ricerca che si vuole effettuare.
      * In base al "tipo di ricerca" si andranno a prendere tre o quattro campi da passare al metodo della classe View(VRicerca)
-
+     * @throws SmartyException
+     */
     static function ricerca(){
         $vRicerca = new VRicerca();
         $sessione = USession::getInstance();
@@ -104,8 +105,7 @@ class CRicerca{
                 $nomeevento= vRicerca->getNomeEvento();
                 $citta= vRicerca->getCitta();
                 $data= vRicerca->getDataEvento();
-                if ($nomelocale != null || $nomeevento != null || $citta != null || $data != null){
-                    if(CUtente::isLogged()){
+                if ($nomelocale != null || $nomeevento != null || $citta != null || $data != null){ //JAVASCRIPTTTTT
                         $pm = FPersistentManager::GetIstance();;
                         $part1 = null; //NomeLocale
                         if ($nomelocale != null) {
@@ -133,11 +133,10 @@ class CRicerca{
                         }
                         $result = $pm->loadForm($part1, $part2, $part3, $part4,$tipo);
                         $vRicerca->showResult($result, $tipo);
-                    }
                 }else
                     header('Location: /FacceBeve/');
         }
-    }*/
+    }
 
 
     /**
