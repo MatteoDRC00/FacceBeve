@@ -146,8 +146,8 @@ class CAccesso
 
         if ($user != null) {
             $sessione = new USession();
-            $salvare = serialize($user);
-            $sessione->imposta_valore('utente',$salvare);
+            $sessione->imposta_valore('utente',$user->getUsername());
+            $sessione->imposta_valore("tipo_utente", get_class($user));
 
             header("Location: /Ricerca/mostraHome");
         }
@@ -269,8 +269,8 @@ class CAccesso
             $utente->setImgProfilo($img_profilo);
             $pm->store($utente);
 
-            $salvare = serialize($utente);
-            $sessione->imposta_valore('utente',$salvare);
+            $sessione->imposta_valore('utente',$utente->getUsername());
+            $sessione->imposta_valore("tipo_utente", get_class($utente));
 
             header("Location: /Ricerca/mostraHome");
         }
@@ -310,8 +310,8 @@ class CAccesso
             $proprietario->setImgProfilo($img_profilo);
             $pm->store($proprietario);
 
-            $salvare = serialize($proprietario);
-            $sessione->imposta_valore('utente',$salvare);
+            $sessione->imposta_valore('utente',$proprietario->getUsername());
+            $sessione->imposta_valore("tipo_utente", get_class($proprietario));
 
             header("Location: /Ricerca/mostraHome");
         }
@@ -398,7 +398,7 @@ class CAccesso
     public function logout(){
         $sessione = new USession();
         $sessione->chiudi_sessione();
-        header("Location: /");
+        header("Location: /Ricerca/mostraHome");
     }
 
 

@@ -33,16 +33,10 @@ class CRicerca{
     }
 
     public function mostraHome(){
-        $pm = FPersistentManager::getInstance();
         $sessione = new USession();
 
         if($sessione->isLogged()){
-            $user = $sessione->leggi_valore('utente');
-            $user = unserialize($user);
-            if(get_class($user) == "EUtente")
-                $tipo = "EUtente";
-            else
-                $tipo = "EProprietario";
+            $tipo = $sessione->leggi_valore("tipo_utente");
         }else{
             $tipo = "nouser";
         }

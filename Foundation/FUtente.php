@@ -168,7 +168,10 @@ class FUtente{
 		$db = FDB::getInstance();
 		$utente = $db->loadVerificaAccesso($user, $pass, static::getClass());
 
-        return self::loadByField("username", $utente["username"]);
+        if(!empty($utente))
+            return self::loadByField("username", $utente["username"]);
+        else
+            return null;
 
 	}
 

@@ -146,7 +146,11 @@ class FProprietario{
 
     public static function verificaLogin($user, $pass) {
         $db = FDB::getInstance();
-        return  $db->loadVerificaAccesso($user, $pass, static::getClass());
+        $proprietario = $db->loadVerificaAccesso($user, $pass, static::getClass());
+        if(!empty($proprietario))
+            return self::loadByField("username", $proprietario["username"]);
+        else
+            return null;
     }
 
 }
