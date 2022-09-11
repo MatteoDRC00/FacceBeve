@@ -1,5 +1,28 @@
-<!DOCTYPE html>
-<!--{assign var='error' value=$error|default:'ok'} -->
+<?php
+/* Smarty version 4.2.0, created on 2022-09-11 11:28:51
+  from 'C:\xampp\htdocs\FacceBeve\template\registrazioneUtente.tpl' */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '4.2.0',
+  'unifunc' => 'content_631daa532b28a9_69241990',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    'c20b6bf5f02e1972c0cff8ba77bb2836e646beda' => 
+    array (
+      0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\registrazioneUtente.tpl',
+      1 => 1662888521,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+),false)) {
+function content_631daa532b28a9_69241990 (Smarty_Internal_Template $_smarty_tpl) {
+?><!DOCTYPE html>
+<!--<?php $_smarty_tpl->_assignInScope('error', (($tmp = $_smarty_tpl->tpl_vars['error']->value ?? null)===null||$tmp==='' ? 'ok' ?? null : $tmp));?> -->
 <html lang="it">
 <head>
     <meta charset="utf-8">
@@ -56,23 +79,27 @@
             <button type="submit">Registrati</button>
             <p class="message">Hai gi&agrave un account? <a href="login.html">Accedi</a></p>
         </form>
-        <!--  {if $errorSize!='ok'}
+        <!--  <?php if ($_smarty_tpl->tpl_vars['errorSize']->value != 'ok') {?>
               <div style="color: red;">
                   <p align="center">Attenzione! Formato immagine troppo grande!  </p>
               </div>
-              {/if}
-              {if $errorType!='ok'}
+              <?php }?>
+              <?php if ($_smarty_tpl->tpl_vars['errorType']->value != 'ok') {?>
               <div style="color: red;">
                   <p align="center">Attenzione! Formato immagine non supportato (provare con .png o .jpg)!  </p>
               </div>
-              {/if}
-              {if $errorEmail!='ok'}
+              <?php }?>
+              <?php if ($_smarty_tpl->tpl_vars['errorEmail']->value != 'ok') {?>
               <div style="color: red;">
                   <p align="center">Attenzione! Email già esistente!  </p>
               </div>
-              {/if} -->
+              <?php }?> -->
     </div>
 </div>
-<script src="/template/js/main.js"></script>
+<?php echo '<script'; ?>
+ src="/template/js/main.js"><?php echo '</script'; ?>
+>
 </body>
 </html>
+<?php }
+}

@@ -7,15 +7,25 @@
     <list default="true" id="9b9dc9a9-b323-4b45-835b-2a2c423efdeb" name="Changes" comment="link su tpl">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controller/CAccesso.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/CAccesso.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controller/CFrontController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/CFrontController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Entity/EImmagine.php" beforeDir="false" afterPath="$PROJECT_DIR$/Entity/EImmagine.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Foundation/FImmagine.php" beforeDir="false" afterPath="$PROJECT_DIR$/Foundation/FImmagine.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Foundation/FPersistentManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/Foundation/FPersistentManager.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Foundation/FUtente.php" beforeDir="false" afterPath="$PROJECT_DIR$/Foundation/FUtente.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Smarty/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/Smarty/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Smarty/templates_c/c953834e2bd280dacf9fe734edc7529afcd03f09_0.file.home.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/Smarty/templates_c/c953834e2bd280dacf9fe734edc7529afcd03f09_0.file.home.tpl.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/VAccesso.php" beforeDir="false" afterPath="$PROJECT_DIR$/View/VAccesso.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/template/home.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/template/home.tpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/registrazioneProprietario.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/template/registrazioneProprietario.tpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/registrazioneUtente.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/template/registrazioneUtente.tpl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings" doNotAsk="true">
+  <component name="ComposerSettings" doNotAsk="true" notifyAboutMissingVendor="false" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/Smarty/composer.json</pharConfigPath>
     <execution />
   </component>
@@ -150,7 +160,8 @@
       <workItem from="1662640826039" duration="10005000" />
       <workItem from="1662652160539" duration="2555000" />
       <workItem from="1662654901816" duration="1343000" />
-      <workItem from="1662812653254" duration="15234000" />
+      <workItem from="1662812653254" duration="15924000" />
+      <workItem from="1662885363222" duration="8935000" />
     </task>
     <servers />
   </component>
