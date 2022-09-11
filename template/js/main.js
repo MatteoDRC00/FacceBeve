@@ -8,6 +8,58 @@
   "use strict";
 
   /**
+   *Funzione utilizzata per la sanificazione di stringhe
+   */
+  function validateResearchForm(){
+    let x = document.getElementById("tipo");
+    let y = x.value;
+    if(y==='Locali'){
+      let citta = document.forms.ricercaLocali[0].elements.citta.value;
+      let nome = document.forms.ricercaLocali[0].elements.nomeLocale.value;
+      let categoria = document.forms.ricercaLocali[0].elements.categoria.value;
+      if(citta === "" && nome === "" && categoria === ""){
+        alert("Inserire almeno un campo per effettuare la ricerca");
+        return false;
+      }
+    }else{
+      let citta = document.forms.ricercaEventi.elements.citta.value;
+      let nomeLocale = document.forms.ricercaEventi.elements.nomeLocale.value;
+      let nomeEvento = document.forms.ricercaEventi.elements.nomeEvento.value;
+      let dataEvento = document.forms.ricercaEventi.elements.dataEvento.value;
+
+      var DataEvento = new Date(dataEvento);
+      var Oggi = new Date();
+
+      if(citta === "" && nomeLocale === "" && nomeEvento === "" && dataEvento === ""){
+        alert("Inserire almeno un campo per effettuare la ricerca");
+        return false;
+      }
+
+      if(DataEvento.getTime() < Oggi.getTime()){
+        alert('La data del evento è precedente ad adesso, effettuare ricerche potrebbe piegare lo spazio-tempo')
+        return false;
+      }
+    }
+  }
+
+  function setList() {    //In input le categorie
+    let x = document.getElementById("tipo");
+    let y = x.value;
+    let z, q;
+    q = document.getElementById(y);
+    if(y==='Locali'){
+      q.style.display = "flex";
+      z = document.getElementById("Eventi");
+      z.style.display = "none";
+
+    }else{
+      q.style.display = "inline-block";
+      z = document.getElementById("Locali");
+      z.style.display = "none";
+    }
+  };
+
+  /**
    * Easy selector helper function
    */
   const select = (el, all = false) => {

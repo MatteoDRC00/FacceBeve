@@ -33,35 +33,6 @@
     <!-- Template Main CSS File -->
     <link href="/template/css/style.css" rel="stylesheet">
 
-    <!-- JavaScript-->
-    <script type="text/javascript">
-        function setList() {    //In input le categorie
-            var x = document.getElementById("tipo");
-            var y = x.value;
-            var z,q;
-            q = document.getElementById(y);
-            if(y==='Locali'){
-                q.style.display = "flex";
-                z = document.getElementById("Eventi");
-                z.style.display = "none";
-
-            }else{
-                q.style.display = "inline-block";
-                z = document.getElementById("Locali");
-                z.style.display = "none";
-            }
-        };
-
-        /** function defaultView() {
-            var x = document.getElementById("Eventi");
-            x.style.display = "none";
-            var y = document.getElementById("Locali");
-            y.style.display = "flex";
-        };**/
-
-
-    </script>
-
 </head>
 
 <body> <!--onload="defaultView()"-->
@@ -82,12 +53,12 @@
             </div>
         {elseif $tipo=='EUtente'}
             <div class="sign">
-                <a href="/Smarty/html/areaPersonaleUtente.html">Il tuo profilo personale</a>
+                <a href="/Smarty/html/areaPersonaleUtente.html">Area Personale Utente</a> <!--DEBUG ZIO PERA-->
                 <a href="/Accesso/logout">Logout</a>
             </div>
         {elseif $tipo=='EProprietario'}
             <div class="sign">
-                <a href="/Smarty/html/areaPersonaleProprietario.html">Il tuo profilo personale</a>
+                <a href="/Smarty/html/areaPersonaleProprietario.html">Area Personale Ciccarelli</a>
                 <a href="/Accesso/logout">Logout</a>
             </div>
         {/if}
@@ -111,7 +82,7 @@
                     </select>
                 </div>
                 <div class="ricerca animate__animated animate__fadeInDown" id="Locali" style="display: flex;justify-content: center;">
-                    <form class="Search"  action="/Smarty/html/risultatiRicerca.html">
+                    <form class="Search" name="ricercaLocali"  action="/Smarty/html/risultatiRicerca.html">
                         <input class="homeinput" type="text" placeholder="Inserisci la città">
                         <input class="homeinput" type="text" placeholder="Inserisci il nome" name="nomeLocale">
                         <select  name="categorie" style="border-radius:7px; height: 50px  ;">
@@ -124,7 +95,7 @@
                     </form>
                 </div>
                 <div class="ricerca animate__animated animate__fadeInDown" id="Eventi" style="display: none;justify-content: center;" >
-                    <form class="Search" action="risultatiRicerca.html">
+                    <form class="Search"  name="ricercaEventi"  action="risultatiRicerca.html">
                         <input class="homeinput" type="text" placeholder="Inserisci la città" name="citta">
                         <input class="homeinput" type="text" placeholder="Inserisci il nome del Locale" name="nomeLocale">
                         <input class="homeinput" type="text" placeholder="Inserisci il nome del Evento" name="nomeEvento">
@@ -140,7 +111,7 @@
                 </div>
 
                 <div class="ricerca animate__animated animate__fadeInDown" style="display: flex;justify-content: center;">
-                    <form class="Search"  action="/Smarty/html/risultatiRicerca.html">
+                    <form class="Search" name="ricercaLocali" action="/Smarty/html/risultatiRicerca.html">
                         <input class="homeinput" type="text" placeholder="Inserisci la città" name="citta">
                         <input class="homeinput" type="text" placeholder="Inserisci il nome" name="nomeLocale">
                         <select name="categorie" style="border-radius:7px; height: 50px ">

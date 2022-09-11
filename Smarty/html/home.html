@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-{assign var='tipo' value=$tipo}
+{assign var='tipo' value=$tipo|default:'nouser'}
+{assign var='genere_cat' value=$genere_cat}
+{assign var='locali' value=$locali}
 <html lang="en">
 
 <head>
@@ -29,36 +31,7 @@
     <link href="/template/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
     <!-- Template Main CSS File -->
-    <link href="/FacceBeve/template/css/style.css" rel="stylesheet">
-
-    <!-- JavaScript-->
-    <script type="text/javascript">
-        function setList() {    //In input le categorie
-            var x = document.getElementById("tipo");
-            var y = x.value;
-            var z,q;
-            q = document.getElementById(y);
-            if(y==='Locali'){
-                q.style.display = "flex";
-                z = document.getElementById("Eventi");
-                z.style.display = "none";
-
-            }else{
-                q.style.display = "inline-block";
-                z = document.getElementById("Locali");
-                z.style.display = "none";
-            }
-        };
-
-        /** function defaultView() {
-            var x = document.getElementById("Eventi");
-            x.style.display = "none";
-            var y = document.getElementById("Locali");
-            y.style.display = "flex";
-        };**/
-
-
-    </script>
+    <link href="/template/css/style.css" rel="stylesheet">
 
 </head>
 
@@ -69,26 +42,24 @@
     <div class="container d-flex justify-content-between align-items-center">
 
         <div class="logo">
-            <h1><a href="/Smarty/html/home.html"><img src="/template/img/logo.png" alt=""><span>FacceBeve</span></a></h1>
+            <h1><a href="/Ricerca/mostraHome"><img src="/template/img/logo.png" alt=""><span>FacceBeve</span></a></h1>
         </div>
 
         {if $tipo=='nouser'}
         <div class="sign">
-            <a href="Accesso/formLogin">Accedi</a>
-            <a href="/Smarty/html/registrazioneUtente.html">Registrati</a>
-            <a href="/Smarty/html/registrazioneProprietario.html">Vuoi pubblicizzare il tuo locale?</a>
+            <a href="/Accesso/formLogin">Accedi</a>
+            <a href="/Accesso/formRegistrazioneUtente">Registrati</a>
+            <a href="/Accesso/formRegistrazioneProprietario">Vuoi pubblicizzare il tuo locale?</a>
         </div>
         {elseif $tipo=='EUtente'}
         <div class="sign">
-            <a href="/Smarty/html/areaPersonaleUtente.html">Il tuo profilo personale</a>
-            <a href="/Smarty/html/areaPersonaleUtente.html">I tuoi locali preferiti</a> <!--Come si fa?-->
-            <a href="/Smarty/html/registrazioneProprietario.html">Logout</a> <!--Qui direi una semplice action  -->
+            <a href="/Smarty/html/areaPersonaleUtente.html">Area Personale Utente</a> <!--DEBUG ZIO PERA-->
+            <a href="/Accesso/logout">Logout</a>
         </div>
         {elseif $tipo=='EProprietario'}
         <div class="sign">
-            <a href="/Smarty/html/areaPersonaleProprietario.html">Il tuo profilo personale</a>
-            <a href="/Smarty/html/areaPersonaleUtente.html">I tuoi locali gestiti</a> <!--Quasi quasi ne farei solo 2 di bottoni-->
-            <a href="/Smarty/html/registrazioneProprietario.html">Logout</a> <!--Qui direi una semplice action  -->
+            <a href="/Smarty/html/areaPersonaleProprietario.html">Area Personale Ciccarelli</a>
+            <a href="/Accesso/logout">Logout</a>
         </div>
         {/if}
 
@@ -111,20 +82,20 @@
                 </select>
             </div>
             <div class="ricerca animate__animated animate__fadeInDown" id="Locali" style="display: flex;justify-content: center;">
-                <form class="Search"  action="/Smarty/html/risultatiRicerca.html">
+                <form class="Search" name="ricercaLocali"  action="/Smarty/html/risultatiRicerca.html">
                     <input class="homeinput" type="text" placeholder="Inserisci la città">
                     <input class="homeinput" type="text" placeholder="Inserisci il nome" name="nomeLocale">
                     <select  name="categorie" style="border-radius:7px; height: 50px  ;">
                         <option>--Scegli il tipo--</option>
                         {foreach $genere_cat as $genere}
-                        <option><input class="homeinput" type="radio" name="genere" value="{$genere}"> {$genere}</option>
+                        <option type="radio" name="genere" value="{$genere}"> {$genere}</option>
                         {/foreach}
                     </select>
                     <button class="input" type="submit" style="border-radius:10px;"><i class="fa fa-search"></i></button>
                 </form>
             </div>
             <div class="ricerca animate__animated animate__fadeInDown" id="Eventi" style="display: none;justify-content: center;" >
-                <form class="Search" action="risultatiRicerca.html">
+                <form class="Search"  name="ricercaEventi"  action="risultatiRicerca.html">
                     <input class="homeinput" type="text" placeholder="Inserisci la città" name="citta">
                     <input class="homeinput" type="text" placeholder="Inserisci il nome del Locale" name="nomeLocale">
                     <input class="homeinput" type="text" placeholder="Inserisci il nome del Evento" name="nomeEvento">
@@ -140,7 +111,7 @@
             </div>
 
             <div class="ricerca animate__animated animate__fadeInDown" style="display: flex;justify-content: center;">
-                <form class="Search"  action="/Smarty/html/risultatiRicerca.html">
+                <form class="Search" name="ricercaLocali" action="/Smarty/html/risultatiRicerca.html">
                     <input class="homeinput" type="text" placeholder="Inserisci la città" name="citta">
                     <input class="homeinput" type="text" placeholder="Inserisci il nome" name="nomeLocale">
                     <select name="categorie" style="border-radius:7px; height: 50px ">
@@ -167,6 +138,7 @@
 
             <div class="row">
                 <h2>Ecco i TOP 4 locali in Italia:</h2>
+                {if !empty($locali )}
                 {foreach $locali as $locale}
                 <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up">
                     <div class="icon-box icon-box-pink">
@@ -175,8 +147,23 @@
                     </div>
                 </div>
                 {/foreach}
+                {else}
+                <p>Non ci sono locali</p>
+                {/if}
 
             </div>
+            <!--
+            <div class="row">
+                <h2>Eventi più vicini ad oggi:</h2>
+                {foreach $locali as $locale}
+                    <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up">
+                        <div class="icon-box icon-box-pink">
+                            <h4 class="title"><a href="">{$locale.nome}</a></h4>
+                            <p class="description">{$locale.descrizione}</p>
+                        </div>
+                    </div>
+                {/foreach}-->
+        </div>
 
         </div>
     </section><!-- End Services Section -->
