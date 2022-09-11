@@ -271,7 +271,10 @@ class VProfilo{
         return $arrayImg;
     }
 
-    public function mostraProfiloUtente(){
+    public function mostraProfiloUtente($utente, $locali_preferiti){
+        $this->smarty->assign("utente",$utente);
+        $this->smarty->assign("locali_preferiti",$locali_preferiti);
+
         $this->smarty->display('areaPersonaleUtente.tpl');
     }
 

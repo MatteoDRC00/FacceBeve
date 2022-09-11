@@ -260,10 +260,8 @@ class CProfilo{
 
             $locali_preferiti = $pm->getLocaliPreferiti($id_utente);
 
-
-
             $view = new VProfilo();
-            $view->mostraProfiloUtente();
+            $view->mostraProfiloUtente($utente, $locali_preferiti);
         }else{
             $sessione->chiudi_sessione();
             header("Location: /Ricerca/mostraHome");

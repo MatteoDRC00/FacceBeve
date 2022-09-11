@@ -5,14 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9b9dc9a9-b323-4b45-835b-2a2c423efdeb" name="Changes" comment="link su tpl">
-      <change afterPath="$PROJECT_DIR$/Smarty/templates_c/7757a365921f193a5e1677eb3c4671e453775876_0.file.areaPersonaleUtente.tpl.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controller/CProfilo.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/CProfilo.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Foundation/FPersistentManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/Foundation/FPersistentManager.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/html/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/Smarty/html/home.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/View/VProfilo.php" beforeDir="false" afterPath="$PROJECT_DIR$/View/VProfilo.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/home.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/template/home.tpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/template/js/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/areaPersonaleUtente.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/template/areaPersonaleUtente.tpl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
