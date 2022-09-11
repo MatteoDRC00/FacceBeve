@@ -133,7 +133,7 @@ class CProfilo{
         if($check=="type"){
             $view->profilo($utente,$locali,"type");
         }elseif($check=="size"){
-                view->profilo($utente,$locali,"size");
+            $view->profilo($utente,$locali,"size");
         }elseif($check=="ok"){
             $pm = FPersistentManager::getInstance();
             $pm->updateMedia($media,$img[1]);
@@ -250,5 +250,37 @@ class CProfilo{
         }
     }
 
+    public function mostraProfiloUtente(){
+        $sessione = new USession();
+        $pm = FPersistentManager::getInstance();
+        if($sessione->isLogged()){
+            $id_utente = $sessione->leggi_valore("utente");
+            $class = $sessione->leggi_valore("tipo_utente");
+            $utente = $pm->load("username", $id_utente, $class);
+
+            $locali_preferiti = $pm->getLocaliPreferiti($id_utente);
+
+
+
+            $view = new VProfilo();
+            $view->mostraProfiloUtente();
+        }else{
+            $sessione->chiudi_sessione();
+            header("Location: /Ricerca/mostraHome");
+        }
+
+    }
+
+    public function mostraProfiloProprietario(){
+        $sessione = new USession();
+        if($sessione->isLogged()){
+            $view = new VProfilo();
+            $view->mostraProfiloProprietario();
+        }else{
+            $sessione->chiudi_sessione();
+            header("Location: /Ricerca/mostraHome");
+        }
+
+    }
 
 }

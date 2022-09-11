@@ -43,22 +43,6 @@
     }
 
 
-    function setList() {    //In input le categorie
-        let x = document.getElementById("tipo");
-        let y = x.value;
-        let z, q;
-        q = document.getElementById(y);
-        if (y === 'Locali') {
-            q.style.display = "flex";
-            z = document.getElementById("Eventi");
-            z.style.display = "none";
-
-        } else {
-            q.style.display = "inline-block";
-            z = document.getElementById("Locali");
-            z.style.display = "none";
-        }
-    }
 
     /**
      * Easy selector helper function

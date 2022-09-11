@@ -21,7 +21,7 @@ class FPersistentManager {
     }
 
     /** Metodo che permette di salvare un oggetto sul db */
-    public static function store($obj) {
+    public function store($obj) {
         $EClass = get_class($obj);
         $EClass[0] = "F";
         $FClass = $EClass;
@@ -67,7 +67,7 @@ class FPersistentManager {
      * @param string $Fclass
      * @return void
      */
-    public static function delete(string $attributo, string $valore, string $Fclass) {
+    public function delete(string $attributo, string $valore, string $Fclass) {
         $Fclass::delete($attributo,$valore);
     }
 
@@ -87,9 +87,8 @@ class FPersistentManager {
      * @param string $valore
      * @return mixed
      */
-    public static function exist(string $class, string $attributo, string $valore) {
-        $result = $class::exist($attributo,$valore);
-        return $result;
+    public function exist(string $class, string $attributo, string $valore) {
+        return $class::exist($attributo,$valore);
     }
 
     /**  Metodo che permette di cercare/caricare un campo con un valore passato come parametro
@@ -97,10 +96,8 @@ class FPersistentManager {
      *  @param  val , valore da caricare
      *  @param  Fclass ,classe Foundation interessata
      */
-    public static function load($field, $val,$Fclass) {
-        $ris = null;
-        $ris = $Fclass::loadByField($field,$val);
-        return $ris;
+    public function load($field, $val,$Fclass) {
+        return $Fclass::loadByField($field,$val);
     }
 
 
@@ -193,7 +190,7 @@ class FPersistentManager {
     /**
      * Metodo che permette il login di un utente, date le credenziali (username e password)
      */
-    public static function verificaLogin($user, $pass) {
+    public function verificaLogin($user, $pass) {
         $ris = FUtente::verificaLogin($user, $pass);
         if($ris == null){
             $ris = FProprietario::verificaLogin($user, $pass);
@@ -234,6 +231,26 @@ class FPersistentManager {
     public function loadRecensioniByLocale($id){
         $result = FRecensione::loadByField("locale", $id);
         return $result;
+    }
+
+    public function getLocaliPreferiti($id_utente){
+        $db = FDB::getInstance();
+        $utente_locali = $db->load("utenti_locali", "ID_Utente", $id_utente);
+
+        $id_locali = array();
+
+        foreach($utente_locali as $coppia) {
+            $id_locali[] = $coppia["ID_Locale"];
+        }
+
+        $locali_preferiti = array();
+
+        for($i=0; $i<count($locali_preferiti); $i++){
+            $id = $locali_preferiti[$i];
+            $locali_preferiti[] = self::load("username", $id, "FLocali");
+        }
+
+        return $locali_preferiti;
     }
 
 }

@@ -270,4 +270,13 @@ class VProfilo{
         $arrayImg = array($nome,$type, $file, $dimensione);
         return $arrayImg;
     }
+
+    public function mostraProfiloUtente(){
+        $this->smarty->display('areaPersonaleUtente.tpl');
+    }
+
+    public function mostraProfiloProprietario(){
+        $this->smarty->display('areaPersonaleProprieratio.tpl');
+    }
+
 }

@@ -34,6 +34,25 @@
     <!-- Template Main CSS File -->
     <link href="/template/css/style.css" rel="stylesheet">
 
+    <script type="text/javascript">
+        function setList() {    //In input le categorie
+            let x = document.getElementById("tipo");
+            let y = x.value;
+            let z, q;
+            q = document.getElementById(y);
+            if (y === 'Locali') {
+                q.style.display = "flex";
+                z = document.getElementById("Eventi");
+                z.style.display = "none";
+
+            } else {
+                q.style.display = "inline-block";
+                z = document.getElementById("Locali");
+                z.style.display = "none";
+            }
+        }
+    </script>
+
 </head>
 
 <body> <!--onload="defaultView()"-->
@@ -54,12 +73,12 @@
             </div>
         {elseif $tipo=='EUtente'}
             <div class="sign">
-                <a href="/Smarty/html/areaPersonaleUtente.html">Area Personale Utente</a> <!--DEBUG ZIO PERA-->
+                <a href="/Profilo/mostraProfiloUtente">Area Personale Utente</a> <!--DEBUG ZIO PERA-->
                 <a href="/Accesso/logout">Logout</a>
             </div>
         {elseif $tipo=='EProprietario'}
             <div class="sign">
-                <a href="/Smarty/html/areaPersonaleProprietario.html">Area Personale Ciccarelli</a>
+                <a href="/Profilo/mostraProfiloProprietario">Area Personale Ciccarelli</a>
                 <a href="/Accesso/logout">Logout</a>
             </div>
         {/if}
@@ -201,7 +220,7 @@
 <script src="/template/vendor/php-email-form/validate.js"></script>
 
 <!-- Template Main JS File -->
-<script src="/template/js/main.js"></script>
+<script type="text/javascript" src="/template/js/main.js"></script>
 
 </body>
 
