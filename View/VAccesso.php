@@ -67,7 +67,7 @@ class VAccesso
      * @throws SmartyException
      */
     public function registra_utente() {
-        $this->smarty->display('RegistrazioneUtente.tpl');
+        $this->smarty->display('registrazioneUtente.tpl');
     }
 
     /**
@@ -75,7 +75,7 @@ class VAccesso
      * @throws SmartyException
      */
     public function registra_proprietario() {
-        $this->smarty->display('RegistrazioneProprietario.tpl');
+        $this->smarty->display('registrazioneProprietario.tpl');
     }
 
     /**
@@ -183,15 +183,17 @@ class VAccesso
 
     /**
      * Restituisce un array contenente le informazioni sul immagine da caricare, contenuto nel array _$_FILES, questo verrà poi passato al metodo upload per controllare la correttezza del file caricato
-     * @return array
+     * @return array|null
      */
-    public function getImgProfilo(): array
-    {
-        $type = $_FILES['img_profilo']['type'];
-        $nome = $_FILES['img_profilo']['name'];
-        $file = $_FILES['img_profilo']['tmp_name'];
-        $dimensione = $_FILES['img_profilo']['size'];
-        $arrayImg = array($nome,$type, $file, $dimensione);
+    public function getImgProfilo() {
+        $arrayImg = array();
+        if(isset($_FILES['img_profilo'])){
+            $type = $_FILES['img_profilo']['type'];
+            $nome = $_FILES['img_profilo']['name'];
+            $file = $_FILES['img_profilo']['tmp_name'];
+            $size = $_FILES['img_profilo']['size'];
+            $arrayImg = array($nome, $size, $type, $file);
+        }
         return $arrayImg;
     }
 

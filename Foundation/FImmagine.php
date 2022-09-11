@@ -22,20 +22,14 @@ class FImmagine
     /**
      * Questo metodo lega gli attributi dell'oggetto multimediale da inserire con i parametri della INSERT
      * @param PDOStatement $stmt
-     * @param EImmagine $md media i cui dati devono essere inseriti nel DB
+     * @param EImmagine $img media i cui dati devono essere inseriti nel DB
      */
-
-
-    public static function bind($stmt, EImmagine $md,$nome_file){
-        $path = $_FILES[$nome_file]['tmp_name'];
-        $file=fopen($path,'rb') or die ("Attenzione! Impossibile da aprire!");
+    public static function bind(PDOStatement $stmt, EImmagine $img){
         $stmt->bindValue(':id',NULL, PDO::PARAM_INT); //l'id � posto a NULL poich� viene dato automaticamente dal DBMS (AUTOINCREMENT_ID)
-        $stmt->bindValue(':nome',$md->getNome(), PDO::PARAM_STR);
-        $stmt->bindValue(':size',$md->getSize(), PDO::PARAM_INT);
-        $stmt->bindValue(':type',$md->getType(), PDO::PARAM_STR);
-        $stmt->bindValue(':immagine', fread($file,filesize($path)), PDO::PARAM_LOB);
-        unset($file);
-        unlink($path);
+        $stmt->bindValue(':nome',$img->getNome(), PDO::PARAM_STR);
+        $stmt->bindValue(':size',$img->getSize(), PDO::PARAM_INT);
+        $stmt->bindValue(':type',$img->getType(), PDO::PARAM_STR);
+        $stmt->bindValue(':immagine', base64_encode($img->getImmagine()), PDO::PARAM_LOB);
     }
 
     /**
@@ -68,10 +62,9 @@ class FImmagine
      * @param object $media
      * @return int $id dell'oggetto salvato
      */
-    public static function store(EImmagine $media, $nome_file): int
-    {
+    public static function store(EImmagine $media): int{
         $db = FDB::getInstance();
-        $id = $db->storeMedia(static::getClass(), $media, $nome_file);
+        $id = $db->store(static::getClass(), $media);
         return $id;
     }
 
@@ -106,7 +99,7 @@ class FImmagine
         //print_r ($result);
         $rows_number = $db->interestedRows(static::getClass(), $field, $id);
         if(($result!=null) && ($rows_number == 1)) {
-            $img=new EImmagine($result['nome']);
+            $img = new EImmagine($result['nome']);
             $img->setType($result['type']);
             $img->setData($result['immagine']);
             $img->setSize($result['size']);

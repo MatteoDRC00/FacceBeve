@@ -268,8 +268,9 @@ class CAccesso
         $view = new VAccesso();
 
         $usercheck = $view->getUsername();
-        $vereusername1 = $pm->exist("username", $usercheck,"FProprietario");
-        $vereusername2 = $pm->exist("username", $usercheck,"FUtente");
+        $vereusername1 = $pm->exist("FProprietario", "username", $usercheck);
+        $vereusername2 = $pm->exist("FUtente", "username", $usercheck);
+
         if (($vereusername1) || ($vereusername2) && ($usercheck!="admin")){
             $view->registrazioneUtenteError ("username"); //username già esistente
         }
@@ -277,7 +278,12 @@ class CAccesso
             //FARE CONTROLLO VIA CLIENT
             $utente = new EUtente($view->getPassword(),$view->getNome(),$view->getCognome(),$usercheck,$view->getEmail());
             $utente->Iscrizione();
-            if ($view->getImgProfilo() != null) {
+            $img = $view->getImgProfilo();
+            if (!empty($img)) {
+                $img_profilo = new EImmagine($img[0], $img[1], $img[2], $img[3]);
+                $id = $pm::store($img_profilo);
+
+                /*
                 $nome_file = 'img_profilo';
                 list($img,$foto) = static::upload($nome_file);
                 switch ($img) {
@@ -293,11 +299,14 @@ class CAccesso
                             $foto->setId($idImg);
                             $utente->setImgProfilo($foto);
                         }
-                        $pm->store($utente);
-                        header('Location: /FacceBeve/Utente/');
                         break;
-                }
+                }*/
+            }else{
+                $utente->setImgProfilo(null);
+                header('Location: /FacceBeve/Utente/');
             }
+            $pm->store($utente);
+
         }
     }
 
@@ -386,7 +395,7 @@ class CAccesso
      * @return array stato verifica immagine
      */
     static function upload($img) {
-        $pm = FPersistentManager()::getIstance();
+        $pm = FPersistentManager::getInstance();
         $ris = null;
         $nome = '';
         $max_size = 300000;
@@ -396,7 +405,7 @@ class CAccesso
             //$pm->store($utente);
 
             //return "ok";
-            $ris = "ok";
+            return $ris;
         } else {
             $size = $img[3];
             $type = $img[0];

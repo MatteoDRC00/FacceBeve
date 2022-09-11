@@ -1,12 +1,12 @@
 <?php
 
+
 class EImmagine implements JsonSerializable {
 
     /**
-     * id del media
-     * @AttributeType int
+     * @var string|null
      */
-    private string $id;
+    private ?string $id = null;
     /**
      * Nome del media
      * @AttributeType string
@@ -26,15 +26,15 @@ class EImmagine implements JsonSerializable {
      * Media in binario
      * @AttributeType blob
      */
-    private blob $immagine;
+    private string $immagine;
 
     /**
      * @param string $nome
      * @param string $size
      * @param string $type
-     * @param blob $immagine
+     * @param string $immagine
      */
-    public function __construct(string $nome, string $size, string $type, blob $immagine)
+    public function __construct(string $nome, string $size, string $type, string $immagine)
     {
         $this->nome = $nome;
         $this->size = $size;
@@ -76,20 +76,21 @@ class EImmagine implements JsonSerializable {
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getId(): string
+    public function getId(): ?string
     {
         return $this->id;
     }
 
     /**
-     * @param string $id
+     * @param string|null $id
      */
-    public function setId(string $id): void
+    public function setId(?string $id): void
     {
         $this->id = $id;
     }
+
 
     /**
      * @return string
@@ -108,17 +109,17 @@ class EImmagine implements JsonSerializable {
     }
 
     /**
-     * @return blob data del immagine
+     * @return string
      */
-    public function getImmagine(): blob
+    public function getImmagine(): string
     {
         return $this->immagine;
     }
 
     /**
-     * @param blob $immagine
+     * @param string $immagine
      */
-    public function setImmagine(blob $immagine): void
+    public function setImmagine(string $immagine): void
     {
         $this->immagine = $immagine;
     }

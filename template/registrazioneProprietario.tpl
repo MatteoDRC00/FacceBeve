@@ -29,7 +29,7 @@
     <link href="/template/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
     <!-- Template Main CSS File -->
-    <link href="/FacceBeve/template/css/log.css" rel="stylesheet">
+    <link href="/template/css/log.css" rel="stylesheet">
 
 
 </head>
@@ -47,7 +47,7 @@
 
 <div class="login-page">
     <div class="form">
-        <form class="login-form" action="/FacceBeve/Utente/regprop" method="POST">
+        <form class="login-form" action="/Accesso/registrazioneProprietario" method="POST">
             <h1 style="font-weight: bold">Registrati come proprietario di locali</h1>
             <input type="text" class="form-control" placeholder="nome" name="nome" pattern="[a-zA-Z]+\"/>
             <input type="text" class="form-control" placeholder="cognome" name="cognome" pattern="[a-zA-Z]+\"/>

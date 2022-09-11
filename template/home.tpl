@@ -76,9 +76,9 @@
 
         {if $tipo=='nouser'}
             <div class="sign">
-                <a href="Accesso/formLogin">Accedi</a>
-                <a href="/Smarty/html/registrazioneUtente.html">Registrati</a>
-                <a href="/Smarty/html/registrazioneProprietario.html">Vuoi pubblicizzare il tuo locale?</a>
+                <a href="/Accesso/formLogin">Accedi</a>
+                <a href="/Accesso/formRegistrazioneUtente">Registrati</a>
+                <a href="/Accesso/formRegistrazioneProprietario">Vuoi pubblicizzare il tuo locale?</a>
             </div>
         {elseif $tipo=='EUtente'}
             <div class="sign">
