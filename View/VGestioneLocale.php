@@ -74,15 +74,6 @@ class VGestioneLocale{
                     $this->smarty->assign('errorSize', "errore");
                     break;
             }
-            $this->smarty->assign('nome', $utente->getName());
-            $this->smarty->assign('cognome', $utente->getSurname());
-            $this->smarty->assign('userlogged', "loggato");
-            $this->smarty->display('infoLocale.tpl');
-        }
-        elseif (get_class($utente) == "ECliente") {
-            $this->smarty->assign('errorClas', $error);
-            $this->smarty->assign('nome', $utente->getName());
-            $this->smarty->assign('cognome', $utente->getSurname());
             $this->smarty->assign('userlogged', "loggato");
             $this->smarty->display('infoLocale.tpl');
         }
@@ -96,11 +87,11 @@ class VGestioneLocale{
      * @param $utente oggetto utente che effettua l'inserimento dei dati nei campi del locale
      * @param $error codice di errore con svariati significati. In base al suo valore verrÃ  eventualmente visualizzato un messaggio
      * di errore nella pagina di creazione del locale
+     * @param $locale
      * @throws SmartyException
      */
-    public function showFormModify($utente,$error) //Poi vedo Id
+    public function showFormModify($error,$locale) //Poi vedo Id
     {
-        if (($utente->getUsername() == "admin") || ($utente->getUsername() == "Admin")) {
             switch ($error) {
                 case "type" :
                     $this->smarty->assign('errorType', "errore");
@@ -109,18 +100,20 @@ class VGestioneLocale{
                     $this->smarty->assign('errorSize', "errore");
                     break;
             }
-            $this->smarty->assign('nome', $utente->getName());
-            $this->smarty->assign('cognome', $utente->getSurname());
+            //Foto?
+            $this->smarty->assign('nomeLocale', $locale->getNome());
+            $this->smarty->assign('descrizione', $locale->getNome());
+            $this->smarty->assign('numTelefono', $locale->getNumTelefono());
+
+            $this->smarty->assign('indirizzo', $locale->getLocalizzazione()->getIndirizzo());
+            $this->smarty->assign('numCivico', $locale->getLocalizzazione()->getNumCivico());
+            $this->smarty->assign('numTelefono', $locale->getLocalizzazione()->getCitta());
+            $this->smarty->assign('CAP', $locale->getLocalizzazione()->getCAP());
+            $this->smarty->assign('Categorie', $locale->getCategoria());
+            $this->smarty->assign('Orario', $locale->getOrario());
+
             $this->smarty->assign('userlogged', "loggato");
             $this->smarty->display('infoLocale.tpl');
-        }
-        elseif (get_class($utente) == "ECliente") {
-            $this->smarty->assign('errorClas', $error);
-            $this->smarty->assign('nome', $utente->getName());
-            $this->smarty->assign('cognome', $utente->getSurname());
-            $this->smarty->assign('userlogged', "loggato");
-            $this->smarty->display('infoLocale.tpl');
-        }
     }
 
     /**

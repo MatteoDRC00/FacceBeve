@@ -17,8 +17,94 @@ class VGestioneEvento{
     }
 
 
+    /**
+     * Metodo richiamato quando un Proprietario crea un locale.
+     * In caso di errori nella compilazione dei campi del locale, verrÃ  ricaricata la stessa pagina con un messaggio esplicativo
+     * dell'errore commesso in fase di compilazione.
+     * @param $utente oggetto utente che effettua l'inserimento dei dati nei campi dell'evento
+     * @param $error codice di errore con svariati significati. In base al suo valore verrÃ  eventualmente visualizzato un messaggio
+     * di errore nella pagina di creazione del locale
+     * @throws SmartyException
+     */
+    public function showFormCreation($utente,$error)
+    {
+            switch ($error) {
+                case "type" :
+                    $this->smarty->assign('errorType', "errore");
+                    break;
+                case "size" :
+                    $this->smarty->assign('errorSize', "errore");
+                    break;
+            }
+            $this->smarty->assign('userlogged', "loggato");
+            $this->smarty->display('infoLocale.tpl'); //?
+    }
 
 
+    /**
+     * Metodo richiamato quando un Proprietario crea un locale.
+     * In caso di errori nella compilazione dei campi del locale, verrÃ  ricaricata la stessa pagina con un messaggio esplicativo
+     * dell'errore commesso in fase di compilazione.
+     * @param $error codice di errore con svariati significati. In base al suo valore verrÃ  eventualmente visualizzato un messaggio
+     * di errore nella pagina di creazione del locale
+     * @param $locale
+     * @throws SmartyException
+     */
+    public function showFormModify($error,$evento) //Poi vedo Id
+    {
+
+            switch ($error) {
+                case "type" :
+                    $this->smarty->assign('errorType', "errore");
+                    break;
+                case "size" :
+                    $this->smarty->assign('errorSize', "errore");
+                    break;
+            }
+            if ($evento->getImg() != null) {
+                $pic64 = base64_encode($evento->getImg());
+            }
+            else {
+                $data = file_get_contents( $_SERVER['DOCUMENT_ROOT'] . '/FacceBeve/template/img/user.png');
+                $pic64 = base64_encode($data);
+            }
+            $this->smarty->assign('pic64', $evento->getImg());
+            $this->smarty->assign('nomeEvento', $evento->getNome());
+            $this->smarty->assign('descrizioneEvento', $evento->getDescrizione());
+            $this->smarty->assign('dataEvento', $evento->getData());
+
+            $this->smarty->assign('userlogged', "loggato");
+            $this->smarty->display('infoLocale.tpl'); //?
+    }
+
+
+
+
+    /**
+     * Restituisce l'id del locale che si vuole creare(Hidden)
+     * Inviato con metodo post
+     * @return int
+     */
+    public function getIdLocale(): ?int
+    {
+        $value = null;
+        if (isset($_POST['IdLocale'])) //NON SO SE VANNO UTLIZZATI NOMI DIVERSI
+            $value = $_POST['IdLocale'];
+        return $value;
+    }
+
+    /**
+     * Restituisce l'id del locale che si vuole creare(Hidden)
+     * Inviato con metodo post
+     * @return int
+     */
+    public function getIdEvento(): ?int
+    {
+        $value = null;
+        if (isset($_POST['IdEvento'])) //NON SO SE VANNO UTLIZZATI NOMI DIVERSI
+            $value = $_POST['IdEvento'];
+        return $value;
+    }
 
     /**
      * Restituisce il nome dell'evento che si vuole creare

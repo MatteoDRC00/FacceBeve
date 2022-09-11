@@ -124,8 +124,7 @@ class FLocale {
      * @param Object $obj oggetto da cancellare
      * @return void
      */
-    public static function storeEsterne(Object $obj){
-        $id = NULL;
+    public static function storeEsterne(Object $obj,$id){
         $db = FDB::getInstance();
         //Immagini Locale
         if(get_class($obj)=="ECategoria"){
@@ -134,6 +133,9 @@ class FLocale {
         }elseif(get_class($obj)=="EImmagine"){
             $idImg = $obj->getId();
             $db->chiaviEsterne("Locale_Immagini","ID_Locale","ID_Immagine",$id,$idImg);
+        }elseif(get_class($obj)=="EEvento"){
+            $idEvento = $obj->getId();
+            $db->chiaviEsterne("Locale_Eventi","ID_Locale","ID_Evento",$id,$idEvento);
         }
     }
 
@@ -234,18 +236,18 @@ class FLocale {
 
     /**
      * Funzione con il compito di caricare le recensioni di un locale, obsoleto.
-     */
+
     public static function recensioniLocale() {
         $db = FDB::getInstance();
         $result = $db->getRecensioniLocali();
         //$rows_number = $result->rowCount();
-        if (($result!=null)/* && ($rows_number == 1)*/){
+        if (($result!=null) && ($rows_number == 1)){
             $rece = array();
             if($result["nomelocale"]==$nomelocal && $result["luogolocale"]==$luogo)
                $rece[] = FRecensione::loadByField("codicerecensione" , $result["codicerecensione"]);
         }
         return $rece;
-    }
+    }*/
 
      /** Metodo che permette di caricare un locale che ha determinati parametri, i quali vengono passati in input da una form */
      public static function loadByForm ($part1, $part2, $part3) {

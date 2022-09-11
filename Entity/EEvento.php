@@ -13,6 +13,7 @@ class EEvento implements JsonSerializable{
     private string $nome;
     private string $descrizione;
     private string $data;
+    private EImmagine $img;
 
 
     /**
@@ -91,6 +92,22 @@ class EEvento implements JsonSerializable{
         $this->data = $data;
     }
 
+    /**
+     * @return EImmagine
+     */
+    public function getImg(): EImmagine
+    {
+        return $this->img;
+    }
+
+    /**
+     * @param EImmagine $img
+     */
+    public function setImg(EImmagine $img): void
+    {
+        $this->img = $img;
+    }
+
     public function jsonSerialize()
     {
         return
@@ -98,7 +115,8 @@ class EEvento implements JsonSerializable{
                 'id'   => $this->getId(),
                 'nome' => $this->getNome(),
                 'descrizione'   => $this->getNumTelefono(),
-                'data'  =>$this->getData()
+                'data'  =>$this->getData(),
+                'img' =>$this->getImg()
             ];
     }
 
