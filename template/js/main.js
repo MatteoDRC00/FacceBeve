@@ -42,7 +42,7 @@
     }
   }
 
-  function setList() {    //In input le categorie
+  function setList() {
     let x = document.getElementById("tipo");
     let y = x.value;
     let z, q;

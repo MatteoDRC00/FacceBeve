@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{assign var='tipo' value=$tipo|default:'nouser'}
+{assign var='tipo' value=$tipo|default:'userlogged'}
 {assign var='genere_cat' value=$genere_cat}
 {assign var='locali' value=$locali}
 <html lang="en">
@@ -11,6 +11,9 @@
     <title>FacceBeve</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
+
+    <!-- Template Main JS File -->
+    <link href="/template/js/main.js" rel="script">
 
     <!-- Favicons -->
     <link href="/template/img/favicon.png" rel="icon">
@@ -199,8 +202,7 @@
 <script src="/template/vendor/waypoints/noframework.waypoints.js"></script>
 <script src="/template/vendor/php-email-form/validate.js"></script>
 
-<!-- Template Main JS File -->
-<script src="/template/js/main.js"></script>
+
 
 </body>
 
