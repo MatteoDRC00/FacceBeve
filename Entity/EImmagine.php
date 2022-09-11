@@ -142,7 +142,7 @@ class EImmagine implements JsonSerializable {
      * @return $print String
      */
     public function __toString() {
-        $print = "\nome: ".$this->getNome()."\n"."size: ".$this->getSize()."\n"."type: ".$this->getType()->getUsername()."\n"."immagine: ".$this->getImmagine()."\n";
+        $print = "\nome: ".$this->getNome()."\n"."size: ".$this->getSize()."\n"."type: ".$this->getType()."\n"."immagine: ".$this->getImmagine()."\n";
 
         return $print;
     }

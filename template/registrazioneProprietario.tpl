@@ -47,17 +47,15 @@
 
 <div class="login-page">
     <div class="form">
-        <form class="login-form" action="/Accesso/registrazioneProprietario" method="POST">
+        <form class="login-form" action="/Accesso/registrazioneProprietario" enctype="multipart/form-data" method="POST">
             <h1 style="font-weight: bold">Registrati come proprietario di locali</h1>
             <input type="text" class="form-control" placeholder="nome" name="nome" pattern="[a-zA-Z]+\"/>
             <input type="text" class="form-control" placeholder="cognome" name="cognome" pattern="[a-zA-Z]+\"/>
             <input type="text" placeholder="email" name="email">
             <input type="text" placeholder="username" name="username">
             <input type="password" placeholder="password" name="password"/>
-            <form action="" enctype="multipart/form-data" method="POST" class="aggiorna"> <!-- aggiungin i controlli -->
-                <h1>Aggiungi l'immagine di profilo</h1>
-                <input name="img_profilo" class="p-2" type="file">
-            </form>
+            <h1>Aggiungi l'immagine di profilo</h1>
+            <input name="img_profilo" class="p-2" type="file">
             <button type="submit">Registrati</button>
             <p class="message">Hai gi&agrave un account? <a href="login.html">Accedi</a></p>
         </form>

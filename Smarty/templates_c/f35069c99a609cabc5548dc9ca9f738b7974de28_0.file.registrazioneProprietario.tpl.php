@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-11 16:32:46
+/* Smarty version 4.2.0, created on 2022-09-11 16:58:31
   from 'C:\xampp\htdocs\FacceBeve\template\registrazioneProprietario.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_631df18e711438_87371819',
+  'unifunc' => 'content_631df7975a23e2_35725231',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'f35069c99a609cabc5548dc9ca9f738b7974de28' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\registrazioneProprietario.tpl',
-      1 => 1662886619,
+      1 => 1662908304,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_631df18e711438_87371819 (Smarty_Internal_Template $_smarty_tpl) {
+function content_631df7975a23e2_35725231 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <!-- <?php $_smarty_tpl->_assignInScope('error', (($tmp = $_smarty_tpl->tpl_vars['error']->value ?? null)===null||$tmp==='' ? 'ok' ?? null : $tmp));?> -->
 <html lang="it">
@@ -62,7 +62,7 @@ function content_631df18e711438_87371819 (Smarty_Internal_Template $_smarty_tpl)
     <div class="container d-flex justify-content-between align-items-center">
 
         <div class="logo">
-            <h1><a href="index.html"><img src="/template/img/logo.png" alt=""><span>FacceBeve</span></a>
+            <h1><a href="/Ricerca/mostraHome"><img src="/template/img/logo.png" alt=""><span>FacceBeve</span></a>
             </h1>
         </div>
     </div>
@@ -70,17 +70,15 @@ function content_631df18e711438_87371819 (Smarty_Internal_Template $_smarty_tpl)
 
 <div class="login-page">
     <div class="form">
-        <form class="login-form" action="/Accesso/registrazioneProprietario" method="POST">
+        <form class="login-form" action="/Accesso/registrazioneProprietario" enctype="multipart/form-data" method="POST">
             <h1 style="font-weight: bold">Registrati come proprietario di locali</h1>
             <input type="text" class="form-control" placeholder="nome" name="nome" pattern="[a-zA-Z]+\"/>
             <input type="text" class="form-control" placeholder="cognome" name="cognome" pattern="[a-zA-Z]+\"/>
             <input type="text" placeholder="email" name="email">
             <input type="text" placeholder="username" name="username">
             <input type="password" placeholder="password" name="password"/>
-            <form action="" enctype="multipart/form-data" method="POST" class="aggiorna"> <!-- aggiungin i controlli -->
-                <h1>Aggiungi l'immagine di profilo</h1>
-                <input name="img_profilo" class="p-2" type="file">
-            </form>
+            <h1>Aggiungi l'immagine di profilo</h1>
+            <input name="img_profilo" class="p-2" type="file">
             <button type="submit">Registrati</button>
             <p class="message">Hai gi&agrave un account? <a href="login.html">Accedi</a></p>
         </form>

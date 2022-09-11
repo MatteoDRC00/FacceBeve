@@ -12,7 +12,7 @@ class EProprietario implements JsonSerializable
     private string $email;
     private string $nome;
     private string $cognome;
-    private EImmagine $img_profilo;
+    private ?EImmagine $img_profilo = null;
 
     public function __construct(string $nome, string $cognome, string $email,string $username, string $password){
         $this->nome = $nome;
@@ -111,20 +111,21 @@ class EProprietario implements JsonSerializable
     }
 
     /**
-     * @return EImmagine
+     * @return EImmagine|null
      */
-    public function getImgProfilo(): EImmagine
+    public function getImgProfilo(): ?EImmagine
     {
         return $this->img_profilo;
     }
 
     /**
-     * @param EImmagine $img_profilo
+     * @param EImmagine|null $img_profilo
      */
-    public function setImgProfilo(EImmagine $img_profilo): void
+    public function setImgProfilo(?EImmagine $img_profilo): void
     {
         $this->img_profilo = $img_profilo;
     }
+
 
     public function jsonSerialize()
     {

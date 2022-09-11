@@ -32,7 +32,7 @@ class FProprietario{
 		$stmt->bindValue(':cognome',$proprietario->getCognome(), PDO::PARAM_STR);
         $stmt->bindValue(':email', $proprietario->getEmail(), PDO::PARAM_STR);
         $stmt->bindValue(':password', $proprietario->getPassword(), PDO::PARAM_STR);
-        $stmt->bindValue(':idImg', $proprietario-getImgProfilo(), PDO::PARAM_INT);
+        $stmt->bindValue(':idImg', $proprietario->getImgProfilo()->getId(), PDO::PARAM_INT);
     }
 
     /**
@@ -60,14 +60,12 @@ class FProprietario{
     }
 
     /**
-     * metodo che permette il salvataggio di un Proprietario nel db
-     * @param EProprietario $proprietario Proprietario da salvare
-     * @return void
+     * @param EProprietario $proprietario
+     * @return false|string|null
      */
     public static function store(EProprietario $proprietario){
-        $db=FDB::getInstance();
-        $id = $db->store(static::getClass(), $proprietario);
-        return $id;
+        $db = FDB::getInstance();
+        return $db->store(static::getClass(), $proprietario);
     }
 
 
@@ -77,18 +75,19 @@ class FProprietario{
     * @return object $utente Utente
     */
     public static function loadByField($field, $id){
-        $utente = null;
-        $db=FDB::getInstance();
-        $result=$db->load(static::getClass(), $field, $id);
-        $rows_number = $db->interestedRows(static::getClass(), $field, $id);    //funzione richiamata,presente in FDB --> restituisce numero di righe interessate dalla query
+        $db = FDB::getInstance();
+        $result = $db->load(static::getClass(), $field, $id);
+        $rows_number = $db->getNumRighe(static::getClass(), $field, $id);    //funzione richiamata,presente in FDB --> restituisce numero di righe interessate dalla query
         if(($result!=null) && ($rows_number == 1)) {
-            $proprietario=new EProprietario($result['username'],$result['nome'],$result['cognome'], $result['email'], $result['password']); //Carica un Proprietario dal database
+            $proprietario=new EProprietario($result['nome'],$result['cognome'], $result['email'], $result['username'], $result['password']); //Carica un Proprietario dal database
+            $proprietario->setImgProfilo(FImmagine::loadByField('id', $result['idImg']));
         }
         else {
             if(($result!=null) && ($rows_number > 1)){
-                $utente = array();
+                $proprietario = array();
         	    for($i=0; $i<count($result); $i++){
-                    $proprietario[]=new EProprietario($result[$i]['username'],$result[$i]['nome'],$result[$i]['cognome'], $result[$i]['email'], $result[$i]['password']); //Carica un array di oggetti Proprietario dal database
+                    $proprietario[$i]=new EProprietario($result[$i]['username'],$result[$i]['nome'],$result[$i]['cognome'], $result[$i]['email'], $result[$i]['password']); //Carica un array di oggetti Proprietario dal database
+                    $proprietario[$i]->setImgProfilo(FImmagine::loadByField('id', $result['idImg']));
                 }
             }
         }

@@ -150,15 +150,6 @@ class CAccesso
             $sessione->imposta_valore('utente',$salvare);
 
             header("Location: /Ricerca/mostraHome");
-            /*
-            if (get_class($user)=="EUtente") {
-
-            }
-            elseif(get_class($user)=="EProprietario")  {
-                $view->loginOk(null,"EUtente");
-            }elseif(($UsernameLogin=="admin") && ($PasswordLogin=="admin"))  {
-                header('Location: /FacceBeve/Admin/homepage');
-            }*/
         }
     }
 
@@ -274,24 +265,6 @@ class CAccesso
                 $img_profilo = new EImmagine($img[0], $img[1], $img[2], $img[3]);
                 $id = $pm::store($img_profilo);
                 $img_profilo->setId($id);
-                /*
-                $nome_file = 'img_profilo';
-                list($img,$foto) = static::upload($nome_file);
-                switch ($img) {
-                    case "size":
-                        $view->registrazioneUtenteError("size"); //Img troppo grande\piccola
-                        break;
-                    case "type":
-                        $view->registrazioneUtenteError("typeimg"); //Formato non supportato
-                        break;
-                    case "ok":
-                        if($foto){
-                            $idImg = $pm->storeMedia($foto,$nome_file);
-                            $foto->setId($idImg);
-                            $utente->setImgProfilo($foto);
-                        }
-                        break;
-                }*/
             }
             $utente->setImgProfilo($img_profilo);
             $pm->store($utente);
@@ -311,40 +284,36 @@ class CAccesso
      * @throws SmartyException
      */
     static function registrazioneProprietario() {
-        $pm = FPersistentManager()::getIstance();;
+        $pm = FPersistentManager::getInstance();
         $view = new VAccesso();
-        //Controllo dell'unicità dello Username scelto
-        $usercheck = $view->getUsername();
-        $vereusername1 = $pm->exist("username", $usercheck,"FProprietario");
-        $vereusername2 = $pm->exist("username", $usercheck,"FUtente");
-        if (($vereusername1) || ($vereusername2) && ($usercheck!="admin")){
-            $view->registrazionePropError ("username"); //username già esistente
+        $sessione = new USession();
+
+        $username = $view->getUsername();
+        $userP = $pm->exist("FProprietario", "username", $username);
+        $userU = $pm->exist("FUtente", "username", $username);
+
+        if (($userP) || ($userU) && ($username!="admin")){
+            $view->registrazioneUtenteError ("username"); //username già esistente
         }
         else {
             //FARE CONTROLLO VIA CLIENT
-            $proprietario = new EProprietario($view->getNome(),$view->getCognome(),$view->getEmail(),$usercheck,$view->getPassword());
-            //$utente->Iscrizione();
-            if ($view->getImgProfilo() !== null) {
-                $nome_file = 'img_profilo';
-                list($img,$foto) = static::upload($proprietario,$nome_file);
-                switch ($img) {
-                    case "size":
-                        $view->registrazionePropError("size"); //Img troppo grande\piccola
-                        break;
-                    case "type":
-                        $view->registrazionePropError("typeimg"); //Formato non supportato
-                        break;
-                    case "ok":
-                        if($foto){
-                            $idImg = $pm->storeMedia($foto,$nome_file);
-                            $foto->setId($idImg);
-                            $proprietario->setImgProfilo($foto);
-                        }
-                        $pm->store($proprietario);
-                        header('Location: /FacceBeve/Utente/');
-                        break;
-                }
+            $proprietario = new EProprietario($view->getNome(),$view->getCognome(),$view->getEmail(),$username,$view->getPassword());
+
+            $img_profilo = null;
+
+            $img = $view->getImgProfilo();
+            if (!empty($img)) {
+                $img_profilo = new EImmagine($img[0], $img[1], $img[2], $img[3]);
+                $id = $pm::store($img_profilo);
+                $img_profilo->setId($id);
             }
+            $proprietario->setImgProfilo($img_profilo);
+            $pm->store($proprietario);
+
+            $salvare = serialize($proprietario);
+            $sessione->imposta_valore('utente',$salvare);
+
+            header("Location: /Ricerca/mostraHome");
         }
     }
 

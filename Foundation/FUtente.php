@@ -34,7 +34,7 @@ class FUtente{
 		$stmt->bindValue(':cognome',$utente->getCognome(), PDO::PARAM_STR);
         $stmt->bindValue(':email', $utente->getEmail(), PDO::PARAM_STR);
         $stmt->bindValue(':password', $utente->getPassword(), PDO::PARAM_STR);
-        $stmt->bindValue(':idImg', $utente->getImgProfilo(), PDO::PARAM_INT);
+        $stmt->bindValue(':idImg', $utente->getImgProfilo()->getId(), PDO::PARAM_INT);
         $stmt->bindValue(':dataIscrizione', $utente->getIscrizione());
         $stmt->bindValue(':state', $utente->getState(), PDO::PARAM_BOOL);
 
@@ -105,7 +105,6 @@ class FUtente{
                     $utente[$i] = new EUtente($result[$i]['password'], $result[$i]['nome'], $result[$i]['cognome'], $result[$i]['username'], $result[$i]['email']);
                     $utente[$i]->setIscrizione($result[$i]['dataIscrizione']);
                     $utente[$i]->setImgProfilo(FImmagine::loadByField('id',$result[$i]['idImg']));
-                    $utente[$i];
                 }
             }
         }
