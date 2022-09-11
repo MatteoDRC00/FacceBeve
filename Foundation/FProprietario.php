@@ -14,7 +14,7 @@ class FProprietario{
     private static $table="Proprietario";
 
     /** valori della tabella nel DB */
-    private static $values="(:username,:nome,:cognome,:email,:password)";
+    private static $values="(:username,:nome,:cognome,:email,:password,:idImg)";
 
     /** costruttore */
     public function __construct(){
@@ -28,11 +28,15 @@ class FProprietario{
     */
     public static function bind(PDOStatement $stmt, EProprietario $proprietario){
         $stmt->bindValue(':username', $proprietario->getUsername(), PDO::PARAM_STR);
-		$stmt->bindValue(':nome',$proprietario->getNome(), PDO::PARAM_STR);
-		$stmt->bindValue(':cognome',$proprietario->getCognome(), PDO::PARAM_STR);
+        $stmt->bindValue(':nome',$proprietario->getNome(), PDO::PARAM_STR);
+        $stmt->bindValue(':cognome',$proprietario->getCognome(), PDO::PARAM_STR);
         $stmt->bindValue(':email', $proprietario->getEmail(), PDO::PARAM_STR);
         $stmt->bindValue(':password', $proprietario->getPassword(), PDO::PARAM_STR);
-        $stmt->bindValue(':idImg', $proprietario->getImgProfilo()->getId(), PDO::PARAM_INT);
+        if($proprietario->getImgProfilo() != null)
+            $stmt->bindValue(':idImg', $proprietario->getImgProfilo()->getId());
+        else
+            $stmt->bindValue(':idImg', null);
+
     }
 
     /**
