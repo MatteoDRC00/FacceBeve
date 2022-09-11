@@ -58,5 +58,12 @@ class USession
         return $value;
     }
 
+    public function isLogged(): bool {
+        $identificato = false;
+        if (isset($_COOKIE['PHPSESSID']) && isset($_SESSION['utente'])) {
+            $identificato = true;
+        }
+        return $identificato;
+    }
 
 }

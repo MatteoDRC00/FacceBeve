@@ -1,5 +1,28 @@
-<!DOCTYPE html>
-<!-- {assign var='error' value=$error|default:'ok'} -->
+<?php
+/* Smarty version 4.2.0, created on 2022-09-11 16:32:46
+  from 'C:\xampp\htdocs\FacceBeve\template\registrazioneProprietario.tpl' */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '4.2.0',
+  'unifunc' => 'content_631df18e711438_87371819',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    'f35069c99a609cabc5548dc9ca9f738b7974de28' => 
+    array (
+      0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\registrazioneProprietario.tpl',
+      1 => 1662886619,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+),false)) {
+function content_631df18e711438_87371819 (Smarty_Internal_Template $_smarty_tpl) {
+?><!DOCTYPE html>
+<!-- <?php $_smarty_tpl->_assignInScope('error', (($tmp = $_smarty_tpl->tpl_vars['error']->value ?? null)===null||$tmp==='' ? 'ok' ?? null : $tmp));?> -->
 <html lang="it">
 <head>
     <meta charset="utf-8">
@@ -39,7 +62,7 @@
     <div class="container d-flex justify-content-between align-items-center">
 
         <div class="logo">
-            <h1><a href="/Ricerca/mostraHome"><img src="/template/img/logo.png" alt=""><span>FacceBeve</span></a>
+            <h1><a href="index.html"><img src="/template/img/logo.png" alt=""><span>FacceBeve</span></a>
             </h1>
         </div>
     </div>
@@ -61,23 +84,27 @@
             <button type="submit">Registrati</button>
             <p class="message">Hai gi&agrave un account? <a href="login.html">Accedi</a></p>
         </form>
-        <!--  {if $errorSize!='ok'}
+        <!--  <?php if ($_smarty_tpl->tpl_vars['errorSize']->value != 'ok') {?>
           <div style="color: red;">
               <p align="center">Attenzione! Formato immagine troppo grande!  </p>
           </div>
-          {/if}
-          {if $errorType!='ok'}
+          <?php }?>
+          <?php if ($_smarty_tpl->tpl_vars['errorType']->value != 'ok') {?>
           <div style="color: red;">
               <p align="center">Attenzione! Formato immagine non supportato (provare con .png o .jpg)!  </p>
           </div>
-          {/if}
-          {if $errorEmail!='ok'}
+          <?php }?>
+          <?php if ($_smarty_tpl->tpl_vars['errorEmail']->value != 'ok') {?>
           <div style="color: red;">
               <p align="center">Attenzione! Email già esistente!  </p>
           </div>
-          {/if} -->
+          <?php }?> -->
     </div>
 </div>
-<script src="/template/js/main.js"></script>
+<?php echo '<script'; ?>
+ src="/template/js/main.js"><?php echo '</script'; ?>
+>
 </body>
 </html>
+<?php }
+}

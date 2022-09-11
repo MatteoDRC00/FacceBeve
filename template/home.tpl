@@ -71,7 +71,7 @@
     <div class="container d-flex justify-content-between align-items-center">
 
         <div class="logo">
-            <h1><a href="/Smarty/html/home.html"><img src="/template/img/logo.png" alt=""><span>FacceBeve</span></a></h1>
+            <h1><a href="/Ricerca/mostraHome"><img src="/template/img/logo.png" alt=""><span>FacceBeve</span></a></h1>
         </div>
 
         {if $tipo=='nouser'}
@@ -167,16 +167,21 @@
 
             <div class="row">
                 <h2>Ecco i TOP 4 locali in Italia:</h2>
-                {foreach $locali as $locale}
-                    <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up">
-                        <div class="icon-box icon-box-pink">
-                            <h4 class="title"><a href="">{$locale.nome}</a></h4>
-                            <p class="description">{$locale.descrizione}</p>
+                {if !empty($locali )}
+                    {foreach $locali as $locale}
+                        <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up">
+                            <div class="icon-box icon-box-pink">
+                                <h4 class="title"><a href="">{$locale.nome}</a></h4>
+                                <p class="description">{$locale.descrizione}</p>
+                            </div>
                         </div>
-                    </div>
-                {/foreach}
-            </div>
+                    {/foreach}
+                {else}
+                    <p>Non ci sono locali</p>
+                {/if}
 
+            </div>
+            <!--
             <div class="row">
                 <h2>Eventi più vicini ad oggi:</h2>
                 {foreach $locali as $locale}
@@ -186,7 +191,7 @@
                             <p class="description">{$locale.descrizione}</p>
                         </div>
                     </div>
-                {/foreach}
+                {/foreach}-->
             </div>
 
         </div>

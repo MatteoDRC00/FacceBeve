@@ -149,20 +149,7 @@ class CAccesso
             $salvare = serialize($user);
             $sessione->imposta_valore('utente',$salvare);
 
-            $tipo = get_class($user);
-
-            $pm = FPersistentManager::getInstance();
-
-            $genere_cat = $pm->getCategorie();
-            $topLocali = $pm->top4Locali();
-            $locali = array();
-            foreach($topLocali as $locale){
-                $locale = $pm::load("id", $locale["id"], "FLocale");
-                $locali[] = $locale;
-            }
-
-            $view2 = new VRicerca();
-            $view2->mostraHome($tipo, $genere_cat, $locali);
+            header("Location: /Ricerca/mostraHome");
             /*
             if (get_class($user)=="EUtente") {
 
@@ -266,23 +253,27 @@ class CAccesso
     static function registrazioneUtente() {
         $pm = FPersistentManager::getInstance();
         $view = new VAccesso();
+        $sessione = new USession();
 
-        $usercheck = $view->getUsername();
-        $vereusername1 = $pm->exist("FProprietario", "username", $usercheck);
-        $vereusername2 = $pm->exist("FUtente", "username", $usercheck);
+        $username = $view->getUsername();
+        $userP = $pm->exist("FProprietario", "username", $username);
+        $userU = $pm->exist("FUtente", "username", $username);
 
-        if (($vereusername1) || ($vereusername2) && ($usercheck!="admin")){
+        if (($userP) || ($userU) && ($username!="admin")){
             $view->registrazioneUtenteError ("username"); //username già esistente
         }
         else {
             //FARE CONTROLLO VIA CLIENT
-            $utente = new EUtente($view->getPassword(),$view->getNome(),$view->getCognome(),$usercheck,$view->getEmail());
+            $utente = new EUtente($view->getPassword(),$view->getNome(),$view->getCognome(),$username,$view->getEmail());
             $utente->Iscrizione();
+
+            $img_profilo = null;
+
             $img = $view->getImgProfilo();
             if (!empty($img)) {
                 $img_profilo = new EImmagine($img[0], $img[1], $img[2], $img[3]);
                 $id = $pm::store($img_profilo);
-
+                $img_profilo->setId($id);
                 /*
                 $nome_file = 'img_profilo';
                 list($img,$foto) = static::upload($nome_file);
@@ -301,12 +292,14 @@ class CAccesso
                         }
                         break;
                 }*/
-            }else{
-                $utente->setImgProfilo(null);
-                header('Location: /FacceBeve/Utente/');
             }
+            $utente->setImgProfilo($img_profilo);
             $pm->store($utente);
 
+            $salvare = serialize($utente);
+            $sessione->imposta_valore('utente',$salvare);
+
+            header("Location: /Ricerca/mostraHome");
         }
     }
 
@@ -393,7 +386,7 @@ class CAccesso
      * Nel caso in cui non ci sono errori di inserimento, avviene la store dell'utente e la corrispondente immagine nel database.
      * @param $nome_file passato nella form pe l'immagine
      * @return array stato verifica immagine
-     */
+
     static function upload($img) {
         $pm = FPersistentManager::getInstance();
         $ris = null;
@@ -430,7 +423,7 @@ class CAccesso
             }
         }
         return array($ris,$mutente);
-    }
+    }*/
 
 
     public function logout(){

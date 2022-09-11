@@ -86,33 +86,23 @@ class FImmagine
 
 
     /**
-     * Metodo che consente la load del media di un locale/evento in base all'id di quest'ultimo
-     * @param int $id dell utente
-     * @return object $media associato a quell utente
+     * @param $field
+     * @param $id
+     * @return array|EImmagine
      */
-    public static function loadByField($field ,$id)
-    {
-        $utente = null;
-        //$field = "id";
-        $db=FDB::getInstance();
-        $result=$db->load(static::getClass(), $field, $id);
-        //print_r ($result);
-        $rows_number = $db->interestedRows(static::getClass(), $field, $id);
+    public static function loadByField($field ,$id){
+        $db = FDB::getInstance();
+        $result = $db->load(static::getClass(), $field, $id);
+        $rows_number = $db->getNumRighe(static::getClass(), $field, $id);
         if(($result!=null) && ($rows_number == 1)) {
-            $img = new EImmagine($result['nome']);
-            $img->setType($result['type']);
-            $img->setData($result['immagine']);
-            $img->setSize($result['size']);
+            $img = new EImmagine($result['nome'], $result['size'], $result['type'], $result['immagine']);
             $img->setId($result['id']);
         }
         else {
             if(($result!=null) && ($rows_number > 1)){
                 $img = array();
                 for($i=0; $i<count($result); $i++){
-                    $img=new EImmagine($result[$i]['nome']);
-                    $img[$i]->setType($result[$i]['type']);
-                    $img[$i]->setSize($result[$i]['size']);
-                    $img[$i]->setData($result[$i]['immagine']);
+                    $img[$i] = new EImmagine($result[$i]['nome'], $result[$i]['size'], $result[$i]['type'], $result[$i]['immagine']);
                     $img[$i]->setId($result[$i]['id']);
                 }
             }

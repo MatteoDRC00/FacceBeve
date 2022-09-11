@@ -213,12 +213,15 @@ class FPersistentManager {
 
     public function top4Locali(){
         $result = FLocale::getTopLocali();
-        if(count($result)>4){
-            for($i=0; $i<4; $i++){
-                $locali[]= $result[i];
+        if(!empty($result)){
+            if(count($result)>4){
+                for($i=0; $i<4; $i++){
+                    $locali[] = $result[$i];
+                }
             }
         }else
             $locali = $result;
+
         return $locali;
 
     }

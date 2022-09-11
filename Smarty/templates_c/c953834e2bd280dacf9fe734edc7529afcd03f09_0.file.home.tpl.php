@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-11 10:57:06
+/* Smarty version 4.2.0, created on 2022-09-11 16:36:23
   from 'C:\xampp\htdocs\FacceBeve\template\home.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_631da2e2a73288_37238028',
+  'unifunc' => 'content_631df267c9ef82_92600528',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c953834e2bd280dacf9fe734edc7529afcd03f09' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\home.tpl',
-      1 => 1662886619,
+      1 => 1662906978,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_631da2e2a73288_37238028 (Smarty_Internal_Template $_smarty_tpl) {
+function content_631df267c9ef82_92600528 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <?php $_smarty_tpl->_assignInScope('tipo', (($tmp = $_smarty_tpl->tpl_vars['tipo']->value ?? null)===null||$tmp==='' ? 'nouser' ?? null : $tmp));
 $_smarty_tpl->_assignInScope('genere_cat', $_smarty_tpl->tpl_vars['genere_cat']->value);
@@ -96,7 +96,7 @@ $_smarty_tpl->_assignInScope('locali', $_smarty_tpl->tpl_vars['locali']->value);
     <div class="container d-flex justify-content-between align-items-center">
 
         <div class="logo">
-            <h1><a href="/Smarty/html/home.html"><img src="/template/img/logo.png" alt=""><span>FacceBeve</span></a></h1>
+            <h1><a href="/Ricerca/mostraHome"><img src="/template/img/logo.png" alt=""><span>FacceBeve</span></a></h1>
         </div>
 
         <?php if ($_smarty_tpl->tpl_vars['tipo']->value == 'nouser') {?>
@@ -210,25 +210,30 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 
             <div class="row">
                 <h2>Ecco i TOP 4 locali in Italia:</h2>
-                <?php
+                <?php if (!empty($_smarty_tpl->tpl_vars['locali']->value)) {?>
+                    <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['locali']->value, 'locale');
 $_smarty_tpl->tpl_vars['locale']->do_else = true;
 if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['locale']->value) {
 $_smarty_tpl->tpl_vars['locale']->do_else = false;
 ?>
-                    <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up">
-                        <div class="icon-box icon-box-pink">
-                            <h4 class="title"><a href=""><?php echo $_smarty_tpl->tpl_vars['locale']->value['nome'];?>
+                        <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up">
+                            <div class="icon-box icon-box-pink">
+                                <h4 class="title"><a href=""><?php echo $_smarty_tpl->tpl_vars['locale']->value['nome'];?>
 </a></h4>
-                            <p class="description"><?php echo $_smarty_tpl->tpl_vars['locale']->value['descrizione'];?>
+                                <p class="description"><?php echo $_smarty_tpl->tpl_vars['locale']->value['descrizione'];?>
 </p>
+                            </div>
                         </div>
-                    </div>
-                <?php
+                    <?php
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
-            </div>
+                <?php } else { ?>
+                    <p>Non ci sono locali</p>
+                <?php }?>
 
+            </div>
+            <!--
             <div class="row">
                 <h2>Eventi più vicini ad oggi:</h2>
                 <?php
@@ -247,7 +252,7 @@ $_smarty_tpl->tpl_vars['locale']->do_else = false;
                     </div>
                 <?php
 }
-$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>-->
             </div>
 
         </div>

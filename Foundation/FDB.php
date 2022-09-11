@@ -32,6 +32,23 @@ class FDB{
 
 	}
 
+	public function getNumRighe($class, $field, $id)
+	{
+		try {
+			$this->database->beginTransaction();
+			$query = "SELECT * FROM " . $class::getTable() . " WHERE " . $field . "='" . $id . "';";
+			$stmt = $this->database->prepare($query);
+			$stmt->execute();
+			$num = $stmt->rowCount();
+			$this->closeDbConnection();
+			return $num;
+		} catch (PDOException $e) {
+			echo "Attenzione errore: " . $e->getMessage();
+			$this->database->rollBack();
+			return null;
+		}
+	}
+
 	/**	Metodo che instanzia un unico oggetto di questa classe richiamando il costruttore se non è stato già istanziato un oggetto
 	 * 	@return FDB
 	 */
@@ -313,13 +330,7 @@ class FDB{
 			$query = "SELECT * FROM " . $class::getTable() . " WHERE username ='" . $username . "' AND password ='" . $pass . "';";
 			$stmt = $this->database->prepare($query);
 			$stmt->execute();
-			$num = $stmt->rowCount();
-			if ($num == 0) {
-				$result = null;        //nessuna riga interessata. return null
-			} else {                          //nel caso in cui una sola riga fosse interessata
-				$result = $stmt->fetch(PDO::FETCH_ASSOC);   //ritorna una sola riga
-			}
-			return $result;
+			return $stmt->fetch(PDO::FETCH_ASSOC);
 		} catch (PDOException $e) {
 			echo "Attenzione errore: " . $e->getMessage();
 			$this->database->rollBack();

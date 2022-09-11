@@ -84,29 +84,28 @@ class FUtente{
 
 
     /**
-    * Permette la load sul database
-    * @param $id campo da confrontare per trovare l'oggetto
-    * @return object $utente Utente
-    */
+     * @param $field
+     * @param $id
+     * @return array|EUtente|null
+     */
     public static function loadByField($field, $id){
         $utente = null;
         $db = FDB::getInstance();
         $result = $db->load(static::getClass(), $field, $id);
-        $num = count($result);//funzione richiamata,presente in FDB --> restituisce numero di righe interessate dalla query
+        $num = $db->getNumRighe(static::getClass(), $field, $id);
         if(($result!=null) && ($num == 1)) {
-            $utente=new EUtente($result['username'],$result['nome'],$result['cognome'], $result['email'], $result['password'],$result['dataIscrizione']); //Carica un Utente dal database
+            $utente = new EUtente($result['password'], $result['nome'],$result['cognome'], $result['username'], $result['email']);
+            $utente->setIscrizione($result['dataIscrizione']);
+            $utente->setImgProfilo(FImmagine::loadByField('id', $result['idImg']));
         }
         else {
             if(($result!=null) && ($num > 1)){
                 $utente = array();
         	    for($i=0; $i<count($result); $i++){
-                    $utente = new EUtente($result['password'], $result['nome'], $result['cognome'], $result['username'], $result['email']);
-                    $utente->setIscrizione($result['dataIscrizione']);
-                    if($result['idImg'] == null )
-                        $utente->setImgProfilo($result['idImg']);
-                    else{
-                        $utente->setImgProfilo(FImmagine::loadByField('id',$result['idImg']));
-                    }
+                    $utente[$i] = new EUtente($result[$i]['password'], $result[$i]['nome'], $result[$i]['cognome'], $result[$i]['username'], $result[$i]['email']);
+                    $utente[$i]->setIscrizione($result[$i]['dataIscrizione']);
+                    $utente[$i]->setImgProfilo(FImmagine::loadByField('id',$result[$i]['idImg']));
+                    $utente[$i];
                 }
             }
         }

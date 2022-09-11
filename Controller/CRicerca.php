@@ -33,16 +33,19 @@ class CRicerca{
     }
 
     public function mostraHome(){
+        $pm = FPersistentManager::getInstance();
         $sessione = new USession();
-        $sessione->cancella_valore('utente');
-        $user = $sessione->leggi_valore('utente');
 
-        if($user == null)
+        if($sessione->isLogged()){
+            $user = $sessione->leggi_valore('utente');
+            $user = unserialize($user);
+            if(get_class($user) == "EUtente")
+                $tipo = "EUtente";
+            else
+                $tipo = "EProprietario";
+        }else{
             $tipo = "nouser";
-        elseif(get_class($user) == "EUtente")
-            $tipo = "EUtente";
-        else
-            $tipo = "EProprietario";
+        }
 
         $pm = FPersistentManager::getInstance();
         $genere_cat = $pm->getCategorie();
@@ -50,9 +53,11 @@ class CRicerca{
 
         $locali = array();
 
-        foreach($topLocali as $locale){
-            $locale = $pm::load("id", $locale["id"], "FLocale");
-            $locali[] = $locale;
+        if(!empty($topLocali)){
+            foreach($topLocali as $locale){
+                $locale = $pm::load("id", $locale["id"], "FLocale");
+                $locali[] = $locale;
+            }
         }
 
         $view = new VRicerca();
@@ -134,20 +139,6 @@ class CRicerca{
         }
     }*/
 
-    /**
-     * Funzione che si occupa di recuperare gli eventi visualizzabili dagli utenti
-     * @throws SmartyException
-     */
-    static function Home($utente) {
-        $pm = FPersistentManager::getInstance();
-        if(isset($utente) && get_class($utente)=="EUtente"){
-            $result = $pm->loadEventi($utente);
-        }else{
-            $result=null;
-        }
-        $vRicerca = new VRicerca();
-        $vRicerca->showHomepage($pm->loadAll("FCategoria"),$result);
-    }
 
     /**
      * Funzione con il compito di indirizzare alla pagina specifica del locale selezionato
