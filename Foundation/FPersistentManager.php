@@ -55,8 +55,10 @@ class FPersistentManager {
     {
         $return = FCategoria::loadAll();
         $genere = array();
-        foreach ($return as $c){
-            $genere[] = $c['genere'];
+        if(!empty($genere)){
+            foreach ($return as $c){
+                $genere[] = $c['genere'];
+            }
         }
         return $genere;
     }
