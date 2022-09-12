@@ -80,12 +80,10 @@
                     <div class="row">
                         <div class="col-12 bg-white p-0 px-3 py-3 mb-3">
                             <div class="d-flex flex-column align-items-center">
-                                <img class="photo"
-                                     src="https://images.unsplash.com/photo-1541647376583-8934aaf3448a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80"
-                                     alt="">
-                                <p class="fw-bold h4 mt-3">$Nome $Cognome</p>
-                                <p class="text-muted">$username</p>
-                                <p class="text-muted mb-3">$email</p>
+                                <img class="photo" src=data:{$type};base64,{$pic64}" alt="immagine profilo">
+                                <p class="fw-bold h4 mt-3">{$nome} {$cognome}</p>
+                                <p class="text-muted">{$username}</p>
+                                <p class="text-muted mb-3">{$email}</p>
                             </div>
                         </div>
                     </div>
@@ -93,6 +91,14 @@
                 <div class="col-md-7 ps-md-4">
                     <div class="row">
                         <div class="col-12 bg-white px-3 mb-3 pb-3">
+                            <form action="/Profilo/modificaUsername" method="POST" class="aggiorna">
+                                <p>Modifica l'username</p>
+                                <div class="form-example">
+                                    <label>Inserisci il nuovo username: </label><br>
+                                    <input type="text" name="newusername" id="newusername" required>
+                                </div>
+                                <button type="submit" class="btnAggiorna">Modifica username</button>
+                            </form>
                             <form action="" method="POST" class="aggiorna">
                                 <p>Modifica la password</p>
                                 <div class="form-example">
@@ -127,13 +133,13 @@
             </div>
 
             <div class="items-body">
-                <div class="items-body-content">
-                    <a href="getioneLocale.html">$Nome Locale <button>Elimina</button></a>
-
-                </div>
-                <div class="items-body-content">
-                    <a href="">$Nome Locale<i class="fa fa-angle-right"></i></a>
-                </div>
+                {if !empty($locali)}
+                    {foreach $locali as $locale}
+                        <a href="">{$locale.nome}<i class="fa fa-angle-right"></i></a>
+                    {/foreach}
+                {else}
+                    <p>Non possiedi locali locali</p>
+                {/if}
             </div>
         </div>
     </section>

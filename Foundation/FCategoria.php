@@ -88,7 +88,7 @@ class FCategoria {
      */
     public static function loadByLocale($id){
         $categoria = null;
-        $db=FDB::getInstance();
+        $db = FDB::getInstance();
         $result=$db->loadInfoLocale(static::getClass(),"Locale_Categorie",$id);
         $rows_number = $result->rowCount();    //funzione richiamata,presente in FDB --> restituisce numero di righe interessate dalla query
         if(($result!=null) && ($rows_number == 1)) {
@@ -134,7 +134,7 @@ class FCategoria {
      * @return bool
      */
     public static function update(string $attributo, string $newvalue, string $attributo_pk, string $value_pk){
-        $db=FDB::getInstance();
+        $db = FDB::getInstance();
         $result = $db->update(static::getClass(), $attributo, $newvalue, $attributo_pk, $value_pk);
         if($result)
             return true;

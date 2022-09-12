@@ -255,15 +255,13 @@ class CProfilo{
         $pm = FPersistentManager::getInstance();
 
         if($sessione->isLogged()){
-            $id_utente = $sessione->leggi_valore("utente");
+            $username = $sessione->leggi_valore("utente");
             $tipo = $sessione->leggi_valore("tipo_utente");
             $tipo[0] = "F";
             $class = $tipo;
-            $utente = $pm->load("username", $id_utente, $class);
+            $utente = $pm->load("username", $username, $class);
 
-
-
-            $locali_preferiti = $pm->getLocaliPreferiti($id_utente);
+            $locali_preferiti = $pm->getLocaliPreferiti($username);
 
             $view = new VProfilo();
             $view->mostraProfiloUtente($utente, $locali_preferiti);
@@ -276,9 +274,19 @@ class CProfilo{
 
     public function mostraProfiloProprietario(){
         $sessione = new USession();
+        $pm = FPersistentManager::getInstance();
+
         if($sessione->isLogged()){
+            $username = $sessione->leggi_valore("utente");
+            $tipo = $sessione->leggi_valore("tipo_utente");
+            $tipo[0] = "F";
+            $class = $tipo;
+            $proprietario = $pm->load("username", $username, $class);
+
+            $locali = $pm->load("proprietario", $username, $class);
+
             $view = new VProfilo();
-            $view->mostraProfiloProprietario();
+            $view->mostraProfiloProprietario($proprietario, $locali);
         }else{
             $sessione->chiudi_sessione();
             header("Location: /Ricerca/mostraHome");

@@ -85,6 +85,14 @@
                 <div class="col-md-7 ps-md-4">
                     <div class="row">
                         <div class="col-12 bg-white px-3 mb-3 pb-3">
+                            <form action="/Profilo/modificaUsername" method="POST" class="aggiorna">
+                                <p>Modifica l'username</p>
+                                <div class="form-example">
+                                    <label>Inserisci il nuovo username: </label><br>
+                                    <input type="text" name="newusername" id="newusername" required>
+                                </div>
+                                <button type="submit" class="btnAggiorna">Modifica username</button>
+                            </form>
                             <form action="" method="POST" class="aggiorna">
                                 <p>Modifica la password</p>
                                 <div class="form-example">
@@ -124,36 +132,36 @@
                     <div class="row">
 
                         <div class="entries">
+                            {if !empty($locali)}
+                                {foreach $locali as $locale}
+                                    <article class="entry">
+                                        <div class="entry-img">
+                                            <img src="/template/img/blog/blog-1.jpg" alt="" class="img-fluid">
+                                        </div>
+                                        <h2 class="entry-title">
+                                            <a href="infoLocale.html">Locale 1</a>
+                                        </h2>
+                                        <div class="entry-meta">
+                                            <ul>
+                                                <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="">$Proprietario</a></li>
+                                                <li class="d-flex align-items-center"><i class="fas fa-map-marker-alt"></i> <a href="">$Localizzazione</a></li>
+                                            </ul>
+                                        </div>
 
-                            <article class="entry">
+                                        <div class="entry-content">
+                                            <p>$descrizione</p>
+                                            <div class="read-more">
+                                                <a href="infoLocale.html">Visita il locale <i class="fas fa-chevron-circle-right"></i></a>
+                                            </div>
+                                        </div>
 
-                                <div class="entry-img">
-                                    <img src="/template/img/blog/blog-1.jpg" alt="" class="img-fluid">
-                                </div>
+                                    </article><!-- End blog entry -->
+                                {/foreach}
+                            {else}
+                                <p>Non possiedi locali locali</p>
+                            {/if}
 
-                                <h2 class="entry-title">
-                                    <a href="infoLocale.html">Locale 1</a>
-                                </h2>
 
-                                <div class="entry-meta">
-                                    <ul>
-                                        <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a
-                                                href="">$Proprietario</a></li>
-                                        <li class="d-flex align-items-center"><i class="fas fa-map-marker-alt"></i> <a
-                                                href="">$Localizzazione</a></li>
-                                    </ul>
-                                </div>
-
-                                <div class="entry-content">
-                                    <p>
-                                        $descrizione
-                                    </p>
-                                    <div class="read-more">
-                                        <a href="infoLocale.html">Visita il locale <i class="fas fa-chevron-circle-right"></i></a>
-                                    </div>
-                                </div>
-
-                            </article><!-- End blog entry -->
 
 
                         </div>

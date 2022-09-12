@@ -261,7 +261,23 @@ class VProfilo{
         $this->smarty->display('areaPersonaleUtente.tpl');
     }
 
-    public function mostraProfiloProprietario(){
+    public function mostraProfiloProprietario(EProprietario $proprietario, $locali){
+        $username = $proprietario->getUsername();
+        $nome = $proprietario->getNome();
+        $cognome = $proprietario->getCognome();
+        $email = $proprietario->getEmail();
+        $img_profilo = $proprietario->getImgProfilo();
+        $pic64 = $img_profilo->getImmagine();
+        $type = $img_profilo->getType();
+
+        $this->smarty->assign("username",$username);
+        $this->smarty->assign("nome",$nome);
+        $this->smarty->assign("cognome",$cognome);
+        $this->smarty->assign("email",$email);
+        $this->smarty->assign("pic64",$pic64);
+        $this->smarty->assign("type",$type);
+        $this->smarty->assign("locali",$locali);
+
         $this->smarty->display('areaPersonaleProprieratio.tpl');
     }
 
