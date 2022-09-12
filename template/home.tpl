@@ -33,26 +33,6 @@
 
     <!-- Template Main CSS File -->
     <link href="/template/css/style.css" rel="stylesheet">
-
-    <script type="text/javascript">
-        function setList() {    //In input le categorie
-            let x = document.getElementById("tipo");
-            let y = x.value;
-            let z, q;
-            q = document.getElementById(y);
-            if (y === 'Locali') {
-                q.style.display = "flex";
-                z = document.getElementById("Eventi");
-                z.style.display = "none";
-
-            } else {
-                q.style.display = "inline-block";
-                z = document.getElementById("Locali");
-                z.style.display = "none";
-            }
-        }
-    </script>
-
 </head>
 
 <body> <!--onload="defaultView()"-->
@@ -96,16 +76,16 @@
                     <h2 class="animate__animated animate__fadeInDown">Benvenuti in <span>FacceBeve</span></h2>
                     <p class="animate__animated animate__fadeInUp">È scientificamente provato che un aperitivo patatine e birretta non salveranno il mondo, ma la giornata sicuramente sì.</p>
                     <h4 class="mb-0" style="color:white">Puoi ricercare...</h4>
-                    <select name="tipo" id="tipo" style="border-radius:10px;" onChange="setList()">
+                    <select onchange=setList() name="tipo" id="tipo" style="border-radius:10px;">
                         <option  selected value="Locali">Locali</option>
                         <option value="Eventi">Eventi</option>
                     </select>
                 </div>
                 <div class="ricerca animate__animated animate__fadeInDown" id="Locali" style="display: flex;justify-content: center;">
-                    <form class="Search" name="ricercaLocali"  action="/Smarty/html/risultatiRicerca.html">
-                        <input class="homeinput" type="text" placeholder="Inserisci la città">
-                        <input class="homeinput" type="text" placeholder="Inserisci il nome" name="nomeLocale">
-                        <select  name="categorie" style="border-radius:7px; height: 50px  ;">
+                    <form class="Search" name="ricercaLocali1" onsubmit="return validateResearchForm(1)"  action="/Ricerca/ricerca" method="POST">
+                        <input class="homeinput" type="text" placeholder="Inserisci la città" name="citta1">
+                        <input class="homeinput" type="text" placeholder="Inserisci il nome" name="nomeLocale1">
+                        <select  name="categorie1" style="border-radius:7px; height: 50px  ;">
                             <option>--Scegli il tipo--</option>
                             {if !empty($genere_cat)}
                                 {foreach $genere_cat as $genere}
@@ -117,7 +97,7 @@
                     </form>
                 </div>
                 <div class="ricerca animate__animated animate__fadeInDown" id="Eventi" style="display: none;justify-content: center;" >
-                    <form class="Search"  name="ricercaEventi"  action="risultatiRicerca.html">
+                    <form class="Search"  name="ricercaEventi" onsubmit="return validateResearchForm(1)"  action="/Ricerca/ricerca" method="POST">
                         <input class="homeinput" type="text" placeholder="Inserisci la città" name="citta">
                         <input class="homeinput" type="text" placeholder="Inserisci il nome del Locale" name="nomeLocale">
                         <input class="homeinput" type="text" placeholder="Inserisci il nome del Evento" name="nomeEvento">
@@ -133,7 +113,7 @@
                 </div>
 
                 <div class="ricerca animate__animated animate__fadeInDown" style="display: flex;justify-content: center;">
-                    <form class="Search" name="ricercaLocali" action="/Smarty/html/risultatiRicerca.html">
+                    <form class="Search" name="ricercaLocali0" action="/Ricerca/ricerca" method="POST" onsubmit="return validateResearchForm(0)">
                         <input class="homeinput" type="text" placeholder="Inserisci la città" name="citta">
                         <input class="homeinput" type="text" placeholder="Inserisci il nome" name="nomeLocale">
                         <select name="categorie" style="border-radius:7px; height: 50px ">

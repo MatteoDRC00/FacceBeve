@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-12 08:53:24
+/* Smarty version 4.2.0, created on 2022-09-12 18:06:01
   from 'C:\xampp\htdocs\FacceBeve\template\home.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_631ed764bd8f52_79326627',
+  'unifunc' => 'content_631f58e91e6019_15178937',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c953834e2bd280dacf9fe734edc7529afcd03f09' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\home.tpl',
-      1 => 1662965598,
+      1 => 1662998759,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_631ed764bd8f52_79326627 (Smarty_Internal_Template $_smarty_tpl) {
+function content_631f58e91e6019_15178937 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <?php $_smarty_tpl->_assignInScope('tipo', (($tmp = $_smarty_tpl->tpl_vars['tipo']->value ?? null)===null||$tmp==='' ? 'nouser' ?? null : $tmp));
 $_smarty_tpl->_assignInScope('genere_cat', $_smarty_tpl->tpl_vars['genere_cat']->value);
@@ -56,28 +56,6 @@ $_smarty_tpl->_assignInScope('locali', $_smarty_tpl->tpl_vars['locali']->value);
 
     <!-- Template Main CSS File -->
     <link href="/template/css/style.css" rel="stylesheet">
-
-    <?php echo '<script'; ?>
- type="text/javascript">
-        function setList() {    //In input le categorie
-            let x = document.getElementById("tipo");
-            let y = x.value;
-            let z, q;
-            q = document.getElementById(y);
-            if (y === 'Locali') {
-                q.style.display = "flex";
-                z = document.getElementById("Eventi");
-                z.style.display = "none";
-
-            } else {
-                q.style.display = "inline-block";
-                z = document.getElementById("Locali");
-                z.style.display = "none";
-            }
-        }
-    <?php echo '</script'; ?>
->
-
 </head>
 
 <body> <!--onload="defaultView()"-->
@@ -121,35 +99,37 @@ $_smarty_tpl->_assignInScope('locali', $_smarty_tpl->tpl_vars['locali']->value);
                     <h2 class="animate__animated animate__fadeInDown">Benvenuti in <span>FacceBeve</span></h2>
                     <p class="animate__animated animate__fadeInUp">È scientificamente provato che un aperitivo patatine e birretta non salveranno il mondo, ma la giornata sicuramente sì.</p>
                     <h4 class="mb-0" style="color:white">Puoi ricercare...</h4>
-                    <select name="tipo" id="tipo" style="border-radius:10px;" onChange="setList()">
+                    <select onchange=setList() name="tipo" id="tipo" style="border-radius:10px;">
                         <option  selected value="Locali">Locali</option>
                         <option value="Eventi">Eventi</option>
                     </select>
                 </div>
                 <div class="ricerca animate__animated animate__fadeInDown" id="Locali" style="display: flex;justify-content: center;">
-                    <form class="Search" name="ricercaLocali"  action="/Smarty/html/risultatiRicerca.html">
-                        <input class="homeinput" type="text" placeholder="Inserisci la città">
-                        <input class="homeinput" type="text" placeholder="Inserisci il nome" name="nomeLocale">
-                        <select  name="categorie" style="border-radius:7px; height: 50px  ;">
+                    <form class="Search" name="ricercaLocali1" onsubmit="return validateResearchForm(1)"  action="/Ricerca/ricerca" method="POST">
+                        <input class="homeinput" type="text" placeholder="Inserisci la città" name="citta1">
+                        <input class="homeinput" type="text" placeholder="Inserisci il nome" name="nomeLocale1">
+                        <select  name="categorie1" style="border-radius:7px; height: 50px  ;">
                             <option>--Scegli il tipo--</option>
-                            <?php
+                            <?php if (!empty($_smarty_tpl->tpl_vars['genere_cat']->value)) {?>
+                                <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['genere_cat']->value, 'genere');
 $_smarty_tpl->tpl_vars['genere']->do_else = true;
 if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['genere']->value) {
 $_smarty_tpl->tpl_vars['genere']->do_else = false;
 ?>
-                                <option type="radio" name="genere" value="<?php echo $_smarty_tpl->tpl_vars['genere']->value;?>
+                                    <option type="radio" name="genere" value="<?php echo $_smarty_tpl->tpl_vars['genere']->value;?>
 "> <?php echo $_smarty_tpl->tpl_vars['genere']->value;?>
 </option>
-                            <?php
+                                <?php
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
+                            <?php }?>
                         </select>
                         <button class="input" type="submit" style="border-radius:10px;"><i class="fa fa-search"></i></button>
                     </form>
                 </div>
                 <div class="ricerca animate__animated animate__fadeInDown" id="Eventi" style="display: none;justify-content: center;" >
-                    <form class="Search"  name="ricercaEventi"  action="risultatiRicerca.html">
+                    <form class="Search"  name="ricercaEventi" onsubmit="return validateResearchForm(1)"  action="/Ricerca/ricerca" method="POST">
                         <input class="homeinput" type="text" placeholder="Inserisci la città" name="citta">
                         <input class="homeinput" type="text" placeholder="Inserisci il nome del Locale" name="nomeLocale">
                         <input class="homeinput" type="text" placeholder="Inserisci il nome del Evento" name="nomeEvento">
@@ -165,23 +145,25 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                 </div>
 
                 <div class="ricerca animate__animated animate__fadeInDown" style="display: flex;justify-content: center;">
-                    <form class="Search" name="ricercaLocali" action="/Smarty/html/risultatiRicerca.html">
+                    <form class="Search" name="ricercaLocali0" action="/Ricerca/ricerca" method="POST" onsubmit="return validateResearchForm(0)">
                         <input class="homeinput" type="text" placeholder="Inserisci la città" name="citta">
                         <input class="homeinput" type="text" placeholder="Inserisci il nome" name="nomeLocale">
                         <select name="categorie" style="border-radius:7px; height: 50px ">
                             <option>--Scegli il tipo--</option>
-                            <?php
+                            <?php if (!empty($_smarty_tpl->tpl_vars['genere_cat']->value)) {?>
+                                <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['genere_cat']->value, 'genere');
 $_smarty_tpl->tpl_vars['genere']->do_else = true;
 if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['genere']->value) {
 $_smarty_tpl->tpl_vars['genere']->do_else = false;
 ?>
-                                <option type="radio" name="genere" value="<?php echo $_smarty_tpl->tpl_vars['genere']->value;?>
+                                    <option type="radio" name="genere" value="<?php echo $_smarty_tpl->tpl_vars['genere']->value;?>
 "> <?php echo $_smarty_tpl->tpl_vars['genere']->value;?>
 </option>
-                            <?php
+                                <?php
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
+                            <?php }?>
                         </select>
                         <button type="submit" style="border-radius:7px; height: 50px"><i class="fa fa-search"></i></button>
                     </form>

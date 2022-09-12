@@ -392,6 +392,8 @@ class CAccesso
                 $ris = "type";
             }
         }
+        if(!isset($mutente))
+            $mutente=null;
         return array($ris,$mutente);
     }
 

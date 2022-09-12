@@ -103,9 +103,9 @@ class VRicerca
      * @throws SmartyException
      */
     public function showResult($result, $tipo){
-        $sessione = USession::getInstance();
+       /** $sessione = new USession();
         if($sessione->leggi_valore('utente'))
-            $this->smarty->assign('userlogged',"loggato");
+            $this->smarty->assign('userlogged',"loggato");*/
 
         $this->smarty->assign('array', $result);
         $this->smarty->assign('tipo', $tipo);

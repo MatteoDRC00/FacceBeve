@@ -1,24 +1,20 @@
 /**
- * Template Name: Moderna - v4.9.1
- * Template URL: https://bootstrapmade.com/free-bootstrap-template-corporate-moderna/
- * Author: BootstrapMade.com
- * License: https://bootstrapmade.com/license/
+ *Funzione utilizzata per la sanificazione di stringhe
  */
-(function () {
-    "use strict";
-
-    /**
-     *Funzione utilizzata per la sanificazione di stringhe
-     */
-    function validateResearchForm() {
+function validateResearchForm(id) {
+    if(id===1){
         let x = document.getElementById("tipo");
         let y = x.value;
-        if (y === 'Locali') {
-            let citta = document.forms.ricercaLocali[0].elements.citta.value;
-            let nome = document.forms.ricercaLocali[0].elements.nomeLocale.value;
-            let categoria = document.forms.ricercaLocali[0].elements.categoria.value;
-            if (citta === "" && nome === "" && categoria === "") {
-                alert("Inserire almeno un campo per effettuare la ricerca");
+        if (y === "Locali") {
+            let citta = document.forms.ricercaLocali1.elements.citta1.value;
+            let nome = document.forms.ricercaLocali1.elements.nomeLocale1.value;
+            var k = document.forms.ricercaLocali1.elements.categorie1;
+            var categoria = "";
+            if(k.checked){
+                var categoria = document.forms.ricercaLocali1.elements.categorie1.value;
+            }
+            if (citta === "" && nome === "" && categoria === "" ) {
+                window.alert("Inserire almeno un campo per effettuare la ricerca ");
                 return false;
             }
         } else {
@@ -27,11 +23,11 @@
             let nomeEvento = document.forms.ricercaEventi.elements.nomeEvento.value;
             let dataEvento = document.forms.ricercaEventi.elements.dataEvento.value;
 
-            var DataEvento = new Date(dataEvento);
-            var Oggi = new Date();
+            let DataEvento = new Date(dataEvento);
+            let Oggi = new Date();
 
             if (citta === "" && nomeLocale === "" && nomeEvento === "" && dataEvento === "") {
-                alert("Inserire almeno un campo per effettuare la ricerca");
+                window.alert("Inserire almeno un campo per effettuare la ricerca");
                 return false;
             }
 
@@ -41,9 +37,47 @@
             }
         }
     }
+    else{
+            let citta = document.forms.ricercaLocali0.elements.citta.value;
+            let nome = document.forms.ricercaLocali0.elements.nomeLocale.value;
+            var k = document.forms.ricercaLocali0.elements.categorie;
+            var categoria = "";
+            if(k.checked){
+               var categoria = document.forms.ricercaLocali0.elements.categorie.value;
+            }
+            if (citta === "" && nome === "" && categoria === "" ) {
+              window.alert("Inserire almeno un campo per effettuare la ricerca ");
+              return false;
+           }
+    }
+
+}
+
+function setList() {
+            let x = document.getElementById("tipo");
+            let y = x.value;
+            let z, q;
+            q = document.getElementById(y);
+            if (y === 'Locali') {
+                q.style.display = "flex";
+                z = document.getElementById("Eventi");
+                z.style.display = "none";
+
+            } else {
+                q.style.display = "inline-block";
+                z = document.getElementById("Locali");
+                z.style.display = "none";
+            }
+        }
 
 
 
+
+
+
+
+(function () {
+    "use strict";
     /**
      * Easy selector helper function
      */
