@@ -81,25 +81,33 @@ class CProfilo{
     public function modificaUsername(){
         $view = new VProfilo();
         $sessione = new USession();
-        $utente = unserialize($sessione->leggi_valore('utente'));
         $pm = FPersistentManager::getInstance();
-        $usernameNuova = $view->getUsernameNuova();
-        //Controllo sulla Username, essendo identificativa, che quella immessa non sia già stata scelta(da errore anche se inserisco la vecchia username)
-        $bool = false;
-        $check = $pm->loadAll(get_class($utente));
-        foreach ($check as $x) {
-            if ($x->getUsername() == $usernameNuova) {
-                    $bool = true;
+
+        if($sessione->isLogged()){
+            $username = $sessione->leggi_valore('utente');
+            $tipo = $sessione->leggi_valore('tipo_utente');
+            $tipo[0] = "F";
+            $class = $tipo;
+
+
+            $newusername = $view->getNewUsername();
+            if($username == $newusername){
+                $message = "L'username è identico a quello precedente";
+                echo "<script type='text/javascript'>alert('$message');</script>";
+            }elseif($newusername == null) {
+                $message = "Si prega di inserire il nuovo username prima di cliccare sul tasto modifica";
+                echo "<script type='text/javascript'>alert('$message');</script>";
+            }elseif($pm->exist("FUtente", "username", $newusername) || $pm->exist("FProprietario", "username", $newusername)){
+                $message = "L'username inserito esiste già, inserirne un altro";
+                echo "<script type='text/javascript'>alert('$message');</script>";
+            }else{
+                $pm->update($class, "username", $newusername, "username", $username);
             }
+            header("Location: /Profilo/mostraProfilo");
+        }else{
+            header("Location: /Ricerca/mostraHome");
         }
-        if (!$bool) {
-            $utente->setUsername($usernameNuova);
-            $pm->update(get_class($utente), "username", $usernameNuova, "username", $utente->getUsername());
-            header('Location: /Profilo/profilo'); //profilo!!!
-        } else {
-            $locali = static::caricaLocali($utente);
-            $view->profilo($utente, $locali, "username");
-        }
+
     }
 
     /**

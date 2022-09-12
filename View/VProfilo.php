@@ -203,9 +203,9 @@ class VProfilo{
      * Metodo che restituisce la username inserita nel campo "Nuova Username", utilizzata nella modifica del profilo, e prelevata dal vettore $_FILES
      * @return string
      */
-    public function getUsernameNuova(): string
+    public function getNewUsername(): string
     {
-        return $_POST['usernamenuova'];
+        return $_POST['newusername'];
     }
 
     /**
