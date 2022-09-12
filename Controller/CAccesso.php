@@ -398,10 +398,13 @@ class CAccesso
     }
 
 
-    public function logout(){
+    /**
+     * Funzione che provvede alla rimozione delle variabili di sessione, alla sua distruzione e a rinviare alla homepage
+     */
+    static function logout(){
         $sessione = new USession();
         $sessione->chiudi_sessione();
-        header("Location: /Ricerca/mostraHome");
+        header('Location: /Ricerca/mostraHome');
     }
 
 

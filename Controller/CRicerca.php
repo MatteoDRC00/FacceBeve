@@ -69,17 +69,19 @@ class CRicerca{
     public function ricerca(){
         $vRicerca = new VRicerca();
         $sessione = new USession();
-        if($sessione->leggi_valore('utente')){
+        $tipo = $vRicerca->getTipoRicerca();
+        /*if($sessione->isLogged()){
             $tipo = $vRicerca->getTipoRicerca(); //Nella homepage un campo nella barra di ricerca deve individuare il tipo di ricerca che si vuole effettuare
+            echo $tipo;
         }else{
             $tipo="Locali";
-        }
+        }*/
         if ($tipo == "Locali") {
                 $nomelocale = $vRicerca->getNomeLocale();
                 $citta= $vRicerca->getCitta();
                 $categoria = $vRicerca->getCategorie();
                 if ($nomelocale != null || $citta != null || $categoria != null){
-                    $pm = FPersistentManager::GetIstance();
+                    $pm = FPersistentManager::getInstance();
                     $part1 = null;
                     if ($nomelocale != null) {
                         $part1 = $pm->load("name", $nomelocale, "FLocale");
@@ -96,8 +98,7 @@ class CRicerca{
                     $vRicerca->showResult($result, $tipo);
                 }else
                     header('Location: /FacceBeve/');
-            }
-        elseif ($tipo == "Evento") {
+        }elseif ($tipo == "Evento") {
                 $nomelocale = $vRicerca->getNomeLocale();
                 $nomeevento= $vRicerca->getNomeEvento();
                 $citta= $vRicerca->getCitta();
@@ -132,6 +133,8 @@ class CRicerca{
                         $vRicerca->showResult($result, $tipo);
                 }else
                     header('Location: /FacceBeve/');
+        }else{
+            header('Location: /Ricerca/mostraHome');
         }
     }
 
@@ -145,7 +148,7 @@ class CRicerca{
      static function dettagliLocale($id){
         $vRicerca = new VRicerca();
         $pm = FPersistentManager::GetIstance();
-        $sessione = USession::getInstance();
+        $sessione = new USession();
         $result = $pm->load("id", $id, "FLocale");
 
         //Calcolo valutazione media locale + sue recensioni con le relative risposte

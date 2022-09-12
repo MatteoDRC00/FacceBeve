@@ -10,9 +10,11 @@ class USession
 {
 
     /**
-     * Il costruttore della classe USession, si occupa d'inizializzare la sessione per l'utente.
-    */
-    public function __construct() {
+     * Costruttore della classe USession. Imposta la durata del cookie a 15 minuti e avvia la sessione.
+     */
+    public function __construct()
+    {
+       // session_set_cookie_params(15*60);
         session_start();
     }
 
@@ -31,10 +33,9 @@ class USession
      * @return void
      */
     function chiudi_sessione() {
-        //session_start();
         session_unset(); //Dealloca la RAM, i.e., libera tutte le variabili di sessione attualmente registrate.
         session_destroy(); //Distrugge il file sul file system del server,i.e., distrugge tutti i dati associati alla sessione corrente
-        setcookie('PHPSESSID',''); //Svuota il cookie su client
+        setcookie('PHPSESSID',null); //Svuota il cookie su client
     }
 
     /**

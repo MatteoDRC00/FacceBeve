@@ -26,8 +26,14 @@ class VRicerca
     public function getNomeLocale(): ?string
     {
         $value = null;
-        if (isset($_POST['nomeLocale']))
-            $value = $_POST['nomeLocale'];
+        $sessione = new USession();
+        if($sessione->isLogged()){
+            if (isset($_POST['nomeLocale1']))
+                $value = $_POST['nomeLocale1'];
+        }else{
+            if (isset($_POST['nomeLocale']))
+                $value = $_POST['nomeLocale'];
+        }
         return $value;
     }
 
@@ -65,8 +71,14 @@ class VRicerca
     public function getCitta(): ?string
     {
         $value = null;
-        if (isset($_POST['citta']))
-            $value = $_POST['citta'];
+        $sessione = new USession();
+        if($sessione->isLogged()){
+            if (isset($_POST['citta1']))
+                $value = $_POST['citta1'];
+        }else{
+            if (isset($_POST['citta']))
+                $value = $_POST['citta'];
+        }
         return $value;
     }
 
@@ -78,8 +90,14 @@ class VRicerca
     public function getCategorie(): ?string
     {
         $value = null;
-        if (isset($_POST['categorie']))
-            $value = $_POST['categorie'];
+        $sessione = new USession();
+        if($sessione->isLogged()){
+            if (isset($_POST['categorie1']))
+                $value = $_POST['categorie1'];
+        }else{
+            if (isset($_POST['categorie']))
+                $value = $_POST['categorie'];
+        }
         return $value;
     }
 
@@ -91,8 +109,13 @@ class VRicerca
     public function getTipoRicerca(): ?string
     {
         $value = null;
-        if (isset($_POST['ricerca']))
-            $value = $_POST['ricerca'];
+        $sessione = new USession();
+        if($sessione->isLogged()){
+            if (isset($_POST['tipo']))
+                $value = $_POST['tipo'];
+        }else{
+            $value = "Locali";
+        }
         return $value;
     }
 

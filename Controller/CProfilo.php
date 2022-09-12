@@ -35,9 +35,9 @@ class CProfilo{
      * Funzione che provvede alla rimozione delle variabili di sessione, alla sua distruzione e a rinviare alla homepage
      */
     static function logout(){
-        $sessione = USession::getInstance();
+        $sessione = new USession();
         $sessione->chiudi_sessione();
-        header('Location: /FacceBeve/Utente/login');
+        header('Location: Ricerca/mostraHome');
     }
 
 /*
