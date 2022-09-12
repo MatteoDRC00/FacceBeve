@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-11 19:56:58
+/* Smarty version 4.2.0, created on 2022-09-12 08:53:24
   from 'C:\xampp\htdocs\FacceBeve\template\home.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_631e216af10ae5_93481653',
+  'unifunc' => 'content_631ed764bd8f52_79326627',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c953834e2bd280dacf9fe734edc7529afcd03f09' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\home.tpl',
-      1 => 1662914369,
+      1 => 1662965598,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_631e216af10ae5_93481653 (Smarty_Internal_Template $_smarty_tpl) {
+function content_631ed764bd8f52_79326627 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <?php $_smarty_tpl->_assignInScope('tipo', (($tmp = $_smarty_tpl->tpl_vars['tipo']->value ?? null)===null||$tmp==='' ? 'nouser' ?? null : $tmp));
 $_smarty_tpl->_assignInScope('genere_cat', $_smarty_tpl->tpl_vars['genere_cat']->value);
@@ -57,6 +57,27 @@ $_smarty_tpl->_assignInScope('locali', $_smarty_tpl->tpl_vars['locali']->value);
     <!-- Template Main CSS File -->
     <link href="/template/css/style.css" rel="stylesheet">
 
+    <?php echo '<script'; ?>
+ type="text/javascript">
+        function setList() {    //In input le categorie
+            let x = document.getElementById("tipo");
+            let y = x.value;
+            let z, q;
+            q = document.getElementById(y);
+            if (y === 'Locali') {
+                q.style.display = "flex";
+                z = document.getElementById("Eventi");
+                z.style.display = "none";
+
+            } else {
+                q.style.display = "inline-block";
+                z = document.getElementById("Locali");
+                z.style.display = "none";
+            }
+        }
+    <?php echo '</script'; ?>
+>
+
 </head>
 
 <body> <!--onload="defaultView()"-->
@@ -77,12 +98,12 @@ $_smarty_tpl->_assignInScope('locali', $_smarty_tpl->tpl_vars['locali']->value);
             </div>
         <?php } elseif ($_smarty_tpl->tpl_vars['tipo']->value == 'EUtente') {?>
             <div class="sign">
-                <a href="/Smarty/html/areaPersonaleUtente.html">Area Personale Utente</a> <!--DEBUG ZIO PERA-->
+                <a href="/Profilo/mostraProfiloUtente">Area Personale Utente</a> <!--DEBUG ZIO PERA-->
                 <a href="/Accesso/logout">Logout</a>
             </div>
         <?php } elseif ($_smarty_tpl->tpl_vars['tipo']->value == 'EProprietario') {?>
             <div class="sign">
-                <a href="/Smarty/html/areaPersonaleProprietario.html">Area Personale Ciccarelli</a>
+                <a href="/Profilo/mostraProfiloProprietario">Area Personale Ciccarelli</a>
                 <a href="/Accesso/logout">Logout</a>
             </div>
         <?php }?>
@@ -277,7 +298,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>-->
 
 <!-- Template Main JS File -->
 <?php echo '<script'; ?>
- src="/template/js/main.js"><?php echo '</script'; ?>
+ type="text/javascript" src="/template/js/main.js"><?php echo '</script'; ?>
 >
 
 </body>

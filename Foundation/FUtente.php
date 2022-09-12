@@ -97,7 +97,7 @@ class FUtente{
         $result = $db->load(static::getClass(), $field, $id);
         $num = $db->getNumRighe(static::getClass(), $field, $id);
         if(($result!=null) && ($num == 1)) {
-            $utente = new EUtente($result['password'], $result['nome'],$result['cognome'], $result['username'], $result['email']);
+            $utente = new EUtente($result['password'], $result['nome'], $result['cognome'], $result['username'], $result['email']);
             $utente->setIscrizione($result['dataIscrizione']);
             $utente->setImgProfilo(FImmagine::loadByField('id', $result['idImg']));
         }

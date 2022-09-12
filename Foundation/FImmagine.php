@@ -14,7 +14,7 @@ class FImmagine
     /** tabella con la quale opera */
     private static $table="Immagine";
     /** valori della tabella */
-    private static $values="(:id,:nome,:type,:size,:immagine)";
+    private static $values="(:id,:nome,:size,:type,:immagine)";
 
     /** costruttore */
     public function __construct(){}

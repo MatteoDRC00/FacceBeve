@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -41,7 +40,6 @@
 </head>
 
 <body>
-
 <!-- ======= Header ======= -->
 <header id="header" class="fixed-top d-flex align-items-center ">
     <div class="container d-flex justify-content-between align-items-center">
@@ -58,16 +56,13 @@
     <!-- ======= Contact Section ======= -->
     <section class="breadcrumbs">
         <div class="container">
-
             <div class="d-flex justify-content-between align-items-center">
                 <h2>Area Personale</h2>
             </div>
-
             <div class="gestioneutente">
                 <a href="#locali">I Tuoi Locali Preferiti</a>
                 <a href="/Accesso/logout">Esci <i class="fa fa-sign-out"></i></a>
             </div>
-
         </div>
     </section><!-- End Contact Section -->
 
@@ -80,9 +75,9 @@
                         <div class="col-12 bg-white p-0 px-3 py-3 mb-3">
                             <div class="d-flex flex-column align-items-center">
                                 <img class="photo" src="data:{$type};base64,{$pic64}" alt="immagine profilo">
-                                <p class="fw-bold h4 mt-3">{$utente.nome} {$utente.cognome}</p>
-                                <p class="text-muted" style="font-weight: bold">{$utente.username}</p>
-                                <p class="text-muted mb-3">{$utente.email}</p>
+                                <p class="fw-bold h4 mt-3">{$nome} {$cognome}</p>
+                                <p class="text-muted" style="font-weight: bold">{$username}</p>
+                                <p class="text-muted mb-3">{$email}</p>
                             </div>
                         </div>
                     </div>

@@ -242,12 +242,20 @@ class VProfilo{
     }
 
     public function mostraProfiloUtente(EUtente $utente, $locali_preferiti){
-        $pic64 = $utente->getImgProfilo()->getImmagine();
-        $type = $utente->getImgProfilo()->getType();
+        $username = $utente->getUsername();
+        $nome = $utente->getNome();
+        $cognome = $utente->getCognome();
+        $email = $utente->getEmail();
+        $img_profilo = $utente->getImgProfilo();
+        $pic64 = $img_profilo->getImmagine();
+        $type = $img_profilo->getType();
 
+        $this->smarty->assign("username",$username);
+        $this->smarty->assign("nome",$nome);
+        $this->smarty->assign("cognome",$cognome);
+        $this->smarty->assign("email",$email);
         $this->smarty->assign("pic64",$pic64);
         $this->smarty->assign("type",$type);
-        $this->smarty->assign("utente",$utente);
         $this->smarty->assign("locali_preferiti",$locali_preferiti);
 
         $this->smarty->display('areaPersonaleUtente.tpl');

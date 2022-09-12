@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-11 19:19:17
+/* Smarty version 4.2.0, created on 2022-09-12 10:17:54
   from 'C:\xampp\htdocs\FacceBeve\template\areaPersonaleUtente.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_631e1895d0edc9_57479025',
+  'unifunc' => 'content_631eeb3253fdc5_15599597',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '7757a365921f193a5e1677eb3c4671e453775876' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\areaPersonaleUtente.tpl',
-      1 => 1662906978,
+      1 => 1662970465,
       2 => 'file',
     ),
   ),
@@ -20,10 +20,9 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_631e1895d0edc9_57479025 (Smarty_Internal_Template $_smarty_tpl) {
+function content_631eeb3253fdc5_15599597 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -64,7 +63,6 @@ function content_631e1895d0edc9_57479025 (Smarty_Internal_Template $_smarty_tpl)
 </head>
 
 <body>
-
 <!-- ======= Header ======= -->
 <header id="header" class="fixed-top d-flex align-items-center ">
     <div class="container d-flex justify-content-between align-items-center">
@@ -81,16 +79,13 @@ function content_631e1895d0edc9_57479025 (Smarty_Internal_Template $_smarty_tpl)
     <!-- ======= Contact Section ======= -->
     <section class="breadcrumbs">
         <div class="container">
-
             <div class="d-flex justify-content-between align-items-center">
                 <h2>Area Personale</h2>
             </div>
-
             <div class="gestioneutente">
                 <a href="#locali">I Tuoi Locali Preferiti</a>
-                <a href="">Esci <i class="fa fa-sign-out"></i></a>
+                <a href="/Accesso/logout">Esci <i class="fa fa-sign-out"></i></a>
             </div>
-
         </div>
     </section><!-- End Contact Section -->
 
@@ -102,12 +97,16 @@ function content_631e1895d0edc9_57479025 (Smarty_Internal_Template $_smarty_tpl)
                     <div class="row">
                         <div class="col-12 bg-white p-0 px-3 py-3 mb-3">
                             <div class="d-flex flex-column align-items-center">
-                                <img class="photo"
-                                     src="/template/img/team/team-3.jpg"
-                                     alt="">
-                                <p class="fw-bold h4 mt-3">$Nome $Cognome</p>
-                                <p class="text-muted">$username</p>
-                                <p class="text-muted mb-3">$email</p>
+                                <img class="photo" src="data:<?php echo $_smarty_tpl->tpl_vars['type']->value;?>
+;base64,<?php echo $_smarty_tpl->tpl_vars['pic64']->value;?>
+" alt="immagine profilo">
+                                <p class="fw-bold h4 mt-3"><?php echo $_smarty_tpl->tpl_vars['nome']->value;?>
+ <?php echo $_smarty_tpl->tpl_vars['cognome']->value;?>
+</p>
+                                <p class="text-muted" style="font-weight: bold"><?php echo $_smarty_tpl->tpl_vars['username']->value;?>
+</p>
+                                <p class="text-muted mb-3"><?php echo $_smarty_tpl->tpl_vars['email']->value;?>
+</p>
                             </div>
                         </div>
                     </div>

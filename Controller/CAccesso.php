@@ -261,12 +261,14 @@ class CAccesso
             $img_profilo = null;
 
             $img = $view->getImgProfilo();
+            list($check, $img_profilo) = static::upload($img);
             if (!empty($img)) {
-                $img_profilo = new EImmagine($img[0], $img[1], $img[2], $img[3]);
+                //$img_profilo = new EImmagine($img[0], $img[1], $img[2], $img[3]);
                 $id = $pm::store($img_profilo);
                 $img_profilo->setId($id);
             }
             $utente->setImgProfilo($img_profilo);
+
             $pm->store($utente);
 
             $sessione->imposta_valore('utente',$utente->getUsername());
@@ -332,7 +334,7 @@ class CAccesso
     */
     static function eventiUtente($utente): ?array
     {
-        $pm = FPersistentManager::getIstance();
+        $pm = FPersistentManager::getInstance();
         $result = $pm->loadEventi($utente);
         if(isset($result)){
             //Vengono mostrati, se presenti, solo gli eventi futuri, quelli passati sono visualizzabili nella pagina del locale
@@ -355,13 +357,12 @@ class CAccesso
      * Nel caso in cui non ci sono errori di inserimento, avviene la store dell'utente e la corrispondente immagine nel database.
      * @param $nome_file passato nella form pe l'immagine
      * @return array stato verifica immagine
-
+    */
     static function upload($img) {
-        $pm = FPersistentManager::getInstance();
         $ris = null;
-        $nome = '';
+        $nome = $img[0];
         $max_size = 300000;
-        $result = is_uploaded_file($img[2]);
+        $result = is_uploaded_file($img[3]);
         if (!$result) {
             //no immagine
             //$pm->store($utente);
@@ -369,15 +370,15 @@ class CAccesso
             //return "ok";
             return $ris;
         } else {
-            $size = $img[3];
-            $type = $img[0];
+            $size = $img[1];
+            $type = $img[2];
             if ($size > $max_size) {
                 //Il file è troppo grande
                 $ris = "size";  // -->Errore relativo alla dimensione del img
             }
             //$type = $_FILES[$nome_file]['type'];
             elseif ($type == 'image/jpeg' || $type == 'image/png' || $type == 'image/jpg') {
-                $immagine = @file_get_contents($img[2]);
+                $immagine = @file_get_contents($img[3]);
                 $immagine = addslashes ($immagine);
                 //$pm->store($utente);
                 $mutente = new EImmagine($nome,$size,$type,$immagine);
@@ -392,7 +393,7 @@ class CAccesso
             }
         }
         return array($ris,$mutente);
-    }*/
+    }
 
 
     public function logout(){

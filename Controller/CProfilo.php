@@ -253,10 +253,15 @@ class CProfilo{
     public function mostraProfiloUtente(){
         $sessione = new USession();
         $pm = FPersistentManager::getInstance();
+
         if($sessione->isLogged()){
             $id_utente = $sessione->leggi_valore("utente");
-            $class = $sessione->leggi_valore("tipo_utente");
+            $tipo = $sessione->leggi_valore("tipo_utente");
+            $tipo[0] = "F";
+            $class = $tipo;
             $utente = $pm->load("username", $id_utente, $class);
+
+
 
             $locali_preferiti = $pm->getLocaliPreferiti($id_utente);
 

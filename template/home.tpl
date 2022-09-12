@@ -107,9 +107,11 @@
                         <input class="homeinput" type="text" placeholder="Inserisci il nome" name="nomeLocale">
                         <select  name="categorie" style="border-radius:7px; height: 50px  ;">
                             <option>--Scegli il tipo--</option>
-                            {foreach $genere_cat as $genere}
-                                <option type="radio" name="genere" value="{$genere}"> {$genere}</option>
-                            {/foreach}
+                            {if !empty($genere_cat)}
+                                {foreach $genere_cat as $genere}
+                                    <option type="radio" name="genere" value="{$genere}"> {$genere}</option>
+                                {/foreach}
+                            {/if}
                         </select>
                         <button class="input" type="submit" style="border-radius:10px;"><i class="fa fa-search"></i></button>
                     </form>
@@ -136,9 +138,11 @@
                         <input class="homeinput" type="text" placeholder="Inserisci il nome" name="nomeLocale">
                         <select name="categorie" style="border-radius:7px; height: 50px ">
                             <option>--Scegli il tipo--</option>
-                            {foreach $genere_cat as $genere}
-                                <option type="radio" name="genere" value="{$genere}"> {$genere}</option>
-                            {/foreach}
+                            {if !empty($genere_cat)}
+                                {foreach $genere_cat as $genere}
+                                    <option type="radio" name="genere" value="{$genere}"> {$genere}</option>
+                                {/foreach}
+                            {/if}
                         </select>
                         <button type="submit" style="border-radius:7px; height: 50px"><i class="fa fa-search"></i></button>
                     </form>
