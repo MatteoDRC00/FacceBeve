@@ -38,18 +38,13 @@ class CAdmin{
 
     /**
      * Funzione utilizzata per visualizzare la homepage dell'amministratore, nella quale sono presenti tutti gli utenti della piattaforma.
-     * Gli utenti sono divisi in due liste: bannati e attivi.
-     * 1) se il metodo di richiesta HTTP è GET e si è loggati con le credenziali dell'amministratore viene visualizzata la homepage con l'elenco di tutti gli utenti;
-     * 2) se il metodo di richiesta HTTP è GET e si è loggati ma non come amministratore, viene visualizzata una pagina di errore 401;
-     * 3) altrimenti, reindirizza alla pagina di login.
+     * Gli utenti sono divisi in due liste: bannati e attivi
      * @throws SmartyException
      */
     public function dashboard() {
-        echo "sorpresina baby il mio cazzo è un ciccarelli";
-        /*
         $sessione = new USession();
         $utente = unserialize($sessione->leggi_valore('utente'));
-        //if (($utente->getUsername() == "admin") || ($utente->getUsername() == "Admin")) { //aggiustare
+        if (($utente->getUsername() == "admin") || ($utente->getUsername() == "Admin")) { //aggiustare
             $view = new VAdmin();
             $pm = FPersistentManager::getInstance();
             // visualizza elenco utenti attivi e bannati
@@ -59,10 +54,10 @@ class CAdmin{
             $img_bann = static::set_immagini($utentiBannati);
             $categorie = $pm->loadAll("FCategoria");
             $view->HomeAdmin($utentiAttivi, $utentiBannati,$img_attivi,$img_bann,$categorie);
-      /*  } else {
+        } else {
                 $view = new VError();
                 $view->error(1);
-        }*/
+        }
     }
 
     /**
@@ -97,47 +92,28 @@ class CAdmin{
      */
     public function aggiungiCategoria(){
         $sessione = new USession();
-        if($_SERVER['REQUEST_METHOD'] == "POST") {
-            if($sessione->leggi_valore('utente')){
-                $utente = unserialize($sessione->leggi_valore('utente'));
-                $view = new VAdmin();
-                if(($utente->getUsername() == "admin") || ($utente->getUsername() == "Admin")){
-                    $pm = FPersistentManager::getInstance();
-                    $genere = $view->getGenere();
-                    $descrizione = $view->getDescrizione();
-                    $categoria = $pm->exist("FCategoria", genere,$genere );
-                    if(!$categoria){
-                        $Categoria = new ECategoria($genere,$descrizione);
-                        $pm->store($Categoria);
-                        $error = null;
-                    }else{
-                        $error = "wrongCategory";
-                    }
-                    $view->showFormCategoria($utente,$error);
+        if($sessione->leggi_valore('utente')){
+            $utente = unserialize($sessione->leggi_valore('utente'));
+            $view = new VAdmin();
+            if(($utente->getUsername() == "admin") || ($utente->getUsername() == "Admin")){
+                $pm = FPersistentManager::getInstance();
+                $genere = $view->getGenere();
+                $descrizione = $view->getDescrizione();
+                $categoria = $pm->exist("FCategoria", genere,$genere );
+                if(!$categoria){
+                    $Categoria = new ECategoria($genere,$descrizione);
+                    $pm->store($Categoria);
+                    $error = null;
                 }else{
-                    $view = new VError();
-                    $view->error(1);
+                    $error = "wrongCategory";
                 }
+                $view->showFormCategoria($utente,$error);
             }else{
-                header('Location: /FacceBeve/');
+                $view = new VError();
+                $view->error(1);
             }
-
-        }
-        elseif($_SERVER['REQUEST_METHOD'] == "GET") {
-            if ($sessione->leggi_valore('utente')) {
-                $utente = unserialize($sessione->leggi_valore('utente'));
-                $view = new VAdmin();
-                if (($utente->getUsername() == "admin") || ($utente->getUsername() == "Admin"))  {
-                    //header('Location: /FacceBeve/Admin/homepage');
-                    $view->showFormCategoria($sessione->leggi_valore('utente'), null);
-                }
-                else {
-                    $view = new VError();
-                    $view->error(1);
-                }
-            }
-            else
-                header('Location: /FacceBeve/Utente/login');
+        }else{
+            header('Location: /FacceBeve/Ricerca/MostraHome');
         }
     }
 
@@ -146,9 +122,9 @@ class CAdmin{
      */
     public function rimuoviCategoria($id)
     {
-        $sessione = USession::getInstance();
+        $sessione = new USession();
         $utente = unserialize($sessione->leggi_valore('utente'));
-        if (($utente->getUsername() == "admin") || ($utente->getUsername() == "Admin")) {
+        if ($sessione->isLogged()) {
             $pm = FPersistentManager::getIstance();
             $x = $pm->loadAll("FCategoria");
             if (is_array($x)) {
@@ -167,22 +143,19 @@ class CAdmin{
                 header('Location: /FacceBeve/Admin/homepage');
             }
         }else{
-            header('Location: /FacceBeve/Utente/login');
+            $view = new VError();
+            $view->error(1);
         }
     }
 
 
     /**
      * Funzione utile per cambiare lo stato di visibilità di un utente (nel caso specifico porta la visibilità a false).
-     * 1) se il metodo di richiesta HTTP è GET e si è loggati come amministratore, avviene il reindirizzamento alla homepage dell'amministratore;
-     * 2) se il metodo di richiesta HTTP è POST (ovviamente per fare ciò bisogna già essere loggati come amminstratore), avviene l'azione vera e propria di bannare l'utente
-     * 	  cambiando il suo stato di visibilità a false con conseguente bannamento delle sue recensioni;
-     * 3) se il metodo di richiesta HTTP è GET e non si è loggati, avviene il reindirizzamento verso la pagina di login;
-     * 4) se il metodo di richiesta HTTP è GET e si è loggati come utente (non amministratore) compare una pagina di errore 401.
+     * Se  si è loggati come utente (non amministratore) compare una pagina di errore 401.
      **/
     public function bannaUtente(){
-    $sessione = USession::getInstance();
-    if ($_SERVER['REQUEST_METHOD'] == "POST") {
+    $sessione = new USession();
+    if($sessione->isLogged()){
         $view = new VAdmin();
         $pm = FPersistentManager()::getIstance();
         $username = $view->getUsername();
@@ -190,66 +163,38 @@ class CAdmin{
         $utente->setState(0);
         $pm->update("FUtente", "state", $utente->getState(), "username", $username);
         header('Location: /FacceBeve/Admin/homepage');
-    } elseif ($_SERVER['REQUEST_METHOD'] == "GET") {
-        if ($sessione->leggi_valore('utente')) {
-            $utente = unserialize($sessione->leggi_valore('utente'));
-            if (($utente->getUsername() == "admin") || ($utente->getUsername() == "Admin")) {
-                header('Location: /FacceBeve/Admin/homepage');
-            } else {
-                $view = new VError();
-                $view->error(1);
-            }
-        } else
-            header('Location: /FacceBeve/Utente/login');
-    }
+    }else{
+            $view = new VError();
+            $view->error(1);
+        }
     }
 
     /**
-     * Funzione utile per cambiare lo stato di visibilità di un utente (nel caso specifico porta la visibilità a true).
-     * 1) se il metodo di richiesta HTTP è GET e si è loggati come amministratore, avviene il reindirizzamento alla homepage dell'amministratore;
-     * 2) se il metodo di richiesta HTTP è POST (ovviamente per fare ciò bisogna già essere loggati come amminstratore), avviene l'azione vera e propria di riattivare l'utente
-     * 	  cambiando il suo stato di visibilità a true con conseguente attivazione degli annunci (prima in stato di blocco) da lui pubblicati;
-     * 3) se il metodo di richiesta HTTP è GET e non si è loggati, avviene il reindirizzamento verso la pagina di login;
-     * 4) se il metodo di richiesta HTTP è GET e si è loggati come utente (non amministratore) compare una pagina di errore 401.
+     * Funzione utile per cambiare lo stato di visibilità di un utente (nel caso specifico porta la visibilità a true-->riattiva l'utente).
+     * Se si è loggati come utente (non amministratore) compare una pagina di errore 401.
     */
     public function attivaUtente(){
-        $sessione = USession::getInstance();
-        if($_SERVER['REQUEST_METHOD'] == "POST") {
+        $sessione = new USession();
+        if($sessione->isLogged()) {
             $view = new VAdmin();
             $pm = FPersistentManager()::getIstance();
             $username = $view->getUsername();
             $utente = $pm->load("username", $username, "Futente");
             $utente->setState(1);
             $pm->update("FUtente", "state", $utente->getState(1), "username", $username);
-           // $pm->update("visibility",true,"emailWriter",$email,"FAnnuncio");
-            header('Location: /FacceBeve/Admin/homepage');
-        }
-        elseif($_SERVER['REQUEST_METHOD'] == "GET") {
-            if ($sessione->leggi_valore('utente')) {
-                $utente = unserialize($sessione->leggi_valore('utente'));
-                if (($utente->getUsername() == "admin") || ($utente->getUsername() == "Admin")) {
-                    header('Location: /FacceBeve/Admin/homepage');
-                }
-                else {
-                    $view = new VError();
-                    $view->error(1);
-                }
-            }
-            else
-                header('Location: /FacceBeve/Utente/login');
+            header('Location: /FacceBeve/Admin/dashboard');
+        }else{
+            $view = new VError();
+            $view->error(1);
         }
     }
 
     /**
      * Funzione che permette la visualizzazione dell'elenco delle recensioni pubblicate.
-     * 1) se il metodo di richiesta HTTP è GET e si è loggati come amministratore, viene visualizzata la pagina con tutte le recensioni;
-     * 2) se il metodo di richiesta HTTP è GET e si è loggati ma non come amministratore, viene visualizzata una pagina di errore 401;
-     * 3) altrimenti, reindirizza alla pagina di login.
      */
-    static function recensioni() { //Secondo me solo quelle segnalate
-        $sessione = USession::getInstance();
-        if($_SERVER['REQUEST_METHOD'] == "GET") {
-            if ($sessione->leggi_valore('utente')) {
+    public function recensioni() { //Secondo me solo quelle segnalate
+        $sessione = new USession();
+            if ($sessione->isLogged()){
                 $utente = unserialize($sessione->leggi_valore('utente'));
                 if (($utente->getUsername() == "admin") || ($utente->getUsername() == "Admin")) {
                     $view = new VAdmin();
@@ -274,55 +219,34 @@ class CAdmin{
             }
             else
                 header('Location: /FacceBeve/Utente/login');
-        }
-
     }
 
     /**
      * Funzione utile per eliminare una recensione segnalata.
-     * 1) se il metodo di richiesta HTTP è GET e si è loggati come amministratore, avviene il reindirizzamento alla pagina contenente tutte le recensioni;
-     * 2) se il metodo di richiesta HTTP è POST (ovviamente per fare ciò bisogna già essere loggati come amminstratore), avviene l'azione vera e propria di eliminare una recensione;
-     * 3) se il metodo di richiesta HTTP è GET e non si è loggati, avviene il reindirizzamento verso la pagina di login;
-     * 4) se il metodo di richiesta HTTP è GET e si è loggati come utente (non amministratore) compare una pagina di errore 401.
+     *
      * @param $id
      * @throws SmartyException
      */
-    static function eliminaRec($id){
-        $sessione = USession::getInstance();
-        if($_SERVER['REQUEST_METHOD'] == "POST") {
+    public static function eliminaRec($id){
+        $sessione = new USession();
+        if($sessione->isLogged()) {
             $pm = FPersistentManager()::getIstance();
             $pm->delete("id", $id, "FRecensione");
             header('Location: /FacceBeve/Admin/recensioni');
-        }
-        elseif($_SERVER['REQUEST_METHOD'] == "GET") {
-            if ($sessione->leggi_valore('utente')) {
-                $utente = unserialize($sessione->leggi_valore('utente'));
-                if (($utente->getUsername() == "admin") || ($utente->getUsername() == "Admin")) {
-                    header('Location: /FacceBeve/Admin/recensioni');
-                }
-                else {
-                    $view = new VError();
-                    $view->error('1');
-                }
-            }
-            else
-                header('Location: /FacceBeve/Utente/login');
+        }else{
+            $view = new VError();
+            $view->error(1);
         }
     }
 
     /**
      * Funzione utilizzata per visualizzare l'elenco dei locali registrati sul sito.
-     * I locali sono divisi in due liste: bannati e attivi.
-     * 1) se il metodo di richiesta HTTP è GET e si è loggati con le credenziali dell'amministratore viene visualizzata la pagina con l'elenco di tutti gli annunci;
-     * 2) se il metodo di richiesta HTTP è GET e si è loggati ma non come amministratore, viene visualizzata una pagina di errore 401;
-     * 3) altrimenti, reindirizza alla pagina di login.
-     */
+
     static function locali(){
-        $sessione = USession::getInstance();
-        if($_SERVER['REQUEST_METHOD'] == "GET") {
-            if ($sessione->leggi_valore('utente')) {
+        $sessione = new USession();
+            if ($sessione->isLogged()) {
                 $utente = unserialize($sessione->leggi_valore('utente'));
-                if ($utente->getEmail() == "admin@admin.com") {
+                if (($utente->getUsername() == "admin") || ($utente->getUsername() == "Admin")) {
                     $view = new VAdmin();
                     $pm = FPersistentManager()::getIstance();
                     $localiAttivi = $pm->load("visibility", 1, "FLocale");
@@ -350,27 +274,19 @@ class CAdmin{
                     $view->error('1');
                 }
             }
-            else
-                header('Location: /FacceBeve/Utente/login');
-        }
-    }
+    } */
 
     /**
      * Funzione utile per cambiare lo stato di visibilità di un locale (nel caso specifico porta la visibilità a false).
-     * 1) se il metodo di richiesta HTTP è GET e si è loggati come amministratore, avviene il reindirizzamento alla pagina contenente l'elenco degli annunci;
-     * 2) se il metodo di richiesta HTTP è POST (ovviamente per fare ciò bisogna già essere loggati come amminstratore), avviene l'azione vera e propria di bannare l'annuncio selezionato
-     * 	  cambiando il suo stato di visibilità a false;
-     * 3) se il metodo di richiesta HTTP è GET e non si è loggati, avviene il reindirizzamento verso la pagina di login;
-     * 4) se il metodo di richiesta HTTP è GET e si è loggati come utente (non amministratore) compare una pagina di errore 401.
      * @param $id annuncio da bannare
      * @throws SmartyException
-     */
+
     static function bannaLocale($id){
-        $sessione = USession::getInstance();
+        $sessione = new USession();
         if($_SERVER['REQUEST_METHOD'] == "POST") {
             $pm = FPersistentManager()::getIstance();
             $pm->update("visibility", 0, "id", $id, "FLocali");
-            header('Location: /FillSpaceWEB/Admin/annunci');
+            header('Location: /FacceBeve/Admin/annunci');
         }
         elseif($_SERVER['REQUEST_METHOD'] == "GET") {
             if ($sessione->leggi_valore('utente')) {
@@ -384,9 +300,9 @@ class CAdmin{
                 }
             }
             else
-                header('Location: /FillSpaceWEB/Utente/login');
+                header('Location: /FacceBeve/Utente/login');
         }
-    }
+    } */
 
     /**
      * Funzione utile per cambiare lo stato di visibilità di un annuncio (nel caso specifico porta la visibilità a true).
@@ -397,9 +313,9 @@ class CAdmin{
      * 4) se il metodo di richiesta HTTP è GET e si è loggati come utente (non amministratore) compare una pagina di errore 401.
      * @param $id annuncio da bannare
      * @throws SmartyException
-     */
+
     static function ripristinaLocale($id){
-        $sessione = USession::getInstance();
+        $$sessione = new USession();
         if($_SERVER['REQUEST_METHOD'] == "POST") {
             $pm = FPersistentManager()::getIstance();
             $pm->update("visibility", 1, "id", $id, "FLocale");
@@ -419,19 +335,15 @@ class CAdmin{
             else
                 header('Location: /FacceBeve/Utente/login');
         }
-    }
+    } */
 
 
     /**
      * Funzione utile per ricercare tutti i locali che contengano una determinata espressione nel loro campo descrizione
-     * 1) se il metodo di richiesta HTTP è GET e si è loggati come amministratore, avviene il reindirizzamento alla pagina contenente l'elenco degli annunci;
-     * 2) se il metodo di richiesta HTTP è POST (ovviamente per fare ciò bisogna già essere loggati come amminstratore), avviene l'azione della ricerca degli annunci;
-     * 3) se il metodo di richiesta HTTP è GET e non si è loggati, avviene il reindirizzamento verso la pagina di login;
-     * 4) se il metodo di richiesta HTTP è GET e si è loggati come utente (non amministratore) compare una pagina di errore 401.
      * @throws SmartyException
-     */
+
     static function ricercaParolaLocale(){
-        $sessione = USession::getInstance();
+        $sessione = new USession();
         if($_SERVER['REQUEST_METHOD'] == "POST") {
             $view = new VAdmin();
             $pm = FPersistentManager()::getIstance();
@@ -488,22 +400,18 @@ class CAdmin{
             else
                 header('Location: /FacceBeve/Utente/login');
         }
-    }
+    }*/
 
     /**
      * Funzione utile per eseguire delle ricerche mirate su parole contenute nelle recensioni.
-     * 1) se il metodo di richiesta HTTP è GET e si è loggati come amministratore, avviene il reindirizzamento alla pagina contenente l'elenco delle recensioni;
-     * 2) se il metodo di richiesta HTTP è POST (ovviamente per fare ciò bisogna già essere loggati come amminstratore), avviene l'azione vera e propria di ricerca della parola nel testo della recensione;
-     * 3) se il metodo di richiesta HTTP è GET e non si è loggati, avviene il reindirizzamento verso la pagina di login;
-     * 4) se il metodo di richiesta HTTP è GET e si è loggati come utente (non amministratore) compare una pagina di errore 401.
      * @throws SmartyException
      */
     static function ricercaParolaRecensione(){
-        $sessione = USession::getInstance();
-        if($_SERVER['REQUEST_METHOD'] == "POST") {
+        $sessione = new USession();
+        if($sessione->isLogged()) {
             $pm = FPersistentManager()::getIstance();
             $view = new VAdmin();
-            $parola = $_POST['parola'];
+            $parola = $view->getParola();
             $recensione = $pm->loadByParola($parola, "FRecensione");
             $img = null;
             if (is_array($recensione)) {
@@ -517,33 +425,15 @@ class CAdmin{
             }
             $view->showRevPage($recensione,$img);
         }
-        elseif($_SERVER['REQUEST_METHOD'] == "GET") {
-            if ($sessione->leggi_valore('utente')) {
-                $utente = unserialize($sessione->leggi_valore('utente'));
-                if (($utente->getUsername() == "admin") || ($utente->getUsername() == "Admin")) {
-                    header('Location: /FacceBeve/Admin/recensioni');
-                }
-                else {
-                    $view = new VError();
-                    $view->error('1');
-                }
-            }
-            else
-                header('Location: /FacceBeve/Utente/login');
-        }
     }
 
     /**
-     * Funzione utile per eseguire ricerche degli utenti.
-     * 1) se il metodo di richiesta HTTP è GET e si è loggati come amministratore, avviene il reindirizzamento alla homepage dell'amministratore;
-     * 2) se il metodo di richiesta HTTP è POST (ovviamente per fare ciò bisogna già essere loggati come amminstratore), avviene l'azione vera e propria di ricerca della parola tra i nomi/cognomi degli utenti;
-     * 3) se il metodo di richiesta HTTP è GET e non si è loggati, avviene il reindirizzamento verso la pagina di login;
-     * 4) se il metodo di richiesta HTTP è GET e si è loggati come utente (non amministratore) compare una pagina di errore 401.
+     * Funzione utile per eseguire ricerche sugli utenti.
      * @throws SmartyException
      */
     static function ricercaUtente() {
-        $sessione = USession::getInstance();
-        if ($_SERVER['REQUEST_METHOD'] == "POST") {
+        $sessione = new USession();
+        if ($sessione->isLogged()) {
             $view = new VAdmin();
             $pm = FPersistentManager()::getIstance();
             $stringa = $view->getParola();
@@ -566,20 +456,6 @@ class CAdmin{
             $img_attivi = static::set_immagini($utentiAttivi);
             $img_bann = static::set_immagini($utentiBan);
             $view->HomeAdmin($utentiAttivi, $utentiBan,$img_attivi,$img_bann);
-        }
-        elseif($_SERVER['REQUEST_METHOD'] == "GET") {
-            if ($sessione->leggi_valore('utente')) {
-                $utente = unserialize($sessione->leggi_valore('utente'));
-                if (($utente->getUsername() == "admin") || ($utente->getUsername() == "Admin")){
-                    header('Location: /FacceBeve/Admin/homepage');
-                }
-                else {
-                    $view = new VError();
-                    $view->error('1');
-                }
-            }
-            else
-                header('Location: /FacceBeve/Utente/login');
         }
     }
 }

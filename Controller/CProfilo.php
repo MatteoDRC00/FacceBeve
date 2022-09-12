@@ -281,4 +281,33 @@ class CProfilo{
 
     }
 
+    /**
+     * Funzione che si occupa del supporto per le immagini, in modo da fornire una foto profilo anche agli utenti che non ne hanno caricata una.
+     * @param $image immagine da analizzare
+     * @param $tipo variabile che indirizza al tipo di file di default da settare nel caso in cui $image = null
+     * @return array contenente informazioni sul tipo e i dati che costituiscono un immagine (possono essere anche degli array)
+     */
+    public function setImage(EImmagine $image, $tipo): array
+    {
+        if (isset($image)) {
+            $pic64 = base64_encode($image->getImmagine());
+            $type = $image->getType();
+        }
+        elseif ($tipo == 'EUtente') {
+            $data = file_get_contents( $_SERVER['DOCUMENT_ROOT'] . '/FacceBeve/Smarty/immagini/utente.png'); //Immagine generica per l'utente
+            $pic64= base64_encode($data);
+            $type = "image/png";
+        }elseif ($tipo == 'EProprietario'){
+            $data = file_get_contents( $_SERVER['DOCUMENT_ROOT'] . '/FacceBeve/Smarty/immagini/proprietario.png'); //Immagine generica per il proprietario
+            $pic64= base64_encode($data);
+            $type = "image/png";
+        }
+        /**elseif($tipo == 'ELocale') {
+        $data = file_get_contents( $_SERVER['DOCUMENT_ROOT'] . '/FacceBeve/Smarty/immagini/locale.png'); //Immagine generica per il proprietario
+        $pic64= base64_encode($data);
+        $type = "image/png";
+        }*/
+        return array($type, $pic64);
+    }
+
 }
