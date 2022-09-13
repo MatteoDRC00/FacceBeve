@@ -19,7 +19,7 @@ function validateRegForm(id){
         var allowedExtensions = /(\.jpg|\.jpeg|\.gif|\.png)$/i; //Controllo sul Type del img inserita
 
         if (!allowedExtensions.exec(img)) {
-            alert('Tipo di file non valido');
+            alert('Tipo di file non valido, sono accettati, prova con  \n-jpg\n-jpeg\n-gif\n-png');
             img.value = '';
             return false;
         }
@@ -43,7 +43,7 @@ function validateRegForm(id){
         var allowedExtensions = /(\.jpg|\.jpeg|\.gif|\.png)$/i; //Controllo sul Type del img inserita
 
         if (!allowedExtensions.exec(img)) {
-            alert('Tipo di file non valido');
+            alert('Tipo di file non valido, sono accettati, prova con  \n-jpg\n-jpeg\n-gif\n-png');
             img.value = '';
             return false;
         }

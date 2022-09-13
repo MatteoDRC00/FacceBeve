@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-13 16:34:35
+/* Smarty version 4.2.0, created on 2022-09-13 17:29:12
   from 'C:\xampp\htdocs\FacceBeve\template\login.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_632094fb5ddcf8_11416151',
+  'unifunc' => 'content_6320a1c85554c4_01566687',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '4bbbafc2ea6d5409b92c2264798b2d324bd194ae' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\login.tpl',
-      1 => 1663079366,
+      1 => 1663082938,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_632094fb5ddcf8_11416151 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6320a1c85554c4_01566687 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <!--<?php $_smarty_tpl->_assignInScope('error', (($tmp = $_smarty_tpl->tpl_vars['error']->value ?? null)===null||$tmp==='' ? 'ok' ?? null : $tmp));?>-->
 <html lang="it">
@@ -73,8 +73,13 @@ function content_632094fb5ddcf8_11416151 (Smarty_Internal_Template $_smarty_tpl)
 </header>
 
 <div class="login-page">
-    <h3 class="text-center text-danger mt-5"><?php echo $_smarty_tpl->tpl_vars['errore']->value;?>
+    <?php if (!empty($_smarty_tpl->tpl_vars['errore']->value)) {?>
+        <h3 class="errore" style="font-family: Arial;color: yellow;font-size: 17px"><?php echo $_smarty_tpl->tpl_vars['errore']->value;?>
 </h3>
+    <?php }?>
+
+
+
     <div class="form">
         <form class="login-form" action="/Accesso/login" method="POST">
             <input type="text" placeholder="username" name="username">
@@ -83,12 +88,6 @@ function content_632094fb5ddcf8_11416151 (Smarty_Internal_Template $_smarty_tpl)
             <p class="message">Non sei ancora registrato?<a href="registrazioneUtente.html">Crea un account utente</a></p>
             <p class="message">Hai bisogno di pubblicizzare il tuo locale?<a href="registrazioneProprietario.html">Crea un account proprietario</a></p>
         </form>
-        <div style="color: red;">
-            <?php echo '<?php'; ?>
- if $error!='ok'
-                    echo "Attenzione! Username e/o password errati!" <?php echo '?>'; ?>
-
-        </div>
     </div>
 </div>
 <!--<?php echo '<script'; ?>
