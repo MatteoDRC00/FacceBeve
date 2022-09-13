@@ -135,21 +135,24 @@ class CAccesso
      * dopo aver messo in sessione le informazioni riguardo l'utente, reindirizza alla homepage.
      * @throws SmartyException
      */
-    public function login() {
+    public function login()
+    {
         $view = new VAccesso();
         $pm = FPersistentManager::getInstance();
 
         $usernameLogin = $view->getUsername();
         $passwordLogin = $view->getPassword();
+        if ($usernameLogin == null or $passwordLogin == null) {
 
-        $user = $pm->verificaLogin($usernameLogin, $passwordLogin);
-
-        if ($user != null) {
-            $sessione = new USession();
-            $sessione->imposta_valore('utente',$user->getUsername());
-            $sessione->imposta_valore("tipo_utente", get_class($user));
-
-            header("Location: /Ricerca/mostraHome");
+            header("Location: /Accesso/erroreLogin");
+        } else {
+            $user = $pm->verificaLogin($usernameLogin, $passwordLogin);
+            if ($user != null) {
+                $sessione = new USession();
+                $sessione->imposta_valore('utente', $user->getUsername());
+                $sessione->imposta_valore("tipo_utente", get_class($user));
+                header("Location: /Ricerca/mostraHome");
+            }
         }
     }
 
@@ -408,4 +411,8 @@ class CAccesso
     }
 
 
+    public function erroreLogin(): void {
+        $view = new VAccesso();
+        $view->erroreLogin();
+    }
 }

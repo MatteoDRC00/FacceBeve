@@ -50,6 +50,7 @@
 </header>
 
 <div class="login-page">
+    <h3 class="text-center text-danger mt-5">{$errore}</h3>
     <div class="form">
         <form class="login-form" action="/Accesso/login" method="POST">
             <input type="text" placeholder="username" name="username">
