@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-12 10:17:54
+/* Smarty version 4.2.0, created on 2022-09-13 17:46:04
   from 'C:\xampp\htdocs\FacceBeve\template\areaPersonaleUtente.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_631eeb3253fdc5_15599597',
+  'unifunc' => 'content_6320a5bcea64a0_63871193',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '7757a365921f193a5e1677eb3c4671e453775876' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\areaPersonaleUtente.tpl',
-      1 => 1662970465,
+      1 => 1663080270,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_631eeb3253fdc5_15599597 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6320a5bcea64a0_63871193 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -114,7 +114,23 @@ function content_631eeb3253fdc5_15599597 (Smarty_Internal_Template $_smarty_tpl)
                 <div class="col-md-7 ps-md-4">
                     <div class="row">
                         <div class="col-12 bg-white px-3 mb-3 pb-3">
-                            <form action="" method="POST" class="aggiorna">
+                            <form action="/Profilo/modificaUsername" method="POST" class="aggiorna">
+                                <p>Modifica l'username</p>
+                                <div class="form-example">
+                                    <label>Inserisci il nuovo username: </label><br>
+                                    <input type="text" name="newusername" id="newusername" required>
+                                </div>
+                                <button type="submit" class="btnAggiorna">Modifica username</button>
+                            </form>
+                            <form action="/Profilo/modificaEmail" method="POST" class="aggiorna">
+                                <p>Modifica l'email</p>
+                                <div class="form-example">
+                                    <label>Inserisci la nuova email: </label><br>
+                                    <input type="text" name="newemail" id="newemail" required>
+                                </div>
+                                <button type="submit" class="btnAggiorna">Modifica email</button>
+                            </form>
+                            <form action="/Profilo/modificaPassword" method="POST" class="aggiorna">
                                 <p>Modifica la password</p>
                                 <div class="form-example">
                                     <label>Inserisci la vecchia password: </label><br>
@@ -153,36 +169,43 @@ function content_631eeb3253fdc5_15599597 (Smarty_Internal_Template $_smarty_tpl)
                     <div class="row">
 
                         <div class="entries">
+                            <?php if (!empty($_smarty_tpl->tpl_vars['locali']->value)) {?>
+                                <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['locali']->value, 'locale');
+$_smarty_tpl->tpl_vars['locale']->do_else = true;
+if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['locale']->value) {
+$_smarty_tpl->tpl_vars['locale']->do_else = false;
+?>
+                                    <article class="entry">
+                                        <div class="entry-img">
+                                            <img src="/template/img/blog/blog-1.jpg" alt="" class="img-fluid">
+                                        </div>
+                                        <h2 class="entry-title">
+                                            <a href="infoLocale.html">Locale 1</a>
+                                        </h2>
+                                        <div class="entry-meta">
+                                            <ul>
+                                                <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="">$Proprietario</a></li>
+                                                <li class="d-flex align-items-center"><i class="fas fa-map-marker-alt"></i> <a href="">$Localizzazione</a></li>
+                                            </ul>
+                                        </div>
 
-                            <article class="entry">
+                                        <div class="entry-content">
+                                            <p>$descrizione</p>
+                                            <div class="read-more">
+                                                <a href="infoLocale.html">Visita il locale <i class="fas fa-chevron-circle-right"></i></a>
+                                            </div>
+                                        </div>
 
-                                <div class="entry-img">
-                                    <img src="/template/img/blog/blog-1.jpg" alt="" class="img-fluid">
-                                </div>
+                                    </article><!-- End blog entry -->
+                                <?php
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
+                            <?php } else { ?>
+                                <p>Non possiedi locali locali</p>
+                            <?php }?>
 
-                                <h2 class="entry-title">
-                                    <a href="infoLocale.html">Locale 1</a>
-                                </h2>
 
-                                <div class="entry-meta">
-                                    <ul>
-                                        <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a
-                                                href="">$Proprietario</a></li>
-                                        <li class="d-flex align-items-center"><i class="fas fa-map-marker-alt"></i> <a
-                                                href="">$Localizzazione</a></li>
-                                    </ul>
-                                </div>
-
-                                <div class="entry-content">
-                                    <p>
-                                        $descrizione
-                                    </p>
-                                    <div class="read-more">
-                                        <a href="infoLocale.html">Visita il locale <i class="fas fa-chevron-circle-right"></i></a>
-                                    </div>
-                                </div>
-
-                            </article><!-- End blog entry -->
 
 
                         </div>

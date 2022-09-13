@@ -304,17 +304,18 @@ class CProfilo{
         if($sessione->isLogged()){
             $username = $sessione->leggi_valore("utente");
             $tipo = $sessione->leggi_valore("tipo_utente");
+            $classE = $tipo;
             $tipo[0] = "F";
             $class = $tipo;
 
 
-            if($tipo == "EUtente"){
+            if($classE == "EUtente"){
                 $utente = $pm->load("username", $username, $class);
                 $locali_preferiti = $pm->getLocaliPreferiti($username);
 
                 $view = new VProfilo();
                 $view->mostraProfiloUtente($utente, $locali_preferiti);
-            }elseif($tipo == "EProprietario"){
+            }elseif($classE == "EProprietario"){
                 $proprietario = $pm->load("username", $username, $class);
                 $locali = $pm->load("proprietario", $username, $class);
 

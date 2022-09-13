@@ -247,7 +247,7 @@ class VProfilo{
         $cognome = $utente->getCognome();
         $email = $utente->getEmail();
         $img_profilo = $utente->getImgProfilo();
-        $pic64 = base64_decode($img_profilo->getImmagine());
+        $pic64 = $img_profilo->getImmagine();
         $type = $img_profilo->getType();
 
         $this->smarty->assign("username",$username);
@@ -267,7 +267,7 @@ class VProfilo{
         $cognome = $proprietario->getCognome();
         $email = $proprietario->getEmail();
         $img_profilo = $proprietario->getImgProfilo();
-        $pic64 = base64_decode($img_profilo->getImmagine());
+        $pic64 = $img_profilo->getImmagine();
         $type = $img_profilo->getType();
 
         $this->smarty->assign("username",$username);

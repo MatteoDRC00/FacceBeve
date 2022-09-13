@@ -166,7 +166,7 @@
                                     </article><!-- End blog entry -->
                                 {/foreach}
                             {else}
-                                <p>Non possiedi locali locali</p>
+                                <p>Non possiedi locali preferiti</p>
                             {/if}
 
 
