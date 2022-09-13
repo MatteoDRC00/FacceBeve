@@ -48,9 +48,9 @@
             <h1 style="font-weight: bold">Registrati come utente</h1>
             <input type="text" class="form-control" placeholder="nome" name="nome" pattern="[a-zA-Z]+\"/>
             <input type="text" class="form-control" placeholder="cognome" name="cognome" pattern="[a-zA-Z]+\"/>
-            <input type="text" placeholder="email" name="email">
-            <input type="text" placeholder="username" name="username">
-            <input type="password" placeholder="password"  name="password"/>
+            <input type="text" placeholder="email" name="email"  {literal}pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"{/literal}/>
+            <input type="text" placeholder="username" name="username"/>
+            <input type="password" placeholder="password"  name="password"{literal}pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"{/literal}/>
             <h1>Aggiungi l'immagine di profilo</h1>
             <input name="img_profilo" class="p-2" type="file">
             <button type="submit">Registrati</button>
