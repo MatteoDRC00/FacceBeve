@@ -54,22 +54,40 @@ class CProfilo{
      */
     public function modificaPassword(){
         $view = new VProfilo();
-        $sessione = USession::getInstance();
+        $sessione = new USession();
         $pm = FPersistentManager::getInstance();
-        $utente = unserialize($sessione->leggi_valore('utente'));
-        $locali = static::caricaLocali($utente);
-        $passwordVecchia = $view->getPasswordVecchia();
-        $passwordNuova = $view->getPasswordNuova();
-        if(md5($passwordVecchia)==$utente->getPassword()) {
-            if($passwordNuova!=$passwordVecchia){
-                $utente->setPassword($passwordNuova);
-                $pm->update(get_class($utente),"password",$passwordNuova,"username",$utente->getUsername());
-                header('Location: /Profilo/profilo');
+
+        if($sessione->isLogged()){
+            $username = $sessione->leggi_valore('utente');
+            $tipo = $sessione->leggi_valore('tipo_utente');
+            $tipo[0] = "F";
+            $class = $tipo;
+
+            $password = $view->getPassword();
+            $newpassword = $view->getNewPassword();
+
+            $user = $pm->load("username", $username, $class);
+            if($password != null && $newpassword != null){
+                if(md5($password) == $user->getPassword()){
+                    if($newpassword != $password){
+                        $user->setPassword($newpassword);
+                        $pm->update(get_class($user),"password", $newpassword,"username",$username);
+                    }else{
+                        $message = "La password inserita è identica a quello precedente, si prega di scriverne un'altra";
+                        echo "<script type='text/javascript'>alert('$message');</script>";
+                    }
+                }else{
+                    $message = "La password precedente inserita è sbagliata, si prega di riprovare";
+                    echo "<script type='text/javascript'>alert('$message');</script>";
+                }
+
             }else{
-                $view->profilo($utente,$locali,"password_old");
+                $message = "Entrambi i campi devono essere pieni";
+                echo "<script type='text/javascript'>alert('$message');</script>";
             }
+            header('Location: /Profilo/mostraProfilo');
         }else{
-            $view->profilo($utente,$locali,"password_error");
+            header("Location: /Ricerca/mostraHome");
         }
     }
 
@@ -116,13 +134,34 @@ class CProfilo{
      */
     public function modificaEmail(){
         $view = new VProfilo();
-        $sessione = USession::getInstance();
-        $utente = unserialize($sessione->leggi_valore('utente'));
+        $sessione = new USession();
         $pm = FPersistentManager::getInstance();
-        $emailNuova = $view->getEmailNuova();
-        $utente->setEmail($emailNuova);
-        $pm->update(get_class($utente),"email",$emailNuova,"username",$utente->getUsername());
-        header('Location: /Profilo/profilo'); //profilo!!!
+
+        if($sessione->isLogged()) {
+            $username = $sessione->leggi_valore('utente');
+            $tipo = $sessione->leggi_valore('tipo_utente');
+            $tipo[0] = "F";
+            $class = $tipo;
+
+            $newemail = $view->getNewEmail();
+            $user = $pm->load("username", $username, $class);
+
+            if($newemail != null){
+                if($newemail != $user->getEmail()){
+                    $user->setEmail($newemail);
+                    $pm->update($class,"email", $newemail, "username", $username);
+                }else{
+                    $message = "La email inserita è identica a quella precedente, si prega di scriverne un'altra";
+                    echo "<script type='text/javascript'>alert('$message');</script>";
+                }
+            }else{
+                $message = "Entrambi i campi devono essere pieni";
+                echo "<script type='text/javascript'>alert('$message');</script>";
+            }
+            header('Location: /Profilo/mostraProfilo');
+        }else{
+            header("Location: /Ricerca/mostraHome");
+        }
     }
 
 
@@ -258,7 +297,7 @@ class CProfilo{
         }
     }
 
-    public function mostraProfiloUtente(){
+    public function mostraProfilo(){
         $sessione = new USession();
         $pm = FPersistentManager::getInstance();
 
@@ -267,12 +306,21 @@ class CProfilo{
             $tipo = $sessione->leggi_valore("tipo_utente");
             $tipo[0] = "F";
             $class = $tipo;
-            $utente = $pm->load("username", $username, $class);
 
-            $locali_preferiti = $pm->getLocaliPreferiti($username);
 
-            $view = new VProfilo();
-            $view->mostraProfiloUtente($utente, $locali_preferiti);
+            if($class == "EUtente"){
+                $utente = $pm->load("username", $username, $class);
+                $locali_preferiti = $pm->getLocaliPreferiti($username);
+
+                $view = new VProfilo();
+                $view->mostraProfiloUtente($utente, $locali_preferiti);
+            }else{
+                $proprietario = $pm->load("username", $username, $class);
+                $locali = $pm->load("proprietario", $username, $class);
+
+                $view = new VProfilo();
+                $view->mostraProfiloProprietario($proprietario, $locali);
+            }
         }else{
             $sessione->chiudi_sessione();
             header("Location: /Ricerca/mostraHome");
@@ -280,27 +328,6 @@ class CProfilo{
 
     }
 
-    public function mostraProfiloProprietario(){
-        $sessione = new USession();
-        $pm = FPersistentManager::getInstance();
-
-        if($sessione->isLogged()){
-            $username = $sessione->leggi_valore("utente");
-            $tipo = $sessione->leggi_valore("tipo_utente");
-            $tipo[0] = "F";
-            $class = $tipo;
-            $proprietario = $pm->load("username", $username, $class);
-
-            $locali = $pm->load("proprietario", $username, $class);
-
-            $view = new VProfilo();
-            $view->mostraProfiloProprietario($proprietario, $locali);
-        }else{
-            $sessione->chiudi_sessione();
-            header("Location: /Ricerca/mostraHome");
-        }
-
-    }
 
     /**
      * Funzione che si occupa del supporto per le immagini, in modo da fornire una foto profilo anche agli utenti che non ne hanno caricata una.

@@ -194,9 +194,9 @@ class VProfilo{
      * Metodo che restituisce la email inserita nel campo "Nuova EMail", utilizzata nella modifica del profilo, e prelevata dal vettore $_FILES
      * @return string
      */
-    public function getEmailNuova(): string
+    public function getNewEmail(): string
     {
-        return $_POST['emailnuova'];
+        return $_POST['newemail'];
     }
 
     /**
@@ -212,18 +212,18 @@ class VProfilo{
      * Metodo che restituisce la password inserita nel campo "Nuova Password", utilizzata nella modifica del profilo, e prelevata dal vettore $_FILES
      * @return string
      */
-    public function getPasswordNuova(): string
+    public function getNewPassword(): string
     {
-        return $_POST['passwordnuova'];
+        return $_POST['newpassword'];
     }
 
     /**
      * Metodo che restituisce la password inserita nel campo "Password precedente", utilizzata nella modifica del profilo per la validazione della password, e prelevata dal vettore $_FILES
      * @return string
      */
-    public function getPasswordVecchia(): string
+    public function getPassword(): string
     {
-        return $_POST['passwordvecchia'];
+        return $_POST['password'];
     }
 
 

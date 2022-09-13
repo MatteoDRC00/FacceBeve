@@ -93,7 +93,15 @@
                                 </div>
                                 <button type="submit" class="btnAggiorna">Modifica username</button>
                             </form>
-                            <form action="" method="POST" class="aggiorna">
+                            <form action="/Profilo/modificaEmail" method="POST" class="aggiorna">
+                                <p>Modifica l'email</p>
+                                <div class="form-example">
+                                    <label>Inserisci la nuova email: </label><br>
+                                    <input type="text" name="newemail" id="newemail" required>
+                                </div>
+                                <button type="submit" class="btnAggiorna">Modifica email</button>
+                            </form>
+                            <form action="/Profilo/modificaPassword" method="POST" class="aggiorna">
                                 <p>Modifica la password</p>
                                 <div class="form-example">
                                     <label>Inserisci la vecchia password: </label><br>
