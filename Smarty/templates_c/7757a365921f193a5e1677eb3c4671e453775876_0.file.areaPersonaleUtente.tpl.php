@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-13 17:46:04
+/* Smarty version 4.2.0, created on 2022-09-13 18:06:40
   from 'C:\xampp\htdocs\FacceBeve\template\areaPersonaleUtente.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_6320a5bcea64a0_63871193',
+  'unifunc' => 'content_6320aa90acebd4_43906889',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '7757a365921f193a5e1677eb3c4671e453775876' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\areaPersonaleUtente.tpl',
-      1 => 1663080270,
+      1 => 1663084150,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6320a5bcea64a0_63871193 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6320aa90acebd4_43906889 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -202,7 +202,7 @@ $_smarty_tpl->tpl_vars['locale']->do_else = false;
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                             <?php } else { ?>
-                                <p>Non possiedi locali locali</p>
+                                <p>Non possiedi locali preferiti</p>
                             <?php }?>
 
 

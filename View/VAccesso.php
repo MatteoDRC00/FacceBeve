@@ -192,7 +192,7 @@ class VAccesso
             $nome = $_FILES['img_profilo']['name'];
             $file = $_FILES['img_profilo']['tmp_name'];
             $size = $_FILES['img_profilo']['size'];
-            $arrayImg = array($nome, $size, $type, $file);
+            $arrayImg = array($nome, $size, $type, file_get_contents($file));
         }
         return $arrayImg;
     }
