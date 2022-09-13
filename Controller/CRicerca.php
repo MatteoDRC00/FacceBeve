@@ -79,7 +79,7 @@ class CRicerca{
                     $part2 = $citta;
                     $result = $pm->loadForm($nomelocale, $citta,$categoria,"tmp",$tipo);
                     $vRicerca->showResult($result, $tipo,$nomelocale,$citta,$categoria,null);
-                }//else
+                }else
                     header('Location: /Ricerca/mostraHome');
         }elseif ($tipo == "Evento") {
                 $nomelocale = $vRicerca->getNomeLocale();

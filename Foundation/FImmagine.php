@@ -159,6 +159,7 @@ class FImmagine
         }
         return $img;
     }
+
 }
 
 ?>

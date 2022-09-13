@@ -114,6 +114,8 @@ CREATE TABLE `Evento` (
     `nome` VARCHAR(26),
     `descrizione` VARCHAR(120),
 	`data` CHAR(11),
+    `idImg` int(11),
+    FOREIGN KEY (`idImg`) REFERENCES Immagine(`id`) ON DELETE CASCADE ON UPDATE CASCADE,
     PRIMARY KEY (`id`)
 );
 
@@ -224,7 +226,7 @@ CREATE TABLE `Locale_Immagini` (
         ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-/*Tabella che mette in relazione l'Evento con le immagini*/
+/*Tabella che mette in relazione l'Evento con le immagini
 DROP TABLE IF EXISTS `Evento_Immagini`;
 CREATE TABLE `Evento_Immagini` (
 	`ID_Evento` INT(11) NOT NULL,
@@ -236,4 +238,4 @@ CREATE TABLE `Evento_Immagini` (
     FOREIGN KEY (`ID_Evento`)
         REFERENCES Evento (`id`)
         ON DELETE CASCADE ON UPDATE CASCADE
-);
+);*/

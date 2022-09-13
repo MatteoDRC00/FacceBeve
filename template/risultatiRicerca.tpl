@@ -6,6 +6,7 @@
 {assign var='nomeLocale' value=$nomeLocale|default:'er45u'}
 {assign var='categoria' value=$categoria|default:'er45u'}
 {assign var='data' value=$data|default:'er45u'}
+{assign var='array' value=$array|default:'er45u'}
 <html lang="en">
 
 <head>
@@ -100,27 +101,26 @@
     <!-- ======= Blog Section ======= -->
     <section id="blog" class="blog">
         <div class="container" data-aos="fade-up">
-
-            <div class="row">
-
+         {if $array!="er45u"}
+           {if $tipo == "Locali"}
+             {foreach from=$array item=locale}
+             <div class="row">
                 <div class="entries">
-
                     <article class="entry">
 
                         <div class="entry-img">
-                            <img src="/template/img/blog/blog-1.jpg" alt="" class="img-fluid">
+                            <img src="/template/img/blog/blog-1.jpg" alt="" class="img-fluid"> <!--vedi Pargiasai-->
                         </div>
 
                         <h2 class="entry-title">
-                            <a href="infoLocale.html">Locale 1</a>
+                            <a href="infoLocale.html">{$locale->getNome()}</a>
                         </h2>
-
                         <div class="entry-meta">
                             <ul>
                                 <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a
-                                        href="">$Proprietario</a></li>
+                                        href="">{$locale->getProprietario()}</a></li>
                                 <li class="d-flex align-items-center"><i class="fas fa-map-marker-alt"></i> <a
-                                        href="">$Localizzazione</a></li>
+                                        href="">{$locale->getLocalizzazione()}/a></li>
                             </ul>
                         </div>
 
@@ -129,46 +129,17 @@
                                 $descrizione
                             </p>
                             <div class="read-more">
-                                <a href="infoLocale.html">Visita il locale <i class="fas fa-chevron-circle-right"></i></a>
+                                <a <!--Bisogna fare qualcosa-->>Visita il locale <i class="fas fa-chevron-circle-right"></i></a>
                             </div>
                         </div>
 
                     </article><!-- End blog entry -->
-
-
-                </div><!-- End blog entries list -->
-<!--
-                <div class="col-lg-4">
-
-                    <div class="sidebar">
-
-                        <h3 class="sidebar-title">Search</h3>
-                        <div class="sidebar-item search-form">
-                            <form action="">
-                                <input type="text">
-                                <button type="submit"><i class="bi bi-search"></i></button>
-                            </form>
-                        </div>
-
-                        <h3 class="sidebar-title">Categories</h3>
-                        <div class="sidebar-item categories">
-                            <ul>
-                                <li><a href="#">General <span>(25)</span></a></li>
-                                <li><a href="#">Lifestyle <span>(12)</span></a></li>
-                                <li><a href="#">Travel <span>(5)</span></a></li>
-                                <li><a href="#">Design <span>(22)</span></a></li>
-                                <li><a href="#">Creative <span>(8)</span></a></li>
-                                <li><a href="#">Educaion <span>(14)</span></a></li>
-                            </ul>
-                        </div>
-
-
-                    </div> -->
-
-                </div><!-- End blog sidebar -->
-
+                    {/foreach}
+                 </div>
+                </div>
             </div>
-
+           {/if}
+        {/if}
         </div>
     </section><!-- End Blog Section -->
 
