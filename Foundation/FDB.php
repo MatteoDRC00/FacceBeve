@@ -383,17 +383,21 @@ class FDB{
 /**   Metodo che restituisce i locali che rispettano alcuni parametri di ricerca ,passati come parametri alla funzione
  * @param nome nome del locale
  * @param citta  città dove è situato il locale
- * @param categorie categorie a cui appartiene il locale
+ * @param ?array categorie categorie a cui appartiene il locale
 */
-	public function loadMultipleLocale($nome, $citta, $categorie)
+	public function loadMultipleLocale($nome, $citta,$categorie): ?array
 	{
 		try {
 			$query = null;
 			$class = "FLocale";
 			$param = array($categorie, $nome, $citta);
 
-			if(isset($categorie)){
-			  $nCategorie = sizeof($categorie);
+			if(is_array($categorie)){
+			  $nCategorie = count($categorie);
+			}elseif(isset($categorie)){
+				$nCategorie = 1;
+			}else{
+				$nCategorie = 0;
 			}
 
 			//print_r ($param);
@@ -401,11 +405,11 @@ class FDB{
 				if ($param[$i] != null) {
 					switch ($i) {
 						case 0:
-							for ($j = 0; $j < nCategorie; $j++){
+							for ($j = 0; $j < $nCategorie; $j++){
 							   if ($query == null)
-								  $query = "SELECT * FROM " . $class::getTable() . " INNER JOIN ON  Locale_Categorie  ON Locale_Categorie.ID_Categoria='" .categorie[j] . "'";
+								  $query = "SELECT * FROM " . $class::getTable() . " INNER JOIN ON  Locale_Categorie  ON Locale_Categorie.ID_Categoria='" .$categorie[$j] . "'";
 							   else
-								  $query = $query . " INNER JOIN ON  Locale_Categorie  ON Locale_Categorie.ID_Categoria='" .categorie[j] ."'";
+								  $query = $query . " INNER JOIN ON  Locale_Categorie  ON Locale_Categorie.ID_Categoria='" .$categorie[$j] ."'";
 							}
 							break;
 						case 1:
@@ -426,7 +430,7 @@ class FDB{
 			$query = $query . ";";
 			//print $query;
 
-			$stmt = $this->db->prepare($query);
+			$stmt = $this->database->prepare($query);
 			$stmt->execute();
 			$num = $stmt->rowCount();
 			if ($num == 0) {
@@ -444,7 +448,7 @@ class FDB{
 
 		} catch (PDOException $e) {
 			echo "Attenzione errore: " . $e->getMessage();
-			$this->db->rollBack();
+			$this->database->rollBack();
 			return null;
 		}
 	}
@@ -494,7 +498,7 @@ class FDB{
 			$query = $query . ";";
 			//print $query;
 
-			$stmt = $this->db->prepare($query);
+			$stmt = $this->database->prepare($query);
 			$stmt->execute();
 			$num = $stmt->rowCount();
 			if ($num == 0) {
@@ -512,7 +516,7 @@ class FDB{
 
 		} catch (PDOException $e) {
 			echo "Attenzione errore: " . $e->getMessage();
-			$this->db->rollBack();
+			$this->database->rollBack();
 			return null;
 		}
 	}
@@ -526,7 +530,7 @@ class FDB{
 	public function loadInfoLocale($class,$field,$idlocale){
 		try{
 			$query = ("SELECT * FROM " . $class::getTable() . " INNER JOIN ".$field." ON ".$field.".ID_Locale". "='" . $idlocale . "';");
-			$stmt = $this->db->prepare($query); //Prepared Statement
+			$stmt = $this->database->prepare($query); //Prepared Statement
 			$stmt->execute();
 			$num = $stmt->rowCount();
 			if ($num == 0) {
@@ -544,7 +548,7 @@ class FDB{
 
 		} catch (PDOException $e) {
 			echo "Attenzione errore: " . $e->getMessage();
-			$this->db->rollBack();
+			$this->database->rollBack();
 			return null;
 		}
 	}

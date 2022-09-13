@@ -23,7 +23,7 @@ class VRicerca
      * Inviato con metodo post
      * @return string contenente il valore inserito dall'utente
      */
-    public function getNomeLocale(): ?string
+    public static function getNomeLocale(): ?string
     {
         $value = null;
         $sessione = new USession();
@@ -125,13 +125,28 @@ class VRicerca
      * @param $tipo definisce il tipo di ricerca effettuata (Locali/Eventi)
      * @throws SmartyException
      */
-    public function showResult($result, $tipo){
-       /** $sessione = new USession();
-        if($sessione->leggi_valore('utente'))
-            $this->smarty->assign('userlogged',"loggato");*/
+    public function showResult($result, $tipo,$nomelocale,$citta, $eventoCat, $data){
+        $sessione = new USession();
+        if($sessione->isLogged())
+            $this->smarty->assign('userlogged',"loggato");
 
-        $this->smarty->assign('array', $result);
+        if(isset($result)){
+            $this->smarty->assign('array', $result);
+        }else{
+            $this->smarty->assign('array', "vuoto");
+        }
+
         $this->smarty->assign('tipo', $tipo);
+        if($tipo == "Locali"){
+            $this->smarty->assign('nomeLocale', $nomelocale);
+            $this->smarty->assign('citta', $citta);
+            $this->smarty->assign('categorie', $eventoCat);
+        }else{
+            $this->smarty->assign('nomeLocale', $nomelocale);
+            $this->smarty->assign('citta', $citta);
+            $this->smarty->assign('nomeEvento', $eventoCat);
+            $this->smarty->assign('dataEvento', $data);
+        }
         $this->smarty->display('risultatiRicerca.tpl');
     }
 

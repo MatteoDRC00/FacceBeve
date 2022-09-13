@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-{assign var='tipo' value=$tipo|default:'locali'}
+{assign var='tipo' value=$tipo|default:'Locali'}
 {assign var='userlogged' value=$error|default:'nouser'}
-{assign var='citta' value=$citta|default:'a'}
-{assign var='nomeEvento' value=$nomeEvento|default:'a'}
-{assign var='categoria' value=$categoria|default:'a'}
-{assign var='data' value=$data|default:'a'}
+{assign var='citta' value=$citta|default:'er45u'}
+{assign var='nomeEvento' value=$nomeEvento|default:'er45u'}
+{assign var='nomeLocale' value=$nomeLocale|default:'er45u'}
+{assign var='categoria' value=$categoria|default:'er45u'}
+{assign var='data' value=$data|default:'er45u'}
 <html lang="en">
 
 <head>
@@ -65,27 +66,27 @@
                 <h2 style="font-weight: bold">Risultati per:</h2>
                 <ul>
                     {if $tipo=="Locali"}
-                      {if $nomeLocale!="a"}
-                         <li>$nomeLocale</li>
+                      {if $nomeLocale!="er45u"}
+                         <li>{$nomeLocale}</li>
                       {/if}
-                      {if $citta!="a"}
-                         <li>$citta</li>
+                      {if $citta!="er45u"}
+                         <li>{$citta}</li>
                       {/if}
-                      {if $categoria!="a"}
-                        <li>$categoria</li>
+                      {if $categoria!="er45u"}
+                        <li>{$categoria}</li>
                       {/if}
                     {else}
-                      {if $nomeLocale!="a"}
-                        <li>$nomeLocale</li>
+                      {if $nomeLocale!="er45u"}
+                        <li>{$nomeLocale}</li>
                       {/if}
-                      {if $nomeEvento!="a"}
-                        <li>$nomeEvento</li>
+                      {if $nomeEvento!="er45u"}
+                        <li>{$nomeEvento}</li>
                       {/if}
-                      {if $citta!="a"}
-                        <li>$citta</li>
+                      {if $citta!="er45u"}
+                        <li>{$citta}</li>
                       {/if}
-                      {if $data!="a"}
-                       <li>data</li>
+                      {if $data!="er45u"}
+                       <li>{$data}</li>
                       {/if}
                     {/if}
                 </ul>

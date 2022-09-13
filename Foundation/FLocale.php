@@ -234,7 +234,7 @@ class FLocale {
     }
 
      /** Metodo che permette di caricare un locale che ha determinati parametri, i quali vengono passati in input da una form */
-     public static function loadByForm ($part1, $part2, $part3) {
+     public static function loadByForm ($part1, $part2,$part3) {
         $locale = null;
         $db=FDB::getInstance();
         list ($result, $rows_number)=$db->loadMultipleLocale($part1, $part2, $part3);

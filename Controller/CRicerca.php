@@ -68,71 +68,30 @@ class CRicerca{
      */
     public function ricerca(){
         $vRicerca = new VRicerca();
-        $sessione = new USession();
         $tipo = $vRicerca->getTipoRicerca();
-        /*if($sessione->isLogged()){
-            $tipo = $vRicerca->getTipoRicerca(); //Nella homepage un campo nella barra di ricerca deve individuare il tipo di ricerca che si vuole effettuare
-            echo $tipo;
-        }else{
-            $tipo="Locali";
-        }*/
         if ($tipo == "Locali") {
                 $nomelocale = $vRicerca->getNomeLocale();
                 $citta= $vRicerca->getCitta();
                 $categoria = $vRicerca->getCategorie();
                 if ($nomelocale != null || $citta != null || $categoria != null){
                     $pm = FPersistentManager::getInstance();
-                    $part1 = null;
-                    if ($nomelocale != null) {
-                        $part1 = $pm->load("name", $nomelocale, "FLocale");
-                        if ($part1)
-                            $part1 = $part1->getId();
-                    }
-                    $part2 = null;
-                    if ($citta != null) {
-                        $part2 = $pm->load("localizzazione", $citta, "FLocale");
-                        if($part2)
-                            $part2 = $part2->getId();
-                    }
-                    $result = $pm->loadForm($part1, $part2,$categoria,"tmp",$tipo);
-                    $vRicerca->showResult($result, $tipo);
-                }else
-                    header('Location: /FacceBeve/');
+                    $part1 = $nomelocale;
+                    $part2 = $citta;
+                    $result = $pm->loadForm($nomelocale, $citta,$categoria,"tmp",$tipo);
+                    $vRicerca->showResult($result, $tipo,$nomelocale,$citta,$categoria,null);
+                }//else
+                    header('Location: /Ricerca/mostraHome');
         }elseif ($tipo == "Evento") {
                 $nomelocale = $vRicerca->getNomeLocale();
                 $nomeevento= $vRicerca->getNomeEvento();
                 $citta= $vRicerca->getCitta();
                 $data= $vRicerca->getDataEvento();
                 if ($nomelocale != null || $nomeevento != null || $citta != null || $data != null){ //JAVASCRIPTTTTT
-                        $pm = FPersistentManager::GetIstance();;
-                        $part1 = null; //NomeLocale
-                        if ($nomelocale != null) {
-                            $part1 = $pm->load("nome", $nomelocale, "FLocale");
-                            if ($part1)
-                                $part1 = $part1->getId();
-                        }
-                        $part2 = null;
-                        if ($nomeevento != null) {
-                            $part2 = $pm->load("nome", $nomeevento, "FEvento");
-                            if($part2)
-                                $part2 = $part2->getId();
-                        }
-                        $part3 = null;
-                        if ($citta != null) {
-                            $part3 = $pm->load("localizzazione", $citta, "FLocale");
-                            if($part3)
-                                $part3 = $part3->getId();
-                        }
-                        $part4 = null;
-                        if ($data != null) {
-                            $part4 = $pm->load("data", $data, "FEvento");
-                            if($part4)
-                                $part4 = $part4->getId();
-                        }
-                        $result = $pm->loadForm($part1, $part2, $part3, $part4,$tipo);
-                        $vRicerca->showResult($result, $tipo);
+                        $pm = FPersistentManager::GetIstance();
+                        $result = $pm->loadForm($nomelocale, $nomeevento, $citta, $data,$tipo);
+                        $vRicerca->showResult($result, $tipo, $nomelocale, $citta, $nomeevento, $data);
                 }else
-                    header('Location: /FacceBeve/');
+                    header('Location: /Ricerca/mostraHome');
         }else{
             header('Location: /Ricerca/mostraHome');
         }

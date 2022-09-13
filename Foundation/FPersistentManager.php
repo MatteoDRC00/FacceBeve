@@ -109,9 +109,9 @@ class FPersistentManager {
      * @param part3 categorie locale / citta evento
      * @param part4 null per Locale / data evento
      */
-    public static function loadForm ($part1, $part2, $part3, $part4,$tipo) {
+    public static function loadForm ($part1, $part2,$part3, $part4,$tipo) {
         $ris = null;
-        if($tipo=="Locale")
+        if($tipo=="Locali")
             $ris = FLocale::loadByForm ($part1, $part2, $part3);
         else
             $ris = FEvento::loadByForm ($part1, $part2, $part3, $part4);

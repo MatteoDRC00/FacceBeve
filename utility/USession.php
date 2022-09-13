@@ -14,8 +14,10 @@ class USession
      */
     public function __construct()
     {
-       // session_set_cookie_params(15*60);
-        session_start();
+        if(!isset($_SESSION))
+        {
+            session_start();
+        }
     }
 
     /**
