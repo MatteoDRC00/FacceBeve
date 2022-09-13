@@ -102,25 +102,30 @@
     <section id="blog" class="blog">
         <div class="container" data-aos="fade-up">
          {if $array!="er45u"}
-           {if $tipo == "Locali"}
+           {if $tipo == "Locali"} <!--Locali-->
              {foreach from=$array item=locale}
              <div class="row">
                 <div class="entries">
                     <article class="entry">
-
-                        <div class="entry-img">
-                            <img src="/template/img/blog/blog-1.jpg" alt="" class="img-fluid"> <!--vedi Pargiasai-->
-                        </div>
+                        {if isset($locale->getImg())}
+                           <div class="entry-img"> <!--Sarà giusto?-->
+                               <img class="photo" src="data:{$locale->getImg()->getType()};base64,{$locale->getImg()->getImmagine()}" alt="immagine locale"> <!--vedi Pargiasai-->
+                           </div>
+                        {else}
+                            <div class="entry-img">
+                                <img class="photo" src="C:\xampp\htdocs\FacceBeve\template\img\portfolio\bar.jpeg" alt="immagine locale"> <!--vedi Pargiasai-->
+                            </div>
+                        {/if}
 
                         <h2 class="entry-title">
                             <a href="infoLocale.html">{$locale->getNome()}</a>
                         </h2>
                         <div class="entry-meta">
                             <ul>
-                                <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a
-                                        href="">{$locale->getProprietario()}</a></li>
-                                <li class="d-flex align-items-center"><i class="fas fa-map-marker-alt"></i> <a
-                                        href="">{$locale->getLocalizzazione()}/a></li>
+                                <li class="d-flex align-items-center"><i class="bi bi-person"></i>
+                                    {$locale->getProprietario()}</li>
+                                <li class="d-flex align-items-center"><i class="fas fa-map-marker-alt"></i>
+                                    {$locale->getLocalizzazione()}</li>
                             </ul>
                         </div>
 
@@ -129,7 +134,7 @@
                                 $descrizione
                             </p>
                             <div class="read-more">
-                                <a <!--Bisogna fare qualcosa-->>Visita il locale <i class="fas fa-chevron-circle-right"></i></a>
+                                <a <!--Bisogna passare qualcosa-->>Visita il locale <i class="fas fa-chevron-circle-right"></i></a>
                             </div>
                         </div>
 
@@ -138,6 +143,49 @@
                  </div>
                 </div>
             </div>
+           {else} <!--Eventi-->
+        {foreach from=$array item=evento}
+        <div class="row">
+            <div class="entries">
+                <article class="entry">
+
+                    {if isset($evento->getImg())}
+                        <div class="entry-img"> <!--Sarà giusto?-->
+                            <img class="photo" src="data:{$locale->getImg()->getType()};base64,{$locale->getImg()->getImmagine()}" alt="immagine locale"> <!--vedi Pargiasai-->
+                        </div>
+                    {else}
+                        <div class="entry-img">
+                            <img class="photo" src="C:\xampp\htdocs\FacceBeve\template\img\portfolio\evento.jpeg" alt="immagine locale"> <!--vedi Pargiasai-->
+                        </div>
+                    {/if}
+
+                    <h2 class="entry-title">
+                        <a href="infoLocale.html">{$evento->getNome()}</a>
+                    </h2>
+                    <div class="entry-meta">
+                        <ul>
+                            <li class="d-flex align-items-center"><i class="bi bi-person"></i>
+                                {$locale->getProprietario()}</li>
+                            <li class="d-flex align-items-center"><i class="fas fa-map-marker-alt"></i>
+                                {$locale->getLocalizzazione()}</li>
+                        </ul>
+                    </div>
+
+                    <div class="entry-content">
+                        <p>
+                            $descrizione
+                        </p>
+                        <div class="read-more">
+                            <a <!--Bisogna passare qualcosa-->>Visita il locale <i class="fas fa-chevron-circle-right"></i></a>
+                        </div>
+                    </div>
+
+                </article><!-- End blog entry -->
+                {/foreach}
+            </div>
+        </div>
+        </div>
+
            {/if}
         {/if}
         </div>

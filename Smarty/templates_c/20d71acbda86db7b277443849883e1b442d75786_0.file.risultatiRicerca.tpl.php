@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-13 11:40:25
+/* Smarty version 4.2.0, created on 2022-09-13 15:26:30
   from 'C:\xampp\htdocs\FacceBeve\template\risultatiRicerca.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_632050094c5030_82304936',
+  'unifunc' => 'content_63208506d84cd4_50851848',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '20d71acbda86db7b277443849883e1b442d75786' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\risultatiRicerca.tpl',
-      1 => 1663061912,
+      1 => 1663075573,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_632050094c5030_82304936 (Smarty_Internal_Template $_smarty_tpl) {
+function content_63208506d84cd4_50851848 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <?php $_smarty_tpl->_assignInScope('tipo', (($tmp = $_smarty_tpl->tpl_vars['tipo']->value ?? null)===null||$tmp==='' ? 'Locali' ?? null : $tmp));
 $_smarty_tpl->_assignInScope('userlogged', (($tmp = $_smarty_tpl->tpl_vars['error']->value ?? null)===null||$tmp==='' ? 'nouser' ?? null : $tmp));
@@ -28,7 +28,8 @@ $_smarty_tpl->_assignInScope('citta', (($tmp = $_smarty_tpl->tpl_vars['citta']->
 $_smarty_tpl->_assignInScope('nomeEvento', (($tmp = $_smarty_tpl->tpl_vars['nomeEvento']->value ?? null)===null||$tmp==='' ? 'er45u' ?? null : $tmp));
 $_smarty_tpl->_assignInScope('nomeLocale', (($tmp = $_smarty_tpl->tpl_vars['nomeLocale']->value ?? null)===null||$tmp==='' ? 'er45u' ?? null : $tmp));
 $_smarty_tpl->_assignInScope('categoria', (($tmp = $_smarty_tpl->tpl_vars['categoria']->value ?? null)===null||$tmp==='' ? 'er45u' ?? null : $tmp));
-$_smarty_tpl->_assignInScope('data', (($tmp = $_smarty_tpl->tpl_vars['data']->value ?? null)===null||$tmp==='' ? 'er45u' ?? null : $tmp));?>
+$_smarty_tpl->_assignInScope('data', (($tmp = $_smarty_tpl->tpl_vars['data']->value ?? null)===null||$tmp==='' ? 'er45u' ?? null : $tmp));
+$_smarty_tpl->_assignInScope('array', (($tmp = $_smarty_tpl->tpl_vars['array']->value ?? null)===null||$tmp==='' ? 'er45u' ?? null : $tmp));?>
 <html lang="en">
 
 <head>
@@ -130,27 +131,41 @@ $_smarty_tpl->_assignInScope('data', (($tmp = $_smarty_tpl->tpl_vars['data']->va
     <!-- ======= Blog Section ======= -->
     <section id="blog" class="blog">
         <div class="container" data-aos="fade-up">
-
-            <div class="row">
-
+         <?php if ($_smarty_tpl->tpl_vars['array']->value != "er45u") {?>
+           <?php if ($_smarty_tpl->tpl_vars['tipo']->value == "Locali") {?> <!--Locali-->
+             <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['array']->value, 'locale');
+$_smarty_tpl->tpl_vars['locale']->do_else = true;
+if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['locale']->value) {
+$_smarty_tpl->tpl_vars['locale']->do_else = false;
+?>
+             <div class="row">
                 <div class="entries">
-
                     <article class="entry">
-
-                        <div class="entry-img">
-                            <img src="/template/img/blog/blog-1.jpg" alt="" class="img-fluid">
-                        </div>
+                        <?php if ((($_smarty_tpl->tpl_vars['locale']->value->getImg() !== null ))) {?>
+                           <div class="entry-img"> <!--Sarà giusto?-->
+                               <img class="photo" src="data:<?php echo $_smarty_tpl->tpl_vars['locale']->value->getImg()->getType();?>
+;base64,<?php echo $_smarty_tpl->tpl_vars['locale']->value->getImg()->getImmagine();?>
+" alt="immagine locale"> <!--vedi Pargiasai-->
+                           </div>
+                        <?php } else { ?>
+                            <div class="entry-img">
+                                <img class="photo" src="C:\xampp\htdocs\FacceBeve\template\img\portfolio\bar.jpeg" alt="immagine locale"> <!--vedi Pargiasai-->
+                            </div>
+                        <?php }?>
 
                         <h2 class="entry-title">
-                            <a href="infoLocale.html">Locale 1</a>
+                            <a href="infoLocale.html"><?php echo $_smarty_tpl->tpl_vars['locale']->value->getNome();?>
+</a>
                         </h2>
-
                         <div class="entry-meta">
                             <ul>
-                                <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a
-                                        href="">$Proprietario</a></li>
-                                <li class="d-flex align-items-center"><i class="fas fa-map-marker-alt"></i> <a
-                                        href="">$Localizzazione</a></li>
+                                <li class="d-flex align-items-center"><i class="bi bi-person"></i>
+                                    <?php echo $_smarty_tpl->tpl_vars['locale']->value->getProprietario();?>
+</li>
+                                <li class="d-flex align-items-center"><i class="fas fa-map-marker-alt"></i>
+                                    <?php echo $_smarty_tpl->tpl_vars['locale']->value->getLocalizzazione();?>
+</li>
                             </ul>
                         </div>
 
@@ -159,46 +174,74 @@ $_smarty_tpl->_assignInScope('data', (($tmp = $_smarty_tpl->tpl_vars['data']->va
                                 $descrizione
                             </p>
                             <div class="read-more">
-                                <a href="infoLocale.html">Visita il locale <i class="fas fa-chevron-circle-right"></i></a>
+                                <a <!--Bisogna passare qualcosa-->>Visita il locale <i class="fas fa-chevron-circle-right"></i></a>
                             </div>
                         </div>
 
                     </article><!-- End blog entry -->
-
-
-                </div><!-- End blog entries list -->
-<!--
-                <div class="col-lg-4">
-
-                    <div class="sidebar">
-
-                        <h3 class="sidebar-title">Search</h3>
-                        <div class="sidebar-item search-form">
-                            <form action="">
-                                <input type="text">
-                                <button type="submit"><i class="bi bi-search"></i></button>
-                            </form>
-                        </div>
-
-                        <h3 class="sidebar-title">Categories</h3>
-                        <div class="sidebar-item categories">
-                            <ul>
-                                <li><a href="#">General <span>(25)</span></a></li>
-                                <li><a href="#">Lifestyle <span>(12)</span></a></li>
-                                <li><a href="#">Travel <span>(5)</span></a></li>
-                                <li><a href="#">Design <span>(22)</span></a></li>
-                                <li><a href="#">Creative <span>(8)</span></a></li>
-                                <li><a href="#">Educaion <span>(14)</span></a></li>
-                            </ul>
-                        </div>
-
-
-                    </div> -->
-
-                </div><!-- End blog sidebar -->
-
+                    <?php
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
+                 </div>
+                </div>
             </div>
+           <?php } else { ?> <!--Eventi-->
+        <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['array']->value, 'evento');
+$_smarty_tpl->tpl_vars['evento']->do_else = true;
+if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['evento']->value) {
+$_smarty_tpl->tpl_vars['evento']->do_else = false;
+?>
+        <div class="row">
+            <div class="entries">
+                <article class="entry">
 
+                    <?php if ((($_smarty_tpl->tpl_vars['evento']->value->getImg() !== null ))) {?>
+                        <div class="entry-img"> <!--Sarà giusto?-->
+                            <img class="photo" src="data:<?php echo $_smarty_tpl->tpl_vars['locale']->value->getImg()->getType();?>
+;base64,<?php echo $_smarty_tpl->tpl_vars['locale']->value->getImg()->getImmagine();?>
+" alt="immagine locale"> <!--vedi Pargiasai-->
+                        </div>
+                    <?php } else { ?>
+                        <div class="entry-img">
+                            <img class="photo" src="C:\xampp\htdocs\FacceBeve\template\img\portfolio\evento.jpeg" alt="immagine locale"> <!--vedi Pargiasai-->
+                        </div>
+                    <?php }?>
+
+                    <h2 class="entry-title">
+                        <a href="infoLocale.html"><?php echo $_smarty_tpl->tpl_vars['evento']->value->getNome();?>
+</a>
+                    </h2>
+                    <div class="entry-meta">
+                        <ul>
+                            <li class="d-flex align-items-center"><i class="bi bi-person"></i>
+                                <?php echo $_smarty_tpl->tpl_vars['locale']->value->getProprietario();?>
+</li>
+                            <li class="d-flex align-items-center"><i class="fas fa-map-marker-alt"></i>
+                                <?php echo $_smarty_tpl->tpl_vars['locale']->value->getLocalizzazione();?>
+</li>
+                        </ul>
+                    </div>
+
+                    <div class="entry-content">
+                        <p>
+                            $descrizione
+                        </p>
+                        <div class="read-more">
+                            <a <!--Bisogna passare qualcosa-->>Visita il locale <i class="fas fa-chevron-circle-right"></i></a>
+                        </div>
+                    </div>
+
+                </article><!-- End blog entry -->
+                <?php
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
+            </div>
+        </div>
+        </div>
+
+           <?php }?>
+        <?php }?>
         </div>
     </section><!-- End Blog Section -->
 
