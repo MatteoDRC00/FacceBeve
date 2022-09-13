@@ -198,5 +198,10 @@ class VAccesso
     }
 
 
+    public function erroreLogin(){
+        $this->smarty->assign('errore','Errore!Username ');
+        $this->smarty->display('login.tpl');
+    }
+
 
 }
