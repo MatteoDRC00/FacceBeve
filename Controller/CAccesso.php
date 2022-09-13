@@ -268,10 +268,10 @@ class CAccesso
             $img_profilo = null;
 
             $img = $view->getImgProfilo();
-            list($check, $img_profilo) = static::upload($img);
+            //list($check, $img_profilo) = static::upload($img);
             if (!empty($img)) {
-                //$img_profilo = new EImmagine($img[0], $img[1], $img[2], $img[3]);
-                $id = $pm::store($img_profilo);
+                $img_profilo = new EImmagine($img[0], $img[1], $img[2], $img[3]);
+                $id = $pm->store($img_profilo);
                 $img_profilo->setId($id);
             }
             $utente->setImgProfilo($img_profilo);

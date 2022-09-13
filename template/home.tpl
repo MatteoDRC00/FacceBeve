@@ -53,12 +53,12 @@
             </div>
         {elseif $tipo=='EUtente'}
             <div class="sign">
-                <a href="/Profilo/mostraProfiloUtente">Area Personale Utente</a> <!--DEBUG ZIO PERA-->
+                <a href="/Profilo/mostraProfilo">Area Personale Utente</a> <!--DEBUG ZIO PERA-->
                 <a href="/Accesso/logout">Logout</a>
             </div>
         {elseif $tipo=='EProprietario'}
             <div class="sign">
-                <a href="/Profilo/mostraProfiloProprietario">Area Personale Ciccarelli</a>
+                <a href="/Profilo/mostraProfilo">Area Personale Ciccarelli</a>
                 <a href="/Accesso/logout">Logout</a>
             </div>
         {/if}
