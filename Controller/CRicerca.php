@@ -75,8 +75,6 @@ class CRicerca{
                 $categoria = $vRicerca->getCategorie();
                 if ($nomelocale != null || $citta != null || $categoria != null){
                     $pm = FPersistentManager::getInstance();
-                    $part1 = $nomelocale;
-                    $part2 = $citta;
                     $result = $pm->loadForm($nomelocale, $citta,$categoria,"tmp",$tipo);
                     $vRicerca->showResult($result, $tipo,$nomelocale,$citta,$categoria,null);
                 }else

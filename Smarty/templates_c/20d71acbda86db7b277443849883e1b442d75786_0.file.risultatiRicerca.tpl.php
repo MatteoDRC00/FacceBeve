@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-13 15:26:30
+/* Smarty version 4.2.0, created on 2022-09-13 16:04:41
   from 'C:\xampp\htdocs\FacceBeve\template\risultatiRicerca.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_63208506d84cd4_50851848',
+  'unifunc' => 'content_63208df93fff67_83290638',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '20d71acbda86db7b277443849883e1b442d75786' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\risultatiRicerca.tpl',
-      1 => 1663075573,
+      1 => 1663077877,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_63208506d84cd4_50851848 (Smarty_Internal_Template $_smarty_tpl) {
+function content_63208df93fff67_83290638 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <?php $_smarty_tpl->_assignInScope('tipo', (($tmp = $_smarty_tpl->tpl_vars['tipo']->value ?? null)===null||$tmp==='' ? 'Locali' ?? null : $tmp));
 $_smarty_tpl->_assignInScope('userlogged', (($tmp = $_smarty_tpl->tpl_vars['error']->value ?? null)===null||$tmp==='' ? 'nouser' ?? null : $tmp));
@@ -29,7 +29,7 @@ $_smarty_tpl->_assignInScope('nomeEvento', (($tmp = $_smarty_tpl->tpl_vars['nome
 $_smarty_tpl->_assignInScope('nomeLocale', (($tmp = $_smarty_tpl->tpl_vars['nomeLocale']->value ?? null)===null||$tmp==='' ? 'er45u' ?? null : $tmp));
 $_smarty_tpl->_assignInScope('categoria', (($tmp = $_smarty_tpl->tpl_vars['categoria']->value ?? null)===null||$tmp==='' ? 'er45u' ?? null : $tmp));
 $_smarty_tpl->_assignInScope('data', (($tmp = $_smarty_tpl->tpl_vars['data']->value ?? null)===null||$tmp==='' ? 'er45u' ?? null : $tmp));
-$_smarty_tpl->_assignInScope('array', (($tmp = $_smarty_tpl->tpl_vars['array']->value ?? null)===null||$tmp==='' ? 'er45u' ?? null : $tmp));?>
+$_smarty_tpl->_assignInScope('array', (($tmp = $_smarty_tpl->tpl_vars['array']->value ?? null)===null||$tmp==='' ? 'vuoto' ?? null : $tmp));?>
 <html lang="en">
 
 <head>
@@ -121,17 +121,13 @@ $_smarty_tpl->_assignInScope('array', (($tmp = $_smarty_tpl->tpl_vars['array']->
                       <?php }?>
                     <?php }?>
                 </ul>
-
-
             </div>
-
         </div>
-    </section><!-- End Blog Section -->
-
-    <!-- ======= Blog Section ======= -->
+    </section>
     <section id="blog" class="blog">
         <div class="container" data-aos="fade-up">
-         <?php if ($_smarty_tpl->tpl_vars['array']->value != "er45u") {?>
+         <?php if ($_smarty_tpl->tpl_vars['array']->value != 'vuoto') {?>
+            <h1>Ok</h1>
            <?php if ($_smarty_tpl->tpl_vars['tipo']->value == "Locali") {?> <!--Locali-->
              <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['array']->value, 'locale');
@@ -142,17 +138,17 @@ $_smarty_tpl->tpl_vars['locale']->do_else = false;
              <div class="row">
                 <div class="entries">
                     <article class="entry">
-                        <?php if ((($_smarty_tpl->tpl_vars['locale']->value->getImg() !== null ))) {?>
-                           <div class="entry-img"> <!--Sarà giusto?-->
+                       <!-- <?php if ((($_smarty_tpl->tpl_vars['locale']->value->getImg() !== null ))) {?>
+                           <div class="entry-img">
                                <img class="photo" src="data:<?php echo $_smarty_tpl->tpl_vars['locale']->value->getImg()->getType();?>
 ;base64,<?php echo $_smarty_tpl->tpl_vars['locale']->value->getImg()->getImmagine();?>
-" alt="immagine locale"> <!--vedi Pargiasai-->
+" alt="immagine locale">
                            </div>
                         <?php } else { ?>
                             <div class="entry-img">
-                                <img class="photo" src="C:\xampp\htdocs\FacceBeve\template\img\portfolio\bar.jpeg" alt="immagine locale"> <!--vedi Pargiasai-->
+                                <img class="photo" src="C:\xampp\htdocs\FacceBeve\template\img\portfolio\bar.jpeg" alt="immagine locale">
                             </div>
-                        <?php }?>
+                        <?php }?> -->
 
                         <h2 class="entry-title">
                             <a href="infoLocale.html"><?php echo $_smarty_tpl->tpl_vars['locale']->value->getNome();?>
@@ -196,17 +192,17 @@ $_smarty_tpl->tpl_vars['evento']->do_else = false;
             <div class="entries">
                 <article class="entry">
 
-                    <?php if ((($_smarty_tpl->tpl_vars['evento']->value->getImg() !== null ))) {?>
-                        <div class="entry-img"> <!--Sarà giusto?-->
+                 <!--   <?php if ((($_smarty_tpl->tpl_vars['evento']->value->getImg() !== null ))) {?>
+                        <div class="entry-img">
                             <img class="photo" src="data:<?php echo $_smarty_tpl->tpl_vars['locale']->value->getImg()->getType();?>
 ;base64,<?php echo $_smarty_tpl->tpl_vars['locale']->value->getImg()->getImmagine();?>
-" alt="immagine locale"> <!--vedi Pargiasai-->
+" alt="immagine locale">
                         </div>
                     <?php } else { ?>
                         <div class="entry-img">
-                            <img class="photo" src="C:\xampp\htdocs\FacceBeve\template\img\portfolio\evento.jpeg" alt="immagine locale"> <!--vedi Pargiasai-->
+                            <img class="photo" src="C:\xampp\htdocs\FacceBeve\template\img\portfolio\evento.jpeg" alt="immagine locale">
                         </div>
-                    <?php }?>
+                    <?php }?> -->
 
                     <h2 class="entry-title">
                         <a href="infoLocale.html"><?php echo $_smarty_tpl->tpl_vars['evento']->value->getNome();?>
@@ -232,22 +228,22 @@ $_smarty_tpl->tpl_vars['evento']->do_else = false;
                         </div>
                     </div>
 
-                </article><!-- End blog entry -->
+                </article>
                 <?php
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
             </div>
         </div>
-        </div>
-
-           <?php }?>
         <?php }?>
-        </div>
-    </section><!-- End Blog Section -->
+        <?php } else { ?>
+            <div class=class="entries">
+                <h2 class="accordion-body">La ricerca non ha prodotto alcun risultato. Riprova.</h2>
+            </div>
+        <?php }?>
+    </section>
 
-</main><!-- End #main -->
+</main>
 
-<!-- ======= Footer ======= -->
 <footer id="footer" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
 
     <div class="container">
@@ -255,10 +251,6 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
             &copy; Copyright <strong><span>Moderna</span></strong>. All Rights Reserved
         </div>
         <div class="credits">
-            <!-- All the links in the footer should remain intact. -->
-            <!-- You can delete the links only if you purchased the pro version. -->
-            <!-- Licensing information: https://bootstrapmade.com/license/ -->
-            <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/free-bootstrap-template-corporate-moderna/ -->
             Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
         </div>
     </div>
