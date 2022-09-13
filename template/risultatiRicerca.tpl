@@ -6,7 +6,7 @@
 {assign var='nomeLocale' value=$nomeLocale|default:'er45u'}
 {assign var='categoria' value=$categoria|default:'er45u'}
 {assign var='data' value=$data|default:'er45u'}
-{assign var='array' value=$array|default:'er45u'}
+{assign var='array' value=$array|default:'vuoto'}
 <html lang="en">
 
 <head>
@@ -91,31 +91,26 @@
                       {/if}
                     {/if}
                 </ul>
-
-
             </div>
-
         </div>
-    </section><!-- End Blog Section -->
-
-    <!-- ======= Blog Section ======= -->
+    </section>
     <section id="blog" class="blog">
         <div class="container" data-aos="fade-up">
-         {if $array!="er45u"}
-           {if $tipo == "Locali"} <!--Locali-->
-             {foreach from=$array item=locale}
+         {if $array!='vuoto'}
+            {if $tipo == "Locali"} <!--Locali-->
+            {foreach from=$array item=locale}
              <div class="row">
                 <div class="entries">
                     <article class="entry">
-                        {if isset($locale->getImg())}
-                           <div class="entry-img"> <!--Sarà giusto?-->
-                               <img class="photo" src="data:{$locale->getImg()->getType()};base64,{$locale->getImg()->getImmagine()}" alt="immagine locale"> <!--vedi Pargiasai-->
+                       <!-- {if isset($locale->getImg())}
+                           <div class="entry-img">
+                               <img class="photo" src="data:{$locale->getImg()->getType()};base64,{$locale->getImg()->getImmagine()}" alt="immagine locale">
                            </div>
                         {else}
                             <div class="entry-img">
-                                <img class="photo" src="C:\xampp\htdocs\FacceBeve\template\img\portfolio\bar.jpeg" alt="immagine locale"> <!--vedi Pargiasai-->
+                                <img class="photo" src="C:\xampp\htdocs\FacceBeve\template\img\portfolio\bar.jpeg" alt="immagine locale">
                             </div>
-                        {/if}
+                        {/if} -->
 
                         <h2 class="entry-title">
                             <a href="infoLocale.html">{$locale->getNome()}</a>
@@ -149,15 +144,15 @@
             <div class="entries">
                 <article class="entry">
 
-                    {if isset($evento->getImg())}
-                        <div class="entry-img"> <!--Sarà giusto?-->
-                            <img class="photo" src="data:{$locale->getImg()->getType()};base64,{$locale->getImg()->getImmagine()}" alt="immagine locale"> <!--vedi Pargiasai-->
+                 <!--   {if isset($evento->getImg())}
+                        <div class="entry-img">
+                            <img class="photo" src="data:{$locale->getImg()->getType()};base64,{$locale->getImg()->getImmagine()}" alt="immagine locale">
                         </div>
                     {else}
                         <div class="entry-img">
-                            <img class="photo" src="C:\xampp\htdocs\FacceBeve\template\img\portfolio\evento.jpeg" alt="immagine locale"> <!--vedi Pargiasai-->
+                            <img class="photo" src="C:\xampp\htdocs\FacceBeve\template\img\portfolio\evento.jpeg" alt="immagine locale">
                         </div>
-                    {/if}
+                    {/if} -->
 
                     <h2 class="entry-title">
                         <a href="infoLocale.html">{$evento->getNome()}</a>
@@ -180,20 +175,20 @@
                         </div>
                     </div>
 
-                </article><!-- End blog entry -->
+                </article>
                 {/foreach}
             </div>
         </div>
-        </div>
-
-           {/if}
         {/if}
-        </div>
-    </section><!-- End Blog Section -->
+        {else}
+            <div class="entries">
+                <h2 class="accordion-body">La ricerca non ha prodotto alcun risultato. Riprova.</h2>
+            </div>
+        {/if}
+    </section>
 
-</main><!-- End #main -->
+</main>
 
-<!-- ======= Footer ======= -->
 <footer id="footer" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
 
     <div class="container">
@@ -201,10 +196,6 @@
             &copy; Copyright <strong><span>Moderna</span></strong>. All Rights Reserved
         </div>
         <div class="credits">
-            <!-- All the links in the footer should remain intact. -->
-            <!-- You can delete the links only if you purchased the pro version. -->
-            <!-- Licensing information: https://bootstrapmade.com/license/ -->
-            <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/free-bootstrap-template-corporate-moderna/ -->
             Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
         </div>
     </div>
