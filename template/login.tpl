@@ -51,10 +51,8 @@
 
 <div class="login-page">
     {if !empty($errore)}
-        <h3 class="errore" style="font-family: Arial;color: yellow;font-size: 17px">{$errore}</h3>
+        <h3 class="errore" style="font-family: Arial;color: yellow;font-size: 17px; text-align: center">{$errore}</h3>
     {/if}
-
-
 
     <div class="form">
         <form class="login-form" action="/Accesso/login" method="POST">
