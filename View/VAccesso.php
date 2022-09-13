@@ -198,9 +198,14 @@ class VAccesso
     }
 
 
-    public function erroreLogin(){
-        $this->smarty->assign('errore','Errore!Username ');
-        $this->smarty->display('login.tpl');
+    public function erroreLogin($tipo){
+        if($tipo=="vuoti") {
+            $this->smarty->assign('errore', 'Errore! I campi non possono essere vuoti ');
+            $this->smarty->display('login.tpl');
+        }else{
+            $this->smarty->assign('errore', 'Errore! Username o password errati');
+            $this->smarty->display('login.tpl');
+        }
     }
 
 

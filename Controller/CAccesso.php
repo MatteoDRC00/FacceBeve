@@ -143,8 +143,9 @@ class CAccesso
         $usernameLogin = $view->getUsername();
         $passwordLogin = $view->getPassword();
         if ($usernameLogin == null or $passwordLogin == null) {
+            $tipo="vuoti";
+            self::erroreLogin($tipo);
 
-            header("Location: /Accesso/erroreLogin");
         } else {
             $user = $pm->verificaLogin($usernameLogin, $passwordLogin);
             if ($user != null) {
@@ -152,6 +153,9 @@ class CAccesso
                 $sessione->imposta_valore('utente', $user->getUsername());
                 $sessione->imposta_valore("tipo_utente", get_class($user));
                 header("Location: /Ricerca/mostraHome");
+            }else{
+                $tipo="credenziali";
+                self::erroreLogin($tipo);
             }
         }
     }
@@ -411,8 +415,8 @@ class CAccesso
     }
 
 
-    public function erroreLogin(): void {
+    public function erroreLogin($tipo): void {
         $view = new VAccesso();
-        $view->erroreLogin();
+        $view->erroreLogin($tipo);
     }
 }

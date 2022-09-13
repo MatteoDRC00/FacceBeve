@@ -1,5 +1,28 @@
-<!DOCTYPE html>
-<!--{assign var='error' value=$error|default:'ok'}-->
+<?php
+/* Smarty version 4.2.0, created on 2022-09-13 17:21:53
+  from 'C:\xampp1\htdocs\FacceBeve\template\login.tpl' */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '4.2.0',
+  'unifunc' => 'content_6320a011b51422_29184648',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    '6591425132789f1bc238b58ee6d06e7872e5294b' => 
+    array (
+      0 => 'C:\\xampp1\\htdocs\\FacceBeve\\template\\login.tpl',
+      1 => 1663082508,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+),false)) {
+function content_6320a011b51422_29184648 (Smarty_Internal_Template $_smarty_tpl) {
+?><!DOCTYPE html>
+<!--<?php $_smarty_tpl->_assignInScope('error', (($tmp = $_smarty_tpl->tpl_vars['error']->value ?? null)===null||$tmp==='' ? 'ok' ?? null : $tmp));?>-->
 <html lang="it">
 <head>
     <meta charset="utf-8">
@@ -50,9 +73,10 @@
 </header>
 
 <div class="login-page">
-    {if !empty($errore)}
-        <h3 class="errore" style="font-family: Arial;color: yellow;font-size: 17px">{$errore}</h3>
-    {/if}
+    <?php if (!empty($_smarty_tpl->tpl_vars['errore']->value)) {?>
+        <h3 class="errore" style="font-family: Arial;color: yellow;font-size: 17px"><?php echo $_smarty_tpl->tpl_vars['errore']->value;?>
+</h3>
+    <?php }?>
 
 
 
@@ -66,6 +90,10 @@
         </form>
     </div>
 </div>
-<!--<script src="/Smarty/template/assets/js/main.js"></script>-->
+<!--<?php echo '<script'; ?>
+ src="/Smarty/template/assets/js/main.js"><?php echo '</script'; ?>
+>-->
 </body>
 </html>
+<?php }
+}
