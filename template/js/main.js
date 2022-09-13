@@ -1,5 +1,59 @@
+function validateRegForm(id){
+    if(id===1){
+        let password1 = document.forms.registrazioneProprietario.elements.password1.value;
+        let password2 = document.forms.registrazioneProprietario.elements.password2.value;
+        let nome = document.forms.registrazioneProprietario.elements.nome.value;
+        let cognome = document.forms.registrazioneProprietario.elements.cognome.value;
+        let username = document.forms.registrazioneProprietario.elements.username.value;
+        let email = document.forms.registrazioneProprietario.elements.email.value;
+        let img = document.forms.registrazioneProprietario.elements.img_profilo.value;
+
+        if(nome==="" || cognome==="" || email==="" || username==="" || password1==="" || password2==="" || img===""){
+            alert("Inserire i campi mancanti");
+            return false;
+        }
+        if(password1 !== password2){
+            alert("Le password inserite non corrispondono!");
+            return false;
+        }
+        var allowedExtensions = /(\.jpg|\.jpeg|\.gif|\.png)$/i; //Controllo sul Type del img inserita
+
+        if (!allowedExtensions.exec(img)) {
+            alert('Tipo di file non valido');
+            img.value = '';
+            return false;
+        }
+    }else{
+        let password1 = document.forms.registrazioneUtente.elements.password1.value;
+        let password2 = document.forms.registrazioneUtente.elements.password2.value;
+        let nome = document.forms.registrazioneUtente.elements.nome.value;
+        let cognome = document.forms.registrazioneUtente.elements.cognome.value;
+        let username = document.forms.registrazioneUtente.elements.username.value;
+        let email = document.forms.registrazioneUtente.elements.email.value;
+        let img = document.forms.registrazioneUtente.elements.img_profilo.value;
+
+        if(nome==="" || cognome==="" || email==="" || username==="" || password1==="" || password2==="" || img===""){
+            alert("Inserire i campi mancanti");
+            return false;
+        }
+        if(password1 !== password2){
+            alert("Le password inserite non corrispondono!");
+            return false;
+        }
+        var allowedExtensions = /(\.jpg|\.jpeg|\.gif|\.png)$/i; //Controllo sul Type del img inserita
+
+        if (!allowedExtensions.exec(img)) {
+            alert('Tipo di file non valido');
+            img.value = '';
+            return false;
+        }
+    }
+}
+
+
+
 /**
- *Funzione utilizzata per la sanificazione di stringhe
+ *Funzione utilizzata per controllare che venga inserito almeno un valore nei campi del form di ricerca
  */
 function validateResearchForm(id) {
     if(id===1){
