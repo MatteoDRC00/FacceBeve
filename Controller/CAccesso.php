@@ -87,7 +87,7 @@ class CAccesso
             }
         }
     }
-    
+
     /**
      * Funzione di supporto che si occupa di verificare i dati inseriti nella form di registrazione per il cliente .
      * In questo metodo avviene la verifica sull'univocità dell'email inserita;

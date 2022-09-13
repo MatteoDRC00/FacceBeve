@@ -90,14 +90,14 @@
                         </div>
                         <div class="form-example">
                             <label style="font-weight: bold">Inserisci il numero di telefono: </label><br>
-                            <input type="tel" name="numeroLocale">
+                            <input type="tel" name="numeroLocale" pattern="[0-9].{3}"> <!--Non so perchè da errore-->
                         </div>
                         <div class="form-example">
                             <label style="font-weight: bold">Inserisci la localizzazione: </label><br>
                             <input type="text" name="indirizzoLocale" placeholder="Inserisci l'indirizzo">
                             <input type="text" name="civicoLocale" placeholder="Inserisci il numero civico">
                             <input type="text" name="cittaLocale" placeholder="Inserisci città">
-                            <input type="text" name="CAPLocale" placeholder="Inserisci il CAP">
+                            <input type="text" name="CAPLocale" placeholder="Inserisci il CAP" pattern="[0-9].{3}">
                         </div>
                         <div class="form-example">
                             <label style="font-weight: bold">Inserisci l'orario di apertura e chiusura: </label><br>
@@ -130,7 +130,7 @@
                     </form>
                 </div>
                 <div class="col-6 bg-white px-3 pb-2">
-                    <form action="" enctype="multipart/form-data" method="POST" class="aggiorna"> <!-- aggiungin i controlli -->
+                    <form action="" enctype="multipart/form-data" method="POST" class="aggiorna"> <!-- aggiungi i controlli -->
                         <p>AGGIUNGI LE IMMAGINI</p>
                         <input name="img" class="w-50 p-2 m-2" type="file"><br>
                         <button type="submit" class="btnAggiorna">AGGIUNGI</button>
