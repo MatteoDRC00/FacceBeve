@@ -172,19 +172,35 @@ class CProfilo{
      */
     public function modificaImmagineProfilo(){
         $view = new VProfilo();
-        $sessione = USession::getInstance();
-        $utente = unserialize($sessione->leggi_valore('utente'));
-        $locali = static::caricaLocali($utente);
-        $img = $view->getNewImgProfilo();
-        list($check,$media) = static::upload($img);
-        if($check=="type"){
-            $view->profilo($utente,$locali,"type");
-        }elseif($check=="size"){
-            $view->profilo($utente,$locali,"size");
-        }elseif($check=="ok"){
-            $pm = FPersistentManager::getInstance();
-            $pm->updateMedia($media,$img[1]);
-            header('Location: /Profilo/profilo'); //profilo!!!
+        $sessione = new USession();
+        $pm = FPersistentManager::getInstance();
+
+        if($sessione->isLogged()) {
+            $username = $sessione->leggi_valore('utente');
+            $tipo = $sessione->leggi_valore('tipo_utente');
+            $tipo[0] = "F";
+            $class = $tipo;
+
+            $img = $view->getNewImgProfilo();
+            if(!empty($img)){
+                $img_profilo = new EImmagine($img[0], $img[1], $img[2], $img[3]);
+                $id = $pm->store($img_profilo);
+                $img_profilo->setId($id);
+
+                $user = $pm->load("username", $username, $class);
+                $img_vecchia = $user->getImgProfilo();
+                $id_imgvecchia = $img_vecchia->getId();
+                $pm->delete("id", $id_imgvecchia, "FImmagine");
+
+                $user->setImgProfilo($img_profilo);
+
+                $pm->update($class, "idImg", $id, "username", $username);
+            }else{
+                //Errore
+            }
+            header('Location: /Profilo/mostraProfilo');
+        }else{
+            header("Location: /Ricerca/mostraHome");
         }
     }
 

@@ -127,7 +127,7 @@ class FPersistentManager {
      * @param string $value_pk
      * @return mixed
      */
-    public static function update(string $class, string $attributo, string $newvalue, string $attributo_pk, string $value_pk) {
+    public function update(string $class, string $attributo, string $newvalue, string $attributo_pk, string $value_pk) {
         $result = $class::update($attributo, $newvalue, $attributo_pk, $value_pk);
         return $result;
     }

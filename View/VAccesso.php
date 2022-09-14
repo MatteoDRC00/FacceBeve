@@ -140,8 +140,8 @@ class VAccesso
      */
     public function getPassword(){
         $value = null;
-        if (isset($_POST['password1']))
-            $value = $_POST['password1'];
+        if (isset($_POST['password']))
+            $value = $_POST['password'];
         return $value;
     }
 

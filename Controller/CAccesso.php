@@ -70,7 +70,7 @@ class CAccesso
 
         $usernameLogin = $view->getUsername();
         $passwordLogin = $view->getPassword();
-        if ($usernameLogin == null or $passwordLogin == null) {
+        if ($usernameLogin == null || $passwordLogin == null) {
             $tipo="vuoti";
             self::erroreLogin($tipo);
 

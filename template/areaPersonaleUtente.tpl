@@ -115,7 +115,7 @@
                             </form>
                         </div>
                         <div class="col-12 bg-white px-3 pb-2">
-                            <form action="" enctype="multipart/form-data" method="POST" class="aggiorna"> <!-- aggiungin i controlli -->
+                            <form action="/Profilo/modificaImmagineProfilo" enctype="multipart/form-data" method="POST" class="aggiorna"> <!-- aggiungin i controlli -->
                                 <p>Modifica l'immagine di profilo</p>
                                 <input name="newimg_profilo" class="w-50 p-2 m-2" type="file"><br>
                                 <button type="submit" class="btnAggiorna">Modifica Immagine</button>
