@@ -29,8 +29,8 @@ class FRisposta{
     public static function bind(PDOStatement $stmt, ERisposta $risposta) {
         $stmt->bindValue(':id', NULL, PDO::PARAM_INT);
         $stmt->bindValue(':descrizione',$risposta->getDescrizione(),PDO::PARAM_STR);
-        $stmt->bindValue(':proprietario',$risposta->getProprietario()->getUsername(),PDO::PARAM_INT);
-        $stmt->bindValue(':recensione',$risposta->getRecensione()->getId(),PDO::PARAM_INT);
+        $stmt->bindValue(':proprietario',$risposta->getProprietario()->getUsername(),PDO::PARAM_STR);
+        $stmt->bindValue(':recensione',$risposta->getIdRecensione(),PDO::PARAM_INT);
     }
 
     /**
@@ -65,7 +65,7 @@ class FRisposta{
         $id = null;
         $db = FDB::getInstance();
         $proprietario = $db->exist("FProprietario", "username", $risposta->getProprietario()->getUsername());
-        $recensione = $db->exist("FRecensione", "id", $risposta->getRecensione()->getId());
+        $recensione = $db->exist("FRecensione", "id", $risposta->getIdRecensione());
         if($proprietario && $recensione){
             $id = $db->store(static::getClass(), $risposta);
         }
@@ -83,15 +83,17 @@ class FRisposta{
         $result = $db->load(static::getClass(), $field, $id);
         $rows_number = $db->interestedRows(static::getClass(), $field, $id);
         if(($result != null) && ($rows_number == 1)) {
-            $ris = new ERisposta($result['titolo'],$result['descrizione'],$result['proprietario'],$result['recensione']);
-            $ris->setCodice($result['codicerisposta']);
+            $proprietario = FProprietario::loadByField("id" , $result["proprietario"]);
+            $ris = new ERisposta($result['recensione'],$result['descrizione'],$proprietario);
+            $ris->setId($result['id']);
         }
         else {
             if(($result != null) && ($rows_number > 1)){
                 $ris = array();
                 for($i = 0; $i < count($result); $i++){
-                    $ris[] = new ERisposta($result[$i]['titolo'],$result[$i]['descrizione'],$result[$i]['proprietario'],$result[$i]['recensione']);
-                    $ris[$i]->setCodice($result[$i]['codicerisposta']);
+                    $proprietario = FProprietario::loadByField("id" , $result[$i]["proprietario"]);
+                    $ris[] = new ERisposta($result[$i]['recensione'],$result[$i]['descrizione'],$proprietario);
+                    $ris[$i]->setId($result[$i]['id']);
                 }
             }
         }
@@ -174,7 +176,7 @@ class FRisposta{
      *
      * @param $parola valore da ricercare all'interno del campo text
      * @return object $rec Recensione
-     */
+
     public static function loadByParola($parola) {
         $ris = null;
         $db = FDB::getInstance();
@@ -193,7 +195,7 @@ class FRisposta{
             }
         }
         return $ris;
-    }
+    } */
 
 
 }

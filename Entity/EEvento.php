@@ -79,7 +79,7 @@ class EEvento implements JsonSerializable{
     /**
      * @return string
      */
-    public function getData()
+    public function getData(): string
     {
         return $this->data;
     }

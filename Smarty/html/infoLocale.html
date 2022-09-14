@@ -100,13 +100,15 @@
                         <h3>Informazioni sul locale</h3>
                         <ul>
                             <li><strong>Indirizzo</strong>:{$locale->getLocalizzazione()->getIndirizzo()},{$locale->getLocalizzazione()->getNumCivico()}</li>
-                            <li><strong>Categorie</strong>: 01 March, 2020</li>
-                            <li><strong>Descrizione</strong>: ubruebvuerbver bcuerbvuerbvc erbcuervcer vherber uec ervre veru vhre urevcr ev </li>
+                            <li><strong>Citt&agrave</strong>:{$locale->getLocalizzazione()->getCitta()}, CAP:{$locale->getLocalizzazione()->getCAP()}</li>
+                            <li><strong>Categorie</strong>:{$locale->getCategorie()}</li>
+                            <li><strong>Descrizione</strong>:{$locale->getDescrizione()} </li>
                         </ul>
                     </div>
 
                     <div class="portfolio-details-slider swiper">
                         <br>
+
                         <h4><strong>Eventi organizzati:</strong></h4>
                         <div class="swiper-wrapper align-items-center">
 
