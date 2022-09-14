@@ -1,5 +1,8 @@
+/**
+ *Funzione utilizzata per controllare che vengano inseriti tutti i campi
+ */
 function validateRegForm(id){
-    if(id===1){
+    if(id===1){ //Form registrazione utente
         let password1 = document.forms.registrazioneProprietario.elements.password1.value;
         let password2 = document.forms.registrazioneProprietario.elements.password2.value;
         let nome = document.forms.registrazioneProprietario.elements.nome.value;
@@ -23,7 +26,7 @@ function validateRegForm(id){
             img.value = '';
             return false;
         }
-    }else{
+    }else if(id===0){ //Form registrazione utente
         let password1 = document.forms.registrazioneUtente.elements.password1.value;
         let password2 = document.forms.registrazioneUtente.elements.password2.value;
         let nome = document.forms.registrazioneUtente.elements.nome.value;
@@ -47,6 +50,8 @@ function validateRegForm(id){
             img.value = '';
             return false;
         }
+    }else if(id===2){  //Form registrazione Locale
+
     }
 }
 
@@ -60,6 +65,7 @@ function validateResearchForm(id) {
         let x = document.getElementById("tipo");
         let y = x.value;
         if (y === "Locali") {
+            //Gestione form ricerca locali utenti collegati
             let citta = document.forms.ricercaLocali1.elements.citta1.value;
             let nome = document.forms.ricercaLocali1.elements.nomeLocale1.value;
             var k = document.forms.ricercaLocali1.elements.categorie1;
@@ -72,6 +78,7 @@ function validateResearchForm(id) {
                 return false;
             }
         } else {
+            //Gestione form ricerca eventi utenti collegati
             let citta = document.forms.ricercaEventi.elements.citta.value;
             let nomeLocale = document.forms.ricercaEventi.elements.nomeLocale.value;
             let nomeEvento = document.forms.ricercaEventi.elements.nomeEvento.value;
@@ -92,6 +99,7 @@ function validateResearchForm(id) {
         }
     }
     else{
+            //Gestione form ricerca locali utenti non collegati
             let citta = document.forms.ricercaLocali0.elements.citta.value;
             let nome = document.forms.ricercaLocali0.elements.nomeLocale.value;
             var k = document.forms.ricercaLocali0.elements.categorie;
@@ -124,10 +132,7 @@ function setList() {
             }
         }
 
-
-
-
-
+////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 
 (function () {

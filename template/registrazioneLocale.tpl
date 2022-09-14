@@ -71,7 +71,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-6 bg-white px-3 mb-3 pb-3">
-                    <form action="" method="POST" class="aggiorna">
+                    <form action="" method="POST" class="aggiorna" name="registrazioneLocale" onsubmit="return validateRegForm(2)">
                         <p>INSERISCI LE INFORMAZIONI DEL LOCALE</p>
                         <div class="form-example">
                             <label style="font-weight: bold">Inserisci il nome: </label><br>
@@ -90,14 +90,14 @@
                         </div>
                         <div class="form-example">
                             <label style="font-weight: bold">Inserisci il numero di telefono: </label><br>
-                            <input type="tel" name="numeroLocale" pattern="[0-9].{3}"> <!--Non so perchè da errore-->
+                            <input type="tel" name="numeroLocale" pattern="[0-9]"> <!--Non so perchè da errore-->
                         </div>
                         <div class="form-example">
                             <label style="font-weight: bold">Inserisci la localizzazione: </label><br>
                             <input type="text" name="indirizzoLocale" placeholder="Inserisci l'indirizzo">
                             <input type="text" name="civicoLocale" placeholder="Inserisci il numero civico">
                             <input type="text" name="cittaLocale" placeholder="Inserisci città">
-                            <input type="text" name="CAPLocale" placeholder="Inserisci il CAP" pattern="[0-9].{3}">
+                            <input type="text" name="CAPLocale" placeholder="Inserisci il CAP" pattern="[0-9]">
                         </div>
                         <div class="form-example">
                             <label style="font-weight: bold">Inserisci l'orario di apertura e chiusura: </label><br>

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-13 17:29:12
+/* Smarty version 4.2.0, created on 2022-09-14 10:03:36
   from 'C:\xampp\htdocs\FacceBeve\template\login.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_6320a1c85554c4_01566687',
+  'unifunc' => 'content_63218ad83438c5_31215883',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '4bbbafc2ea6d5409b92c2264798b2d324bd194ae' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\login.tpl',
-      1 => 1663082938,
+      1 => 1663084209,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6320a1c85554c4_01566687 (Smarty_Internal_Template $_smarty_tpl) {
+function content_63218ad83438c5_31215883 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <!--<?php $_smarty_tpl->_assignInScope('error', (($tmp = $_smarty_tpl->tpl_vars['error']->value ?? null)===null||$tmp==='' ? 'ok' ?? null : $tmp));?>-->
 <html lang="it">
@@ -74,11 +74,9 @@ function content_6320a1c85554c4_01566687 (Smarty_Internal_Template $_smarty_tpl)
 
 <div class="login-page">
     <?php if (!empty($_smarty_tpl->tpl_vars['errore']->value)) {?>
-        <h3 class="errore" style="font-family: Arial;color: yellow;font-size: 17px"><?php echo $_smarty_tpl->tpl_vars['errore']->value;?>
+        <h3 class="errore" style="font-family: Arial;color: yellow;font-size: 17px; text-align: center"><?php echo $_smarty_tpl->tpl_vars['errore']->value;?>
 </h3>
     <?php }?>
-
-
 
     <div class="form">
         <form class="login-form" action="/Accesso/login" method="POST">
