@@ -1,4 +1,37 @@
 /**
+ * Funzione per controllare che vengano inseriti tutti i campi necessari per la recensione
+*/
+function validateRecensione(){
+    let titolo = document.forms.Recensione.elements.titolo.value;
+    let descrizione = document.forms.Recensione.elements.descrizione.value;
+    let k = document.forms.Recensione.elements.valutazione;
+    var valutazione = "";
+    if(k.checked){
+        var valutazione = document.forms.Recensione.elements.valutazione.value;
+    }
+
+    if(titolo==="" || valutazione===""){
+        alert("Inserire i campi necessari");
+        return false;
+    }
+}
+
+/**
+ * Funzione per controllare che vengano inseriti tutti i campi necessari per la recensione
+
+function validateRisposta(){
+    let risposta = document.forms.Risposta.elements.descrizione.value;
+    if(risposta===""){
+        alert("Inserire del testo nella risposta");
+        return false;
+    }
+} */
+
+
+
+
+
+/**
  *Funzione utilizzata per controllare che vengano inseriti tutti i campi
  */
 function validateRegForm(id){
@@ -15,6 +48,7 @@ function validateRegForm(id){
             alert("Inserire i campi mancanti");
             return false;
         }
+
         if(password1 !== password2){
             alert("Le password inserite non corrispondono!");
             return false;

@@ -164,11 +164,11 @@
                                     {if $proprietario == true}
                                         <div class="reply-form">
                                             <h4>Scrivi una recensione</h4>
-                                            <form action=CGestioneRecensione/scrivi  method="POST" name="Risposta">
+                                            <form action=CGestioneRecensione/scriviRisposta  method="POST" name="Risposta"> <!--onsubmit="return validateRisposta()"-->
                                                 <input type="hidden" name="idRecensione" value="{$arrayRecensioni[$i]->getId()}"/>
                                                 <div class="row">
                                                     <div class="col form-group">
-                                                          <textarea name="descrizioneRisposta" class="form-control" placeholder="Risposta"></textarea>
+                                                          <textarea name="descrizione" class="form-control" placeholder="Risposta" required title="Inserire del testo nella risposta"></textarea>
                                                     </div>
                                                 </div>
                                                 <button type="submit" class="btn btn-primary">Rispondi</button>
@@ -186,10 +186,10 @@
                         {if $userLogged != 'nouser'}
                         <div class="reply-form">
                             <h4>Scrivi una recensione</h4>
-                            <form action=CGestioneRecensione/scriviRecensione  method="POST" name="Recensione">
-                                <input type="hidden" name="idLocale" value="$locale->getId()"/>
-                                <input type="hidden" name="nomeLocale" value="$locale->getNome()"/>
-                                <input type="hidden" name="localizzazione" value="$locale->getLocalizzazione()"/>
+                            <form action=CGestioneRecensione/scriviRecensione  method="POST" name="Recensione" onsubmit="return validateRecensione()">
+                                <input type="hidden" name="idLocale" value={$locale->getId()}/>
+                                <input type="hidden" name="nomeLocale" value={$locale->getNome()}/>
+                                <input type="hidden" name="localizzazione" value={$locale->getLocalizzazione()}/>
                                 <div class="row">
                                     <div class="col-md-6 form-group">
                                         <input name="titolo" type="text" class="form-control" placeholder="Titolo">
@@ -207,7 +207,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col form-group">
-                                        <textarea name="descrizioneRecensione" class="form-control" placeholder="Descrizione"></textarea>
+                                        <textarea name="descrizione" class="form-control" placeholder="Descrizione"></textarea>
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Aggiungi recensione</button>
