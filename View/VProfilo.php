@@ -281,4 +281,11 @@ class VProfilo{
         $this->smarty->display('areaPersonaleProprieratio.tpl');
     }
 
+    public function errore($tipo,$message){
+            $this->smarty->assign("tipo",$tipo);
+            $this->smarty->assign("message",$message);
+            $this->smarty->display('areaPersonaleUtente.tpl');
+
+    }
+
 }
