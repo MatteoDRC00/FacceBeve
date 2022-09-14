@@ -74,24 +74,25 @@ class FProprietario{
 
 
     /**
-    * Permette la load sul database
-    * @param $id campo da confrontare per trovare l'oggetto
-    * @return object $utente Utente
-    */
+     * @param $field
+     * @param $id
+     * @return array|EProprietario
+     */
     public static function loadByField($field, $id){
+        $proprietario = null;
         $db = FDB::getInstance();
         $result = $db->load(static::getClass(), $field, $id);
-        $rows_number = $db->getNumRighe(static::getClass(), $field, $id);    //funzione richiamata,presente in FDB --> restituisce numero di righe interessate dalla query
-        if(($result!=null) && ($rows_number == 1)) {
-            $proprietario=new EProprietario($result['nome'],$result['cognome'], $result['email'], $result['username'], $result['password']); //Carica un Proprietario dal database
+        $num = $db->getNumRighe(static::getClass(), $field, $id);    //funzione richiamata,presente in FDB --> restituisce numero di righe interessate dalla query
+        if(($result!=null) && ($num == 1)) {
+            $proprietario = new EProprietario($result['nome'],$result['cognome'], $result['email'], $result['username'], $result['password']); //Carica un Proprietario dal database
             $proprietario->setImgProfilo(FImmagine::loadByField('id', $result['idImg']));
         }
         else {
-            if(($result!=null) && ($rows_number > 1)){
+            if(($result!=null) && ($num > 1)){
                 $proprietario = array();
         	    for($i=0; $i<count($result); $i++){
-                    $proprietario[$i]=new EProprietario($result[$i]['username'],$result[$i]['nome'],$result[$i]['cognome'], $result[$i]['email'], $result[$i]['password']); //Carica un array di oggetti Proprietario dal database
-                    $proprietario[$i]->setImgProfilo(FImmagine::loadByField('id', $result['idImg']));
+                    $proprietario[$i] = new EProprietario($result[$i]['nome'],$result[$i]['cognome'], $result[$i]['email'], $result[$i]['username'], $result[$i]['password']); //Carica un array di oggetti Proprietario dal database
+                    $proprietario[$i]->setImgProfilo(FImmagine::loadByField('id', $result[$i]['idImg']));
                 }
             }
         }

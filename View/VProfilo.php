@@ -278,7 +278,7 @@ class VProfilo{
         $this->smarty->assign("type",$type);
         $this->smarty->assign("locali",$locali);
 
-        $this->smarty->display('areaPersonaleProprieratio.tpl');
+        $this->smarty->display('areaPersonaleProprietario.tpl');
     }
 
     public function errore($tipo,$message,$user){
