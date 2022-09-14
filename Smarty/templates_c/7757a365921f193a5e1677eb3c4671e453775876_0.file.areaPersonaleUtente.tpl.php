@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-13 20:37:37
+/* Smarty version 4.2.0, created on 2022-09-14 10:28:14
   from 'C:\xampp\htdocs\FacceBeve\template\areaPersonaleUtente.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_6320cdf11c3ef9_19522180',
+  'unifunc' => 'content_6321909e40fbb0_11725248',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '7757a365921f193a5e1677eb3c4671e453775876' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\areaPersonaleUtente.tpl',
-      1 => 1663093952,
+      1 => 1663143999,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6320cdf11c3ef9_19522180 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6321909e40fbb0_11725248 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -114,6 +114,10 @@ function content_6320cdf11c3ef9_19522180 (Smarty_Internal_Template $_smarty_tpl)
                 <div class="col-md-7 ps-md-4">
                     <div class="row">
                         <div class="col-12 bg-white px-3 mb-3 pb-3">
+                            <?php if (!empty($_smarty_tpl->tpl_vars['tipo']->value) && $_smarty_tpl->tpl_vars['tipo']->value == "username") {?>
+                                <h3 class="errore" style="font-family: Arial;color: yellow;font-size: 17px; text-align: center"><?php echo $_smarty_tpl->tpl_vars['message']->value;?>
+</h3>
+                            <?php }?>
                             <form action="/Profilo/modificaUsername" method="POST" class="aggiorna">
                                 <p>Modifica l'username</p>
                                 <div class="form-example">
@@ -122,6 +126,10 @@ function content_6320cdf11c3ef9_19522180 (Smarty_Internal_Template $_smarty_tpl)
                                 </div>
                                 <button type="submit" class="btnAggiorna">Modifica username</button>
                             </form>
+                            <?php if (!empty($_smarty_tpl->tpl_vars['tipo']->value) && $_smarty_tpl->tpl_vars['tipo']->value == "email") {?>
+                                <h3 class="errore" style="font-family: Arial;color: yellow;font-size: 17px; text-align: center"><?php echo $_smarty_tpl->tpl_vars['message']->value;?>
+</h3>
+                            <?php }?>
                             <form action="/Profilo/modificaEmail" method="POST" class="aggiorna">
                                 <p>Modifica l'email</p>
                                 <div class="form-example">
@@ -130,6 +138,10 @@ function content_6320cdf11c3ef9_19522180 (Smarty_Internal_Template $_smarty_tpl)
                                 </div>
                                 <button type="submit" class="btnAggiorna">Modifica email</button>
                             </form>
+                            <?php if (!empty($_smarty_tpl->tpl_vars['tipo']->value) && $_smarty_tpl->tpl_vars['tipo']->value == "password") {?>
+                                <h3 class="errore" style="font-family: Arial;color: yellow;font-size: 17px; text-align: center"><?php echo $_smarty_tpl->tpl_vars['message']->value;?>
+</h3>
+                            <?php }?>
                             <form action="/Profilo/modificaPassword" method="POST" class="aggiorna">
                                 <p>Modifica la password</p>
                                 <div class="form-example">
@@ -146,7 +158,7 @@ function content_6320cdf11c3ef9_19522180 (Smarty_Internal_Template $_smarty_tpl)
                         <div class="col-12 bg-white px-3 pb-2">
                             <form action="/Profilo/modificaImmagineProfilo" enctype="multipart/form-data" method="POST" class="aggiorna"> <!-- aggiungin i controlli -->
                                 <p>Modifica l'immagine di profilo</p>
-                                <input name="newimg_profilo" class="w-50 p-2 m-2" type="file"><br>
+                                <input name="newimg_profilo" class="w-50 p-2 m-2" type="file" required><br>
                                 <button type="submit" class="btnAggiorna">Modifica Immagine</button>
                             </form>
                         </div>
