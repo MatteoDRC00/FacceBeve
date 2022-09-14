@@ -26,7 +26,7 @@ CREATE TABLE `Utente` (
     `nome` VARCHAR(26),
     `cognome` VARCHAR(26),    
     `email` VARCHAR(40) NOT NULL,
-    `password` VARCHAR(30) NOT NULL,
+    `password` CHAR(32) NOT NULL,
     `dataIscrizione` CHAR(11) NOT NULL,
     `idImg` int(11),
     `state` tinyint(1) NOT NULL,
@@ -42,7 +42,7 @@ CREATE TABLE `Proprietario` (
     `nome` VARCHAR(26),
     `cognome` VARCHAR(26),    
     `email` VARCHAR(40) NOT NULL,
-    `password` VARCHAR(30) NOT NULL,
+    `password` CHAR(32) NOT NULL,
      `idImg` int(11),
     FOREIGN KEY (`idImg`) REFERENCES Immagine(`id`) ON DELETE CASCADE ON UPDATE CASCADE,
     PRIMARY KEY (`username`)

@@ -12,7 +12,7 @@ class FUtente{
     private static $class="FUtente";
 
 	/** tabella con la quale opera nel DB */
-    private static $table="Utente";
+    private static $table="utente";
 
     /** valori della tabella nel DB */
     private static  $values="(:username,:nome,:cognome,:email,:password,:dataIscrizione,:idImg,:state)";
@@ -27,8 +27,7 @@ class FUtente{
     * @param PDOStatement $stmt
     * @param EUtente $utente
     */
-    public static function bind($stmt, EUtente $utente){
-        //var_dump($utente);
+    public static function bind(PDOStatement $stmt, EUtente $utente){
         $stmt->bindValue(':username', $utente->getUsername(), PDO::PARAM_STR);
 		$stmt->bindValue(':nome',$utente->getNome(), PDO::PARAM_STR);
 		$stmt->bindValue(':cognome',$utente->getCognome(), PDO::PARAM_STR);

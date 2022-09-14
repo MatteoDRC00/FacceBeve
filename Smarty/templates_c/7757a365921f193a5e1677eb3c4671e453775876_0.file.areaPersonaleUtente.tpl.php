@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-14 10:28:14
+/* Smarty version 4.2.0, created on 2022-09-14 10:56:51
   from 'C:\xampp\htdocs\FacceBeve\template\areaPersonaleUtente.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_6321909e40fbb0_11725248',
+  'unifunc' => 'content_63219753f1a820_02795005',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '7757a365921f193a5e1677eb3c4671e453775876' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\areaPersonaleUtente.tpl',
-      1 => 1663143999,
+      1 => 1663145260,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6321909e40fbb0_11725248 (Smarty_Internal_Template $_smarty_tpl) {
+function content_63219753f1a820_02795005 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -146,11 +146,11 @@ function content_6321909e40fbb0_11725248 (Smarty_Internal_Template $_smarty_tpl)
                                 <p>Modifica la password</p>
                                 <div class="form-example">
                                     <label>Inserisci la vecchia password: </label><br>
-                                    <input type="text" name="password" id="password" required>
+                                    <input type="password" name="password" id="password" required>
                                 </div>
                                 <div class="form-example">
                                     <label>Inserisci la nuova password: </label><br>
-                                    <input type="text" name="newpassword" id="newpassword" required>
+                                    <input type="password" name="newpassword" id="newpassword" required>
                                 </div>
                                 <button type="submit" class="btnAggiorna">Modifica password</button>
                             </form>

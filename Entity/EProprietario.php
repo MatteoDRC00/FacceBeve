@@ -19,7 +19,7 @@ class EProprietario implements JsonSerializable
         $this->cognome = $cognome;
         $this->username = $username;
         $this->email = $email;
-        $this->password = $password;
+        $this->password = md5($password);
     }
 
 

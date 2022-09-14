@@ -111,11 +111,11 @@
                                 <p>Modifica la password</p>
                                 <div class="form-example">
                                     <label>Inserisci la vecchia password: </label><br>
-                                    <input type="text" name="password" id="password" required>
+                                    <input type="password" name="password" id="password" required>
                                 </div>
                                 <div class="form-example">
                                     <label>Inserisci la nuova password: </label><br>
-                                    <input type="text" name="newpassword" id="newpassword" required>
+                                    <input type="password" name="newpassword" id="newpassword" required>
                                 </div>
                                 <button type="submit" class="btnAggiorna">Modifica password</button>
                             </form>

@@ -69,13 +69,15 @@ class CAccesso
         $pm = FPersistentManager::getInstance();
 
         $usernameLogin = $view->getUsername();
-        $passwordLogin = $view->getPassword();
+        $passwordLogin = md5($view->getPassword());
+        echo $passwordLogin;
         if ($usernameLogin == null || $passwordLogin == null) {
             $tipo="vuoti";
             self::erroreLogin($tipo);
 
         } else {
             $user = $pm->verificaLogin($usernameLogin, $passwordLogin);
+            echo $user." ok ";
             if ($user != null) {
                 $sessione = new USession();
                 $sessione->imposta_valore('utente', $user->getUsername());
