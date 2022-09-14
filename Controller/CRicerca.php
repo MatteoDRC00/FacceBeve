@@ -104,7 +104,7 @@ class CRicerca{
      */
      static function dettagliLocale($id){
         $vRicerca = new VRicerca();
-        $pm = FPersistentManager::GetIstance();
+        $pm = FPersistentManager::GetInstance();
         $sessione = new USession();
         $result = $pm->load("id", $id, "FLocale");
 
@@ -131,7 +131,11 @@ class CRicerca{
             if(get_class($utente)=="EUtente"){
                 if($vRicerca->preferiti()){
                     $utente->addLocale($result);
-                    $pm->store($utente);
+                    $pm->storeEsterne($utente);
+                }else{
+                    //Potrebbe dare errore
+                    $utente->deleteLocale($result);
+                    $pm->deleteEsterne($utente);
                 }
             }
         }

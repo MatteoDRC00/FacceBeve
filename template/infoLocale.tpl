@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+{assign var='locale' value=$locale}
 <script>
     function change(){
         var elem = document.getElementById("pref");
@@ -41,12 +41,6 @@
     <!-- Template Main CSS File -->
     <link href="/template/css/style.css" rel="stylesheet">
 
-    <!-- =======================================================
-    * Template Name: Moderna - v4.9.1
-    * Template URL: https://bootstrapmade.com/free-bootstrap-template-corporate-moderna/
-    * Author: BootstrapMade.com
-    * License: https://bootstrapmade.com/license/
-    ======================================================== -->
 </head>
 
 <!-- <body onLoad="document.forms[0].submit()">  -->
@@ -72,7 +66,7 @@
 
                 <div class="col-lg-8">
                     <div class="portfolio-details-slider swiper">
-                        <h2>$Nome_locale</h2>
+                        <h2>{$Nome_locale}</h2>
                         <input onclick="change()" type="button" value="Aggiungi ai preferiti" id="pref" name="pref">                      <div class="stelline star-rating" data-rating="4.6">
                             <div class="empty-stars">
                                 <i class="far fa-star"></i>
@@ -105,7 +99,7 @@
                     <div class="portfolio-info">
                         <h3>Informazioni sul locale</h3>
                         <ul>
-                            <li><strong>Indirizzo</strong>: ASU Company</li>
+                            <li><strong>Indirizzo</strong>:{$locale->getLocalizzazione()->getIndirizzo()},{$locale->getLocalizzazione()->getNumCivico()}</li>
                             <li><strong>Categorie</strong>: 01 March, 2020</li>
                             <li><strong>Descrizione</strong>: ubruebvuerbver bcuerbvuerbvc erbcuervcer vherber uec ervre veru vhre urevcr ev </li>
                         </ul>
@@ -168,7 +162,7 @@
                                 <div class="comment-img"><img src="/template/img/blog/comments-1.jpg" alt=""></div>
                                 <div>
                                     <h5><a href="">Georgia Reader</a> <a href="#" class="reply"><i
-                                            class="bi bi-reply-fill"></i> Reply</a></h5>
+                                                    class="bi bi-reply-fill"></i> Reply</a></h5>
                                     <time datetime="2020-01-01">01 Jan, 2020</time>
                                     <p>
                                         Et rerum totam nisi. Molestiae vel quam dolorum vel voluptatem et et. Est ad aut
@@ -184,7 +178,7 @@
                                 <div class="comment-img"><img src="/template/img/blog/comments-2.jpg" alt=""></div>
                                 <div>
                                     <h5><a href="">Aron Alvarado</a> <a href="#" class="reply"><i
-                                            class="bi bi-reply-fill"></i> Reply</a></h5>
+                                                    class="bi bi-reply-fill"></i> Reply</a></h5>
                                     <time datetime="2020-01-01">01 Jan, 2020</time>
                                     <p>
                                         Ipsam tempora sequi voluptatem quis sapiente non. Autem itaque eveniet saepe.
@@ -198,7 +192,7 @@
                                     <div class="comment-img"><img src="/template/img/blog/comments-3.jpg" alt=""></div>
                                     <div>
                                         <h5><a href="">Lynda Small</a> <a href="#" class="reply"><i
-                                                class="bi bi-reply-fill"></i> Reply</a></h5>
+                                                        class="bi bi-reply-fill"></i> Reply</a></h5>
                                         <time datetime="2020-01-01">01 Jan, 2020</time>
                                         <p>
                                             Enim ipsa eum fugiat fuga repellat. Commodi quo quo dicta. Est ullam
@@ -222,7 +216,7 @@
                                         <div class="comment-img"><img src="/template/img/blog/comments-4.jpg" alt=""></div>
                                         <div>
                                             <h5><a href="">Sianna Ramsay</a> <a href="#" class="reply"><i
-                                                    class="bi bi-reply-fill"></i> Reply</a></h5>
+                                                            class="bi bi-reply-fill"></i> Reply</a></h5>
                                             <time datetime="2020-01-01">01 Jan, 2020</time>
                                             <p>
                                                 Et dignissimos impedit nulla et quo distinctio ex nemo. Omnis quia
@@ -244,7 +238,7 @@
                                 <div class="comment-img"><img src="/template/img/blog/comments-5.jpg" alt=""></div>
                                 <div>
                                     <h5><a href="">Nolan Davidson</a> <a href="#" class="reply"><i
-                                            class="bi bi-reply-fill"></i> Reply</a></h5>
+                                                    class="bi bi-reply-fill"></i> Reply</a></h5>
                                     <time datetime="2020-01-01">01 Jan, 2020</time>
                                     <p>
                                         Distinctio nesciunt rerum reprehenderit sed. Iste omnis eius repellendus quia
@@ -264,7 +258,7 @@
                                 <div class="comment-img"><img src="/template/img/blog/comments-6.jpg" alt=""></div>
                                 <div>
                                     <h5><a href="">Kay Duggan</a> <a href="#" class="reply"><i
-                                            class="bi bi-reply-fill"></i> Reply</a></h5>
+                                                    class="bi bi-reply-fill"></i> Reply</a></h5>
                                     <time datetime="2020-01-01">01 Jan, 2020</time>
                                     <p>
                                         Dolorem atque aut. Omnis doloremque blanditiis quia eum porro quis ut velit
@@ -337,7 +331,7 @@
 </footer><!-- End Footer -->
 
 <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
-        class="bi bi-arrow-up-short"></i></a>
+            class="bi bi-arrow-up-short"></i></a>
 
 <!-- Vendor JS Files -->
 <script src="/template/vendor/purecounter/purecounter_vanilla.js"></script>

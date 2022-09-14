@@ -252,8 +252,6 @@ class FPersistentManager {
                 $locali_preferiti[] = self::load("username", $id, "FLocali");
             }
         }
-
-
         return $locali_preferiti;
     }
 

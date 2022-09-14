@@ -166,7 +166,7 @@ class VRicerca
      * @throws SmartyException
      */
     public function dettagliLocale($result,$arrayRecensioni,$votoMedio) {
-        $sessione = USession::getInstance();
+        $sessione = new USession();
         //Caricamento immagini del locale
         if (is_array($result->getImmagini())) {
             foreach ($result->getImmagini() as $item) {

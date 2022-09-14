@@ -183,9 +183,6 @@ class EUtente {
     }
 
 
-
-
-
     public function jsonSerialize()
     {
         return
@@ -215,17 +212,27 @@ class EUtente {
 
 //-----------------------------Altri Metodi-----------------------------
     /**
-     * @param array $locale
+     * @param ELocale $locale
      */
     public function addLocale($locale): void
     {
         $this->localipreferiti.array_push($locale);
     }
 
-
+    /**
+     * @param ELocale $locale
+     */
+    public function deleteLocale($locale): void
+    {
+        for($i = 0; $i<count($this->localipreferiti); $i++){
+            if($this->localipreferiti[$i] == $locale){
+                unset($this->localipreferiti[$i]);
+            }
+        }
+    }
 
     /**
-     * Stampa lo stato dell'utenete
+     * Stampa lo stato dell'utente
      * @return String
      */
     protected function StaToString ()

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+{assign var='locale' value=$locale}
 <script>
     function change(){
         var elem = document.getElementById("pref");
@@ -39,14 +39,8 @@
     <link href="/template/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
     <!-- Template Main CSS File -->
-    <link href="/FacceBeve/template/css/style.css" rel="stylesheet">
+    <link href="/template/css/style.css" rel="stylesheet">
 
-    <!-- =======================================================
-    * Template Name: Moderna - v4.9.1
-    * Template URL: https://bootstrapmade.com/free-bootstrap-template-corporate-moderna/
-    * Author: BootstrapMade.com
-    * License: https://bootstrapmade.com/license/
-    ======================================================== -->
 </head>
 
 <!-- <body onLoad="document.forms[0].submit()">  -->
@@ -56,7 +50,7 @@
     <div class="container d-flex justify-content-between align-items-center">
 
         <div class="logo">
-            <h1><a href="home.html"><img src="/template/img/logo.png" alt=""><span>FacceBeve</span></a></h1>
+            <h1><a href="/Ricerca/mostraHome"><img src="/template/img/logo.png" alt=""><span>FacceBeve</span></a></h1>
         </div>
 
     </div>
@@ -72,7 +66,7 @@
 
                 <div class="col-lg-8">
                     <div class="portfolio-details-slider swiper">
-                        <h2>$Nome_locale</h2>
+                        <h2>{$Nome_locale}</h2>
                         <input onclick="change()" type="button" value="Aggiungi ai preferiti" id="pref" name="pref">                      <div class="stelline star-rating" data-rating="4.6">
                         <div class="empty-stars">
                             <i class="far fa-star"></i>
@@ -105,7 +99,7 @@
                     <div class="portfolio-info">
                         <h3>Informazioni sul locale</h3>
                         <ul>
-                            <li><strong>Indirizzo</strong>: ASU Company</li>
+                            <li><strong>Indirizzo</strong>:{$locale->getLocalizzazione()->getIndirizzo()},{$locale->getLocalizzazione()->getNumCivico()}</li>
                             <li><strong>Categorie</strong>: 01 March, 2020</li>
                             <li><strong>Descrizione</strong>: ubruebvuerbver bcuerbvuerbvc erbcuervcer vherber uec ervre veru vhre urevcr ev </li>
                         </ul>

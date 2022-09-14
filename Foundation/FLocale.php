@@ -117,6 +117,9 @@ class FLocale {
             $db->delete("Locale_Categorie","ID_Categoria",$obj->getGenere());
         }elseif(get_class($obj)=="EImmagine") {
             $db->delete("Locale_Immagini", "ID_Immagine", $obj->getId());
+        }elseif(get_class($obj)=="EUtente"){
+            $idUtente = $obj->getUsername();
+            $db->delete("Utenti_Locali", "ID_Utente", $idUtente);
         }
     }
 
@@ -137,6 +140,9 @@ class FLocale {
         }elseif(get_class($obj)=="EEvento"){
             $idEvento = $obj->getId();
             $db->chiaviEsterne("Locale_Eventi","ID_Locale","ID_Evento",$id,$idEvento);
+        }elseif(get_class($obj)=="EUtente"){
+            $idUtente = $obj->getUsername();
+            $db->chiaviEsterne("Utenti_Locali","ID_Locale","ID_Utente",$id,$idUtente);
         }
     }
 
