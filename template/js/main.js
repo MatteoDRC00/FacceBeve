@@ -3,7 +3,7 @@
  */
 function validateRegForm(id){
     if(id===1){ //Form registrazione utente
-        let password1 = document.forms.registrazioneProprietario.elements.password1.value;
+        let password1 = document.forms.registrazioneProprietario.elements.password.value;
         let password2 = document.forms.registrazioneProprietario.elements.password2.value;
         let nome = document.forms.registrazioneProprietario.elements.nome.value;
         let cognome = document.forms.registrazioneProprietario.elements.cognome.value;
@@ -27,7 +27,7 @@ function validateRegForm(id){
             return false;
         }
     }else if(id===0){ //Form registrazione utente
-        let password1 = document.forms.registrazioneUtente.elements.password1.value;
+        let password1 = document.forms.registrazioneUtente.elements.password.value;
         let password2 = document.forms.registrazioneUtente.elements.password2.value;
         let nome = document.forms.registrazioneUtente.elements.nome.value;
         let cognome = document.forms.registrazioneUtente.elements.cognome.value;
@@ -51,8 +51,69 @@ function validateRegForm(id){
             return false;
         }
     }else if(id===2){  //Form registrazione Locale
+        let nomeLocale = document.forms.registrazioneLocale.elements.nomeLocale.value;
+        let descrizioneLocale = document.forms.registrazioneLocale.elements.descrizioneLocale.value;
+        var k = document.forms.registrazioneLocale.elements.genere;
+        var categorieLocale = "";
+        if(k.checked){
+            var categorieLocale = document.forms.registrazioneLocale.elements.genere.value;
+        }
+        let numeroLocale = document.forms.registrazioneLocale.elements.numeroLocale.value;
+        //Localizzazione
+        let indirizzoLocale = document.forms.registrazioneLocale.elements.indirizzoLocale.value;
+        let civicoLocale = document.forms.registrazioneLocale.elements.civicoLocale.value;
+        let cittaLocale = document.forms.registrazioneLocale.elements.cittaLocale.value;
+        let CAPLocale = document.forms.registrazioneLocale.elements.CAPLocale.value;
+        //Orario
+        for (let i = 0; i < 7; i++) {
+            var orario1 = document.forms.registrazioneLocale.elements.orario[i][0];
+            var orario2 = document.forms.registrazioneLocale.elements.orario[i][1];
+            var chiuso = document.forms.registrazioneLocale.elements.orario[i][0];
+            if (((orario1.checked) && (orario2.checked)) && (chiuso.checked)) {
+                alert("Valori inconsistenti, il locale è aperto o chiuso?");
+                return false;
+            }
+        }
+        let imgLocale = document.forms.registrazioneLocale.elements.imgLocale.value;
+        var allowedExtensions = /(\.jpg|\.jpeg|\.gif|\.png)$/i; //Controllo sul Type del img inserita
 
-    }
+        if (!allowedExtensions.exec(img)) {
+            alert('Tipo di file non valido, sono accettati, prova con  \n-jpg\n-jpeg\n-gif\n-png');
+            img.value = '';
+            return false;
+        }
+        if(nomeLocale ==="" || descrizioneLocale ==="" || categorieLocale ==="" || numeroLocale===""  || indirizzoLocale ==="" || civicoLocale ==="" || cittaLocale===""|| CAPLocale ===""|| imgLocale===""){
+            alert("Inserire i campi mancanti");
+            return false;
+        }
+
+        }else if(id===3){ //Form registrazione Evento
+            let nomeEvento = document.forms.registrazioneEvento.elements.nomeEvento.value;
+            let descrizioneEvento = document.forms.registrazioneEvento.elements.descrizioneEvento.value;
+            let dataEvento = document.forms.registrazioneEvento.elements.dataEvento.value;
+            let imgEvento = document.forms.registrazioneEvento.elements.imgEvento.value;
+
+            let DataEvento = new Date(dataEvento);
+            let Oggi = new Date();
+
+            if(nomeEvento ==="" || descrizioneEvento ==="" || dataEvento ==="" || imgEvento===""){
+               alert("Inserire i campi mancanti");
+               return false;
+            }
+
+            if(DataEvento.getTime() < Oggi.getTime()) {
+              alert('La data del evento è precedente ad adesso, viaggiare nel tempo è pericoloso');
+              return false;
+            }
+
+            var allowedExtensions = /(\.jpg|\.jpeg|\.gif|\.png)$/i; //Controllo sul Type del img inserita
+
+            if (!allowedExtensions.exec(imgEvento)) {
+               alert('Tipo di file non valido, sono accettati, prova con  \n-jpg\n-jpeg\n-gif\n-png');
+               imgEvento.value = '';
+               return false;
+            }
+        }
 }
 
 
@@ -93,7 +154,7 @@ function validateResearchForm(id) {
             }
 
             if (DataEvento.getTime() < Oggi.getTime()) {
-                alert('La data del evento è precedente ad adesso, effettuare ricerche potrebbe piegare lo spazio-tempo')
+                alert('La data del evento è precedente ad adesso, viaggiare nel tempo è pericoloso');
                 return false;
             }
         }

@@ -38,6 +38,8 @@ class CGestioneLocale
     public function formCreaLocale(){
         $view = new VGestioneLocale();
         $sessione = new USession();
+        $pm = FPersistentManager::getInstance();
+        $genere_cat = $pm->getCategorie();
         /**if($sessione->leggi_valore('utente')){
             $proprietario = unserialize(($sessione->leggi_valore('utente')));
             if(get_class($proprietario) == "EProprietario")
@@ -49,7 +51,7 @@ class CGestioneLocale
             $error->error(1); //401 -> Forbidden Access
         }*/
         $proprietario = unserialize(($sessione->leggi_valore('utente')));
-        $view->showFormCreation($proprietario,null);
+        $view->showFormCreation($proprietario,null, $genere_cat);
     }
 
     /**
@@ -92,19 +94,26 @@ class CGestioneLocale
             // $orario = new EOrario($nomi[$i],$orari[$i][0],$orari[$i][1]);
             $orario = new EOrario();
             $orario->setGiornoSettimana($nomi[$i]);
-            $orario->setOrarioApertura($orari[$i][0]);
-            $orario->setOrarioChiusura($orari[$i][1]);
+            if((isset($orari[$i][0]) && !(isset($orari[$i][1]))) || (isset($orari[$i][1]) && !(isset($orari[$i][0]))) ||(isset($view->getOrarioClose()[$i]))){
+                $orario->setOrarioApertura("chiuso");
+                $orario->setOrarioChiusura($orari[$i][1]);
+            }else{
+                //Gestito poi in Entity
+                $orario->setOrarioApertura(null);
+                $orario->setOrarioChiusura(null);
+            }
             $Orario[] = $orario;
         }
         pm->store($Orario);
+        $genere_cat = $pm->getCategorie();
 
         $Locale = new ELocale($nomeLocale, $descrizione, $numTelefono, $proprietario, $categoria, $localizzazioneLocale, null, $Orario);
         $img = $view->getImgLocale();
         list($check, $media) = static::upload($img);
         if ($check == "type") {
-            $view->showFormCreation($proprietario, "size");
+            $view->showFormCreation($proprietario, "type", $genere_cat);
         } elseif ($check == "size") {
-            $view->showFormCreation($proprietario, "size");
+            $view->showFormCreation($proprietario, "size", $genere_cat);
         } elseif ($check == "ok") {
             $pm->store($Locale);
             $pm = FPersistentManager::getInstance();
@@ -113,7 +122,7 @@ class CGestioneLocale
             header('Location: /Profilo/profilo'); //?
         }
 
-        header('Location: /FacceBeve/Utente/');
+        header('Location: /FacceBeve/Ricerca/dettagliolocale');
 
 
     }
@@ -128,17 +137,6 @@ class CGestioneLocale
         $view = new VGestioneLocale();
         $sessione = new USession();
         $pm = FPersistentManager::getInstance();
-        /**if($sessione->leggi_valore('utente')){
-            $proprietario = unserialize(($sessione->leggi_valore('utente')));
-            if(get_class($proprietario) == "EProprietario")
-                $view->showFormCreation($proprietario,null);
-            else
-                $view->showFormCreation($proprietario,'wrong_class');
-        }else{
-            $error = new VError();
-            $error->error(1); //401 -> Forbidden Access
-        }*/
-        //$proprietario = unserialize(($sessione->leggi_valore('utente')));
         $locale = $pm->load("id",$view->getIdLocale(),"FLocale");
         $view->showFormModify(null,$locale);
     }
@@ -364,23 +362,6 @@ class CGestioneLocale
         $pm = FPersistentManager::getIstance();
         $pm->delete("id", $id, "FLocale");
         header('Location: /FacceBeve/Ricerca/dettaglioLocale');
-
-        /**if ($proprietario = unserialize($sessione->leggi_valore('utente'))) {
-            $utente = unserialize($proprietario = unserialize($sessione->leggi_valore('utente')));
-            if (get_class($utente) == "EProprietario") {
-                $pm = FPersistentManager::getIstance();
-                if (in_array($id, $pm->load("proprietario", $utente->getUsername(), "FLocale"))) {
-                    $pm->delete("id", $id, "FLocale");
-                    header('Location: /FacceBeve/Utente/profile');
-                } else {
-                    header('Location: /FacceBeve/'); //Dove ci rimanda?
-                }
-
-            } elseif (get_class($utente) == "EUtente") {
-                header('Location: /FacceBeve/Utente/profile');
-            }
-        } else
-            header('Location: /FacceBeve/Utente/login');*/
     }
 
 //----------------------------------METODI STATICI------------------------------------------------------\\

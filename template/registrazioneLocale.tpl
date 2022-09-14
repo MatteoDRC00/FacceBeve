@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+{assign var='categorie' value=$categorie}
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -71,7 +71,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-6 bg-white px-3 mb-3 pb-3">
-                    <form action="" method="POST" class="aggiorna" name="registrazioneLocale" onsubmit="return validateRegForm(2)">
+                    <form action="" enctype="multipart/form-data" method="POST" class="aggiorna" name="registrazioneLocale" onsubmit="return validateRegForm(2)">
                         <p>INSERISCI LE INFORMAZIONI DEL LOCALE</p>
                         <div class="form-example">
                             <label style="font-weight: bold">Inserisci il nome: </label><br>
@@ -82,11 +82,14 @@
                             <textarea type="text" name="descrizioneLocale"></textarea>
                         </div>
                         <div class="form-example">
-                            <label style="font-weight: bold">Inserisci la categoria: </label><br>
-                            <input type="checkbox" id="pub" name="pub" value="pub">
-                            <label for="pub"> Pub</label>
-                            <input type="checkbox" id="bar" name="bar" value="bar">
-                            <label for="bar"> Bar</label>
+                            {if !empty($categorie)}
+                                {foreach $categorie as $genere}
+                                    <option type="radio" name="genere" value="{$genere}">{$genere}</option>
+                                {/foreach}
+                            {else}
+                                <option type="radio" name="genere" value="{$genere}">{$genere}</option>
+                                <option type="radio" name="genere" value="{$genere}">{$genere}</option>
+                            {/if}
                         </div>
                         <div class="form-example">
                             <label style="font-weight: bold">Inserisci il numero di telefono: </label><br>
@@ -95,9 +98,9 @@
                         <div class="form-example">
                             <label style="font-weight: bold">Inserisci la localizzazione: </label><br>
                             <input type="text" name="indirizzoLocale" placeholder="Inserisci l'indirizzo">
-                            <input type="text" name="civicoLocale" placeholder="Inserisci il numero civico">
+                            <input type="text" name="civicoLocale" placeholder="Inserisci il numero civico" pattern="[0-9]" title="Attenzione, inserire un numero.">
                             <input type="text" name="cittaLocale" placeholder="Inserisci città">
-                            <input type="text" name="CAPLocale" placeholder="Inserisci il CAP" pattern="[0-9]">
+                            <input type="text" name="CAPLocale" placeholder="Inserisci il CAP" pattern="[0-9]" title="Attenzione il CAP è un codice numerico.">
                         </div>
                         <div class="form-example">
                             <label style="font-weight: bold">Inserisci l'orario di apertura e chiusura: </label><br>
@@ -124,16 +127,12 @@
                                     <input type="checkbox" name="close[6]" value="chiuso">
                                     <label for="close"> Chiuso</label></label><br>
                             </div>
-
+                            <div class="col-6 bg-white px-3 pb-2">
+                                <p>AGGIUNGI LE IMMAGINI</p>
+                                <input name="imgLocale" class="w-50 p-2 m-2" type="file"><br>
+                            </div>
                         </div>
                         <button type="submit" class="btnAggiorna">INSERISCI</button>
-                    </form>
-                </div>
-                <div class="col-6 bg-white px-3 pb-2">
-                    <form action="" enctype="multipart/form-data" method="POST" class="aggiorna"> <!-- aggiungi i controlli -->
-                        <p>AGGIUNGI LE IMMAGINI</p>
-                        <input name="img" class="w-50 p-2 m-2" type="file"><br>
-                        <button type="submit" class="btnAggiorna">AGGIUNGI</button>
                     </form>
                 </div>
             </div>

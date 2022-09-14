@@ -63,7 +63,7 @@ class VGestioneLocale{
      * di errore nella pagina di creazione del locale
      * @throws SmartyException
      */
-    public function showFormCreation($utente,$error)
+    public function showFormCreation($utente,$error, $categorie)
     {
         if (($utente->getUsername() == "admin") || ($utente->getUsername() == "Admin")) {
             switch ($error) {
@@ -75,6 +75,7 @@ class VGestioneLocale{
                     break;
             }
             $this->smarty->assign('userlogged', "loggato");
+            $this->smarty->assign('categorie', $categorie);
             $this->smarty->display('infoLocale.tpl');
         }
     }
@@ -203,7 +204,7 @@ class VGestioneLocale{
     public function getCAP(): ?int
     {
         $value = null;
-        if (isset($_POST['capLocale'])) //NON SO SE VANNO UTLIZZATI NOMI DIVERSI
+        if (isset($_POST['capLocale']))
             $value = $_POST['capLocale'];
         return $value;
     }
@@ -211,8 +212,15 @@ class VGestioneLocale{
 
     public function getOrario(){
         $value = null;
-        if (isset($_POST['Orario'])) //NON SO SE VANNO UTLIZZATI NOMI DIVERSI
+        if (isset($_POST['Orario']))
             $value = $_POST['Orario'];
+        return $value;
+    }
+
+    public function getOrarioClose(){
+        $value = null;
+        if (isset($_POST['close']))
+            $value = $_POST['close'];
         return $value;
     }
 

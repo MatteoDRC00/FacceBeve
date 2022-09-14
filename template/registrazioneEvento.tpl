@@ -28,13 +28,6 @@
 
     <!-- Template Main CSS File -->
     <link href="/template/css/style.css" rel="stylesheet">
-
-    <!-- =======================================================
-    * Template Name: Moderna - v4.9.1
-    * Template URL: https://bootstrapmade.com/free-bootstrap-template-corporate-moderna/
-    * Author: BootstrapMade.com
-    * License: https://bootstrapmade.com/license/
-    ======================================================== -->
 </head>
 
 <body>
@@ -71,28 +64,25 @@
         <div class="container">
             <div class="row">
                 <div class="col-6 bg-white px-3 mb-3 pb-3">
-                    <form action="" method="POST" class="aggiorna">
-                        <p>PER CREARE UN EVENTO INSERISCI QUESTE INFORMAZIONI</p>
+                    <form action=""  enctype="multipart/form-data" method="POST" class="aggiorna" name="registrazioneEvento" onsubmit="return validateRegForm(3)">
+                        <p>Inserisci informazioni sul Evento</p>
                         <div class="form-example">
                             <label style="font-weight: bold">Inserisci il nome: </label><br>
-                            <input type="text" name="nome_evento">
+                            <input type="text" name="nomeEvento">
                         </div>
                         <div class="form-example">
                             <label style="font-weight: bold">Inserisci la descrizione: </label><br>
-                            <textarea type="text" name="desc_evento"></textarea>
+                            <textarea type="text" name="descrizioneEvento"></textarea>
                         </div>
                         <div class="form-example">
                             <label style="font-weight: bold">Inserisci la data: </label><br>
-                            <input type="date" name="data_evento">
+                            <input type="date" name="dataEvento">
+                        </div>
+                        <div class="col-6 bg-white px-3 pb-2">
+                            <p>AGGIUNGI LA LOCANDINA</p>
+                            <input name="imgEvento" class="w-50 p-2 m-2" type="file"><br>
                         </div>
                         <button type="submit" class="btnAggiorna">INSERISCI <i class="fa fa-refresh"></i></button>
-                    </form>
-                </div>
-                <div class="col-6 bg-white px-3 pb-2">
-                    <form action="" enctype="multipart/form-data" method="POST" class="aggiorna"> <!-- aggiungi i controlli -->
-                        <p>AGGIUNGI LA LOCANDINA</p>
-                        <input name="img" class="w-50 p-2 m-2" type="file"><br>
-                        <button type="submit" class="btnAggiorna">AGGIUNGI <i class="fa fa-refresh"></i></button>
                     </form>
                 </div>
             </div>
