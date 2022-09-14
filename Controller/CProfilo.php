@@ -338,7 +338,6 @@ class CProfilo{
             if($classE == "EUtente"){
                 $utente = $pm->load("username", $username, $class);
                 $locali_preferiti = $pm->getLocaliPreferiti($username);
-
                 $view = new VProfilo();
                 $view->mostraProfiloUtente($utente, $locali_preferiti);
             }elseif($classE == "EProprietario"){

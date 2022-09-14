@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-14 12:12:34
+/* Smarty version 4.2.0, created on 2022-09-14 17:17:22
   from 'C:\xampp\htdocs\FacceBeve\template\areaPersonaleUtente.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_6321a912abd4c4_88830654',
+  'unifunc' => 'content_6321f0820c8169_89332650',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '7757a365921f193a5e1677eb3c4671e453775876' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\areaPersonaleUtente.tpl',
-      1 => 1663150265,
+      1 => 1663168639,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6321a912abd4c4_88830654 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6321f0820c8169_89332650 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -181,29 +181,19 @@ function content_6321a912abd4c4_88830654 (Smarty_Internal_Template $_smarty_tpl)
                     <div class="row">
 
                         <div class="entries">
-                            <?php if (!empty($_smarty_tpl->tpl_vars['locali']->value)) {?>
+                            <?php if (!empty($_smarty_tpl->tpl_vars['locali_preferiti']->value)) {?>
                                 <?php
-$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['locali']->value, 'locale');
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['locali_preferiti']->value, 'locale');
 $_smarty_tpl->tpl_vars['locale']->do_else = true;
 if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['locale']->value) {
 $_smarty_tpl->tpl_vars['locale']->do_else = false;
 ?>
                                     <article class="entry">
-                                        <div class="entry-img">
-                                            <img src="/template/img/blog/blog-1.jpg" alt="" class="img-fluid">
-                                        </div>
-                                        <h2 class="entry-title">
-                                            <a href="infoLocale.html">Locale 1</a>
-                                        </h2>
-                                        <div class="entry-meta">
-                                            <ul>
-                                                <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="">$Proprietario</a></li>
-                                                <li class="d-flex align-items-center"><i class="fas fa-map-marker-alt"></i> <a href="">$Localizzazione</a></li>
-                                            </ul>
-                                        </div>
-
                                         <div class="entry-content">
-                                            <p>$descrizione</p>
+                                            <h2 class="entry-title"><?php echo $_smarty_tpl->tpl_vars['locale']->value['nome'];?>
+</h2>
+                                            <p><?php echo $_smarty_tpl->tpl_vars['locale']->value['descrizione'];?>
+</p>
                                             <div class="read-more">
                                                 <a href="infoLocale.html">Visita il locale <i class="fas fa-chevron-circle-right"></i></a>
                                             </div>
