@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-14 10:58:18
+/* Smarty version 4.2.0, created on 2022-09-14 17:21:42
   from 'C:\xampp1\htdocs\FacceBeve\template\login.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_632197aaafab56_08311227',
+  'unifunc' => 'content_6321f186265af1_01740560',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '6591425132789f1bc238b58ee6d06e7872e5294b' => 
     array (
       0 => 'C:\\xampp1\\htdocs\\FacceBeve\\template\\login.tpl',
-      1 => 1663145163,
+      1 => 1663168899,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_632197aaafab56_08311227 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6321f186265af1_01740560 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <!--<?php $_smarty_tpl->_assignInScope('error', (($tmp = $_smarty_tpl->tpl_vars['error']->value ?? null)===null||$tmp==='' ? 'ok' ?? null : $tmp));?>-->
 <html lang="it">
@@ -83,8 +83,11 @@ function content_632197aaafab56_08311227 (Smarty_Internal_Template $_smarty_tpl)
             <input type="text" placeholder="username" name="username">
             <input type="password" placeholder="password" name="password"/>
             <button  type="submit" >Login</button>
-            <p class="message">Non sei ancora registrato?<a href="registrazioneUtente.html">Crea un account utente</a></p>
-            <p class="message">Hai bisogno di pubblicizzare il tuo locale?<a href="registrazioneProprietario.html">Crea un account proprietario</a></p>
+            <p class="message">Non sei ancora registrato?</p>
+            <a href="/Accesso/formRegistrazioneUtente" style="font-size: 12px">Crea un account utente</a>
+
+            <p class="message">Hai bisogno di pubblicizzare il tuo locale?</p>
+            <a href="/Accesso/formRegistrazioneProprietario" style="font-size: 12px">Crea un account proprietario</a>
         </form>
     </div>
 </div>

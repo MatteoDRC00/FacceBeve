@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-14 10:48:57
+/* Smarty version 4.2.0, created on 2022-09-14 16:10:51
   from 'C:\xampp1\htdocs\FacceBeve\template\registrazioneUtente.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_632195792d8003_07356947',
+  'unifunc' => 'content_6321e0eb66ee15_38115135',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '6349d6990fd2c297ff6daa77a31a99500a33be91' => 
     array (
       0 => 'C:\\xampp1\\htdocs\\FacceBeve\\template\\registrazioneUtente.tpl',
-      1 => 1663145163,
+      1 => 1663164237,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_632195792d8003_07356947 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6321e0eb66ee15_38115135 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <!--<?php $_smarty_tpl->_assignInScope('error', (($tmp = $_smarty_tpl->tpl_vars['error']->value ?? null)===null||$tmp==='' ? 'ok' ?? null : $tmp));?> -->
 <html lang="it">
@@ -73,8 +73,8 @@ function content_632195792d8003_07356947 (Smarty_Internal_Template $_smarty_tpl)
             <input type="text" class="form-control" placeholder="cognome" name="cognome" pattern="[a-zA-Z]+\"/>
             <input type="text" placeholder="email" name="email"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="Deve essere inclusa una chiocciola @ essendo un email"/>
             <input type="text" placeholder="username" name="username"/>
-            <input type="password" placeholder="password"  name="password"pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="La password deve contenere almeno 8 caratteri, di cui almeno una lettera maiuscola"/>
-            <input type="password" placeholder="Ripeti password" name="password2"pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="La password deve contenere almeno 8 caratteri, di cui almeno una lettera maiuscola"/>
+            <input type="password" placeholder="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="La password deve contenere almeno 8 caratteri, di cui almeno una lettera maiuscola"/>
+            <input type="password" placeholder="Ripeti password" name="password2" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="La password deve contenere almeno 8 caratteri, di cui almeno una lettera maiuscola"/>
             <h1>Aggiungi l'immagine di profilo</h1>
             <input name="img_profilo" class="p-2" type="file">
             <button type="submit">Registrati</button>

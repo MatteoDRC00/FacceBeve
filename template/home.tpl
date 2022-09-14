@@ -58,7 +58,7 @@
             </div>
         {elseif $tipo=='EProprietario'}
             <div class="sign">
-                <a href="/Profilo/mostraProfilo">Area Personale Ciccarelli</a>
+                <a href="/Profilo/mostraProfilo">Area Personale</a>
                 <a href="/Accesso/logout">Logout</a>
             </div>
         {/if}

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-14 11:04:52
+/* Smarty version 4.2.0, created on 2022-09-14 17:52:10
   from 'C:\xampp1\htdocs\FacceBeve\template\areaPersonaleUtente.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_63219934b47030_68933572',
+  'unifunc' => 'content_6321f8aa4042d4_92729803',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'bcbfe61f3d266fe67960316d6441abf53b7bde37' => 
     array (
       0 => 'C:\\xampp1\\htdocs\\FacceBeve\\template\\areaPersonaleUtente.tpl',
-      1 => 1663146284,
+      1 => 1663170727,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_63219934b47030_68933572 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6321f8aa4042d4_92729803 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -53,13 +53,6 @@ function content_63219934b47030_68933572 (Smarty_Internal_Template $_smarty_tpl)
 
     <!-- Template Main CSS File -->
     <link href="/template/css/style.css" rel="stylesheet">
-
-    <!-- =======================================================
-    * Template Name: Moderna - v4.9.1
-    * Template URL: https://bootstrapmade.com/free-bootstrap-template-corporate-moderna/
-    * Author: BootstrapMade.com
-    * License: https://bootstrapmade.com/license/
-    ======================================================== -->
 </head>
 
 <body>
@@ -146,11 +139,11 @@ function content_63219934b47030_68933572 (Smarty_Internal_Template $_smarty_tpl)
                                 <p>Modifica la password</p>
                                 <div class="form-example">
                                     <label>Inserisci la vecchia password: </label><br>
-                                    <input type="text" name="password" id="password" required>
+                                    <input type="password" name="password" id="password" required>
                                 </div>
                                 <div class="form-example">
                                     <label>Inserisci la nuova password: </label><br>
-                                    <input type="text" name="newpassword" id="newpassword" required>
+                                    <input type="password" name="newpassword" id="newpassword" required>
                                 </div>
                                 <button type="submit" class="btnAggiorna">Modifica password</button>
                             </form>
@@ -178,53 +171,36 @@ function content_63219934b47030_68933572 (Smarty_Internal_Template $_smarty_tpl)
             <div id="blog" class="blog">
                 <div class="container" data-aos="fade-up">
 
-                    <div class="row">
+                    <div class="row" style="color: #f0c040">
 
                         <div class="entries">
-                            <?php if (!empty($_smarty_tpl->tpl_vars['locali']->value)) {?>
+                            <?php if (!empty($_smarty_tpl->tpl_vars['locali_preferiti']->value)) {?>
                                 <?php
-$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['locali']->value, 'locale');
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['locali_preferiti']->value, 'locale');
 $_smarty_tpl->tpl_vars['locale']->do_else = true;
 if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['locale']->value) {
 $_smarty_tpl->tpl_vars['locale']->do_else = false;
 ?>
                                     <article class="entry">
-                                        <div class="entry-img">
-                                            <img src="/template/img/blog/blog-1.jpg" alt="" class="img-fluid">
-                                        </div>
-                                        <h2 class="entry-title">
-                                            <a href="infoLocale.html">Locale 1</a>
-                                        </h2>
-                                        <div class="entry-meta">
-                                            <ul>
-                                                <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="">$Proprietario</a></li>
-                                                <li class="d-flex align-items-center"><i class="fas fa-map-marker-alt"></i> <a href="">$Localizzazione</a></li>
-                                            </ul>
-                                        </div>
-
                                         <div class="entry-content">
-                                            <p>$descrizione</p>
+                                            <a href="" style="font-size: 20px"><?php echo $_smarty_tpl->tpl_vars['locale']->value['nome'];?>
+ <i class="fa fa-angle-right"></i></a>
                                             <div class="read-more">
-                                                <a href="infoLocale.html">Visita il locale <i class="fas fa-chevron-circle-right"></i></a>
+                                                <a href="/GestioneLocale/infoLocale">Visita il locale <i class="fas fa-chevron-circle-right"></i></a>
                                             </div>
                                         </div>
 
-                                    </article><!-- End blog entry -->
+                                    </article>
                                 <?php
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                             <?php } else { ?>
                                 <p>Non possiedi locali preferiti</p>
                             <?php }?>
-
-
-
-
                         </div>
                     </div>
-
                 </div>
-            </div><!-- End Blog Section -->
+            </div>
 
         </div>
     </section>

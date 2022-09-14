@@ -75,6 +75,7 @@ class CAccesso
             self::erroreLogin($tipo);
         } else {
             $user = $pm->verificaLogin($usernameLogin, $passwordLogin);
+            echo $user." ok ";
             if ($user != null) {
                 $sessione = new USession();
                 $sessione->imposta_valore('utente', $user->getUsername());

@@ -82,7 +82,7 @@ class CGestioneLocale
         $nazione = $view->getNazione();
         $CAP = $view->getCAP();
         $localizzazioneLocale = new ELocalizzazione($indirizzo, $numeroCivico, $citta, $nazione, $CAP);
-        pm->store($localizzazioneLocale);
+        $pm->store($localizzazioneLocale);
         //
 
         //ORARIO
@@ -104,7 +104,7 @@ class CGestioneLocale
             }
             $Orario[] = $orario;
         }
-        pm->store($Orario);
+        $pm->store($Orario);
         $genere_cat = $pm->getCategorie();
 
         $Locale = new ELocale($nomeLocale, $descrizione, $numTelefono, $proprietario, $categoria, $localizzazioneLocale, null, $Orario);

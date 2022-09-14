@@ -139,17 +139,16 @@
             <div id="blog" class="blog">
                 <div class="container" data-aos="fade-up">
 
-                    <div class="row">
+                    <div class="row" style="color: #f0c040">
 
                         <div class="entries">
                             {if !empty($locali_preferiti)}
                                 {foreach $locali_preferiti as $locale}
                                     <article class="entry">
                                         <div class="entry-content">
-                                            <h2 class="entry-title">{$locale.nome}</h2>
-                                            <p>{$locale.descrizione}</p>
+                                            <a href="" style="font-size: 20px">{$locale.nome} <i class="fa fa-angle-right"></i></a>
                                             <div class="read-more">
-                                                <a href="infoLocale.html">Visita il locale <i class="fas fa-chevron-circle-right"></i></a>
+                                                <a href="/GestioneLocale/infoLocale">Visita il locale <i class="fas fa-chevron-circle-right"></i></a>
                                             </div>
                                         </div>
 

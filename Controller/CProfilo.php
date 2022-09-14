@@ -75,7 +75,7 @@ class CProfilo{
                         $user->setPassword($newpassword);
                         $pm->update(get_class($user),"password", $newpassword,"username",$username);
                     }else{
-                        $message = "La password inserita è identica a quello precedente, si prega di scriverne un'altra";
+                        $message = "La password inserita è identica a quella precedente, si prega di scriverne un'altra";
                         $tipo="password";
                         self::erroreModifica($tipo,$message,$user);
                     }

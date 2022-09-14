@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-13 15:51:48
+/* Smarty version 4.2.0, created on 2022-09-14 12:07:54
   from 'C:\xampp1\htdocs\FacceBeve\template\registrazioneProprietario.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_63208af4af8534_47454761',
+  'unifunc' => 'content_6321a7fad0b164_22928520',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'b5d300fe6bafc3ba1750786a993044c155dbb9ac' => 
     array (
       0 => 'C:\\xampp1\\htdocs\\FacceBeve\\template\\registrazioneProprietario.tpl',
-      1 => 1663076299,
+      1 => 1663145163,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_63208af4af8534_47454761 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6321a7fad0b164_22928520 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <!-- <?php $_smarty_tpl->_assignInScope('error', (($tmp = $_smarty_tpl->tpl_vars['error']->value ?? null)===null||$tmp==='' ? 'ok' ?? null : $tmp));?> -->
 <html lang="it">
@@ -70,13 +70,14 @@ function content_63208af4af8534_47454761 (Smarty_Internal_Template $_smarty_tpl)
 
 <div class="login-page">
     <div class="form">
-        <form class="login-form" action="/Accesso/registrazioneProprietario" enctype="multipart/form-data" method="POST">
+        <form class="login-form" action="/Accesso/registrazioneProprietario" enctype="multipart/form-data" method="POST" name="registrazioneProprietario" onsubmit="return validateRegForm(1)" >
             <h1 style="font-weight: bold">Registrati come proprietario di locali</h1>
             <input type="text" class="form-control" placeholder="nome" name="nome" pattern="[a-zA-Z]+\"/>
             <input type="text" class="form-control" placeholder="cognome" name="cognome" pattern="[a-zA-Z]+\"/>
-            <input type="text" placeholder="email" name="email">
-            <input type="text" placeholder="username" name="username">
-            <input type="password" placeholder="password" name="password"/>
+            <input type="text" placeholder="email" name="email"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="Deve essere inclusa una chiocciola @ essendo un email"/>
+            <input type="text" placeholder="username" name="username"/>
+            <input type="password" placeholder="password"  name="password"pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="La password deve contenere almeno 8 caratteri, di cui almeno una lettera maiuscola"/>
+            <input type="password" placeholder="Ripeti password" name="password2"pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="La password deve contenere almeno 8 caratteri, di cui almeno una lettera maiuscola"/>
             <h1>Aggiungi l'immagine di profilo</h1>
             <input name="img_profilo" class="p-2" type="file">
             <button type="submit">Registrati</button>

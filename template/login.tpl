@@ -59,8 +59,11 @@
             <input type="text" placeholder="username" name="username">
             <input type="password" placeholder="password" name="password"/>
             <button  type="submit" >Login</button>
-            <p class="message">Non sei ancora registrato?<a href="registrazioneUtente.html">Crea un account utente</a></p>
-            <p class="message">Hai bisogno di pubblicizzare il tuo locale?<a href="registrazioneProprietario.html">Crea un account proprietario</a></p>
+            <p class="message">Non sei ancora registrato?</p>
+            <a href="/Accesso/formRegistrazioneUtente" style="font-size: 12px">Crea un account utente</a>
+
+            <p class="message">Hai bisogno di pubblicizzare il tuo locale?</p>
+            <a href="/Accesso/formRegistrazioneProprietario" style="font-size: 12px">Crea un account proprietario</a>
         </form>
     </div>
 </div>
