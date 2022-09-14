@@ -112,19 +112,19 @@ class CRicerca{
         //$id = $result->getId();
         $recensioni = $pm->load("locale",$id,"FRecensione");
         if (is_array($recensioni)) {
-            $util = array();
+            $risposte = array();
             $sum = 0;
             foreach ($recensioni as $item) {
                 $id = $item->getId();
                 $sum += $item->getVoto();
                 //Vettore bi-dimensionale dove le righe sono le recensioni e le colonne le risposte(o viceversa?)
                 //$risposte = $pm->load("recensione",$id,"FRisposta");
-                $util[$item] = $pm->load("recensione", $id, "FRisposta"); //-->Ogni elemento ha la recensione e le risposte associate a tale recensione
+                $risposte[] = $pm->load("recensione", $id, "FRisposta"); //-->Ogni elemento ha la recensione e le risposte associate a tale recensione
             }
             $rating=$sum/(count($recensioni));
         }else{
             $rating=$recensioni->getVoto();
-            $util[$recensioni]=$pm->load("recensione",$id,"FRisposta");
+            $risposte=$pm->load("recensione",$id,"FRisposta");
         }
         if($sessione->leggi_valore('utente')){
             $utente = unserialize($sessione->leggi_valore('utente'));
@@ -141,7 +141,7 @@ class CRicerca{
         }
 
         //$this->smarty->assign('recensioniLocale', $recensioni);
-         $vRicerca->dettagliLocale($result,$util,$rating);
+         $vRicerca->dettagliLocale($result,$recensioni,$risposte,$rating);
     }
 
 

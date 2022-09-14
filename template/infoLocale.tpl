@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 {assign var='locale' value=$locale}
+{assign var='arrayRecensioni' value=$arrayRecensioni}
+{assign var='nrece' value=$nrece}
+{assign var='arrayRisposte' value=$arrayRisposte}
+{assign var='userlogged' value=$userlogged|default:'nouser'}
 <script>
     function change(){
         var elem = document.getElementById("pref");
@@ -8,7 +12,6 @@
         else elem.value = "Aggiungi ai preferiti";
     }
 </script>
-
 
 <head>
     <meta charset="utf-8">
@@ -58,12 +61,9 @@
 
 <main id="main">
 
-    <!-- ======= Portfolio Details Section ======= -->
     <section id="portfolio-details" class="portfolio-details">
         <div class="container">
-
             <div class="row gy-4">
-
                 <div class="col-lg-8">
                     <div class="portfolio-details-slider swiper">
                         <h2>{$Nome_locale}</h2>
@@ -76,203 +76,100 @@
                                 <i class="far fa-star"></i>
                             </div>
                         </div>
-                        <div class="swiper-wrapper align-items-center">
-
-                            <div class="swiper-slide">
-                                <img src="/template/img/portfolio/portfolio-1.jpg" alt="">
-                            </div>
-
-                            <div class="swiper-slide">
-                                <img src="/template/img/portfolio/portfolio-2.jpg" alt="">
-                            </div>
-
-                            <div class="swiper-slide">
-                                <img src="/template/img/portfolio/portfolio-3.jpg" alt="">
-                            </div>
-
-                        </div>
+                        {if $locale->getImmagini() != null}
+                            {foreach $locale->getImmagini() as $item}
+                                <div class="swiper-wrapper align-items-center">
+                                    <div class="swiper-slide">
+                                        <img src="data:{$item->getType()};base64,{$item->getImmagine()}" alt="Immagine locale">
+                                    </div>
+                                </div>
+                            {/foreach}
+                        {/if}
                         <div class="swiper-pagination"></div>
                     </div>
                 </div>
-
                 <div class="col-lg-4">
                     <div class="portfolio-info">
                         <h3>Informazioni sul locale</h3>
                         <ul>
                             <li><strong>Indirizzo</strong>:{$locale->getLocalizzazione()->getIndirizzo()},{$locale->getLocalizzazione()->getNumCivico()}</li>
-                            <li><strong>Categorie</strong>: 01 March, 2020</li>
-                            <li><strong>Descrizione</strong>: ubruebvuerbver bcuerbvuerbvc erbcuervcer vherber uec ervre veru vhre urevcr ev </li>
+                            <li><strong>Citt&agrave</strong>:{$locale->getLocalizzazione()->getCitta()}, CAP:{$locale->getLocalizzazione()->getCAP()}</li>
+                            <li><strong>Categorie</strong>:{$locale->getCategorie()}</li>
+                            <li><strong>Descrizione</strong>:{$locale->getDescrizione()} </li>
                         </ul>
                     </div>
-
-                    <div class="portfolio-details-slider swiper">
-                        <br>
-                        <h4><strong>Eventi organizzati:</strong></h4>
-                        <div class="swiper-wrapper align-items-center">
-
-                            <div class="portfolio-info swiper-slide">
-                                <h3>$Nome_Evento 1</h3>
-                                <ul>
-                                    <li><strong>Data</strong>: oggi</li>
-                                    <li><strong>Descrizione</strong>: ubruebvuerbver bcuerbvuerbvc erbcuervcer vherber uec ervre veru vhre urevcr ev </li>
-                                </ul>
+                    {if $userLogged != 'nouser'}
+                        {if $locale->getEventiOrganizzati() != null}
+                            <div class="portfolio-details-slider swiper">
+                                <br>
+                                <h4><strong>Eventi organizzati:</strong></h4>
+                                {foreach $locale->getEventiOrganizzati() as $evento}
+                                    <div class="portfolio-info swiper-slide">
+                                        <h3>{$evento->getNome()}</h3>
+                                        <ul>
+                                            <li><strong>Data</strong>: {$evento->getData()}.</li>
+                                            <li><strong>Descrizione</strong>: {$evento->getDescrizione()}</li>
+                                        </ul>
+                                    </div>
+                                    <img class="photo" src="data:{$evento->getImg()->getType()};base64,{$evento->getImg()->getImmagine()}" alt="Poster evento">
+                                {/foreach}
+                                {else}
+                                <p>Non ci sono ancora eventi organizzati</p>
+                                <!--   <div class="swiper-pagination"></div>-->
                             </div>
-
-                            <div class="portfolio-info swiper-slide">
-                                <h3>$Nome_Evento 2</h3>
-                                <ul>
-                                    <li><strong>Data</strong>: domani</li>
-                                    <li><strong>Descrizione</strong>: ubruebvuerbver bcuerbvuerbvc erbcuervcer vherber uec ervre veru vhre urevcr ev </li>
-                                </ul>
-                            </div>
-
-                            <div class="portfolio-info swiper-slide">
-                                <h3>$Nome_Evento 3</h3>
-                                <ul>
-                                    <li><strong>Data</strong>: dopodomani</li>
-                                    <li><strong>Descrizione</strong>: ubruebvuerbver bcuerbvuerbvc erbcuervcer vherber uec ervre veru vhre urevcr ev </li>
-                                </ul>
-                            </div>
-
-                        </div>
-                        <div class="swiper-pagination"></div>
-                    </div>
+                        {/if}
+                    {else}
+                        <p>Questa sezione è dedicata agli utenti iscritti, accedi o registrati per non perderti gli eventi dei tuoi locali preferiti</p>
+                    {/if}
                 </div>
-
-
-
             </div>
-
         </div>
-    </section><!-- End Portfolio Details Section -->
+    </section>
 
     <section id="blog" class="blog">
         <div class="container" data-aos="fade-up">
-
             <div class="row">
-
                 <div class="col-lg-8 entries">
-
                     <div class="blog-comments">
-
-                        <h4 class="comments-count">8 Comments</h4>
-
-                        <div id="comment-1" class="comment">
-                            <div class="d-flex">
-                                <div class="comment-img"><img src="/template/img/blog/comments-1.jpg" alt=""></div>
-                                <div>
-                                    <h5><a href="">Georgia Reader</a> <a href="#" class="reply"><i
-                                                    class="bi bi-reply-fill"></i> Reply</a></h5>
-                                    <time datetime="2020-01-01">01 Jan, 2020</time>
-                                    <p>
-                                        Et rerum totam nisi. Molestiae vel quam dolorum vel voluptatem et et. Est ad aut
-                                        sapiente quis molestiae est qui cum soluta.
-                                        Vero aut rerum vel. Rerum quos laboriosam placeat ex qui. Sint qui facilis et.
-                                    </p>
-                                </div>
-                            </div>
-                        </div><!-- End comment #1 -->
-
-                        <div id="comment-2" class="comment">
-                            <div class="d-flex">
-                                <div class="comment-img"><img src="/template/img/blog/comments-2.jpg" alt=""></div>
-                                <div>
-                                    <h5><a href="">Aron Alvarado</a> <a href="#" class="reply"><i
-                                                    class="bi bi-reply-fill"></i> Reply</a></h5>
-                                    <time datetime="2020-01-01">01 Jan, 2020</time>
-                                    <p>
-                                        Ipsam tempora sequi voluptatem quis sapiente non. Autem itaque eveniet saepe.
-                                        Officiis illo ut beatae.
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div id="comment-reply-1" class="comment comment-reply">
-                                <div class="d-flex">
-                                    <div class="comment-img"><img src="/template/img/blog/comments-3.jpg" alt=""></div>
-                                    <div>
-                                        <h5><a href="">Lynda Small</a> <a href="#" class="reply"><i
-                                                        class="bi bi-reply-fill"></i> Reply</a></h5>
-                                        <time datetime="2020-01-01">01 Jan, 2020</time>
-                                        <p>
-                                            Enim ipsa eum fugiat fuga repellat. Commodi quo quo dicta. Est ullam
-                                            aspernatur ut vitae quia mollitia id non. Qui ad quas nostrum rerum sed
-                                            necessitatibus aut est. Eum officiis sed repellat maxime vero nisi natus.
-                                            Amet nesciunt nesciunt qui illum omnis est et dolor recusandae.
-
-                                            Recusandae sit ad aut impedit et. Ipsa labore dolor impedit et natus in
-                                            porro aut. Magnam qui cum. Illo similique occaecati nihil modi eligendi.
-                                            Pariatur distinctio labore omnis incidunt et illum. Expedita et dignissimos
-                                            distinctio laborum minima fugiat.
-
-                                            Libero corporis qui. Nam illo odio beatae enim ducimus. Harum reiciendis
-                                            error dolorum non autem quisquam vero rerum neque.
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <div id="comment-reply-2" class="comment comment-reply">
+                        <h4 class="comments-count">Area Recensioni:</h4>
+                        {if $arrayRecensioni !=  null}
+                            {for $i=0 to ($nrece-1)}
+                                <div id="comment-1" class="comment">
                                     <div class="d-flex">
-                                        <div class="comment-img"><img src="/template/img/blog/comments-4.jpg" alt=""></div>
+                                        <div class="comment-img"><img src="data:{$arrayRecensioni[$i]->getUtente()->getImgProfilo()->getType()};base64,{$arrayRecensioni[$i]->getUtente()->getImgProfilo()->getImmagine()}" alt="Immagine profilo utente"></div>
                                         <div>
-                                            <h5><a href="">Sianna Ramsay</a> <a href="#" class="reply"><i
-                                                            class="bi bi-reply-fill"></i> Reply</a></h5>
-                                            <time datetime="2020-01-01">01 Jan, 2020</time>
-                                            <p>
-                                                Et dignissimos impedit nulla et quo distinctio ex nemo. Omnis quia
-                                                dolores cupiditate et. Ut unde qui eligendi sapiente omnis ullam.
-                                                Placeat porro est commodi est officiis voluptas repellat quisquam
-                                                possimus. Perferendis id consectetur necessitatibus.
-                                            </p>
+                                            <h5><a href="">{$arrayRecensioni[$i]->getUtente()->getUsername()}</a> <a href="#" class="reply"><i
+                                                            class="bi bi-reply-fill"></i> Risposta</a></h5>
+                                            <h5>{$arrayRecensioni[$i]->getData()}</h5>
+                                            <h2>{$arrayRecensioni[$i]->getTitolo()}</h2>
+                                            <p>{$arrayRecensioni[$i]->getDescrizione()}</p>
                                         </div>
                                     </div>
-
-                                </div><!-- End comment reply #2-->
-
-                            </div><!-- End comment reply #1-->
-
-                        </div><!-- End comment #2-->
-
-                        <div id="comment-3" class="comment">
-                            <div class="d-flex">
-                                <div class="comment-img"><img src="/template/img/blog/comments-5.jpg" alt=""></div>
-                                <div>
-                                    <h5><a href="">Nolan Davidson</a> <a href="#" class="reply"><i
-                                                    class="bi bi-reply-fill"></i> Reply</a></h5>
-                                    <time datetime="2020-01-01">01 Jan, 2020</time>
-                                    <p>
-                                        Distinctio nesciunt rerum reprehenderit sed. Iste omnis eius repellendus quia
-                                        nihil ut accusantium tempore. Nesciunt expedita id dolor exercitationem
-                                        aspernatur aut quam ut. Voluptatem est accusamus iste at.
-                                        Non aut et et esse qui sit modi neque. Exercitationem et eos aspernatur. Ea est
-                                        consequuntur officia beatae ea aut eos soluta. Non qui dolorum voluptatibus et
-                                        optio veniam. Quam officia sit nostrum dolorem.
-                                    </p>
                                 </div>
-                            </div>
+                                {if $arrayRisposte[$i] != null}
+                                    <div id="comment-reply-1" class="comment comment-reply">
+                                        <div class="d-flex">
+                                            <div class="comment-img"><img src="data:{$arrayRisposte[$i]->getProprietario()->getImgProfilo()->getType()};base64,{$arrayRisposte[$i]->getProprietario()->getImgProfilo()->getImmagine()}" alt="Immagine profilo proprieario"></div>
+                                            <div>
+                                                <h5>{$arrayRisposte[$i]->getProprietario()->getUsername()}</h5>
+                                                <h5>{$arrayRisposte[$i]->getData()}</h5>
+                                                <p>{$arrayRisposte[$i]->getDescrizione()}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {/if}
+                            {/for}
+                        {else}
+                            <p>Non ci sono ancora recensioni per questo locale</p>
+                        {/if}
 
-                        </div><!-- End comment #3 -->
 
-                        <div id="comment-4" class="comment">
-                            <div class="d-flex">
-                                <div class="comment-img"><img src="/template/img/blog/comments-6.jpg" alt=""></div>
-                                <div>
-                                    <h5><a href="">Kay Duggan</a> <a href="#" class="reply"><i
-                                                    class="bi bi-reply-fill"></i> Reply</a></h5>
-                                    <time datetime="2020-01-01">01 Jan, 2020</time>
-                                    <p>
-                                        Dolorem atque aut. Omnis doloremque blanditiis quia eum porro quis ut velit
-                                        tempore. Cumque sed quia ut maxime. Est ad aut cum. Ut exercitationem non in
-                                        fugiat.
-                                    </p>
-                                </div>
-                            </div>
-
-                        </div><!-- End comment #4 -->
-
+<!--/\/\//\/\//\/\//\/\//\/\//\/\///////////////////////\\\\\\\\\\\\\\\\\/\/\//\/\//\/\//\/\//\/\//\/\/////\\\\\/\/\/\/\/\/\/\/\/\//\/\/\-->
+                        {if $userLogged != 'nouser'}
                         <div class="reply-form">
                             <h4>Scrivi una recensione</h4>
-                            <form action=""  method="POST">
+                            <form action=CGestioneRecensione/scrivi  method="POST">
+                                <input type="hidden" name="idLocale" value="$locale->getId()"/>
                                 <input type="hidden" name="nomeLocale" value="$locale->getNome()"/>
                                 <input type="hidden" name="localizzazione" value="$locale->getLocalizzazione()"/>
                                 <div class="row">
@@ -297,12 +194,11 @@
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Aggiungi recensione</button>
-
                             </form>
-
                         </div>
+                        {/if}
 
-                    </div><!-- End blog comments -->
+                    </div>
 
                 </div><!-- End blog entries list -->
 

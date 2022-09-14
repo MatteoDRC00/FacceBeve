@@ -152,8 +152,4 @@ class VGestioneRecensione{
         return $value;
     }
 
-    public function mostraRecensioniLocale($recensioni){
-
-    }
-
 }

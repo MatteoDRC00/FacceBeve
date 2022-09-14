@@ -97,6 +97,7 @@ class FPersistentManager {
      *  @param field , campo da caricare
      *  @param  val , valore da caricare
      *  @param  Fclass ,classe Foundation interessata
+     *  @return object|null
      */
     public function load($field, $val,$Fclass) {
         return $Fclass::loadByField($field,$val);
