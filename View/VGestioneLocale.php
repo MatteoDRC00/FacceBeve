@@ -54,30 +54,10 @@ class VGestioneLocale{
     }
 
 
-    /**
-     * Metodo richiamato quando un Proprietario crea un locale.
-     * In caso di errori nella compilazione dei campi del locale, verrÃ  ricaricata la stessa pagina con un messaggio esplicativo
-     * dell'errore commesso in fase di compilazione.
-     * @param $utente oggetto utente che effettua l'inserimento dei dati nei campi del locale
-     * @param $error codice di errore con svariati significati. In base al suo valore verrÃ  eventualmente visualizzato un messaggio
-     * di errore nella pagina di creazione del locale
-     * @throws SmartyException
-     */
-    public function showFormCreation($utente,$error, $categorie)
-    {
-        if (($utente->getUsername() == "admin") || ($utente->getUsername() == "Admin")) {
-            switch ($error) {
-                case "type" :
-                    $this->smarty->assign('errorType', "errore");
-                    break;
-                case "size" :
-                    $this->smarty->assign('errorSize', "errore");
-                    break;
-            }
-            $this->smarty->assign('userlogged', "loggato");
-            $this->smarty->assign('categorie', $categorie);
-            $this->smarty->display('infoLocale.tpl');
-        }
+
+    public function showFormCreaLocale($categorie){
+        $this->smarty->assign('categorie', $categorie);
+        $this->smarty->display('registrazioneLocale.tpl');
     }
 
 

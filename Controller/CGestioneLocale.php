@@ -35,23 +35,19 @@ class CGestioneLocale
     /**
      * @throws SmartyException
      */
-    public function formCreaLocale(){
-        $view = new VGestioneLocale();
+    public function mostraFormCreaLocale(){
         $sessione = new USession();
-        $pm = FPersistentManager::getInstance();
-        $genere_cat = $pm->getCategorie();
-        /**if($sessione->leggi_valore('utente')){
-            $proprietario = unserialize(($sessione->leggi_valore('utente')));
-            if(get_class($proprietario) == "EProprietario")
-                $view->showFormCreation($proprietario,null);
-            else
-                $view->showFormCreation($proprietario,'wrong_class');
+        if($sessione->isLogged() && $sessione->leggi_valore("tipo_utente")=="EProprietario"){
+            $view = new VGestioneLocale();
+            $pm = FPersistentManager::getInstance();
+            $genere_cat = $pm->getCategorie();
+            $view->showFormCreaLocale($genere_cat);
         }else{
-            $error = new VError();
-            $error->error(1); //401 -> Forbidden Access
-        }*/
-        $proprietario = unserialize(($sessione->leggi_valore('utente')));
-        $view->showFormCreation($proprietario,null, $genere_cat);
+            header("Location: /Ricerca/mostraHome");
+        }
+
+
+
     }
 
     /**
@@ -63,10 +59,9 @@ class CGestioneLocale
      * 3) se il metodo di richiesta HTTP è diverso da uno dei precedenti -->errore.
      * @throws SmartyException
      */
-    public static function creaLocale()
-    {
+    public static function creaLocale(){
         $sessione = new USession();
-        $pm = FPersistentManager::GetIstance();
+        $pm = FPersistentManager::getInstance();
         $proprietario = unserialize($sessione->leggi_valore('utente'));
 
         $view = new VGestioneLocale();
