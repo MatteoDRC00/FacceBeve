@@ -75,18 +75,18 @@ class CProfilo{
                     }else{
                         $message = "La password inserita è identica a quello precedente, si prega di scriverne un'altra";
                         $tipo="password";
-                        self::erroreModifica($tipo,$message);
+                        self::erroreModifica($tipo,$message,$user);
                     }
                 }else{
                     $message = "La password precedente inserita è sbagliata, si prega di riprovare";
                     $tipo="password";
-                    self::erroreModifica($tipo,$message);
+                    self::erroreModifica($tipo,$message,$user);
                 }
 
             }else{
                 $message = "Entrambi i campi devono essere pieni";
                 $tipo="password";
-                self::erroreModifica($tipo,$message);
+                self::erroreModifica($tipo,$message,$user);
             }
             header('Location: /Profilo/mostraProfilo');
         }else{
@@ -116,15 +116,15 @@ class CProfilo{
             if($username == $newusername){
                 $message = "L'username è identico a quello precedente";
                 $tipo="user";
-                self::erroreModifica($tipo,$message);
+                self::erroreModifica($tipo,$message,$user);
             }elseif($newusername == null) {
                 $message = "Si prega di inserire il nuovo username prima di cliccare sul tasto modifica";
                 $tipo="user";
-                self::erroreModifica($tipo,$message);
+                self::erroreModifica($tipo,$message,$user);
             }elseif($pm->exist("FUtente", "username", $newusername) || $pm->exist("FProprietario", "username", $newusername)){
                 $message = "L'username inserito esiste già, inserirne un altro";
                 $tipo="user";
-                self::erroreModifica($tipo,$message);
+                self::erroreModifica($tipo,$message,$user);
             }else{
                 $pm->update($class, "username", $newusername, "username", $username);
                 $user->setUsername($newusername);
@@ -163,7 +163,7 @@ class CProfilo{
                 }else{
                     $message = "La email inserita è identica a quella precedente, si prega di scriverne un'altra";
                     $tipo="email";
-                    self::erroreModifica($tipo,$message);
+                    self::erroreModifica($tipo,$message,$user);
                 }
             }else{
                 $message = "Entrambi i campi devono essere pieni";
@@ -385,9 +385,9 @@ class CProfilo{
         return array($type, $pic64);
     }
 
-    public function erroreModifica($tipo,$message): void {
+    public function erroreModifica ($tipo,$message,$user): void {
         $view = new VProfilo();
-        $view->errore($tipo,$message);
+        $view->errore($tipo,$message,$user);
     }
 
 }
