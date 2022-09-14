@@ -106,7 +106,7 @@ class CProfilo{
             $tipo = $sessione->leggi_valore('tipo_utente');
             $tipo[0] = "F";
             $class = $tipo;
-
+            $user = $pm->load("username", $username, $class);
 
             $newusername = $view->getNewUsername();
             if($username == $newusername){
@@ -120,6 +120,9 @@ class CProfilo{
                 echo "<script type='text/javascript'>alert('$message');</script>";
             }else{
                 $pm->update($class, "username", $newusername, "username", $username);
+                $user->setUsername($newusername);
+                $sessione->imposta_valore("utente", $user);
+                $sessione->imposta_valore("tipo_utente",get_class($user));
             }
             header("Location: /Profilo/mostraProfilo");
         }else{
