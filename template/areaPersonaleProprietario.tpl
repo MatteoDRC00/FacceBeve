@@ -64,7 +64,7 @@
             </div>
 
             <div class="gestioneutente">
-                <a href="/GestioneLocale/mostraFormCreaLocale">Aggiungi locale</a>
+                <a href="registrazioneLocale.html">Aggiungi locale</a>
                 <a href="#locali">I Tuoi Locali</a>
                 <a href="/Accesso/logout">Esci <i class="fa fa-sign-out"></i></a>
             </div>

@@ -31,14 +31,25 @@ class CGestioneEvento{
 
     /**
      * Funzione che viene richiamata per la creazione di un evento. Si possono avere diverse situazioni:
-     * se l'utente non è loggato  viene reindirizzato alla pagina di login perchè solo gli utenti loggati possono interagire con gli eventi.
-     * se l'utente è loggato come Proprietario(solo loro possono aggiungere eventi):
-     * 1) se il metodo di richiesta HTTP è GET viene visualizzato il form di creazione della ricerca;
-     * 2) se il metodo di richiesta HTTP è POST viene richiamata la funzione Creation().
-     * 3) se il metodo di richiesta HTTP è diverso da uno dei precedenti -->errore.
+
      * @throws SmartyException
      */
-    static function creaEvento()
+
+
+    public function mostraFormCreaEvento(){
+        $sessione = new USession();
+        if($sessione->isLogged() && $sessione->leggi_valore("tipo_utente")=="EProprietario"){
+            $view = new VGestioneEvento();
+            $pm = FPersistentManager::getInstance();
+            $view->showFormCreaEvento();
+        }else{
+            header("Location: /Ricerca/mostraHome");
+        }
+
+
+
+    }
+    /*static function creaEvento()
     {
         $sessione = new USession();
         $proprietario = unserialize($sessione->leggi_valore('utente'));
@@ -64,7 +75,7 @@ class CGestioneEvento{
             $pm->storeEsterne("FLocale",$media,$view->getIdLocale());
             header('Location: /Ricerca/dettaglioLocale'); //?
         }
-    }
+    }*/
 //----------------------------------CREAZIONE EVENTO------------------------------------------------------\\
 
 

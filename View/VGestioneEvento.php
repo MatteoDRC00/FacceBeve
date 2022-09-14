@@ -26,18 +26,9 @@ class VGestioneEvento{
      * di errore nella pagina di creazione del locale
      * @throws SmartyException
      */
-    public function showFormCreation($utente,$error)
+    public function showFormCreaEvento()
     {
-            switch ($error) {
-                case "type" :
-                    $this->smarty->assign('errorType', "errore");
-                    break;
-                case "size" :
-                    $this->smarty->assign('errorSize', "errore");
-                    break;
-            }
-            $this->smarty->assign('userlogged', "loggato");
-            $this->smarty->display('infoLocale.tpl'); //?
+        $this->smarty->display('registrazioneEvento.tpl');
     }
 
 
