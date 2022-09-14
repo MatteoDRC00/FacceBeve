@@ -54,7 +54,7 @@ DROP TABLE IF EXISTS `Admin`;
 CREATE TABLE `Admin` (
     `username` VARCHAR(24) NOT NULL,
     `email` VARCHAR(40) NOT NULL,
-    `password` VARCHAR(30) NOT NULL,
+    `password` CHAR(32) NOT NULL,
     PRIMARY KEY (`username`)
 );
 
