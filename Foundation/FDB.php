@@ -353,11 +353,9 @@ class FDB{
 	public function loadVerificaAccesso($username, $pass, $class){
 		try {
 			$query = "SELECT * FROM " . $class::getTable() . " WHERE username ='" . $username . "' AND password ='" . $pass . "';";
-			echo $query;
 			$stmt = $this->database->prepare($query);
 			$stmt->execute();
 			$num = $stmt->rowCount();
-			echo $num;
 			if ($num == 0) {
 				$result = null;        //nessuna riga interessata. return null
 			} elseif ($num == 1) {                          //nel caso in cui una sola riga fosse interessata

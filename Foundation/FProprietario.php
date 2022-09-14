@@ -86,8 +86,7 @@ class FProprietario{
         if(($result!=null) && ($num == 1)) {
             $proprietario = new EProprietario($result['nome'],$result['cognome'], $result['email'], $result['username'], $result['password']); //Carica un Proprietario dal database
             $proprietario->setImgProfilo(FImmagine::loadByField('id', $result['idImg']));
-        }
-        else {
+        }else{
             if(($result!=null) && ($num > 1)){
                 $proprietario = array();
         	    for($i=0; $i<count($result); $i++){
