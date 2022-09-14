@@ -82,6 +82,7 @@ class VRicerca
         return $value;
     }
 
+
     /**
      * Restituisce (se immesso) il valore del campo categoria di un locale
      * Inviato con metodo post
@@ -165,7 +166,7 @@ class VRicerca
      * @param array contiene l'id dell'array da visualizzare
      * @throws SmartyException
      */
-    public function dettagliLocale($result,$arrayRecensioni,$arrayRisposte,$votoMedio) {
+    public function dettagliLocale($result,$arrayRecensioni,$arrayRisposte,$valutazioneLocale,$proprietario) {
         $sessione = new USession();
         //Caricamento immagini del locale
         /*if (is_array($result->getImmagini())) {
@@ -201,7 +202,8 @@ class VRicerca
         $this->smarty->assign('arrayRecensioni', $arrayRecensioni);
         $this->smarty->assign('nrece', $nrece);
         $this->smarty->assign('arrayRisposte', $arrayRisposte);
-        $this->smarty->assign('valutazioneLocale', $votoMedio);
+        $this->smarty->assign('valutazioneLocale', $valutazioneLocale);
+        $this->smarty->assign('proprietario', $proprietario);
 
         if($sessione->leggi_valore('utente'))
             $this->smarty->assign('userlogged',"loggato"); //Potrà cosi visualizzare gli eventi

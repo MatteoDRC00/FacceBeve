@@ -118,7 +118,7 @@ class CGestioneRecensione{
             } elseif ($_SERVER['REQUEST_METHOD'] == "POST") {
                 $utente = unserialize($sessione->leggi_valore('utente'));
                 if (get_class($utente) == "EProprietario") {
-                    $pm = FPersistentManager::GetIstance();
+                    $pm = FPersistentManager::GetInstance();
                     $descrizione = $view->getDescrizioneRisposta();
                     if(isset($descrizione)){
                         $rec = $pm->load("id",$id,"FRecensione");

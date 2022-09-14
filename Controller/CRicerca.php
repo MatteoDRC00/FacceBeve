@@ -102,8 +102,9 @@ class CRicerca{
      *
      * @throws SmartyException
      */
-     static function dettagliLocale($id){
+     static function dettagliLocale(){
         $vRicerca = new VRicerca();
+        $id = $vRicerca->getIdLocale(); //in RisultatiRicerca
         $pm = FPersistentManager::GetInstance();
         $sessione = new USession();
         $result = $pm->load("id", $id, "FLocale");
@@ -117,8 +118,6 @@ class CRicerca{
             foreach ($recensioni as $item) {
                 $id = $item->getId();
                 $sum += $item->getVoto();
-                //Vettore bi-dimensionale dove le righe sono le recensioni e le colonne le risposte(o viceversa?)
-                //$risposte = $pm->load("recensione",$id,"FRisposta");
                 $risposte[] = $pm->load("recensione", $id, "FRisposta"); //-->Ogni elemento ha la recensione e le risposte associate a tale recensione
             }
             $rating=$sum/(count($recensioni));
@@ -127,21 +126,28 @@ class CRicerca{
             $risposte=$pm->load("recensione",$id,"FRisposta");
         }
         if($sessione->leggi_valore('utente')){
-            $utente = unserialize($sessione->leggi_valore('utente'));
-            if(get_class($utente)=="EUtente"){
+            if($sessione->leggi_valore('tipo_utente')=="EUtente"){
+                $proprietario=false;
+                $utente = $pm->load("id",$sessione->leggi_valore('utente'),"FUtente");
                 if($vRicerca->preferiti()){
                     $utente->addLocale($result);
-                    $pm->storeEsterne($utente);
+                    $pm->storeEsterne("FLocale",$utente,$id);
                 }else{
                     //Potrebbe dare errore
                     $utente->deleteLocale($result);
-                    $pm->deleteEsterne($utente);
+                    $pm->deleteEsterne("FLocale",$utente,$id);
                 }
+            }elseif($sessione->leggi_valore('tipo_utente')=="EProprietario"){
+                $check = $pm->exist("FLocale","proprietario",$sessione->leggi_valore('utente'));
+                if($check)
+                    $proprietario=true;
+                else
+                    $proprietario=false;
             }
         }
 
         //$this->smarty->assign('recensioniLocale', $recensioni);
-         $vRicerca->dettagliLocale($result,$recensioni,$risposte,$rating);
+         $vRicerca->dettagliLocale($result, $recensioni, $risposte, $rating, $proprietario);
     }
 
 

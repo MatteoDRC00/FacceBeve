@@ -3,6 +3,8 @@
 {assign var='locale' value=$locale}
 {assign var='arrayRecensioni' value=$arrayRecensioni}
 {assign var='nrece' value=$nrece}
+{assign var='proprietario' value=$proprietario}
+{assign var='valutazioneLocale' value=$valutazioneLocale}
 {assign var='arrayRisposte' value=$arrayRisposte}
 {assign var='userlogged' value=$userlogged|default:'nouser'}
 <script>
@@ -76,7 +78,7 @@
                                 <i class="far fa-star"></i>
                             </div>
                         </div>
-                        {if $locale->getImmagini() != null}
+                        {if !empty($locale->getImmagini())}
                             {foreach $locale->getImmagini() as $item}
                                 <div class="swiper-wrapper align-items-center">
                                     <div class="swiper-slide">
@@ -96,10 +98,11 @@
                             <li><strong>Citt&agrave</strong>:{$locale->getLocalizzazione()->getCitta()}, CAP:{$locale->getLocalizzazione()->getCAP()}</li>
                             <li><strong>Categorie</strong>:{$locale->getCategorie()}</li>
                             <li><strong>Descrizione</strong>:{$locale->getDescrizione()} </li>
+                            <li><strong>Valutazione</strong>:{$valutazioneLocale}/5</li>
                         </ul>
                     </div>
                     {if $userLogged != 'nouser'}
-                        {if $locale->getEventiOrganizzati() != null}
+                        {if !empty($locale->getEventiOrganizzati())}
                             <div class="portfolio-details-slider swiper">
                                 <br>
                                 <h4><strong>Eventi organizzati:</strong></h4>
@@ -132,7 +135,7 @@
                 <div class="col-lg-8 entries">
                     <div class="blog-comments">
                         <h4 class="comments-count">Area Recensioni:</h4>
-                        {if $arrayRecensioni !=  null}
+                        {if empty($arrayRecensioni)}
                             {for $i=0 to ($nrece-1)}
                                 <div id="comment-1" class="comment">
                                     <div class="d-flex">
@@ -157,6 +160,21 @@
                                             </div>
                                         </div>
                                     </div>
+                                {else}
+                                    {if $proprietario == true}
+                                        <div class="reply-form">
+                                            <h4>Scrivi una recensione</h4>
+                                            <form action=CGestioneRecensione/scrivi  method="POST" name="Risposta">
+                                                <input type="hidden" name="idRecensione" value="{$arrayRecensioni[$i]->getId()}"/>
+                                                <div class="row">
+                                                    <div class="col form-group">
+                                                          <textarea name="descrizioneRisposta" class="form-control" placeholder="Risposta"></textarea>
+                                                    </div>
+                                                </div>
+                                                <button type="submit" class="btn btn-primary">Rispondi</button>
+                                            </form>
+                                        </div>
+                                    {/if}
                                 {/if}
                             {/for}
                         {else}
@@ -168,7 +186,7 @@
                         {if $userLogged != 'nouser'}
                         <div class="reply-form">
                             <h4>Scrivi una recensione</h4>
-                            <form action=CGestioneRecensione/scrivi  method="POST">
+                            <form action=CGestioneRecensione/scriviRecensione  method="POST" name="Recensione">
                                 <input type="hidden" name="idLocale" value="$locale->getId()"/>
                                 <input type="hidden" name="nomeLocale" value="$locale->getNome()"/>
                                 <input type="hidden" name="localizzazione" value="$locale->getLocalizzazione()"/>
@@ -189,25 +207,22 @@
                                 </div>
                                 <div class="row">
                                     <div class="col form-group">
-                                        <textarea name="descrizione" class="form-control"
-                                                  placeholder="Descrizione"></textarea>
+                                        <textarea name="descrizioneRecensione" class="form-control" placeholder="Descrizione"></textarea>
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Aggiungi recensione</button>
                             </form>
                         </div>
                         {/if}
-
                     </div>
-
-                </div><!-- End blog entries list -->
+                </div>
 
             </div>
 
         </div>
-    </section><!-- End Blog Single Section -->
+    </section>
 
-</main><!-- End #main -->
+</main>
 
 <!-- ======= Footer ======= -->
 <footer id="footer" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
