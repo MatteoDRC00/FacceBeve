@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-14 10:56:51
+/* Smarty version 4.2.0, created on 2022-09-14 12:12:34
   from 'C:\xampp\htdocs\FacceBeve\template\areaPersonaleUtente.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_63219753f1a820_02795005',
+  'unifunc' => 'content_6321a912abd4c4_88830654',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '7757a365921f193a5e1677eb3c4671e453775876' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\areaPersonaleUtente.tpl',
-      1 => 1663145260,
+      1 => 1663150265,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_63219753f1a820_02795005 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6321a912abd4c4_88830654 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -114,7 +114,7 @@ function content_63219753f1a820_02795005 (Smarty_Internal_Template $_smarty_tpl)
                 <div class="col-md-7 ps-md-4">
                     <div class="row">
                         <div class="col-12 bg-white px-3 mb-3 pb-3">
-                            <?php if (!empty($_smarty_tpl->tpl_vars['tipo']->value) && $_smarty_tpl->tpl_vars['tipo']->value == "username") {?>
+                            <?php if (!empty($_smarty_tpl->tpl_vars['tipo']->value) && $_smarty_tpl->tpl_vars['tipo']->value == "user") {?>
                                 <h3 class="errore" style="font-family: Arial;color: yellow;font-size: 17px; text-align: center"><?php echo $_smarty_tpl->tpl_vars['message']->value;?>
 </h3>
                             <?php }?>

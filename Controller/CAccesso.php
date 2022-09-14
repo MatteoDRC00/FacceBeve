@@ -70,11 +70,9 @@ class CAccesso
 
         $usernameLogin = $view->getUsername();
         $passwordLogin = md5($view->getPassword());
-        echo $passwordLogin;
         if ($usernameLogin == null || $passwordLogin == null) {
             $tipo="vuoti";
             self::erroreLogin($tipo);
-
         } else {
             $user = $pm->verificaLogin($usernameLogin, $passwordLogin);
             echo $user." ok ";

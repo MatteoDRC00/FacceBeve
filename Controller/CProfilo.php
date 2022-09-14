@@ -67,7 +67,9 @@ class CProfilo{
             $newpassword = $view->getNewPassword();
 
             $user = $pm->load("username", $username, $class);
+
             if($password != null && $newpassword != null){
+
                 if(md5($password) == $user->getPassword()){
                     if($newpassword != $password){
                         $user->setPassword($newpassword);
@@ -199,14 +201,12 @@ class CProfilo{
                 $img_profilo->setId($id);
 
                 $user = $pm->load("username", $username, $class);
-                $img_vecchia = $user->getImgProfilo();
-                $id_imgvecchia = $img_vecchia->getId();
+                $id_imgvecchia = $user->getImgProfilo()->getId();
                 $pm->delete("id", $id_imgvecchia, "FImmagine");
 
                 $user->setImgProfilo($img_profilo);
 
                 $pm->update($class, "idImg", $id, "username", $username);
-            }else{
             }
             header('Location: /Profilo/mostraProfilo');
         }else{
