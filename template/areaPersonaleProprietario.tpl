@@ -91,6 +91,9 @@
                 <div class="col-md-7 ps-md-4">
                     <div class="row">
                         <div class="col-12 bg-white px-3 mb-3 pb-3">
+                            {if !empty($tipo) && $tipo=="user"}
+                                <h3 class="errore" style="font-family: Arial;color: yellow;font-size: 17px; text-align: center">{$message}</h3>
+                            {/if}
                             <form action="/Profilo/modificaUsername" method="POST" class="aggiorna">
                                 <p>Modifica l'username</p>
                                 <div class="form-example">
@@ -99,6 +102,9 @@
                                 </div>
                                 <button type="submit" class="btnAggiorna">Modifica username</button>
                             </form>
+                            {if !empty($tipo) && $tipo=="email"}
+                                <h3 class="errore" style="font-family: Arial;color: yellow;font-size: 17px; text-align: center">{$message}</h3>
+                            {/if}
                             <form action="/Profilo/modificaEmail" method="POST" class="aggiorna">
                                 <p>Modifica l'email</p>
                                 <div class="form-example">
@@ -107,6 +113,9 @@
                                 </div>
                                 <button type="submit" class="btnAggiorna">Modifica email</button>
                             </form>
+                            {if !empty($tipo) && $tipo=="password"}
+                                <h3 class="errore" style="font-family: Arial;color: yellow;font-size: 17px; text-align: center">{$message}</h3>
+                            {/if}
                             <form action="/Profilo/modificaPassword" method="POST" class="aggiorna">
                                 <p>Modifica la password</p>
                                 <div class="form-example">
