@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-15 21:41:16
+/* Smarty version 4.2.0, created on 2022-09-15 22:50:02
   from 'C:\xampp\htdocs\FacceBeve\template\home.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_63237fdce21f63_98222649',
+  'unifunc' => 'content_63238ffaca72b8_04989977',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c953834e2bd280dacf9fe734edc7529afcd03f09' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\home.tpl',
-      1 => 1663270862,
+      1 => 1663274994,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_63237fdce21f63_98222649 (Smarty_Internal_Template $_smarty_tpl) {
+function content_63238ffaca72b8_04989977 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <?php $_smarty_tpl->_assignInScope('genere_cat', $_smarty_tpl->tpl_vars['genere_cat']->value);
 $_smarty_tpl->_assignInScope('locali', $_smarty_tpl->tpl_vars['locali']->value);?>
@@ -103,11 +103,11 @@ $_smarty_tpl->_assignInScope('locali', $_smarty_tpl->tpl_vars['locali']->value);
                     </select>
                 </div>
                 <div class="ricerca animate__animated animate__fadeInDown" id="Locali" style="display: flex;justify-content: center;">
-                    <form class="Search" name="ricercaLocali1" onsubmit="return validateResearchForm(1)"  action="/Ricerca/ricerca" method="POST">
+                    <form class="Search" name="ricercaLocali1" id="ricercaLocali1" onsubmit="return validateResearchForm(1)"  action="/Ricerca/ricerca" method="POST">
                         <input class="homeinput" type="hidden" value="x" name="checkLocale" id="checkLocale">
                         <input class="homeinput" type="text" placeholder="Inserisci la città" name="citta1">
                         <input class="homeinput" type="text" placeholder="Inserisci il nome" name="nomeLocale1">
-                        <select  name="categorie1" style="border-radius:7px; height: 50px  ;">
+                        <select form="ricercaLocali1"  name="categorie1" style="border-radius:7px; height: 50px  ;">
                             <option>--Scegli il tipo--</option>
                             <?php if (!empty($_smarty_tpl->tpl_vars['genere_cat']->value)) {?>
                                 <?php
@@ -143,10 +143,10 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                     <h4 class="mb-0" style="color:white;">Trova i locali della tua città</h4>
                 </div>
                 <div class="ricerca animate__animated animate__fadeInDown" style="display: flex;justify-content: center;">
-                    <form class="Search" name="ricercaLocali0" action="/Ricerca/ricerca" method="POST" onsubmit="return validateResearchForm(0)">
+                    <form class="Search" name="ricercaLocali0" id="ricercaLocali0" action="/Ricerca/ricerca" method="POST" onsubmit="return validateResearchForm(0)">
                         <input class="homeinput" type="text" placeholder="Inserisci la città" name="citta">
                         <input class="homeinput" type="text" placeholder="Inserisci il nome" name="nomeLocale">
-                        <select name="categorie" style="border-radius:7px; height: 50px ">
+                        <select name="categorie" form="ricercaLocali0" style="border-radius:7px; height: 50px ">
                             <option>--Scegli il tipo--</option>
                             <?php if (!empty($_smarty_tpl->tpl_vars['genere_cat']->value)) {?>
                                 <?php

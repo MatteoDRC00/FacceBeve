@@ -80,11 +80,11 @@
                     </select>
                 </div>
                 <div class="ricerca animate__animated animate__fadeInDown" id="Locali" style="display: flex;justify-content: center;">
-                    <form class="Search" name="ricercaLocali1" onsubmit="return validateResearchForm(1)"  action="/Ricerca/ricerca" method="POST">
+                    <form class="Search" name="ricercaLocali1" id="ricercaLocali1" onsubmit="return validateResearchForm(1)"  action="/Ricerca/ricerca" method="POST">
                         <input class="homeinput" type="hidden" value="x" name="checkLocale" id="checkLocale">
                         <input class="homeinput" type="text" placeholder="Inserisci la città" name="citta1">
                         <input class="homeinput" type="text" placeholder="Inserisci il nome" name="nomeLocale1">
-                        <select  name="categorie1" style="border-radius:7px; height: 50px  ;">
+                        <select form="ricercaLocali1"  name="categorie1" style="border-radius:7px; height: 50px  ;">
                             <option>--Scegli il tipo--</option>
                             {if !empty($genere_cat)}
                                 {foreach $genere_cat as $genere}
@@ -111,10 +111,10 @@
                     <h4 class="mb-0" style="color:white;">Trova i locali della tua città</h4>
                 </div>
                 <div class="ricerca animate__animated animate__fadeInDown" style="display: flex;justify-content: center;">
-                    <form class="Search" name="ricercaLocali0" action="/Ricerca/ricerca" method="POST" onsubmit="return validateResearchForm(0)">
+                    <form class="Search" name="ricercaLocali0" id="ricercaLocali0" action="/Ricerca/ricerca" method="POST" onsubmit="return validateResearchForm(0)">
                         <input class="homeinput" type="text" placeholder="Inserisci la città" name="citta">
                         <input class="homeinput" type="text" placeholder="Inserisci il nome" name="nomeLocale">
-                        <select name="categorie" style="border-radius:7px; height: 50px ">
+                        <select name="categorie" form="ricercaLocali0" style="border-radius:7px; height: 50px ">
                             <option>--Scegli il tipo--</option>
                             {if !empty($genere_cat)}
                                 {foreach $genere_cat as $genere}

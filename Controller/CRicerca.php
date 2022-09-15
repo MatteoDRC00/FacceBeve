@@ -70,7 +70,7 @@ class CRicerca{
         $vRicerca = new VRicerca();
         $tipo = $vRicerca->getTipoRicerca();
         if ($tipo == "Locali") {
-                $nomelocale = $vRicerca->getNomeLocale();
+                /**$nomelocale = $vRicerca->getNomeLocale();
                 $citta= $vRicerca->getCitta();
                 $categoria = $vRicerca->getCategorie();
                 if ($nomelocale != null || $citta != null || $categoria != null){
@@ -78,9 +78,10 @@ class CRicerca{
                     $result = $pm->loadForm($nomelocale, $citta,$categoria,"tmp",$tipo);
                     $vRicerca->showResult($result, $tipo,$nomelocale,$citta,$categoria,null);
                 }else
-                    header('Location: /Ricerca/mostraHome');
+                    header('Location: /Ricerca/mostraHome');*/
+                print_r($_POST);
         }elseif ($tipo == "Eventi") {
-                /*$nomelocale = $vRicerca->getNomeLocale();
+                $nomelocale = $vRicerca->getNomeLocale();
                 $nomeevento= $vRicerca->getNomeEvento();
                 $citta= $vRicerca->getCitta();
                 $data= $vRicerca->getDataEvento();
@@ -89,8 +90,7 @@ class CRicerca{
                         $result = $pm->loadForm($nomelocale, $nomeevento, $citta, $data,$tipo);
                         $vRicerca->showResult($result, $tipo, $nomelocale, $citta, $nomeevento, $data);
                 }else
-                    header('Location: /Ricerca/mostraHome');  */
-                print_r($_POST);
+                    header('Location: /Ricerca/mostraHome');
         }else{
             header('Location: /Ricerca/mostraHome');
            }
