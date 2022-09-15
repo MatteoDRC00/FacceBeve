@@ -13,7 +13,7 @@ CREATE TABLE `Immagine` (
     `nome` varchar(50) NOT NULL,
     `size` varchar(25) NOT NULL,
     `type` varchar(25) NOT NULL,
-    `immagine` blob NOT NULL,
+    `immagine` longblob NOT NULL,
     PRIMARY KEY (id)
 );
 /*Inserimento dati Immagine*/
@@ -65,7 +65,7 @@ DROP TABLE IF EXISTS `Admin`;
 CREATE TABLE `Admin` (
     `username` VARCHAR(24) NOT NULL,
     `email` VARCHAR(40) NOT NULL,
-    `password` VARCHAR(30) NOT NULL,
+    `password` VARCHAR(32) NOT NULL,
     PRIMARY KEY (`username`)
 );
 /*Inserimento dati Admin*/
@@ -78,7 +78,7 @@ DROP TABLE IF EXISTS `Categoria`;
 
 CREATE TABLE `Categoria` (
     `genere` VARCHAR(30) NOT NULL,
-    `descrizione` VARCHAR(120),
+    `descrizione` VARCHAR(320),
     PRIMARY KEY (`genere`)
 );
 /*Inserimento dati Categoria*/
@@ -127,8 +127,8 @@ DROP TABLE IF EXISTS `Locale`;
 CREATE TABLE `Locale` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
     `nome` VARCHAR(26),
-    `numtelefono` CHAR(9) UNIQUE,
-    `descrizione` VARCHAR(120),
+    `numtelefono` CHAR(10) UNIQUE,
+    `descrizione` VARCHAR(320),
 	`proprietario` VARCHAR(24),
 	`localizzazione` INT(11),
     UNIQUE (`nome`,`localizzazione`),
@@ -147,7 +147,7 @@ DROP TABLE IF EXISTS `Evento`; /*Poi fare seconda tabella / aggiornamento evento
 CREATE TABLE `Evento` (
     `id` int(11) NOT NULL AUTO_INCREMENT, 
     `nome` VARCHAR(26),
-    `descrizione` VARCHAR(120),
+    `descrizione` VARCHAR(320),
 	`data` CHAR(11),
     `idImg` int(11),
     FOREIGN KEY (`idImg`) REFERENCES Immagine(`id`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -164,9 +164,9 @@ DROP TABLE IF EXISTS `Recensione`;
 CREATE TABLE `Recensione` (
     `id` int(11) NOT NULL AUTO_INCREMENT, 
     `titolo` VARCHAR(40) NOT NULL,
-    `descrizione` VARCHAR(120),
+    `descrizione` VARCHAR(420),
     `voto` FLOAT(3) NOT NULL,
-    `data` DATE NOT NULL,
+    `data` CHAR(11) NOT NULL,
     `segnalato` BOOLEAN  DEFAULT 0,
     `counter` BOOLEAN  DEFAULT 0, /*Conta il numero di segnalazioni alla recensione*/
     `utente` VARCHAR(24) NOT NULL,
@@ -184,7 +184,7 @@ DROP TABLE IF EXISTS `Risposta`;
 
 CREATE TABLE `Risposta` (
     `id` INT(11) NOT NULL,
-    `descrizione` VARCHAR(120),
+    `descrizione` VARCHAR(420),
     `proprietario` VARCHAR(24) NOT NULL,
     `recensione` INT(11) NOT NULL,
     PRIMARY KEY (`id`),
