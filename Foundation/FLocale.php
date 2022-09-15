@@ -238,8 +238,6 @@ class FLocale {
         $locale = null;
         $db=FDB::getInstance();
         list ($result, $rows_number)=$db->loadMultipleLocale($part1, $part2, $part3);
-        //print_r ($result);
-        //print $rows_number;
         if(($result!=null) && ($rows_number == 1)) {
             $proprietario = FProprietario::loadByField("id" , $result["proprietario"]);
             $categorie = FCategoria::loadByLocale($result["id"]);

@@ -458,7 +458,6 @@ class FDB{
 				$nCategorie = 0;
 			}
 
-			//print_r ($param);
 			for ($i = 0; $i < count($param); $i++) {
 				if ($param[$i] != null) {
 					switch ($i) {

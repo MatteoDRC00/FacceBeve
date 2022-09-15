@@ -104,10 +104,16 @@ class VRicerca
         $sessione = new USession();
         if($sessione->isLogged()){
             if (isset($_POST['categorie1']))
-                $value = $_POST['categorie1'];
+                if($_POST['categorie1'] == "--Scegli il tipo--")
+                      $value = "";
+                else
+                      $value = $_POST['categorie1'];
         }else{
             if (isset($_POST['categorie']))
-                $value = $_POST['categorie'];
+                if($_POST['categorie'] == "--Scegli il tipo--")
+                     $value = "";
+                else
+                    $value = $_POST['categorie'];
         }
         return $value;
     }
