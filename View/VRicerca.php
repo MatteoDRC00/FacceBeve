@@ -122,8 +122,10 @@ class VRicerca
         $value = null;
         $sessione = new USession();
         if($sessione->isLogged()){
-            if (isset($_POST['tipo']))
-                $value = $_POST['tipo'];
+            if (isset($_POST['checkLocale']))
+                $value = "Locali";
+            else
+                $value = "Eventi";
         }else{
             $value = "Locali";
         }

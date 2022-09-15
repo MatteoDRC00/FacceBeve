@@ -217,13 +217,11 @@ function setList() {
             q = document.getElementById(y);
             if (y === 'Locali') {
                 q.style.display = "flex";
-                x.setAttribute("form","1");
                 z = document.getElementById("Eventi");
                 z.style.display = "none";
 
             } else if(y === 'Eventi'){
                 q.style.display = "inline-block";
-                x.setAttribute("form","2");
                 z = document.getElementById("Locali");
                 z.style.display = "none";
             }

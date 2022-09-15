@@ -152,7 +152,7 @@
                                 {if $arrayRisposte[$i] != null}
                                     <div id="comment-reply-1" class="comment comment-reply">
                                         <div class="d-flex">
-                                            <div class="comment-img"><img src="data:{$arrayRisposte[$i]->getProprietario()->getImgProfilo()->getType()};base64,{$arrayRisposte[$i]->getProprietario()->getImgProfilo()->getImmagine()}" alt="Immagine profilo proprieario"></div>
+                                            <div class="comment-img"><img src="data:{$arrayRisposte[$i]->getProprietario()->getImgProfilo()->getType()};base64,{$arrayRisposte[$i]->getProprietario()->getImgProfilo()->getImmagine()}" alt="Immagine profilo proprietario"></div>
                                             <div>
                                                 <h5>{$arrayRisposte[$i]->getProprietario()->getUsername()}</h5>
                                                 <h5>{$arrayRisposte[$i]->getData()}</h5>

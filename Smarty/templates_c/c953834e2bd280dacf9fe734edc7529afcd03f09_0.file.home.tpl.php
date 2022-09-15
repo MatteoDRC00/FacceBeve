@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-15 19:08:02
+/* Smarty version 4.2.0, created on 2022-09-15 21:41:16
   from 'C:\xampp\htdocs\FacceBeve\template\home.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_63235bf29ddd11_78741514',
+  'unifunc' => 'content_63237fdce21f63_98222649',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c953834e2bd280dacf9fe734edc7529afcd03f09' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\home.tpl',
-      1 => 1663261680,
+      1 => 1663270862,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_63235bf29ddd11_78741514 (Smarty_Internal_Template $_smarty_tpl) {
+function content_63237fdce21f63_98222649 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <?php $_smarty_tpl->_assignInScope('genere_cat', $_smarty_tpl->tpl_vars['genere_cat']->value);
 $_smarty_tpl->_assignInScope('locali', $_smarty_tpl->tpl_vars['locali']->value);?>
@@ -97,16 +97,16 @@ $_smarty_tpl->_assignInScope('locali', $_smarty_tpl->tpl_vars['locali']->value);
                     <h2 class="animate__animated animate__fadeInDown">Benvenuti in <span>FacceBeve</span></h2>
                     <p class="animate__animated animate__fadeInUp">È scientificamente provato che un aperitivo patatine e birretta non salveranno il mondo, ma la giornata sicuramente sì.</p>
                     <h4 class="mb-0" style="color:white">Puoi ricercare...</h4>
-
+                    <select name="tipo" id="tipo" onchange="setList()" style="border-radius:10px;">
+                        <option selected value="Locali">Locali</option>
+                        <option value="Eventi">Eventi</option>
+                    </select>
                 </div>
                 <div class="ricerca animate__animated animate__fadeInDown" id="Locali" style="display: flex;justify-content: center;">
-                    <form class="Search" name="ricercaLocali1" onsubmit="return validateResearchForm(1)" id="1" action="/Ricerca/ricerca" method="POST">
+                    <form class="Search" name="ricercaLocali1" onsubmit="return validateResearchForm(1)"  action="/Ricerca/ricerca" method="POST">
+                        <input class="homeinput" type="hidden" value="x" name="checkLocale" id="checkLocale">
                         <input class="homeinput" type="text" placeholder="Inserisci la città" name="citta1">
                         <input class="homeinput" type="text" placeholder="Inserisci il nome" name="nomeLocale1">
-                        <select name="tipo" id="tipo" onchange="setList()" style="border-radius:10px;">
-                            <option selected value="Locali">Locali</option>
-                            <option value="Eventi">Eventi</option>
-                        </select>
                         <select  name="categorie1" style="border-radius:7px; height: 50px  ;">
                             <option>--Scegli il tipo--</option>
                             <?php if (!empty($_smarty_tpl->tpl_vars['genere_cat']->value)) {?>
@@ -128,7 +128,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                     </form>
                 </div>
                 <div class="ricerca animate__animated animate__fadeInDown" id="Eventi" style="display: none;justify-content: center;" >
-                    <form class="Search" name="ricercaEventi" onsubmit="return validateResearchForm(1)" id="2" action="/Ricerca/ricerca" method="POST">
+                    <form class="Search" name="ricercaEventi" onsubmit="return validateResearchForm(1)"  action="/Ricerca/ricerca" method="POST">
                         <input class="homeinput" type="text" placeholder="Inserisci la città" name="citta">
                         <input class="homeinput" type="text" placeholder="Inserisci il nome del Locale" name="nomeLocale">
                         <input class="homeinput" type="text" placeholder="Inserisci il nome del Evento" name="nomeEvento">
