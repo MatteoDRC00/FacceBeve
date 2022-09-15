@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-15 16:08:19
+/* Smarty version 4.2.0, created on 2022-09-15 17:03:49
   from 'C:\xampp\htdocs\FacceBeve\template\areaPersonaleUtente.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_632331d3c3f291_86032169',
+  'unifunc' => 'content_63233ed5401d12_79480661',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '7757a365921f193a5e1677eb3c4671e453775876' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\areaPersonaleUtente.tpl',
-      1 => 1663230957,
+      1 => 1663254224,
       2 => 'file',
     ),
   ),
@@ -20,9 +20,8 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_632331d3c3f291_86032169 (Smarty_Internal_Template $_smarty_tpl) {
+function content_63233ed5401d12_79480661 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
-<?php $_smarty_tpl->_assignInScope('locali_preferiti', $_smarty_tpl->tpl_vars['locali_preferiti']->value);?>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -183,24 +182,16 @@ $_smarty_tpl->tpl_vars['locale']->do_else = true;
 if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['locale']->value) {
 $_smarty_tpl->tpl_vars['locale']->do_else = false;
 ?>
-                                    <article class="entry">
-                                        <div class="entry-content">
-                                            <input type="hidden" name="idLocale" value="<?php echo $_smarty_tpl->tpl_vars['locale']->value->getId();?>
-"/>
-                                            <a href="" style="font-size: 20px"><?php echo $_smarty_tpl->tpl_vars['locale']->value['nome'];?>
- <i class="fa fa-angle-right"></i></a>
-                                            <div class="read-more">
-                                                <a href="/Ricerca/dettagliLocale">Visita il locale <i class="fas fa-chevron-circle-right"></i></a>
-                                            </div>
-                                        </div>
-                                    </article>
+                                    <a href=""><?php echo $_smarty_tpl->tpl_vars['locale']->value['nome'];?>
+<i class="fa fa-angle-right"></i></a>
                                 <?php
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
+                                </form>
                             <?php } else { ?>
                                 <p>Non possiedi locali preferiti</p>
                             <?php }?>
-                                </form>
+
                         </div>
                     </div>
                 </div>

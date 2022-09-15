@@ -11,7 +11,7 @@ class FOrario {
     private static $class="FOrario";
 
 	/** tabella con la quale opera nel DB */
-    private static $table="Orario";
+    private static $table="orario";
 
     /** valori della tabella nel DB */
     private static $values="(:id,:giorno,:orarioApertura,:orarioChiusura)";
@@ -28,9 +28,9 @@ class FOrario {
     */
     public static function bind(PDOStatement $stmt, EOrario $orario){
         $stmt->bindValue(':id',NULL, PDO::PARAM_INT);
-		$stmt->bindValue(':giorno', $orario->getGiornoSettimana(), PDO::PARAM_STR);
-		$stmt->bindValue(':orarioApertura',$orario->getOrarioApertura(), PDO::PARAM_STR);
-		$stmt->bindValue(':orarioChiusura',$orario->getOrarioChiusura(), PDO::PARAM_STR);
+		$stmt->bindValue(':giorno', $orario->getGiornoSettimana());
+		$stmt->bindValue(':orarioApertura',$orario->getOrarioApertura());
+		$stmt->bindValue(':orarioChiusura',$orario->getOrarioChiusura());
     }
 
     /**
@@ -66,6 +66,7 @@ class FOrario {
         $db = FDB::getInstance();
         $id = $db->store(static::getClass(), $orario);
         //$orario->setId($id);
+        echo $id;
         return $id;
     }
 

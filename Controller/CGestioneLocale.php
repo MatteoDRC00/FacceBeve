@@ -86,7 +86,6 @@ class CGestioneLocale
             $id_locale = $pm->store($locale);
             $locale->setId($id_locale);
 
-            echo $id_locale;
 
             $categoria = $view->getCategorie();
 
@@ -97,6 +96,18 @@ class CGestioneLocale
             $orario_apertura = $view->getOrarioApertura();
             $orario_chiusura = $view->getOrarioChiusura();
             $chiuso = $view->getOrarioClose();
+
+            print_r($orario_apertura);
+            print_r($orario_chiusura);
+
+
+            $giorni_chiusi = array(0,0,0,0,0,0,0);
+
+            for($i=0; $i<count($chiuso); $i++){
+                $giorni_chiusi[$chiuso[$i]] = 1;
+            }
+
+            print_r($giorni_chiusi);
 
             for($i=0; $i<7; $i++){
                 if($i == 0)
@@ -114,17 +125,20 @@ class CGestioneLocale
                 elseif ($i == 6)
                     $giorno = "Domenica";
 
-                if($chiuso[$i] == null){
+                if($giorni_chiusi[$i] == 0){
                     if($orario_apertura[$i] != null && $orario_chiusura[$i] != null){
                         $orario = new EOrario($giorno, $orario_apertura[$i], $orario_chiusura[$i]);
+                        print_r($orario);
                         $id = $pm->store($orario);
                         $orario->setId($id);
                         $pm->storeOrariLocale($id, $id_locale);
                     }else{
+
                         //errore
                     }
                 }else{
                     $orario = new EOrario($giorno, null, null);
+                    print_r($orario);
                     $id = $pm->store($orario);
                     $orario->setId($id);
                     $pm->storeOrariLocale($id, $id_locale);

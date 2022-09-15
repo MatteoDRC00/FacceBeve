@@ -111,7 +111,6 @@ class FDB{
 		try {
 			$this->database->beginTransaction();
 			$query = "INSERT INTO " . "locale_categorie" . " VALUES " . "(".$id_locale.","."'".$id_categoria."'".")".";";
-			echo $query;
 			$stmt = $this->database->prepare($query); //Prepared Statement
 			$stmt->execute();
 			$this->database->commit();

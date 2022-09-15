@@ -176,36 +176,15 @@ class VGestioneLocale{
 
 
     public function getOrarioApertura(){
-        $value = array();
-        for($i=0; $i<7; $i++){
-            if(isset($_POST['orario['.$i.'][0]']))
-                $value[$i] = $_POST['orario['.$i.'][0]'];
-            else
-                $value[$i] = null;
-        }
-        return $value;
+        return $_POST["orarioapertura"];
     }
 
     public function getOrarioChiusura(){
-        $value = array();
-        for($i=0; $i<7; $i++){
-            if(isset($_POST['orario[0]['.$i.']']))
-                $value[$i] = $_POST['orario[0]['.$i.']'];
-            else
-                $value[$i] = null;
-        }
-        return $value;
+        return $_POST["orariochiusura"];
     }
 
     public function getOrarioClose(){
-        $value = array();
-        for($i=0; $i<7; $i++){
-            if (isset($_POST['close['.$i.']']))
-                $value[$i] = $_POST['close['.$i.']'];
-            else
-                $value[$i] = null;
-        }
-        return $value;
+        return $_POST["close"];
     }
 
     /**

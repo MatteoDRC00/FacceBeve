@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-15 12:14:58
+/* Smarty version 4.2.0, created on 2022-09-15 19:09:12
   from 'C:\xampp\htdocs\FacceBeve\template\registrazioneLocale.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_6322fb2213b615_66165692',
+  'unifunc' => 'content_63235c380102d3_68636058',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '5e1aa453dbee77c509402c601a3b43b7d15ea457' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\registrazioneLocale.tpl',
-      1 => 1663236889,
+      1 => 1663261745,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6322fb2213b615_66165692 (Smarty_Internal_Template $_smarty_tpl) {
+function content_63235c380102d3_68636058 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -105,7 +105,7 @@ function content_6322fb2213b615_66165692 (Smarty_Internal_Template $_smarty_tpl)
                         </div>
                         <div class="form-example">
                             <label style="font-weight: bold">Inserisci il numero di telefono: </label><br>
-                            <input type="text" name="numeroLocale" required> <!--Non so perchè da errore-->
+                            <input type="text" name="numeroLocale" required>
                         </div>
                         <div class="form-example">
                             <label style="font-weight: bold">Inserisci la localizzazione: </label><br>
@@ -136,26 +136,26 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                         <div class="form-example">
                             <label style="font-weight: bold">Inserisci l'orario di apertura e chiusura: </label><br>
                             <div class="orario">
-                                <label>Lunedi: <input type="time" name="orario[0][0]"> <input type="time" name="orario[0][1]">
-                                    <input type="checkbox" id="close" name="close[0]" value="chiuso">
+                                <label>Lunedi: <input type="time" name="orarioapertura[]"> <input type="time" name="orariochiusura[]">
+                                    <input type="checkbox" id="close" name="close[]" value="0">
                                     <label for="close"> Chiuso</label></label><br>
-                                <label>Martedi: <input type="time" name="orario[1][0]"> <input type="time" name="orario[1][1]">
-                                    <input type="checkbox" name="close[1]" value="chiuso">
+                                <label>Martedi: <input type="time" name="orarioapertura[]"> <input type="time" name="orariochiusura[]">
+                                    <input type="checkbox" name="close[]" value="1">
                                     <label for="close"> Chiuso</label></label><br>
-                                <label>Mercoledi: <input type="time" name="orario[2][0]"> <input type="time" name="orario[2][1]">
-                                    <input type="checkbox" name="close[2]" value="chiuso">
+                                <label>Mercoledi: <input type="time" name="orarioapertura[]"> <input type="time" name="orariochiusura[]">
+                                    <input type="checkbox" name="close[]" value="2">
                                     <label for="close"> Chiuso</label></label><br>
-                                <label>Giovedi: <input type="time" name="orario[3][0]"> <input type="time" name="orario[3][1]">
-                                    <input type="checkbox" name="close[3]" value="chiuso">
+                                <label>Giovedi: <input type="time" name="orarioapertura[]"> <input type="time" name="orariochiusura[]">
+                                    <input type="checkbox" name="close[]" value="3">
                                     <label for="close"> Chiuso</label></label><br>
-                                <label>Venerdi: <input type="time" name="orario[4][0]"> <input type="time" name="orario[4][1]">
-                                    <input type="checkbox" name="close[4]" value="chiuso">
+                                <label>Venerdi: <input type="time" name="orarioapertura[]"> <input type="time" name="orariochiusura[]">
+                                    <input type="checkbox" name="close[]" value="4">
                                     <label for="close"> Chiuso</label></label><br>
-                                <label>Sabato: <input type="time" name="orario[5][0]"> <input type="time" name="orario[5][1]">
-                                    <input type="checkbox" name="close[5]" value="chiuso">
+                                <label>Sabato: <input type="time" name="orarioapertura[]"> <input type="time" name="orariochiusura[]">
+                                    <input type="checkbox" name="close[]" value="5">
                                     <label for="close"> Chiuso</label></label><br>
-                                <label>Domenica: <input type="time" name="orario[6][0]"> <input type="time" name="orario[6][1]">
-                                    <input type="checkbox" name="close[6]" value="chiuso">
+                                <label>Domenica: <input type="time" name="orarioapertura[]"> <input type="time" name="orariochiusura[]">
+                                    <input type="checkbox" name="close[]" value="6">
                                     <label for="close"> Chiuso</label></label><br>
                             </div>
                         </div>
