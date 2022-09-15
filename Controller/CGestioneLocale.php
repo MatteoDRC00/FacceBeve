@@ -45,10 +45,8 @@ class CGestioneLocale
         }else{
             header("Location: /Ricerca/mostraHome");
         }
-
-
-
     }
+
 
     /**
      * Funzione che viene richiamata per la creazione di un locale. Si possono avere diverse situazioni:
@@ -59,67 +57,82 @@ class CGestioneLocale
      * 3) se il metodo di richiesta HTTP è diverso da uno dei precedenti -->errore.
      * @throws SmartyException
      */
-    public static function creaLocale(){
+    public function creaLocale(){
         $sessione = new USession();
-        $pm = FPersistentManager::getInstance();
-        $proprietario = unserialize($sessione->leggi_valore('utente'));
-
-        $view = new VGestioneLocale();
-        $nomeLocale = $view->getNomeLocale();
-        $descrizione = $view->getDescrizioneLocale();
-        $numTelefono = $view->getNumTelefono();
-        $categoria = $view->getCategoria();
-
-        //LOCALIZZAZIONE
-        $indirizzo = $view->getIndirizzo();
-        $numeroCivico = $view->getNumeroCivico();
-        $citta = $view->getCitta();
-        $nazione = $view->getNazione();
-        $CAP = $view->getCAP();
-        $localizzazioneLocale = new ELocalizzazione($indirizzo, $numeroCivico, $citta, $nazione, $CAP);
-        $pm->store($localizzazioneLocale);
-        //
-
-        //ORARIO
-        $Orario = array();
-        $tmp = $view->getOrario();
-        $nomi = array_keys($tmp);
-        $orari = array_values($tmp);
-        for ($i = 0; $i < count($tmp); $i++) {
-            // $orario = new EOrario($nomi[$i],$orari[$i][0],$orari[$i][1]);
-            $orario = new EOrario();
-            $orario->setGiornoSettimana($nomi[$i]);
-            if((isset($orari[$i][0]) && !(isset($orari[$i][1]))) || (isset($orari[$i][1]) && !(isset($orari[$i][0]))) ||(isset($view->getOrarioClose()[$i]))){
-                $orario->setOrarioApertura("chiuso");
-                $orario->setOrarioChiusura($orari[$i][1]);
-            }else{
-                //Gestito poi in Entity
-                $orario->setOrarioApertura(null);
-                $orario->setOrarioChiusura(null);
-            }
-            $Orario[] = $orario;
-        }
-        $pm->store($Orario);
-        $genere_cat = $pm->getCategorie();
-
-        $Locale = new ELocale($nomeLocale, $descrizione, $numTelefono, $proprietario, $categoria, $localizzazioneLocale, null, $Orario);
-        $img = $view->getImgLocale();
-        list($check, $media) = static::upload($img);
-        if ($check == "type") {
-            $view->showFormCreation($proprietario, "type", $genere_cat);
-        } elseif ($check == "size") {
-            $view->showFormCreation($proprietario, "size", $genere_cat);
-        } elseif ($check == "ok") {
-            $pm->store($Locale);
+        if($sessione->isLogged() && $sessione->leggi_valore("tipo_utente")=="EProprietario"){
             $pm = FPersistentManager::getInstance();
-            $pm->storeMedia($media, $img[1]); //Salvataggio dell'immagine sul db
-            $pm->storeEsterne("FLocale",$media,$Locale->getId()); //Salvataggio sulla tabella generata dalla relazione N:N
-            header('Location: /Profilo/profilo'); //?
+            $username = $sessione->leggi_valore('utente');
+            $tipo = $sessione->leggi_valore("tipo_utente");
+
+            $tipo[0] = "F";
+            $class = $tipo;
+
+            $proprietario = $pm->load("username", $username, $class);
+
+            $view = new VGestioneLocale();
+            $nomeLocale = $view->getNomeLocale();
+            $descrizione = $view->getDescrizioneLocale();
+            $numTelefono = $view->getNumTelefono();
+
+            $indirizzo = $view->getIndirizzo();
+            $numeroCivico = $view->getNumeroCivico();
+            $citta = $view->getCitta();
+            $CAP = $view->getCAP();
+            $localizzazioneLocale = new ELocalizzazione($indirizzo, $numeroCivico, $citta, $CAP);
+            $id_Localizzazione = $pm->store($localizzazioneLocale);
+            $localizzazioneLocale->setId($id_Localizzazione);
+
+
+            $locale = new ELocale($nomeLocale, $descrizione, $numTelefono, $proprietario, null, $localizzazioneLocale, null, null);
+            $id_locale = $pm->store($locale);
+            $locale->setId($id_locale);
+
+            $categoria = $view->getCategorie();
+
+            foreach ($categoria as $c){
+                $pm->storeCategorieLocale($c, $id_locale);
+            }
+
+            $orario_apertura = $view->getOrarioApertura();
+            $orario_chiusura = $view->getOrarioChiusura();
+            $chiuso = $view->getOrarioClose();
+
+            for($i=0; $i<7; $i++){
+                if($i == 0)
+                    $giorno = "Lunedì";
+                elseif ($i == 1)
+                    $giorno = "Martedì";
+                elseif ($i == 2)
+                    $giorno = "Mercoledì";
+                elseif ($i == 3)
+                    $giorno = "Giovedì";
+                elseif ($i == 4)
+                    $giorno = "Venerdì";
+                elseif ($i == 5)
+                    $giorno = "Sabato";
+                elseif ($i == 6)
+                    $giorno = "Domenica";
+
+                if($chiuso[$i] == null){
+                    if($orario_apertura[$i] != null && $orario_chiusura[$i] != null){
+                        $orario = new EOrario($giorno, $orario_apertura[$i], $orario_chiusura[$i]);
+                        $id = $pm->store($orario);
+                        $orario->setId($id);
+                        $pm->storeOrariLocale($id, $id_locale);
+                    }else{
+                        //errore
+                    }
+                }else{
+                    $orario = new EOrario($giorno, null, null);
+                    $id = $pm->store($orario);
+                    $orario->setId($id);
+                    $pm->storeOrariLocale($id, $id_locale);
+                }
+            }
+            header('Location: /Profilo/mostraProfilo');
+        }else{
+            header('Location: /Ricerca/mostraHome');
         }
-
-        header('Location: /FacceBeve/Ricerca/dettagliolocale');
-
-
     }
 //----------------------------------CREAZIONE DEL LOCALE------------------------------------------------------\\
 

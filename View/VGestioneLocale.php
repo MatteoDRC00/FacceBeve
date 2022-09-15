@@ -105,8 +105,8 @@ class VGestioneLocale{
     public function getNumTelefono(): ?string
     {
         $value = null;
-        if (isset($_POST['numTelefonoLocale'])) //NON SO SE VANNO UTLIZZATI NOMI DIVERSI
-            $value = $_POST['numTelefonoLocale'];
+        if (isset($_POST['numeroLocale'])) //NON SO SE VANNO UTLIZZATI NOMI DIVERSI
+            $value = $_POST['numeroLocale'];
         return $value;
     }
 
@@ -115,12 +115,9 @@ class VGestioneLocale{
      * Inviato con metodo post
      * @return array
      */
-    public function getCategoria(): ?array
+    public function getCategorie(): ?array
     {
-        $value = null;
-        if (isset($_POST['categoriaLocale'])) //NON SO SE VANNO UTLIZZATI NOMI DIVERSI
-            $value = $_POST['categoriaLocale'];
-        return $value;
+        return $_POST['genereLocale'];
     }
 
 
@@ -145,8 +142,8 @@ class VGestioneLocale{
     public function getNumeroCivico(): ?string
     {
         $value = null;
-        if (isset($_POST['numeroCivicoLocale'])) //NON SO SE VANNO UTLIZZATI NOMI DIVERSI
-            $value = $_POST['numeroCivicoLocale'];
+        if (isset($_POST['civicoLocale'])) //NON SO SE VANNO UTLIZZATI NOMI DIVERSI
+            $value = $_POST['civicoLocale'];
         return $value;
     }
 
@@ -163,18 +160,6 @@ class VGestioneLocale{
         return $value;
     }
 
-    /**
-     * Restituisce l'indirizzo del locale, inteso come la nazione
-     * Inviato con metodo post
-     * @return string
-     */
-    public function getNazione(): ?string
-    {
-        $value = null;
-        if (isset($_POST['nazioneLocale'])) //NON SO SE VANNO UTLIZZATI NOMI DIVERSI
-            $value = $_POST['nazioneLocale'];
-        return $value;
-    }
 
     /**
      * Restituisce l'indirizzo del locale, inteso come il CAP
@@ -184,23 +169,42 @@ class VGestioneLocale{
     public function getCAP(): ?int
     {
         $value = null;
-        if (isset($_POST['capLocale']))
-            $value = $_POST['capLocale'];
+        if (isset($_POST['CAPLocale']))
+            $value = $_POST['CAPLocale'];
         return $value;
     }
 
 
-    public function getOrario(){
-        $value = null;
-        if (isset($_POST['Orario']))
-            $value = $_POST['Orario'];
+    public function getOrarioApertura(){
+        $value = array();
+        for($i=0; $i<7; $i++){
+            if(isset($_POST['orario['.$i.'][0]']))
+                $value[$i] = $_POST['orario['.$i.'][0]'];
+            else
+                $value[$i] = null;
+        }
+        return $value;
+    }
+
+    public function getOrarioChiusura(){
+        $value = array();
+        for($i=0; $i<7; $i++){
+            if(isset($_POST['orario[0]['.$i.']']))
+                $value[$i] = $_POST['orario[0]['.$i.']'];
+            else
+                $value[$i] = null;
+        }
         return $value;
     }
 
     public function getOrarioClose(){
-        $value = null;
-        if (isset($_POST['close']))
-            $value = $_POST['close'];
+        $value = array();
+        for($i=0; $i<7; $i++){
+            if (isset($_POST['close['.$i.']']))
+                $value[$i] = $_POST['close['.$i.']'];
+            else
+                $value[$i] = null;
+        }
         return $value;
     }
 

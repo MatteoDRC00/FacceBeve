@@ -16,28 +16,28 @@
  */
 class  ELocale implements JsonSerializable{
 
-    private int $id;
+    private ?int $id;
     private string $nome;
     private string $descrizione;
     private string $num_telefono;
     private EProprietario $proprietario;
-    private $categoria = array();
+    private ?array $categoria;
     private ELocalizzazione $localizzazione;
-    private $eventi_organizzati = array();
-    private $orario = array();
-    private $img = array();
+    private ?array $eventi_organizzati;
+    private ?array $orario;
+    private ?array $img;
 
     /**
      * @param string $nome
      * @param string $descrizione
      * @param string $num_telefono
      * @param EProprietario $proprietario
-     * @param array $categoria
+     * @param array|null $categoria
      * @param ELocalizzazione $localizzazione
-     * @param array $eventi_organizzati
-     * @param array $orario
+     * @param array|null $eventi_organizzati
+     * @param array|null $orario
      */
-    public function __construct(string $nome, string $descrizione, string $num_telefono, EProprietario $proprietario, array $categoria, ELocalizzazione $localizzazione, array $eventi_organizzati, array $orario){
+    public function __construct(string $nome, string $descrizione, string $num_telefono, EProprietario $proprietario, ?array $categoria, ELocalizzazione $localizzazione, ?array $eventi_organizzati, ?array $orario){
         $this->id = NULL;
         $this->nome = $nome;
         $this->num_telefono = $num_telefono;

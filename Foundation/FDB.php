@@ -32,6 +32,23 @@ class FDB{
 
 	}
 
+	public function getTutteRighe($class)
+	{
+		try {
+			$this->database->beginTransaction();
+			$query = "SELECT * FROM " . $class::getTable() . ";";
+			$stmt = $this->database->prepare($query);
+			$stmt->execute();
+			$num = $stmt->rowCount();
+			$this->closeDbConnection();
+			return $num;
+		} catch (PDOException $e) {
+			echo "Attenzione errore: " . $e->getMessage();
+			$this->database->rollBack();
+			return null;
+		}
+	}
+
 	public function getNumRighe($class, $field, $id)
 	{
 		try {
@@ -83,6 +100,36 @@ class FDB{
 			$this->database->commit();
 			$this->closeDbConnection();
 			return $id;
+		} catch (PDOException $e) {
+			echo "Attenzione errore: " . $e->getMessage();
+			$this->database->rollBack();
+			return null;
+		}
+	}
+
+	public function storeCategorieLocale($id_locale, $id_categoria){
+		try {
+			$this->database->beginTransaction();
+			$query = "INSERT INTO " . "locale_categorie (ID_Locale,ID_Categoria)" . " VALUES " . "(".$id_locale.",".$id_categoria.")".";";
+			$stmt = $this->database->prepare($query); //Prepared Statement
+			$stmt->execute();
+			$this->database->commit();
+			$this->closeDbConnection();
+		} catch (PDOException $e) {
+			echo "Attenzione errore: " . $e->getMessage();
+			$this->database->rollBack();
+			return null;
+		}
+	}
+
+	public function storeOrariLocale(string $id_locale, string $id_orario){
+		try {
+			$this->database->beginTransaction();
+			$query = "INSERT INTO " . "locale_orari (ID_Locale,ID_Orario)" . " VALUES " . "(".$id_locale.",".$id_orario.")".";";
+			$stmt = $this->database->prepare($query); //Prepared Statement
+			$stmt->execute();
+			$this->database->commit();
+			$this->closeDbConnection();
 		} catch (PDOException $e) {
 			echo "Attenzione errore: " . $e->getMessage();
 			$this->database->rollBack();

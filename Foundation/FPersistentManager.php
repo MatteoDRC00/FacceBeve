@@ -51,14 +51,11 @@ class FPersistentManager {
     /**
      * Metodo utilizzato per caricare TUTTE le categorie di locale presenti sul sito
     */
-    public function getCategorie(): array
-    {
-        $return = FCategoria::loadAll();
+    public function getCategorie(): array{
+        $result = FCategoria::loadTutteCategorie();
         $genere = array();
-        if(!empty($genere)){
-            foreach ($return as $c){
-                $genere[] = $c['genere'];
-            }
+        foreach ($result as $c){
+            $genere[] = $c['genere'];
         }
         return $genere;
     }
@@ -248,6 +245,16 @@ class FPersistentManager {
             }
         }
         return $locali_preferiti;
+    }
+
+    public function storeCategorieLocale($categoria, $locale){
+        $db = FDB::getInstance();
+        $db->storeCategorieLocale($locale, $categoria);
+    }
+
+    public function storeOrariLocale($orario, $locale){
+        $db = FDB::getInstance();
+        $db->storeOrariLocale($locale, $orario);
     }
 
 }

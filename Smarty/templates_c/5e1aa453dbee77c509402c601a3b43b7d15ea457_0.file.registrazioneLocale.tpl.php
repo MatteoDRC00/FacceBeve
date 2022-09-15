@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-14 18:05:58
+/* Smarty version 4.2.0, created on 2022-09-15 12:14:58
   from 'C:\xampp\htdocs\FacceBeve\template\registrazioneLocale.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_6321fbe6091571_96986540',
+  'unifunc' => 'content_6322fb2213b615_66165692',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '5e1aa453dbee77c509402c601a3b43b7d15ea457' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\registrazioneLocale.tpl',
-      1 => 1663171554,
+      1 => 1663236889,
       2 => 'file',
     ),
   ),
@@ -20,10 +20,9 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6321fbe6091571_96986540 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6322fb2213b615_66165692 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
-<?php $_smarty_tpl->_assignInScope('categorie', $_smarty_tpl->tpl_vars['categorie']->value);?>
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -94,15 +93,26 @@ function content_6321fbe6091571_96986540 (Smarty_Internal_Template $_smarty_tpl)
         <div class="container">
             <div class="row">
                 <div class="col-6 bg-white px-3 mb-3 pb-3">
-                    <form action="" enctype="multipart/form-data" method="POST" class="aggiorna" name="registrazioneLocale" onsubmit="return validateRegForm(2)">
+                    <form action="/GestioneLocale/creaLocale" method="POST" class="aggiorna" name="registrazioneLocale" onsubmit="return validateRegForm(2)">
                         <p>INSERISCI LE INFORMAZIONI DEL LOCALE</p>
                         <div class="form-example">
                             <label style="font-weight: bold">Inserisci il nome: </label><br>
-                            <input type="text" name="nomeLocale">
+                            <input type="text" name="nomeLocale" required>
                         </div>
                         <div class="form-example">
                             <label style="font-weight: bold">Inserisci la descrizione: </label><br>
-                            <textarea type="text" name="descrizioneLocale"></textarea>
+                            <textarea type="text" name="descrizioneLocale" required></textarea>
+                        </div>
+                        <div class="form-example">
+                            <label style="font-weight: bold">Inserisci il numero di telefono: </label><br>
+                            <input type="text" name="numeroLocale" required> <!--Non so perchè da errore-->
+                        </div>
+                        <div class="form-example">
+                            <label style="font-weight: bold">Inserisci la localizzazione: </label><br>
+                            <input type="text" name="indirizzoLocale" placeholder="Inserisci l'indirizzo" required>
+                            <input type="text" name="civicoLocale" placeholder="Inserisci il numero civico" title="Attenzione, inserire un numero." required>
+                            <input type="text" name="cittaLocale" placeholder="Inserisci città" required>
+                            <input type="text" name="CAPLocale" placeholder="Inserisci il CAP" title="Attenzione il CAP è un codice numerico." required>
                         </div>
                         <div class="form-example">
                             <label style="font-weight: bold">Inserisci le categorie: </label><br>
@@ -113,26 +123,15 @@ $_smarty_tpl->tpl_vars['genere']->do_else = true;
 if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['genere']->value) {
 $_smarty_tpl->tpl_vars['genere']->do_else = false;
 ?>
-                                    <option type="radio" name="genere" value="<?php echo $_smarty_tpl->tpl_vars['genere']->value;?>
+                                    <input type="checkbox" name="genereLocale[]" value="<?php echo $_smarty_tpl->tpl_vars['genere']->value;?>
 "><?php echo $_smarty_tpl->tpl_vars['genere']->value;?>
-</option>
+
                                 <?php
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                             <?php } else { ?>
                                 <p>Non ci sono categorie</p>
                             <?php }?>
-                        </div>
-                        <div class="form-example">
-                            <label style="font-weight: bold">Inserisci il numero di telefono: </label><br>
-                            <input type="tel" name="numeroLocale" pattern="[0-9]"> <!--Non so perchè da errore-->
-                        </div>
-                        <div class="form-example">
-                            <label style="font-weight: bold">Inserisci la localizzazione: </label><br>
-                            <input type="text" name="indirizzoLocale" placeholder="Inserisci l'indirizzo">
-                            <input type="text" name="civicoLocale" placeholder="Inserisci il numero civico" pattern="[0-9]" title="Attenzione, inserire un numero.">
-                            <input type="text" name="cittaLocale" placeholder="Inserisci città">
-                            <input type="text" name="CAPLocale" placeholder="Inserisci il CAP" pattern="[0-9]" title="Attenzione il CAP è un codice numerico.">
                         </div>
                         <div class="form-example">
                             <label style="font-weight: bold">Inserisci l'orario di apertura e chiusura: </label><br>
@@ -164,9 +163,9 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                     </form>
                 </div>
                 <div class="col-6 bg-white px-3 pb-2">
-                    <form action="" enctype="multipart/form-data" method="POST" class="aggiorna"> <!-- aggiungin i controlli -->
+                    <form action="" enctype="multipart/form-data" method="POST" class="aggiorna">
                         <p>AGGIUNGI LE IMMAGINI</p>
-                        <input name="img" class="w-50 p-2 m-2" type="file"><br>
+                        <input name="img" class="w-50 p-2 m-2" type="file" required><br>
                         <button type="submit" class="btnAggiorna">AGGIUNGI</button>
                     </form>
                 </div>

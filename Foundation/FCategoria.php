@@ -105,24 +105,9 @@ class FCategoria {
         return $categoria;
     }
 
-    public static function loadAll(){
-
+    public static function loadTutteCategorie(){
         $db = FDB::getInstance();
         return $db->loadAll(static::getClass());
-        /*
-        $rows_number = $result->rowCount();
-        if(($result!=null) && ($rows_number == 1)) {
-            $categoria=new ECategoria($result['genere'], $result['descrizione']); //Carica una categoria dal database
-        }
-        else {
-            if(($result!=null) && ($rows_number > 1)){
-                $categoria = array();
-                for($i=0; $i<count($result); $i++){
-                    $categoria[]=new ECategoria($result[$i]['genere'], $result[$i]['descrizione']); //Carica un array di oggetti Categoria dal database
-                }
-            }
-        }
-        return $categoria;*/
     }
 
     /**

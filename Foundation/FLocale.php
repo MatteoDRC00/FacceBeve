@@ -67,6 +67,7 @@ class FLocale {
     public static function store(ELocale $locale){
         $id = NULL;
         $db = FDB::getInstance();
+        
         $proprietario = $db->exist("FProprietario", "proprietario", $locale->getProprietario()->getUsername());
         $localizzazione = $db->exist("FLocalizzazione", "localizzazione", $locale->getLocalizzazione()->getId());
         if($proprietario && $localizzazione) {
