@@ -28,6 +28,7 @@ class VGestioneEvento{
      */
     public function showFormCreaEvento()
     {
+
         $this->smarty->display('registrazioneEvento.tpl');
     }
 

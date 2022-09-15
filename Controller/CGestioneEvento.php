@@ -49,33 +49,29 @@ class CGestioneEvento{
 
 
     }
-    /*static function creaEvento()
+    static function creaEvento()
     {
-        $sessione = new USession();
-        $proprietario = unserialize($sessione->leggi_valore('utente'));
-        $pm = FPersistentManager::GetIstance();
+        $pm = FPersistentManager::getInstance();
         $view = new VGestioneEvento();
         $nomeEvento = $view->getNomeEvento();
         $descrizioneEvento = $view->getDescrizioneEvento();
         $dataEvento = $view->getDataEvento();
 
-        $Evento = new EEvento($nomeEvento, $descrizioneEvento, $dataEvento); //Poi salvalo nel locale
+        $evento = new EEvento($nomeEvento, $descrizioneEvento, $dataEvento); //Poi salvalo nel locale
 
         $img = $view->getImgEvento();
-        list($check, $media) = static::upload($img);
-        if ($check == "type") {
-            $view->showFormCreation($proprietario, "size");
-        } elseif ($check == "size") {
-            $view->showFormCreation($proprietario, "size");
-        } elseif ($check == "ok") {
-            $pm->store($Evento);
-            $pm->storeMedia($media, $img[1]); //Salvataggio dell'immagine sul db
-            $pm->storeEsterne("FEvento",$media); //Salvataggio sulla tabella generata dalla relazione N:N
-            //$locale = $pm->load("id",$view->getIdLocale(),"FLocale");
-            $pm->storeEsterne("FLocale",$media,$view->getIdLocale());
-            header('Location: /Ricerca/dettaglioLocale'); //?
+
+        if (!empty($img)) {
+            $img_profilo = new EImmagine($img[0], $img[1], $img[2], $img[3]);
+            $id = $pm->store($img_profilo);
+            $img_profilo->setId($id);
         }
-    }*/
+        $evento->setImg($img_profilo);
+        $pm->store($evento);
+
+        header("Location: /GestioneLocale/infoLocale");
+
+    }
 //----------------------------------CREAZIONE EVENTO------------------------------------------------------\\
 
 
