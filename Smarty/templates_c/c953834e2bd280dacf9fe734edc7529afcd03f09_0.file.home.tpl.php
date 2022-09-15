@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-14 19:40:16
+/* Smarty version 4.2.0, created on 2022-09-15 16:26:28
   from 'C:\xampp\htdocs\FacceBeve\template\home.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_63221200743009_30379367',
+  'unifunc' => 'content_632336147536c3_22952752',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c953834e2bd280dacf9fe734edc7529afcd03f09' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\home.tpl',
-      1 => 1663170896,
+      1 => 1663250376,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_63221200743009_30379367 (Smarty_Internal_Template $_smarty_tpl) {
+function content_632336147536c3_22952752 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <?php $_smarty_tpl->_assignInScope('tipo', (($tmp = $_smarty_tpl->tpl_vars['tipo']->value ?? null)===null||$tmp==='' ? 'nouser' ?? null : $tmp));
 $_smarty_tpl->_assignInScope('genere_cat', $_smarty_tpl->tpl_vars['genere_cat']->value);
@@ -81,7 +81,7 @@ $_smarty_tpl->_assignInScope('locali', $_smarty_tpl->tpl_vars['locali']->value);
             </div>
         <?php } elseif ($_smarty_tpl->tpl_vars['tipo']->value == 'EProprietario') {?>
             <div class="sign">
-                <a href="/Profilo/mostraProfilo">Area Personale</a>
+                <a href="/Profilo/mostraProfilo">Area Personale Proprietario</a>
                 <a href="/Accesso/logout">Logout</a>
             </div>
         <?php }?>

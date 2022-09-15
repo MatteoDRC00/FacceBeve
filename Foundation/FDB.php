@@ -110,7 +110,8 @@ class FDB{
 	public function storeCategorieLocale($id_locale, $id_categoria){
 		try {
 			$this->database->beginTransaction();
-			$query = "INSERT INTO " . "locale_categorie (ID_Locale,ID_Categoria)" . " VALUES " . "(".$id_locale.",".$id_categoria.")".";";
+			$query = "INSERT INTO " . "locale_categorie" . " VALUES " . "(".$id_locale.","."'".$id_categoria."'".")".";";
+			echo $query;
 			$stmt = $this->database->prepare($query); //Prepared Statement
 			$stmt->execute();
 			$this->database->commit();

@@ -7,8 +7,24 @@
     <list default="true" id="9b9dc9a9-b323-4b45-835b-2a2c423efdeb" name="Changes" comment="link su tpl">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controller/CGestioneLocale.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/CGestioneLocale.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Entity/ELocale.php" beforeDir="false" afterPath="$PROJECT_DIR$/Entity/ELocale.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Foundation/FLocale.php" beforeDir="false" afterPath="$PROJECT_DIR$/Foundation/FLocale.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Foundation/FDB.php" beforeDir="false" afterPath="$PROJECT_DIR$/Foundation/FDB.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Smarty/templates_c/20d71acbda86db7b277443849883e1b442d75786_0.file.risultatiRicerca.tpl.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Smarty/templates_c/4bbbafc2ea6d5409b92c2264798b2d324bd194ae_0.file.login.tpl.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Smarty/templates_c/5e1aa453dbee77c509402c601a3b43b7d15ea457_0.file.registrazioneLocale.tpl.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Smarty/templates_c/6349d6990fd2c297ff6daa77a31a99500a33be91_0.file.registrazioneUtente.tpl.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Smarty/templates_c/6591425132789f1bc238b58ee6d06e7872e5294b_0.file.login.tpl.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Smarty/templates_c/7757a365921f193a5e1677eb3c4671e453775876_0.file.areaPersonaleUtente.tpl.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Smarty/templates_c/85a4253371d35a6c110cf2fab98475519d466319_0.file.home.tpl.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Smarty/templates_c/9d2f3dbcbde1bf0ad179ef3a8ceb3b816eee6972_0.file.risultatiRicerca.tpl.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Smarty/templates_c/b5d300fe6bafc3ba1750786a993044c155dbb9ac_0.file.registrazioneProprietario.tpl.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Smarty/templates_c/bcbfe61f3d266fe67960316d6441abf53b7bde37_0.file.areaPersonaleUtente.tpl.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Smarty/templates_c/c20b6bf5f02e1972c0cff8ba77bb2836e646beda_0.file.registrazioneUtente.tpl.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Smarty/templates_c/c953834e2bd280dacf9fe734edc7529afcd03f09_0.file.home.tpl.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Smarty/templates_c/f01309d919bfd81c0c749befffc9728594dd37b3_0.file.areaPersonaleProprietario.tpl.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Smarty/templates_c/f35069c99a609cabc5548dc9ca9f738b7974de28_0.file.registrazioneProprietario.tpl.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/areaPersonaleProprietario.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/template/areaPersonaleProprietario.tpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/areaPersonaleUtente.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/template/areaPersonaleUtente.tpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/home.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/template/home.tpl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -157,6 +173,7 @@
       <workItem from="1663074271155" duration="4817000" />
       <workItem from="1663095398729" duration="23000" />
       <workItem from="1663141227640" duration="7480000" />
+      <workItem from="1663251714047" duration="656000" />
     </task>
     <servers />
   </component>
