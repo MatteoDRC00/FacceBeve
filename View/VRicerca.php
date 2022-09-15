@@ -19,6 +19,16 @@ class VRicerca
     }
 
     /**
+     * Metodo che restituisce l'id' del locale selezionate nella pagina personale del utente/proprietario
+     * @return int
+     */
+    public function getIdLocale(): int
+    {
+        return $_POST['idLocale'];
+    }
+
+
+    /**
      * Restituisce (se immesso) il valore del campo nome locale
      * Inviato con metodo post
      * @return string contenente il valore inserito dall'utente

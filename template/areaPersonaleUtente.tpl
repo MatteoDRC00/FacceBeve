@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{assign var='locali_preferiti' value=$locali_preferiti}
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -143,20 +144,22 @@
 
                         <div class="entries">
                             {if !empty($locali_preferiti)}
+                                <form method="POST">
                                 {foreach $locali_preferiti as $locale}
                                     <article class="entry">
                                         <div class="entry-content">
+                                            <input type="hidden" name="idLocale" value="{$locale->getId()}"/>
                                             <a href="" style="font-size: 20px">{$locale.nome} <i class="fa fa-angle-right"></i></a>
                                             <div class="read-more">
-                                                <a href="/GestioneLocale/infoLocale">Visita il locale <i class="fas fa-chevron-circle-right"></i></a>
+                                                <a href="/Ricerca/dettagliLocale">Visita il locale <i class="fas fa-chevron-circle-right"></i></a>
                                             </div>
                                         </div>
-
                                     </article>
                                 {/foreach}
                             {else}
                                 <p>Non possiedi locali preferiti</p>
                             {/if}
+                                </form>
                         </div>
                     </div>
                 </div>

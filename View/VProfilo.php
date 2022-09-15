@@ -21,36 +21,6 @@ class VProfilo{
 
 
     /**
-     * Funzione che si occupa di gestire la visualizzazione del profilo utente/proprietario
-     * @param $tente informazioni sull' utente da visualizzare
-     * @param $locali elenco di locali gestiti dal proprietario, vale null se è il profilo di un utente normale
-     * @throws SmartyException
-
-    public function profilo($utente,$locali) {
-        //encode con base64 del img profilo
-        list($type,$pic64) = $this->setImage($utente->getImgProfilo(), get_class($utente));
-        $this->smarty->assign('type', $type);
-        $this->smarty->assign('pic64', $pic64);
-        $this->smarty->assign('userlogged',"loggato");
-        $this->smarty->assign('nome',$utente->getNome());
-        $this->smarty->assign('cognome',$utente->getCognome());
-        $this->smarty->assign('username',$utente->getUsername());
-        $this->smarty->assign('email',$utente->getEmail());
-        //EUtente o EProprietario
-        $this->smarty->assign('classe', get_class($utente));
-        //Se Utente locali->suoi preferiti, se invece Proprietario locali->suoi gestiti
-        if($locali==null){
-            $this->smarty->assign('array',$utente->getLocalipreferiti());
-            $this->smarty->display('areaPersonaleUtente.tpl');
-        }else{
-            $this->smarty->assign('array',$locali);
-            $this->smarty->display('areaPersonaleProprietario.tpl');
-        }
-    }
-     */
-
-
-    /**
      * Funzione che permette di visualizzare il profilo del Utente prelevando le informazioni dall'oggetto, assegna i parametri al template, assegna il messaggio di errore e mostra la pagina.
      * @param $utente informazioni sull' utente da visualizzare
      * @param $locali elenco di locali gestiti dal proprietario, vale null se è il profilo di un utente normale
@@ -198,6 +168,7 @@ class VProfilo{
     {
         return $_POST['newemail'];
     }
+
 
     /**
      * Metodo che restituisce la username inserita nel campo "Nuova Username", utilizzata nella modifica del profilo, e prelevata dal vettore $_FILES

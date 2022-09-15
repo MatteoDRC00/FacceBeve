@@ -99,7 +99,7 @@
                             <label style="font-weight: bold">Inserisci la localizzazione: </label><br>
                             <input type="text" name="indirizzoLocale" placeholder="Inserisci l'indirizzo">
                             <input type="text" name="civicoLocale" placeholder="Inserisci il numero civico" pattern="[0-9]" title="Attenzione, inserire un numero.">
-                            <input type="text" name="cittaLocale" placeholder="Inserisci città">
+                            <input type="text" name="cittaLocale" autocomplete="on" placeholder="Inserisci città">
                             <input type="text" name="CAPLocale" placeholder="Inserisci il CAP" pattern="[0-9]" title="Attenzione il CAP è un codice numerico.">
                         </div>
                         <div class="form-example">
@@ -132,7 +132,7 @@
                     </form>
                 </div>
                 <div class="col-6 bg-white px-3 pb-2">
-                    <form action="" enctype="multipart/form-data" method="POST" class="aggiorna"> <!-- aggiungin i controlli -->
+                    <form action="" enctype="multipart/form-data" method="POST" class="aggiorna">
                         <p>AGGIUNGI LE IMMAGINI</p>
                         <input name="img" class="w-50 p-2 m-2" type="file"><br>
                         <button type="submit" class="btnAggiorna">AGGIUNGI</button>
