@@ -29,12 +29,6 @@
     <!-- Template Main CSS File -->
     <link href="/template/css/style.css" rel="stylesheet">
 
-    <!-- =======================================================
-    * Template Name: Moderna - v4.9.1
-    * Template URL: https://bootstrapmade.com/free-bootstrap-template-corporate-moderna/
-    * Author: BootstrapMade.com
-    * License: https://bootstrapmade.com/license/
-    ======================================================== -->
 </head>
 
 <body>

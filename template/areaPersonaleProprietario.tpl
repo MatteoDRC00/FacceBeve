@@ -1,6 +1,6 @@
 <!DOCTYPE html>
+{assign var='locali' value=$locali}
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -32,12 +32,6 @@
     <!-- Template Main CSS File -->
     <link href="/template/css/style.css" rel="stylesheet">
 
-    <!-- =======================================================
-    * Template Name: Moderna - v4.9.1
-    * Template URL: https://bootstrapmade.com/free-bootstrap-template-corporate-moderna/
-    * Author: BootstrapMade.com
-    * License: https://bootstrapmade.com/license/
-    ======================================================== -->
 </head>
 
 <body>
@@ -144,24 +138,24 @@
 
     <section class="services">
         <div class="container">
-
             <div class="row">
                 <h2 id="locali">Ecco i tuoi locali:</h2>
             </div>
-
             <div class="items-body">
                 {if !empty($locali)}
+                <form method="POST">
                     {foreach $locali as $locale}
-                        <a href="">{$locale.nome}<i class="fa fa-angle-right"></i></a>
+                        <input type="hidden" name="idLocale" value="{$locale->getId()}"/>
+                        <a href="/GestioneLocale/dettagliLocale">{$locale.nome}<i class="fa fa-angle-right"></i></a>
                     {/foreach}
+                </form>
                 {else}
                     <p>Non possiedi locali locali</p>
                 {/if}
             </div>
         </div>
     </section>
-
-</main><!-- End #main -->
+</main>
 
 <!-- ======= Footer ======= -->
 <footer id="footer" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
