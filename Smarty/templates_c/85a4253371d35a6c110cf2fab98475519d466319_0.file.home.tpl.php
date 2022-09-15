@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-14 17:34:28
+/* Smarty version 4.2.0, created on 2022-09-15 16:08:38
   from 'C:\xampp1\htdocs\FacceBeve\template\home.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_6321f4840e82d0_69671025',
+  'unifunc' => 'content_632331e6b03368_48656908',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '85a4253371d35a6c110cf2fab98475519d466319' => 
     array (
       0 => 'C:\\xampp1\\htdocs\\FacceBeve\\template\\home.tpl',
-      1 => 1663169655,
+      1 => 1663250912,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6321f4840e82d0_69671025 (Smarty_Internal_Template $_smarty_tpl) {
+function content_632331e6b03368_48656908 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <?php $_smarty_tpl->_assignInScope('tipo', (($tmp = $_smarty_tpl->tpl_vars['tipo']->value ?? null)===null||$tmp==='' ? 'nouser' ?? null : $tmp));
 $_smarty_tpl->_assignInScope('genere_cat', $_smarty_tpl->tpl_vars['genere_cat']->value);
@@ -133,7 +133,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                         <input class="homeinput" type="text" placeholder="Inserisci la città" name="citta">
                         <input class="homeinput" type="text" placeholder="Inserisci il nome del Locale" name="nomeLocale">
                         <input class="homeinput" type="text" placeholder="Inserisci il nome del Evento" name="nomeEvento">
-                        <input type="date" placeholder="Inserisci la data del Evento" name="dataEvento">
+                        <input type="date" style="size: 20px;" placeholder="Inserisci la data del Evento" name="dataEvento">
                         <button type="submit" style="border-radius:10px;"><i class="fa fa-search"></i></button>
                     </form>
                 </div>

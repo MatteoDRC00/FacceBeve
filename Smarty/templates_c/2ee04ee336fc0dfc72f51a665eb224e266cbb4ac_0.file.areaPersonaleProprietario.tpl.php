@@ -1,5 +1,29 @@
-<!DOCTYPE html>
+<?php
+/* Smarty version 4.2.0, created on 2022-09-15 16:01:18
+  from 'C:\xampp1\htdocs\FacceBeve\template\areaPersonaleProprietario.tpl' */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '4.2.0',
+  'unifunc' => 'content_6323302e786be9_44646693',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    '2ee04ee336fc0dfc72f51a665eb224e266cbb4ac' => 
+    array (
+      0 => 'C:\\xampp1\\htdocs\\FacceBeve\\template\\areaPersonaleProprietario.tpl',
+      1 => 1663233869,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+),false)) {
+function content_6323302e786be9_44646693 (Smarty_Internal_Template $_smarty_tpl) {
+?><!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -30,9 +54,17 @@
 
     <!-- Template Main CSS File -->
     <link href="/template/css/style.css" rel="stylesheet">
+
+    <!-- =======================================================
+    * Template Name: Moderna - v4.9.1
+    * Template URL: https://bootstrapmade.com/free-bootstrap-template-corporate-moderna/
+    * Author: BootstrapMade.com
+    * License: https://bootstrapmade.com/license/
+    ======================================================== -->
 </head>
 
 <body>
+
 <!-- ======= Header ======= -->
 <header id="header" class="fixed-top d-flex align-items-center ">
     <div class="container d-flex justify-content-between align-items-center">
@@ -49,13 +81,17 @@
     <!-- ======= Contact Section ======= -->
     <section class="breadcrumbs">
         <div class="container">
+
             <div class="d-flex justify-content-between align-items-center">
-                <h2>Area Personale</h2>
+                <h2>Area Personale Proprietario</h2>
             </div>
+
             <div class="gestioneutente">
-                <a href="#locali">I Tuoi Locali Preferiti</a>
+                <a href="registrazioneLocale.html">Aggiungi locale</a>
+                <a href="#locali">I Tuoi Locali</a>
                 <a href="/Accesso/logout">Esci <i class="fa fa-sign-out"></i></a>
             </div>
+
         </div>
     </section><!-- End Contact Section -->
 
@@ -67,10 +103,16 @@
                     <div class="row">
                         <div class="col-12 bg-white p-0 px-3 py-3 mb-3">
                             <div class="d-flex flex-column align-items-center">
-                                <img class="photo" src="data:{$type};base64,{$pic64}" alt="immagine profilo">
-                                <p class="fw-bold h4 mt-3">{$nome} {$cognome}</p>
-                                <p class="text-muted" style="font-weight: bold">{$username}</p>
-                                <p class="text-muted mb-3">{$email}</p>
+                                <img class="photo" src=data:<?php echo $_smarty_tpl->tpl_vars['type']->value;?>
+;base64,<?php echo $_smarty_tpl->tpl_vars['pic64']->value;?>
+" alt="immagine profilo">
+                                <p class="fw-bold h4 mt-3"><?php echo $_smarty_tpl->tpl_vars['nome']->value;?>
+ <?php echo $_smarty_tpl->tpl_vars['cognome']->value;?>
+</p>
+                                <p class="text-muted"><?php echo $_smarty_tpl->tpl_vars['username']->value;?>
+</p>
+                                <p class="text-muted mb-3"><?php echo $_smarty_tpl->tpl_vars['email']->value;?>
+</p>
                             </div>
                         </div>
                     </div>
@@ -78,9 +120,10 @@
                 <div class="col-md-7 ps-md-4">
                     <div class="row">
                         <div class="col-12 bg-white px-3 mb-3 pb-3">
-                            {if !empty($tipo) && $tipo=="user"}
-                                <h3 class="errore" style="font-family: Arial;color: yellow;font-size: 17px; text-align: center">{$message}</h3>
-                            {/if}
+                            <?php if (!empty($_smarty_tpl->tpl_vars['tipo']->value) && $_smarty_tpl->tpl_vars['tipo']->value == "user") {?>
+                                <h3 class="errore" style="font-family: Arial;color: yellow;font-size: 17px; text-align: center"><?php echo $_smarty_tpl->tpl_vars['message']->value;?>
+</h3>
+                            <?php }?>
                             <form action="/Profilo/modificaUsername" method="POST" class="aggiorna">
                                 <p>Modifica l'username</p>
                                 <div class="form-example">
@@ -89,9 +132,10 @@
                                 </div>
                                 <button type="submit" class="btnAggiorna">Modifica username</button>
                             </form>
-                            {if !empty($tipo) && $tipo=="email"}
-                                <h3 class="errore" style="font-family: Arial;color: yellow;font-size: 17px; text-align: center">{$message}</h3>
-                            {/if}
+                            <?php if (!empty($_smarty_tpl->tpl_vars['tipo']->value) && $_smarty_tpl->tpl_vars['tipo']->value == "email") {?>
+                                <h3 class="errore" style="font-family: Arial;color: yellow;font-size: 17px; text-align: center"><?php echo $_smarty_tpl->tpl_vars['message']->value;?>
+</h3>
+                            <?php }?>
                             <form action="/Profilo/modificaEmail" method="POST" class="aggiorna">
                                 <p>Modifica l'email</p>
                                 <div class="form-example">
@@ -100,9 +144,10 @@
                                 </div>
                                 <button type="submit" class="btnAggiorna">Modifica email</button>
                             </form>
-                            {if !empty($tipo) && $tipo=="password"}
-                                <h3 class="errore" style="font-family: Arial;color: yellow;font-size: 17px; text-align: center">{$message}</h3>
-                            {/if}
+                            <?php if (!empty($_smarty_tpl->tpl_vars['tipo']->value) && $_smarty_tpl->tpl_vars['tipo']->value == "password") {?>
+                                <h3 class="errore" style="font-family: Arial;color: yellow;font-size: 17px; text-align: center"><?php echo $_smarty_tpl->tpl_vars['message']->value;?>
+</h3>
+                            <?php }?>
                             <form action="/Profilo/modificaPassword" method="POST" class="aggiorna">
                                 <p>Modifica la password</p>
                                 <div class="form-example">
@@ -119,7 +164,7 @@
                         <div class="col-12 bg-white px-3 pb-2">
                             <form action="/Profilo/modificaImmagineProfilo" enctype="multipart/form-data" method="POST" class="aggiorna"> <!-- aggiungin i controlli -->
                                 <p>Modifica l'immagine di profilo</p>
-                                <input name="newimg_profilo" class="w-50 p-2 m-2" type="file" required><br>
+                                <input name="newimg_profilo" class="w-50 p-2 m-2" type="file"><br>
                                 <button type="submit" class="btnAggiorna">Modifica Immagine</button>
                             </form>
                         </div>
@@ -133,30 +178,26 @@
         <div class="container">
 
             <div class="row">
-                <h2 id="locali">Ecco i tuoi locali preferiti:</h2>
+                <h2 id="locali">Ecco i tuoi locali:</h2>
             </div>
 
-            <div id="blog" class="blog">
-                <div class="container" data-aos="fade-up">
-
-                    <div class="row" style="color: #f0c040">
-
-                        <div class="entries">
-                            {if !empty($locali_preferiti)}
-                                <form method="POST">
-                                {foreach $locali_preferiti as $locale}
-                                    <a href="">{$locale.nome}<i class="fa fa-angle-right"></i></a>
-                                {/foreach}
-                                </form>
-                            {else}
-                                <p>Non possiedi locali preferiti</p>
-                            {/if}
-
-                        </div>
-                    </div>
-                </div>
+            <div class="items-body">
+                <?php if (!empty($_smarty_tpl->tpl_vars['locali']->value)) {?>
+                    <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['locali']->value, 'locale');
+$_smarty_tpl->tpl_vars['locale']->do_else = true;
+if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['locale']->value) {
+$_smarty_tpl->tpl_vars['locale']->do_else = false;
+?>
+                        <a href=""><?php echo $_smarty_tpl->tpl_vars['locale']->value['nome'];?>
+<i class="fa fa-angle-right"></i></a>
+                    <?php
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
+                <?php } else { ?>
+                    <p>Non possiedi locali locali</p>
+                <?php }?>
             </div>
-
         </div>
     </section>
 
@@ -183,18 +224,37 @@
         class="bi bi-arrow-up-short"></i></a>
 
 <!-- Vendor JS Files -->
-<script src="/template/vendor/purecounter/purecounter_vanilla.js"></script>
-<script src="/template/vendor/aos/aos.js"></script>
-<script src="/template/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="/template/vendor/glightbox/js/glightbox.min.js"></script>
-<script src="/template/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-<script src="/template/vendor/swiper/swiper-bundle.min.js"></script>
-<script src="/template/vendor/waypoints/noframework.waypoints.js"></script>
-<script src="/template/vendor/php-email-form/validate.js"></script>
+<?php echo '<script'; ?>
+ src="/template/vendor/purecounter/purecounter_vanilla.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ src="/template/vendor/aos/aos.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ src="/template/vendor/bootstrap/js/bootstrap.bundle.min.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ src="/template/vendor/glightbox/js/glightbox.min.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ src="/template/vendor/isotope-layout/isotope.pkgd.min.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ src="/template/vendor/swiper/swiper-bundle.min.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ src="/template/vendor/waypoints/noframework.waypoints.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ src="/template/vendor/php-email-form/validate.js"><?php echo '</script'; ?>
+>
 
 <!-- Template Main JS File -->
-<script src="/template/js/main.js"></script>
+<?php echo '<script'; ?>
+ src="/template/js/main.js"><?php echo '</script'; ?>
+>
 
 </body>
 
-</html>
+</html><?php }
+}
