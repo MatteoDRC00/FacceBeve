@@ -79,20 +79,20 @@ class CRicerca{
                     $vRicerca->showResult($result, $tipo,$nomelocale,$citta,$categoria,null);
                 }else
                     header('Location: /Ricerca/mostraHome');
-        }elseif ($tipo == "Evento") {
+        }elseif ($tipo == "Eventi") {
                 $nomelocale = $vRicerca->getNomeLocale();
                 $nomeevento= $vRicerca->getNomeEvento();
                 $citta= $vRicerca->getCitta();
                 $data= $vRicerca->getDataEvento();
-                if ($nomelocale != null || $nomeevento != null || $citta != null || $data != null){ //JAVASCRIPTTTTT
-                        $pm = FPersistentManager::GetIstance();
+                if ($nomelocale != null || $nomeevento != null || $citta != null || $data != null){
+                        $pm = FPersistentManager::GetInstance();
                         $result = $pm->loadForm($nomelocale, $nomeevento, $citta, $data,$tipo);
                         $vRicerca->showResult($result, $tipo, $nomelocale, $citta, $nomeevento, $data);
                 }else
                     header('Location: /Ricerca/mostraHome');
         }else{
-            header('Location: /Ricerca/mostraHome');
-        }
+            print_r($_POST);//header('Location: /Ricerca/mostraHome');
+           }
     }
 
     /**

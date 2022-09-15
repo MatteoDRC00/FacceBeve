@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-15 16:21:50
+/* Smarty version 4.2.0, created on 2022-09-15 19:08:02
   from 'C:\xampp\htdocs\FacceBeve\template\home.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_632334fe467e64_19395774',
+  'unifunc' => 'content_63235bf29ddd11_78741514',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c953834e2bd280dacf9fe734edc7529afcd03f09' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\home.tpl',
-      1 => 1663251701,
+      1 => 1663261680,
       2 => 'file',
     ),
   ),
@@ -20,10 +20,9 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_632334fe467e64_19395774 (Smarty_Internal_Template $_smarty_tpl) {
+function content_63235bf29ddd11_78741514 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
-<?php $_smarty_tpl->_assignInScope('tipo', (($tmp = $_smarty_tpl->tpl_vars['tipo']->value ?? null)===null||$tmp==='' ? 'nouser' ?? null : $tmp));
-$_smarty_tpl->_assignInScope('genere_cat', $_smarty_tpl->tpl_vars['genere_cat']->value);
+<?php $_smarty_tpl->_assignInScope('genere_cat', $_smarty_tpl->tpl_vars['genere_cat']->value);
 $_smarty_tpl->_assignInScope('locali', $_smarty_tpl->tpl_vars['locali']->value);?>
 <html lang="en">
 
@@ -81,7 +80,7 @@ $_smarty_tpl->_assignInScope('locali', $_smarty_tpl->tpl_vars['locali']->value);
             </div>
         <?php } elseif ($_smarty_tpl->tpl_vars['tipo']->value == 'EProprietario') {?>
             <div class="sign">
-                <a href="/Profilo/mostraProfilo">Area Personale</a>
+                <a href="/Profilo/mostraProfilo">Area Personale Proprietario</a>
                 <a href="/Accesso/logout">Logout</a>
             </div>
         <?php }?>
@@ -92,22 +91,22 @@ $_smarty_tpl->_assignInScope('locali', $_smarty_tpl->tpl_vars['locali']->value);
 <!-- ======= Hero Section ======= -->
 <section id="hero" class="d-flex justify-content-center align-items-center" >
     <div id="heroCarousel" class="container carousel carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
-
         <div class="carousel-item active">
             <?php if ($_smarty_tpl->tpl_vars['tipo']->value != 'nouser') {?>
                 <div class="carousel-container">
                     <h2 class="animate__animated animate__fadeInDown">Benvenuti in <span>FacceBeve</span></h2>
                     <p class="animate__animated animate__fadeInUp">È scientificamente provato che un aperitivo patatine e birretta non salveranno il mondo, ma la giornata sicuramente sì.</p>
                     <h4 class="mb-0" style="color:white">Puoi ricercare...</h4>
-                    <select onchange=setList() method=post name="tipo" id="tipo" style="border-radius:10px;">
-                        <option selected value="Locali">Locali</option>
-                        <option value="Eventi">Eventi</option>
-                    </select>
+
                 </div>
                 <div class="ricerca animate__animated animate__fadeInDown" id="Locali" style="display: flex;justify-content: center;">
-                    <form class="Search" name="ricercaLocali1" onsubmit="return validateResearchForm(1)"  action="/Ricerca/ricerca" method="POST">
+                    <form class="Search" name="ricercaLocali1" onsubmit="return validateResearchForm(1)" id="1" action="/Ricerca/ricerca" method="POST">
                         <input class="homeinput" type="text" placeholder="Inserisci la città" name="citta1">
                         <input class="homeinput" type="text" placeholder="Inserisci il nome" name="nomeLocale1">
+                        <select name="tipo" id="tipo" onchange="setList()" style="border-radius:10px;">
+                            <option selected value="Locali">Locali</option>
+                            <option value="Eventi">Eventi</option>
+                        </select>
                         <select  name="categorie1" style="border-radius:7px; height: 50px  ;">
                             <option>--Scegli il tipo--</option>
                             <?php if (!empty($_smarty_tpl->tpl_vars['genere_cat']->value)) {?>
@@ -129,7 +128,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                     </form>
                 </div>
                 <div class="ricerca animate__animated animate__fadeInDown" id="Eventi" style="display: none;justify-content: center;" >
-                    <form class="Search" name="ricercaEventi" onsubmit="return validateResearchForm(1)"  action="/Ricerca/ricerca" method="POST">
+                    <form class="Search" name="ricercaEventi" onsubmit="return validateResearchForm(1)" id="2" action="/Ricerca/ricerca" method="POST">
                         <input class="homeinput" type="text" placeholder="Inserisci la città" name="citta">
                         <input class="homeinput" type="text" placeholder="Inserisci il nome del Locale" name="nomeLocale">
                         <input class="homeinput" type="text" placeholder="Inserisci il nome del Evento" name="nomeEvento">
@@ -143,7 +142,6 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                     <p class="animate__animated animate__fadeInUp">È scientificamente provato che un aperitivo patatine e birretta non salveranno il mondo, ma la giornata sicuramente sì.</p>
                     <h4 class="mb-0" style="color:white;">Trova i locali della tua città</h4>
                 </div>
-
                 <div class="ricerca animate__animated animate__fadeInDown" style="display: flex;justify-content: center;">
                     <form class="Search" name="ricercaLocali0" action="/Ricerca/ricerca" method="POST" onsubmit="return validateResearchForm(0)">
                         <input class="homeinput" type="text" placeholder="Inserisci la città" name="citta">
@@ -168,10 +166,8 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                         <button type="submit" style="border-radius:7px; height: 50px"><i class="fa fa-search"></i></button>
                     </form>
                 </div>
-
             <?php }?>
         </div>
-
     </div>
 </section><!-- End Hero -->
 

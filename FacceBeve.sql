@@ -39,7 +39,7 @@ CREATE TABLE `Utente` (
 );
 /*Inserimento dati Utente*/
 INSERT INTO `Utente` (`username`,`nome`,`cognome`,`email`,`password`,`dataIscrizione`,`idImg`,`state`) VALUES
-('JSabbly','Alex','Sablo','sabloyes@gmail.com','f8d32c3bd767f0c6c4ed23a9e8069d32','09/08/2022',1,1); /**pw=AlexSab0*/
+('JSabbly','Alex','Sablo','sabloyes@gmail.com','fc921691abbcce2e91a52be32c26ddba','09/08/2022',1,1); /**pw=AlexSab0*/
 
 /*Tabella relativa ai Proprietari dei Locali*/
 DROP TABLE IF EXISTS `Proprietario`;
@@ -56,7 +56,7 @@ CREATE TABLE `Proprietario` (
 );
 /*Inserimento dati Proprietario*/
 INSERT INTO `Proprietario` (`username`,`nome`,`cognome`,`email`,`password`,`idImg`) VALUES
-('DRKing','message','digest','saggio99@gmail.com','f8d32c3bd767f0c6c4ed23a9e8069d32',1); /**pw=Zezzone01*/
+('DRKing','message','digest','saggio99@gmail.com','005ebe0785baf32bdc5d964f1c52953b',1); /**pw=Zezzone01*/
 
 
 /*Tabella relativa agli Admin del sito*/
@@ -70,7 +70,7 @@ CREATE TABLE `Admin` (
 );
 /*Inserimento dati Admin*/
 INSERT INTO `Admin` (`username`,`email`,`password`) VALUES
-('Admin','admin@gmail.com','733e459f694fcee5aabba4eab211e014'); /**pw=Admin00*/
+('Admin','admin@gmail.com','3f6e5d5e29654c022005048a11b07a40'); /**pw=Admin00*/
 
 
 /*Tabella relativa alle Categorie a cui possono appartenere i locali(Bar, Ristorazione)*/

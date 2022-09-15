@@ -187,7 +187,7 @@ function validateResearchForm(id) {
                 return false;
             }
 
-            if (DataEvento.getTime() < Oggi.getTime()) {
+            if (DataEvento.getTime() <= Oggi.getTime()) {
                 alert('La data del evento è precedente ad adesso, viaggiare nel tempo è pericoloso');
                 return false;
             }
@@ -217,11 +217,13 @@ function setList() {
             q = document.getElementById(y);
             if (y === 'Locali') {
                 q.style.display = "flex";
+                x.setAttribute("form","1");
                 z = document.getElementById("Eventi");
                 z.style.display = "none";
 
-            } else {
+            } else if(y === 'Eventi'){
                 q.style.display = "inline-block";
+                x.setAttribute("form","2");
                 z = document.getElementById("Locali");
                 z.style.display = "none";
             }

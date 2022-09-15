@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-{assign var='tipo' value=$tipo|default:'nouser'}
 {assign var='genere_cat' value=$genere_cat}
 {assign var='locali' value=$locali}
 <html lang="en">
@@ -69,22 +68,22 @@
 <!-- ======= Hero Section ======= -->
 <section id="hero" class="d-flex justify-content-center align-items-center" >
     <div id="heroCarousel" class="container carousel carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
-
         <div class="carousel-item active">
             {if $tipo!='nouser'}
                 <div class="carousel-container">
                     <h2 class="animate__animated animate__fadeInDown">Benvenuti in <span>FacceBeve</span></h2>
                     <p class="animate__animated animate__fadeInUp">È scientificamente provato che un aperitivo patatine e birretta non salveranno il mondo, ma la giornata sicuramente sì.</p>
                     <h4 class="mb-0" style="color:white">Puoi ricercare...</h4>
-                    <select onchange=setList() method=post name="tipo" id="tipo" style="border-radius:10px;">
-                        <option selected value="Locali">Locali</option>
-                        <option value="Eventi">Eventi</option>
-                    </select>
+
                 </div>
                 <div class="ricerca animate__animated animate__fadeInDown" id="Locali" style="display: flex;justify-content: center;">
-                    <form class="Search" name="ricercaLocali1" onsubmit="return validateResearchForm(1)"  action="/Ricerca/ricerca" method="POST">
+                    <form class="Search" name="ricercaLocali1" onsubmit="return validateResearchForm(1)" id="1" action="/Ricerca/ricerca" method="POST">
                         <input class="homeinput" type="text" placeholder="Inserisci la città" name="citta1">
                         <input class="homeinput" type="text" placeholder="Inserisci il nome" name="nomeLocale1">
+                        <select name="tipo" id="tipo" onchange="setList()" style="border-radius:10px;">
+                            <option selected value="Locali">Locali</option>
+                            <option value="Eventi">Eventi</option>
+                        </select>
                         <select  name="categorie1" style="border-radius:7px; height: 50px  ;">
                             <option>--Scegli il tipo--</option>
                             {if !empty($genere_cat)}
@@ -97,7 +96,7 @@
                     </form>
                 </div>
                 <div class="ricerca animate__animated animate__fadeInDown" id="Eventi" style="display: none;justify-content: center;" >
-                    <form class="Search" name="ricercaEventi" onsubmit="return validateResearchForm(1)"  action="/Ricerca/ricerca" method="POST">
+                    <form class="Search" name="ricercaEventi" onsubmit="return validateResearchForm(1)" id="2" action="/Ricerca/ricerca" method="POST">
                         <input class="homeinput" type="text" placeholder="Inserisci la città" name="citta">
                         <input class="homeinput" type="text" placeholder="Inserisci il nome del Locale" name="nomeLocale">
                         <input class="homeinput" type="text" placeholder="Inserisci il nome del Evento" name="nomeEvento">
@@ -111,7 +110,6 @@
                     <p class="animate__animated animate__fadeInUp">È scientificamente provato che un aperitivo patatine e birretta non salveranno il mondo, ma la giornata sicuramente sì.</p>
                     <h4 class="mb-0" style="color:white;">Trova i locali della tua città</h4>
                 </div>
-
                 <div class="ricerca animate__animated animate__fadeInDown" style="display: flex;justify-content: center;">
                     <form class="Search" name="ricercaLocali0" action="/Ricerca/ricerca" method="POST" onsubmit="return validateResearchForm(0)">
                         <input class="homeinput" type="text" placeholder="Inserisci la città" name="citta">
@@ -127,10 +125,8 @@
                         <button type="submit" style="border-radius:7px; height: 50px"><i class="fa fa-search"></i></button>
                     </form>
                 </div>
-
             {/if}
         </div>
-
     </div>
 </section><!-- End Hero -->
 
