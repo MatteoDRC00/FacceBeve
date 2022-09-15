@@ -47,6 +47,7 @@ class  ELocale implements JsonSerializable{
         $this->localizzazione = $localizzazione;
         $this->eventi_organizzati = $eventi_organizzati;
         $this->orario = $orario;
+        $this->img = null;
     }
 
     /**
@@ -130,17 +131,17 @@ class  ELocale implements JsonSerializable{
     }
 
     /**
-     * @return array
+     * @return array|null
      */
-    public function getCategoria(): array
+    public function getCategoria(): ?array
     {
         return $this->categoria;
     }
 
     /**
-     * @param array $categoria
+     * @param array|null $categoria
      */
-    public function setCategoria(array $categoria): void
+    public function setCategoria(?array $categoria): void
     {
         $this->categoria = $categoria;
     }
@@ -162,49 +163,49 @@ class  ELocale implements JsonSerializable{
     }
 
     /**
-     * @return array
+     * @return array|null
      */
-    public function getEventiOrganizzati(): array
+    public function getEventiOrganizzati(): ?array
     {
         return $this->eventi_organizzati;
     }
 
     /**
-     * @param array $eventi_organizzati
+     * @param array|null $eventi_organizzati
      */
-    public function setEventiOrganizzati(array $eventi_organizzati): void
+    public function setEventiOrganizzati(?array $eventi_organizzati): void
     {
         $this->eventi_organizzati = $eventi_organizzati;
     }
 
     /**
-     * @return array|EOrario
+     * @return array|null
      */
-    public function getOrario()
+    public function getOrario(): ?array
     {
         return $this->orario;
     }
 
     /**
-     * @param array|EOrario $orario
+     * @param array|null $orario
      */
-    public function setOrario($orario): void
+    public function setOrario(?array $orario): void
     {
         $this->orario = $orario;
     }
 
     /**
-     * @return array
+     * @return array|null
      */
-    public function getImg(): array
+    public function getImg(): ?array
     {
         return $this->img;
     }
 
     /**
-     * @param array $img
+     * @param array|null $img
      */
-    public function setImg(array $img): void
+    public function setImg(?array $img): void
     {
         $this->img = $img;
     }
