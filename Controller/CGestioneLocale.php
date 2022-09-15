@@ -67,7 +67,7 @@ class CGestioneLocale
             $tipo[0] = "F";
             $class = $tipo;
 
-            $p = $pm->load("username", $username, $class);
+            $proprietario = $pm->load("username", $username, $class);
 
             $view = new VGestioneLocale();
             $nomeLocale = $view->getNomeLocale();
@@ -82,13 +82,11 @@ class CGestioneLocale
             $id_Localizzazione = $pm->store($localizzazioneLocale);
             $localizzazioneLocale->setId($id_Localizzazione);
 
-            print_r($p);
-
-            $locale = new ELocale($nomeLocale, $descrizione, $numTelefono, $p, null, $localizzazioneLocale, null, null);
-            print_r($locale);
+            $locale = new ELocale($nomeLocale, $descrizione, $numTelefono, $proprietario, null, $localizzazioneLocale, null, null);
             $id_locale = $pm->store($locale);
-            print($id_locale);
             $locale->setId($id_locale);
+
+            echo $id_locale;
 
             $categoria = $view->getCategorie();
 

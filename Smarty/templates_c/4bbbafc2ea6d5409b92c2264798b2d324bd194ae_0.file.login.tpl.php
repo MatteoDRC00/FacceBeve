@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-14 19:40:43
+/* Smarty version 4.2.0, created on 2022-09-15 16:26:30
   from 'C:\xampp\htdocs\FacceBeve\template\login.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_6322121b5cd481_81345878',
+  'unifunc' => 'content_6323361676b6d8_03087005',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6322121b5cd481_81345878 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6323361676b6d8_03087005 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <!--<?php $_smarty_tpl->_assignInScope('error', (($tmp = $_smarty_tpl->tpl_vars['error']->value ?? null)===null||$tmp==='' ? 'ok' ?? null : $tmp));?>-->
 <html lang="it">

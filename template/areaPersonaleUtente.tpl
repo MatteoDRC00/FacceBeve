@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-{assign var='locali_preferiti' value=$locali_preferiti}
 <html lang="en">
 <head>
     <meta charset="utf-8">
