@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-14 17:17:22
+/* Smarty version 4.2.0, created on 2022-09-15 16:08:19
   from 'C:\xampp\htdocs\FacceBeve\template\areaPersonaleUtente.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_6321f0820c8169_89332650',
+  'unifunc' => 'content_632331d3c3f291_86032169',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '7757a365921f193a5e1677eb3c4671e453775876' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\areaPersonaleUtente.tpl',
-      1 => 1663168639,
+      1 => 1663230957,
       2 => 'file',
     ),
   ),
@@ -20,8 +20,9 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6321f0820c8169_89332650 (Smarty_Internal_Template $_smarty_tpl) {
+function content_632331d3c3f291_86032169 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
+<?php $_smarty_tpl->_assignInScope('locali_preferiti', $_smarty_tpl->tpl_vars['locali_preferiti']->value);?>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -53,13 +54,6 @@ function content_6321f0820c8169_89332650 (Smarty_Internal_Template $_smarty_tpl)
 
     <!-- Template Main CSS File -->
     <link href="/template/css/style.css" rel="stylesheet">
-
-    <!-- =======================================================
-    * Template Name: Moderna - v4.9.1
-    * Template URL: https://bootstrapmade.com/free-bootstrap-template-corporate-moderna/
-    * Author: BootstrapMade.com
-    * License: https://bootstrapmade.com/license/
-    ======================================================== -->
 </head>
 
 <body>
@@ -178,10 +172,11 @@ function content_6321f0820c8169_89332650 (Smarty_Internal_Template $_smarty_tpl)
             <div id="blog" class="blog">
                 <div class="container" data-aos="fade-up">
 
-                    <div class="row">
+                    <div class="row" style="color: #f0c040">
 
                         <div class="entries">
                             <?php if (!empty($_smarty_tpl->tpl_vars['locali_preferiti']->value)) {?>
+                                <form method="POST">
                                 <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['locali_preferiti']->value, 'locale');
 $_smarty_tpl->tpl_vars['locale']->do_else = true;
@@ -190,31 +185,26 @@ $_smarty_tpl->tpl_vars['locale']->do_else = false;
 ?>
                                     <article class="entry">
                                         <div class="entry-content">
-                                            <h2 class="entry-title"><?php echo $_smarty_tpl->tpl_vars['locale']->value['nome'];?>
-</h2>
-                                            <p><?php echo $_smarty_tpl->tpl_vars['locale']->value['descrizione'];?>
-</p>
+                                            <input type="hidden" name="idLocale" value="<?php echo $_smarty_tpl->tpl_vars['locale']->value->getId();?>
+"/>
+                                            <a href="" style="font-size: 20px"><?php echo $_smarty_tpl->tpl_vars['locale']->value['nome'];?>
+ <i class="fa fa-angle-right"></i></a>
                                             <div class="read-more">
-                                                <a href="infoLocale.html">Visita il locale <i class="fas fa-chevron-circle-right"></i></a>
+                                                <a href="/Ricerca/dettagliLocale">Visita il locale <i class="fas fa-chevron-circle-right"></i></a>
                                             </div>
                                         </div>
-
-                                    </article><!-- End blog entry -->
+                                    </article>
                                 <?php
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                             <?php } else { ?>
                                 <p>Non possiedi locali preferiti</p>
                             <?php }?>
-
-
-
-
+                                </form>
                         </div>
                     </div>
-
                 </div>
-            </div><!-- End Blog Section -->
+            </div>
 
         </div>
     </section>

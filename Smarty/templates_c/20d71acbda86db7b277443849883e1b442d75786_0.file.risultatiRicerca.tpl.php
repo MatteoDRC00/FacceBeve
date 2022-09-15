@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-13 16:04:41
+/* Smarty version 4.2.0, created on 2022-09-15 16:16:11
   from 'C:\xampp\htdocs\FacceBeve\template\risultatiRicerca.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_63208df93fff67_83290638',
+  'unifunc' => 'content_632333ab0cd6f4_26162416',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '20d71acbda86db7b277443849883e1b442d75786' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\risultatiRicerca.tpl',
-      1 => 1663077877,
+      1 => 1663078605,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_63208df93fff67_83290638 (Smarty_Internal_Template $_smarty_tpl) {
+function content_632333ab0cd6f4_26162416 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <?php $_smarty_tpl->_assignInScope('tipo', (($tmp = $_smarty_tpl->tpl_vars['tipo']->value ?? null)===null||$tmp==='' ? 'Locali' ?? null : $tmp));
 $_smarty_tpl->_assignInScope('userlogged', (($tmp = $_smarty_tpl->tpl_vars['error']->value ?? null)===null||$tmp==='' ? 'nouser' ?? null : $tmp));
@@ -127,9 +127,8 @@ $_smarty_tpl->_assignInScope('array', (($tmp = $_smarty_tpl->tpl_vars['array']->
     <section id="blog" class="blog">
         <div class="container" data-aos="fade-up">
          <?php if ($_smarty_tpl->tpl_vars['array']->value != 'vuoto') {?>
-            <h1>Ok</h1>
-           <?php if ($_smarty_tpl->tpl_vars['tipo']->value == "Locali") {?> <!--Locali-->
-             <?php
+            <?php if ($_smarty_tpl->tpl_vars['tipo']->value == "Locali") {?> <!--Locali-->
+            <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['array']->value, 'locale');
 $_smarty_tpl->tpl_vars['locale']->do_else = true;
 if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['locale']->value) {
@@ -236,7 +235,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
         </div>
         <?php }?>
         <?php } else { ?>
-            <div class=class="entries">
+            <div class="entries">
                 <h2 class="accordion-body">La ricerca non ha prodotto alcun risultato. Riprova.</h2>
             </div>
         <?php }?>

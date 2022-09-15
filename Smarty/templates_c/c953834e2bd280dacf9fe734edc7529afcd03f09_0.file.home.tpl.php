@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-14 19:40:16
+/* Smarty version 4.2.0, created on 2022-09-15 16:21:50
   from 'C:\xampp\htdocs\FacceBeve\template\home.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_63221200743009_30379367',
+  'unifunc' => 'content_632334fe467e64_19395774',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c953834e2bd280dacf9fe734edc7529afcd03f09' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\home.tpl',
-      1 => 1663170896,
+      1 => 1663251701,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_63221200743009_30379367 (Smarty_Internal_Template $_smarty_tpl) {
+function content_632334fe467e64_19395774 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <?php $_smarty_tpl->_assignInScope('tipo', (($tmp = $_smarty_tpl->tpl_vars['tipo']->value ?? null)===null||$tmp==='' ? 'nouser' ?? null : $tmp));
 $_smarty_tpl->_assignInScope('genere_cat', $_smarty_tpl->tpl_vars['genere_cat']->value);
@@ -76,7 +76,7 @@ $_smarty_tpl->_assignInScope('locali', $_smarty_tpl->tpl_vars['locali']->value);
             </div>
         <?php } elseif ($_smarty_tpl->tpl_vars['tipo']->value == 'EUtente') {?>
             <div class="sign">
-                <a href="/Profilo/mostraProfilo">Area Personale Utente</a> <!--DEBUG ZIO PERA-->
+                <a href="/Profilo/mostraProfilo">Area Personale Utente</a>
                 <a href="/Accesso/logout">Logout</a>
             </div>
         <?php } elseif ($_smarty_tpl->tpl_vars['tipo']->value == 'EProprietario') {?>
@@ -118,7 +118,7 @@ if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['genere']->value)
 $_smarty_tpl->tpl_vars['genere']->do_else = false;
 ?>
                                     <option type="radio" name="genere" value="<?php echo $_smarty_tpl->tpl_vars['genere']->value;?>
-"> <?php echo $_smarty_tpl->tpl_vars['genere']->value;?>
+"><?php echo $_smarty_tpl->tpl_vars['genere']->value;?>
 </option>
                                 <?php
 }
@@ -129,7 +129,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                     </form>
                 </div>
                 <div class="ricerca animate__animated animate__fadeInDown" id="Eventi" style="display: none;justify-content: center;" >
-                    <form class="Search"  name="ricercaEventi" onsubmit="return validateResearchForm(1)"  action="/Ricerca/ricerca" method="POST">
+                    <form class="Search" name="ricercaEventi" onsubmit="return validateResearchForm(1)"  action="/Ricerca/ricerca" method="POST">
                         <input class="homeinput" type="text" placeholder="Inserisci la città" name="citta">
                         <input class="homeinput" type="text" placeholder="Inserisci il nome del Locale" name="nomeLocale">
                         <input class="homeinput" type="text" placeholder="Inserisci il nome del Evento" name="nomeEvento">

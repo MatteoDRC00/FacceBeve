@@ -53,7 +53,7 @@
             </div>
         {elseif $tipo=='EUtente'}
             <div class="sign">
-                <a href="/Profilo/mostraProfilo">Area Personale Utente</a> <!--DEBUG ZIO PERA-->
+                <a href="/Profilo/mostraProfilo">Area Personale Utente</a>
                 <a href="/Accesso/logout">Logout</a>
             </div>
         {elseif $tipo=='EProprietario'}
@@ -89,7 +89,7 @@
                             <option>--Scegli il tipo--</option>
                             {if !empty($genere_cat)}
                                 {foreach $genere_cat as $genere}
-                                    <option type="radio" name="genere" value="{$genere}"> {$genere}</option>
+                                    <option type="radio" name="genere" value="{$genere}">{$genere}</option>
                                 {/foreach}
                             {/if}
                         </select>
@@ -97,7 +97,7 @@
                     </form>
                 </div>
                 <div class="ricerca animate__animated animate__fadeInDown" id="Eventi" style="display: none;justify-content: center;" >
-                    <form class="Search"  name="ricercaEventi" onsubmit="return validateResearchForm(1)"  action="/Ricerca/ricerca" method="POST">
+                    <form class="Search" name="ricercaEventi" onsubmit="return validateResearchForm(1)"  action="/Ricerca/ricerca" method="POST">
                         <input class="homeinput" type="text" placeholder="Inserisci la città" name="citta">
                         <input class="homeinput" type="text" placeholder="Inserisci il nome del Locale" name="nomeLocale">
                         <input class="homeinput" type="text" placeholder="Inserisci il nome del Evento" name="nomeEvento">
