@@ -209,23 +209,38 @@ class FEvento {
     /** Metodo che permette di caricare un locale che ha determinati parametri, i quali vengono passati in input da una form */
     public static function loadByForm ($part1, $part2,$part3,$part4) {
         $evento = null;
+        $locale = null;
         $db=FDB::getInstance();
         list ($result, $rows_number)=$db->loadMultipleEvento($part1, $part2, $part3, $part4);
         if(($result!=null) && ($rows_number == 1)) {
-            $evento=new EEvento();
+            $x = $db->loadInfoEvento($result["id"]);
+            $localizzazione = FLocalizzazione::loadByField("id" , $x["localizzazione"]);
+            $proprietario = FProprietario::loadByField("username" , $x["proprietario"]);
+            $locale = new ELocale($x['nome'],$x['numtelefono'],$x['descrizione'],$proprietario,$localizzazione);
+            $locale->setId($x["id"]);
+            $evento=new EEvento($result["nome"],$result["descrizione"],$result["data"]);
             $evento->setImg(FImmagine::loadByField('id', $result['idImg']));
             $evento->setId($result["id"]);
         }
         else {
             if(($result!=null) && ($rows_number > 1)){
+                $locale = array();
+                $localizzazione = array();
+                $proprietario = array();
                 for($i=0; $i<count($result); $i++){
-                    $evento[] = new EEvento();
+                    $evento[] = new EEvento($result[$i]["nome"],$result[$i]["descrizione"],$result[$i]["data"]);
+                    $x = $db->loadInfoEvento($result["id"]);
+                    $localizzazione[$i] = FLocalizzazione::loadByField("id" , $x["localizzazione"]);
+                    $proprietario[$i] = FProprietario::loadByField("username" , $x["proprietario"]);
+                    $locale[$i] = new ELocale($x['nome'],$x['numtelefono'],$x['descrizione'],$proprietario[$i],$localizzazione[$i]);
+                    $locale[$i]->setId($x["id"]);
+                    $locale[$i] = $db->loadInfoEvento($result[$i]["id"]);
                     $evento[$i]->setImg(FImmagine::loadByField('id', $result[$i]['idImg']));
                     $evento[$i]->setId($result[$i]["id"]);
                 }
             }
         }
-        return $evento;
+        return array($evento,$locale);
     }
 
 }

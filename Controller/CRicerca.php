@@ -76,7 +76,7 @@ class CRicerca{
                 if ($nomelocale != null || $citta != null || $categoria != null){
                     $pm = FPersistentManager::getInstance();
                     $result[] = $pm->loadForm($nomelocale, $citta,$categoria,"tmp",$tipo);
-                    $vRicerca->showResult($result, $tipo,$nomelocale,$citta,$categoria,null);
+                    $vRicerca->showResult($result, $tipo,$nomelocale,$citta,$categoria,null,null);
                 }else
                     header('Location: /Ricerca/mostraHome');
         }elseif ($tipo == "Eventi") {
@@ -86,8 +86,8 @@ class CRicerca{
                 $data= $vRicerca->getDataEvento();
                 if ($nomelocale != null || $nomeevento != null || $citta != null || $data != null){
                         $pm = FPersistentManager::GetInstance();
-                        $result[] = $pm->loadForm($nomelocale, $nomeevento, $citta, $data,$tipo);
-                        $vRicerca->showResult($result, $tipo, $nomelocale, $citta, $nomeevento, $data);
+                        list($result[],$local[]) = $pm->loadForm($nomelocale, $nomeevento, $citta, $data,$tipo);
+                        $vRicerca->showResult($result, $tipo, $nomelocale, $citta, $nomeevento, $data,$local);
                 }else
                     header('Location: /Ricerca/mostraHome');
         }else{

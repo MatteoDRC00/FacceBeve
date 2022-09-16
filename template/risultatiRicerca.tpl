@@ -4,6 +4,7 @@
 {assign var='citta' value=$citta|default:'er45u'}
 {assign var='nomeEvento' value=$nomeEvento|default:'er45u'}
 {assign var='nomeLocale' value=$nomeLocale|default:'er45u'}
+{assign var='locali' value=$locali}
 {assign var='categoria' value=$categoria|default:'er45u'}
 {assign var='data' value=$data|default:'er45u'}
 {assign var='array' value=$array}
@@ -88,33 +89,67 @@
             <div class="row">
                 <article class="entry">
                     {if isset($array)}
-                     {foreach $array as $locale}
-
-                         <div class="entry-img">
-                             <img class="photo" src="data:{$locale->getImg()->getType()};base64,{$locale->getImg()->getImmagine()}" alt="immagine locale" width="200px" height="100px" style="border-radius:5px">
-                         </div>
-
-                    <h2 class="entry-title">
-                        <a href="infoLocale.html">{$locale->getNome()}</a>
-                    </h2>
-                    <div class="entry-meta">
-                        <ul>
-                            <li class="d-flex align-items-center"><i class="bi bi-person"></i>
-                                {$locale->getProprietario()->getUsername()}</li>
-                            <li class="d-flex align-items-center"><i class="fas fa-map-marker-alt"></i>
-                                {$locale->getLocalizzazione()->getIndirizzo()},{$locale->getLocalizzazione()->getNumCivico()},  {$locale->getLocalizzazione()->getCitta()}
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="entry-content">
-                        <p>
-                            {$locale->getDescrizione()}
-                        </p>
-                        <!--     <div class="read-more">
-                                 <a Visita il locale <i class="fas fa-chevron-circle-right"></i></a>
-                             </div> -->
-                    </div>
-                     {/foreach}
+                    {if $tipo eq "Locali"}
+                        {foreach $array as $locale}
+                            <div class="entry-img">
+                                <img class="photo"
+                                     src="data:{$locale->getImg()->getType()};base64,{$locale->getImg()->getImmagine()}"
+                                     alt="immagine locale" width="200px" height="100px" style="border-radius:5px">
+                            </div>
+                            <h2 class="entry-title">
+                                <a href="infoLocale.html">{$locale->getNome()}</a>
+                            </h2>
+                            <div class="entry-meta">
+                                <ul>
+                                    <li class="d-flex align-items-center"><i class="bi bi-person"></i>
+                                        {$locale->getProprietario()->getUsername()}</li>
+                                    <li class="d-flex align-items-center"><i class="fas fa-map-marker-alt"></i>
+                                        {$locale->getLocalizzazione()->getIndirizzo()}
+                                        ,{$locale->getLocalizzazione()->getNumCivico()}
+                                        , {$locale->getLocalizzazione()->getCitta()}
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="entry-content">
+                                <p>
+                                    {$locale->getDescrizione()}
+                                </p>
+                                <!--     <div class="read-more">
+                                         <a Visita il locale <i class="fas fa-chevron-circle-right"></i></a>
+                                     </div> -->
+                            </div>
+                        {/foreach}
+                    {else}
+                        {foreach $array as $evento}
+                            <div class="entry-img">
+                                <img class="photo"
+                                     src="data:{$evento->getImg()->getType()};base64,{$evento->getImg()->getImmagine()}"
+                                     alt="immagine evento" width="200px" height="100px" style="border-radius:5px">
+                            </div>
+                            <h2 class="entry-title">
+                                <a href="infoLocale.html">{$evento->getNome()}</a>
+                            </h2>
+                            <div class="entry-meta">
+                                <ul>
+                                    <li class="d-flex align-items-center"><i class="bi bi-person"></i>
+                                        {$locali[{$evento@iteration - 1}]->getNome()}</li>
+                                    <li class="d-flex align-items-center"><i class="fas fa-map-marker-alt"></i>
+                                        {$locali[{$evento@iteration - 1}]->getLocalizzazione()->getIndirizzo()}
+                                        ,{$locali[{$evento@iteration - 1}]->getLocalizzazione()->getNumCivico()}
+                                        , {$locali[{$evento@iteration - 1}]->getLocalizzazione()->getCitta()}
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="entry-content">
+                                <p>
+                                    {$evento->getDescrizione()}
+                                </p>
+                                <!--     <div class="read-more">
+                                         <a Visita il locale <i class="fas fa-chevron-circle-right"></i></a>
+                                     </div> -->
+                            </div>
+                        {/foreach}
+                    {/if}
                 </article>
             </div>
         </div>

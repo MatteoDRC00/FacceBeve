@@ -110,10 +110,10 @@ class FPersistentManager {
     public static function loadForm ($part1, $part2,$part3, $part4,$tipo) {
         $ris = null;
         if($tipo=="Locali")
-            $ris = FLocale::loadByForm ($part1, $part2, $part3);
+            return FLocale::loadByForm ($part1, $part2, $part3);
         else
-            $ris = FEvento::loadByForm ($part1, $part2, $part3, $part4);
-        return $ris;
+            return FEvento::loadByForm ($part1, $part2, $part3, $part4);
+
     }
 
     /**

@@ -147,7 +147,7 @@ class VRicerca
      * @param $tipo definisce il tipo di ricerca effettuata (Locali/Eventi)
      * @throws SmartyException
      */
-    public function showResult($result, $tipo,$nomelocale,$citta, $eventoCat, $data){
+    public function showResult($result, $tipo,$nomelocale,$citta, $eventoCat, $data,$localEventi){
         $sessione = new USession();
         if($sessione->isLogged())
             $this->smarty->assign('userlogged',"loggato");
@@ -165,6 +165,7 @@ class VRicerca
             $this->smarty->assign('citta', $citta);
             $this->smarty->assign('categoria', $eventoCat);
         }else{
+            $this->smarty->assign('locali',$localEventi);
             $this->smarty->assign('nomeLocale', $nomelocale);
             $this->smarty->assign('citta', $citta);
             $this->smarty->assign('nomeEvento', $eventoCat);

@@ -576,7 +576,6 @@ class FDB{
 	}
 
 
-
 	/** Metodo che restituisce le categorie/eventi/orari/immagini che caratterizzano un determinato locale, individuato dal suo id
 	 * @param idlocale identificativo del locale
 	 * @return info del locale
@@ -598,6 +597,34 @@ class FDB{
 					$result[] = $row;                    //ritorna un array di righe.
 			}
 			return array($result, $num);
+		} catch (PDOException $e) {
+			echo "Attenzione errore: " . $e->getMessage();
+			$this->database->rollBack();
+			return null;
+		}
+	}
+
+	/** Metodo che restituisce il locale in cui si svolge un determinato evento, individuato dal suo id
+	 * @param idlocale identificativo del locale
+	 * @return info del locale
+	 */
+	public function loadInfoEvento($id){
+		try{
+			$query = ("SELECT * FROM Locale INNER JOIN Locale_Eventi ON Locale_Eventi.ID_Evento=".$id);
+			$stmt = $this->database->prepare($query); //Prepared Statement
+			$stmt->execute();
+			$num = $stmt->rowCount();
+			if ($num == 0) {
+				$result = null;        //nessuna riga interessata. return null
+			} elseif ($num == 1) {                          //nel caso in cui una sola riga fosse interessata
+				$result = $stmt->fetch(PDO::FETCH_ASSOC);   //ritorna una sola riga
+			} else {
+				$result = array();                         //nel caso in cui piu' righe fossero interessate
+				$stmt->setFetchMode(PDO::FETCH_ASSOC);   //imposta la modalità di fetch come array associativo
+				while ($row = $stmt->fetch())
+					$result[] = $row;                    //ritorna un array di righe.
+			}
+			return $result;
 		} catch (PDOException $e) {
 			echo "Attenzione errore: " . $e->getMessage();
 			$this->database->rollBack();
