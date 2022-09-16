@@ -4,7 +4,7 @@
 {assign var='citta' value=$citta|default:'er45u'}
 {assign var='nomeEvento' value=$nomeEvento|default:'er45u'}
 {assign var='nomeLocale' value=$nomeLocale|default:'er45u'}
-{assign var='locali' value=$locali}
+{assign var='locali' value=$locali|default:null}
 {assign var='categoria' value=$categoria|default:'er45u'}
 {assign var='data' value=$data|default:'er45u'}
 {assign var='array' value=$array}
@@ -97,7 +97,7 @@
                                      alt="immagine locale" width="200px" height="100px" style="border-radius:5px">
                             </div>
                             <h2 class="entry-title">
-                                <a href="infoLocale.html">{$locale->getNome()}</a>
+                                <a href="/Ricerca/dettagliLocale/{$locale->getId()}">{$locale->getNome()}</a>
                             </h2>
                             <div class="entry-meta">
                                 <ul>
@@ -127,7 +127,7 @@
                                      alt="immagine evento" width="200px" height="100px" style="border-radius:5px">
                             </div>
                             <h2 class="entry-title">
-                                <a href="infoLocale.html">{$evento->getNome()}</a>
+                                {$evento->getNome()}
                             </h2>
                             <div class="entry-meta">
                                 <ul>
@@ -138,15 +138,17 @@
                                         ,{$locali[{$evento@iteration - 1}]->getLocalizzazione()->getNumCivico()}
                                         , {$locali[{$evento@iteration - 1}]->getLocalizzazione()->getCitta()}
                                     </li>
+                                    <li class="d-flex align-items-center"><i class="bi bi-pin"></i>
+                                        {$evento->getData()}</li>
                                 </ul>
                             </div>
                             <div class="entry-content">
                                 <p>
                                     {$evento->getDescrizione()}
                                 </p>
-                                <!--     <div class="read-more">
-                                         <a Visita il locale <i class="fas fa-chevron-circle-right"></i></a>
-                                     </div> -->
+                                    <div class="read-more">
+                                         <a href="/Ricerca/dettagliLocale/{$locali[{$evento@iteration - 1}]->getId()}"> Visita la pagina del Locale <i class="fas fa-chevron-circle-right"></i></a>
+                                     </div>
                             </div>
                         {/foreach}
                     {/if}

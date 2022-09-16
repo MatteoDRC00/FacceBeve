@@ -11,19 +11,19 @@ class ERecensione implements JsonSerializable {
 	private ELocale $locale;
     private string $titolo;
     private string $descrizione;
-    private int $voto;
+    private float $voto;
     private string $data;
-	private boolean $segnalata;
+	private bool $segnalata;
 
     /**
      * @param EUtente $utente
      * @param string $titolo
      * @param string $descrizione
-     * @param int $voto
+     * @param float $voto
      * @param string $data
      * @param ELocale $locale
      */
-    public function __construct(EUtente $utente, string $titolo, string $descrizione, int $voto, string $data,ELocale $locale){
+    public function __construct(EUtente $utente, string $titolo, string $descrizione, float $voto, string $data,ELocale $locale){
         $this->id = NULL;
         $this->utente = $utente;
         $this->titolo = $titolo;

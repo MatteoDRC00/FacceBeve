@@ -120,9 +120,9 @@ class CRicerca{
      *
      * @throws SmartyException
      */
-     static function dettagliLocale(){
+     static function dettagliLocale($id){
         $vRicerca = new VRicerca();
-        $id = $vRicerca->getIdLocale();
+        //$id = $vRicerca->getIdLocale();
         $pm = FPersistentManager::GetInstance();
         $sessione = new USession();
         $result = $pm->load("id", $id, "FLocale");
@@ -133,27 +133,31 @@ class CRicerca{
             $risposte = array();
             $sum = 0;
             foreach ($recensioni as $item) {
-                $id = $item->getId();
+                $idSearch = $item->getId();
                 $sum += $item->getVoto();
-                $risposte[] = $pm->load("recensione", $id, "FRisposta"); //-->Ogni elemento ha la recensione e le risposte associate a tale recensione
+                $risposte[] = $pm->load("recensione", $idSearch, "FRisposta"); //-->Ogni elemento ha la recensione e le risposte associate a tale recensione
             }
             $rating=$sum/(count($recensioni));
         }else{
+            $idSearch = $recensioni->getId();
             $rating=$recensioni->getVoto();
-            $risposte=$pm->load("recensione",$id,"FRisposta");
+            $risposte=$pm->load("recensione",$idSearch,"FRisposta");
         }
         if($sessione->leggi_valore('utente')){
             if($sessione->leggi_valore('tipo_utente')=="EUtente"){
                 $proprietario=false;
+                $x = false;
                 $utente = $pm->load("id",$sessione->leggi_valore('utente'),"FUtente");
-                if($vRicerca->preferiti()){
+              /*  if($vRicerca->preferiti() && !($x)){
                     $utente->addLocale($result);
+                    $x=true;
                     $pm->storeEsterne("FLocale",$utente,$id);
                 }else{
                     //Potrebbe dare errore
                     $utente->deleteLocale($result);
+                    $x=false;
                     $pm->deleteEsterne("FLocale",$utente,$id);
-                }
+                } */
             }elseif($sessione->leggi_valore('tipo_utente')=="EProprietario"){
                 $check = $pm->exist("FLocale","proprietario",$sessione->leggi_valore('utente'));
                 if($check)

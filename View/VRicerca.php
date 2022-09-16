@@ -221,7 +221,12 @@ class VRicerca
              }
             $this->smarty->assign('eventi', $eventi);
        }*/
-        $nrece = count($arrayRecensioni);
+        if(is_array($arrayRecensioni))
+            $nrece = count($arrayRecensioni);
+        elseif(isset($arrayRecensioni))
+            $nrece = 1;
+        else
+            $nrece = 0;
         $this->smarty->assign('arrayRecensioni', $arrayRecensioni);
         $this->smarty->assign('nrece', $nrece);
         $this->smarty->assign('arrayRisposte', $arrayRisposte);
@@ -233,8 +238,8 @@ class VRicerca
         else
             $this->smarty->assign('userlogged',"nouser");
 
-        $this->register_object("locale",$result);
-        $this->smarty->assign_by_refsign('locale', $result);
+       // $this->register_object("locale",$result);
+        //$this->smarty->assign_by_refsign('locale', $result);
         $this->smarty->display('InfoLocale.tpl');
     }
 

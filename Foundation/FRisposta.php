@@ -80,15 +80,14 @@ class FRisposta{
     public static function loadByField($field, $id) {
         $ris = null;
         $db = FDB::getInstance();
-        $result = $db->load(static::getClass(), $field, $id);
-        $rows_number = $db->interestedRows(static::getClass(), $field, $id);
-        if(($result != null) && ($rows_number == 1)) {
+        list($result,$num) = $db->load(static::getClass(), $field, $id);
+        if(($result != null) && ($num == 1)) {
             $proprietario = FProprietario::loadByField("id" , $result["proprietario"]);
             $ris = new ERisposta($result['recensione'],$result['descrizione'],$proprietario);
             $ris->setId($result['id']);
         }
         else {
-            if(($result != null) && ($rows_number > 1)){
+            if(($result != null) && ($num > 1)){
                 $ris = array();
                 for($i = 0; $i < count($result); $i++){
                     $proprietario = FProprietario::loadByField("id" , $result[$i]["proprietario"]);

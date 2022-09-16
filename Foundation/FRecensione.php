@@ -87,18 +87,24 @@ class FRecensione{
     public static function loadByField($campo, $valore) {
         $db = FDB::getInstance();
         $rec = null;
-        return $db->load(static::getClass(), $campo, $valore);
-        $rows_number = $db->interestedRows(static::getClass(), $field, $id);
-        if(($result != null) && ($rows_number == 1)) {
-            $rec = new ERecensione($result['titolo'],$result['descrizione'],$result['data'],$result['segnalato'],$result['counter'],$result['utente']);
-            $rec->setCodice($result['id']);
+        list($result,$num) =$db->load(static::getClass(), $campo, $valore);
+        if(($result != null) && ($num == 1)) {
+            $utente = FUtente::loadByField("username",$result['utente']);
+            $locale = FLocale::loadByField("id",$result['locale']);
+            $rec = new ERecensione($utente, $result['titolo'],$result['descrizione'],$result['voto'],$result['data'],$locale);
+            $rec->setId($result['id']);
+           // $rec->setCounter($result['id']);
         }
         else {
-            if(($result != null) && ($rows_number > 1)){
+            if(($result != null) && ($num > 1)){
                 $rec = array();
+                $utente = array();
+                $locale = array();
                 for($i = 0; $i < count($result); $i++){
-                     $rec[] = new ERecensione($result[$i]['titolo'],$result[$i]['descrizione'],$result[$i]['data'],$result[$i]['segnalato'],$result[$i]['counter'],$result[$i]['utente']);
-                     $rec[$i]->setCodice($result[$i]['id']);
+                     $utente[$i] = FUtente::loadByField("username",$result[$i]['utente']);
+                     $locale[$i] = FLocale::loadByField("id",$result[$i]['locale']);
+                     $rec[] = new ERecensione($utente[$i], $result[$i]['titolo'],$result[$i]['descrizione'],$result[$i]['voto'],$result[$i]['data'],$locale[$i]);
+                     $rec[$i]->setId($result[$i]['id']);
                 }
             }
         }
@@ -158,17 +164,24 @@ class FRecensione{
     public static function loadAll() {
         $rec = null;
         $db = FDB::getInstance();
-        list ($result, $rows_number)=$db->getAllRev();
-        if(($result != null) && ($rows_number == 1)) {
-            $rec = new ERecensione($result['titolo'],$result['descrizione'],$result['data'],$result['segnalato'],$result['counter'],$result['utente'],$result['nomelocale'],$result['luogolocale']);
-            $rec->setCodice($result['id']);
+        list($result,$num) =$db->getAllRev(static::getClass(), $campo, $valore);
+        if(($result != null) && ($num == 1)) {
+            $utente = FUtente::loadByField("username",$result['utente']);
+            $locale = FLocale::loadByField("id",$result['locale']);
+            $rec = new ERecensione($utente, $result['titolo'],$result['descrizione'],$result['voto'],$result['data'],$locale);
+            $rec->setId($result['id']);
+            // $rec->setCounter($result['id']);
         }
         else {
-            if(($result != null) && ($rows_number > 1)){
+            if(($result != null) && ($num > 1)){
                 $rec = array();
+                $utente = array();
+                $locale = array();
                 for($i = 0; $i < count($result); $i++){
-                    $rec[] = new ERecensione($result[$i]['titolo'],$result[$i]['descrizione'],$result[$i]['data'],$result[$i]['segnalato'],$result[$i]['counter'],$result[$i]['utente'],$result[$i]['nomelocale'],$result[$i]['luogolocale']);
-                    $rec[$i]->setCodice($result[$i]['id']);
+                    $utente[$i] = FUtente::loadByField("username",$result[$i]['utente']);
+                    $locale[$i] = FLocale::loadByField("id",$result[$i]['locale']);
+                    $rec[] = new ERecensione($utente[$i], $result[$i]['titolo'],$result[$i]['descrizione'],$result[$i]['voto'],$result[$i]['data'],$locale[$i]);
+                    $rec[$i]->setId($result[$i]['id']);
                 }
             }
         }

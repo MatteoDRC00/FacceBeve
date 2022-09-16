@@ -62,11 +62,8 @@ class CGestioneLocale
             $locale = $pm->load("id", $id_locale, "FLocale");
             //passare categorie
             //ricostruzione eventi organizzati
-
-
             $view->showFormModificaLocale($locale);
         }
-
     }
 
 
