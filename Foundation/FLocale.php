@@ -229,7 +229,7 @@ class FLocale {
             $localizzazione = FLocalizzazione::loadByField("id" , $result["localizzazione"]);
             $eventi[] = FEvento::loadByLocale($result["id"]);
             $orari[] = FOrario::loadByLocale($result["id"]);
-            $immagini = FImmagine::loadByLocale($result["id"]);
+            $immagini = FImmagine::loadByField("id",$result["idImg"]);
             $locale=new ELocale($result['nome'], $result['descrizione'], $result['numtelefono'], $proprietario , $localizzazione);
             $locale->setImg($immagini);
             $locale->setCategoria($categorie);

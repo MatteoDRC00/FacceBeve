@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-16 16:59:28
+/* Smarty version 4.2.0, created on 2022-09-16 18:12:22
   from 'C:\xampp\htdocs\FacceBeve\template\risultatiRicerca.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_63248f502f6b15_51661570',
+  'unifunc' => 'content_6324a0667bfe13_31070746',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '20d71acbda86db7b277443849883e1b442d75786' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\risultatiRicerca.tpl',
-      1 => 1663340363,
+      1 => 1663344735,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_63248f502f6b15_51661570 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6324a0667bfe13_31070746 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <?php $_smarty_tpl->_assignInScope('tipo', (($tmp = $_smarty_tpl->tpl_vars['tipo']->value ?? null)===null||$tmp==='' ? 'Locali' ?? null : $tmp));
 $_smarty_tpl->_assignInScope('userlogged', (($tmp = $_smarty_tpl->tpl_vars['error']->value ?? null)===null||$tmp==='' ? 'nouser' ?? null : $tmp));
@@ -126,7 +126,7 @@ $_smarty_tpl->tpl_vars['locale']->do_else = false;
                          <div class="entry-img">
                              <img class="photo" src="data:<?php echo $_smarty_tpl->tpl_vars['locale']->value->getImg()->getType();?>
 ;base64,<?php echo $_smarty_tpl->tpl_vars['locale']->value->getImg()->getImmagine();?>
-" alt="immagine locale" width="200px" height="100px">
+" alt="immagine locale" width="200px" height="100px" style="border-radius:5px">
                          </div>
 
                     <h2 class="entry-title">
@@ -140,8 +140,8 @@ $_smarty_tpl->tpl_vars['locale']->do_else = false;
 </li>
                             <li class="d-flex align-items-center"><i class="fas fa-map-marker-alt"></i>
                                 <?php echo $_smarty_tpl->tpl_vars['locale']->value->getLocalizzazione()->getIndirizzo();?>
-
-                                ,<?php echo $_smarty_tpl->tpl_vars['locale']->value->getLocalizzazione()->getNumCivico();?>
+,<?php echo $_smarty_tpl->tpl_vars['locale']->value->getLocalizzazione()->getNumCivico();?>
+   <?php echo $_smarty_tpl->tpl_vars['locale']->value->getLocalizzazione()->getCitta();?>
 
                             </li>
                         </ul>

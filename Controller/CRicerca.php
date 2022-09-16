@@ -86,7 +86,7 @@ class CRicerca{
                 $data= $vRicerca->getDataEvento();
                 if ($nomelocale != null || $nomeevento != null || $citta != null || $data != null){
                         $pm = FPersistentManager::GetInstance();
-                        $result = $pm->loadForm($nomelocale, $nomeevento, $citta, $data,$tipo);
+                        $result[] = $pm->loadForm($nomelocale, $nomeevento, $citta, $data,$tipo);
                         $vRicerca->showResult($result, $tipo, $nomelocale, $citta, $nomeevento, $data);
                 }else
                     header('Location: /Ricerca/mostraHome');

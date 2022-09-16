@@ -91,7 +91,7 @@
                      {foreach $array as $locale}
 
                          <div class="entry-img">
-                             <img class="photo" src="data:{$locale->getImg()->getType()};base64,{$locale->getImg()->getImmagine()}" alt="immagine locale" width="200px" height="100px">
+                             <img class="photo" src="data:{$locale->getImg()->getType()};base64,{$locale->getImg()->getImmagine()}" alt="immagine locale" width="200px" height="100px" style="border-radius:5px">
                          </div>
 
                     <h2 class="entry-title">
@@ -102,8 +102,7 @@
                             <li class="d-flex align-items-center"><i class="bi bi-person"></i>
                                 {$locale->getProprietario()->getUsername()}</li>
                             <li class="d-flex align-items-center"><i class="fas fa-map-marker-alt"></i>
-                                {$locale->getLocalizzazione()->getIndirizzo()}
-                                ,{$locale->getLocalizzazione()->getNumCivico()}
+                                {$locale->getLocalizzazione()->getIndirizzo()},{$locale->getLocalizzazione()->getNumCivico()},  {$locale->getLocalizzazione()->getCitta()}
                             </li>
                         </ul>
                     </div>
