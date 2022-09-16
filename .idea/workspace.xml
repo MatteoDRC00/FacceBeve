@@ -5,13 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c949e55-50d2-4635-ab4f-837af15b2e84" name="Changes" comment="link su tpl">
-      <change afterPath="$PROJECT_DIR$/Smarty/templates_c/1c893a337b2815c195d1ebdec5f1c045d7425e74_0.file.gestioneLocale.tpl.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controller/CFrontController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/CFrontController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controller/CGestioneLocale.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/CGestioneLocale.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/templates_c/f01309d919bfd81c0c749befffc9728594dd37b3_0.file.areaPersonaleProprietario.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/Smarty/templates_c/f01309d919bfd81c0c749befffc9728594dd37b3_0.file.areaPersonaleProprietario.tpl.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Entity/ELocale.php" beforeDir="false" afterPath="$PROJECT_DIR$/Entity/ELocale.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Foundation/FDB.php" beforeDir="false" afterPath="$PROJECT_DIR$/Foundation/FDB.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Foundation/FLocale.php" beforeDir="false" afterPath="$PROJECT_DIR$/Foundation/FLocale.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Foundation/FPersistentManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/Foundation/FPersistentManager.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Smarty/templates_c/1c893a337b2815c195d1ebdec5f1c045d7425e74_0.file.gestioneLocale.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/Smarty/templates_c/1c893a337b2815c195d1ebdec5f1c045d7425e74_0.file.gestioneLocale.tpl.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/View/VGestioneLocale.php" beforeDir="false" afterPath="$PROJECT_DIR$/View/VGestioneLocale.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/areaPersonaleProprietario.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/template/areaPersonaleProprietario.tpl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/template/gestioneLocale.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/template/gestioneLocale.tpl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

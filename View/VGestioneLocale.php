@@ -27,18 +27,7 @@ class VGestioneLocale{
         return $value;
     }
 
-    /**
-     * Restituisce l'id del locale che si vuole creare(Hidden)
-     * Inviato con metodo post
-     * @return int
-     */
-    public function getIdLocale(): ?int
-    {
-        $value = null;
-        if (isset($_POST['IdLocale'])) //NON SO SE VANNO UTLIZZATI NOMI DIVERSI
-            $value = $_POST['IdLocale'];
-        return $value;
-    }
+
 
     /**
      * Restituisce la descrizione del locale che si vuole creare

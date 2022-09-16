@@ -60,7 +60,7 @@ class CGestioneLocale
 
         if($sessione->isLogged() && $tipo == "EProprietario"){
             $locale = $pm->load("id", $id_locale, "FLocale");
-
+            //passare categorie
             //ricostruzione eventi organizzati
 
 
@@ -205,18 +205,20 @@ class CGestioneLocale
      * @return void
      * @throws SmartyException
      */
-    public function modificaNomeLocale(){
+    public function modificaNomeLocale($id_locale){
         $sessione = new USession();
+        $username = $sessione->leggi_valore("utente");
+        $tipo = $sessione->leggi_valore("tipo_utente");
+        $pm = FPersistentManager::getInstance();
         $view = new VGestioneLocale();
 
-        $utente = unserialize($sessione->leggi_valore('utente'));
-        $pm = FPersistentManager::getInstance();
-        $locale = $pm->load("id",$view->getIdLocale(),"FLocale");
-        $nomeNuovo = $view->getNomeLocale();
-        $locale->setNome($nomeNuovo);
-        $pm->update("FLocale","nome",$nomeNuovo,"id",$locale->getId());
-
-        $view->showFormModify(null,$locale);
+        if($sessione->isLogged() && $tipo == "EProprietario"){
+            $nomeNuovo = $view->getNomeLocale();
+            $locale = $pm->load("id",$id_locale,"FLocale");
+            $pm->update("FLocale","nome",$nomeNuovo,"id",$id_locale);
+            $locale->setNome($nomeNuovo);
+            header("Location: /GestioneLocale/mostraGestioneLocale/".$id_locale);
+        }
     }
 
     /**
@@ -224,18 +226,20 @@ class CGestioneLocale
      * @return void
      * @throws SmartyException
      */
-    public function modificaDescrizioneLocale(){
+    public function modificaDescrizioneLocale($id_locale){
         $sessione = new USession();
+        $username = $sessione->leggi_valore("utente");
+        $tipo = $sessione->leggi_valore("tipo_utente");
+        $pm = FPersistentManager::getInstance();
         $view = new VGestioneLocale();
 
-        $utente = unserialize($sessione->leggi_valore('utente'));
-        $pm = FPersistentManager::getInstance();
-        $locale = $pm->load("id",$view->getIdLocale(),"FLocale");
-        $newDescrizione = $view->getDescrizioneLocale();
-        $locale->setNome($newDescrizione);
-        $pm->update("FLocale","descrizione",$newDescrizione,"id",$locale->getId());
-
-        $view->showFormModify(null,$locale);
+        if($sessione->isLogged() && $tipo == "EProprietario"){
+            $newDescrizione = $view->getDescrizioneLocale();
+            $locale = $pm->load("id",$id_locale,"FLocale");
+            $pm->update("FLocale","descrizione",$newDescrizione,"id",$id_locale);
+            $locale->setDescrizione($newDescrizione);
+            header("Location: /GestioneLocale/mostraGestioneLocale/".$id_locale);
+        }
     }
 
     /**
@@ -243,18 +247,20 @@ class CGestioneLocale
      * @return void
      * @throws SmartyException
      */
-    public function modificaNumeroLocale(){
+    public function modificaNumTelefonoLocale($id_locale){
         $sessione = new USession();
+        $username = $sessione->leggi_valore("utente");
+        $tipo = $sessione->leggi_valore("tipo_utente");
+        $pm = FPersistentManager::getInstance();
         $view = new VGestioneLocale();
 
-        $utente = unserialize($sessione->leggi_valore('utente'));
-        $pm = FPersistentManager::getInstance();
-        $locale = $pm->load("id",$view->getIdLocale(),"FLocale");
-        $numeroTelefono = $view->getNumTelefono();
-        $locale->setNome($numeroTelefono);
-        $pm->update("FLocale","numtelefono",$numeroTelefono,"id",$locale->getId());
-
-        $view->showFormModify(null,$locale);
+        if($sessione->isLogged() && $tipo == "EProprietario"){
+            $numeroTelefono = $view->getNumTelefono();
+            $locale = $pm->load("id",$id_locale,"FLocale");
+            $pm->update("FLocale","numtelefono",$numeroTelefono,"id",$id_locale);
+            $locale->setNumTelefono($numeroTelefono);
+            header("Location: /GestioneLocale/mostraGestioneLocale/".$id_locale);
+        }
     }
 
     /**
@@ -262,13 +268,30 @@ class CGestioneLocale
      * @return void
      * @throws SmartyException
      */
-    public function modificaCatLocale(){
+    public function modificaCategorieLocale($id_locale){
         $sessione = new USession();
+        $username = $sessione->leggi_valore("utente");
+        $tipo = $sessione->leggi_valore("tipo_utente");
+        $pm = FPersistentManager::getInstance();
         $view = new VGestioneLocale();
 
-        $utente = unserialize($sessione->leggi_valore('utente'));
-        $pm = FPersistentManager::getInstance();
-        $locale = $pm->load("id",$view->getIdLocale(),"FLocale");
+        if($sessione->isLogged() && $tipo == "EProprietario"){
+            $generi = $view->getCategorie();
+
+            foreach($generi as $g){
+                $categorie[] = $pm->load("genere",$g,"FCategoria");
+                $pm->deleteCategorieLocale($id_locale);
+            }
+
+
+
+            $locale = $pm->load("id",$id_locale,"FLocale");
+            $pm->update("FLocale","numtelefono",$numeroTelefono,"id",$id_locale);
+            $locale->setCategoria($categorie);
+            header("Location: /GestioneLocale/mostraGestioneLocale/".$id_locale);
+        }
+
+
         $newCat = $view->getCategoria();
         foreach($locale->getCategoria() as $cat1){
             $pm->deleteEsterne($cat1);

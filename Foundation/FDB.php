@@ -32,39 +32,6 @@ class FDB{
 
 	}
 
-	public function getTutteRighe($class)
-	{
-		try {
-			$this->database->beginTransaction();
-			$query = "SELECT * FROM " . $class::getTable() . ";";
-			$stmt = $this->database->prepare($query);
-			$stmt->execute();
-			$num = $stmt->rowCount();
-			$this->closeDbConnection();
-			return $num;
-		} catch (PDOException $e) {
-			echo "Attenzione errore: " . $e->getMessage();
-			$this->database->rollBack();
-			return null;
-		}
-	}
-
-	public function getNumRighe($class, $field, $id)
-	{
-		try {
-			$this->database->beginTransaction();
-			$query = "SELECT * FROM " . $class::getTable() . " WHERE " . $field . "='" . $id . "';";
-			$stmt = $this->database->prepare($query);
-			$stmt->execute();
-			$num = $stmt->rowCount();
-			$this->closeDbConnection();
-			return $num;
-		} catch (PDOException $e) {
-			echo "Attenzione errore: " . $e->getMessage();
-			$this->database->rollBack();
-			return null;
-		}
-	}
 
 	/**	Metodo che instanzia un unico oggetto di questa classe richiamando il costruttore se non è stato già istanziato un oggetto
 	 * 	@return FDB
@@ -400,6 +367,22 @@ class FDB{
 				$this->closeDbConnection();
 				return true;
 			}
+		} catch (PDOException $e) {
+			echo "Attenzione errore: " . $e->getMessage();
+			$this->database->rollBack();
+		}
+		return false;
+	}
+
+	public function deleteCategorieLocali($id_locale){
+		try {
+			$this->database->beginTransaction();
+			$query = "DELETE FROM " . "locale_categorie" . " WHERE " . "ID_Locale" . "='" . $id_locale . "';";
+			$stmt = $this->database->prepare($query);
+			$stmt->execute();
+			$this->database->commit();
+			$this->closeDbConnection();
+			return true;
 		} catch (PDOException $e) {
 			echo "Attenzione errore: " . $e->getMessage();
 			$this->database->rollBack();
