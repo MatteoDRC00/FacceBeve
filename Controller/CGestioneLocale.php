@@ -142,6 +142,14 @@ class CGestioneLocale
                     $pm->storeOrariLocale($id, $id_locale);
                 }
             }
+
+            $img = $view->getImgLocale();
+            if(!empty($img)) {
+                $img_locale = new EImmagine($img[0], $img[1], $img[2], $img[3]);
+                $id = $pm->store($img_locale);
+                $img_locale->setId($id);
+                $pm->storeImmagineLocale($id, $id_locale);
+            }
             header('Location: /Profilo/mostraProfilo');
         }else{
             header('Location: /Ricerca/mostraHome');

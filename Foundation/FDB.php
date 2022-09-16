@@ -136,6 +136,21 @@ class FDB{
 		}
 	}
 
+	public function storeImmagineLocale(string $id_locale, string $id_immagine){
+		try {
+			$this->database->beginTransaction();
+			$query = "INSERT INTO " . "locale_orari (ID_Locale,ID_Immagine)" . " VALUES " . "(".$id_locale.",".$id_immagine.")".";";
+			$stmt = $this->database->prepare($query); //Prepared Statement
+			$stmt->execute();
+			$this->database->commit();
+			$this->closeDbConnection();
+		} catch (PDOException $e) {
+			echo "Attenzione errore: " . $e->getMessage();
+			$this->database->rollBack();
+			return null;
+		}
+	}
+
 	/**Metodo chr permette il salvataggio du un media di un oggetto passato come parametro alla funzione
 	 * @param $class, classe di cui si vuole salvare il media
 	 * @param obj oggetto interessato

@@ -128,7 +128,7 @@
                         </div>
                         <div class="form-example">
                             <p>AGGIUNGI LE IMMAGINI</p>
-                            <input name="img" class="w-50 p-2 m-2" type="file" required><br>
+                            <input name="img_locale" class="w-50 p-2 m-2" type="file" required><br>
                         </div>
                         <button type="submit" class="btnAggiorna">CREA IL LOCALE</button>
                     </form>

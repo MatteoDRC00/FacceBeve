@@ -208,8 +208,8 @@ class VGestioneLocale{
         $type = $_FILES['img_locale']['type'];
         $nome = $_FILES['img_locale']['name'];
         $file = $_FILES['img_locale']['tmp_name'];
-        $dimensione = $_FILES['img_locale']['size'];
-        $arrayImg = array($nome,$type, $file, $dimensione);
+        $size = $_FILES['img_locale']['size'];
+        $arrayImg = array($nome, $size, $type, file_get_contents($file));
         return $arrayImg;
     }
 
