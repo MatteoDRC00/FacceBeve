@@ -6,7 +6,7 @@
 {assign var='nomeLocale' value=$nomeLocale|default:'er45u'}
 {assign var='categoria' value=$categoria|default:'er45u'}
 {assign var='data' value=$data|default:'er45u'}
-{assign var='array' value=$array|default:'vuoto'}
+{assign var='array' value=$array}
 <html lang="en">
 
 <head>
@@ -24,7 +24,8 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,700,700i&display=swap"
           rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+          integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 
     <!-- Vendor CSS Files -->
     <link href="/template/vendor/animate.css/animate.min.css" rel="stylesheet">
@@ -38,12 +39,6 @@
     <!-- Template Main CSS File -->
     <link href="/template/css/style.css" rel="stylesheet">
 
-    <!-- =======================================================
-    * Template Name: Moderna - v4.9.1
-    * Template URL: https://bootstrapmade.com/free-bootstrap-template-corporate-moderna/
-    * Author: BootstrapMade.com
-    * License: https://bootstrapmade.com/license/
-    ======================================================== -->
 </head>
 
 <body>
@@ -67,28 +62,22 @@
                 <h2 style="font-weight: bold">Risultati per:</h2>
                 <ul>
                     {if $tipo=="Locali"}
-                      {if $nomeLocale!="er45u"}
-                         <li>{$nomeLocale}</li>
-                      {/if}
-                      {if $citta!="er45u"}
-                         <li>{$citta}</li>
-                      {/if}
-                      {if $categoria!="er45u"}
-                        <li>{$categoria}</li>
-                      {/if}
+                        {if $nomeLocale!="er45u"}
+                            <li>{$nomeLocale}</li>
+                        {/if}
+                        {if $citta!="er45u"}
+                            <li>{$citta}</li>
+                        {/if}
+                        {if $categoria!="er45u"}
+                            <li>{$categoria}</li>
+                        {/if}
                     {else}
-                      {if $nomeLocale!="er45u"}
-                        <li>{$nomeLocale}</li>
-                      {/if}
-                      {if $nomeEvento!="er45u"}
-                        <li>{$nomeEvento}</li>
-                      {/if}
-                      {if $citta!="er45u"}
-                        <li>{$citta}</li>
-                      {/if}
-                      {if $data!="er45u"}
-                       <li>{$data}</li>
-                      {/if}
+                        {if $nomeEvento!="er45u"}
+                            <li>{$nomeEvento}</li>
+                        {/if}
+                        {if $data!="er45u"}
+                            <li>{$data}</li>
+                        {/if}
                     {/if}
                 </ul>
             </div>
@@ -96,94 +85,40 @@
     </section>
     <section id="blog" class="blog">
         <div class="container" data-aos="fade-up">
-         {if $array!='vuoto'}
-            {if $tipo == "Locali"} <!--Locali-->
-            {foreach from=$array item=locale}
-             <div class="row">
-                <div class="entries">
-                    <article class="entry">
-                       <!-- {if isset($locale->getImg())}
-                           <div class="entry-img">
-                               <img class="photo" src="data:{$locale->getImg()->getType()};base64,{$locale->getImg()->getImmagine()}" alt="immagine locale">
-                           </div>
-                        {else}
-                            <div class="entry-img">
-                                <img class="photo" src="C:\xampp\htdocs\FacceBeve\template\img\portfolio\bar.jpeg" alt="immagine locale">
-                            </div>
-                        {/if} -->
-
-                        <h2 class="entry-title">
-                            <a href="infoLocale.html">{$locale->getNome()}</a>
-                        </h2>
-                        <div class="entry-meta">
-                            <ul>
-                                <li class="d-flex align-items-center"><i class="bi bi-person"></i>
-                                    {$locale->getProprietario()}</li>
-                                <li class="d-flex align-items-center"><i class="fas fa-map-marker-alt"></i>
-                                    {$locale->getLocalizzazione()}</li>
-                            </ul>
-                        </div>
-
-                        <div class="entry-content">
-                            <p>
-                                $descrizione
-                            </p>
-                            <div class="read-more">
-                                <a <!--Bisogna passare qualcosa-->>Visita il locale <i class="fas fa-chevron-circle-right"></i></a>
-                            </div>
-                        </div>
-
-                    </article><!-- End blog entry -->
-                    {/foreach}
-                 </div>
-                </div>
-            </div>
-           {else} <!--Eventi-->
-        {foreach from=$array item=evento}
-        <div class="row">
-            <div class="entries">
+            <div class="row">
                 <article class="entry">
-
-                 <!--   {if isset($evento->getImg())}
-                        <div class="entry-img">
-                            <img class="photo" src="data:{$locale->getImg()->getType()};base64,{$locale->getImg()->getImmagine()}" alt="immagine locale">
-                        </div>
-                    {else}
-                        <div class="entry-img">
-                            <img class="photo" src="C:\xampp\htdocs\FacceBeve\template\img\portfolio\evento.jpeg" alt="immagine locale">
-                        </div>
-                    {/if} -->
+                    {if isset($array)}
+                     {foreach $array as $locale}
 
                     <h2 class="entry-title">
-                        <a href="infoLocale.html">{$evento->getNome()}</a>
+                        <a href="infoLocale.html">{$locale->getNome()}</a>
                     </h2>
                     <div class="entry-meta">
                         <ul>
                             <li class="d-flex align-items-center"><i class="bi bi-person"></i>
-                                {$locale->getProprietario()}</li>
+                                {$locale->getProprietario()->getUsername()}</li>
                             <li class="d-flex align-items-center"><i class="fas fa-map-marker-alt"></i>
-                                {$locale->getLocalizzazione()}</li>
+                                {$locale->getLocalizzazione()->getIndirizzo()}
+                                ,{$locale->getLocalizzazione()->getNumCivico()}
+                            </li>
                         </ul>
                     </div>
-
                     <div class="entry-content">
                         <p>
-                            $descrizione
+                            {$locale->getDescrizione()}
                         </p>
-                        <div class="read-more">
-                            <a <!--Bisogna passare qualcosa-->>Visita il locale <i class="fas fa-chevron-circle-right"></i></a>
-                        </div>
+                        <!--     <div class="read-more">
+                                 <a Visita il locale <i class="fas fa-chevron-circle-right"></i></a>
+                             </div> -->
                     </div>
-
+                     {/foreach}
                 </article>
-                {/foreach}
             </div>
         </div>
-        {/if}
         {else}
-            <div class="entries">
-                <h2 class="accordion-body">La ricerca non ha prodotto alcun risultato. Riprova.</h2>
-            </div>
+        <div class="entries">
+            <h2 class="accordion-body">La ricerca non ha prodotto alcun risultato. Riprova.</h2>
+        </div>
         {/if}
     </section>
 
@@ -203,7 +138,7 @@
 </footer><!-- End Footer -->
 
 <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
-        class="bi bi-arrow-up-short"></i></a>
+            class="bi bi-arrow-up-short"></i></a>
 
 <!-- Vendor JS Files -->
 <script src="/template/vendor/purecounter/purecounter_vanilla.js"></script>

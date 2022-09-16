@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @method register_object(string $string, contiene $result)
+ */
 class VRicerca
 {
     private $smarty;

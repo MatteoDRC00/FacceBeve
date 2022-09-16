@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-16 12:27:32
+/* Smarty version 4.2.0, created on 2022-09-16 15:20:12
   from 'C:\xampp\htdocs\FacceBeve\template\risultatiRicerca.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_63244f94ac7727_10353084',
+  'unifunc' => 'content_6324780c7faa22_85161788',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '20d71acbda86db7b277443849883e1b442d75786' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\risultatiRicerca.tpl',
-      1 => 1663324033,
+      1 => 1663334362,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_63244f94ac7727_10353084 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6324780c7faa22_85161788 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <?php $_smarty_tpl->_assignInScope('tipo', (($tmp = $_smarty_tpl->tpl_vars['tipo']->value ?? null)===null||$tmp==='' ? 'Locali' ?? null : $tmp));
 $_smarty_tpl->_assignInScope('userlogged', (($tmp = $_smarty_tpl->tpl_vars['error']->value ?? null)===null||$tmp==='' ? 'nouser' ?? null : $tmp));
@@ -62,12 +62,6 @@ $_smarty_tpl->_assignInScope('array', $_smarty_tpl->tpl_vars['array']->value);?>
     <!-- Template Main CSS File -->
     <link href="/template/css/style.css" rel="stylesheet">
 
-    <!-- =======================================================
-    * Template Name: Moderna - v4.9.1
-    * Template URL: https://bootstrapmade.com/free-bootstrap-template-corporate-moderna/
-    * Author: BootstrapMade.com
-    * License: https://bootstrapmade.com/license/
-    ======================================================== -->
 </head>
 
 <body>
@@ -118,74 +112,47 @@ $_smarty_tpl->_assignInScope('array', $_smarty_tpl->tpl_vars['array']->value);?>
         </div>
     </section>
     <section id="blog" class="blog">
-        <div class="row">
-            <div class="entries">
+        <div class="container" data-aos="fade-up">
+            <div class="row">
                 <article class="entry">
-                    <?php if ((!empty($_smarty_tpl->tpl_vars['array']->value)) || $_smarty_tpl->tpl_vars['array']->value != null) {?>
-                     <?php if (is_array($_smarty_tpl->tpl_vars['array']->value)) {?>
-                      <?php
+                    <?php if ((isset($_smarty_tpl->tpl_vars['array']->value))) {?>
+                     <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['array']->value, 'locale');
 $_smarty_tpl->tpl_vars['locale']->do_else = true;
 if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['locale']->value) {
 $_smarty_tpl->tpl_vars['locale']->do_else = false;
 ?>
-                        <h2 class="entry-title">
-                            <a href="infoLocale.html"><?php echo $_smarty_tpl->tpl_vars['locale']->value->getNome();?>
-</a>
-                        </h2>
-                        <div class="entry-meta">
-                            <ul>
-                                <li class="d-flex align-items-center"><i class="bi bi-person"></i>
-                                    <?php echo $_smarty_tpl->tpl_vars['locale']->value->getProprietario()->getUsername();?>
-</li>
-                                <li class="d-flex align-items-center"><i class="fas fa-map-marker-alt"></i>
-                                    <?php echo $_smarty_tpl->tpl_vars['locale']->value->getLocalizzazione()->getIndirizzo();?>
-,<?php echo $_smarty_tpl->tpl_vars['locale']->value->getLocalizzazione()->getNumCivico();?>
 
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="entry-content">
-                            <p>
-                                <?php echo $_smarty_tpl->tpl_vars['locale']->value->getDescrizione();?>
-
-                            </p>
-                            <!--     <div class="read-more">
-                                     <a Visita il locale <i class="fas fa-chevron-circle-right"></i></a>
-                                 </div> -->
-                        </div>
-                    <?php
-}
-$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
-                    <?php } else { ?>
                     <h2 class="entry-title">
-                        <a href="infoLocale.html"><?php echo $_smarty_tpl->tpl_vars['array']->value->getNome();?>
+                        <a href="infoLocale.html"><?php echo $_smarty_tpl->tpl_vars['locale']->value->getNome();?>
 </a>
                     </h2>
                     <div class="entry-meta">
                         <ul>
                             <li class="d-flex align-items-center"><i class="bi bi-person"></i>
-                                <?php echo $_smarty_tpl->tpl_vars['array']->value->getProprietario()->getUsername();?>
+                                <?php echo $_smarty_tpl->tpl_vars['locale']->value->getProprietario()->getUsername();?>
 </li>
                             <li class="d-flex align-items-center"><i class="fas fa-map-marker-alt"></i>
-                                <?php echo $_smarty_tpl->tpl_vars['array']->value->getLocalizzazione()->getIndirizzo();?>
-,<?php echo $_smarty_tpl->tpl_vars['locale']->value->getLocalizzazione()->getNumCivico();?>
+                                <?php echo $_smarty_tpl->tpl_vars['locale']->value->getLocalizzazione()->getIndirizzo();?>
+
+                                ,<?php echo $_smarty_tpl->tpl_vars['locale']->value->getLocalizzazione()->getNumCivico();?>
 
                             </li>
                         </ul>
                     </div>
                     <div class="entry-content">
                         <p>
-                            <?php echo $_smarty_tpl->tpl_vars['array']->value->getDescrizione();?>
+                            <?php echo $_smarty_tpl->tpl_vars['locale']->value->getDescrizione();?>
 
                         </p>
-                        <div class="read-more">
-                            <a <!--Bisogna passare qualcosa-->>Visita il locale <i
-                                    class="fas fa-chevron-circle-right"></i></a>
-                        </div>
+                        <!--     <div class="read-more">
+                                 <a Visita il locale <i class="fas fa-chevron-circle-right"></i></a>
+                             </div> -->
                     </div>
+                     <?php
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                 </article>
-                <?php }?>
             </div>
         </div>
         <?php } else { ?>
