@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-16 21:09:03
+/* Smarty version 4.2.0, created on 2022-09-16 21:33:52
   from 'C:\xampp\htdocs\FacceBeve\template\gestioneLocale.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_6324c9cfc92fd5_98258172',
+  'unifunc' => 'content_6324cfa0e91df5_10211391',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '1c893a337b2815c195d1ebdec5f1c045d7425e74' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\gestioneLocale.tpl',
-      1 => 1663352303,
+      1 => 1663356245,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6324c9cfc92fd5_98258172 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6324cfa0e91df5_10211391 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -187,7 +187,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 " enctype="multipart/form-data" method="POST" class="aggiorna"> <!-- aggiungin i controlli -->
                         <p>AGGIUNGI LE IMMAGINI</p>
                         <input name="img_locale" class="w-50 p-2 m-2" type="file" required><br>
-                        <button type="submit" class="btnAggiorna">AGGIUNGI IMMAGINE<i class="fa fa-refresh"></i></button>
+                        <button type="submit" class="btnAggiorna">AGGIORNA IMMAGINE <i class="fa fa-refresh"></i></button>
                     </form>
                 </div>
             </div>

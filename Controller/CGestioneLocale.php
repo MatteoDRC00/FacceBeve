@@ -48,6 +48,15 @@ class CGestioneLocale
     }
 
     public function mostraInfoLocale($id_locale){
+        $sessione = new USession();
+        $username = $sessione->leggi_valore("utente");
+        $tipo = $sessione->leggi_valore("tipo_utente");
+        $pm = FPersistentManager::getInstance();
+        $view = new VGestioneLocale();
+        $locale = $pm->load("id", $id_locale, "FLocale");
+        if($sessione->isLogged()){
+            $view->showInfoLocale($locale);
+        }
 
     }
 
@@ -455,16 +464,6 @@ class CGestioneLocale
             header("Location: /GestioneLocale/mostraGestioneLocale/".$id_locale);
         }else{
             header('Location: /Ricerca/mostraHome');
-        }
-
-        list($check,$media) = static::upload($img);
-        if($check=="type"){
-            $view->showFormModify("type",$locale);
-        }elseif($check=="size"){
-            $view->showFormModify("size",$locale);
-        }elseif($check=="ok"){
-            $pm->updateMedia($media,$img[1]);
-            header('Location: /Ricerca/infoLocale'); //profilo!!!
         }
     }
 

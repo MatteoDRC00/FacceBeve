@@ -6,7 +6,7 @@
 {assign var='eventi' value=$eventi|default:null}
 {assign var='proprietario' value=$proprietario|default:null}
 {assign var='valutazioneLocale' value=$valutazioneLocale|default:5}
-{assign var='arrayRisposte' value=$arrayRisposte|default:null}}
+{assign var='arrayRisposte' value=$arrayRisposte|default:null}
 {assign var='userlogged' value=$userlogged|default:'nouser'}
 <script>
     function change(){
@@ -70,7 +70,8 @@
                 <div class="col-lg-8">
                     <div class="portfolio-details-slider swiper">
                         <h2>{$locale->getNome()}</h2>
-                        <input onclick="change()" type="button" value="Aggiungi ai preferiti" id="pref" name="pref">                      <div class="stelline star-rating" data-rating="4.6">
+                        <input onclick="change()" type="button" value="Aggiungi ai preferiti" id="pref" name="pref">
+                        <div class="stelline star-rating" data-rating="4.6">
                             <div class="empty-stars">
                                 <i class="far fa-star"></i>
                                 <i class="far fa-star"></i>
@@ -91,11 +92,15 @@
                     <div class="portfolio-info">
                         <h3>Informazioni sul locale</h3>
                         <ul>
-                            <li><strong>Indirizzo</strong>:{$locale->getLocalizzazione()->getIndirizzo()},{$locale->getLocalizzazione()->getNumCivico()}</li>
-                            <li><strong>Citt&agrave</strong>:{$locale->getLocalizzazione()->getCitta()}, CAP:{$locale->getLocalizzazione()->getCAP()}</li>
-                            <li><strong>Categorie</strong>:{$locale->getCategorie()}</li>
-                            <li><strong>Descrizione</strong>:{$locale->getDescrizione()} </li>
-                            <li><strong>Valutazione</strong>:{$valutazioneLocale}/5</li>
+                            <li><strong>Indirizzo:</strong> {$locale->getLocalizzazione()->getIndirizzo()}, {$locale->getLocalizzazione()->getNumCivico()}</li>
+                            <li><strong>Citt&agrave:</strong> {$locale->getLocalizzazione()->getCitta()}, <strong>CAP:</strong> {$locale->getLocalizzazione()->getCAP()}</li>
+                            <li><strong>Categorie:</strong>
+                                <ul>{foreach $locale->getCategoria() as $categoria}
+                                    <li>{$categoria->getGenere()}</li>
+                                </ul>
+                            </li>
+                            <li><strong>Descrizione:</strong> {$locale->getDescrizione()} </li>
+                            <li><strong>Valutazione:</strong> {$valutazioneLocale}/5</li>
                         </ul>
                     </div>
                     {if $userLogged != 'nouser'}

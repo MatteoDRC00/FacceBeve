@@ -55,6 +55,13 @@ class VGestioneLocale{
         $this->smarty->display('gestioneLocale.tpl');
     }
 
+    public function showInfoLocale($locale){
+        print_r($locale->getCategoria()) ;
+        $this->smarty->assign('locale', $locale);
+
+        $this->smarty->display('infoLocale.tpl');
+    }
+
 
     /**
      * Metodo richiamato quando un Proprietario crea un locale.
