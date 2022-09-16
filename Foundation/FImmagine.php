@@ -92,14 +92,13 @@ class FImmagine
      */
     public static function loadByField($field ,$id){
         $db = FDB::getInstance();
-        $result = $db->load(static::getClass(), $field, $id);
-        $rows_number = $db->getNumRighe(static::getClass(), $field, $id);
-        if(($result!=null) && ($rows_number == 1)) {
+        list($result,$num) = $db->load(static::getClass(), $field, $id);
+        if(($result!=null) && ($num == 1)) {
             $img = new EImmagine($result['nome'], $result['size'], $result['type'], $result['immagine']);
             $img->setId($result['id']);
         }
         else {
-            if(($result!=null) && ($rows_number > 1)){
+            if(($result!=null) && ($num > 1)){
                 $img = array();
                 for($i=0; $i<count($result); $i++){
                     $img[$i] = new EImmagine($result[$i]['nome'], $result[$i]['size'], $result[$i]['type'], $result[$i]['immagine']);

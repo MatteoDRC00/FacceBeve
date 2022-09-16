@@ -81,15 +81,15 @@ class FOrario {
         $result=$db->load(static::getClass(), $field, $id);
         $rows_number = $db->interestedRows(static::getClass(), $field, $id);    //funzione richiamata,presente in FDB --> restituisce numero di righe interessate dalla query
         if(($result!=null) && ($rows_number == 1)) {           
-		    $orario=new EOrario($result['giorno'],$result['orarioApertura'],$result['orarioChiusura']); //Carica un Orario dal database
-           // $orario->setCodice($result['codicegiorno']);
+		    $orario=new EOrario($result['giorno'],$result['OrarioApertura'],$result['OrarioChiusura']); //Carica un Orario dal database
+            $orario->setId($result['id']);
         }
         else {
             if(($result!=null) && ($rows_number > 1)){
                 $utente = array();
         	    for($i=0; $i<count($result); $i++){
-                    $orario[] =new EOrario($result[$i]['giorno'],$result[$i]['orarioApertura'],$result[$i]['orarioChiusura']); //Carica un array di oggetti UOrario dal database
-                    //$orario[$i]->setCodice($result[$i]['codicegiorno']);
+                    $orario[] =new EOrario($result[$i]['giorno'],$result[$i]['OrarioApertura'],$result[$i]['OrarioChiusura']); //Carica un array di oggetti UOrario dal database
+                    $orario[$i]->setId($result[$i]['id']);
                 }
             }
         }
@@ -106,13 +106,15 @@ class FOrario {
         $db=FDB::getInstance();
         list($result,$num)=$db->loadInfoLocale(static::getClass(),"Locale_Orari",$id,"ID_Orario","id");
         if(($result!=null) && ($num == 1)) {
-            $orario=new EOrario($result['giorno'],$result['orarioApertura'],$result['orarioChiusura']); //Carica un Orario dal database
+            $orario=new EOrario($result['giorno'],$result['OrarioApertura'],$result['OrarioChiusura']); //Carica un Orario dal database
+            $orario->setId($result['id']);
         }
         else {
             if(($result!=null) && ($num > 1)){
                 $utente = array();
                 for($i=0; $i<count($result); $i++){
-                    $orario[] =new EOrario($result[$i]['giorno'],$result[$i]['orarioApertura'],$result[$i]['orarioChiusura']); //Carica un array di oggetti UOrario dal database
+                    $orario[] =new EOrario($result[$i]['giorno'],$result[$i]['OrarioApertura'],$result[$i]['OrarioChiusura']); //Carica un array di oggetti UOrario dal database
+                    $orario[$i]->setId($result[$i]['id']);
                 }
             }
         }

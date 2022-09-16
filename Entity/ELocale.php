@@ -21,11 +21,11 @@ class  ELocale implements JsonSerializable{
     private string $descrizione;
     private string $num_telefono;
     private EProprietario $proprietario;
-    private ?array $categoria;
+    private  $categoria;
     private ELocalizzazione $localizzazione;
-    private ?array $eventi_organizzati;
-    private ?array $orario;
-    private ?array $img;
+    private  $eventi_organizzati;
+    private  $orario;
+    private  $img;
 
     /**
      * @param string $nome
@@ -37,7 +37,7 @@ class  ELocale implements JsonSerializable{
      * @param array|null $eventi_organizzati
      * @param array|null $orario
      */
-    public function __construct(string $nome, string $descrizione, string $num_telefono, EProprietario $proprietario, ?array $categoria, ELocalizzazione $localizzazione, ?array $eventi_organizzati, ?array $orario){
+    public function __construct(string $nome, string $descrizione, string $num_telefono, EProprietario $proprietario,  $categoria, ELocalizzazione $localizzazione, $eventi_organizzati, ?array $orario){
         $this->id = NULL;
         $this->nome = $nome;
         $this->num_telefono = $num_telefono;
@@ -203,9 +203,9 @@ class  ELocale implements JsonSerializable{
     }
 
     /**
-     * @param array|null $img
+     * @param EImmagine $img
      */
-    public function setImg(?array $img): void
+    public function setImg( $img): void
     {
         $this->img = $img;
     }

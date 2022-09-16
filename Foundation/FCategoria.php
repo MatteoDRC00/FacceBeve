@@ -90,7 +90,6 @@ class FCategoria {
         $categoria = null;
         $db = FDB::getInstance();
         list($result,$num)=$db->loadInfoLocale(static::getClass(),"Locale_Categorie",$id,"ID_Categoria","genere");
-        print_r($result);
         if(isset($result)){//funzione richiamata,presente in FDB --> restituisce numero di righe interessate dalla query
             if(($result!=null) && ($num == 1)) {
                 $categoria=new ECategoria($result['genere'], $result['descrizione']); //Carica una categoria dal database

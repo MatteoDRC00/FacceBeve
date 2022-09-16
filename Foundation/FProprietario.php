@@ -81,8 +81,7 @@ class FProprietario{
     public static function loadByField($field, $id){
         $proprietario = null;
         $db = FDB::getInstance();
-        $result = $db->load(static::getClass(), $field, $id);
-        $num = $db->getNumRighe(static::getClass(), $field, $id);    //funzione richiamata,presente in FDB --> restituisce numero di righe interessate dalla query
+        list($result,$num) = $db->load(static::getClass(), $field, $id);
         if(($result!=null) && ($num == 1)) {
             $proprietario = new EProprietario($result['nome'],$result['cognome'], $result['email'], $result['username'], $result['password']); //Carica un Proprietario dal database
             $proprietario->setImgProfilo(FImmagine::loadByField('id', $result['idImg']));

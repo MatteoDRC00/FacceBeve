@@ -239,7 +239,7 @@ class FLocale {
         $db=FDB::getInstance();
         list ($result, $rows_number)=$db->loadMultipleLocale($part1, $part2, $part3);
         if(($result!=null) && ($rows_number == 1)) {
-            $proprietario = FProprietario::loadByField("id" , $result["proprietario"]);
+            $proprietario = FProprietario::loadByField("username" , $result["proprietario"]);
             $categorie = FCategoria::loadByLocale($result["id"]);
             $localizzazione = FLocalizzazione::loadByField("id" , $result["localizzazione"]);
             $eventi = FEvento::loadByLocale($result["id"]);
