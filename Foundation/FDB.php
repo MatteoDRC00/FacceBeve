@@ -87,7 +87,6 @@ class FDB{
 			$this->database->beginTransaction();
 			$query = "INSERT INTO " . $class::getTable() . " VALUES " . $class::getValues();
 			$stmt = $this->database->prepare($query); //Prepared Statement
-			//var_dump($obj);
 			$class::bind($stmt,$obj);
 			$stmt->execute();
 			if($class == "FAdmin" || $class == "FProprietario" || $class == "FUtente")

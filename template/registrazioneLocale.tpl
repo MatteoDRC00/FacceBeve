@@ -69,8 +69,8 @@
     <section class="contact" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
         <div class="container">
             <div class="row">
-                <div class="col-6 bg-white px-3 mb-3 pb-3">
-                    <form action="/GestioneLocale/creaLocale" method="POST" class="aggiorna" name="registrazioneLocale" onsubmit="return validateRegForm(2)">
+                <div class="col-12 bg-white px-3 mb-3 pb-3">
+                    <form action="/GestioneLocale/creaLocale" enctype="multipart/form-data" method="POST" class="aggiorna" name="registrazioneLocale" onsubmit="return validateRegForm(2)">
                         <p>INSERISCI LE INFORMAZIONI DEL LOCALE</p>
                         <div class="form-example">
                             <label style="font-weight: bold">Inserisci il nome: </label><br>
@@ -103,38 +103,34 @@
                         </div>
                         <div class="form-example">
                             <label style="font-weight: bold">Inserisci l'orario di apertura e chiusura: </label><br>
-                            <div class="orario">
-                                <label>Lunedi: <input type="time" name="orarioapertura[]"> <input type="time" name="orariochiusura[]">
-                                    <input type="checkbox" id="close" name="close[]" value="0">
-                                    <label for="close"> Chiuso</label></label><br>
-                                <label>Martedi: <input type="time" name="orarioapertura[]"> <input type="time" name="orariochiusura[]">
-                                    <input type="checkbox" name="close[]" value="1">
-                                    <label for="close"> Chiuso</label></label><br>
-                                <label>Mercoledi: <input type="time" name="orarioapertura[]"> <input type="time" name="orariochiusura[]">
-                                    <input type="checkbox" name="close[]" value="2">
-                                    <label for="close"> Chiuso</label></label><br>
-                                <label>Giovedi: <input type="time" name="orarioapertura[]"> <input type="time" name="orariochiusura[]">
-                                    <input type="checkbox" name="close[]" value="3">
-                                    <label for="close"> Chiuso</label></label><br>
-                                <label>Venerdi: <input type="time" name="orarioapertura[]"> <input type="time" name="orariochiusura[]">
-                                    <input type="checkbox" name="close[]" value="4">
-                                    <label for="close"> Chiuso</label></label><br>
-                                <label>Sabato: <input type="time" name="orarioapertura[]"> <input type="time" name="orariochiusura[]">
-                                    <input type="checkbox" name="close[]" value="5">
-                                    <label for="close"> Chiuso</label></label><br>
-                                <label>Domenica: <input type="time" name="orarioapertura[]"> <input type="time" name="orariochiusura[]">
-                                    <input type="checkbox" name="close[]" value="6">
-                                    <label for="close"> Chiuso</label></label><br>
-                            </div>
+                            <label>Lunedi: <input type="time" name="orarioapertura[]"> <input type="time" name="orariochiusura[]">
+                                <input type="checkbox" id="close" name="close[]" value="0">
+                                <label for="close"> Chiuso</label></label><br>
+                            <label>Martedi: <input type="time" name="orarioapertura[]"> <input type="time" name="orariochiusura[]">
+                                <input type="checkbox" name="close[]" value="1">
+                                <label for="close"> Chiuso</label></label><br>
+                            <label>Mercoledi: <input type="time" name="orarioapertura[]"> <input type="time" name="orariochiusura[]">
+                                <input type="checkbox" name="close[]" value="2">
+                                <label for="close"> Chiuso</label></label><br>
+                            <label>Giovedi: <input type="time" name="orarioapertura[]"> <input type="time" name="orariochiusura[]">
+                                <input type="checkbox" name="close[]" value="3">
+                                <label for="close"> Chiuso</label></label><br>
+                            <label>Venerdi: <input type="time" name="orarioapertura[]"> <input type="time" name="orariochiusura[]">
+                                <input type="checkbox" name="close[]" value="4">
+                                <label for="close"> Chiuso</label></label><br>
+                            <label>Sabato: <input type="time" name="orarioapertura[]"> <input type="time" name="orariochiusura[]">
+                                <input type="checkbox" name="close[]" value="5">
+                                <label for="close"> Chiuso</label></label><br>
+                            <label>Domenica: <input type="time" name="orarioapertura[]"> <input type="time" name="orariochiusura[]">
+                                <input type="checkbox" name="close[]" value="6">
+                                <label for="close"> Chiuso</label></label><br>
+
                         </div>
-                        <button type="submit" class="btnAggiorna">INSERISCI</button>
-                    </form>
-                </div>
-                <div class="col-6 bg-white px-3 pb-2">
-                    <form action="" enctype="multipart/form-data" method="POST" class="aggiorna">
-                        <p>AGGIUNGI LE IMMAGINI</p>
-                        <input name="img" class="w-50 p-2 m-2" type="file" required><br>
-                        <button type="submit" class="btnAggiorna">AGGIUNGI</button>
+                        <div class="form-example">
+                            <p>AGGIUNGI LE IMMAGINI</p>
+                            <input name="img" class="w-50 p-2 m-2" type="file" required><br>
+                        </div>
+                        <button type="submit" class="btnAggiorna">CREA IL LOCALE</button>
                     </form>
                 </div>
             </div>

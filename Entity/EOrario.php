@@ -20,14 +20,8 @@ class EOrario implements JsonSerializable {
     {
         $this->id = NULL;
         $this->giorno_settimana = $giorno_settimana;
-        if(isset($orario_apertura))
-            $this->orario_apertura = $orario_apertura;
-        else
-            $this->orario_apertura = "Chiusi";
-        if(isset($orario_chiusura))
-            $this->orario_chiusura = $orario_chiusura;
-        else
-            $this->orario_chiusura = "";
+        $this->orario_apertura = $orario_apertura;
+        $this->orario_chiusura = $orario_chiusura;
     }
 
     /**

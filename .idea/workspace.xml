@@ -4,14 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9b9dc9a9-b323-4b45-835b-2a2c423efdeb" name="Changes" comment="link su tpl">
+    <list default="true" id="0c949e55-50d2-4635-ab4f-837af15b2e84" name="Changes" comment="link su tpl">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controller/CRicerca.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/CRicerca.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Foundation/FCategoria.php" beforeDir="false" afterPath="$PROJECT_DIR$/Foundation/FCategoria.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controller/CGestioneLocale.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/CGestioneLocale.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controller/CProfilo.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/CProfilo.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Entity/EOrario.php" beforeDir="false" afterPath="$PROJECT_DIR$/Entity/EOrario.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FacceBeve.sql" beforeDir="false" afterPath="$PROJECT_DIR$/FacceBeve.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Foundation/FDB.php" beforeDir="false" afterPath="$PROJECT_DIR$/Foundation/FDB.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Foundation/FLocale.php" beforeDir="false" afterPath="$PROJECT_DIR$/Foundation/FLocale.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Foundation/FPersistentManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/Foundation/FPersistentManager.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/View/VRicerca.php" beforeDir="false" afterPath="$PROJECT_DIR$/View/VRicerca.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Foundation/FOrario.php" beforeDir="false" afterPath="$PROJECT_DIR$/Foundation/FOrario.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,7 +100,7 @@
     <configuration name="index.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/index.php">
       <CommandLine>
         <PhpTestInterpreterSettings>
-          <option name="interpreterName" value="PHP 7.4.1" />
+          <option name="interpreterName" value="PHP" />
         </PhpTestInterpreterSettings>
       </CommandLine>
       <method v="2" />
@@ -121,7 +121,7 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="9b9dc9a9-b323-4b45-835b-2a2c423efdeb" name="Changes" comment="link su tpl" />
+      <changelist id="0c949e55-50d2-4635-ab4f-837af15b2e84" name="Changes" comment="link su tpl" />
       <created>1651152882261</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -160,6 +160,7 @@
       <workItem from="1663074271155" duration="4817000" />
       <workItem from="1663095398729" duration="23000" />
       <workItem from="1663141227640" duration="7480000" />
+      <workItem from="1663311226082" duration="5689000" />
     </task>
     <servers />
   </component>

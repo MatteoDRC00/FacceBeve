@@ -342,7 +342,7 @@ class CProfilo{
                 $view->mostraProfiloUtente($utente, $locali_preferiti);
             }elseif($classE == "EProprietario"){
                 $proprietario = $pm->load("username", $username, $class);
-                $locali[] = $pm->load("proprietario", $username, "FLocale");
+                $locali = $pm->load("proprietario", $username, "FLocale");
 
                 $view = new VProfilo();
                 $view->mostraProfiloProprietario($proprietario, $locali);

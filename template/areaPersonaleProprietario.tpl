@@ -152,7 +152,7 @@
             <div class="items-body">
                 {if !empty($locali)}
                     {foreach $locali as $locale}
-                        <a href="">{$locale.nome}<i class="fa fa-angle-right"></i></a>
+                        <a href="">{$locale.nome}   <i class="fa fa-angle-right"></i></a>
                     {/foreach}
                 {else}
                     <p>Non possiedi locali locali</p>
