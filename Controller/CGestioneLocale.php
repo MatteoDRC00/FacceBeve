@@ -47,6 +47,14 @@ class CGestioneLocale
         }
     }
 
+    public function mostraInfoLocale($id_locale){
+
+    }
+
+    public function mostraGestioneLocale($id_locale){
+
+    }
+
 
     /**
      * Funzione che viene richiamata per la creazione di un locale. Si possono avere diverse situazioni:
@@ -82,16 +90,20 @@ class CGestioneLocale
             $id_Localizzazione = $pm->store($localizzazioneLocale);
             $localizzazioneLocale->setId($id_Localizzazione);
 
-            $locale = new ELocale($nomeLocale, $descrizione, $numTelefono, $proprietario, null, $localizzazioneLocale, null, null);
+            $locale = new ELocale($nomeLocale, $descrizione, $numTelefono, $proprietario, $localizzazioneLocale);
             $id_locale = $pm->store($locale);
             $locale->setId($id_locale);
 
 
-            $categoria = $view->getCategorie();
+            $generi = $view->getCategorie();
 
-            foreach ($categoria as $c){
-                $pm->storeCategorieLocale($c, $id_locale);
+            $categorie = array();
+
+            foreach ($generi as $g){
+                $pm->storeCategorieLocale($g, $id_locale);
+                $categorie[] = $pm->load("genere", $g, "FCategoria");
             }
+            $locale->setCategoria($categorie);
 
             $orario_apertura = $view->getOrarioApertura();
             $orario_chiusura = $view->getOrarioChiusura();
@@ -107,7 +119,7 @@ class CGestioneLocale
                 $giorni_chiusi[$chiuso[$i]] = 1;
             }
 
-            print_r($giorni_chiusi);
+            $o = array();
 
             for($i=0; $i<7; $i++){
                 if($i == 0)
@@ -130,6 +142,7 @@ class CGestioneLocale
                         $orario = new EOrario($giorno, $orario_apertura[$i], $orario_chiusura[$i]);
                         $id = $pm->store($orario);
                         $orario->setId($id);
+                        $o[] = $orario;
                         $pm->storeOrariLocale($id, $id_locale);
                     }else{
 
@@ -139,9 +152,12 @@ class CGestioneLocale
                     $orario = new EOrario($giorno, "Chiuso", "Chiuso");
                     $id = $pm->store($orario);
                     $orario->setId($id);
+                    $o[] = $orario;
                     $pm->storeOrariLocale($id, $id_locale);
                 }
             }
+
+            $locale->setOrario($o);
 
             $img = $view->getImgLocale();
             if(!empty($img)) {
@@ -149,6 +165,7 @@ class CGestioneLocale
                 $id = $pm->store($img_locale);
                 $img_locale->setId($id);
                 $pm->storeImmagineLocale($id, $id_locale);
+                $locale->addImg($img_locale);
             }
             header('Location: /Profilo/mostraProfilo');
         }else{

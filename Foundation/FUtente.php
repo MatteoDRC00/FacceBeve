@@ -93,8 +93,7 @@ class FUtente{
     public static function loadByField($field, $id){
         $utente = null;
         $db = FDB::getInstance();
-        $result = $db->load(static::getClass(), $field, $id);
-        $num = $db->getNumRighe(static::getClass(), $field, $id);
+        list($result, $num) = $db->load(static::getClass(), $field, $id);
         if(($result!=null) && ($num == 1)) {
             $utente = new EUtente($result['password'], $result['nome'], $result['cognome'], $result['username'], $result['email']);
             $utente->setIscrizione($result['dataIscrizione']);

@@ -21,7 +21,10 @@ class CFrontController{
                     $objController = $controller::getInstance();
                     $function = $resource[1];
                     if (method_exists($objController, $function)) {
-                        $objController->$function();
+                        if(isset($resurce[2]))
+                            $objController->$function(($resurce[2]));
+                        else
+                            $objController->$function();
                     }
                 }
             }

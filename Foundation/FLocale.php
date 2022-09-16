@@ -147,41 +147,24 @@ class FLocale {
      * @return array|ELocale
      */
     public static function loadByField($field, $id){
-        //$locale = null;
+        $locale = null;
         $db = FDB::getInstance();
-        return $db->load(static::getClass(), $field, $id);
-        /*$rows_number = $db->interestedRows(static::getClass(), $field, $id);    //funzione richiamata,presente in FDB --> restituisce numero di righe interessate dalla query
-        if(($result!=null) && ($rows_number == 1)) {
-            $proprietario = FProprietario::loadByField("id" , $result["proprietario"]);
-            $categorie = FCategoria::loadByLocale($result["id"]);
-            $localizzazione = FLocalizzazione::loadByField("id" , $result["localizzazione"]);
-            $eventi = FEvento::loadByLocale($result["id"]);
-            $orari = FOrario::loadByLocale($result["id"]);
-            $immagini = FImmagine::loadByLocale($result["id"]);
-            $locale=new ELocale($result['nome'], $result['descrizione'], $result['numtelefono'], $proprietario ,$categorie, $localizzazione ,$eventi,$orari); //Carica un Locale dal database
-        }
-        else {
-            if(($result!=null) && ($rows_number > 1)){
-                $locale = array();
-                $proprietario = array();
-                $categorie = array();
-                $localizzazione = array();
-                $eventi = array();
-                $immagini = array();
-                $orari = array();
-        	    for($i=0; $i<count($result); $i++){
-                    $proprietario[] = FProprietario::loadByField("id" , $result[$i]["proprietario"]);
-                    $categorie[] = FCategoria::loadByLocale($result[$i]["id"]);
-                    $localizzazione[] = FLocalizzazione::loadByField("id" , $result[$i]["localizzazione"]);
-                    $eventi[] = FEvento::loadByLocale($result[$i]["id"]);
-                    $orari[] = FOrario::loadByLocale($result[$i]["id"]);
-                    $immagini[] = FImmagine::loadByLocale($result[$i]["id"]);
-                    $locale[]=new ELocale($result[$i]['nome'], $result[$i]['descrizione'], $result[$i]['numtelefono'], $proprietario[$i] ,$categorie[$i], $localizzazione[$i] ,$eventi[$i], $orari[$i]);
-                    //$locale[$i]->setIdAd($result[$i]['id']); //Carica un array di oggetti Locale dal DB
+        list($result, $num) = $db->load(static::getClass(), $field, $id);
+        if(($result!=null) && ($num == 1)) {
+            $proprietario = FProprietario::loadByField("username" , $result["proprietario"]);
+            $localizzazione = FLocalizzazione::loadByField("localizzazione" , $result["localizzazione"]);
+            $locale = new ELocale($result['nome'], $result['descrizione'], $result['numtelefono'], $proprietario, $localizzazione);
+        }else{
+            if(($result!=null) && ($num > 1)){
+                $utente = array();
+                for($i=0; $i<count($result); $i++){
+                    $proprietario = FProprietario::loadByField("username" , $result[$i]["proprietario"]);
+                    $localizzazione = FLocalizzazione::loadByField("localizzazione" , $result[$i]["localizzazione"]);
+                    $locale[$i] = new ELocale($result[$i]['nome'], $result[$i]['descrizione'], $result[$i]['numtelefono'], $proprietario, $localizzazione);
                 }
             }
         }
-        return $locale;*/
+        return $locale;
     }
 
     /**
