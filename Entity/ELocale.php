@@ -24,7 +24,7 @@ class ELocale implements JsonSerializable{
     private ELocalizzazione $localizzazione;
     private ?array $eventi_organizzati;
     private ?array $orario;
-    private EImmagine $img;
+    private ?EImmagine $img;
 
     /**
      * @param string $nome

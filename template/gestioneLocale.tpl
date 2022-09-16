@@ -67,35 +67,38 @@
         <div class="container">
             <div class="row">
                 <div class="col-6 bg-white px-3 mb-3 pb-3">
-                    <form action="" method="POST" class="aggiorna">
+                    <form action="/GestioneLocale/modificaNomeLocale/{$locale->getId()}" method="POST" class="aggiorna">
                         <p>MODIFICA LE INFORMAZIONI DEL LOCALE</p>
                         <div class="form-example">
                             <label style="font-weight: bold">Aggiorna il nome: </label><br>
-                            <input type="text" name="newname">
+                            <input type="text" name="nomeLocale" required>
                         </div>
                         <button type="submit" class="btnAggiorna">AGGIORNA NOME <i class="fa fa-refresh"></i></button>
                     </form>
-                    <form action="" method="POST" class="aggiorna">
+                    <form action="/GestioneLocale/modificaDescrizioneLocale/{$locale->getId()}" method="POST" class="aggiorna">
                         <div class="form-example">
                             <label style="font-weight: bold">Aggiorna la descrizione: </label><br>
-                            <textarea type="text" name="newpsw"></textarea>
+                            <textarea type="text" name="descrizioneLocale" required></textarea>
                         </div>
                         <button type="submit" class="btnAggiorna">AGGIORNA DESCRIZIONE <i class="fa fa-refresh"></i></button>
                     </form>
                     <form action="" method="POST" class="aggiorna">
                         <div class="form-example">
                             <label style="font-weight: bold">Aggiorna la categoria: </label><br>
-                            <input type="checkbox" id="pub" name="pub" value="pub">
-                            <label for="pub"> Pub</label>
-                            <input type="checkbox" id="bar" name="bar" value="bar">
-                            <label for="bar"> Bar</label>
+                            {if !empty($categorie)}
+                                {foreach $categorie as $genere}
+                                    <input type="checkbox" name="genereLocale[]" value="{$genere}">{$genere}
+                                {/foreach}
+                            {else}
+                                <p>Non ci sono categorie</p>
+                            {/if}
                         </div>
                         <button type="submit" class="btnAggiorna">AGGIORNA CATEGORIA <i class="fa fa-refresh"></i></button>
                     </form>
                     <form action="" method="POST" class="aggiorna">
                         <div class="form-example">
                             <label style="font-weight: bold">Aggiorna il numero di telefono: </label><br>
-                            <input type="tel" name="newnumber">
+                            <input type="tel" name="newnumber" required>
                         </div>
                         <button type="submit" class="btnAggiorna">AGGIORNA NUMERO DI TELEFONO <i class="fa fa-refresh"></i></button>
                     </form>

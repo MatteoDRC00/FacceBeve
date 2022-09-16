@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-16 16:38:06
+/* Smarty version 4.2.0, created on 2022-09-16 16:58:06
   from 'C:\xampp\htdocs\FacceBeve\template\gestioneLocale.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_63248a4ed9d516_01950199',
+  'unifunc' => 'content_63248efe07ab14_51020397',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '1c893a337b2815c195d1ebdec5f1c045d7425e74' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\gestioneLocale.tpl',
-      1 => 1663339084,
+      1 => 1663340274,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_63248a4ed9d516_01950199 (Smarty_Internal_Template $_smarty_tpl) {
+function content_63248efe07ab14_51020397 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -73,7 +73,7 @@ function content_63248a4ed9d516_01950199 (Smarty_Internal_Template $_smarty_tpl)
         <div class="container">
 
             <div class="d-flex justify-content-between align-items-center">
-                Gestisci:  <h2 style="font-weight: bold"><?php echo $_smarty_tpl->tpl_vars['locale']->value->getNome();?>
+                <h2 style="font-weight: bold">Gestisci:  <?php echo $_smarty_tpl->tpl_vars['locale']->value->getNome();?>
 </h2>
             </div>
 
@@ -91,11 +91,12 @@ function content_63248a4ed9d516_01950199 (Smarty_Internal_Template $_smarty_tpl)
         <div class="container">
             <div class="row">
                 <div class="col-6 bg-white px-3 mb-3 pb-3">
-                    <form action="" method="POST" class="aggiorna">
+                    <form action="/GestioneLocale/modificaNomeLocale/<?php echo $_smarty_tpl->tpl_vars['locale']->value->getId();?>
+" method="POST" class="aggiorna">
                         <p>MODIFICA LE INFORMAZIONI DEL LOCALE</p>
                         <div class="form-example">
                             <label style="font-weight: bold">Aggiorna il nome: </label><br>
-                            <input type="text" name="newname">
+                            <input type="text" name="nomeLocale">
                         </div>
                         <button type="submit" class="btnAggiorna">AGGIORNA NOME <i class="fa fa-refresh"></i></button>
                     </form>
