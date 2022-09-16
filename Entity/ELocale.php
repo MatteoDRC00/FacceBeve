@@ -4,7 +4,6 @@
  *  - nome: identifica il nome del locale
  *  - descrizione: identifica le informazioni generali sul locale
  *  - num_telefono: identifica il numero di telefono
- *  - valutazione_media: indentifica il voto medio delle recensioni del locale
  *  - proprietario: indentifica il proprietario del locale
  *  - categoria: identifica la categoria del locale, cioè il tipo
  *  - localizzazione: identifica la posizione geografica in cui si trova il locale
