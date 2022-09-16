@@ -115,28 +115,28 @@
                     <form action="/GestioneLocale/modificaOrarioLocale/{$locale->getId()}" method="POST" class="aggiorna">
                         <div class="form-example">
                             <label style="font-weight: bold">Aggiorna l'orario di apertura e chiusura: </label><br>
-                            <div class="orario">
-                                <label>Lunedi: <input type="time" name="orarioapertura[]"> <input type="time" name="orariochiusura[]">
+                            <div class="">
+                                <label style="font-weight: bold">Lunedi: </label><input type="time" name="orarioapertura[]"> <input type="time" name="orariochiusura[]">
                                     <input type="checkbox" id="close" name="close[]" value="0">
-                                    <label for="close"> Chiuso</label></label><br>
-                                <label>Martedi: <input type="time" name="orarioapertura[]"> <input type="time" name="orariochiusura[]">
+                                    <label for="close"> Chiuso</label><br>
+                                <label style="font-weight: bold">Martedi: </label><input type="time" name="orarioapertura[]"> <input type="time" name="orariochiusura[]">
                                     <input type="checkbox" name="close[]" value="1">
-                                    <label for="close"> Chiuso</label></label><br>
-                                <label>Mercoledi: <input type="time" name="orarioapertura[]"> <input type="time" name="orariochiusura[]">
+                                    <label for="close"> Chiuso</label><br>
+                                <label style="font-weight: bold">Mercoledi: </label><input type="time" name="orarioapertura[]"> <input type="time" name="orariochiusura[]">
                                     <input type="checkbox" name="close[]" value="2">
-                                    <label for="close"> Chiuso</label></label><br>
-                                <label>Giovedi: <input type="time" name="orarioapertura[]"> <input type="time" name="orariochiusura[]">
+                                    <label for="close"> Chiuso</label><br>
+                                <label style="font-weight: bold">Giovedi: </label><input type="time" name="orarioapertura[]"> <input type="time" name="orariochiusura[]">
                                     <input type="checkbox" name="close[]" value="3">
-                                    <label for="close"> Chiuso</label></label><br>
-                                <label>Venerdi: <input type="time" name="orarioapertura[]"> <input type="time" name="orariochiusura[]">
+                                    <label for="close"> Chiuso</label><br>
+                                <label style="font-weight: bold">Venerdi: </label><input type="time" name="orarioapertura[]"> <input type="time" name="orariochiusura[]">
                                     <input type="checkbox" name="close[]" value="4">
-                                    <label for="close"> Chiuso</label></label><br>
-                                <label>Sabato: <input type="time" name="orarioapertura[]"> <input type="time" name="orariochiusura[]">
+                                    <label for="close"> Chiuso</label><br>
+                                <label style="font-weight: bold">Sabato: </label><input type="time" name="orarioapertura[]"> <input type="time" name="orariochiusura[]">
                                     <input type="checkbox" name="close[]" value="5">
-                                    <label for="close"> Chiuso</label></label><br>
-                                <label>Domenica: <input type="time" name="orarioapertura[]"> <input type="time" name="orariochiusura[]">
+                                    <label for="close"> Chiuso</label><br>
+                                <label style="font-weight: bold">Domenica: </label><input type="time" name="orarioapertura[]"> <input type="time" name="orariochiusura[]">
                                     <input type="checkbox" name="close[]" value="6">
-                                    <label for="close"> Chiuso</label></label><br>
+                                    <label for="close"> Chiuso</label><br>
                             </div>
                         </div>
                         <button type="submit" class="btnAggiorna">AGGIORNA ORARIO SETTIMANALE <i class="fa fa-refresh"></i></button>
