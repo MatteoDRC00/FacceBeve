@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-15 19:09:12
+/* Smarty version 4.2.0, created on 2022-09-16 10:41:41
   from 'C:\xampp\htdocs\FacceBeve\template\registrazioneLocale.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_63235c380102d3_68636058',
+  'unifunc' => 'content_632436c5dc40a9_61778438',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '5e1aa453dbee77c509402c601a3b43b7d15ea457' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\registrazioneLocale.tpl',
-      1 => 1663261745,
+      1 => 1663317697,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_63235c380102d3_68636058 (Smarty_Internal_Template $_smarty_tpl) {
+function content_632436c5dc40a9_61778438 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -92,8 +92,8 @@ function content_63235c380102d3_68636058 (Smarty_Internal_Template $_smarty_tpl)
     <section class="contact" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
         <div class="container">
             <div class="row">
-                <div class="col-6 bg-white px-3 mb-3 pb-3">
-                    <form action="/GestioneLocale/creaLocale" method="POST" class="aggiorna" name="registrazioneLocale" onsubmit="return validateRegForm(2)">
+                <div class="col-12 bg-white px-3 mb-3 pb-3">
+                    <form action="/GestioneLocale/creaLocale" enctype="multipart/form-data" method="POST" class="aggiorna" name="registrazioneLocale" onsubmit="return validateRegForm(2)">
                         <p>INSERISCI LE INFORMAZIONI DEL LOCALE</p>
                         <div class="form-example">
                             <label style="font-weight: bold">Inserisci il nome: </label><br>
@@ -135,38 +135,34 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                         </div>
                         <div class="form-example">
                             <label style="font-weight: bold">Inserisci l'orario di apertura e chiusura: </label><br>
-                            <div class="orario">
-                                <label>Lunedi: <input type="time" name="orarioapertura[]"> <input type="time" name="orariochiusura[]">
-                                    <input type="checkbox" id="close" name="close[]" value="0">
-                                    <label for="close"> Chiuso</label></label><br>
-                                <label>Martedi: <input type="time" name="orarioapertura[]"> <input type="time" name="orariochiusura[]">
-                                    <input type="checkbox" name="close[]" value="1">
-                                    <label for="close"> Chiuso</label></label><br>
-                                <label>Mercoledi: <input type="time" name="orarioapertura[]"> <input type="time" name="orariochiusura[]">
-                                    <input type="checkbox" name="close[]" value="2">
-                                    <label for="close"> Chiuso</label></label><br>
-                                <label>Giovedi: <input type="time" name="orarioapertura[]"> <input type="time" name="orariochiusura[]">
-                                    <input type="checkbox" name="close[]" value="3">
-                                    <label for="close"> Chiuso</label></label><br>
-                                <label>Venerdi: <input type="time" name="orarioapertura[]"> <input type="time" name="orariochiusura[]">
-                                    <input type="checkbox" name="close[]" value="4">
-                                    <label for="close"> Chiuso</label></label><br>
-                                <label>Sabato: <input type="time" name="orarioapertura[]"> <input type="time" name="orariochiusura[]">
-                                    <input type="checkbox" name="close[]" value="5">
-                                    <label for="close"> Chiuso</label></label><br>
-                                <label>Domenica: <input type="time" name="orarioapertura[]"> <input type="time" name="orariochiusura[]">
-                                    <input type="checkbox" name="close[]" value="6">
-                                    <label for="close"> Chiuso</label></label><br>
-                            </div>
+                            <label>Lunedi: <input type="time" name="orarioapertura[]"> <input type="time" name="orariochiusura[]">
+                                <input type="checkbox" id="close" name="close[]" value="0">
+                                <label for="close"> Chiuso</label></label><br>
+                            <label>Martedi: <input type="time" name="orarioapertura[]"> <input type="time" name="orariochiusura[]">
+                                <input type="checkbox" name="close[]" value="1">
+                                <label for="close"> Chiuso</label></label><br>
+                            <label>Mercoledi: <input type="time" name="orarioapertura[]"> <input type="time" name="orariochiusura[]">
+                                <input type="checkbox" name="close[]" value="2">
+                                <label for="close"> Chiuso</label></label><br>
+                            <label>Giovedi: <input type="time" name="orarioapertura[]"> <input type="time" name="orariochiusura[]">
+                                <input type="checkbox" name="close[]" value="3">
+                                <label for="close"> Chiuso</label></label><br>
+                            <label>Venerdi: <input type="time" name="orarioapertura[]"> <input type="time" name="orariochiusura[]">
+                                <input type="checkbox" name="close[]" value="4">
+                                <label for="close"> Chiuso</label></label><br>
+                            <label>Sabato: <input type="time" name="orarioapertura[]"> <input type="time" name="orariochiusura[]">
+                                <input type="checkbox" name="close[]" value="5">
+                                <label for="close"> Chiuso</label></label><br>
+                            <label>Domenica: <input type="time" name="orarioapertura[]"> <input type="time" name="orariochiusura[]">
+                                <input type="checkbox" name="close[]" value="6">
+                                <label for="close"> Chiuso</label></label><br>
+
                         </div>
-                        <button type="submit" class="btnAggiorna">INSERISCI</button>
-                    </form>
-                </div>
-                <div class="col-6 bg-white px-3 pb-2">
-                    <form action="" enctype="multipart/form-data" method="POST" class="aggiorna">
-                        <p>AGGIUNGI LE IMMAGINI</p>
-                        <input name="img" class="w-50 p-2 m-2" type="file" required><br>
-                        <button type="submit" class="btnAggiorna">AGGIUNGI</button>
+                        <div class="form-example">
+                            <p>AGGIUNGI LE IMMAGINI</p>
+                            <input name="img" class="w-50 p-2 m-2" type="file" required><br>
+                        </div>
+                        <button type="submit" class="btnAggiorna">CREA IL LOCALE</button>
                     </form>
                 </div>
             </div>
