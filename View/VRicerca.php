@@ -149,6 +149,7 @@ class VRicerca
         if($sessione->isLogged())
             $this->smarty->assign('userlogged',"loggato");
 
+
         if(isset($result)){
             $this->smarty->assign('array', $result);
         }else{
@@ -159,14 +160,14 @@ class VRicerca
         if($tipo == "Locali"){
             $this->smarty->assign('nomeLocale', $nomelocale);
             $this->smarty->assign('citta', $citta);
-            $this->smarty->assign('categorie', $eventoCat);
+            $this->smarty->assign('categoria', $eventoCat);
         }else{
             $this->smarty->assign('nomeLocale', $nomelocale);
             $this->smarty->assign('citta', $citta);
             $this->smarty->assign('nomeEvento', $eventoCat);
             $this->smarty->assign('dataEvento', $data);
         }
-        $this->smarty->display('risultatiRicerca.tpl');
+       $this->smarty->display('risultatiRicerca.tpl');
     }
 
 

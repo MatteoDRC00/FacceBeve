@@ -135,7 +135,7 @@
          * @return $print String
          */
         public function __toString() {
-            $print = "\ncodiceluogo: ".$this->getCodice()."\n"."indirizzo: ".$this->getIndirizzo()."\n"."numCivico: ".$this->getNumCivico()."\n"."citta: ".$this->getCitta()."\n"."nazione: ".$this->getNazione()."\n"."CAP: ".$this->getCAP()."\n";
+            $print = "\ncodiceluogo: ".$this->getId()."\n"."indirizzo: ".$this->getIndirizzo()."\n"."numCivico: ".$this->getNumCivico()."\n"."citta: ".$this->getCitta()."\n"."CAP: ".$this->getCAP()."\n";
 
             return $print;
         }
