@@ -259,4 +259,9 @@ class FPersistentManager {
         $db->storeOrariLocale($locale, $orario);
     }
 
+    public function storeImmagineLocale($immagine, $locale){
+        $db = FDB::getInstance();
+        $db->storeImmagineLocale($locale, $immagine);
+    }
+
 }

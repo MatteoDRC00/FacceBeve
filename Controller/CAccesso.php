@@ -158,7 +158,7 @@ class CAccesso
             $img = $view->getImgProfilo();
             if (!empty($img)) {
                 $img_profilo = new EImmagine($img[0], $img[1], $img[2], $img[3]);
-                $id = $pm::store($img_profilo);
+                $id = $pm->store($img_profilo);
                 $img_profilo->setId($id);
             }
             $proprietario->setImgProfilo($img_profilo);

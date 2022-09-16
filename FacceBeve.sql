@@ -112,6 +112,16 @@ CREATE TABLE `Orario` (
     PRIMARY KEY (`id`)
 );
 
+/*Inserimento dati Orario*/
+INSERT INTO `Orario` (`id`,`giorno`,`OrarioApertura`,`OrarioChiusura`) VALUES
+(1,'lunedì','14:30','23:00'),
+(2,'martedì',null,null),
+(3,'mercoledì','17:30','23:45'),
+(4,'giovedì','18:30','03:00'),
+(5,'venerdì','18:30','03:00'),
+(6,'sabato','18:30','03:00'),
+(7,'domenica','17:30','01:00');
+
 /*Tabella relativa ai Locali*/
 DROP TABLE IF EXISTS `Locale`;
 
@@ -276,6 +286,8 @@ CREATE TABLE `Locale_Immagini` (
         REFERENCES Locale (`id`)
         ON DELETE CASCADE ON UPDATE CASCADE
 );
+
+
 /*Inserimento dati Locale_Immagini*/
 INSERT INTO Locale_Immagini(`ID_Locale`,`ID_Immagine`) VALUES
 (1,2);
