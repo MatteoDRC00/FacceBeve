@@ -14,39 +14,36 @@
  *  @author Gruppo8
  *  @package Entity
  */
-class  ELocale implements JsonSerializable{
+class ELocale implements JsonSerializable{
 
     private ?int $id;
     private string $nome;
     private string $descrizione;
     private string $num_telefono;
     private EProprietario $proprietario;
-    private  $categoria;
+    private ?array $categoria;
     private ELocalizzazione $localizzazione;
-    private  $eventi_organizzati;
-    private  $orario;
-    private  $img;
+    private ?array $eventi_organizzati;
+    private ?array $orario;
+    private ?array $img;
 
     /**
      * @param string $nome
      * @param string $descrizione
      * @param string $num_telefono
      * @param EProprietario $proprietario
-     * @param array|null $categoria
      * @param ELocalizzazione $localizzazione
-     * @param array|null $eventi_organizzati
-     * @param array|null $orario
      */
-    public function __construct(string $nome, string $descrizione, string $num_telefono, EProprietario $proprietario,  $categoria, ELocalizzazione $localizzazione, $eventi_organizzati, ?array $orario){
+    public function __construct(string $nome, string $descrizione, string $num_telefono, EProprietario $proprietario, ELocalizzazione $localizzazione){
         $this->id = NULL;
         $this->nome = $nome;
         $this->num_telefono = $num_telefono;
         $this->descrizione = $descrizione;
         $this->proprietario = $proprietario;
-        $this->categoria = $categoria;
+        $this->categoria = null;
         $this->localizzazione = $localizzazione;
-        $this->eventi_organizzati = $eventi_organizzati;
-        $this->orario = $orario;
+        $this->eventi_organizzati = null;
+        $this->orario = null;
         $this->img = null;
     }
 
@@ -203,16 +200,13 @@ class  ELocale implements JsonSerializable{
     }
 
     /**
-     * @param EImmagine $img
+     * @param array|null $img
      */
-    public function setImg( $img): void
+    public function setImg(?array $img): void
     {
         $this->img = $img;
     }
 
-    /**
-     * @param array $img
-     */
     public function addImg(EImmagine $img): void
     {
         $this->img[] = $img;

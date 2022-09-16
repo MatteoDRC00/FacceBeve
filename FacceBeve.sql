@@ -50,8 +50,8 @@ CREATE TABLE `Proprietario` (
     `cognome` VARCHAR(26),    
     `email` VARCHAR(40) NOT NULL,
     `password` VARCHAR(32) NOT NULL,
-     `idImg` int(11),
-    FOREIGN KEY (`idImg`) REFERENCES Immagine(`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+    `idImg` int(11),
+    FOREIGN KEY (`idImg`) REFERENCES Immagine(`id`),
     PRIMARY KEY (`username`)
 );
 /*Inserimento dati Proprietario*/

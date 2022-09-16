@@ -143,11 +143,9 @@
 
                         <div class="entries">
                             {if !empty($locali_preferiti)}
-                                <form method="POST">
                                 {foreach $locali_preferiti as $locale}
-                                    <a href="">{$locale.nome}   <i class="fa fa-angle-right"></i></a>
+                                    <a href="/GestioneLocale/mostraInfoLocale/{$locale.id}">{$locale.nome}   <i class="fa fa-angle-right"></i></a>
                                 {/foreach}
-                                </form>
                             {else}
                                 <p>Non possiedi locali preferiti</p>
                             {/if}

@@ -76,18 +76,18 @@ class FLocalizzazione {
     * @return object $utente Utente
     */
     public static function loadByField($field, $id){
-        $utente = null;
-        $db=FDB::getInstance();
-        list($result,$num)=$db->load(static::getClass(), $field, $id);
+        $luogo = null;
+        $db = FDB::getInstance();
+        list($result,$num) = $db->load(static::getClass(), $field, $id);
         if(($result!=null) && ($num == 1)) {
-		    $luogo=new ELocalizzazione($result['indirizzo'],$result['numCivico'],$result['citta'], $result['CAP']); //Carica un Luogo dal database
+		    $luogo = new ELocalizzazione($result['indirizzo'],$result['numCivico'],$result['citta'], $result['CAP']); //Carica un Luogo dal database
             $luogo->setId($result['id']);
         }
         else {
             if(($result!=null) && ($num > 1)){
                 $luogo = array();
         	    for($i=0; $i<count($result); $i++){
-                    $luogo[]=new ELocalizzazione($result[$i]['indirizzo'], $result[$i]['numCivico'], $result[$i]['citta'], $result[$i]['CAP']); //Carica un array di oggetti Localizzazione dal database
+                    $luogo[$i] = new ELocalizzazione($result[$i]['indirizzo'], $result[$i]['numCivico'], $result[$i]['citta'], $result[$i]['CAP']); //Carica un array di oggetti Localizzazione dal database
                     $luogo[$i]->setId($result[$i]['id']);
                 }
             }
