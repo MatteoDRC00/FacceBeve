@@ -374,7 +374,7 @@ class FDB{
 		return false;
 	}
 
-	public function deleteCategorieLocali($id_locale){
+	public function deleteCategorieLocale($id_locale){
 		try {
 			$this->database->beginTransaction();
 			$query = "DELETE FROM " . "locale_categorie" . " WHERE " . "ID_Locale" . "='" . $id_locale . "';";

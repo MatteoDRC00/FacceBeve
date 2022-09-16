@@ -50,7 +50,7 @@
         <div class="container">
 
             <div class="d-flex justify-content-between align-items-center">
-                <h2 style="font-weight: bold">Gestisci:  {$locale->getNome()}</h2>
+                <h2 style="font-weight: bold">Gestisci: <a href="/GestioneLocale/mostraInfoLocale/{$locale->getId()}">{$locale->getNome()}</a></h2>
             </div>
 
             <div class="gestioneutente">
@@ -82,7 +82,7 @@
                         </div>
                         <button type="submit" class="btnAggiorna">AGGIORNA DESCRIZIONE <i class="fa fa-refresh"></i></button>
                     </form>
-                    <form action="" method="POST" class="aggiorna">
+                    <form action="/GestioneLocale/modificaCategorieLocale/{$locale->getId()}" method="POST" class="aggiorna">
                         <div class="form-example">
                             <label style="font-weight: bold">Aggiorna la categoria: </label><br>
                             {if !empty($categorie)}
@@ -95,47 +95,47 @@
                         </div>
                         <button type="submit" class="btnAggiorna">AGGIORNA CATEGORIA <i class="fa fa-refresh"></i></button>
                     </form>
-                    <form action="" method="POST" class="aggiorna">
+                    <form action="/GestioneLocale/modificaNumTelefonoLocale/{$locale->getId()}" method="POST" class="aggiorna">
                         <div class="form-example">
                             <label style="font-weight: bold">Aggiorna il numero di telefono: </label><br>
-                            <input type="tel" name="newnumber" required>
+                            <input type="tel" name="numeroLocale" required>
                         </div>
                         <button type="submit" class="btnAggiorna">AGGIORNA NUMERO DI TELEFONO <i class="fa fa-refresh"></i></button>
                     </form>
-                    <form action="" method="POST" class="aggiorna">
+                    <form action="/GestioneLocale/modificaLocalizzazioneLocale/{$locale->getId()}" method="POST" class="aggiorna">
                         <div class="form-example">
                             <label style="font-weight: bold">Aggiorna la localizzazione: </label><br>
-                            <input type="text" name="newindirizzo" placeholder="Nuovo indirizzo">
-                            <input type="text" name="newcivico" placeholder="Nuovo numero civico">
-                            <input type="text" name="newcitta" placeholder="Nuova città">
-                            <input type="text" name="newCAP" placeholder="Nuovo CAP">
+                            <input type="text" name="indirizzoLocale" placeholder="Nuovo indirizzo">
+                            <input type="text" name="civicoLocale" placeholder="Nuovo numero civico">
+                            <input type="text" name="cittaLocale" placeholder="Nuova città">
+                            <input type="text" name="CAPLocale" placeholder="Nuovo CAP">
                         </div>
                         <button type="submit" class="btnAggiorna">AGGIORNA LOCALIZZAZIONE <i class="fa fa-refresh"></i></button>
                     </form>
-                    <form action="" method="POST" class="aggiorna">
+                    <form action="/GestioneLocale/modificaOrarioLocale/{$locale->getId()}" method="POST" class="aggiorna">
                         <div class="form-example">
                             <label style="font-weight: bold">Aggiorna l'orario di apertura e chiusura: </label><br>
                             <div class="orario">
-                                <label>Lunedi: <input type="time" name="orario[0][0]"> <input type="time" name="orario[0][1]">
-                                    <input type="checkbox" id="close" name="orario[0][2]" value="chiuso">
+                                <label>Lunedi: <input type="time" name="orarioapertura[]"> <input type="time" name="orariochiusura[]">
+                                    <input type="checkbox" id="close" name="close[]" value="0">
                                     <label for="close"> Chiuso</label></label><br>
-                                <label>Martedi: <input type="time" name="orario[1][0]"> <input type="time" name="orario[1][1]">
-                                    <input type="checkbox" name="orario[1][2]" value="chiuso">
+                                <label>Martedi: <input type="time" name="orarioapertura[]"> <input type="time" name="orariochiusura[]">
+                                    <input type="checkbox" name="close[]" value="1">
                                     <label for="close"> Chiuso</label></label><br>
-                                <label>Mercoledi: <input type="time" name="orario[2][0]"> <input type="time" name="orario[2][1]">
-                                    <input type="checkbox" name="orario[2][2]" value="chiuso">
+                                <label>Mercoledi: <input type="time" name="orarioapertura[]"> <input type="time" name="orariochiusura[]">
+                                    <input type="checkbox" name="close[]" value="2">
                                     <label for="close"> Chiuso</label></label><br>
-                                <label>Giovedi: <input type="time" name="orario[3][0]"> <input type="time" name="orario[3][1]">
-                                    <input type="checkbox" name="orario[3][2]" value="chiuso">
+                                <label>Giovedi: <input type="time" name="orarioapertura[]"> <input type="time" name="orariochiusura[]">
+                                    <input type="checkbox" name="close[]" value="3">
                                     <label for="close"> Chiuso</label></label><br>
-                                <label>Venerdi: <input type="time" name="orario[4][0]"> <input type="time" name="orario[4][1]">
-                                    <input type="checkbox" name="orario[4][2]" value="chiuso">
+                                <label>Venerdi: <input type="time" name="orarioapertura[]"> <input type="time" name="orariochiusura[]">
+                                    <input type="checkbox" name="close[]" value="4">
                                     <label for="close"> Chiuso</label></label><br>
-                                <label>Sabato: <input type="time" name="orario[5][0]"> <input type="time" name="orario[5][1]">
-                                    <input type="checkbox" name="orario[5][2]" value="chiuso">
+                                <label>Sabato: <input type="time" name="orarioapertura[]"> <input type="time" name="orariochiusura[]">
+                                    <input type="checkbox" name="close[]" value="5">
                                     <label for="close"> Chiuso</label></label><br>
-                                <label>Domenica: <input type="time" name="orario[6][0]"> <input type="time" name="orario[6][1]">
-                                    <input type="checkbox" name="orario[6][2]" value="chiuso">
+                                <label>Domenica: <input type="time" name="orarioapertura[]"> <input type="time" name="orariochiusura[]">
+                                    <input type="checkbox" name="close[]" value="6">
                                     <label for="close"> Chiuso</label></label><br>
                             </div>
                         </div>
@@ -143,12 +143,15 @@
                     </form>
                 </div>
                 <div class="col-6 bg-white px-3 mb-3 pb-3">
-                    <form action="" enctype="multipart/form-data" method="POST" class="aggiorna"> <!-- aggiungin i controlli -->
+                    <form action="/GestioneLocale/modificaDescrizioneLocale/{$locale->getId()}" enctype="multipart/form-data" method="POST" class="aggiorna"> <!-- aggiungin i controlli -->
                         <p>AGGIUNGI LE IMMAGINI</p>
-                        <input name="img" class="w-50 p-2 m-2" type="file"><br>
+                        <input name="img_locale" class="w-50 p-2 m-2" type="file" required><br>
                         <button type="submit" class="btnAggiorna">AGGIUNGI IMMAGINE<i class="fa fa-refresh"></i></button>
                     </form>
                 </div>
+
+
+
             </div>
         </div>
     </section><!-- End Contact Section -->

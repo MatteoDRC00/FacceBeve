@@ -277,29 +277,16 @@ class CGestioneLocale
 
         if($sessione->isLogged() && $tipo == "EProprietario"){
             $generi = $view->getCategorie();
-
+            $locale = $pm->load("id",$id_locale,"FLocale");
             foreach($generi as $g){
                 $categorie[] = $pm->load("genere",$g,"FCategoria");
                 $pm->deleteCategorieLocale($id_locale);
+                $pm->storeCategorieLocale($g, $id_locale);
             }
-
-
-
-            $locale = $pm->load("id",$id_locale,"FLocale");
-            $pm->update("FLocale","numtelefono",$numeroTelefono,"id",$id_locale);
             $locale->setCategoria($categorie);
+
             header("Location: /GestioneLocale/mostraGestioneLocale/".$id_locale);
         }
-
-
-        $newCat = $view->getCategoria();
-        foreach($locale->getCategoria() as $cat1){
-            $pm->deleteEsterne($cat1);
-        }
-        foreach($newCat as $cat2){
-            $pm->storeEsterne("FLocale",$cat2,$locale->getId());
-        }
-        $view->showFormModify(null,$locale);
     }
 
     /**
@@ -307,28 +294,35 @@ class CGestioneLocale
      * @return void
      * @throws SmartyException
      */
-    public function modificaLocalizzazioneLocale(){
+    public function modificaLocalizzazioneLocale($id_locale){
         $sessione = new USession();
+        $username = $sessione->leggi_valore("utente");
+        $tipo = $sessione->leggi_valore("tipo_utente");
+        $pm = FPersistentManager::getInstance();
         $view = new VGestioneLocale();
 
-        $utente = unserialize($sessione->leggi_valore('utente'));
-        $pm = FPersistentManager::getInstance();
-        $locale = $pm->load("id",$view->getIdLocale(),"FLocale");
-        $localizzazione = $locale->getLocalizzazione();
+        if($sessione->isLogged() && $tipo == "EProprietario"){
+            $locale = $pm->load("id",$id_locale,"FLocale");
+            $id_localizzazione = $locale->getLocalizzazione()->getId();
 
-        $a = $view->getIndirizzo();
-        $pm->update("FLocalizzazione","indirizzo",$a,"id",$localizzazione->getId());
+            $indirizzo = $view->getIndirizzo();
+            $pm->update("FLocalizzazione", "indirizzo", $indirizzo, "id", $id_localizzazione);
 
-        $b = $view->getNumeroCivico();
-        $pm->update("FLocalizzazione","numCivico",$b,"id",$localizzazione->getId());
+            $numCivico = $view->getNumeroCivico();
+            $pm->update("FLocalizzazione", "numCivico", $numCivico,"id", $id_localizzazione);
 
-        $c = $view->getCitta();
-        $pm->update("FLocalizzazione","citta",$c,"id",$localizzazione->getId());
+            $citta = $view->getCitta();
+            $pm->update("FLocalizzazione", "citta", $citta, "id", $id_localizzazione);
 
-        $d = $view->getCAP();
-        $pm->update("FLocalizzazione","CAP",$d,"id",$localizzazione->getId());
+            $cap = $view->getCAP();
+            $pm->update("FLocalizzazione","CAP", $cap, "id", $id_localizzazione);
 
-        $view->showFormModify(null,$locale);
+            $localizzazioneNuova = new ELocalizzazione($indirizzo, $numCivico, $citta, $cap);
+            $localizzazioneNuova->setId($id_localizzazione);
+
+            $locale->setLocalizzazione($localizzazioneNuova);
+            header("Location: /GestioneLocale/mostraGestioneLocale/".$id_locale);
+        }
     }
 
     /**
