@@ -146,7 +146,7 @@
                     <form action="/GestioneLocale/modificaImmagineLocale/{$locale->getId()}" enctype="multipart/form-data" method="POST" class="aggiorna"> <!-- aggiungin i controlli -->
                         <p>AGGIUNGI LE IMMAGINI</p>
                         <input name="img_locale" class="w-50 p-2 m-2" type="file" required><br>
-                        <button type="submit" class="btnAggiorna">AGGIUNGI IMMAGINE<i class="fa fa-refresh"></i></button>
+                        <button type="submit" class="btnAggiorna">AGGIORNA IMMAGINE <i class="fa fa-refresh"></i></button>
                     </form>
                 </div>
             </div>
