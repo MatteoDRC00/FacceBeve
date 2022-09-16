@@ -60,6 +60,11 @@ class VGestioneLocale{
         $this->smarty->display('registrazioneLocale.tpl');
     }
 
+    public function showFormModificaLocale($locale){
+        $this->smarty->assign('locale', $locale);
+        $this->smarty->display('gestioneLocale.tpl');
+    }
+
 
     /**
      * Metodo richiamato quando un Proprietario crea un locale.

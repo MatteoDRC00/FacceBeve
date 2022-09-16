@@ -1,4 +1,27 @@
-<!DOCTYPE html>
+<?php
+/* Smarty version 4.2.0, created on 2022-09-16 16:38:06
+  from 'C:\xampp\htdocs\FacceBeve\template\gestioneLocale.tpl' */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '4.2.0',
+  'unifunc' => 'content_63248a4ed9d516_01950199',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    '1c893a337b2815c195d1ebdec5f1c045d7425e74' => 
+    array (
+      0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\gestioneLocale.tpl',
+      1 => 1663339084,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+),false)) {
+function content_63248a4ed9d516_01950199 (Smarty_Internal_Template $_smarty_tpl) {
+?><!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -50,7 +73,8 @@
         <div class="container">
 
             <div class="d-flex justify-content-between align-items-center">
-                <h2 style="font-weight: bold">Gestisci:  {$locale->getNome()}</h2>
+                Gestisci:  <h2 style="font-weight: bold"><?php echo $_smarty_tpl->tpl_vars['locale']->value->getNome();?>
+</h2>
             </div>
 
             <div class="gestioneutente">
@@ -189,18 +213,37 @@
 <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
 <!-- Vendor JS Files -->
-<script src="/template/vendor/purecounter/purecounter_vanilla.js"></script>
-<script src="/template/vendor/aos/aos.js"></script>
-<script src="/template/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="/template/vendor/glightbox/js/glightbox.min.js"></script>
-<script src="/template/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-<script src="/template/vendor/swiper/swiper-bundle.min.js"></script>
-<script src="/template/vendor/waypoints/noframework.waypoints.js"></script>
-<script src="/template/vendor/php-email-form/validate.js"></script>
+<?php echo '<script'; ?>
+ src="/template/vendor/purecounter/purecounter_vanilla.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ src="/template/vendor/aos/aos.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ src="/template/vendor/bootstrap/js/bootstrap.bundle.min.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ src="/template/vendor/glightbox/js/glightbox.min.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ src="/template/vendor/isotope-layout/isotope.pkgd.min.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ src="/template/vendor/swiper/swiper-bundle.min.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ src="/template/vendor/waypoints/noframework.waypoints.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ src="/template/vendor/php-email-form/validate.js"><?php echo '</script'; ?>
+>
 
 <!-- Template Main JS File -->
-<script src="/template/js/main.js"></script>
+<?php echo '<script'; ?>
+ src="/template/js/main.js"><?php echo '</script'; ?>
+>
 
 </body>
 
-</html>
+</html><?php }
+}

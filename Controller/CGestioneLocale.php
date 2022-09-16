@@ -52,6 +52,20 @@ class CGestioneLocale
     }
 
     public function mostraGestioneLocale($id_locale){
+        $sessione = new USession();
+        $username = $sessione->leggi_valore("utente");
+        $tipo = $sessione->leggi_valore("tipo_utente");
+        $pm = FPersistentManager::getInstance();
+        $view = new VGestioneLocale();
+
+        if($sessione->isLogged() && $tipo == "EProprietario"){
+            $locale = $pm->load("id", $id_locale, "FLocale");
+
+            //ricostruzione eventi organizzati
+
+
+            $view->showFormModificaLocale($locale);
+        }
 
     }
 

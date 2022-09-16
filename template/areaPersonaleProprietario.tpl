@@ -152,7 +152,7 @@
             <div class="items-body">
                 {if isset($locali)}
                     {foreach $locali as $locale}
-                        <a href="/GestioneLocale/mostraInfoLocale/{$locale->getId()}">{$locale->getNome()}   <i class="fa fa-angle-right"></i></a>
+                        <a href="/GestioneLocale/mostraGestioneLocale/{$locale->getId()}">{$locale->getNome()}   <i class="fa fa-angle-right"></i></a>
                     {/foreach}
                 {else}
                     <p>Non possiedi locali locali</p>
