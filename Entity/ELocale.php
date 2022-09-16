@@ -32,7 +32,7 @@ class ELocale implements JsonSerializable{
      * @param EProprietario $proprietario
      * @param ELocalizzazione $localizzazione
      */
-    public function __construct(string $nome, string $descrizione, string $num_telefono, EProprietario $proprietario, ELocalizzazione $localizzazione){
+    public function __construct(string $nome, string $descrizione, string $num_telefono, EProprietario $proprietario, ELocalizzazione $localizzazione, ?EImmagine $img){
         $this->id = NULL;
         $this->nome = $nome;
         $this->num_telefono = $num_telefono;
@@ -42,7 +42,7 @@ class ELocale implements JsonSerializable{
         $this->localizzazione = $localizzazione;
         $this->eventi_organizzati = null;
         $this->orario = null;
-        $this->img = null;
+        $this->img = $img;
     }
 
     /**

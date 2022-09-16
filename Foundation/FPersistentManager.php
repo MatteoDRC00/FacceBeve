@@ -259,6 +259,11 @@ class FPersistentManager {
         $db->deleteCategorieLocale($id_locale);
     }
 
+    public function deleteOrariLocale($id_locale){
+        $db = FDB::getInstance();
+        $db->deleteOrariLocale($id_locale);
+    }
+
     public function storeOrariLocale($orario, $locale){
         $db = FDB::getInstance();
         $db->storeOrariLocale($locale, $orario);
