@@ -152,8 +152,9 @@ class FLocale {
         list($result, $num) = $db->load(static::getClass(), $field, $id);
         if(($result!=null) && ($num == 1)) {
             $proprietario = FProprietario::loadByField("username" , $result["proprietario"]);
-            $localizzazione = FLocalizzazione::loadByField("localizzazione" , $result["localizzazione"]);
+            $localizzazione = FLocalizzazione::loadByField("id" , $result["localizzazione"]);
             $locale = new ELocale($result['nome'], $result['descrizione'], $result['numtelefono'], $proprietario, $localizzazione);
+            $locale->setId($result['id']);
         }else{
             if(($result!=null) && ($num > 1)){
                 $utente = array();
@@ -161,6 +162,7 @@ class FLocale {
                     $proprietario = FProprietario::loadByField("username" , $result[$i]["proprietario"]);
                     $localizzazione = FLocalizzazione::loadByField("localizzazione" , $result[$i]["localizzazione"]);
                     $locale[$i] = new ELocale($result[$i]['nome'], $result[$i]['descrizione'], $result[$i]['numtelefono'], $proprietario, $localizzazione);
+                    $locale[$i]->setId($result[$i]['id']);
                 }
             }
         }

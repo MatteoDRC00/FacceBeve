@@ -24,7 +24,8 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,700,700i&display=swap"
           rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+          integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 
     <!-- Vendor CSS Files -->
     <link href="/template/vendor/animate.css/animate.min.css" rel="stylesheet">
@@ -67,28 +68,28 @@
                 <h2 style="font-weight: bold">Risultati per:</h2>
                 <ul>
                     {if $tipo=="Locali"}
-                      {if $nomeLocale!="er45u"}
-                         <li>{$nomeLocale}</li>
-                      {/if}
-                      {if $citta!="er45u"}
-                         <li>{$citta}</li>
-                      {/if}
-                      {if $categoria!="er45u"}
-                        <li>{$categoria}</li>
-                      {/if}
+                        {if $nomeLocale!="er45u"}
+                            <li>{$nomeLocale}</li>
+                        {/if}
+                        {if $citta!="er45u"}
+                            <li>{$citta}</li>
+                        {/if}
+                        {if $categoria!="er45u"}
+                            <li>{$categoria}</li>
+                        {/if}
                     {else}
-                      {if $nomeLocale!="er45u"}
-                        <li>{$nomeLocale}</li>
-                      {/if}
-                      {if $nomeEvento!="er45u"}
-                        <li>{$nomeEvento}</li>
-                      {/if}
-                      {if $citta!="er45u"}
-                        <li>{$citta}</li>
-                      {/if}
-                      {if $data!="er45u"}
-                       <li>{$data}</li>
-                      {/if}
+                        {if $nomeLocale!="er45u"}
+                            <li>{$nomeLocale}</li>
+                        {/if}
+                        {if $nomeEvento!="er45u"}
+                            <li>{$nomeEvento}</li>
+                        {/if}
+                        {if $citta!="er45u"}
+                            <li>{$citta}</li>
+                        {/if}
+                        {if $data!="er45u"}
+                            <li>{$data}</li>
+                        {/if}
                     {/if}
                 </ul>
             </div>
@@ -96,13 +97,13 @@
     </section>
     <section id="blog" class="blog">
         <div class="container" data-aos="fade-up">
-         {if $array!='vuoto'}
+            {if $array!='vuoto'}
             {if $tipo == "Locali"} <!--Locali-->
             {foreach from=$array item=locale}
-             <div class="row">
+            <div class="row">
                 <div class="entries">
                     <article class="entry">
-                       <!-- {if isset($locale->getImg())}
+                        <!-- {if isset($locale->getImg())}
                            <div class="entry-img">
                                <img class="photo" src="data:{$locale->getImg()->getType()};base64,{$locale->getImg()->getImmagine()}" alt="immagine locale">
                            </div>
@@ -129,22 +130,23 @@
                                 $descrizione
                             </p>
                             <div class="read-more">
-                                <a <!--Bisogna passare qualcosa-->>Visita il locale <i class="fas fa-chevron-circle-right"></i></a>
+                                <a <!--Bisogna passare qualcosa-->>Visita il locale <i
+                                        class="fas fa-chevron-circle-right"></i></a>
                             </div>
                         </div>
 
                     </article><!-- End blog entry -->
                     {/foreach}
-                 </div>
                 </div>
             </div>
-           {else} <!--Eventi-->
+        </div>
+        {else} <!--Eventi-->
         {foreach from=$array item=evento}
         <div class="row">
             <div class="entries">
                 <article class="entry">
 
-                 <!--   {if isset($evento->getImg())}
+                    <!--   {if isset($evento->getImg())}
                         <div class="entry-img">
                             <img class="photo" src="data:{$locale->getImg()->getType()};base64,{$locale->getImg()->getImmagine()}" alt="immagine locale">
                         </div>
@@ -171,7 +173,8 @@
                             $descrizione
                         </p>
                         <div class="read-more">
-                            <a <!--Bisogna passare qualcosa-->>Visita il locale <i class="fas fa-chevron-circle-right"></i></a>
+                            <a <!--Bisogna passare qualcosa-->>Visita il locale <i
+                                    class="fas fa-chevron-circle-right"></i></a>
                         </div>
                     </div>
 
@@ -181,9 +184,9 @@
         </div>
         {/if}
         {else}
-            <div class="entries">
-                <h2 class="accordion-body">La ricerca non ha prodotto alcun risultato. Riprova.</h2>
-            </div>
+        <div class="entries">
+            <h2 class="accordion-body">La ricerca non ha prodotto alcun risultato. Riprova.</h2>
+        </div>
         {/if}
     </section>
 
@@ -203,7 +206,7 @@
 </footer><!-- End Footer -->
 
 <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
-        class="bi bi-arrow-up-short"></i></a>
+            class="bi bi-arrow-up-short"></i></a>
 
 <!-- Vendor JS Files -->
 <script src="/template/vendor/purecounter/purecounter_vanilla.js"></script>

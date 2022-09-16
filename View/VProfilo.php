@@ -232,7 +232,7 @@ class VProfilo{
         $this->smarty->display('areaPersonaleUtente.tpl');
     }
 
-    public function mostraProfiloProprietario(EProprietario $proprietario, $locali){
+    public function mostraProfiloProprietario(EProprietario $proprietario,$locali){
         $username = $proprietario->getUsername();
         $nome = $proprietario->getNome();
         $cognome = $proprietario->getCognome();
@@ -240,6 +240,7 @@ class VProfilo{
         $img_profilo = $proprietario->getImgProfilo();
         $pic64 = $img_profilo->getImmagine();
         $type = $img_profilo->getType();
+
 
         $this->smarty->assign("username",$username);
         $this->smarty->assign("nome",$nome);

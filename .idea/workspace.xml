@@ -5,18 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c949e55-50d2-4635-ab4f-837af15b2e84" name="Changes" comment="link su tpl">
-      <change beforePath="$PROJECT_DIR$/Controller/CFrontController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/CFrontController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controller/CGestioneLocale.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/CGestioneLocale.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Entity/ELocale.php" beforeDir="false" afterPath="$PROJECT_DIR$/Entity/ELocale.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Foundation/FCategoria.php" beforeDir="false" afterPath="$PROJECT_DIR$/Foundation/FCategoria.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controller/CProfilo.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/CProfilo.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FacceBeve.sql" beforeDir="false" afterPath="$PROJECT_DIR$/FacceBeve.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Foundation/FLocale.php" beforeDir="false" afterPath="$PROJECT_DIR$/Foundation/FLocale.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Foundation/FLocalizzazione.php" beforeDir="false" afterPath="$PROJECT_DIR$/Foundation/FLocalizzazione.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Foundation/FUtente.php" beforeDir="false" afterPath="$PROJECT_DIR$/Foundation/FUtente.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/templates_c/5e1aa453dbee77c509402c601a3b43b7d15ea457_0.file.registrazioneLocale.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/Smarty/templates_c/5e1aa453dbee77c509402c601a3b43b7d15ea457_0.file.registrazioneLocale.tpl.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/templates_c/7757a365921f193a5e1677eb3c4671e453775876_0.file.areaPersonaleUtente.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/Smarty/templates_c/7757a365921f193a5e1677eb3c4671e453775876_0.file.areaPersonaleUtente.tpl.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Smarty/templates_c/f01309d919bfd81c0c749befffc9728594dd37b3_0.file.areaPersonaleProprietario.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/Smarty/templates_c/f01309d919bfd81c0c749befffc9728594dd37b3_0.file.areaPersonaleProprietario.tpl.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/VProfilo.php" beforeDir="false" afterPath="$PROJECT_DIR$/View/VProfilo.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/template/areaPersonaleProprietario.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/template/areaPersonaleProprietario.tpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/areaPersonaleUtente.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/template/areaPersonaleUtente.tpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/risultatiRicerca.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/template/risultatiRicerca.tpl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,7 +102,7 @@
     <configuration name="index.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/index.php">
       <CommandLine>
         <PhpTestInterpreterSettings>
-          <option name="interpreterName" value="PHP 7.4.1" />
+          <option name="interpreterName" value="PHP" />
         </PhpTestInterpreterSettings>
       </CommandLine>
       <method v="2" />

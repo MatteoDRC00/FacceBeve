@@ -94,7 +94,6 @@ class CGestioneLocale
             $id_locale = $pm->store($locale);
             $locale->setId($id_locale);
 
-
             $generi = $view->getCategorie();
 
             $categorie = array();
