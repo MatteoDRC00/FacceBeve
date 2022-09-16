@@ -128,7 +128,6 @@ class CGestioneLocale
                 if($giorni_chiusi[$i] == 0){
                     if($orario_apertura[$i] != null && $orario_chiusura[$i] != null){
                         $orario = new EOrario($giorno, $orario_apertura[$i], $orario_chiusura[$i]);
-                        print_r($orario);
                         $id = $pm->store($orario);
                         $orario->setId($id);
                         $pm->storeOrariLocale($id, $id_locale);
@@ -137,14 +136,13 @@ class CGestioneLocale
                         //errore
                     }
                 }else{
-                    $orario = new EOrario($giorno, null, null);
-                    print_r($orario);
+                    $orario = new EOrario($giorno, "Chiuso", "Chiuso");
                     $id = $pm->store($orario);
                     $orario->setId($id);
                     $pm->storeOrariLocale($id, $id_locale);
                 }
             }
-            //header('Location: /Profilo/mostraProfilo');
+            header('Location: /Profilo/mostraProfilo');
         }else{
             header('Location: /Ricerca/mostraHome');
         }

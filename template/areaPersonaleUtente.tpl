@@ -145,7 +145,7 @@
                             {if !empty($locali_preferiti)}
                                 <form method="POST">
                                 {foreach $locali_preferiti as $locale}
-                                    <a href="">{$locale.nome}<i class="fa fa-angle-right"></i></a>
+                                    <a href="">{$locale.nome}   <i class="fa fa-angle-right"></i></a>
                                 {/foreach}
                                 </form>
                             {else}
