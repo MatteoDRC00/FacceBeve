@@ -162,7 +162,6 @@ class CRicerca{
                     $proprietario=false;
             }
         }
-
         //$this->smarty->assign('recensioniLocale', $recensioni);
          $vRicerca->dettagliLocale($result, $recensioni, $risposte, $rating, $proprietario);
     }

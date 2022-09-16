@@ -9,7 +9,6 @@
  *  - categoria: identifica la categoria del locale, cioè il tipo
  *  - localizzazione: identifica la posizione geografica in cui si trova il locale
  *  - eventi_organizzati: è l'insieme degli eventi organizzati dal locale
- *  - visibility: indica se un locale è bannato o no
  *  - orario_apertura: indica gli orari in cui il locale è aperto in base al giorno della settimana
  *  @author Gruppo8
  *  @package Entity
@@ -25,7 +24,7 @@ class ELocale implements JsonSerializable{
     private ELocalizzazione $localizzazione;
     private ?array $eventi_organizzati;
     private ?array $orario;
-    private ?array $img;
+    private EImmagine $img;
 
     /**
      * @param string $nome
@@ -192,25 +191,25 @@ class ELocale implements JsonSerializable{
     }
 
     /**
-     * @return array|null
+     * @return EImmagine|null
      */
-    public function getImg(): ?array
+    public function getImg(): EImmagine
     {
         return $this->img;
     }
 
     /**
-     * @param array|null $img
+     * @param EImmagine $img
      */
-    public function setImg(?array $img): void
+    public function setImg(EImmagine $img): void
     {
         $this->img = $img;
     }
 
-    public function addImg(EImmagine $img): void
+   /* public function addImg(EImmagine $img): void
     {
         $this->img[] = $img;
-    }
+    }*/
 
 
     public function jsonSerialize()

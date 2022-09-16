@@ -90,6 +90,10 @@
                     {if isset($array)}
                      {foreach $array as $locale}
 
+                         <div class="entry-img">
+                             <img class="photo" src="data:{$locale->getImg()->getType()};base64,{$locale->getImg()->getImmagine()}" alt="immagine locale" width="200px" height="100px">
+                         </div>
+
                     <h2 class="entry-title">
                         <a href="infoLocale.html">{$locale->getNome()}</a>
                     </h2>
