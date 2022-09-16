@@ -78,18 +78,17 @@ class FLocalizzazione {
     public static function loadByField($field, $id){
         $utente = null;
         $db=FDB::getInstance();
-        $result=$db->load(static::getClass(), $field, $id);
-        $rows_number = $db->interestedRows(static::getClass(), $field, $id);    //funzione richiamata,presente in FDB --> restituisce numero di righe interessate dalla query
-        if(($result!=null) && ($rows_number == 1)) {           
+        list($result,$num)=$db->load(static::getClass(), $field, $id);
+        if(($result!=null) && ($num == 1)) {
 		    $luogo=new ELocalizzazione($result['indirizzo'],$result['numCivico'],$result['citta'], $result['CAP']); //Carica un Luogo dal database
-            $luogo->setCodice($result['codiceluogo']);
+            $luogo->setId($result['id']);
         }
         else {
-            if(($result!=null) && ($rows_number > 1)){
+            if(($result!=null) && ($num > 1)){
                 $luogo = array();
         	    for($i=0; $i<count($result); $i++){
                     $luogo[]=new ELocalizzazione($result[$i]['indirizzo'], $result[$i]['numCivico'], $result[$i]['citta'], $result[$i]['CAP']); //Carica un array di oggetti Localizzazione dal database
-                    $luogo[$i]->setCodice($result[$i]['codiceluogo']);
+                    $luogo[$i]->setId($result[$i]['id']);
                 }
             }
         }

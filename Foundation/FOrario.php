@@ -105,13 +105,12 @@ class FOrario {
     public static function loadByLocale($id){
         $orario = null;
         $db=FDB::getInstance();
-        $result=$db->loadInfoLocale(static::getClass(),"Locale_Orari",$id);
-        $rows_number = $result->rowCount();    //funzione richiamata,presente in FDB --> restituisce numero di righe interessate dalla query
-        if(($result!=null) && ($rows_number == 1)) {
+        list($result,$num)=$db->loadInfoLocale(static::getClass(),"Locale_Orari",$id,"ID_Orario","id");
+        if(($result!=null) && ($num == 1)) {
             $orario=new EOrario($result['giorno'],$result['orarioApertura'],$result['orarioChiusura']); //Carica un Orario dal database
         }
         else {
-            if(($result!=null) && ($rows_number > 1)){
+            if(($result!=null) && ($num > 1)){
                 $utente = array();
                 for($i=0; $i<count($result); $i++){
                     $orario[] =new EOrario($result[$i]['giorno'],$result[$i]['orarioApertura'],$result[$i]['orarioChiusura']); //Carica un array di oggetti UOrario dal database

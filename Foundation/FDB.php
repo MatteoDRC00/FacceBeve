@@ -359,11 +359,11 @@ class FDB{
 				while ($row = $stmt->fetch())
 					$result[] = $row;                    //ritorna un array di righe.
 			}
-			return $result;
+			return  array ($result,$num);
 		} catch (PDOException $e) {
 			echo "Attenzione errore: " . $e->getMessage();
 			$this->database->rollBack();
-			return null;
+			return array(null,0);
 		}
 	}
 
@@ -584,9 +584,9 @@ class FDB{
 	 * @param idlocale identificativo del locale
 	 * @return info del locale
 	 */
-	public function loadInfoLocale($class,$field,$idlocale){
+	public function loadInfoLocale($class,$field,$idlocale,$foreignkey,$pk){
 		try{
-			$query = ("SELECT * FROM " . $class::getTable() . " INNER JOIN ".$field." ON ".$field.".ID_Locale". "='" . $idlocale . "';");
+			$query = ("SELECT * FROM " . $class::getTable() . " INNER JOIN ".$field." ON ".$field.".".$foreignkey."=".  $class::getTable() .".".$pk." AND ".$field.".ID_Locale=".$idlocale);
 			$stmt = $this->database->prepare($query); //Prepared Statement
 			$stmt->execute();
 			$num = $stmt->rowCount();
@@ -600,16 +600,13 @@ class FDB{
 				while ($row = $stmt->fetch())
 					$result[] = $row;                    //ritorna un array di righe.
 			}
-
 			return array($result, $num);
-
 		} catch (PDOException $e) {
 			echo "Attenzione errore: " . $e->getMessage();
 			$this->database->rollBack();
 			return null;
 		}
 	}
-
 
 	/**  Metodo che chiude la connesione con il db */
 	public function closeDbConnection (){

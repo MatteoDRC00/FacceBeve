@@ -144,13 +144,12 @@ class FImmagine
     public static function loadByLocale($id){
         $img = null;
         $db=FDB::getInstance();
-        $result=$db->loadInfoLocale(static::getClass(),"Locale_Immagini",$id);
-        $rows_number = $result->rowCount();    //funzione richiamata,presente in FDB --> restituisce numero di righe interessate dalla query
-        if(($result!=null) && ($rows_number == 1)) {
+        list($result,$num)=$db->loadInfoLocale(static::getClass(),"Locale_Immagini",$id,"ID_Immagine","id");
+        if(($result!=null) && ($num == 1)) {
             $img=new EImmagine($result['nome'],$result['size'],$result['type'],$result['immagine']); //Carica un Orario dal database
         }
         else {
-            if(($result!=null) && ($rows_number > 1)){
+            if(($result!=null) && ($num > 1)){
                 $utente = array();
                 for($i=0; $i<count($result); $i++){
                     $img[]=new EImmagine($result[$i]['nome'],$result[$i]['size'],$result[$i]['type'],$result[$i]['immagine']);

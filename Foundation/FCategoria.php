@@ -89,14 +89,14 @@ class FCategoria {
     public static function loadByLocale($id){
         $categoria = null;
         $db = FDB::getInstance();
-        $result=$db->loadInfoLocale(static::getClass(),"Locale_Categorie",$id);
-        if(isset($result)){
-            $rows_number = count($result);    //funzione richiamata,presente in FDB --> restituisce numero di righe interessate dalla query
-            if(($result!=null) && ($rows_number == 1)) {
+        list($result,$num)=$db->loadInfoLocale(static::getClass(),"Locale_Categorie",$id,"ID_Categoria","genere");
+        print_r($result);
+        if(isset($result)){//funzione richiamata,presente in FDB --> restituisce numero di righe interessate dalla query
+            if(($result!=null) && ($num == 1)) {
                 $categoria=new ECategoria($result['genere'], $result['descrizione']); //Carica una categoria dal database
             }
             else {
-                if(($result!=null) && ($rows_number > 1)){
+                if(($result!=null) && ($num > 1)){
                     $categoria = array();
                     for($i=0; $i<count($result); $i++){
                         $categoria[]=new ECategoria($result[$i]['genere'], $result[$i]['descrizione']); //Carica un array di oggetti Categoria dal database

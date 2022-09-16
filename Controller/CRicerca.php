@@ -76,7 +76,7 @@ class CRicerca{
                 if ($nomelocale != null || $citta != null || $categoria != null){
                     $pm = FPersistentManager::getInstance();
                     $result = $pm->loadForm($nomelocale, $citta,$categoria,"tmp",$tipo);
-                    //$vRicerca->showResult($result, $tipo,$nomelocale,$citta,$categoria,null);
+                    $vRicerca->showResult($result, $tipo,$nomelocale,$citta,$categoria,null);
                 }else
                     header('Location: /Ricerca/mostraHome');
         }elseif ($tipo == "Eventi") {
