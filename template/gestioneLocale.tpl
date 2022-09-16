@@ -159,13 +159,18 @@
             <div class="row">
                 <h2 id="eventi">Eventi organizzati:</h2>
             </div>
-
             <div class="items-body">
-                <div class="items-body-content row-cols-3">
-                    <p>$Nome Evento</p>
-                    <a href="gestioneEvento.html"><input type="button" value="Gestisci evento"></a>
-                    <input type="button" value="Elimina evento">
-                </div>
+                {if !empty($eventi)}
+                    {foreach $eventi as $evento}
+                    <div class="items-body-content row-cols-3">
+                        <p>{$evento->getNome()}</p>
+                        <a href=""><input type="button" value="Gestisci evento"></a>
+                        <a href="/GestioneEvento/eliminaEvento/{$evento->getID()}"><input type="button" value="Elimina evento"></a>
+                    </div>
+                    {/foreach}
+                {else}
+                    <p>Non ci sono eventi in programma</p>
+                {/if}
             </div>
         </div>
     </section>

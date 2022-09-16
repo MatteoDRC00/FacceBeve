@@ -95,8 +95,10 @@
                             <li><strong>Indirizzo:</strong> {$locale->getLocalizzazione()->getIndirizzo()}, {$locale->getLocalizzazione()->getNumCivico()}</li>
                             <li><strong>Citt&agrave:</strong> {$locale->getLocalizzazione()->getCitta()}, <strong>CAP:</strong> {$locale->getLocalizzazione()->getCAP()}</li>
                             <li><strong>Categorie:</strong>
-                                <ul>{foreach $locale->getCategoria() as $categoria}
+                                <ul>
+                                    {foreach $locale->getCategoria() as $categoria}
                                     <li>{$categoria->getGenere()}</li>
+                                    {/foreach}
                                 </ul>
                             </li>
                             <li><strong>Descrizione:</strong> {$locale->getDescrizione()} </li>

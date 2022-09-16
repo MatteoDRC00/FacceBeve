@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-16 21:38:39
+/* Smarty version 4.2.0, created on 2022-09-16 22:50:16
   from 'C:\xampp\htdocs\FacceBeve\template\infoLocale.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_6324d0bf184c83_78901013',
+  'unifunc' => 'content_6324e1885070f0_50538696',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a660993f6474d006e8e9e4e4b80317cbc019f658' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\infoLocale.tpl',
-      1 => 1663357117,
+      1 => 1663360422,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6324d0bf184c83_78901013 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6324e1885070f0_50538696 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <?php $_smarty_tpl->_assignInScope('locale', (($tmp = $_smarty_tpl->tpl_vars['locale']->value ?? null)===null||$tmp==='' ? null ?? null : $tmp));
@@ -126,8 +126,21 @@ echo '<script'; ?>
                             <li><strong>Citt&agrave:</strong> <?php echo $_smarty_tpl->tpl_vars['locale']->value->getLocalizzazione()->getCitta();?>
 , <strong>CAP:</strong> <?php echo $_smarty_tpl->tpl_vars['locale']->value->getLocalizzazione()->getCAP();?>
 </li>
-                            <li><strong>Categorie:</strong> <?php echo $_smarty_tpl->tpl_vars['locale']->value->getCategorie();?>
+                            <li><strong>Categorie:</strong>
+                                <ul>
+                                    <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['locale']->value->getCategoria(), 'categoria');
+$_smarty_tpl->tpl_vars['categoria']->do_else = true;
+if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['categoria']->value) {
+$_smarty_tpl->tpl_vars['categoria']->do_else = false;
+?>
+                                    <li><?php echo $_smarty_tpl->tpl_vars['categoria']->value->getGenere();?>
 </li>
+                                    <?php
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
+                                </ul>
+                            </li>
                             <li><strong>Descrizione:</strong> <?php echo $_smarty_tpl->tpl_vars['locale']->value->getDescrizione();?>
  </li>
                             <li><strong>Valutazione:</strong> <?php echo $_smarty_tpl->tpl_vars['valutazioneLocale']->value;?>

@@ -406,6 +406,22 @@ class FDB{
 		return false;
 	}
 
+	public function deleteEventoLocale($id_evento){
+		try {
+			$this->database->beginTransaction();
+			$query = "DELETE FROM " . "locale_eventi" . " WHERE " . "ID_Evento" . "='" . $id_evento . "';";
+			$stmt = $this->database->prepare($query);
+			$stmt->execute();
+			$this->database->commit();
+			$this->closeDbConnection();
+			return true;
+		} catch (PDOException $e) {
+			echo "Attenzione errore: " . $e->getMessage();
+			$this->database->rollBack();
+		}
+		return false;
+	}
+
 	/**  Metodo che verifica l'accesso di un utente , controllando che le credenziali (email e password) siano presenti nel db
 	 *@param email ,email del utente
 	 *@param pass, password dell utente
@@ -761,6 +777,29 @@ class FDB{
 		}
 
 
+	}
+
+	public function getIdLocaleByIdEvento($id_locale){
+		try {
+			$query = "SELECT ID_Evento FROM locale_eventi WHERE ID_Locale = ".$id_locale.";";
+			$stmt = $this->database->prepare($query);
+			$stmt->execute();
+			$num = $stmt->rowCount();
+			if ($num == 0) {
+				$result = null;        //nessuna riga interessata. return null
+			} elseif ($num == 1) {                          //nel caso in cui una sola riga fosse interessata
+				$result = $stmt->fetch(PDO::FETCH_ASSOC);   //ritorna una sola riga
+			} else {
+				$result = array();                         //nel caso in cui piu' righe fossero interessate
+				$stmt->setFetchMode(PDO::FETCH_ASSOC);   //imposta la modalità di fetch come array associativo
+				while ($row = $stmt->fetch())
+					$result[] = $row;                    //ritorna un array di righe.
+			}
+			return $result;
+		}catch (PDOException $e) {
+			echo "Attenzione errore: " . $e->getMessage();
+			$this->database->rollBack();
+		}
 	}
 
 }

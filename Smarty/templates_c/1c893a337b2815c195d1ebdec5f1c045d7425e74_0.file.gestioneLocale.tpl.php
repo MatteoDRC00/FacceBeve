@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-16 21:33:52
+/* Smarty version 4.2.0, created on 2022-09-16 23:06:37
   from 'C:\xampp\htdocs\FacceBeve\template\gestioneLocale.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_6324cfa0e91df5_10211391',
+  'unifunc' => 'content_6324e55d3b5213_20862155',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '1c893a337b2815c195d1ebdec5f1c045d7425e74' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\gestioneLocale.tpl',
-      1 => 1663356245,
+      1 => 1663362396,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6324cfa0e91df5_10211391 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6324e55d3b5213_20862155 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -200,13 +200,27 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
             <div class="row">
                 <h2 id="eventi">Eventi organizzati:</h2>
             </div>
-
             <div class="items-body">
-                <div class="items-body-content row-cols-3">
-                    <p>$Nome Evento</p>
-                    <a href="gestioneEvento.html"><input type="button" value="Gestisci evento"></a>
-                    <input type="button" value="Elimina evento">
-                </div>
+                <?php if (!empty($_smarty_tpl->tpl_vars['eventi']->value)) {?>
+                    <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['eventi']->value, 'evento');
+$_smarty_tpl->tpl_vars['evento']->do_else = true;
+if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['evento']->value) {
+$_smarty_tpl->tpl_vars['evento']->do_else = false;
+?>
+                    <div class="items-body-content row-cols-3">
+                        <p><?php echo $_smarty_tpl->tpl_vars['evento']->value->getNome();?>
+</p>
+                        <a href=""><input type="button" value="Gestisci evento"></a>
+                        <a href="/GestioneEvento/eliminaEvento/<?php echo $_smarty_tpl->tpl_vars['evento']->value->getID();?>
+"><input type="button" value="Elimina evento"></a>
+                    </div>
+                    <?php
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
+                <?php } else { ?>
+                    <p>Non ci sono eventi in programma</p>
+                <?php }?>
             </div>
         </div>
     </section>

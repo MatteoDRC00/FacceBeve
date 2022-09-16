@@ -60,6 +60,23 @@ class FPersistentManager {
         return $genere;
     }
 
+    public function getEventiByLocale($id_locale){
+        $db = FDB::getInstance();
+        $result = $db->getIdLocaleByIdEvento($id_locale);
+
+        $eventi = array();
+
+        if($result != null){
+            foreach ($result as $id_evento){
+                $eventi[] = FEvento::loadByField("id", $id_evento);
+            }
+        }
+
+
+        return $eventi;
+
+    }
+
     /**
      * @param string $attributo
      * @param string $valore
@@ -262,6 +279,11 @@ class FPersistentManager {
     public function deleteOrariLocale($id_locale){
         $db = FDB::getInstance();
         $db->deleteOrariLocale($id_locale);
+    }
+
+    public function deleteEventoLocale($id_evento){
+        $db = FDB::getInstance();
+        $db->deleteEventoLocale($id_evento);
     }
 
     public function storeOrariLocale($orario, $locale){

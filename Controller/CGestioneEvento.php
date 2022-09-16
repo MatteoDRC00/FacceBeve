@@ -49,7 +49,7 @@ class CGestioneEvento{
 
 
     }
-    static function creaEvento()
+    public function creaEvento()
     {
         $pm = FPersistentManager::getInstance();
         $view = new VGestioneEvento();
@@ -71,6 +71,22 @@ class CGestioneEvento{
 
         header("Location: /GestioneLocale/infoLocale");
 
+    }
+
+
+    public function eliminaEvento($id_evento){
+        $sessione = new USession();
+        $pm = FPersistentManager::getInstance();
+        $username = $sessione->leggi_valore('utente');
+        $tipo = $sessione->leggi_valore("tipo_utente");
+
+        if($sessione->isLogged() && $tipo=="EProprietario"){
+            $pm->deleteEventoLocale($id_evento);
+            $pm->delete("id", $id_evento, "FEvento");
+            header("Location: /Profilo/mostraProfilo");
+        }else{
+            header("Location: /Ricerca/mostraHome");
+        }
     }
 //----------------------------------CREAZIONE EVENTO------------------------------------------------------\\
 

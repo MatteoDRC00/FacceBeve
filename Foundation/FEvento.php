@@ -134,8 +134,8 @@ class FEvento {
      */
     public static function loadByLocale($id){
         $evento = null;
-        $db=FDB::getInstance();
-        list($result,$num)=$db->loadInfoLocale(static::getClass(),"Locale_Eventi",$id,"ID_Evento","id");
+        $db = FDB::getInstance();
+        list($result,$num) = $db->loadInfoLocale(static::getClass(),"Locale_Eventi",$id,"ID_Evento","id");
         if(($result!=null) && ($num == 1)) {
             $evento=new EEvento($result['nome'], $result['descrizione'], $result['data']); //Carica un evento dal database
         }
@@ -143,12 +143,34 @@ class FEvento {
             if(($result!=null) && ($num > 1)){
                 $evento = array();
                 for($i=0; $i<count($result); $i++){
-                    $evento[]=new EEvento($result[$i]['nome'], $result[$i]['descrizione'],$result[$i]['data']); //Carica un array di oggetti Evento dal database
+                    $evento[$i]=new EEvento($result[$i]['nome'], $result[$i]['descrizione'],$result[$i]['data']); //Carica un array di oggetti Evento dal database
                 }
             }
         }
         return $evento;
     }
+
+    public static function loadByField($field, $value){
+        $evento = null;
+        $db = FDB::getInstance();
+        list($result,$num) = $db->load(static::getClass(), $field, $value);
+        if(($result!=null) && ($num == 1)) {
+            $evento = new EEvento($result['nome'], $result['descrizione'], $result['data']); //Carica un evento dal database
+            $evento->setId($result['id']);
+        }
+        else {
+            if(($result!=null) && ($num > 1)){
+                $evento = array();
+                for($i=0; $i<count($result); $i++){
+                    $evento[$i]=new EEvento($result[$i]['nome'], $result[$i]['descrizione'],$result[$i]['data']); //Carica un array di oggetti Evento dal database
+                    $evento[$i]->setId($result[$i]['id']);
+                }
+            }
+        }
+        return $evento;
+    }
+
+
 
     /**
      * Permette la load dal database
