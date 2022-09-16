@@ -57,12 +57,12 @@ class CGestioneLocale
         $tipo = $sessione->leggi_valore("tipo_utente");
         $pm = FPersistentManager::getInstance();
         $view = new VGestioneLocale();
+        $locale = $pm->load("id", $id_locale, "FLocale");
 
         if($sessione->isLogged() && $tipo == "EProprietario"){
-            $locale = $pm->load("id", $id_locale, "FLocale");
-            //passare categorie
+            $genere_cat = $pm->getCategorie();
             //ricostruzione eventi organizzati
-            $view->showFormModificaLocale($locale);
+            $view->showFormModificaLocale($locale, $genere_cat);
         }
     }
 
@@ -78,15 +78,16 @@ class CGestioneLocale
      */
     public function creaLocale(){
         $sessione = new USession();
-        if($sessione->isLogged() && $sessione->leggi_valore("tipo_utente")=="EProprietario"){
-            $pm = FPersistentManager::getInstance();
-            $username = $sessione->leggi_valore('utente');
-            $tipo = $sessione->leggi_valore("tipo_utente");
+        $pm = FPersistentManager::getInstance();
+        $username = $sessione->leggi_valore('utente');
+        $tipo = $sessione->leggi_valore("tipo_utente");
 
-            $tipo[0] = "F";
-            $class = $tipo;
+        $tipo[0] = "F";
+        $class = $tipo;
 
-            $proprietario = $pm->load("username", $username, $class);
+        $proprietario = $pm->load("username", $username, $class);
+
+        if($sessione->isLogged() && $tipo=="EProprietario"){
 
             $view = new VGestioneLocale();
             $nomeLocale = $view->getNomeLocale();
@@ -174,8 +175,8 @@ class CGestioneLocale
                 $img_locale = new EImmagine($img[0], $img[1], $img[2], $img[3]);
                 $id = $pm->store($img_locale);
                 $img_locale->setId($id);
-                $pm->storeImmagineLocale($id, $id_locale);
-                $locale->addImg($img_locale);
+                $pm->update("FLocale","idImg", $id, "id", $id_locale);
+                $locale->setImg($img_locale);
             }
             header('Location: /Profilo/mostraProfilo');
         }else{
@@ -186,16 +187,6 @@ class CGestioneLocale
 
 
 //----------------------------------MODIFICA DEL LOCALE------------------------------------------------------\\
-    /**
-     * @throws SmartyException
-     */
-    public function formModificaLocale(){
-        $view = new VGestioneLocale();
-        $sessione = new USession();
-        $pm = FPersistentManager::getInstance();
-        $locale = $pm->load("id",$view->getIdLocale(),"FLocale");
-        $view->showFormModify(null,$locale);
-    }
 
     /**
      * Funzione che gestisce la modifica del nome del Locale. Preleva il nuovo nome dalla View e procede alla modifica.
@@ -209,12 +200,15 @@ class CGestioneLocale
         $pm = FPersistentManager::getInstance();
         $view = new VGestioneLocale();
 
+        $locale = $pm->load("id",$id_locale,"FLocale");
+
         if($sessione->isLogged() && $tipo == "EProprietario"){
             $nomeNuovo = $view->getNomeLocale();
-            $locale = $pm->load("id",$id_locale,"FLocale");
             $pm->update("FLocale","nome",$nomeNuovo,"id",$id_locale);
             $locale->setNome($nomeNuovo);
             header("Location: /GestioneLocale/mostraGestioneLocale/".$id_locale);
+        }else{
+            header('Location: /Ricerca/mostraHome');
         }
     }
 
@@ -229,13 +223,15 @@ class CGestioneLocale
         $tipo = $sessione->leggi_valore("tipo_utente");
         $pm = FPersistentManager::getInstance();
         $view = new VGestioneLocale();
+        $locale = $pm->load("id",$id_locale,"FLocale");
 
         if($sessione->isLogged() && $tipo == "EProprietario"){
             $newDescrizione = $view->getDescrizioneLocale();
-            $locale = $pm->load("id",$id_locale,"FLocale");
             $pm->update("FLocale","descrizione",$newDescrizione,"id",$id_locale);
             $locale->setDescrizione($newDescrizione);
             header("Location: /GestioneLocale/mostraGestioneLocale/".$id_locale);
+        }else{
+            header('Location: /Ricerca/mostraHome');
         }
     }
 
@@ -250,13 +246,15 @@ class CGestioneLocale
         $tipo = $sessione->leggi_valore("tipo_utente");
         $pm = FPersistentManager::getInstance();
         $view = new VGestioneLocale();
+        $locale = $pm->load("id",$id_locale,"FLocale");
 
         if($sessione->isLogged() && $tipo == "EProprietario"){
             $numeroTelefono = $view->getNumTelefono();
-            $locale = $pm->load("id",$id_locale,"FLocale");
             $pm->update("FLocale","numtelefono",$numeroTelefono,"id",$id_locale);
             $locale->setNumTelefono($numeroTelefono);
             header("Location: /GestioneLocale/mostraGestioneLocale/".$id_locale);
+        }else{
+            header('Location: /Ricerca/mostraHome');
         }
     }
 
@@ -271,18 +269,22 @@ class CGestioneLocale
         $tipo = $sessione->leggi_valore("tipo_utente");
         $pm = FPersistentManager::getInstance();
         $view = new VGestioneLocale();
+        $locale = $pm->load("id",$id_locale,"FLocale");
 
         if($sessione->isLogged() && $tipo == "EProprietario"){
             $generi = $view->getCategorie();
-            $locale = $pm->load("id",$id_locale,"FLocale");
+            for($i=0; $i<count($generi); $i++){
+                $pm->deleteCategorieLocale($id_locale);
+            }
             foreach($generi as $g){
                 $categorie[] = $pm->load("genere",$g,"FCategoria");
-                $pm->deleteCategorieLocale($id_locale);
                 $pm->storeCategorieLocale($g, $id_locale);
             }
             $locale->setCategoria($categorie);
 
             header("Location: /GestioneLocale/mostraGestioneLocale/".$id_locale);
+        }else{
+            header('Location: /Ricerca/mostraHome');
         }
     }
 
@@ -297,9 +299,10 @@ class CGestioneLocale
         $tipo = $sessione->leggi_valore("tipo_utente");
         $pm = FPersistentManager::getInstance();
         $view = new VGestioneLocale();
+        $locale = $pm->load("id",$id_locale,"FLocale");
 
         if($sessione->isLogged() && $tipo == "EProprietario"){
-            $locale = $pm->load("id",$id_locale,"FLocale");
+
             $id_localizzazione = $locale->getLocalizzazione()->getId();
 
             $indirizzo = $view->getIndirizzo();
@@ -319,6 +322,8 @@ class CGestioneLocale
 
             $locale->setLocalizzazione($localizzazioneNuova);
             header("Location: /GestioneLocale/mostraGestioneLocale/".$id_locale);
+        }else{
+            header('Location: /Ricerca/mostraHome');
         }
     }
 
@@ -327,30 +332,71 @@ class CGestioneLocale
      * @return void
      * @throws SmartyException
      */
-    public function modificaOrarioLocale(){
+    public function modificaOrarioLocale($id_locale){
         $sessione = new USession();
-        $view = new VGestioneLocale();
-
-        //$utente = unserialize($sessione->leggi_valore('utente'));
+        $username = $sessione->leggi_valore("utente");
+        $tipo = $sessione->leggi_valore("tipo_utente");
         $pm = FPersistentManager::getInstance();
-        $locale = $pm->load("id",$view->getIdLocale(),"FLocale");
-        //ORARIO
-        $Orario = $locale->getOrario();
-        $tmp = $view->getOrario();
-        $nomi = array_keys($tmp);
-        $orari = array_values($tmp);
-        for ($i = 0; $i < count($tmp); $i++) {
-            $orario = new EOrario();
-            $orario->setGiornoSettimana($nomi[$i]);
-            $orario->setOrarioApertura($orari[$i][0]);
-            $orario->setOrarioChiusura($orari[$i][1]);
-            if ($Orario[$i] != $orario) {
-                $Orario[] = $orario;
-                $pm->update("OrarioApertura", $orari[$i][0], "id", $locale->getOrario()[$i]->getId(), "FOrario");
-                $pm->update("OrarioChiusura", $orari[$i][1], "id", $locale->getOrario()[$i]->getId(), "FOrario");
+        $view = new VGestioneLocale();
+        $locale = $pm->load("id",$id_locale,"FLocale");
+
+        if($sessione->isLogged() && $tipo == "EProprietario"){
+            for($i=0; $i<7; $i++){
+                $pm->deleteOrariLocale($id_locale);
             }
+
+            $orario_apertura = $view->getOrarioApertura();
+            $orario_chiusura = $view->getOrarioChiusura();
+            $chiuso = $view->getOrarioClose();
+
+            $giorni_chiusi = array(0,0,0,0,0,0,0);
+
+            for($i=0; $i<count($chiuso); $i++){
+                $giorni_chiusi[$chiuso[$i]] = 1;
+            }
+
+            $o = array();
+
+            for($i=0; $i<7; $i++){
+                if($i == 0)
+                    $giorno = "Lunedì";
+                elseif ($i == 1)
+                    $giorno = "Martedì";
+                elseif ($i == 2)
+                    $giorno = "Mercoledì";
+                elseif ($i == 3)
+                    $giorno = "Giovedì";
+                elseif ($i == 4)
+                    $giorno = "Venerdì";
+                elseif ($i == 5)
+                    $giorno = "Sabato";
+                elseif ($i == 6)
+                    $giorno = "Domenica";
+
+                if($giorni_chiusi[$i] == 0){
+                    if($orario_apertura[$i] != null && $orario_chiusura[$i] != null){
+                        $orario = new EOrario($giorno, $orario_apertura[$i], $orario_chiusura[$i]);
+                        $id = $pm->store($orario);
+                        $orario->setId($id);
+                        $o[] = $orario;
+                        $pm->storeOrariLocale($id, $id_locale);
+                    }else{
+
+                        //errore
+                    }
+                }else{
+                    $orario = new EOrario($giorno, "Chiuso", "Chiuso");
+                    $id = $pm->store($orario);
+                    $orario->setId($id);
+                    $o[] = $orario;
+                    $pm->storeOrariLocale($id, $id_locale);
+                }
+            }
+            $locale->setOrario($o);
+            header("Location: /GestioneLocale/mostraGestioneLocale/".$id_locale);
+        }else{
+            header('Location: /Ricerca/mostraHome');
         }
-        $view->showFormModify(null,$locale);
     }
 
 
@@ -387,13 +433,30 @@ class CGestioneLocale
      * @return void
      * @throws SmartyException
      */
-    public function modificaImmagineLocale(){
-        $view = new VGestioneLocale();
-        $pm = FPersistentManager::getInstance();
+    public function modificaImmagineLocale($id_locale){
         $sessione = new USession();
-        //$utente = unserialize($sessione->leggi_valore('utente'));
-        $locale = $pm->load("id", $view->getIdLocale(), "FLocale");
-        $img = $view->getImgLocale();
+        $username = $sessione->leggi_valore("utente");
+        $tipo = $sessione->leggi_valore("tipo_utente");
+        $pm = FPersistentManager::getInstance();
+        $view = new VGestioneLocale();
+        $locale = $pm->load("id",$id_locale,"FLocale");
+
+        if($sessione->isLogged() && $tipo == "EProprietario"){
+            $img = $view->getImgLocale();
+            if(!empty($img)) {
+                $img_locale = new EImmagine($img[0], $img[1], $img[2], $img[3]);
+                $id = $pm->store($img_locale);
+                $img_locale->setId($id);
+                $id_imgvecchia = $locale->getImg()->getId();
+                $pm->delete("id", $id_imgvecchia, "FImmagine");
+                $pm->update("FLocale","idImg", $id, "id", $id_locale);
+                $locale->setImg($img_locale);
+            }
+            header("Location: /GestioneLocale/mostraGestioneLocale/".$id_locale);
+        }else{
+            header('Location: /Ricerca/mostraHome');
+        }
+
         list($check,$media) = static::upload($img);
         if($check=="type"){
             $view->showFormModify("type",$locale);

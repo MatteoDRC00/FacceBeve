@@ -103,26 +103,26 @@
                         </div>
                         <div class="form-example">
                             <label style="font-weight: bold">Lunedi: </label><input type="time" name="orarioapertura[]"> <input type="time" name="orariochiusura[]">
-                            <input type="checkbox" id="close" name="close[]" value="0">
-                            <label for="close"> Chiuso</label><br>
+                                <input type="checkbox" id="close" name="close[]" value="0">
+                                <label for="close"> Chiuso</label><br>
                             <label style="font-weight: bold">Martedi: </label><input type="time" name="orarioapertura[]"> <input type="time" name="orariochiusura[]">
-                            <input type="checkbox" name="close[]" value="1">
-                            <label for="close"> Chiuso</label><br>
+                                <input type="checkbox" name="close[]" value="1">
+                                <label for="close"> Chiuso</label><br>
                             <label style="font-weight: bold">Mercoledi: </label><input type="time" name="orarioapertura[]"> <input type="time" name="orariochiusura[]">
-                            <input type="checkbox" name="close[]" value="2">
-                            <label for="close"> Chiuso</label><br>
+                                <input type="checkbox" name="close[]" value="2">
+                                <label for="close"> Chiuso</label><br>
                             <label style="font-weight: bold">Giovedi: </label><input type="time" name="orarioapertura[]"> <input type="time" name="orariochiusura[]">
-                            <input type="checkbox" name="close[]" value="3">
-                            <label for="close"> Chiuso</label><br>
+                                <input type="checkbox" name="close[]" value="3">
+                                <label for="close"> Chiuso</label><br>
                             <label style="font-weight: bold">Venerdi: </label><input type="time" name="orarioapertura[]"> <input type="time" name="orariochiusura[]">
-                            <input type="checkbox" name="close[]" value="4">
-                            <label for="close"> Chiuso</label><br>
+                                <input type="checkbox" name="close[]" value="4">
+                                <label for="close"> Chiuso</label><br>
                             <label style="font-weight: bold">Sabato: </label><input type="time" name="orarioapertura[]"> <input type="time" name="orariochiusura[]">
-                            <input type="checkbox" name="close[]" value="5">
-                            <label for="close"> Chiuso</label><br>
+                                <input type="checkbox" name="close[]" value="5">
+                                <label for="close"> Chiuso</label><br>
                             <label style="font-weight: bold">Domenica: </label><input type="time" name="orarioapertura[]"> <input type="time" name="orariochiusura[]">
-                            <input type="checkbox" name="close[]" value="6">
-                            <label for="close"> Chiuso</label><br>
+                                <input type="checkbox" name="close[]" value="6">
+                                <label for="close"> Chiuso</label><br>
                         </div>
                         <div class="form-example">
                             <p>AGGIUNGI LE IMMAGINI</p>

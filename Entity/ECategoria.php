@@ -8,13 +8,13 @@
 class ECategoria implements JsonSerializable{
 
     private string $genere;
-    private string $descrizione;
+    private ?string $descrizione;
 
     /**
      * @param string $genere
      * @param string $descrizione
      */
-    public function __construct(string $genere, string $descrizione){
+    public function __construct(string $genere, ?string $descrizione){
         $this->genere = $genere;
         $this->descrizione = $descrizione;
     }

@@ -135,8 +135,8 @@ CREATE TABLE `Locale` (
     `idImg` int(11),
     UNIQUE (`nome`,`localizzazione`),
     PRIMARY KEY (`id`),
-	FOREIGN KEY (`idImg`) REFERENCES Immagine(`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (`proprietario`) REFERENCES Proprietario(`username`) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY (`idImg`) REFERENCES Immagine(`id`),
+    FOREIGN KEY (`proprietario`) REFERENCES Proprietario(`username`),
     FOREIGN KEY (`localizzazione`) REFERENCES Localizzazione(`id`) ON DELETE CASCADE ON UPDATE CASCADE
 );
 /*Inserimento dati Locale*/

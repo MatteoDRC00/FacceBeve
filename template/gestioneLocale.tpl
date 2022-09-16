@@ -143,15 +143,12 @@
                     </form>
                 </div>
                 <div class="col-6 bg-white px-3 mb-3 pb-3">
-                    <form action="/GestioneLocale/modificaDescrizioneLocale/{$locale->getId()}" enctype="multipart/form-data" method="POST" class="aggiorna"> <!-- aggiungin i controlli -->
+                    <form action="/GestioneLocale/modificaImmagineLocale/{$locale->getId()}" enctype="multipart/form-data" method="POST" class="aggiorna"> <!-- aggiungin i controlli -->
                         <p>AGGIUNGI LE IMMAGINI</p>
                         <input name="img_locale" class="w-50 p-2 m-2" type="file" required><br>
-                        <button type="submit" class="btnAggiorna">AGGIUNGI IMMAGINE<i class="fa fa-refresh"></i></button>
+                        <button type="submit" class="btnAggiorna">AGGIORNA IMMAGINE <i class="fa fa-refresh"></i></button>
                     </form>
                 </div>
-
-
-
             </div>
         </div>
     </section><!-- End Contact Section -->

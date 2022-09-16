@@ -49,8 +49,9 @@ class VGestioneLocale{
         $this->smarty->display('registrazioneLocale.tpl');
     }
 
-    public function showFormModificaLocale($locale){
+    public function showFormModificaLocale($locale, $categorie){
         $this->smarty->assign('locale', $locale);
+        $this->smarty->assign('categorie', $categorie);
         $this->smarty->display('gestioneLocale.tpl');
     }
 

@@ -390,6 +390,22 @@ class FDB{
 		return false;
 	}
 
+	public function deleteOrariLocale($id_locale){
+		try {
+			$this->database->beginTransaction();
+			$query = "DELETE FROM " . "locale_orari" . " WHERE " . "ID_Locale" . "='" . $id_locale . "';";
+			$stmt = $this->database->prepare($query);
+			$stmt->execute();
+			$this->database->commit();
+			$this->closeDbConnection();
+			return true;
+		} catch (PDOException $e) {
+			echo "Attenzione errore: " . $e->getMessage();
+			$this->database->rollBack();
+		}
+		return false;
+	}
+
 	/**  Metodo che verifica l'accesso di un utente , controllando che le credenziali (email e password) siano presenti nel db
 	 *@param email ,email del utente
 	 *@param pass, password dell utente
