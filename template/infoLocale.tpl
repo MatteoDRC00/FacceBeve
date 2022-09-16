@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-{assign var='locale' value=$locale}
-{assign var='arrayRecensioni' value=$arrayRecensioni}
-{assign var='nrece' value=$nrece}
-{assign var='proprietario' value=$proprietario}
-{assign var='valutazioneLocale' value=$valutazioneLocale}
-{assign var='arrayRisposte' value=$arrayRisposte}
+{assign var='locale' value=$locale|default:null}
+{assign var='arrayRecensioni' value=$arrayRecensioni|default:null}
+{assign var='nrece' value=$nrece|default:0}
+{assign var='eventi' value=$eventi|default:null}
+{assign var='proprietario' value=$proprietario|default:null}
+{assign var='valutazioneLocale' value=$valutazioneLocale|default:5}
+{assign var='arrayRisposte' value=$arrayRisposte|default:null}}
 {assign var='userlogged' value=$userlogged|default:'nouser'}
 <script>
     function change(){
@@ -68,7 +69,7 @@
             <div class="row gy-4">
                 <div class="col-lg-8">
                     <div class="portfolio-details-slider swiper">
-                        <h2>{$Nome_locale}</h2>
+                        <h2>{$locale->getNome()}</h2>
                         <input onclick="change()" type="button" value="Aggiungi ai preferiti" id="pref" name="pref">                      <div class="stelline star-rating" data-rating="4.6">
                             <div class="empty-stars">
                                 <i class="far fa-star"></i>
@@ -78,15 +79,11 @@
                                 <i class="far fa-star"></i>
                             </div>
                         </div>
-                        {if !empty($locale->getImmagini())}
-                            {foreach $locale->getImmagini() as $item}
                                 <div class="swiper-wrapper align-items-center">
                                     <div class="swiper-slide">
-                                        <img src="data:{$item->getType()};base64,{$item->getImmagine()}" alt="Immagine locale">
+                                        <img src="data:{$locale->getImg()->getType()};base64,{$locale->getImg()->getImmagine()}" alt="Immagine locale">
                                     </div>
                                 </div>
-                            {/foreach}
-                        {/if}
                         <div class="swiper-pagination"></div>
                     </div>
                 </div>
@@ -102,11 +99,11 @@
                         </ul>
                     </div>
                     {if $userLogged != 'nouser'}
-                        {if !empty($locale->getEventiOrganizzati())}
+                        {if isset($eventi)}
                             <div class="portfolio-details-slider swiper">
                                 <br>
                                 <h4><strong>Eventi organizzati:</strong></h4>
-                                {foreach $locale->getEventiOrganizzati() as $evento}
+                                {foreach $eventi as $evento}
                                     <div class="portfolio-info swiper-slide">
                                         <h3>{$evento->getNome()}</h3>
                                         <ul>

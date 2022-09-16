@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-16 21:11:29
+/* Smarty version 4.2.0, created on 2022-09-16 21:27:54
   from 'C:\xampp\htdocs\FacceBeve\template\InfoLocale.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_6324ca61715fb3_63874870',
+  'unifunc' => 'content_6324ce3a0ccac6_66985334',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '172a59cd6d9d0fe4c26f91abf9bfe128c31cd594' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\InfoLocale.tpl',
-      1 => 1663276092,
+      1 => 1663356472,
       2 => 'file',
     ),
   ),
@@ -20,16 +20,17 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6324ca61715fb3_63874870 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6324ce3a0ccac6_66985334 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
-<?php $_smarty_tpl->_assignInScope('locale', $_smarty_tpl->tpl_vars['locale']->value);
-$_smarty_tpl->_assignInScope('arrayRecensioni', $_smarty_tpl->tpl_vars['arrayRecensioni']->value);
-$_smarty_tpl->_assignInScope('nrece', $_smarty_tpl->tpl_vars['nrece']->value);
-$_smarty_tpl->_assignInScope('proprietario', $_smarty_tpl->tpl_vars['proprietario']->value);
-$_smarty_tpl->_assignInScope('valutazioneLocale', $_smarty_tpl->tpl_vars['valutazioneLocale']->value);
-$_smarty_tpl->_assignInScope('arrayRisposte', $_smarty_tpl->tpl_vars['arrayRisposte']->value);
-$_smarty_tpl->_assignInScope('userlogged', (($tmp = $_smarty_tpl->tpl_vars['userlogged']->value ?? null)===null||$tmp==='' ? 'nouser' ?? null : $tmp));
+<?php $_smarty_tpl->_assignInScope('locale', (($tmp = $_smarty_tpl->tpl_vars['locale']->value ?? null)===null||$tmp==='' ? null ?? null : $tmp));
+$_smarty_tpl->_assignInScope('arrayRecensioni', (($tmp = $_smarty_tpl->tpl_vars['arrayRecensioni']->value ?? null)===null||$tmp==='' ? null ?? null : $tmp));
+$_smarty_tpl->_assignInScope('nrece', (($tmp = $_smarty_tpl->tpl_vars['nrece']->value ?? null)===null||$tmp==='' ? 0 ?? null : $tmp));
+$_smarty_tpl->_assignInScope('eventi', (($tmp = $_smarty_tpl->tpl_vars['eventi']->value ?? null)===null||$tmp==='' ? null ?? null : $tmp));
+$_smarty_tpl->_assignInScope('proprietario', (($tmp = $_smarty_tpl->tpl_vars['proprietario']->value ?? null)===null||$tmp==='' ? null ?? null : $tmp));
+$_smarty_tpl->_assignInScope('valutazioneLocale', (($tmp = $_smarty_tpl->tpl_vars['valutazioneLocale']->value ?? null)===null||$tmp==='' ? 5 ?? null : $tmp));
+$_smarty_tpl->_assignInScope('arrayRisposte', (($tmp = $_smarty_tpl->tpl_vars['arrayRisposte']->value ?? null)===null||$tmp==='' ? null ?? null : $tmp));?>}
+<?php $_smarty_tpl->_assignInScope('userlogged', (($tmp = $_smarty_tpl->tpl_vars['userlogged']->value ?? null)===null||$tmp==='' ? 'nouser' ?? null : $tmp));
 echo '<script'; ?>
 >
     function change(){
@@ -93,7 +94,7 @@ echo '<script'; ?>
             <div class="row gy-4">
                 <div class="col-lg-8">
                     <div class="portfolio-details-slider swiper">
-                        <h2><?php echo $_smarty_tpl->tpl_vars['Nome_locale']->value;?>
+                        <h2><?php echo $_smarty_tpl->tpl_vars['locale']->value->getNome();?>
 </h2>
                         <input onclick="change()" type="button" value="Aggiungi ai preferiti" id="pref" name="pref">                      <div class="stelline star-rating" data-rating="4.6">
                             <div class="empty-stars">
@@ -104,24 +105,13 @@ echo '<script'; ?>
                                 <i class="far fa-star"></i>
                             </div>
                         </div>
-                        <?php if (!empty($_smarty_tpl->tpl_vars['locale']->value->getImmagini())) {?>
-                            <?php
-$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['locale']->value->getImmagini(), 'item');
-$_smarty_tpl->tpl_vars['item']->do_else = true;
-if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['item']->value) {
-$_smarty_tpl->tpl_vars['item']->do_else = false;
-?>
                                 <div class="swiper-wrapper align-items-center">
                                     <div class="swiper-slide">
-                                        <img src="data:<?php echo $_smarty_tpl->tpl_vars['item']->value->getType();?>
-;base64,<?php echo $_smarty_tpl->tpl_vars['item']->value->getImmagine();?>
+                                        <img src="data:<?php echo $_smarty_tpl->tpl_vars['locale']->value->getImg()->getType();?>
+;base64,<?php echo $_smarty_tpl->tpl_vars['locale']->value->getImg()->getImmagine();?>
 " alt="Immagine locale">
                                     </div>
                                 </div>
-                            <?php
-}
-$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
-                        <?php }?>
                         <div class="swiper-pagination"></div>
                     </div>
                 </div>
@@ -144,12 +134,12 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                         </ul>
                     </div>
                     <?php if ($_smarty_tpl->tpl_vars['userLogged']->value != 'nouser') {?>
-                        <?php if (!empty($_smarty_tpl->tpl_vars['locale']->value->getEventiOrganizzati())) {?>
+                        <?php if ((isset($_smarty_tpl->tpl_vars['eventi']->value))) {?>
                             <div class="portfolio-details-slider swiper">
                                 <br>
                                 <h4><strong>Eventi organizzati:</strong></h4>
                                 <?php
-$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['locale']->value->getEventiOrganizzati(), 'evento');
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['eventi']->value, 'evento');
 $_smarty_tpl->tpl_vars['evento']->do_else = true;
 if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['evento']->value) {
 $_smarty_tpl->tpl_vars['evento']->do_else = false;

@@ -205,22 +205,9 @@ class VRicerca
         $this->smarty->assign('pic64locale', $pic64locale);*/
 
         //Se l'utente è registrato può vedere gli eventi organizzati dal locale
-       /* if ($sessione->leggi_valore('utente')){
-         $eventi = array();
-             if (is_array($result->getEventi())) {
-                 foreach ($result->getEventi() as $evento) {
-                     $pic64evento = base64_encode($evento->getImg()->getImmagine());
-                     $evento->getImg()->setImg(base64_encode($pic64evento));
-                     $eventi[] = $evento;
-                 }
-                 $this->smarty->assign('eventi', $eventi);
-             }elseif ($result->getEventi() !== null) {
-                 $pic64evento = base64_encode($result->getEventi()->getImg()->getImmagine());
-                 $result->getEventi()->getImg()->setImg(base64_encode($pic64evento));
-                 $eventi = $result->getEventi();
-             }
-            $this->smarty->assign('eventi', $eventi);
-       }*/
+        if($result->getEventiOrganizzati() !== null){
+            $this->smarty->assign('eventi', $result->getEventiOrganizzati());
+        }
         if(is_array($arrayRecensioni))
             $nrece = count($arrayRecensioni);
         elseif(isset($arrayRecensioni))
