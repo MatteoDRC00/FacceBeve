@@ -125,7 +125,7 @@ class CGestioneEvento{
     /**
      * @throws SmartyException
      */
-    public function formModificaEvento(){
+   /* public function formModificaEvento(){
         $view = new VGestioneEvento();
         $pm = FPersistentManager::getInstance();
         /**if($sessione->leggi_valore('utente')){
@@ -137,28 +137,32 @@ class CGestioneEvento{
         }else{
         $error = new VError();
         $error->error(1); //401 -> Forbidden Access
-        }*/
+        }
         $evento = $pm->load("id",$view->getIdEvento(),"FEvento");
         $view->showFormModify(null,$evento);
-    }
+    }*/
 
     /**
      * Funzione che gestisce la modifica del nome del Evento. Preleva il nuovo nome dalla View e procede alla modifica.
      * @return void
      * @throws SmartyException
      */
-    public function modificaNomeEvento(){
+    public function modificaNomeEvento($id_evento){
         $sessione = new USession();
+        $tipo=$sessione->leggi_valore("tipo_utente");
         $view = new VGestioneEvento();
-
-        //$utente = unserialize($sessione->leggi_valore('utente'));
         $pm = FPersistentManager::getInstance();
-        $evento = $pm->load("id",$view->getIdEvento(),"FEvento");
-        $nomeNuovo = $view->getNomeEvento();
-        $evento->setNome($nomeNuovo);
-        $pm->update("FEvento","nome",$nomeNuovo,"id",$evento->getId());
+        $evento = $pm->load("id",$id_evento,"FEvento");
+        if ($sessione->isLogged() && $tipo=="EProprietario") {
+            $nomeNuovo = $view->getNomeEvento();
+            $evento->setNome($nomeNuovo);
+            $pm->update("FEvento", "nome", $nomeNuovo, "id", $id_evento);
+            header("Location: /GestioneEvento/mostraFormGestioneEvento/".$id_evento);
+        }else{
+            header('Location: /Ricerca/mostraHome');
+        }
 
-        $view->showFormModify(null,$evento);
+
     }
 
     /**
@@ -166,18 +170,21 @@ class CGestioneEvento{
      * @return void
      * @throws SmartyException
      */
-    public function modificaDescrizioneEvento(){
+    public function modificaDescrizioneEvento($id_evento){
         $sessione = new USession();
+        $tipo=$sessione->leggi_valore("tipo_utente");
         $view = new VGestioneEvento();
-
-        //$utente = unserialize($sessione->leggi_valore('utente'));
         $pm = FPersistentManager::getInstance();
-        $evento = $pm->load("id",$view->getIdEvento(),"FEvento");
-        $descrizioneNuova = $view->getDescrizioneEvento();
-        $evento->setDescrizione($descrizioneNuova);
-        $pm->update("FEvento","descrizione",$descrizioneNuova,"id",$evento->getId());
 
-        $view->showFormModify(null,$evento);
+        $evento = $pm->load("id",$id_evento,"FEvento");
+        if($sessione->isLogged() && $tipo=="EProprietario") {
+            $descrizioneNuova = $view->getDescrizioneEvento();
+            $pm->update("FEvento", "descrizione", $descrizioneNuova, "id", $id_evento);
+            $evento->setDescrizione($descrizioneNuova);
+            header("Location: /GestioneEvento/mostraFormGestioneEvento/".$id_evento);
+        }else{
+            header('Location: /Ricerca/mostraHome');
+        }
     }
 
     /**
@@ -185,16 +192,20 @@ class CGestioneEvento{
      * @return void
      * @throws SmartyException
      */
-    public function modificaDataEvento(){
+    public function modificaDataEvento($id_evento){
         $sessione = new USession();
+        $tipo= $sessione->leggi_valore("tipo_utente");
         $view = new VGestioneEvento();
-
-        //$utente = unserialize($sessione->leggi_valore('utente'));
         $pm = FPersistentManager::getInstance();
-        $evento = $pm->load("id",$view->getIdEvento(),"FEvento");
-        $dataNuova = $view->getDataEvento();
-        $evento->setData($dataNuova);
-        $pm->update("FEvento","descrizione",$dataNuova,"id",$evento->getId());
+        if($sessione->isLogged() && $tipo=="EProprietario") {
+            $evento = $pm->load("id", $id_evento, "FEvento");
+            $dataNuova = $view->getDataEvento();
+            $evento->setData($dataNuova);
+            $pm->update("FEvento", "data", $dataNuova, "id", $id_evento);
+            header("Location: /GestioneEvento/mostraFormGestioneEvento/".$id_evento);
+        }else{
+            header('Location: /Ricerca/mostraHome');
+        }
 
         $view->showFormModify(null,$evento);
     }
@@ -234,22 +245,30 @@ class CGestioneEvento{
      * @return void
      * @throws SmartyException
      */
-    public function modificaImmagineEvento(){
+    public function modificaImmagineEvento($id_evento){
+        $sessione = new USession();
+        $tipo=$sessione->leggi_valore("tipo_utente");
         $view = new VGestioneEvento();
         $pm = FPersistentManager::getInstance();
-        $sessione = new USession();
-        //$utente = unserialize($sessione->leggi_valore('utente'));
-        $evento = $pm->load("id", $view->getIdEvento(), "FEvento");
-        $img = $view->getImgLocale();
-        list($check,$media) = static::upload($img);
-        if($check=="type"){
-            $view->showFormModify("type",$evento);
-        }elseif($check=="size"){
-            $view->showFormModify("size",$evento);
-        }elseif($check=="ok"){
-            $pm->updateMedia($media,$img[1]);
-            header('Location: /Ricerca/infoLocale'); //profilo!!!
+        $evento = $pm->load("id",$id_evento, "FEvento");
+
+        if($sessione->isLogged() && $tipo="EProprietario") {
+            $img = $view->getImgEvento();
+            if(!empty($img)) {
+                $img_evento = new EImmagine($img[0], $img[1], $img[2], $img[3]);
+                $id = $pm->store($img_evento);
+                $img_evento->setId($id);
+                $id_imgvecchia = $evento->getImg()->getId();
+                $pm->delete("idImg", $id_imgvecchia, "FImmagine");
+                $pm->update("FEvento","idImg", $id, "id", $id_evento);
+                $evento->setImg($img_evento);
+            }
+            header("Location: /GestioneEvento/mostraFormGestioneEvento/".$id_evento);
+        }else{
+            header('Location: /Ricerca/mostraHome');
         }
+
+
     }
 
 
