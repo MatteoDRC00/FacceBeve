@@ -499,6 +499,28 @@ class CGestioneLocale
         header('Location: /FacceBeve/Ricerca/dettaglioLocale');
     }
 
+    public function eliminaLocale($id_locale){
+        $sessione = new USession();
+        $pm = FPersistentManager::getInstance();
+        $username = $sessione->leggi_valore('utente');
+        $tipo = $sessione->leggi_valore("tipo_utente");
+
+        $locale = $pm->load("id", $id_locale, "FLocale");
+
+        if($sessione->isLogged() && $tipo=="EProprietario"){
+            $pm->deleteLocaleEvento($id_locale);
+            $pm->deleteCategorieLocale($id_locale);
+            $pm->deleteOrariLocale($id_locale);
+            $pm->deleteUtenteLocale($id_locale);
+
+            $pm->delete("id", $locale->getLocalizzazione()->getId(), "FLocalizzazione");
+            $pm->delete("id", $id_locale, "FLocale");
+            header("Location: /Profilo/mostraProfilo");
+        }else{
+            header("Location: /Ricerca/mostraHome");
+        }
+    }
+
 //----------------------------------METODI STATICI------------------------------------------------------\\
     /**
      * Funzione che si preoccupa di verificare lo stato dell'immagine inserita

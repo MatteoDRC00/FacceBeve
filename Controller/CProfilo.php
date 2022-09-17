@@ -330,19 +330,19 @@ class CProfilo{
         if($sessione->isLogged()){
             $username = $sessione->leggi_valore("utente");
             $tipo = $sessione->leggi_valore("tipo_utente");
-            $classE = $tipo;
-            $tipo[0] = "F";
-            $class = $tipo;
 
 
-            if($classE == "EUtente"){
-                $utente = $pm->load("username", $username, $class);
+            if($tipo == "EUtente"){
+                $utente = $pm->load("username", $username, "FUtente");
                 $locali_preferiti = $pm->getLocaliPreferiti($username);
                 $view = new VProfilo();
                 $view->mostraProfiloUtente($utente, $locali_preferiti);
-            }elseif($classE == "EProprietario"){
-                $proprietario = $pm->load("username", $username, $class);
+            }elseif($tipo == "EProprietario"){
+                $proprietario = $pm->load("username", $username, "FProprietario");
                 $locali[] = $pm->load("proprietario", $username, "FLocale");
+                if($locali[0] == null){
+                    $locali = array();
+                }
                 $view = new VProfilo();
                 $view->mostraProfiloProprietario($proprietario, $locali);
             }
@@ -387,5 +387,8 @@ class CProfilo{
         $view = new VProfilo();
         $view->errore($tipo,$message,$user);
     }
+
+
+
 
 }

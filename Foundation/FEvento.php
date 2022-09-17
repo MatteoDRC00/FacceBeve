@@ -153,7 +153,7 @@ class FEvento {
                     $immagine = FImmagine::loadByField("id",$result[$i]['idImg']);
                     $evento[$i] = new EEvento($result[$i]['nome'], $result[$i]['descrizione'], $result[$i]['data']); //Carica un array di oggetti Evento dal database
                     $evento[$i]->setImg($immagine);
-                    $evento[$i]->setId($result['id']);
+                    $evento[$i]->setId($result[$i]['id']);
                 }
             }
         }
