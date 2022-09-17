@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-17 12:50:44
+/* Smarty version 4.2.0, created on 2022-09-17 13:08:47
   from 'C:\xampp\htdocs\FacceBeve\template\InfoLocale.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_6325a684066215_71663937',
+  'unifunc' => 'content_6325aabff3ed09_64827216',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '172a59cd6d9d0fe4c26f91abf9bfe128c31cd594' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\InfoLocale.tpl',
-      1 => 1663411841,
+      1 => 1663412922,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6325a684066215_71663937 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6325aabff3ed09_64827216 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <?php $_smarty_tpl->_assignInScope('locale', (($tmp = $_smarty_tpl->tpl_vars['locale']->value ?? null)===null||$tmp==='' ? null ?? null : $tmp));
@@ -28,7 +28,7 @@ $_smarty_tpl->_assignInScope('arrayRecensioni', (($tmp = $_smarty_tpl->tpl_vars[
 $_smarty_tpl->_assignInScope('nrece', (($tmp = $_smarty_tpl->tpl_vars['nrece']->value ?? null)===null||$tmp==='' ? 0 ?? null : $tmp));
 $_smarty_tpl->_assignInScope('eventi', (($tmp = $_smarty_tpl->tpl_vars['eventi']->value ?? null)===null||$tmp==='' ? null ?? null : $tmp));
 $_smarty_tpl->_assignInScope('proprietario', (($tmp = $_smarty_tpl->tpl_vars['proprietario']->value ?? null)===null||$tmp==='' ? null ?? null : $tmp));
-$_smarty_tpl->_assignInScope('valutazioneLocale', (($tmp = $_smarty_tpl->tpl_vars['valutazioneLocale']->value ?? null)===null||$tmp==='' ? 5 ?? null : $tmp));
+$_smarty_tpl->_assignInScope('valutazioneLocale', (($tmp = $_smarty_tpl->tpl_vars['valutazioneLocale']->value ?? null)===null||$tmp==='' ? null ?? null : $tmp));
 $_smarty_tpl->_assignInScope('arrayRisposte', (($tmp = $_smarty_tpl->tpl_vars['arrayRisposte']->value ?? null)===null||$tmp==='' ? null ?? null : $tmp));
 $_smarty_tpl->_assignInScope('userlogged', (($tmp = $_smarty_tpl->tpl_vars['userlogged']->value ?? null)===null||$tmp==='' ? 'nouser' ?? null : $tmp));
 echo '<script'; ?>
@@ -292,9 +292,9 @@ echo $_smarty_tpl->tpl_vars['arrayRisposte']->value[$_prefixVariable4]->getDescr
                                         </div>
                                     </div>
                                 <?php } else { ?>
-                                    <?php if ($_smarty_tpl->tpl_vars['proprietario']->value == true) {?>
+                                    <?php if ((isset($_smarty_tpl->tpl_vars['proprietario']->value))) {?>
                                         <div class="reply-form">
-                                            <h4>Scrivi una recensione</h4>
+                                            <h4>Rispondi</h4>
                                             <form action=CGestioneRecensione/scriviRisposta method="POST"
                                                   name="Risposta"> <!--onsubmit="return validateRisposta()"-->
                                                 <input type="hidden" name="idRecensione"
@@ -322,7 +322,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 
 
                         <!--/\/\//\/\//\/\//\/\//\/\//\/\///////////////////////\\\\\\\\\\\\\\\\\/\/\//\/\//\/\//\/\//\/\//\/\/////\\\\\/\/\/\/\/\/\/\/\/\//\/\/\-->
-                        <?php if (!($_smarty_tpl->tpl_vars['userlogged']->value == 'nouser')) {?>
+                        <?php if (!($_smarty_tpl->tpl_vars['userlogged']->value == 'nouser') || (isset($_smarty_tpl->tpl_vars['proprietario']->value))) {?>
                             <div class="reply-form">
                                 <h4>Scrivi una recensione</h4>
                                 <form action=CGestioneRecensione/scriviRecensione method="POST" name="Recensione"

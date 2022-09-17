@@ -104,7 +104,6 @@ class CRicerca{
      */
      static function dettagliLocale($id){
         $vRicerca = new VRicerca();
-        $proprietario=false;
         $pm = FPersistentManager::GetInstance();
         $sessione = new USession();
         $result = $pm->load("id", $id, "FLocale");
@@ -127,7 +126,7 @@ class CRicerca{
         }
         if($sessione->leggi_valore('utente')){
             if($sessione->leggi_valore('tipo_utente')=="EUtente"){
-                $proprietario=false;
+                $proprietario=null;
                 $x = false;
                 $utente = $pm->load("id",$sessione->leggi_valore('utente'),"FUtente");
               /*  if($vRicerca->preferiti() && !($x)){
@@ -144,11 +143,9 @@ class CRicerca{
                 $check = $pm->exist("FLocale","proprietario",$sessione->leggi_valore('utente'));
                 if($check)
                     $proprietario=true;
-                else
-                    $proprietario=false;
             }
         }
-         $vRicerca->dettagliLocale($result, $recensioni, $risposte, $rating, $proprietario);
+        $vRicerca->dettagliLocale($result, $recensioni, $risposte, $rating, $proprietario);
     }
 
 

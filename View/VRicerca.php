@@ -208,6 +208,9 @@ class VRicerca
         if($result->getEventiOrganizzati() !== null){
             $this->smarty->assign('eventi', $result->getEventiOrganizzati());
         }
+        if(isset($proprietario)){
+            $this->smarty->assign('proprietario', $proprietario);
+        }
         if(is_array($arrayRecensioni))
             $nrece = count($arrayRecensioni);
         elseif(isset($arrayRecensioni))
@@ -218,7 +221,7 @@ class VRicerca
         $this->smarty->assign('nrece', $nrece);
         $this->smarty->assign('arrayRisposte', $arrayRisposte);
         $this->smarty->assign('valutazioneLocale', $valutazioneLocale);
-        $this->smarty->assign('proprietario', $proprietario);
+
 
         if($sessione->isLogged())
             $this->smarty->assign('userlogged',"loggato"); //Potrà cosi visualizzare gli eventi

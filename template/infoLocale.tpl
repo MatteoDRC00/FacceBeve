@@ -5,7 +5,7 @@
 {assign var='nrece' value=$nrece|default:0}
 {assign var='eventi' value=$eventi|default:null}
 {assign var='proprietario' value=$proprietario|default:null}
-{assign var='valutazioneLocale' value=$valutazioneLocale|default:5}
+{assign var='valutazioneLocale' value=$valutazioneLocale|default:null}
 {assign var='arrayRisposte' value=$arrayRisposte|default:null}
 {assign var='userlogged' value=$userlogged|default:'nouser'}
 <script>
@@ -201,9 +201,9 @@
                                         </div>
                                     </div>
                                 {else}
-                                    {if $proprietario == true}
+                                    {if isset($proprietario)}
                                         <div class="reply-form">
-                                            <h4>Scrivi una recensione</h4>
+                                            <h4>Rispondi</h4>
                                             <form action=CGestioneRecensione/scriviRisposta method="POST"
                                                   name="Risposta"> <!--onsubmit="return validateRisposta()"-->
                                                 <input type="hidden" name="idRecensione"
@@ -227,7 +227,7 @@
 
 
                         <!--/\/\//\/\//\/\//\/\//\/\//\/\///////////////////////\\\\\\\\\\\\\\\\\/\/\//\/\//\/\//\/\//\/\//\/\/////\\\\\/\/\/\/\/\/\/\/\/\//\/\/\-->
-                        {if !($userlogged eq 'nouser')}
+                        {if !($userlogged eq 'nouser') || isset($proprietario)}
                             <div class="reply-form">
                                 <h4>Scrivi una recensione</h4>
                                 <form action=CGestioneRecensione/scriviRecensione method="POST" name="Recensione"
