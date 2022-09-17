@@ -49,11 +49,11 @@
         <div class="container">
 
             <div class="d-flex justify-content-between align-items-center">
-                <h2>Crea un nuovo evento per $Nome_locale</h2>
+                <h2 style="font-weight: bold">Crea un nuovo evento per: <a href="/GestioneLocale/mostraInfoLocale/{$locale->getId()}">{$locale->getNome()}</a></h2>
             </div>
 
             <div class="gestioneutente">
-                <a href="areaPersonaleProprietario.html">Torna all'Area Personale <i class="fa fa-sign-out"></i></a>
+                <a href="/Profilo/mostraProfilo">Torna all'Area Personale <i class="fa fa-sign-out"></i></a>
             </div>
 
         </div>
@@ -68,19 +68,19 @@
                         <p>Inserisci informazioni sul Evento</p>
                         <div class="form-example">
                             <label style="font-weight: bold">Inserisci il nome: </label><br>
-                            <input type="text" name="nomeEvento">
+                            <input type="text" name="nomeEvento" required>
                         </div>
                         <div class="form-example">
                             <label style="font-weight: bold">Inserisci la descrizione: </label><br>
-                            <textarea type="text" name="descrizioneEvento"></textarea>
+                            <textarea type="text" name="descrizioneEvento" required></textarea>
                         </div>
                         <div class="form-example">
                             <label style="font-weight: bold">Inserisci la data: </label><br>
-                            <input type="date" name="dataEvento">
+                            <input type="date" name="dataEvento" required>
                         </div>
                         <div class="col-6 bg-white px-3 pb-2">
                             <p>AGGIUNGI LA LOCANDINA</p>
-                            <input name="imgEvento" class="w-50 p-2 m-2" type="file"><br>
+                            <input name="imgEvento" class="w-50 p-2 m-2" type="file" required><br>
                         </div>
                         <button type="submit" class="btnAggiorna">INSERISCI <i class="fa fa-refresh"></i></button>
                     </form>

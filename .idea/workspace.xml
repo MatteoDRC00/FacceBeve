@@ -7,15 +7,10 @@
     <list default="true" id="0c949e55-50d2-4635-ab4f-837af15b2e84" name="Changes" comment="link su tpl">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controller/CGestioneEvento.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/CGestioneEvento.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controller/CGestioneLocale.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/CGestioneLocale.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Foundation/FDB.php" beforeDir="false" afterPath="$PROJECT_DIR$/Foundation/FDB.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Foundation/FEvento.php" beforeDir="false" afterPath="$PROJECT_DIR$/Foundation/FEvento.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Foundation/FPersistentManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/Foundation/FPersistentManager.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/templates_c/1c893a337b2815c195d1ebdec5f1c045d7425e74_0.file.gestioneLocale.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/Smarty/templates_c/1c893a337b2815c195d1ebdec5f1c045d7425e74_0.file.gestioneLocale.tpl.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/templates_c/a660993f6474d006e8e9e4e4b80317cbc019f658_0.file.infoLocale.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/Smarty/templates_c/a660993f6474d006e8e9e4e4b80317cbc019f658_0.file.infoLocale.tpl.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/View/VGestioneLocale.php" beforeDir="false" afterPath="$PROJECT_DIR$/View/VGestioneLocale.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/VGestioneEvento.php" beforeDir="false" afterPath="$PROJECT_DIR$/View/VGestioneEvento.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/gestioneEvento.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/template/gestioneEvento.tpl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/template/gestioneLocale.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/template/gestioneLocale.tpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/infoLocale.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/template/infoLocale.tpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/registrazioneEvento.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/template/registrazioneEvento.tpl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -165,7 +160,8 @@
       <workItem from="1663095398729" duration="23000" />
       <workItem from="1663141227640" duration="7480000" />
       <workItem from="1663311226082" duration="5689000" />
-      <workItem from="1663358382277" duration="4467000" />
+      <workItem from="1663358382277" duration="4564000" />
+      <workItem from="1663395822609" duration="698000" />
     </task>
     <servers />
   </component>

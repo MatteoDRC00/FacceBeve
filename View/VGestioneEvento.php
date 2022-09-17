@@ -26,10 +26,20 @@ class VGestioneEvento{
      * di errore nella pagina di creazione del locale
      * @throws SmartyException
      */
-    public function showFormCreaEvento()
+    public function showFormCreaEvento($id_locale)
     {
-
+        $pm = FPersistentManager::getInstance();
+        $locale = $pm->load("id", $id_locale, "FLocale");
+        $this->smarty->assign('locale', $locale);
         $this->smarty->display('registrazioneEvento.tpl');
+    }
+
+    public function showFormModificaEvento($id_evento)
+    {
+        $pm = FPersistentManager::getInstance();
+        $evento = $pm->load("id", $id_evento, "FEvento");
+        $this->smarty->assign('evento', $evento);
+        $this->smarty->display('gestioneEvento.tpl');
     }
 
 

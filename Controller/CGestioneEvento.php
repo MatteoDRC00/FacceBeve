@@ -36,12 +36,13 @@ class CGestioneEvento{
      */
 
 
-    public function mostraFormCreaEvento(){
+    public function mostraFormCreaEvento($id_locale){
         $sessione = new USession();
-        if($sessione->isLogged() && $sessione->leggi_valore("tipo_utente")=="EProprietario"){
+        $tipo = $sessione->leggi_valore("tipo_utente");
+        $username = $sessione->leggi_valore("utente");
+        if($sessione->isLogged() && $tipo=="EProprietario"){
             $view = new VGestioneEvento();
-            $pm = FPersistentManager::getInstance();
-            $view->showFormCreaEvento();
+            $view->showFormCreaEvento($id_locale);
         }else{
             header("Location: /Ricerca/mostraHome");
         }
@@ -84,6 +85,20 @@ class CGestioneEvento{
             $pm->deleteEventoLocale($id_evento);
             $pm->delete("id", $id_evento, "FEvento");
             header("Location: /Profilo/mostraProfilo");
+        }else{
+            header("Location: /Ricerca/mostraHome");
+        }
+    }
+
+    public function gestisciEvento($id_evento){
+        $sessione = new USession();
+        $view = new VGestioneEvento();
+        $pm = FPersistentManager::getInstance();
+        $username = $sessione->leggi_valore('utente');
+        $tipo = $sessione->leggi_valore("tipo_utente");
+
+        if($sessione->isLogged() && $tipo=="EProprietario"){
+            $view->showFormCreaEvento();
         }else{
             header("Location: /Ricerca/mostraHome");
         }

@@ -56,11 +56,11 @@
         <div class="container">
 
             <div class="d-flex justify-content-between align-items-center">
-                <h2>Gestisci $Nome evento</h2>
+                <h2 style="font-weight: bold">Gestisci evento: <a href="/GestioneLocale/mostraInfoLocale/{$evento->getId()}">{$evento->getNome()}</a></h2>
             </div>
 
             <div class="gestioneutente">
-                <a href="areaPersonaleProprietario.html">Torna all'Area Personale <i class="fa fa-sign-out"></i></a>
+                <a href="/Profilo/mostraProfilo">Torna all'Area Personale <i class="fa fa-sign-out"></i></a>
             </div>
 
         </div>
