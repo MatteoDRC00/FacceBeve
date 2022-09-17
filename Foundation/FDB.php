@@ -106,7 +106,7 @@ class FDB{
 	public function storeUtentiLocali(string $id_locale, string $username){
 		try {
 			$this->database->beginTransaction();
-			$query = "INSERT INTO " . "utenti_locali" . " VALUES " . "(".$id_locale.",".$username.")".";";
+			$query = "INSERT INTO " . "utenti_locali" . " VALUES " . "(".$id_locale.", '".$username."')".";";
 			$stmt = $this->database->prepare($query); //Prepared Statement
 			$stmt->execute();
 			$this->database->commit();
@@ -244,6 +244,22 @@ class FDB{
 		}
 	}
 
+	public function existEsterne($class, $attributo1, $chiave1, $attributo2, $chiave2){
+		try {
+			$query = "SELECT * FROM " . $class . " WHERE " . $attributo1 . "='" . $chiave1 . "' AND ". $attributo2 . "='" . $chiave2 . "'";
+			$stmt = $this->database->prepare($query); //Prepared Statement
+			$stmt->execute();
+			$num = $stmt->rowCount();
+			$this->closeDbConnection();
+			if ($num >= 1)
+				return true;
+			else
+				return false;
+		} catch (PDOException $e) {
+			echo "Attenzione errore: " . $e->getMessage();
+			return null;
+		}
+	}
 
 	/**
 	 * Funzione che viene utilizzata per far vedere ad un utente loggato gli eventi dei localli che segue
@@ -455,7 +471,7 @@ class FDB{
 	public function deleteUtentiLocali($id_locale, $username){
 		try {
 			$this->database->beginTransaction();
-			$query = "DELETE FROM " . "utenti_locali" . " WHERE " . "ID_Utente" . "='" . $username . "'" . "AND". "ID_Locale" . "='" . $id_locale . "';";
+			$query = "DELETE FROM " . "utenti_locali" . " WHERE " . "ID_Utente" . "='" . $username . "' AND " . "ID_Locale" . "='" . $id_locale . "';";
 			$stmt = $this->database->prepare($query);
 			$stmt->execute();
 			$this->database->commit();

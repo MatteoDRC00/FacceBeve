@@ -189,7 +189,7 @@ class VRicerca
      * @param array contiene l'id dell'array da visualizzare
      * @throws SmartyException
      */
-    public function dettagliLocale($result,$arrayRecensioni,$arrayRisposte,$valutazioneLocale,$proprietario) {
+    public function dettagliLocale($tipo, $presente, $result,$arrayRecensioni,$arrayRisposte,$valutazioneLocale,$proprietario) {
         $sessione = new USession();
         //Caricamento immagini del locale
         /*if (is_array($result->getImmagini())) {
@@ -229,6 +229,8 @@ class VRicerca
 
         $this->smarty->assign('utente', $sessione->leggi_valore('utente'));
         $this->smarty->assign('locale', $result);
+        $this->smarty->assign('tipo', $tipo);
+        $this->smarty->assign('presente', $presente);
         $this->smarty->display('InfoLocale.tpl');
     }
 
