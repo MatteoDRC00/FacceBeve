@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ca6e37f9-4df3-446e-a924-f4e38117399d" name="Changes" comment="link su tpl">
+    <list default="true" id="ca6e37f9-4df3-446e-a924-f4e38117399d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controller/CRicerca.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/CRicerca.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Foundation/FDB.php" beforeDir="false" afterPath="$PROJECT_DIR$/Foundation/FDB.php" afterDir="false" />
@@ -121,7 +121,7 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="0c949e55-50d2-4635-ab4f-837af15b2e84" name="Changes" comment="link su tpl" />
+      <changelist id="ca6e37f9-4df3-446e-a924-f4e38117399d" name="Changes" comment="" />
       <created>1651152882261</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -163,6 +163,7 @@
       <workItem from="1663311226082" duration="5689000" />
       <workItem from="1663358382277" duration="4564000" />
       <workItem from="1663395822609" duration="1002000" />
+      <workItem from="1663442864870" duration="3416000" />
     </task>
     <servers />
   </component>

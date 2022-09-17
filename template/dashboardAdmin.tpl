@@ -16,8 +16,13 @@
     </div>
     <ul class="nav-links">
         <li>
-            <a href="#registrati" onclick="sidebarBtn.onclick(1)">
-                <span class="links_name"   >Utenti registrati</span>
+            <a href="/Admin/getUtenti/1" onclick="sidebarBtn.onclick(1)">
+                <span class="links_name"   >Utenti Attivi</span>
+            </a>
+        </li>
+        <li>
+            <a href="/Admin/getUtenti/0" onclick="sidebarBtn.onclick(1)">
+                <span class="links_name"   >Utenti Bannati</span>
             </a>
         </li>
         <li>
@@ -55,26 +60,26 @@
     </nav>
 <!--eventi registrati-->
     <div class="home-content">
-        <div class="items-body">
-                {if !empty($utenti)}
-                    {foreach $utenti as $utente}
-                    <div class="items-body-content row-cols-3">
-                        <p>{$utente->getUsername()}</p>
-                        <a href="/Admin/mostra/{$evento->getId()}"><input type="button" value="Gestisci evento"></a>
-                        <a href="/GestioneEvento/eliminaEvento/{$evento->getId()}"><input type="button" value="Elimina evento"></a>
-                    </div>
-                    {/foreach}
-                {else}
-                    <p>Non ci sono eventi in programma</p>
-                {/if}
-            </div>
+       <!--<form method="post">
+            <div class="items-body">
+                    {if !empty($utenti)}
+                        {foreach $utenti as $utente}
+                        <div class="items-body-content row-cols-3">
+                            <p>Utenti Attivi</p>
+                            <a href="/Admin/getUtenti/1">
 
+                        </div>
+                        {/foreach}
+                    {else}
+                        <p>Non ci sono utenti attivi</p>
+                    {/if}
+            </div>
+        </form>-->
         <div class="sales-boxes">
             <div class="recent-sales box">
                 <div class="title" id="titolo">Benvenuto</div>
                 <div class="sales-details" id="dettagli">
                     <ul class="details" id="dato1">
-
                     </ul>
                     <ul class="details" id="dato2">
                     </ul>
@@ -90,8 +95,8 @@
                 </div>
 
             </div>
-            <!--
-            <div class="top-sales box">
+
+    <!--        <div class="top-sales box">
                 <div class="title">Top Seling Product</div>
                 <ul class="top-sales-details">
                     <li>
@@ -156,6 +161,7 @@
         document.getElementById('dato4').innerText="NOME";
         document.getElementById('dato5').innerText="COGNOME";
         document.getElementById('bottone').innerHTML='<a href="#">Vedi tutto</a>';
+
     }
     function propetariLocali(){
         document.getElementById('titolo').innerText="Propietario dei locali";

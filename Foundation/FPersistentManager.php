@@ -116,6 +116,12 @@ class FPersistentManager {
         return $class::exist($attributo,$valore);
     }
 
+    public function existEsterna(string $class, string $attributo1, string $chiave1,  string $attributo2, string $chiave2): bool
+    {
+        $db = FDB::getInstance();
+        return $db->existEsterne($class, $attributo1, $chiave1, $attributo2, $chiave2);
+    }
+
     /**  Metodo che permette di cercare/caricare un campo con un valore passato come parametro
      *  @param field , campo da caricare
      *  @param  val , valore da caricare
@@ -311,7 +317,7 @@ class FPersistentManager {
 
     public function deleteUtentiLocali($utente, $locale){
         $db = FDB::getInstance();
-        $db->deleteUtentiLocali($locale, $utente);
+        return $db->deleteUtentiLocali($locale, $utente);
     }
 
     public function storeUtentiLocali($utente, $locale){

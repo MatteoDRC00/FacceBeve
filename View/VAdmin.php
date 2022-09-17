@@ -143,8 +143,9 @@ class VAdmin
     }
 
 
-    public function getUtentiAttivi($utentiAttivi,$imgAttivi){
+    public function showUtenti($utenti,$imgUtenti){
 
+        $this->smarty->display("adminGestioneUtente.tpl");
     }
 
     /**
