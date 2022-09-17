@@ -103,6 +103,21 @@ class FDB{
 		}
 	}
 
+	public function storeUtentiLocali(string $id_locale, string $username){
+		try {
+			$this->database->beginTransaction();
+			$query = "INSERT INTO " . "utenti_locali" . " VALUES " . "(".$id_locale.",".$username.")".";";
+			$stmt = $this->database->prepare($query); //Prepared Statement
+			$stmt->execute();
+			$this->database->commit();
+			$this->closeDbConnection();
+		} catch (PDOException $e) {
+			echo "Attenzione errore: " . $e->getMessage();
+			$this->database->rollBack();
+			return null;
+		}
+	}
+
 	public function storeEventiLocale(string $id_locale, string $id_evento){
 		try {
 			$this->database->beginTransaction();
@@ -425,6 +440,22 @@ class FDB{
 		try {
 			$this->database->beginTransaction();
 			$query = "DELETE FROM " . "utenti_locali" . " WHERE " . "ID_Locale" . "='" . $id_locale . "';";
+			$stmt = $this->database->prepare($query);
+			$stmt->execute();
+			$this->database->commit();
+			$this->closeDbConnection();
+			return true;
+		} catch (PDOException $e) {
+			echo "Attenzione errore: " . $e->getMessage();
+			$this->database->rollBack();
+		}
+		return false;
+	}
+
+	public function deleteUtentiLocali($id_locale, $username){
+		try {
+			$this->database->beginTransaction();
+			$query = "DELETE FROM " . "utenti_locali" . " WHERE " . "ID_Utente" . "='" . $username . "'" . "AND". "ID_Locale" . "='" . $id_locale . "';";
 			$stmt = $this->database->prepare($query);
 			$stmt->execute();
 			$this->database->commit();
@@ -867,6 +898,30 @@ class FDB{
 			}
 			return $result;
 		}catch (PDOException $e) {
+			echo "Attenzione errore: " . $e->getMessage();
+			$this->database->rollBack();
+		}
+	}
+
+	public function getUtentiByState($state)
+	{
+		try {
+			$query = "SELECT username FROM utente WHERE state = " . $state . ";";
+			$stmt = $this->database->prepare($query);
+			$stmt->execute();
+			$num = $stmt->rowCount();
+			if ($num == 0) {
+				$result = null;        //nessuna riga interessata. return null
+			} elseif ($num == 1) {                          //nel caso in cui una sola riga fosse interessata
+				$result = $stmt->fetch(PDO::FETCH_ASSOC);   //ritorna una sola riga
+			} else {
+				$result = array();                         //nel caso in cui piu' righe fossero interessate
+				$stmt->setFetchMode(PDO::FETCH_ASSOC);   //imposta la modalità di fetch come array associativo
+				while ($row = $stmt->fetch())
+					$result[] = $row;                    //ritorna un array di righe.
+			}
+			return $result;
+		} catch (PDOException $e) {
 			echo "Attenzione errore: " . $e->getMessage();
 			$this->database->rollBack();
 		}
