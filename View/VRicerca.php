@@ -222,7 +222,6 @@ class VRicerca
         $this->smarty->assign('arrayRisposte', $arrayRisposte);
         $this->smarty->assign('valutazioneLocale', $valutazioneLocale);
 
-
         if($sessione->isLogged())
             $this->smarty->assign('userlogged',"loggato"); //Potrà cosi visualizzare gli eventi
         else

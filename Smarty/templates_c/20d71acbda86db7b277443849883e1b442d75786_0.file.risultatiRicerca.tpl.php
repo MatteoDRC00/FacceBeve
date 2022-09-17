@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-16 20:41:31
+/* Smarty version 4.2.0, created on 2022-09-17 15:51:12
   from 'C:\xampp\htdocs\FacceBeve\template\risultatiRicerca.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_6324c35b6a4f26_15192223',
+  'unifunc' => 'content_6325d0d0b33172_98157598',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '20d71acbda86db7b277443849883e1b442d75786' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\risultatiRicerca.tpl',
-      1 => 1663353687,
+      1 => 1663422667,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6324c35b6a4f26_15192223 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6325d0d0b33172_98157598 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <?php $_smarty_tpl->_assignInScope('tipo', (($tmp = $_smarty_tpl->tpl_vars['tipo']->value ?? null)===null||$tmp==='' ? 'Locali' ?? null : $tmp));
 $_smarty_tpl->_assignInScope('userlogged', (($tmp = $_smarty_tpl->tpl_vars['error']->value ?? null)===null||$tmp==='' ? 'nouser' ?? null : $tmp));
@@ -156,9 +156,6 @@ $_smarty_tpl->tpl_vars['locale']->do_else = false;
                                     <?php echo $_smarty_tpl->tpl_vars['locale']->value->getDescrizione();?>
 
                                 </p>
-                                <!--     <div class="read-more">
-                                         <a Visita il locale <i class="fas fa-chevron-circle-right"></i></a>
-                                     </div> -->
                             </div>
                         <?php
 }

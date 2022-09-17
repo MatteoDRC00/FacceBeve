@@ -180,7 +180,7 @@ CREATE TABLE `Recensione` (
 );
 /*Inserimento dati Recensione*/
 INSERT INTO `Recensione` (`id`,`titolo`,`descrizione`,`voto`,`data`,`segnalato`,`counter`,`utente`,`locale`) VALUES
-(1,'Fantastici','Serata stupenda, locale consigliatissimo',5,'12/09/2022',0,0,'JSabbly',1);
+(1,'Fantastici','Serata stupenda, locale consigliatissimo, barista impeccabile',5,'12/09/2022',0,0,'JSabbly',1);
 
 /*Tabella relativa alle Risposte alle recensioni*/
 DROP TABLE IF EXISTS `Risposta`;
@@ -194,6 +194,8 @@ CREATE TABLE `Risposta` (
     FOREIGN KEY (`proprietario`) REFERENCES Proprietario(`username`) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (`recensione`) REFERENCES Recensione(`id`) ON DELETE CASCADE ON UPDATE CASCADE 
 );
+INSERT INTO `Risposta` (`id`,`descrizione`,`proprietario`,`recensione`) VALUES
+(1,'Grazie mille, la prossima volta che viene offre la casa.','DRKing',1);
 
 /*Tabella che mette in relazione l'Utente con i suoi Locali Preferiti*/
 DROP TABLE IF EXISTS `Utenti_Locali`;
@@ -275,35 +277,3 @@ CREATE TABLE `Locale_Categorie` (
 INSERT INTO Locale_Categorie(`ID_Locale`,`ID_Categoria`) VALUES
 (1,'Irish Pub');
 
-/*Tabella che mette in relazione il Locale con le immagini
-DROP TABLE IF EXISTS `Locale_Immagini`;
-CREATE TABLE `Locale_Immagini` (
-	`ID_Locale` INT(11) NOT NULL,
-	`ID_Immagine` INT(11) NOT NULL,
-	CONSTRAINT Locale_Immagini_PK PRIMARY KEY ( `ID_Locale` ,`ID_Immagine`),
-    FOREIGN KEY (`ID_Immagine`)
-        REFERENCES Immagine (`id`)
-        ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (`ID_Locale`)
-        REFERENCES Locale (`id`)
-        ON DELETE CASCADE ON UPDATE CASCADE
-);
-
-
-/*Inserimento dati Locale_Immagini
-INSERT INTO Locale_Immagini(`ID_Locale`,`ID_Immagine`) VALUES
-(1,2);
-
-/*Tabella che mette in relazione l'Evento con le immagini
-DROP TABLE IF EXISTS `Evento_Immagini`;
-CREATE TABLE `Evento_Immagini` (
-	`ID_Evento` INT(11) NOT NULL,
-	`ID_Immagine` INT(11) NOT NULL,
-	CONSTRAINT Evento_Immagini_PK PRIMARY KEY ( `ID_Evento` ,`ID_Immagine`),
-    FOREIGN KEY (`ID_Immagine`)
-        REFERENCES Immagine (`id`)
-        ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (`ID_Evento`)
-        REFERENCES Evento (`id`)
-        ON DELETE CASCADE ON UPDATE CASCADE
-);*/
