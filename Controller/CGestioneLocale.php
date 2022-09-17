@@ -33,6 +33,32 @@ class CGestioneLocale
 
 //----------------------------------CREAZIONE DEL LOCALE------------------------------------------------------\\
 
+    public function mostraFormCreaLocale(){
+        $sessione = new USession();
+        if($sessione->isLogged() && $sessione->leggi_valore("tipo_utente")=="EProprietario"){
+            $view = new VGestioneLocale();
+            $pm = FPersistentManager::getInstance();
+            $genere_cat = $pm->getCategorie();
+            $view->showFormCreaLocale($genere_cat);
+        }else{
+            header("Location: /Ricerca/mostraHome");
+        }
+    }
+
+    public function mostraInfoLocale($id_locale){
+        $sessione = new USession();
+        $username = $sessione->leggi_valore("utente");
+        $tipo = $sessione->leggi_valore("tipo_utente");
+        $pm = FPersistentManager::getInstance();
+        $view = new VGestioneLocale();
+        $locale = $pm->load("id", $id_locale, "FLocale");
+        if($sessione->isLogged()){
+            $view->showInfoLocale($locale);
+        }
+
+    }
+
+
 
     public function mostraGestioneLocale($id_locale){
         $sessione = new USession();
