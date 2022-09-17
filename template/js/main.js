@@ -5,12 +5,12 @@ function validateRecensione(){
     let titolo = document.forms.Recensione.elements.titolo.value;
     let descrizione = document.forms.Recensione.elements.descrizione.value;
     let k = document.forms.Recensione.elements.valutazione;
-    var valutazione = "";
+    var valutazione = "-- Voto --";
     if(k.checked){
         var valutazione = document.forms.Recensione.elements.valutazione.value;
     }
 
-    if(titolo==="" || valutazione===""){
+    if(titolo==="" || valutazione==="-- Voto --"){
         alert("Inserire i campi necessari");
         return false;
     }

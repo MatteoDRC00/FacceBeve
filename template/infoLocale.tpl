@@ -162,12 +162,14 @@
                                                     alt="Immagine profilo utente" style="border-radius: 35px;"></div>
                                         <div>
                                             <h5>{$arrayRecensioni->getUtente()->getUsername()}
-                                                {if isset($proprietario)}
-                                                   <i class="bi bi-reply-fill"></i>Rispondi
+                                                {if isset($proprietario) && !isset($arrayRisposte)}
+                                                    <a href="#formRisposta" class="reply"><i
+                                                                class="bi bi-reply-fill"></i>Rispondi</a>
                                                 {/if}
                                             </h5>
 
-                                            <h5>{$arrayRecensioni->getData()} |  Voto:{$arrayRecensioni->getVoto()}/5</h5>
+                                            <h5>{$arrayRecensioni->getData()} | Voto:{$arrayRecensioni->getVoto()}
+                                                /5</h5>
                                             <h4 style="font-weight:bold;">{$arrayRecensioni->getTitolo()} </h4>
                                             <p>{$arrayRecensioni->getDescrizione()}</p>
 
@@ -179,7 +181,8 @@
                                         <div class="d-flex">
                                             <div class="comment-img"><img
                                                         src="data:{$arrayRisposte->getProprietario()->getImgProfilo()->getType()};base64,{$arrayRisposte->getProprietario()->getImgProfilo()->getImmagine()}"
-                                                        alt="Immagine profilo proprietario" style="border-radius: 35px;"></div>
+                                                        alt="Immagine profilo proprietario"
+                                                        style="border-radius: 35px;"></div>
                                             <div>
                                                 <h5>{$arrayRisposte->getProprietario()->getUsername()}</h5>
                                                 <p>{$arrayRisposte->getDescrizione()}</p>
@@ -213,13 +216,16 @@
                                         <div class="d-flex">
                                             <div class="comment-img"><img
                                                         src="data:{$recensione->getUtente()->getImgProfilo()->getType()};base64,{$recensione->getUtente()->getImgProfilo()->getImmagine()}"
-                                                        alt="Immagine profilo utente" style="border-radius: 35px;"></div>
+                                                        alt="Immagine profilo utente" style="border-radius: 35px;">
+                                            </div>
                                             <div>
                                                 <h5>{$recensione->getUtente()->getUsername()}
-                                                    {if isset($proprietario)}
-                                                    <a href="formRisposta" class="reply"><i
-                                                                class="bi bi-reply-fill"></i>Rispondi</h5>
-                                                {/if}
+                                                    {if isset($proprietario) && isset($arrayRisposte[{$recensione@iteration - 1}])}
+                                                        <a href="#formRisposta" class="reply"><i
+                                                                    class="bi bi-reply-fill"></i>Rispondi</a>
+                                                    {/if}
+                                                </h5>
+
 
                                                 <h5>{$recensione->getData()}</h5>
                                                 <h2>{$recensione->getTitolo()}</h2>
@@ -232,8 +238,9 @@
                                         <div id="comment-reply-1" class="comment comment-reply">
                                             <div class="d-flex">
                                                 <div class="comment-img"><img
-                                                            src="data:{$arrayRisposte[$i]->getProprietario()->getImgProfilo()->getType()};base64,{$arrayRisposte[$i]->getProprietario()->getImgProfilo()->getImmagine()}"
-                                                            alt="Immagine profilo proprietario" style="border-radius: 35px;"></div>
+                                                            src="data:{$arrayRisposte[{$recensione@iteration - 1}]->getProprietario()->getImgProfilo()->getType()};base64,{$arrayRisposte[{$recensione@iteration - 1}]->getProprietario()->getImgProfilo()->getImmagine()}"
+                                                            alt="Immagine profilo proprietario"
+                                                            style="border-radius: 35px;"></div>
                                                 <div>
                                                     <h5>{$arrayRisposte[{$recensione@iteration - 1}]->getProprietario()->getUsername()}</h5>
                                                     <h5>{$arrayRisposte[{$recensione@iteration - 1}]->getData()}</h5>
@@ -245,10 +252,11 @@
                                         {if isset($proprietario)}
                                             <div class="reply-form" name="formRisposta">
                                                 <h4>Rispondi</h4>
-                                                <form action=CGestioneRecensione/scriviRisposta method="POST"
+                                                <form action="CGestioneRecensione/scriviRisposta/{$arrayRecensioni[{$i}]->getId()}"
+                                                      method="POST"
                                                       name="Risposta"> <!--onsubmit="return validateRisposta()"-->
                                                     <input type="hidden" name="idRecensione"
-                                                           value="{$arrayRecensioni[$i]->getId()}"/>
+                                                           value="{$arrayRecensioni[{$i}]->getId()}"/>
                                                     <div class="row">
                                                         <div class="col form-group">
                                                         <textarea name="descrizione" class="form-control"
