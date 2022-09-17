@@ -35,12 +35,12 @@ class CAdmin{
     }
 
 
-
+/*
     /**
      * Funzione utilizzata per visualizzare la homepage dell'amministratore, nella quale sono presenti tutti gli utenti della piattaforma.
      * Gli utenti sono divisi in due liste: bannati e attivi
      * @throws SmartyException
-     */
+
     public function getUtentiAttivi() {
         $sessione = new USession();
         $tipo=$sessione->leggi_valore('tipo_utente');
@@ -56,19 +56,24 @@ class CAdmin{
                 $view = new VError();
                 $view->error(1);
         }
-    }
+    }*/
 
-    public function getUtentiBannati(){
+    /**
+     * in base vengono restituiti la lista di utenti attivi o bannati
+     * @param $tipo Int 0-> utenti bannati ; 1->utenti attivi
+     * @return void
+     * @throws SmartyException
+     */
+    public function getUtenti($tipo){
         $sessione = new USession();
         $tipo=$sessione->leggi_valore('tipo_utente');
         $view = new VAdmin();
         $pm = FPersistentManager::getInstance();
 
         if ($sessione->isLogged() && $tipo== "admin") {
-            // visualizza elenco utenti attivi
-            $utentiBannati = $pm->loadUtenti(0);
-            $img_bannati = static::set_immagini($utentiBannati); //non so a cosa serve set_immagini
-            $view->getUtentiAttivi($utentiBannati,$img_bannati);
+            $utenti = $pm->loadUtenti($tipo);
+            $img_utenti = static::set_immagini($utenti); //non so a cosa serve set_immagini
+            $view->showUtenti($utenti,$img_utenti);
         } else {
             $view = new VError();
             $view->error(1);
