@@ -247,7 +247,7 @@ class FEvento {
             return false;
     }
 
-    /** Metodo che permette di caricare un locale che ha determinati parametri, i quali vengono passati in input da una form */
+    /** Metodo che permette di caricare un evento che ha determinati parametri, i quali vengono passati in input da una form */
     public static function loadByForm ($part1, $part2,$part3,$part4) {
         $evento = null;
         $locale = null;

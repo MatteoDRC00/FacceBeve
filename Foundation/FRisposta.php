@@ -82,7 +82,7 @@ class FRisposta{
         $db = FDB::getInstance();
         list($result,$num) = $db->load(static::getClass(), $field, $id);
         if(($result != null) && ($num == 1)) {
-            $proprietario = FProprietario::loadByField("id" , $result["proprietario"]);
+            $proprietario = FProprietario::loadByField("username" , $result["proprietario"]);
             $ris = new ERisposta($result['recensione'],$result['descrizione'],$proprietario);
             $ris->setId($result['id']);
         }
@@ -90,7 +90,7 @@ class FRisposta{
             if(($result != null) && ($num > 1)){
                 $ris = array();
                 for($i = 0; $i < count($result); $i++){
-                    $proprietario = FProprietario::loadByField("id" , $result[$i]["proprietario"]);
+                    $proprietario = FProprietario::loadByField("username" , $result[$i]["proprietario"]);
                     $ris[] = new ERisposta($result[$i]['recensione'],$result[$i]['descrizione'],$proprietario);
                     $ris[$i]->setId($result[$i]['id']);
                 }

@@ -114,9 +114,6 @@
                                 <p>
                                     {$locale->getDescrizione()}
                                 </p>
-                                <!--     <div class="read-more">
-                                         <a Visita il locale <i class="fas fa-chevron-circle-right"></i></a>
-                                     </div> -->
                             </div>
                         {/foreach}
                     {else}

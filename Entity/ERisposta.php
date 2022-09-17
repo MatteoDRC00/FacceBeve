@@ -27,7 +27,7 @@ class ERisposta implements JsonSerializable {
         return $this->id;
     }
 
-	public function getDescrizione($descrizione) : String{
+	public function getDescrizione() : String{
 		return $this->descrizione;
 	}
 	

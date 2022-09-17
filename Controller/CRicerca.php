@@ -107,6 +107,7 @@ class CRicerca{
         $pm = FPersistentManager::GetInstance();
         $sessione = new USession();
         $result = $pm->load("id", $id, "FLocale");
+        $proprietario=null;
 
         //Calcolo valutazione media locale + sue recensioni con le relative risposte
         $recensioni = $pm->load("locale",$id,"FRecensione");
@@ -126,8 +127,7 @@ class CRicerca{
         }
         if($sessione->leggi_valore('utente')){
             if($sessione->leggi_valore('tipo_utente')=="EUtente"){
-                $proprietario=null;
-                $x = false;
+                //$x = false;
                 $utente = $pm->load("id",$sessione->leggi_valore('utente'),"FUtente");
               /*  if($vRicerca->preferiti() && !($x)){
                     $utente->addLocale($result);
@@ -142,9 +142,11 @@ class CRicerca{
             }elseif($sessione->leggi_valore('tipo_utente')=="EProprietario"){
                 $check = $pm->exist("FLocale","proprietario",$sessione->leggi_valore('utente'));
                 if($check)
-                    $proprietario=true;
+                    $proprietario=1;
             }
         }
+        //print_r($proprietario);
+        //print_r($risposte);
         $vRicerca->dettagliLocale($result, $recensioni, $risposte, $rating, $proprietario);
     }
 
