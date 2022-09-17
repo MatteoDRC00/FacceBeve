@@ -50,6 +50,8 @@ class CGestioneEvento{
 
 
     }
+
+
     public function creaEvento()
     {
         $pm = FPersistentManager::getInstance();
@@ -90,7 +92,7 @@ class CGestioneEvento{
         }
     }
 
-    public function gestisciEvento($id_evento){
+    public function mostraFormGestioneEvento($id_evento){
         $sessione = new USession();
         $view = new VGestioneEvento();
         $pm = FPersistentManager::getInstance();
@@ -98,7 +100,7 @@ class CGestioneEvento{
         $tipo = $sessione->leggi_valore("tipo_utente");
 
         if($sessione->isLogged() && $tipo=="EProprietario"){
-            $view->showFormCreaEvento();
+            $view->showFormModificaEvento($id_evento);
         }else{
             header("Location: /Ricerca/mostraHome");
         }

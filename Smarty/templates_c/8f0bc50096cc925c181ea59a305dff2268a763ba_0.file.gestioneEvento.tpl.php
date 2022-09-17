@@ -1,4 +1,27 @@
-<!DOCTYPE html>
+<?php
+/* Smarty version 4.2.0, created on 2022-09-17 08:40:39
+  from 'C:\xampp\htdocs\FacceBeve\template\gestioneEvento.tpl' */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '4.2.0',
+  'unifunc' => 'content_63256be7098c21_24093341',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    '8f0bc50096cc925c181ea59a305dff2268a763ba' => 
+    array (
+      0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\gestioneEvento.tpl',
+      1 => 1663396836,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+),false)) {
+function content_63256be7098c21_24093341 (Smarty_Internal_Template $_smarty_tpl) {
+?><!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -28,6 +51,13 @@
 
     <!-- Template Main CSS File -->
     <link href="/template/css/style.css" rel="stylesheet">
+
+    <!-- =======================================================
+    * Template Name: Moderna - v4.9.1
+    * Template URL: https://bootstrapmade.com/free-bootstrap-template-corporate-moderna/
+    * Author: BootstrapMade.com
+    * License: https://bootstrapmade.com/license/
+    ======================================================== -->
 </head>
 
 <body>
@@ -49,7 +79,9 @@
         <div class="container">
 
             <div class="d-flex justify-content-between align-items-center">
-                <h2 style="font-weight: bold">Crea un nuovo evento per: <a href="/GestioneLocale/mostraInfoLocale/{$locale->getId()}">{$locale->getNome()}</a></h2>
+                <h2 style="font-weight: bold">Gestisci evento: <a href="/GestioneEvento/mostraInfoEvento/<?php echo $_smarty_tpl->tpl_vars['evento']->value->getId();?>
+"><?php echo $_smarty_tpl->tpl_vars['evento']->value->getNome();?>
+</a></h2>
             </div>
 
             <div class="gestioneutente">
@@ -63,26 +95,29 @@
     <section class="contact" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
         <div class="container">
             <div class="row">
-                <div class="col-12 bg-white px-3 mb-3 pb-3">
-                    <form action=""  enctype="multipart/form-data" method="POST" class="aggiorna" name="registrazioneEvento" onsubmit="return validateRegForm(3)">
-                        <p>Inserisci informazioni sull'evento</p>
+                <div class="col-6 bg-white px-3 mb-3 pb-3">
+                    <form action="" method="POST" class="aggiorna">
+                        <p>MODIFICA LE INFORMAZIONI DELL'EVENTO</p>
                         <div class="form-example">
-                            <label style="font-weight: bold">Inserisci il nome: </label><br>
-                            <input type="text" name="nomeEvento" required>
+                            <label style="font-weight: bold">Aggiorna il nome: </label><br>
+                            <input type="text" name="newnomeEvento">
                         </div>
                         <div class="form-example">
-                            <label style="font-weight: bold">Inserisci la descrizione: </label><br>
-                            <textarea type="text" name="descrizioneEvento" required></textarea>
+                            <label style="font-weight: bold">Aggiorna la descrizione: </label><br>
+                            <textarea type="text" name="newdescEvento"></textarea>
                         </div>
                         <div class="form-example">
-                            <label style="font-weight: bold">Inserisci la data: </label><br>
-                            <input type="date" name="dataEvento" required>
+                            <label style="font-weight: bold">Aggiorna la data: </label><br>
+                            <input type="date" name="newdataEvento">
                         </div>
-                        <div class="form-example">
-                            <p>AGGIUNGI LA LOCANDINA</p>
-                            <input name="imgEvento" class="w-50 p-2 m-2" type="file" required><br>
-                        </div>
-                        <button type="submit" class="btnAggiorna">INSERISCI <i class="fa fa-refresh"></i></button>
+                        <button type="submit" class="btnAggiorna">AGGIORNA <i class="fa fa-refresh"></i></button>
+                    </form>
+                </div>
+                <div class="col-6 bg-white px-3 pb-2">
+                    <form action="" enctype="multipart/form-data" method="POST" class="aggiorna"> <!-- aggiungin i controlli -->
+                        <p>AGGIORNA LA LOCANDINA</p>
+                        <input name="img" class="w-50 p-2 m-2" type="file"><br>
+                        <button type="submit" class="btnAggiorna">AGGIORNA <i class="fa fa-refresh"></i></button>
                     </form>
                 </div>
             </div>
@@ -111,18 +146,37 @@
 <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
 <!-- Vendor JS Files -->
-<script src="/template/vendor/purecounter/purecounter_vanilla.js"></script>
-<script src="/template/vendor/aos/aos.js"></script>
-<script src="/template/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="/template/vendor/glightbox/js/glightbox.min.js"></script>
-<script src="/template/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-<script src="/template/vendor/swiper/swiper-bundle.min.js"></script>
-<script src="/template/vendor/waypoints/noframework.waypoints.js"></script>
-<script src="/template/vendor/php-email-form/validate.js"></script>
+<?php echo '<script'; ?>
+ src="/template/vendor/purecounter/purecounter_vanilla.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ src="/template/vendor/aos/aos.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ src="/template/vendor/bootstrap/js/bootstrap.bundle.min.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ src="/template/vendor/glightbox/js/glightbox.min.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ src="/template/vendor/isotope-layout/isotope.pkgd.min.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ src="/template/vendor/swiper/swiper-bundle.min.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ src="/template/vendor/waypoints/noframework.waypoints.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ src="/template/vendor/php-email-form/validate.js"><?php echo '</script'; ?>
+>
 
 <!-- Template Main JS File -->
-<script src="/template/js/main.js"></script>
+<?php echo '<script'; ?>
+ src="/template/js/main.js"><?php echo '</script'; ?>
+>
 
 </body>
 
-</html>
+</html><?php }
+}

@@ -54,7 +54,7 @@
             </div>
 
             <div class="gestioneutente">
-                <a href="registrazioneEvento.html">Aggiungi evento</a>
+                <a href="/GestioneEvento/mostraFormCreaEvento/{$locale->getId()}">Aggiungi evento</a>
                 <a href="#eventi">Eventi organizzati</a>
                 <a href="/Profilo/mostraProfilo">Torna all'Area Personale <i class="fa fa-sign-out"></i></a>
             </div>
@@ -164,8 +164,8 @@
                     {foreach $eventi as $evento}
                     <div class="items-body-content row-cols-3">
                         <p>{$evento->getNome()}</p>
-                        <a href=""><input type="button" value="Gestisci evento"></a>
-                        <a href="/GestioneEvento/eliminaEvento/{$evento->getID()}"><input type="button" value="Elimina evento"></a>
+                        <a href="/GestioneEvento/mostraFormGestioneEvento/{$evento->getId()}"><input type="button" value="Gestisci evento"></a>
+                        <a href="/GestioneEvento/eliminaEvento/{$evento->getId()}"><input type="button" value="Elimina evento"></a>
                     </div>
                     {/foreach}
                 {else}

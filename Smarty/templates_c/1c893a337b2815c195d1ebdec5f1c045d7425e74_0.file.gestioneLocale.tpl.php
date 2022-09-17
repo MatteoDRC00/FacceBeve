@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-16 23:06:37
+/* Smarty version 4.2.0, created on 2022-09-17 08:39:53
   from 'C:\xampp\htdocs\FacceBeve\template\gestioneLocale.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_6324e55d3b5213_20862155',
+  'unifunc' => 'content_63256bb9ef1521_59565188',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '1c893a337b2815c195d1ebdec5f1c045d7425e74' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\gestioneLocale.tpl',
-      1 => 1663362396,
+      1 => 1663396772,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6324e55d3b5213_20862155 (Smarty_Internal_Template $_smarty_tpl) {
+function content_63256bb9ef1521_59565188 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -73,13 +73,14 @@ function content_6324e55d3b5213_20862155 (Smarty_Internal_Template $_smarty_tpl)
         <div class="container">
 
             <div class="d-flex justify-content-between align-items-center">
-                <h2 style="font-weight: bold">Gestisci: <a href="/GestioneLocale/mostraInfoLocale/<?php echo $_smarty_tpl->tpl_vars['locale']->value->getId();?>
+                <h2 style="font-weight: bold">Gestisci locale: <a href="/GestioneLocale/mostraInfoLocale/<?php echo $_smarty_tpl->tpl_vars['locale']->value->getId();?>
 "><?php echo $_smarty_tpl->tpl_vars['locale']->value->getNome();?>
 </a></h2>
             </div>
 
             <div class="gestioneutente">
-                <a href="registrazioneEvento.html">Aggiungi evento</a>
+                <a href="/GestioneEvento/mostraFormCreaEvento/<?php echo $_smarty_tpl->tpl_vars['locale']->value->getId();?>
+">Aggiungi evento</a>
                 <a href="#eventi">Eventi organizzati</a>
                 <a href="/Profilo/mostraProfilo">Torna all'Area Personale <i class="fa fa-sign-out"></i></a>
             </div>
@@ -211,8 +212,9 @@ $_smarty_tpl->tpl_vars['evento']->do_else = false;
                     <div class="items-body-content row-cols-3">
                         <p><?php echo $_smarty_tpl->tpl_vars['evento']->value->getNome();?>
 </p>
-                        <a href=""><input type="button" value="Gestisci evento"></a>
-                        <a href="/GestioneEvento/eliminaEvento/<?php echo $_smarty_tpl->tpl_vars['evento']->value->getID();?>
+                        <a href="/GestioneEvento/mostraFormGestioneEvento/<?php echo $_smarty_tpl->tpl_vars['evento']->value->getId();?>
+"><input type="button" value="Gestisci evento"></a>
+                        <a href="/GestioneEvento/eliminaEvento/<?php echo $_smarty_tpl->tpl_vars['evento']->value->getId();?>
 "><input type="button" value="Elimina evento"></a>
                     </div>
                     <?php
