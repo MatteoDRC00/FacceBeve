@@ -872,6 +872,30 @@ class FDB{
 		}
 	}
 
+	public function getUtentiByState($state)
+	{
+		try {
+			$query = "SELECT username FROM utente WHERE state = " . $state . ";";
+			$stmt = $this->database->prepare($query);
+			$stmt->execute();
+			$num = $stmt->rowCount();
+			if ($num == 0) {
+				$result = null;        //nessuna riga interessata. return null
+			} elseif ($num == 1) {                          //nel caso in cui una sola riga fosse interessata
+				$result = $stmt->fetch(PDO::FETCH_ASSOC);   //ritorna una sola riga
+			} else {
+				$result = array();                         //nel caso in cui piu' righe fossero interessate
+				$stmt->setFetchMode(PDO::FETCH_ASSOC);   //imposta la modalità di fetch come array associativo
+				while ($row = $stmt->fetch())
+					$result[] = $row;                    //ritorna un array di righe.
+			}
+			return $result;
+		} catch (PDOException $e) {
+			echo "Attenzione errore: " . $e->getMessage();
+			$this->database->rollBack();
+		}
+	}
+
 }
 
 ?>

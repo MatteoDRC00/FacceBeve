@@ -41,22 +41,37 @@ class CAdmin{
      * Gli utenti sono divisi in due liste: bannati e attivi
      * @throws SmartyException
      */
-    public function dashboard() {
+    public function getUtentiAttivi() {
         $sessione = new USession();
-        $utente = unserialize($sessione->leggi_valore('utente'));
-        if (($utente->getUsername() == "admin") || ($utente->getUsername() == "Admin")) { //aggiustare
-            $view = new VAdmin();
-            $pm = FPersistentManager::getInstance();
-            // visualizza elenco utenti attivi e bannati
+        $tipo=$sessione->leggi_valore('tipo_utente');
+        $view = new VAdmin();
+        $pm = FPersistentManager::getInstance();
+
+        if ($sessione->isLogged() && $tipo== "admin") {
+            // visualizza elenco utenti attivi
             $utentiAttivi = $pm->loadUtenti(1);
-            $utentiBannati = $pm->loadUtenti(0);
-            $img_attivi = static::set_immagini($utentiAttivi);
-            $img_bann = static::set_immagini($utentiBannati);
-            $categorie = $pm->loadAll("FCategoria");
-            $view->HomeAdmin($utentiAttivi, $utentiBannati,$img_attivi,$img_bann,$categorie);
+            $img_attivi = static::set_immagini($utentiAttivi); //non so a cosa serve set_immagini
+            $view->getUtentiAttivi($utentiAttivi,$img_attivi);
         } else {
                 $view = new VError();
                 $view->error(1);
+        }
+    }
+
+    public function getUtentiBannati(){
+        $sessione = new USession();
+        $tipo=$sessione->leggi_valore('tipo_utente');
+        $view = new VAdmin();
+        $pm = FPersistentManager::getInstance();
+
+        if ($sessione->isLogged() && $tipo== "admin") {
+            // visualizza elenco utenti attivi
+            $utentiBannati = $pm->loadUtenti(0);
+            $img_bannati = static::set_immagini($utentiBannati); //non so a cosa serve set_immagini
+            $view->getUtentiAttivi($utentiBannati,$img_bannati);
+        } else {
+            $view = new VError();
+            $view->error(1);
         }
     }
 

@@ -179,12 +179,13 @@ class FUtente{
      * @param $state valore dello stato
      * @return object $utente Utente
      
-	 PROBABILMENTE NEL NOSTRO CASO INUTILE
+	 PROBABILMENTE NEL NOSTRO CASO INUTILE*/
 	 
     public static function loadUtenti($state){
         $utente = null;
-        $db=FDatabase::getInstance();
-        list ($result, $rows_number)=$db->getUtenti($state);
+        $db=FDB::getInstance();
+        list ($result, $rows_number)=$db->getUtentiByState($state);
+
         if(($result!=null) && ($rows_number == 1)) {
             $utente=new EUtente($result['username'],$result['nome'],$result['cognome'], $result['email'], $result['password'],$result['dataIscrizione']);
         }
@@ -197,7 +198,7 @@ class FUtente{
             }
         }
         return $utente;
-    } */
+    }
 
 
     /**

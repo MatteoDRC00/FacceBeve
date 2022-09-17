@@ -142,6 +142,11 @@ class VAdmin
         $this->smarty->display('admin_HP.tpl');
     }
 
+
+    public function getUtentiAttivi($utentiAttivi,$imgAttivi){
+
+    }
+
     /**
      * Funzione di supporto che si occupa gestire le immagini degli utenti presenti nell'elenco delle recensioni
      * @param $imgrec
