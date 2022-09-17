@@ -14,7 +14,7 @@ class FRecensione{
     private static $table = "Recensione";
 
     /** valori della tabella nel DB */
-    private static $values="(:id,:titolo,:descrizione,:voto,:data,:segnalato,:counter,:utente,:locale)";
+    private static $values="(:id,:titolo,:descrizione,:voto,:data,:segnalato,:utente,:locale)";
 
     /** costruttore */
     public function __construct() {
@@ -33,10 +33,8 @@ class FRecensione{
         $stmt->bindValue(':voto',$recensione->getVoto(),PDO::PARAM_INT);
         $stmt->bindValue(':data',$recensione->getData());
         $stmt->bindValue(':segnalato',$recensione->isSegnalata(),PDO::PARAM_BOOL);
-        $stmt->bindValue(':counter',$recensione->getCounter(),PDO::PARAM_INT);
         $stmt->bindValue(':utente',$recensione->getUtente()->getUsername(),PDO::PARAM_INT);
         $stmt->bindValue(':locale',$recensione->getLocale()->getId(),PDO::PARAM_INT);
-        //$stmt->bindValue(':visibilità',$recensione->getVisibilita,PDO::PARAM_BOOL);
     }
 
     /**
@@ -162,7 +160,7 @@ class FRecensione{
     public static function loadAll() {
         $rec = null;
         $db = FDB::getInstance();
-        list($result,$num) =$db->getAllRev(static::getClass(), $campo, $valore);
+        list($result,$num) =$db->getAllRev(static::getClass());
         if(($result != null) && ($num == 1)) {
             $utente = FUtente::loadByField("username",$result['utente']);
             $locale = FLocale::loadByField("id",$result['locale']);

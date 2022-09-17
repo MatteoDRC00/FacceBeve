@@ -31,7 +31,7 @@ class CGestioneRecensione
     {
         $sessione = new USession();
         $pm = FPersistentManager::getInstance();
-        $utente = $sessione->leggi_valore('utente');
+        $utente = $pm->load("username",$sessione->leggi_valore('utente'),"FUtente");
         $locale = $pm->load("id", $id, "FLocale");
         if (($sessione->leggi_valore('tipo_utente') == "EUtente")) {
 
@@ -46,12 +46,12 @@ class CGestioneRecensione
             $data = (string)date("d/m/Y");
 
             $recensione = new ERecensione($utente, $titolo, $descrizione, $valutazione, $data, $locale);
-
+            
             $idR = $pm->store($recensione);
 
             $recensione->setId($idR);
 
-           header('Location: /Ricerca/mostraHome/' . $id);
+          // header('Location: /Ricerca/mostraHome/' . $id);
         } else {
             header('Location: /Ricerca/mostraHome');
         }

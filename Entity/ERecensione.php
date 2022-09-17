@@ -31,7 +31,7 @@ class ERecensione implements JsonSerializable {
         $this->voto = $voto;
         $this->data = $data;
 		$this->locale=$locale;
-		$this->segnalata=false;
+		$this->segnalata=0;
     }
 
     /**
@@ -175,8 +175,7 @@ class ERecensione implements JsonSerializable {
                 'titolo'   => $this->getTitolo(),
                 'voto'   => $this->getVoto(),
                 'data'   => $this->getData(),
-                'segnalata'   => $this->isSegnalata(),
-                'counter'   => $this->getCounter()
+                'segnalata'   => $this->isSegnalata()
             ];
     }
 

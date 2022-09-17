@@ -171,7 +171,6 @@ CREATE TABLE `Recensione` (
     `voto` FLOAT(3) NOT NULL,
     `data` CHAR(11) NOT NULL,
     `segnalato` BOOLEAN  DEFAULT 0,
-    `counter` BOOLEAN  DEFAULT 0, /*Conta il numero di segnalazioni alla recensione*/
     `utente` VARCHAR(24) NOT NULL,
     `locale` INT(11) NOT NULL,
     PRIMARY KEY (`id`),
@@ -179,8 +178,8 @@ CREATE TABLE `Recensione` (
     FOREIGN KEY (`locale`) REFERENCES Locale(`id`) ON DELETE CASCADE ON UPDATE CASCADE 
 );
 /*Inserimento dati Recensione*/
-INSERT INTO `Recensione` (`id`,`titolo`,`descrizione`,`voto`,`data`,`segnalato`,`counter`,`utente`,`locale`) VALUES
-(1,'Fantastici','Serata stupenda, locale consigliatissimo, barista impeccabile',5,'12/09/2022',0,0,'JSabbly',1);
+INSERT INTO `Recensione` (`id`,`titolo`,`descrizione`,`voto`,`data`,`segnalato`,`utente`,`locale`) VALUES
+(1,'Fantastici','Serata stupenda, locale consigliatissimo, barista impeccabile',5,'12/09/2022',0,'JSabbly',1);
 
 /*Tabella relativa alle Risposte alle recensioni*/
 DROP TABLE IF EXISTS `Risposta`;
