@@ -324,7 +324,7 @@ class FDB{
 				while ($row = $stmt->fetch())
 					$result[] = $row;                    //ritorna un array di righe.
 			}
-			return $result;
+			return array($result, $num);
 		} catch (PDOException $e) {
 			echo "Attenzione errore: " . $e->getMessage();
 			$this->database->rollBack();
@@ -421,10 +421,42 @@ class FDB{
 		return false;
 	}
 
+	public function deleteUtenteLocale($id_locale){
+		try {
+			$this->database->beginTransaction();
+			$query = "DELETE FROM " . "utenti_locali" . " WHERE " . "ID_Locale" . "='" . $id_locale . "';";
+			$stmt = $this->database->prepare($query);
+			$stmt->execute();
+			$this->database->commit();
+			$this->closeDbConnection();
+			return true;
+		} catch (PDOException $e) {
+			echo "Attenzione errore: " . $e->getMessage();
+			$this->database->rollBack();
+		}
+		return false;
+	}
+
 	public function deleteEventoLocale($id_evento){
 		try {
 			$this->database->beginTransaction();
 			$query = "DELETE FROM " . "locale_eventi" . " WHERE " . "ID_Evento" . "='" . $id_evento . "';";
+			$stmt = $this->database->prepare($query);
+			$stmt->execute();
+			$this->database->commit();
+			$this->closeDbConnection();
+			return true;
+		} catch (PDOException $e) {
+			echo "Attenzione errore: " . $e->getMessage();
+			$this->database->rollBack();
+		}
+		return false;
+	}
+
+	public function deleteLocaleEvento($id_locale){
+		try {
+			$this->database->beginTransaction();
+			$query = "DELETE FROM " . "locale_eventi" . " WHERE " . "ID_Locale" . "='" . $id_locale . "';";
 			$stmt = $this->database->prepare($query);
 			$stmt->execute();
 			$this->database->commit();

@@ -142,7 +142,7 @@
                     <div class="row" style="color: #f0c040">
 
                         <div class="entries">
-                            {if isset($locali_preferiti)}
+                            {if !empty($locali_preferiti)}
                                 {foreach $locali_preferiti as $locale}
                                     <a href="/GestioneLocale/mostraInfoLocale/{$locale->getID()}">{$locale->getNome()}   <i class="fa fa-angle-right"></i></a>
                                 {/foreach}

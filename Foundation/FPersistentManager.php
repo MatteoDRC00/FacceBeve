@@ -263,13 +263,13 @@ class FPersistentManager {
 
     public function getLocaliPreferiti($id_utente){
         $db = FDB::getInstance();
-        $utente_locali[] = $db->loadByTable("utenti_locali", "ID_Utente", $id_utente);
+        list($utente_locali[], $num) = $db->loadByTable("utenti_locali", "ID_Utente", $id_utente);
 
         $locali_preferiti = array();
 
         if(!empty($utente_locali)){
-            for($i=0; $i<count($utente_locali); $i++){
-                $locali_preferiti[] = self::load("id", $utente_locali[$i]['ID_Locale'], "FLocale");
+            for($i=0; $i<$num; $i++){
+                $locali_preferiti[] = FLocale::loadByField("id", $utente_locali[$i]['ID_Locale']);
             }
         }
         return $locali_preferiti;
@@ -285,9 +285,19 @@ class FPersistentManager {
         $db->deleteCategorieLocale($id_locale);
     }
 
+    public function deleteUtenteLocale($id_locale){
+        $db = FDB::getInstance();
+        $db->deleteUtenteLocale($id_locale);
+    }
+
     public function deleteOrariLocale($id_locale){
         $db = FDB::getInstance();
         $db->deleteOrariLocale($id_locale);
+    }
+
+    public function deleteLocaleEvento($id_locale){
+        $db = FDB::getInstance();
+        $db->deleteLocaleEvento($id_locale);
     }
 
     public function deleteEventoLocale($id_evento){

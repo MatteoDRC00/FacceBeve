@@ -147,7 +147,7 @@ class FLocale {
      * @return array|ELocale
      */
     public static function loadByField($field, $id){
-        $locale = null;
+        $locale = array();
         $db = FDB::getInstance();
         list($result, $num) = $db->load(static::getClass(), $field, $id);
         if(($result!=null) && ($num == 1)) {
@@ -157,7 +157,7 @@ class FLocale {
             $eventi[] = FEvento::loadByLocale($result["id"]);
             $orari[] = FOrario::loadByLocale($result["id"]);
             $immagini = FImmagine::loadByField("id",$result["idImg"]);
-            $locale=new ELocale($result['nome'], $result['descrizione'], $result['numtelefono'], $proprietario , $localizzazione);
+            $locale = new ELocale($result['nome'], $result['descrizione'], $result['numtelefono'], $proprietario , $localizzazione);
             $locale->setImg($immagini);
             $locale->setCategoria($categorie);
             $locale->setEventiOrganizzati($eventi);

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-17 10:22:03
+/* Smarty version 4.2.0, created on 2022-09-17 18:29:09
   from 'C:\xampp\htdocs\FacceBeve\template\areaPersonaleUtente.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_632583abcf1f10_33202165',
+  'unifunc' => 'content_6325f5d53ea309_02420637',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '7757a365921f193a5e1677eb3c4671e453775876' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\areaPersonaleUtente.tpl',
-      1 => 1663402920,
+      1 => 1663430599,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_632583abcf1f10_33202165 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6325f5d53ea309_02420637 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -174,7 +174,7 @@ function content_632583abcf1f10_33202165 (Smarty_Internal_Template $_smarty_tpl)
                     <div class="row" style="color: #f0c040">
 
                         <div class="entries">
-                            <?php if ((isset($_smarty_tpl->tpl_vars['locali_preferiti']->value))) {?>
+                            <?php if (!empty($_smarty_tpl->tpl_vars['locali_preferiti']->value)) {?>
                                 <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['locali_preferiti']->value, 'locale');
 $_smarty_tpl->tpl_vars['locale']->do_else = true;

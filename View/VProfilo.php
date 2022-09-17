@@ -277,8 +277,6 @@ class VProfilo{
             }elseif (get_class($user)=="EProprietario"){
                 $this->smarty->display('areaPersonaleProprietario.tpl');
             }
-
-
     }
 
 }
