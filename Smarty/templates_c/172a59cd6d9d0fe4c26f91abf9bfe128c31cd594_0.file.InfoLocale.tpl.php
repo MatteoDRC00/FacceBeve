@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-17 23:38:36
+/* Smarty version 4.2.0, created on 2022-09-18 00:37:02
   from 'C:\xampp\htdocs\FacceBeve\template\InfoLocale.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_63263e5cb606c3_75306225',
+  'unifunc' => 'content_63264c0e06d8d2_01361764',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '172a59cd6d9d0fe4c26f91abf9bfe128c31cd594' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\InfoLocale.tpl',
-      1 => 1663450714,
+      1 => 1663454218,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_63263e5cb606c3_75306225 (Smarty_Internal_Template $_smarty_tpl) {
+function content_63264c0e06d8d2_01361764 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <?php $_smarty_tpl->_assignInScope('locale', (($tmp = $_smarty_tpl->tpl_vars['locale']->value ?? null)===null||$tmp==='' ? null ?? null : $tmp));
@@ -246,11 +246,11 @@ $__foreach_recensione_2_saved = $_smarty_tpl->tpl_vars['recensione'];
 
                                                 /5
                                                 <?php if ($_smarty_tpl->tpl_vars['recensione']->value->getUtente()->getUsername() == $_smarty_tpl->tpl_vars['utente']->value) {?>
-                                                    <form action="/GestioneRecensione/cancella/<?php echo $_smarty_tpl->tpl_vars['recensione']->value->getId();?>
+                                                    <form action="/GestioneRecensione/cancellaRecensione/<?php echo $_smarty_tpl->tpl_vars['recensione']->value->getId();?>
 "
                                                           method="POST">
                                                         <button type="submit" style="border-radius:9px; height: 40px"><i
-                                                                    class="align-items-xxl-end"></i>Elimina Recensione:
+                                                                    class="align-items-xxl-end"></i>Elimina la tua Recensione:
                                                         </button>
                                                     </form>
                                                 <?php }?>
@@ -260,7 +260,7 @@ $__foreach_recensione_2_saved = $_smarty_tpl->tpl_vars['recensione'];
  </h4>
                                             <p><?php echo $_smarty_tpl->tpl_vars['recensione']->value->getDescrizione();?>
 </p>
-                                            
+
 
                                         </div>
                                     </div>
@@ -270,7 +270,7 @@ echo $_smarty_tpl->tpl_vars['recensione']->iteration-1;
 $_prefixVariable1 = ob_get_clean();
 if ((isset($_smarty_tpl->tpl_vars['arrayRisposte']->value[$_prefixVariable1]))) {?>
                                     <div id="comment-reply-1" class="comment comment-reply">
-                                        <div class="d-flex">
+                                        <div class="d-flex"> <h6><i class="bi-arrow-right-short">Re:</i></h6>
                                             <div class="comment-img"><img
                                                         src="data:<?php ob_start();
 echo $_smarty_tpl->tpl_vars['recensione']->iteration-1;
@@ -294,6 +294,20 @@ echo $_smarty_tpl->tpl_vars['recensione']->iteration-1;
 $_prefixVariable5 = ob_get_clean();
 echo $_smarty_tpl->tpl_vars['arrayRisposte']->value[$_prefixVariable5]->getDescrizione();?>
 </p>
+
+                                                <?php ob_start();
+echo $_smarty_tpl->tpl_vars['recensione']->iteration-1;
+$_prefixVariable6 = ob_get_clean();
+if ($_smarty_tpl->tpl_vars['arrayRisposte']->value[$_prefixVariable6]->getProprietario()->getUsername() == $_smarty_tpl->tpl_vars['utente']->value) {?>
+                                                    <form action="/GestioneRecensione/cancellaRisposta/<?php echo $_smarty_tpl->tpl_vars['recensione']->value->getId();?>
+"
+                                                          method="POST">
+                                                        <button type="submit" style="border-radius:9px; height: 40px"><i
+                                                                    class="align-items-xxl-end"></i>Elimina la tua Risposta:
+                                                        </button>
+                                                    </form>
+                                                <?php }?>
+
                                             </div>
                                         </div>
                                     </div>
@@ -303,8 +317,8 @@ echo $_smarty_tpl->tpl_vars['arrayRisposte']->value[$_prefixVariable5]->getDescr
                                             <h4>Rispondi</h4>
                                             <form action="/GestioneRecensione/rispondi/<?php ob_start();
 echo $_smarty_tpl->tpl_vars['recensione']->iteration-1;
-$_prefixVariable6 = ob_get_clean();
-echo $_smarty_tpl->tpl_vars['arrayRecensioni']->value[$_prefixVariable6]->getId();?>
+$_prefixVariable7 = ob_get_clean();
+echo $_smarty_tpl->tpl_vars['arrayRecensioni']->value[$_prefixVariable7]->getId();?>
 "
                                                   method="POST"
                                                   name="Risposta"> <!--onsubmit="return validateRisposta()"-->

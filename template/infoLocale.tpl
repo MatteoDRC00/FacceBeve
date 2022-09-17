@@ -177,10 +177,10 @@
                                             <h5>{$recensione->getData()} | Voto:{$recensione->getVoto()}
                                                 /5
                                                 {if $recensione->getUtente()->getUsername() eq $utente}
-                                                    <form action="/GestioneRecensione/cancella/{$recensione->getId()}"
+                                                    <form action="/GestioneRecensione/cancellaRecensione/{$recensione->getId()}"
                                                           method="POST">
                                                         <button type="submit" style="border-radius:9px; height: 40px"><i
-                                                                    class="align-items-xxl-end"></i>Elimina Recensione:
+                                                                    class="align-items-xxl-end"></i>Elimina la tua Recensione:
                                                         </button>
                                                     </form>
                                                 {/if}
@@ -188,14 +188,14 @@
 
                                             <h4 style="font-weight:bold;">{$recensione->getTitolo()} </h4>
                                             <p>{$recensione->getDescrizione()}</p>
-                                            
+
 
                                         </div>
                                     </div>
                                 </div>
                                 {if isset($arrayRisposte[{$recensione@iteration-1}])}
                                     <div id="comment-reply-1" class="comment comment-reply">
-                                        <div class="d-flex">
+                                        <div class="d-flex"> <h6><i class="bi-arrow-right-short">Re:</i></h6>
                                             <div class="comment-img"><img
                                                         src="data:{$arrayRisposte[{$recensione@iteration-1}]->getProprietario()->getImgProfilo()->getType()};base64,{$arrayRisposte[{$recensione@iteration-1}]->getProprietario()->getImgProfilo()->getImmagine()}"
                                                         alt="Immagine profilo proprietario"
@@ -203,6 +203,16 @@
                                             <div>
                                                 <h5>{$arrayRisposte[{$recensione@iteration-1}]->getProprietario()->getUsername()}</h5>
                                                 <p>{$arrayRisposte[{$recensione@iteration-1}]->getDescrizione()}</p>
+
+                                                {if $arrayRisposte[{$recensione@iteration-1}]->getProprietario()->getUsername() eq $utente}
+                                                    <form action="/GestioneRecensione/cancellaRisposta/{$recensione->getId()}"
+                                                          method="POST">
+                                                        <button type="submit" style="border-radius:9px; height: 40px"><i
+                                                                    class="align-items-xxl-end"></i>Elimina la tua Risposta:
+                                                        </button>
+                                                    </form>
+                                                {/if}
+
                                             </div>
                                         </div>
                                     </div>

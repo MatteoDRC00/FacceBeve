@@ -2030,6 +2030,7 @@ section {
 
 .blog .blog-comments .comment {
     margin-top: 15px;
+    margin-bottom: 55px;
     position: relative;
 }
 
@@ -2076,6 +2077,7 @@ section {
 
 .blog .blog-comments .comment.comment-reply {
     padding-left: 40px;
+    margin-bottom: 55px;
 }
 
 .blog .blog-comments .reply-form {

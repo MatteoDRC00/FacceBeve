@@ -185,7 +185,7 @@ INSERT INTO `Recensione` (`id`,`titolo`,`descrizione`,`voto`,`data`,`segnalato`,
 DROP TABLE IF EXISTS `Risposta`;
 
 CREATE TABLE `Risposta` (
-    `id` INT(11) NOT NULL,
+    `id` INT(11) NOT NULL AUTO_INCREMENT,
     `descrizione` VARCHAR(420),
     `proprietario` VARCHAR(24) NOT NULL,
     `recensione` INT(11) NOT NULL,

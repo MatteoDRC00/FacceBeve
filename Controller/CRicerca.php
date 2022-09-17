@@ -107,6 +107,8 @@ class CRicerca{
         $vRicerca = new VRicerca();
         $pm = FPersistentManager::GetInstance();
         $sessione = new USession();
+        $sessione->cancella_valore('locale');
+        $sessione->imposta_valore('locale',$id);
         $result = $pm->load("id", $id, "FLocale");
         $proprietario=null;
 

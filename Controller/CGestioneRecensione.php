@@ -72,12 +72,13 @@ class CGestioneRecensione
 
             $descrizione = $view->getDescrizioneRisposta();
 
-            $pm->store(new ERisposta($id, $descrizione, $proprietario));
+            $risposta = new ERisposta($id, $descrizione, $proprietario);
 
-            $idLocale = $view->getIdLocale();
+            $pm->store($risposta);
 
-            header('Location: /Ricerca/dettagliLocale/'.$idLocale);
+            header('Location: /Ricerca/dettagliLocale/'.$sessione->leggi_valore('locale'));
         } else {
+            $sessione->cancella_valore('locale');
             header('Location: /Ricerca/mostraHome');
         }
     }
@@ -91,22 +92,19 @@ class CGestioneRecensione
     static function cancellaRecensione($id)
     {
         $sessione = new USession();
-        $view = new VGestioneRecensione();
-        $utente = $sessione->leggi_valore('utente');
+        $user = $sessione->leggi_valore('utente');
         $tipo = $sessione->leggi_valore('tipo_utente');
         $pm = FPersistentManager::GetInstance();
-        if (($tipo == "recensione") && (get_class($utente) == "EUtente")) {
+        if ($tipo == "EUtente") {
             $recensione = $pm->load("id", $id, "FRecensione");
+            $utente = $pm->load("username",$user,"FUtente");
             if ($utente->getUsername() == $recensione->getUtente()->getUsername()) {
                 $pm->delete("id", $id, "FRecensione");
+                header('Location: /Ricerca/dettagliLocale/'.$sessione->leggi_valore('locale'));
+            } else {
+                $sessione->cancella_valore('locale');
+                header('Location: /Ricerca/mostraHome');
             }
-        } elseif (($tipo == "risposta") && (get_class($utente) == "EProprietario")) {
-            $risposta = $pm->load("id", $id, "FRisposta");
-            if ($utente->getUsername() == $risposta->getProprietario()->getUsername()) {
-                $pm->delete("id", $id, "FRisposta");
-            }
-        } else {
-            header('Location: /FacceBeve/'); //Qualcosa va mostrato però
         }
     }
 
@@ -116,21 +114,22 @@ class CGestioneRecensione
      * se l'utente è loggato :
      * @throws SmartyException
      */
-    static function cancellaRisposta($id)
+    public function cancellaRisposta($id)
     {
         $sessione = new USession();
-        //$view = new VGestioneRecensione();
-        $utente = $sessione->leggi_valore('utente');
+        $user = $sessione->leggi_valore('utente');
         $tipo = $sessione->leggi_valore('tipo_utente');
         $pm = FPersistentManager::GetInstance();
         if ($tipo == "EProprietario") {
             $risposta = $pm->load("id", $id, "FRisposta");
-            if ($utente->getUsername() == $risposta->getProprietario()->getUsername()) {
+            $proprietario = $pm->load("username",$user,"FProprietario");
+            if ($proprietario->getUsername() == $risposta->getProprietario()->getUsername()) {
                 $pm->delete("id", $id, "FRisposta");
-                header('Location: /CRicerca/dettagliLocale/');
+                header('Location: /Ricerca/dettagliLocale/'.$sessione->leggi_valore('locale'));
             }
         } else {
-            header('Location: /CRicerca/mostraHome'); //Qualcosa va mostrato però
+            $sessione->cancella_valore('locale');
+            header('Location: /Ricerca/mostraHome'); //Qualcosa va mostrato però
         }
     }
 
