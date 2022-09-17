@@ -116,6 +116,10 @@ class CRicerca{
          else
              $recensioni[] = $pm->load("locale",$id,"FRecensione");
 
+         $tipo = $sessione->leggi_valore('tipo_utente');
+         $username = $sessione->leggi_valore('utente');
+         $presente = $pm->existEsterna("utenti_locali", "ID_Locale", $id, "ID_Utente", $username);
+
         if (is_array($recensioni)) {
             $risposte = array();
             $sum = 0;
@@ -149,7 +153,7 @@ class CRicerca{
                     $proprietario=1;
             }
         }
-        $vRicerca->dettagliLocale($result, $recensioni, $risposte, $rating, $proprietario);
+        $vRicerca->dettagliLocale($tipo,$presente,$result, $recensioni, $risposte, $rating,$proprietario);
     }
 
     public function aggiungiAPreferiti($id_locale){
