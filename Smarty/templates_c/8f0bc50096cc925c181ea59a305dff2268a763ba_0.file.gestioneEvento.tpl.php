@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-17 16:20:12
+/* Smarty version 4.2.0, created on 2022-09-17 16:58:44
   from 'C:\xampp\htdocs\FacceBeve\template\gestioneEvento.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_6325d79c477305_29164209',
+  'unifunc' => 'content_6325e0a44b06f8_28294771',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '8f0bc50096cc925c181ea59a305dff2268a763ba' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\gestioneEvento.tpl',
-      1 => 1663424407,
+      1 => 1663426718,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6325d79c477305_29164209 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6325e0a44b06f8_28294771 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -79,7 +79,7 @@ function content_6325d79c477305_29164209 (Smarty_Internal_Template $_smarty_tpl)
         <div class="container">
 
             <div class="d-flex justify-content-between align-items-center">
-                <h2 style="font-weight: bold">Gestisci evento: <a href="/GestioneLocale/mostraInfoLocale/<?php echo $_smarty_tpl->tpl_vars['evento']->value->getId();?>
+                <h2 style="font-weight: bold">Gestisci evento: <a href="/GestioneLocale/mostraInfoLocale/<?php echo $_smarty_tpl->tpl_vars['locale']->value;?>
 "><?php echo $_smarty_tpl->tpl_vars['evento']->value->getNome();?>
 </a></h2>
             </div>

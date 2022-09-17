@@ -37,8 +37,12 @@ class VGestioneEvento{
     public function showFormModificaEvento($id_evento)
     {
         $pm = FPersistentManager::getInstance();
+
+        $id_locale=$pm->getLocaleByEvento($id_evento);
+        //print_r($id_locale);
         $evento = $pm->load("id", $id_evento, "FEvento");
         $this->smarty->assign('evento', $evento);
+        $this->smarty->assign('locale',$id_locale);
         $this->smarty->display('gestioneEvento.tpl');
     }
 

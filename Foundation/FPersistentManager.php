@@ -62,7 +62,7 @@ class FPersistentManager {
 
     public function getEventiByLocale($id_locale){
         $db = FDB::getInstance();
-        $result = $db->getIdLocaleByIdEvento($id_locale);
+        $result = $db->getIdEventoByIdLocale($id_locale);
         $eventi = array();
 
         if($result != null){
@@ -73,6 +73,15 @@ class FPersistentManager {
 
 
         return $eventi;
+
+    }
+
+
+    public function getLocaleByEvento($id_evento){
+        $db = FDB::getInstance();
+        $result = $db->getIdLocaleByIdEvento($id_evento);
+        //print_r($result['ID_Locale']);
+        return $result['ID_Locale'];
 
     }
 
