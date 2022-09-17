@@ -76,6 +76,10 @@ class CRicerca{
                 $categoria = $vRicerca->getCategorie();
                 if ($nomelocale != null || $citta != null || $categoria != null){
                     $pm = FPersistentManager::getInstance();
+                    /*if(is_array($pm->loadForm($nomelocale, $citta,$categoria,"tmp",$tipo)))
+                        $result = $pm->loadForm($nomelocale, $citta,$categoria,"tmp",$tipo);
+                    else SARà TESTATO
+                        $result[] = $pm->loadForm($nomelocale, $citta,$categoria,"tmp",$tipo); */
                     $result[] = $pm->loadForm($nomelocale, $citta,$categoria,"tmp",$tipo);
                     $vRicerca->showResult($result, $tipo,$nomelocale,$citta,$categoria,null,null);
                 }else
@@ -86,6 +90,7 @@ class CRicerca{
                 $citta= $vRicerca->getCitta();
                 $data= $vRicerca->getDataEvento();
                 if ($nomelocale != null || $nomeevento != null || $citta != null || $data != null){
+                    //Anche qui da testare
                         $pm = FPersistentManager::GetInstance();
                         list($result[],$local[]) = $pm->loadForm($nomelocale, $nomeevento, $citta, $data,$tipo);
                         $vRicerca->showResult($result, $tipo, $nomelocale, $citta, $nomeevento, $data,$local);
