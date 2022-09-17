@@ -310,6 +310,16 @@ class FPersistentManager {
         $db->storeOrariLocale($locale, $orario);
     }
 
+    public function deleteUtentiLocali($utente, $locale){
+        $db = FDB::getInstance();
+        $db->deleteUtentiLocali($locale, $utente);
+    }
+
+    public function storeUtentiLocali($utente, $locale){
+        $db = FDB::getInstance();
+        $db->storeUtentiLocali($locale, $utente);
+    }
+
     public function storeEventiLocale($evento, $locale){
         $db = FDB::getInstance();
         $db->storeEventiLocale($locale, $evento);

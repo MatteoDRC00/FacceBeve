@@ -14,7 +14,7 @@ class VRicerca
         $this->smarty = StartSmarty::configuration();
     }
 
-    public function preferiti(){
+    public function getPreferito(){
         $value = null;
         if (isset($_POST['pref']))
             $value = $_POST['pref'];

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-17 19:30:41
+/* Smarty version 4.2.0, created on 2022-09-17 19:45:08
   from 'C:\xampp\htdocs\FacceBeve\template\InfoLocale.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_63260441551170_18858317',
+  'unifunc' => 'content_632607a44e0e31_07365767',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '172a59cd6d9d0fe4c26f91abf9bfe128c31cd594' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\InfoLocale.tpl',
-      1 => 1663435831,
+      1 => 1663436705,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_63260441551170_18858317 (Smarty_Internal_Template $_smarty_tpl) {
+function content_632607a44e0e31_07365767 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <?php $_smarty_tpl->_assignInScope('locale', (($tmp = $_smarty_tpl->tpl_vars['locale']->value ?? null)===null||$tmp==='' ? null ?? null : $tmp));
@@ -99,7 +99,9 @@ echo '<script'; ?>
                     <div class="portfolio-details-slider swiper">
                         <h2><?php echo $_smarty_tpl->tpl_vars['locale']->value->getNome();?>
 </h2>
-                        <input onclick="change()" type="button" value="Aggiungi ai preferiti" id="pref" name="pref">
+                        <form action="/Ricerca/aggiungiAPreferiti" method="POST">
+                            <input onclick="change()" type="submit" value="Aggiungi ai preferiti" id="pref" name="pref">
+                        </form>
                         <div class="stelline star-rating" data-rating="4.6">
                             <div class="empty-stars">
                                 <i class="far fa-star"></i>

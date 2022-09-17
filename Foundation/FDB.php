@@ -103,6 +103,21 @@ class FDB{
 		}
 	}
 
+	public function storeUtentiLocali(string $id_locale, string $username){
+		try {
+			$this->database->beginTransaction();
+			$query = "INSERT INTO " . "utenti_locali" . " VALUES " . "(".$id_locale.",".$username.")".";";
+			$stmt = $this->database->prepare($query); //Prepared Statement
+			$stmt->execute();
+			$this->database->commit();
+			$this->closeDbConnection();
+		} catch (PDOException $e) {
+			echo "Attenzione errore: " . $e->getMessage();
+			$this->database->rollBack();
+			return null;
+		}
+	}
+
 	public function storeEventiLocale(string $id_locale, string $id_evento){
 		try {
 			$this->database->beginTransaction();
@@ -425,6 +440,22 @@ class FDB{
 		try {
 			$this->database->beginTransaction();
 			$query = "DELETE FROM " . "utenti_locali" . " WHERE " . "ID_Locale" . "='" . $id_locale . "';";
+			$stmt = $this->database->prepare($query);
+			$stmt->execute();
+			$this->database->commit();
+			$this->closeDbConnection();
+			return true;
+		} catch (PDOException $e) {
+			echo "Attenzione errore: " . $e->getMessage();
+			$this->database->rollBack();
+		}
+		return false;
+	}
+
+	public function deleteUtentiLocali($id_locale, $username){
+		try {
+			$this->database->beginTransaction();
+			$query = "DELETE FROM " . "utenti_locali" . " WHERE " . "ID_Utente" . "='" . $username . "'" . "AND". "ID_Locale" . "='" . $id_locale . "';";
 			$stmt = $this->database->prepare($query);
 			$stmt->execute();
 			$this->database->commit();

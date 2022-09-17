@@ -73,7 +73,9 @@
                 <div class="col-lg-8">
                     <div class="portfolio-details-slider swiper">
                         <h2>{$locale->getNome()}</h2>
-                        <input onclick="change()" type="button" value="Aggiungi ai preferiti" id="pref" name="pref">
+                        <form action="/Ricerca/aggiungiAPreferiti/{$locale->getId()}" method="POST">
+                            <input onclick="change()" type="submit" value="Aggiungi ai preferiti" id="pref" name="pref">
+                        </form>
                         <div class="stelline star-rating" data-rating="4.6">
                             <div class="empty-stars">
                                 <i class="far fa-star"></i>

@@ -151,5 +151,26 @@ class CRicerca{
         $vRicerca->dettagliLocale($result, $recensioni, $risposte, $rating, $proprietario);
     }
 
+    public function aggiungiAPreferiti($id_locale){
+         $sessione = new USession();
+         $view = new VRicerca();
+         $pm = FPersistentManager::getInstance();
+
+         $username = $sessione->leggi_valore("utente");
+         $tipo = $sessione->leggi_valore("tipo_utente");
+
+         if($sessione->isLogged() && $tipo == "EUtente"){
+             $value = $view->getPreferito();
+             if($value == "Aggiunto!"){
+                 $pm->storeUtentiLocali($username, $id_locale);
+                 header("Location: /Profilo/mostraProfilo");
+             }elseif ($value == "Aggiungi ai preferiti"){
+                 $pm->deleteUtentiLocali($username, $id_locale);
+                 header("Location: /Profilo/mostraProfilo");
+             }
+         }
+
+    }
+
 
 }
