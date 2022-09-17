@@ -156,24 +156,26 @@
                     <div class="blog-comments">
                         <h4 class="comments-count">Area Recensioni:</h4>
                         {if isset($arrayRecensioni)}
-                            {if !is_array($arrayRecensioni)}
+
+                            {foreach $arrayRecensioni as $recensione}
                                 <div id="comment-1" class="comment">
                                     <div class="d-flex">
                                         <div class="comment-img"><img
-                                                    src="data:{$arrayRecensioni->getUtente()->getImgProfilo()->getType()};base64,{$arrayRecensioni->getUtente()->getImgProfilo()->getImmagine()}"
-                                                    alt="Immagine profilo utente" style="border-radius: 35px;"></div>
+                                                    src="data:{$recensione->getUtente()->getImgProfilo()->getType()};base64,{$recensione->getUtente()->getImgProfilo()->getImmagine()}"
+                                                    alt="Immagine profilo utente" style="border-radius: 35px;">
+                                        </div>
                                         <div>
-                                            <h5>{$arrayRecensioni->getUtente()->getUsername()}
-                                                {if isset($proprietario) && !isset($arrayRisposte)}
+                                            <h5>{$recensione->getUtente()->getUsername()}
+                                                {if isset($proprietario) && isset($arrayRisposte[{$recensione@iteration - 1}])}
                                                     <a href="#formRisposta" class="reply"><i
                                                                 class="bi bi-reply-fill"></i>Rispondi</a>
                                                 {/if}
                                             </h5>
 
-                                            <h5>{$arrayRecensioni->getData()} | Voto:{$arrayRecensioni->getVoto()}
+                                            <h5>{$recensione->getData()} | Voto:{$recensione->getVoto()}
                                                 /5
-                                                {if $arrayRecensioni->getUtente()->getUsername() eq $utente}
-                                                    <form action="/GestioneRecensione/cancella/{$arrayRecensioni->getId()}"
+                                                {if $recensione->getUtente()->getUsername() eq $utente}
+                                                    <form action="/GestioneRecensione/cancella/{$recensione->getId()}"
                                                           method="POST">
                                                         <button type="submit" style="border-radius:9px; height: 40px"><i
                                                                     class="align-items-xxl-end"></i>Elimina Recensione:
@@ -182,34 +184,35 @@
                                                 {/if}
                                             </h5>
 
-                                            <h4 style="font-weight:bold;">{$arrayRecensioni->getTitolo()} </h4>
-                                            <p>{$arrayRecensioni->getDescrizione()}</p>
+                                            <h4 style="font-weight:bold;">{$recensione->getTitolo()} </h4>
+                                            <p>{$recensione->getDescrizione()}</p>
+                                            
 
                                         </div>
                                     </div>
                                 </div>
-                                {if isset($arrayRisposte)}
+                                {if isset($arrayRisposte[{$recensione@iteration-1}])}
                                     <div id="comment-reply-1" class="comment comment-reply">
                                         <div class="d-flex">
                                             <div class="comment-img"><img
-                                                        src="data:{$arrayRisposte->getProprietario()->getImgProfilo()->getType()};base64,{$arrayRisposte->getProprietario()->getImgProfilo()->getImmagine()}"
+                                                        src="data:{$arrayRisposte[{$recensione@iteration-1}]->getProprietario()->getImgProfilo()->getType()};base64,{$arrayRisposte[{$recensione@iteration-1}]->getProprietario()->getImgProfilo()->getImmagine()}"
                                                         alt="Immagine profilo proprietario"
                                                         style="border-radius: 35px;"></div>
                                             <div>
-                                                <h5>{$arrayRisposte->getProprietario()->getUsername()}</h5>
-                                                <p>{$arrayRisposte->getDescrizione()}</p>
+                                                <h5>{$arrayRisposte[{$recensione@iteration-1}]->getProprietario()->getUsername()}</h5>
+                                                <p>{$arrayRisposte[{$recensione@iteration-1}]->getDescrizione()}</p>
                                             </div>
                                         </div>
                                     </div>
                                 {else}
-                                    {if isset($proprietario)} <!--style="display: none;" -->
-                                        <div class="reply-form">
+                                    {if isset($proprietario)}
+                                        <div class="reply-form" name="formRisposta">
                                             <h4>Rispondi</h4>
-                                            <form action="/GestioneRecensione/scriviRisposta/{$arrayRecensioni->getId()}"
-                                                  method="POST" name="Risposta">
-                                                <!--onsubmit="return validateRisposta()"-->
+                                            <form action="/GestioneRecensione/scriviRisposta/{$arrayRecensioni[{$recensione@iteration-1}]->getId()}"
+                                                  method="POST"
+                                                  name="Risposta"> <!--onsubmit="return validateRisposta()"-->
                                                 <input type="hidden" name="idRecensione"
-                                                       value="{$arrayRecensioni->getId()}"/>
+                                                       value="{$arrayRecensioni[{$recensione@iteration-1}]->getId()}"/>
                                                 <div class="row">
                                                     <div class="col form-group">
                                                         <textarea name="descrizione" class="form-control"
@@ -222,82 +225,12 @@
                                         </div>
                                     {/if}
                                 {/if}
-                            {else}
-                                {foreach $arrayRecensioni as $recensione}
-                                    <div id="comment-1" class="comment">
-                                        <div class="d-flex">
-                                            <div class="comment-img"><img
-                                                        src="data:{$recensione->getUtente()->getImgProfilo()->getType()};base64,{$recensione->getUtente()->getImgProfilo()->getImmagine()}"
-                                                        alt="Immagine profilo utente" style="border-radius: 35px;">
-                                            </div>
-                                            <div>
-                                                <h5>{$recensione->getUtente()->getUsername()}
-                                                    {if isset($proprietario) && isset($arrayRisposte[{$recensione@iteration - 1}])}
-                                                        <a href="#formRisposta" class="reply"><i
-                                                                    class="bi bi-reply-fill"></i>Rispondi</a>
-                                                    {/if}
-                                                </h5>
-
-
-                                                <h5>{$recensione->getData()} | Voto:{$recensione->getVoto()}
-                                                    /5
-                                                    {if $recensione->getUtente()->getUsername() eq $utente}
-                                                        <form action="/GestioneRecensione/cancella/{$recensione->getId()}"
-                                                              method="POST">
-                                                            <button type="submit" style="border-radius:9px; height: 40px"><i
-                                                                        class="align-items-xxl-end"></i>Elimina Recensione:
-                                                            </button>
-                                                        </form>
-                                                    {/if}
-                                                </h5>
-
-                                                <h4 style="font-weight:bold;">{$recensione->getTitolo()} </h4>
-                                                <p>{$recensione->getDescrizione()}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    {if isset($arrayRisposte[{$recensione@iteration - 1}])}
-                                        <div id="comment-reply-1" class="comment comment-reply">
-                                            <div class="d-flex">
-                                                <div class="comment-img"><img
-                                                            src="data:{$arrayRisposte[{$recensione@iteration - 1}]->getProprietario()->getImgProfilo()->getType()};base64,{$arrayRisposte[{$recensione@iteration - 1}]->getProprietario()->getImgProfilo()->getImmagine()}"
-                                                            alt="Immagine profilo proprietario"
-                                                            style="border-radius: 35px;"></div>
-                                                <div>
-                                                    <h5>{$arrayRisposte[{$recensione@iteration - 1}]->getProprietario()->getUsername()}</h5>
-                                                    <h5>{$arrayRisposte[{$recensione@iteration - 1}]->getData()}</h5>
-                                                    <p>{$arrayRisposte[{$recensione@iteration - 1}]->getDescrizione()}</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    {else}
-                                        {if isset($proprietario)}
-                                            <div class="reply-form" name="formRisposta">
-                                                <h4>Rispondi</h4>
-                                                <form action="/GestioneRecensione/scriviRisposta/{$arrayRecensioni[{$i}]->getId()}"
-                                                      method="POST"
-                                                      name="Risposta"> <!--onsubmit="return validateRisposta()"-->
-                                                    <input type="hidden" name="idRecensione"
-                                                           value="{$arrayRecensioni[{$i}]->getId()}"/>
-                                                    <div class="row">
-                                                        <div class="col form-group">
-                                                        <textarea name="descrizione" class="form-control"
-                                                                  placeholder="Risposta" required
-                                                                  title="Inserire del testo nella risposta"></textarea>
-                                                        </div>
-                                                    </div>
-                                                    <button type="submit" class="btn btn-primary">Rispondi</button>
-                                                </form>
-                                            </div>
-                                        {/if}
-                                    {/if}
-                                {/foreach}
-                            {/if}
+                            {/foreach}
                         {else}
                             <p>Non ci sono ancora recensioni per questo locale</p>
                         {/if}
 
-<!--onsubmit="return validateRecensione()"  -->
+                        <!--onsubmit="return validateRecensione()"  -->
                         <!--/\/\//\/\//\/\//\/\//\/\//\/\///////////////////////\\\\\\\\\\\\\\\\\/\/\//\/\//\/\//\/\//\/\//\/\/////\\\\\/\/\/\/\/\/\/\/\/\//\/\/\-->
                         {if ($userlogged eq 'loggato') && !(isset($proprietario))}
                             <div class="reply-form">
@@ -307,10 +240,11 @@
                                     <input type="hidden" name="idLocale" value={$locale->getId()}/>
                                     <div class="row">
                                         <div class="col-md-6 form-group">
-                                            <input name="titolo" type="text" class="form-control" placeholder="Titolo" >
+                                            <input name="titolo" type="text" class="form-control" placeholder="Titolo">
                                         </div>
                                         <div class="col-md-6 form-group">
-                                            <select name="valutazione" style="font-family: 'FontAwesome',Arial,sans-serif;" >
+                                            <select name="valutazione"
+                                                    style="font-family: 'FontAwesome',Arial,sans-serif;">
                                                 <option>-- Voto --</option>
                                                 <option value="1">&#xf005;</option>
                                                 <option value="2">&#xf005;&#xf005;</option>

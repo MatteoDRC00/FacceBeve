@@ -22,6 +22,7 @@ class Smarty_Variable
      * @var boolean
      */
     public $nocache = false;
+    public $iteration;
 
     /**
      * create Smarty variable object

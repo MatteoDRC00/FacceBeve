@@ -111,7 +111,11 @@ class CRicerca{
         $proprietario=null;
 
         //Calcolo valutazione media locale + sue recensioni con le relative risposte
-        $recensioni = $pm->load("locale",$id,"FRecensione");
+         if(is_array($pm->load("locale",$id,"FRecensione")))
+             $recensioni = $pm->load("locale",$id,"FRecensione");
+         else
+             $recensioni[] = $pm->load("locale",$id,"FRecensione");
+
         if (is_array($recensioni)) {
             $risposte = array();
             $sum = 0;
@@ -124,11 +128,10 @@ class CRicerca{
         }else{
             $idSearch = $recensioni->getId();
             $rating=$recensioni->getVoto();
-            $risposte=$pm->load("recensione",$idSearch,"FRisposta");
+            $risposte[]=$pm->load("recensione",$idSearch,"FRisposta");
         }
         if($sessione->leggi_valore('utente')){
             if($sessione->leggi_valore('tipo_utente')=="EUtente"){
-                //$x = false;
                 $utente = $pm->load("id",$sessione->leggi_valore('utente'),"FUtente");
               /*  if($vRicerca->preferiti() && !($x)){
                     $utente->addLocale($result);
@@ -146,8 +149,6 @@ class CRicerca{
                     $proprietario=1;
             }
         }
-        //print_r($proprietario);
-        //print_r($risposte);
         $vRicerca->dettagliLocale($result, $recensioni, $risposte, $rating, $proprietario);
     }
 

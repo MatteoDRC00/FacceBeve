@@ -89,7 +89,6 @@ class FRecensione{
             $locale = FLocale::loadByField("id",$result['locale']);
             $rec = new ERecensione($utente, $result['titolo'],$result['descrizione'],$result['voto'],$result['data'],$locale);
             $rec->setId($result['id']);
-           // $rec->setCounter($result['id']);
         }
         else {
             if(($result != null) && ($num > 1)){

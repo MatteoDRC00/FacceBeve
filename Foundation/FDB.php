@@ -357,7 +357,7 @@ class FDB{
 	public function load($class, $field, $id){
 		try {
 			$query = "SELECT * FROM " . $class::getTable() . " WHERE " . $field . "='" . $id . "';";
-			$stmt = $this->database->prepare($query); //Prepared Statement
+			$stmt = $this->database->prepare($query);
 			$stmt->execute();
 			$num = $stmt->rowCount();
 			if ($num == 0) {

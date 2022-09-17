@@ -191,19 +191,6 @@ class VRicerca
      */
     public function dettagliLocale($result,$arrayRecensioni,$arrayRisposte,$valutazioneLocale,$proprietario) {
         $sessione = new USession();
-        //Caricamento immagini del locale
-        /*if (is_array($result->getImmagini())) {
-            foreach ($result->getImmagini() as $item) {
-                //Per la trasmissione via HTTP bisogna elaborare le img con base64
-                $pic64locale[] = base64_encode($item->getImmagine());
-            }
-
-        }
-        elseif ($result->getImmagini() !== null) {
-            $pic64locale = base64_encode($result->getImmagini()->getImmagine());
-        }
-        $this->smarty->assign('pic64locale', $pic64locale);*/
-
         //Se l'utente è registrato può vedere gli eventi organizzati dal locale
         if($result->getEventiOrganizzati() !== null){
             $this->smarty->assign('eventi', $result->getEventiOrganizzati());
