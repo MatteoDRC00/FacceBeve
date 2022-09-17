@@ -46,12 +46,10 @@ class CGestioneRecensione
             $data = (string)date("d/m/Y");
 
             $recensione = new ERecensione($utente, $titolo, $descrizione, $valutazione, $data, $locale);
-            
+
             $idR = $pm->store($recensione);
-
-            $recensione->setId($idR);
-
-          // header('Location: /Ricerca/mostraHome/' . $id);
+            
+            header('Location: /Ricerca/dettagliLocale/' . $id);
         } else {
             header('Location: /Ricerca/mostraHome');
         }

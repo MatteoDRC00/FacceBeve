@@ -31,9 +31,9 @@ class FRecensione{
         $stmt->bindValue(':titolo',$recensione->getTitolo(),PDO::PARAM_STR);
         $stmt->bindValue(':descrizione',$recensione->getDescrizione(),PDO::PARAM_STR);
         $stmt->bindValue(':voto',$recensione->getVoto(),PDO::PARAM_INT);
-        $stmt->bindValue(':data',$recensione->getData());
+        $stmt->bindValue(':data',$recensione->getData(),PDO::PARAM_STR);
         $stmt->bindValue(':segnalato',$recensione->isSegnalata(),PDO::PARAM_BOOL);
-        $stmt->bindValue(':utente',$recensione->getUtente()->getUsername(),PDO::PARAM_INT);
+        $stmt->bindValue(':utente',$recensione->getUtente()->getUsername(),PDO::PARAM_STR);
         $stmt->bindValue(':locale',$recensione->getLocale()->getId(),PDO::PARAM_INT);
     }
 
