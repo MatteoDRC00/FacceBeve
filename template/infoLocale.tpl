@@ -7,6 +7,7 @@
 {assign var='proprietario' value=$proprietario|default:null}
 {assign var='valutazioneLocale' value=$valutazioneLocale|default:null}
 {assign var='arrayRisposte' value=$arrayRisposte|default:null}
+{assign var='utente' value=$utente|default:null}
 {assign var='userlogged' value=$userlogged|default:'nouser'}
 <script>
     function change() {
@@ -146,7 +147,6 @@
         </div>
     </section>
 
-
     <section id="blog" class="blog">
         <div class="container" data-aos="fade-up">
             <div class="row">
@@ -169,7 +169,17 @@
                                             </h5>
 
                                             <h5>{$arrayRecensioni->getData()} | Voto:{$arrayRecensioni->getVoto()}
-                                                /5</h5>
+                                                /5
+                                                {if $arrayRecensioni->getUtente()->getUsername() eq $utente}
+                                                    <form action="CGestioneRecensione/cancella/{$arrayRecensioni->getId()}"
+                                                          method="POST">
+                                                        <button type="submit" style="border-radius:9px; height: 40px"><i
+                                                                    class="align-items-xxl-end"></i>Elimina Recensione:
+                                                        </button>
+                                                    </form>
+                                                {/if}
+                                            </h5>
+
                                             <h4 style="font-weight:bold;">{$arrayRecensioni->getTitolo()} </h4>
                                             <p>{$arrayRecensioni->getDescrizione()}</p>
 
@@ -227,10 +237,20 @@
                                                 </h5>
 
 
-                                                <h5>{$recensione->getData()}</h5>
-                                                <h2>{$recensione->getTitolo()}</h2>
+                                                <h5>{$recensione->getData()} | Voto:{$recensione->getVoto()}
+                                                    /5
+                                                    {if $recensione->getUtente()->getUsername() eq $utente}
+                                                        <form action="CGestioneRecensione/cancella/{$recensione->getId()}"
+                                                              method="POST">
+                                                            <button type="submit" style="border-radius:9px; height: 40px"><i
+                                                                        class="align-items-xxl-end"></i>Elimina Recensione:
+                                                            </button>
+                                                        </form>
+                                                    {/if}
+                                                </h5>
+
+                                                <h4 style="font-weight:bold;">{$recensione->getTitolo()} </h4>
                                                 <p>{$recensione->getDescrizione()}</p>
-                                                <i>{$recensione->getVoto()}</i>
                                             </div>
                                         </div>
                                     </div>
@@ -280,19 +300,20 @@
                         {if ($userlogged eq 'loggato') && !(isset($proprietario))}
                             <div class="reply-form">
                                 <h4>Scrivi una recensione</h4>
-                                <form action=CGestioneRecensione/scriviRecensione method="POST" name="Recensione"
+                                <form action="CGestioneRecensione/scriviRecensione/{$locale->getId()}" method="POST"
+                                      name="Recensione"
                                       onsubmit="return validateRecensione()">
                                     <input type="hidden" name="idLocale" value={$locale->getId()}/>
                                     <input type="hidden" name="nomeLocale" value={$locale->getNome()}/>
                                     <input type="hidden" name="localizzazione" value={$locale->getLocalizzazione()}/>
                                     <div class="row">
                                         <div class="col-md-6 form-group">
-                                            <input name="titolo" type="text" class="form-control" placeholder="Titolo">
+                                            <input name="titolo" type="text" class="form-control" placeholder="Titolo" >
                                         </div>
                                         <div class="col-md-6 form-group">
                                             <select name="valutazione"
-                                                    style="font-family: 'FontAwesome',Arial,sans-serif;">
-                                                <option>-- Voto --</option>
+                                                    style="font-family: 'FontAwesome',Arial,sans-serif;" >
+                                                <option value="">-- Voto --</option>
                                                 <option value="1">&#xf005;</option>
                                                 <option value="2">&#xf005;&#xf005;</option>
                                                 <option value="3">&#xf005;&#xf005;&#xf005;</option>

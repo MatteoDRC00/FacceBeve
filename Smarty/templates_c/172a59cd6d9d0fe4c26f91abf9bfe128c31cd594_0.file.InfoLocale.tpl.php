@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-17 17:23:01
+/* Smarty version 4.2.0, created on 2022-09-17 18:55:33
   from 'C:\xampp\htdocs\FacceBeve\template\InfoLocale.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_6325e6557d82a7_45498217',
+  'unifunc' => 'content_6325fc05f37685_14499309',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '172a59cd6d9d0fe4c26f91abf9bfe128c31cd594' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\InfoLocale.tpl',
-      1 => 1663428179,
+      1 => 1663433732,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6325e6557d82a7_45498217 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6325fc05f37685_14499309 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <?php $_smarty_tpl->_assignInScope('locale', (($tmp = $_smarty_tpl->tpl_vars['locale']->value ?? null)===null||$tmp==='' ? null ?? null : $tmp));
@@ -30,6 +30,7 @@ $_smarty_tpl->_assignInScope('eventi', (($tmp = $_smarty_tpl->tpl_vars['eventi']
 $_smarty_tpl->_assignInScope('proprietario', (($tmp = $_smarty_tpl->tpl_vars['proprietario']->value ?? null)===null||$tmp==='' ? null ?? null : $tmp));
 $_smarty_tpl->_assignInScope('valutazioneLocale', (($tmp = $_smarty_tpl->tpl_vars['valutazioneLocale']->value ?? null)===null||$tmp==='' ? null ?? null : $tmp));
 $_smarty_tpl->_assignInScope('arrayRisposte', (($tmp = $_smarty_tpl->tpl_vars['arrayRisposte']->value ?? null)===null||$tmp==='' ? null ?? null : $tmp));
+$_smarty_tpl->_assignInScope('utente', (($tmp = $_smarty_tpl->tpl_vars['utente']->value ?? null)===null||$tmp==='' ? null ?? null : $tmp));
 $_smarty_tpl->_assignInScope('userlogged', (($tmp = $_smarty_tpl->tpl_vars['userlogged']->value ?? null)===null||$tmp==='' ? 'nouser' ?? null : $tmp));
 echo '<script'; ?>
 >
@@ -200,7 +201,6 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
         </div>
     </section>
 
-
     <section id="blog" class="blog">
         <div class="container" data-aos="fade-up">
             <div class="row">
@@ -228,7 +228,18 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                                             <h5><?php echo $_smarty_tpl->tpl_vars['arrayRecensioni']->value->getData();?>
  | Voto:<?php echo $_smarty_tpl->tpl_vars['arrayRecensioni']->value->getVoto();?>
 
-                                                /5</h5>
+                                                /5
+                                                <?php if ($_smarty_tpl->tpl_vars['arrayRecensioni']->value->getUtente()->getUsername() == $_smarty_tpl->tpl_vars['utente']->value) {?>
+                                                    <form action="CGestioneRecensione/cancella/<?php echo $_smarty_tpl->tpl_vars['arrayRecensioni']->value->getId();?>
+"
+                                                          method="POST">
+                                                        <button type="submit" style="border-radius:9px; height: 40px"><i
+                                                                    class="align-items-xxl-end"></i>Elimina Recensione:
+                                                        </button>
+                                                    </form>
+                                                <?php }?>
+                                            </h5>
+
                                             <h4 style="font-weight:bold;"><?php echo $_smarty_tpl->tpl_vars['arrayRecensioni']->value->getTitolo();?>
  </h4>
                                             <p><?php echo $_smarty_tpl->tpl_vars['arrayRecensioni']->value->getDescrizione();?>
@@ -309,13 +320,24 @@ if ((isset($_smarty_tpl->tpl_vars['proprietario']->value)) && (isset($_smarty_tp
 
 
                                                 <h5><?php echo $_smarty_tpl->tpl_vars['recensione']->value->getData();?>
-</h5>
-                                                <h2><?php echo $_smarty_tpl->tpl_vars['recensione']->value->getTitolo();?>
-</h2>
+ | Voto:<?php echo $_smarty_tpl->tpl_vars['recensione']->value->getVoto();?>
+
+                                                    /5
+                                                    <?php if ($_smarty_tpl->tpl_vars['recensione']->value->getUtente()->getUsername() == $_smarty_tpl->tpl_vars['utente']->value) {?>
+                                                        <form action="CGestioneRecensione/cancella/<?php echo $_smarty_tpl->tpl_vars['recensione']->value->getId();?>
+"
+                                                              method="POST">
+                                                            <button type="submit" style="border-radius:9px; height: 40px"><i
+                                                                        class="align-items-xxl-end"></i>Elimina Recensione:
+                                                            </button>
+                                                        </form>
+                                                    <?php }?>
+                                                </h5>
+
+                                                <h4 style="font-weight:bold;"><?php echo $_smarty_tpl->tpl_vars['recensione']->value->getTitolo();?>
+ </h4>
                                                 <p><?php echo $_smarty_tpl->tpl_vars['recensione']->value->getDescrizione();?>
 </p>
-                                                <i><?php echo $_smarty_tpl->tpl_vars['recensione']->value->getVoto();?>
-</i>
                                             </div>
                                         </div>
                                     </div>
@@ -399,7 +421,9 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                         <?php if (($_smarty_tpl->tpl_vars['userlogged']->value == 'loggato') && !((isset($_smarty_tpl->tpl_vars['proprietario']->value)))) {?>
                             <div class="reply-form">
                                 <h4>Scrivi una recensione</h4>
-                                <form action=CGestioneRecensione/scriviRecensione method="POST" name="Recensione"
+                                <form action="CGestioneRecensione/scriviRecensione/<?php echo $_smarty_tpl->tpl_vars['locale']->value->getId();?>
+" method="POST"
+                                      name="Recensione"
                                       onsubmit="return validateRecensione()">
                                     <input type="hidden" name="idLocale" value=<?php echo $_smarty_tpl->tpl_vars['locale']->value->getId();?>
 />
@@ -409,12 +433,12 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 />
                                     <div class="row">
                                         <div class="col-md-6 form-group">
-                                            <input name="titolo" type="text" class="form-control" placeholder="Titolo">
+                                            <input name="titolo" type="text" class="form-control" placeholder="Titolo" >
                                         </div>
                                         <div class="col-md-6 form-group">
                                             <select name="valutazione"
-                                                    style="font-family: 'FontAwesome',Arial,sans-serif;">
-                                                <option>-- Voto --</option>
+                                                    style="font-family: 'FontAwesome',Arial,sans-serif;" >
+                                                <option value="">-- Voto --</option>
                                                 <option value="1">&#xf005;</option>
                                                 <option value="2">&#xf005;&#xf005;</option>
                                                 <option value="3">&#xf005;&#xf005;&#xf005;</option>

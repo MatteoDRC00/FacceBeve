@@ -227,6 +227,7 @@ class VRicerca
         else
             $this->smarty->assign('userlogged',"nouser");
 
+        $this->smarty->assign('utente', $sessione->leggi_valore('utente'));
         $this->smarty->assign('locale', $result);
         $this->smarty->display('InfoLocale.tpl');
     }
