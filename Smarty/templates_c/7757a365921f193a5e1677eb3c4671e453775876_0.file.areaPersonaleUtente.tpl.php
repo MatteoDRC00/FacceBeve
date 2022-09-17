@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-16 11:36:04
+/* Smarty version 4.2.0, created on 2022-09-17 10:22:03
   from 'C:\xampp\htdocs\FacceBeve\template\areaPersonaleUtente.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_63244384d3ee02_40115685',
+  'unifunc' => 'content_632583abcf1f10_33202165',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '7757a365921f193a5e1677eb3c4671e453775876' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\areaPersonaleUtente.tpl',
-      1 => 1663320427,
+      1 => 1663402920,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_63244384d3ee02_40115685 (Smarty_Internal_Template $_smarty_tpl) {
+function content_632583abcf1f10_33202165 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -174,15 +174,15 @@ function content_63244384d3ee02_40115685 (Smarty_Internal_Template $_smarty_tpl)
                     <div class="row" style="color: #f0c040">
 
                         <div class="entries">
-                            <?php if (!empty($_smarty_tpl->tpl_vars['locali_preferiti']->value)) {?>
+                            <?php if ((isset($_smarty_tpl->tpl_vars['locali_preferiti']->value))) {?>
                                 <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['locali_preferiti']->value, 'locale');
 $_smarty_tpl->tpl_vars['locale']->do_else = true;
 if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['locale']->value) {
 $_smarty_tpl->tpl_vars['locale']->do_else = false;
 ?>
-                                    <a href="/GestioneLocale/mostraInfoLocale/<?php echo $_smarty_tpl->tpl_vars['locale']->value['id'];?>
-"><?php echo $_smarty_tpl->tpl_vars['locale']->value['nome'];?>
+                                    <a href="/GestioneLocale/mostraInfoLocale/<?php echo $_smarty_tpl->tpl_vars['locale']->value->getID();?>
+"><?php echo $_smarty_tpl->tpl_vars['locale']->value->getNome();?>
    <i class="fa fa-angle-right"></i></a>
                                 <?php
 }
