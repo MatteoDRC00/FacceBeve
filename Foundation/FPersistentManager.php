@@ -100,9 +100,10 @@ class FPersistentManager {
      * @param string $class
      * @param string $attributo
      * @param string $valore
-     * @return mixed
+     * @return bool
      */
-    public function exist(string $class, string $attributo, string $valore) {
+    public function exist(string $class, string $attributo, string $valore): bool
+    {
         return $class::exist($attributo,$valore);
     }
 

@@ -220,13 +220,12 @@ class VRicerca
         $this->smarty->assign('valutazioneLocale', $valutazioneLocale);
         $this->smarty->assign('proprietario', $proprietario);
 
-        if($sessione->leggi_valore('utente'))
+        if($sessione->isLogged())
             $this->smarty->assign('userlogged',"loggato"); //Potrà cosi visualizzare gli eventi
         else
             $this->smarty->assign('userlogged',"nouser");
 
-       // $this->register_object("locale",$result);
-        //$this->smarty->assign_by_refsign('locale', $result);
+        $this->smarty->assign('locale', $result);
         $this->smarty->display('InfoLocale.tpl');
     }
 

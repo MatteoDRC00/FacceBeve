@@ -141,13 +141,19 @@ class FEvento {
         $db = FDB::getInstance();
         list($result,$num) = $db->loadInfoLocale(static::getClass(),"Locale_Eventi",$id,"ID_Evento","id");
         if(($result!=null) && ($num == 1)) {
+            $immagine = FImmagine::loadByField("id",$result['idImg']);
             $evento=new EEvento($result['nome'], $result['descrizione'], $result['data']); //Carica un evento dal database
+            $evento->setImg($immagine);
+            $evento->setId($result['id']);
         }
         else {
             if(($result!=null) && ($num > 1)){
                 $evento = array();
                 for($i=0; $i<count($result); $i++){
-                    $evento[$i]=new EEvento($result[$i]['nome'], $result[$i]['descrizione'],$result[$i]['data']); //Carica un array di oggetti Evento dal database
+                    $immagine = FImmagine::loadByField("id",$result[$i]['idImg']);
+                    $evento[$i] = new EEvento($result[$i]['nome'], $result[$i]['descrizione'], $result[$i]['data']); //Carica un array di oggetti Evento dal database
+                    $evento[$i]->setImg($immagine);
+                    $evento[$i]->setId($result['id']);
                 }
             }
         }
@@ -159,15 +165,19 @@ class FEvento {
         $db = FDB::getInstance();
         list($result,$num) = $db->load(static::getClass(), $field, $value);
         if(($result!=null) && ($num == 1)) {
-            $evento = new EEvento($result['nome'], $result['descrizione'], $result['data']); //Carica un evento dal database
+            $immagine = FImmagine::loadByField("id",$result['idImg']);
+            $evento=new EEvento($result['nome'], $result['descrizione'], $result['data']); //Carica un evento dal database
+            $evento->setImg($immagine);
             $evento->setId($result['id']);
         }
         else {
             if(($result!=null) && ($num > 1)){
                 $evento = array();
                 for($i=0; $i<count($result); $i++){
-                    $evento[$i]=new EEvento($result[$i]['nome'], $result[$i]['descrizione'],$result[$i]['data']); //Carica un array di oggetti Evento dal database
-                    $evento[$i]->setId($result[$i]['id']);
+                    $immagine = FImmagine::loadByField("id",$result[$i]['idImg']);
+                    $evento[$i] = new EEvento($result[$i]['nome'], $result[$i]['descrizione'], $result[$i]['data']); //Carica un array di oggetti Evento dal database
+                    $evento[$i]->setImg($immagine);
+                    $evento[$i]->setId($result['id']);
                 }
             }
         }
@@ -184,16 +194,21 @@ class FEvento {
     public static function loadByUtente($username){
         $evento = null;
         $db=FDB::getInstance();
-        $result=$db->loadEventiUtente(static::getClass(),static::getTable().id,$username);
-        $rows_number = $result->rowCount();    //funzione richiamata,presente in FDB --> restituisce numero di righe interessate dalla query
-        if(($result!=null) && ($rows_number == 1)) {
+        list($result,$num)=$db->loadEventiUtente(static::getClass(),static::getTable().id,$username);
+        if(($result!=null) && ($num == 1)) {
+            $immagine = FImmagine::loadByField("id",$result['idImg']);
             $evento=new EEvento($result['nome'], $result['descrizione'], $result['data']); //Carica un evento dal database
+            $evento->setImg($immagine);
+            $evento->setId($result['id']);
         }
         else {
-            if(($result!=null) && ($rows_number > 1)){
+            if(($result!=null) && ($num > 1)){
                 $evento = array();
                 for($i=0; $i<count($result); $i++){
-                    $evento[]=new EEvento($result[$i]['nome'], $result[$i]['descrizione'],$result[$i]['data']); //Carica un array di oggetti Evento dal database
+                    $immagine = FImmagine::loadByField("id",$result[$i]['idImg']);
+                    $evento[$i] = new EEvento($result[$i]['nome'], $result[$i]['descrizione'], $result[$i]['data']); //Carica un array di oggetti Evento dal database
+                    $evento[$i]->setImg($immagine);
+                    $evento[$i]->setId($result['id']);
                 }
             }
         }

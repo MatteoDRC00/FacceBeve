@@ -95,24 +95,6 @@ class CRicerca{
            }
     }
 
-    /**
-     * Metodo che, a seconda dell'utente che ha cliccato, mostra la pagina del locale: <br>
-     * -Se l'utente ha cliccato, nella sua area personale, il locale, questo rimanda alla pagina del locale; <br>
-     * -Se è il proprietario del locale, rimanda alla pagina di gestione del locale.
-
-    public function mostraLocale(){
-        $vProfilo = new VRicerca();
-        $sessione = new Session();
-        if($sessione->isLogged()){
-            if($sessione->leggi_valore('tipo_utente') == "EUtente"){
-                $idLocale = $vProfilo->getIdLocale();
-
-            }
-        }else{
-            header('Location : /Ricerca/mostraHome'); //Oppure un errore?
-        }
-    }*/
-
 
     /**
      * Funzione con il compito di indirizzare alla pagina specifica del locale selezionato
@@ -122,7 +104,7 @@ class CRicerca{
      */
      static function dettagliLocale($id){
         $vRicerca = new VRicerca();
-        //$id = $vRicerca->getIdLocale();
+        $proprietario=false;
         $pm = FPersistentManager::GetInstance();
         $sessione = new USession();
         $result = $pm->load("id", $id, "FLocale");
@@ -166,7 +148,6 @@ class CRicerca{
                     $proprietario=false;
             }
         }
-        //$this->smarty->assign('recensioniLocale', $recensioni);
          $vRicerca->dettagliLocale($result, $recensioni, $risposte, $rating, $proprietario);
     }
 

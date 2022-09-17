@@ -12,6 +12,7 @@
 body {
   font-family: "Open Sans", sans-serif;
   color: #444;
+  display:contents;
 }
 
 a {
@@ -1416,7 +1417,7 @@ section {
 }
 
 .portfolio-details .portfolio-details-slider img {
-  width: 100%;
+  object-fit: contain;
 }
 
 .portfolio-details .portfolio-details-slider .swiper-pagination {
@@ -2026,7 +2027,7 @@ font-weight: bold;
 }
 
 .blog .blog-comments .comment {
-margin-top: 30px;
+margin-top: 10px;
 position: relative;
 }
 
