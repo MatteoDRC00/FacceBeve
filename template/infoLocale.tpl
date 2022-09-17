@@ -171,7 +171,7 @@
                                             <h5>{$arrayRecensioni->getData()} | Voto:{$arrayRecensioni->getVoto()}
                                                 /5
                                                 {if $arrayRecensioni->getUtente()->getUsername() eq $utente}
-                                                    <form action="CGestioneRecensione/cancella/{$arrayRecensioni->getId()}"
+                                                    <form action="/GestioneRecensione/cancella/{$arrayRecensioni->getId()}"
                                                           method="POST">
                                                         <button type="submit" style="border-radius:9px; height: 40px"><i
                                                                     class="align-items-xxl-end"></i>Elimina Recensione:
@@ -203,7 +203,7 @@
                                     {if isset($proprietario)} <!--style="display: none;" -->
                                         <div class="reply-form">
                                             <h4>Rispondi</h4>
-                                            <form action="CGestioneRecensione/scriviRisposta/{$arrayRecensioni->getId()}"
+                                            <form action="/GestioneRecensione/scriviRisposta/{$arrayRecensioni->getId()}"
                                                   method="POST" name="Risposta">
                                                 <!--onsubmit="return validateRisposta()"-->
                                                 <input type="hidden" name="idRecensione"
@@ -240,7 +240,7 @@
                                                 <h5>{$recensione->getData()} | Voto:{$recensione->getVoto()}
                                                     /5
                                                     {if $recensione->getUtente()->getUsername() eq $utente}
-                                                        <form action="CGestioneRecensione/cancella/{$recensione->getId()}"
+                                                        <form action="/GestioneRecensione/cancella/{$recensione->getId()}"
                                                               method="POST">
                                                             <button type="submit" style="border-radius:9px; height: 40px"><i
                                                                         class="align-items-xxl-end"></i>Elimina Recensione:
@@ -272,7 +272,7 @@
                                         {if isset($proprietario)}
                                             <div class="reply-form" name="formRisposta">
                                                 <h4>Rispondi</h4>
-                                                <form action="CGestioneRecensione/scriviRisposta/{$arrayRecensioni[{$i}]->getId()}"
+                                                <form action="/GestioneRecensione/scriviRisposta/{$arrayRecensioni[{$i}]->getId()}"
                                                       method="POST"
                                                       name="Risposta"> <!--onsubmit="return validateRisposta()"-->
                                                     <input type="hidden" name="idRecensione"
@@ -295,25 +295,21 @@
                             <p>Non ci sono ancora recensioni per questo locale</p>
                         {/if}
 
-
+<!--onsubmit="return validateRecensione()"  -->
                         <!--/\/\//\/\//\/\//\/\//\/\//\/\///////////////////////\\\\\\\\\\\\\\\\\/\/\//\/\//\/\//\/\//\/\//\/\/////\\\\\/\/\/\/\/\/\/\/\/\//\/\/\-->
                         {if ($userlogged eq 'loggato') && !(isset($proprietario))}
                             <div class="reply-form">
                                 <h4>Scrivi una recensione</h4>
-                                <form action="CGestioneRecensione/scriviRecensione/{$locale->getId()}" method="POST"
-                                      name="Recensione"
-                                      onsubmit="return validateRecensione()">
+                                <form action="/GestioneRecensione/scriviRecensione/{$locale->getId()}" method="POST"
+                                      id="Recensione" name="Recensione">
                                     <input type="hidden" name="idLocale" value={$locale->getId()}/>
-                                    <input type="hidden" name="nomeLocale" value={$locale->getNome()}/>
-                                    <input type="hidden" name="localizzazione" value={$locale->getLocalizzazione()}/>
                                     <div class="row">
                                         <div class="col-md-6 form-group">
                                             <input name="titolo" type="text" class="form-control" placeholder="Titolo" >
                                         </div>
                                         <div class="col-md-6 form-group">
-                                            <select name="valutazione"
-                                                    style="font-family: 'FontAwesome',Arial,sans-serif;" >
-                                                <option value="">-- Voto --</option>
+                                            <select name="valutazione" style="font-family: 'FontAwesome',Arial,sans-serif;" >
+                                                <option>-- Voto --</option>
                                                 <option value="1">&#xf005;</option>
                                                 <option value="2">&#xf005;&#xf005;</option>
                                                 <option value="3">&#xf005;&#xf005;&#xf005;</option>

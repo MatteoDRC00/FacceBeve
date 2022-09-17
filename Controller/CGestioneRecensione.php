@@ -1,6 +1,6 @@
 <?php
 
-require_once("utility/autoload.php");
+require_once 'autoload.php';
 require_once("utility/USession.php");
 
 
@@ -47,14 +47,14 @@ class CGestioneRecensione
 
             $recensione = new ERecensione($utente, $titolo, $descrizione, $valutazione, $data, $locale);
 
-            $pm->store($recensione);
+            $idR = $pm->store($recensione);
 
-            header('Location: /Ricerca/dettagliLocale/' . $id);
+            $recensione->setId($idR);
+
+           header('Location: /Ricerca/mostraHome/' . $id);
         } else {
             header('Location: /Ricerca/mostraHome');
         }
-
-
     }
 
     /**
@@ -139,7 +139,7 @@ class CGestioneRecensione
             $utente = unserialize($sessione->leggi_valore('utente'));
             $pm = FPersistentManager::GetIstance();
             if ((get_class($utente) == "EProprietario") || (get_class($utente) == "EUtente")) {
-                $recensione = pm->load("id", $i, "FRecensione");
+                $recensione = $pm->load("id", $i, "FRecensione");
                 if ($recensione) {
                     $recensione->segnala;
                     $pm->update("FRecensione", "counter", $recensione->getCounter(), "id", $i);

@@ -70,11 +70,9 @@ class FRecensione{
     public static function store(ERecensione $recensione) {
         $id = NULL;
         $db = FDB::getInstance();
-        $utente = $db->exist("FUtente", "username", $recensione->getUtente()->getUsername());
-        $locale = $db->exist("FLocale", "id", $recensione->getLocale()->getId());
-        if($utente && $locale){
-            $id = $db->store(static::getClass(), $recensione);
-        }
+        //$utente = $db->exist("FUtente", "username", $recensione->getUtente()->getUsername());
+        //$locale = $db->exist("FLocale", "id", $recensione->getLocale()->getId());
+        $id = $db->store(static::getClass(), $recensione);
         return $id;
     }
 

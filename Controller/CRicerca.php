@@ -1,6 +1,7 @@
 <?php
 
 require_once 'autoload.php';
+require_once("utility/USession.php");
 
 /**
  * La classe CRicerca implementa la funzionalità di ricerca globale su locali ed eventi.

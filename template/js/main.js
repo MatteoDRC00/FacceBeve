@@ -1,23 +1,5 @@
 /**
  * Funzione per controllare che vengano inseriti tutti i campi necessari per la recensione
-*/
-function validateRecensione(){
-    let titolo = document.forms.Recensione.elements.titolo.value;
-    let descrizione = document.forms.Recensione.elements.descrizione.value;
-    let k = document.forms.Recensione.elements.valutazione;
-    var valutazione = "";
-    if(k.checked){
-    var valutazione = document.forms.Recensione.elements.valutazione.value;
-    }
-
-    if(titolo==="" || valutazione===""){
-        alert("Inserire i campi necessari");
-        return false;
-    }
-}
-
-/**
- * Funzione per controllare che vengano inseriti tutti i campi necessari per la recensione
 
 function validateRisposta(){
     let risposta = document.forms.Risposta.elements.descrizione.value;
