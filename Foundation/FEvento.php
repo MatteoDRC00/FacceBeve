@@ -13,7 +13,7 @@ class FEvento {
     private static $table="Evento";
 
     /** valori della tabella nel DB */
-    private static $values="(:id,:nome,:descrizione,:data)";
+    private static $values="(:id,:nome,:descrizione,:data,:idImg)";
 
     public function __construct(){
 
@@ -30,6 +30,10 @@ class FEvento {
         $stmt->bindValue(':nome', $evento->getNome(), PDO::PARAM_STR);
         $stmt->bindValue(':descrizione', $evento->getDescrizione(), PDO::PARAM_STR);
         $stmt->bindValue(':data', $evento->getData());
+        if($evento->getImg() != null)
+            $stmt->bindValue(':idImg', $evento->getImg()->getId());
+        else
+            $stmt->bindValue(':idImg', null);
     }
 
     /**

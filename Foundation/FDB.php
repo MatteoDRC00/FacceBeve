@@ -103,6 +103,21 @@ class FDB{
 		}
 	}
 
+	public function storeEventiLocale(string $id_locale, string $id_evento){
+		try {
+			$this->database->beginTransaction();
+			$query = "INSERT INTO " . "locale_eventi" . " VALUES " . "(".$id_locale.",".$id_evento.")".";";
+			$stmt = $this->database->prepare($query); //Prepared Statement
+			$stmt->execute();
+			$this->database->commit();
+			$this->closeDbConnection();
+		} catch (PDOException $e) {
+			echo "Attenzione errore: " . $e->getMessage();
+			$this->database->rollBack();
+			return null;
+		}
+	}
+
 	public function storeImmagineLocale(string $id_locale, string $id_immagine){
 		try {
 			$this->database->beginTransaction();
@@ -319,10 +334,10 @@ class FDB{
 
 
 	/**
-	 * Funzione che viene utilizzata per la load quando ci si aspetta che la query produca un solo risultato (esempio load per id).
-	 * @param $field campo della tabella  da confrontare
-	 * @param $id valore da confrontare
-	 * @param $query query da eseguire
+	 * @param $class
+	 * @param $field
+	 * @param $id
+	 * @return array
 	 */
 	public function load($class, $field, $id){
 		try {

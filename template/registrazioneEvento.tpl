@@ -64,7 +64,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 bg-white px-3 mb-3 pb-3">
-                    <form action=""  enctype="multipart/form-data" method="POST" class="aggiorna" name="registrazioneEvento" onsubmit="return validateRegForm(3)">
+                    <form action="/GestioneEvento/creaEvento/{$locale->getId()}"  enctype="multipart/form-data" method="POST" class="aggiorna" name="registrazioneEvento" onsubmit="return validateRegForm(3)">
                         <p>Inserisci informazioni sull'evento</p>
                         <div class="form-example">
                             <label style="font-weight: bold">Inserisci il nome: </label><br>
@@ -80,7 +80,7 @@
                         </div>
                         <div class="form-example">
                             <p>AGGIUNGI LA LOCANDINA</p>
-                            <input name="imgEvento" class="w-50 p-2 m-2" type="file" required><br>
+                            <input name="img_evento" class="w-50 p-2 m-2" type="file" required><br>
                         </div>
                         <button type="submit" class="btnAggiorna">INSERISCI <i class="fa fa-refresh"></i></button>
                     </form>

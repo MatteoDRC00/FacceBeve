@@ -63,12 +63,11 @@ class FPersistentManager {
     public function getEventiByLocale($id_locale){
         $db = FDB::getInstance();
         $result = $db->getIdLocaleByIdEvento($id_locale);
-
         $eventi = array();
 
         if($result != null){
-            foreach ($result as $id_evento){
-                $eventi[] = FEvento::loadByField("id", $id_evento);
+            foreach ($result as $r){
+                $eventi[] = FEvento::loadByField("id", $r['ID_Evento']);
             }
         }
 
@@ -289,6 +288,11 @@ class FPersistentManager {
     public function storeOrariLocale($orario, $locale){
         $db = FDB::getInstance();
         $db->storeOrariLocale($locale, $orario);
+    }
+
+    public function storeEventiLocale($evento, $locale){
+        $db = FDB::getInstance();
+        $db->storeEventiLocale($locale, $evento);
     }
 
     public function storeImmagineLocale($immagine, $locale){

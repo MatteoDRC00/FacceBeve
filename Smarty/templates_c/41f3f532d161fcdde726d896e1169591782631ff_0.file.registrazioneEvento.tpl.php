@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-17 08:41:59
+/* Smarty version 4.2.0, created on 2022-09-17 09:55:11
   from 'C:\xampp\htdocs\FacceBeve\template\registrazioneEvento.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_63256c37141165_96889374',
+  'unifunc' => 'content_63257d5f6ee993_63142251',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '41f3f532d161fcdde726d896e1169591782631ff' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\registrazioneEvento.tpl',
-      1 => 1663396916,
+      1 => 1663400185,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_63256c37141165_96889374 (Smarty_Internal_Template $_smarty_tpl) {
+function content_63257d5f6ee993_63142251 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -89,7 +89,8 @@ function content_63256c37141165_96889374 (Smarty_Internal_Template $_smarty_tpl)
         <div class="container">
             <div class="row">
                 <div class="col-12 bg-white px-3 mb-3 pb-3">
-                    <form action=""  enctype="multipart/form-data" method="POST" class="aggiorna" name="registrazioneEvento" onsubmit="return validateRegForm(3)">
+                    <form action="/GestioneEvento/creaEvento/<?php echo $_smarty_tpl->tpl_vars['locale']->value->getId();?>
+"  enctype="multipart/form-data" method="POST" class="aggiorna" name="registrazioneEvento" onsubmit="return validateRegForm(3)">
                         <p>Inserisci informazioni sull'evento</p>
                         <div class="form-example">
                             <label style="font-weight: bold">Inserisci il nome: </label><br>
@@ -105,7 +106,7 @@ function content_63256c37141165_96889374 (Smarty_Internal_Template $_smarty_tpl)
                         </div>
                         <div class="form-example">
                             <p>AGGIUNGI LA LOCANDINA</p>
-                            <input name="imgEvento" class="w-50 p-2 m-2" type="file" required><br>
+                            <input name="img_evento" class="w-50 p-2 m-2" type="file" required><br>
                         </div>
                         <button type="submit" class="btnAggiorna">INSERISCI <i class="fa fa-refresh"></i></button>
                     </form>

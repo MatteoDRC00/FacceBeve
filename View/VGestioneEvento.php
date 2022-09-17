@@ -79,35 +79,6 @@ class VGestioneEvento{
             $this->smarty->display('infoLocale.tpl'); //?
     }
 
-
-
-
-    /**
-     * Restituisce l'id del locale che si vuole creare(Hidden)
-     * Inviato con metodo post
-     * @return int
-     */
-    public function getIdLocale(): ?int
-    {
-        $value = null;
-        if (isset($_POST['IdLocale'])) //NON SO SE VANNO UTLIZZATI NOMI DIVERSI
-            $value = $_POST['IdLocale'];
-        return $value;
-    }
-
-    /**
-     * Restituisce l'id del locale che si vuole creare(Hidden)
-     * Inviato con metodo post
-     * @return int
-     */
-    public function getIdEvento(): ?int
-    {
-        $value = null;
-        if (isset($_POST['IdEvento'])) //NON SO SE VANNO UTLIZZATI NOMI DIVERSI
-            $value = $_POST['IdEvento'];
-        return $value;
-    }
-
     /**
      * Restituisce il nome dell'evento che si vuole creare
      * Inviato con metodo post
@@ -156,8 +127,8 @@ class VGestioneEvento{
         $type = $_FILES['img_evento']['type'];
         $nome = $_FILES['img_evento']['name'];
         $file = $_FILES['img_evento']['tmp_name'];
-        $dimensione = $_FILES['img_evento']['size'];
-        $arrayImg = array($nome,$type, $file, $dimensione);
+        $size = $_FILES['img_evento']['size'];
+        $arrayImg = array($nome, $size, $type, file_get_contents($file));
         return $arrayImg;
     }
 

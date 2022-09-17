@@ -52,27 +52,40 @@ class CGestioneEvento{
     }
 
 
-    public function creaEvento()
-    {
+    public function creaEvento($id_locale){
         $pm = FPersistentManager::getInstance();
         $view = new VGestioneEvento();
-        $nomeEvento = $view->getNomeEvento();
-        $descrizioneEvento = $view->getDescrizioneEvento();
-        $dataEvento = $view->getDataEvento();
+        $sessione = new USession();
+        $tipo = $sessione->leggi_valore("tipo_utente");
 
-        $evento = new EEvento($nomeEvento, $descrizioneEvento, $dataEvento); //Poi salvalo nel locale
+        if($sessione->isLogged() && $tipo=="EProprietario"){
+            $nomeEvento = $view->getNomeEvento();
+            $descrizioneEvento = $view->getDescrizioneEvento();
+            $dataEvento = $view->getDataEvento();
 
-        $img = $view->getImgEvento();
+            echo $dataEvento;
 
-        if (!empty($img)) {
-            $img_profilo = new EImmagine($img[0], $img[1], $img[2], $img[3]);
-            $id = $pm->store($img_profilo);
-            $img_profilo->setId($id);
+            $evento = new EEvento($nomeEvento, $descrizioneEvento, $dataEvento); //Poi salvalo nel locale
+
+            $img = $view->getImgEvento();
+
+            if (!empty($img)) {
+                $img_evento = new EImmagine($img[0], $img[1], $img[2], $img[3]);
+                $id = $pm->store($img_evento);
+                $img_evento->setId($id);
+                $evento->setImg($img_evento);
+            }
+            $id_evento = $pm->store($evento);
+
+            $pm->storeEventiLocale($id_evento, $id_locale);
+
+            header("Location: /GestioneLocale/mostraGestioneLocale/".$id_locale);
+        }else{
+            header("Location: /Ricerca/mostraHome");
         }
-        $evento->setImg($img_profilo);
-        $pm->store($evento);
 
-        header("Location: /GestioneLocale/infoLocale");
+
+
 
     }
 
