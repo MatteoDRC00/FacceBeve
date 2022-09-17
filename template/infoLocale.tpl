@@ -164,7 +164,6 @@
                     <div class="blog-comments">
                         <h4 class="comments-count">Area Recensioni:</h4>
                         {if isset($arrayRecensioni)}
-
                             {foreach $arrayRecensioni as $recensione}
                                 <div id="comment-1" class="comment">
                                     <div class="d-flex">
@@ -173,12 +172,7 @@
                                                     alt="Immagine profilo utente" style="border-radius: 35px;">
                                         </div>
                                         <div>
-                                            <h5>{$recensione->getUtente()->getUsername()}
-                                                {if isset($proprietario) && isset($arrayRisposte[{$recensione@iteration - 1}])}
-                                                    <a href="#formRisposta" class="reply"><i
-                                                                class="bi bi-reply-fill"></i>Rispondi</a>
-                                                {/if}
-                                            </h5>
+                                            <h5>{$recensione->getUtente()->getUsername()}</h5>
 
                                             <h5>{$recensione->getData()} | Voto:{$recensione->getVoto()}
                                                 /5
@@ -216,14 +210,14 @@
                                     {if isset($proprietario)}
                                         <div class="reply-form" name="formRisposta">
                                             <h4>Rispondi</h4>
-                                            <form action="/GestioneRecensione/scriviRisposta/{$arrayRecensioni[{$recensione@iteration-1}]->getId()}"
+                                            <form action="/GestioneRecensione/rispondi/{$arrayRecensioni[{$recensione@iteration-1}]->getId()}"
                                                   method="POST"
                                                   name="Risposta"> <!--onsubmit="return validateRisposta()"-->
-                                                <input type="hidden" name="idRecensione"
-                                                       value="{$arrayRecensioni[{$recensione@iteration-1}]->getId()}"/>
+                                                <input type="hidden" name="idLocale"
+                                                       value="{$locale->getId()}"/>
                                                 <div class="row">
                                                     <div class="col form-group">
-                                                        <textarea name="descrizione" class="form-control"
+                                                        <textarea name="descrizioneRisposta" class="form-control"
                                                                   placeholder="Risposta" required
                                                                   title="Inserire del testo nella risposta"></textarea>
                                                     </div>

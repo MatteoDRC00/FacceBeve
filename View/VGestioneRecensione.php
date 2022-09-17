@@ -83,7 +83,8 @@ class VGestioneRecensione{
      * Inviato con metodo post
      * @return string
      */
-    public function getDescrizione(){
+    public function getDescrizione(): ?string
+    {
         $value = null;
         if (isset($_POST['descrizione']))
             $value = $_POST['descrizione'];
@@ -95,12 +96,27 @@ class VGestioneRecensione{
      * Inviato con metodo post
      * @return string
      */
-    public function getDescrizioneRisposta(){
+    public function getDescrizioneRisposta(): ?string
+    {
         $value = null;
         if (isset($_POST['descrizioneRisposta']))
             $value = $_POST['descrizioneRisposta'];
         return $value;
     }
+
+    /**
+     * Restituisce la descrizione della risposta ad una recensione
+     * Inviato con metodo post
+     * @return string
+     */
+    public function getIdLocale(): ?string
+    {
+        $value = null;
+        if (isset($_POST['idLocale']))
+            $value = $_POST['idLocale'];
+        return $value;
+    }
+
 
     /**
      * Metodo richiamato quando un utente scrive/crea una recensione.

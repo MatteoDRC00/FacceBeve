@@ -50,7 +50,7 @@
         <div class="container">
 
             <div class="d-flex justify-content-between align-items-center">
-                <h2 style="font-weight: bold">Gestisci locale: <a href="/GestioneLocale/mostraInfoLocale/{$locale->getId()}">{$locale->getNome()}</a></h2>
+                <h2 style="font-weight: bold">Gestisci locale: <a href="/Ricerca/dettagliLocale/{$locale->getId()}">{$locale->getNome()}</a></h2>
             </div>
 
             <div class="gestioneutente">

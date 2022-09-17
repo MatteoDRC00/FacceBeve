@@ -57,6 +57,7 @@ class CGestioneRecensione
 
     /**
      * Funzione richiamata quando il proprietario di un locale risponde a una recensione.
+     * @param $id id della recensione alla quale si va a rispondere
      * @throws SmartyException
      */
     static function rispondi($id)
@@ -67,11 +68,15 @@ class CGestioneRecensione
         if (($sessione->leggi_valore('tipo_utente') == "EProprietario")) {
             $view = new VGestioneRecensione();
 
+            $proprietario = $pm->load("username",$utente,"FProprietario");
+
             $descrizione = $view->getDescrizioneRisposta();
 
-            $pm->store(new ERisposta($id, $descrizione, $utente));
+            $pm->store(new ERisposta($id, $descrizione, $proprietario));
 
-            header('Location: /Ricerca/dettagliLocale/' . $id->getLocale()->getId());
+            $idLocale = $view->getIdLocale();
+
+            header('Location: /Ricerca/dettagliLocale/'.$idLocale);
         } else {
             header('Location: /Ricerca/mostraHome');
         }

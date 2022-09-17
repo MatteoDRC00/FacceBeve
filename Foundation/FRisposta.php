@@ -64,12 +64,11 @@ class FRisposta{
     public static function store(ERisposta $risposta) {
         $id = null;
         $db = FDB::getInstance();
-        $proprietario = $db->exist("FProprietario", "username", $risposta->getProprietario()->getUsername());
-        $recensione = $db->exist("FRecensione", "id", $risposta->getIdRecensione());
-        if($proprietario && $recensione){
-            $id = $db->store(static::getClass(), $risposta);
-        }
-        return $id;
+        //$proprietario = $db->exist("FProprietario", "username", $risposta->getProprietario()->getUsername());
+        //$recensione = $db->exist("FRecensione", "id", $risposta->getIdRecensione());
+        //if($proprietario && $recensione){
+        //}
+        return $db->store(static::getClass(), $risposta);
     }
 
     /**
