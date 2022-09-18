@@ -98,6 +98,7 @@ class FUtente{
             $utente = new EUtente($result['password'], $result['nome'], $result['cognome'], $result['username'], $result['email']);
             $utente->setIscrizione($result['dataIscrizione']);
             $utente->setImgProfilo(FImmagine::loadByField('id', $result['idImg']));
+            $utente->setState($result['state']);
         }
         else {
             if(($result!=null) && ($num > 1)){
@@ -106,6 +107,7 @@ class FUtente{
                     $utente[$i] = new EUtente($result[$i]['password'], $result[$i]['nome'], $result[$i]['cognome'], $result[$i]['username'], $result[$i]['email']);
                     $utente[$i]->setIscrizione($result[$i]['dataIscrizione']);
                     $utente[$i]->setImgProfilo(FImmagine::loadByField('id',$result[$i]['idImg']));
+                    $utente[$i]->setState($result[$i]['state']);
                 }
             }
         }
@@ -202,23 +204,27 @@ class FUtente{
 
 
     /**
-     *Metodo che  permette di ritornare gli utenti del db, filtrandoli per nome, cognome
-     * @param $string valore inserito nella barra di ricerca dell'admin
-     * @return object $utente Utente
+     * @param $state
+     * @return array|EUtente
      */
-    public static function loadUtentiByString($string){
+    public static function loadUtentiByState($state){
         $utente = null;
-        $toSearch = null;
-        $db=FDB::getInstance();
-        list ($result, $rows_number)=$db->utentiByString($string);
-        if(($result!=null) && ($rows_number == 1)) {
-            $utente=new EUtente($result['password'],$result['nome'],$result['cognome'],$result['username'],$result['state']);
+        $db = FDB::getInstance();
+        list ($result, $num)=$db->getUtentiByState($state);
+        if(($result!=null) && ($num == 1)) {
+            $utente = new EUtente($result['password'], $result['nome'], $result['cognome'], $result['username'], $result['email']);
+            $utente->setIscrizione($result['dataIscrizione']);
+            $utente->setImgProfilo(FImmagine::loadByField('id', $result['idImg']));
+            $utente->setState($result['state']);
         }
         else {
-            if(($result!=null) && ($rows_number > 1)){
+            if(($result!=null) && ($num > 1)){
                 $utente = array();
                 for($i=0; $i<count($result); $i++){
-                    $utente[]=new EUtente($result[$i]['password'],$result[$i]['nome'],$result[$i]['cognome'],$result[$i]['username'],$result[$i]['state']);
+                    $utente[$i] = new EUtente($result[$i]['password'], $result[$i]['nome'], $result[$i]['cognome'], $result[$i]['username'], $result[$i]['email']);
+                    $utente[$i]->setIscrizione($result[$i]['dataIscrizione']);
+                    $utente[$i]->setImgProfilo(FImmagine::loadByField('id',$result[$i]['idImg']));
+                    $utente[$i]->setState($result[$i]['state']);
                 }
             }
         }

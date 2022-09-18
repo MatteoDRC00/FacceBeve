@@ -213,7 +213,6 @@ class FPersistentManager {
      * @param string ,string passato in input
      */
     public static function loadUtentiByState($string) {
-        $ris = null;
         $ris = FUtente::loadUtentiByState($string);
         return $ris;
     }
