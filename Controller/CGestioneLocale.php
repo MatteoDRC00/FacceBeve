@@ -183,7 +183,7 @@ class CGestioneLocale
                 $pm->update("FLocale","idImg", $id, "id", $id_locale);
                 $locale->setImg($img_locale);
             }
-            //header('Location: /Profilo/mostraProfilo');
+            header('Location: /Profilo/mostraProfilo');
         }else{
             header('Location: /Ricerca/mostraHome');
         }
