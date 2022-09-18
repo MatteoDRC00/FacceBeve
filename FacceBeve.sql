@@ -34,7 +34,7 @@ CREATE TABLE `Utente` (
     `dataIscrizione` CHAR(11) NOT NULL,
     `idImg` int(11),
     `state` tinyint(1) NOT NULL,
-    FOREIGN KEY (`idImg`) REFERENCES Immagine(`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (`idImg`) REFERENCES Immagine(`id`),
     PRIMARY KEY (`username`)
 );
 /*Inserimento dati Utente*/

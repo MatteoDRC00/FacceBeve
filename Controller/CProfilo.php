@@ -331,9 +331,14 @@ class CProfilo{
             $username = $sessione->leggi_valore("utente");
             $tipo = $sessione->leggi_valore("tipo_utente");
 
+            echo $username;
 
             if($tipo == "EUtente"){
                 $utente = $pm->load("username", $username, "FUtente");
+                if($utente==null){
+                    echo "nooo";
+                }
+                print_r($utente);
                 $locali_preferiti = $pm->getLocaliPreferiti($username);
                 $view = new VProfilo();
                 $view->mostraProfiloUtente($utente, $locali_preferiti);
