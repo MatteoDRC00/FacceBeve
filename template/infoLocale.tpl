@@ -99,7 +99,6 @@
                         <ul>
                             <li><strong>Indirizzo:</strong> {$locale->getLocalizzazione()->getIndirizzo()}, {$locale->getLocalizzazione()->getNumCivico()}</li>
                             <li><strong>Citt&agrave:</strong> {$locale->getLocalizzazione()->getCitta()}, <strong>CAP:</strong> {$locale->getLocalizzazione()->getCAP()}</li>
-                            <li style="font-weight: bold;"><a href="https://maps.google.com/?q= {$locale->getLocalizzazione()->getIndirizzo()}, {$locale->getLocalizzazione()->getNumCivico()}, {$locale->getLocalizzazione()->getCitta()}, {$locale->getLocalizzazione()->getCAP()}" target="_blank"><i class="fas fa-map-marker-alt"></i> Come raggiungerci...</a> </li>
                             <li><strong>Categorie:</strong>
                                 <ul>
                                     {foreach $locale->getCategoria() as $categoria}
@@ -234,7 +233,7 @@
                                 <h4>Scrivi una recensione</h4>
                                 <form action="/GestioneRecensione/scriviRecensione/{$locale->getId()}" method="POST"
                                       id="Recensione" name="Recensione" onsubmit="return validateRecensione()>
-
+                                    <input type="hidden" name="idLocale" value={$locale->getId()}/>
                                     <div class="row">
                                         <div class="col-md-6 form-group">
                                             <input name="titolo" type="text" class="form-control" >
