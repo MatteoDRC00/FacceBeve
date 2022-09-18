@@ -1,7 +1,7 @@
 <?php
-
-require_once 'autoload.php';
-require_once("utility/USession.php");
+require_once "autoload.php";
+require_once "utility/USession.php";
+require_once "utility/UCheck.php";
 
 /**
  * La classe CRicerca implementa la funzionalità di ricerca globale su locali ed eventi.
@@ -72,17 +72,14 @@ class CRicerca{
     public function ricerca(){
         $vRicerca = new VRicerca();
         $tipo = $vRicerca->getTipoRicerca();
+        $pm = FPersistentManager::getInstance();
+        $check = UCheck::getInstance();
         if ($tipo == "Locali") {
                 $nomelocale = $vRicerca->getNomeLocale();
                 $citta= $vRicerca->getCitta();
                 $categoria = $vRicerca->getCategorie();
                 if ($nomelocale != null || $citta != null || $categoria != null){
-                    $pm = FPersistentManager::getInstance();
-                    /*if(is_array($pm->loadForm($nomelocale, $citta,$categoria,"tmp",$tipo)))
-                        $result = $pm->loadForm($nomelocale, $citta,$categoria,"tmp",$tipo);
-                    else SARà TESTATO
-                        $result[] = $pm->loadForm($nomelocale, $citta,$categoria,"tmp",$tipo); */
-                    $result[] = $pm->loadForm($nomelocale, $citta,$categoria,"tmp",$tipo);
+                    $result = $check->check($pm->loadForm($nomelocale, $citta,$categoria,"tmp",$tipo));
                     $vRicerca->showResult($result, $tipo,$nomelocale,$citta,$categoria,null,null);
                 }else
                     header('Location: /Ricerca/mostraHome');
@@ -117,13 +114,10 @@ class CRicerca{
         $sessione->imposta_valore('locale',$id);
         $result = $pm->load("id", $id, "FLocale");
         $proprietario=null;
+        $check = UCheck::getInstance();
 
         //Calcolo valutazione media locale + sue recensioni con le relative risposte
-         if(is_array($pm->load("locale",$id,"FRecensione")))
-             $recensioni = $pm->load("locale",$id,"FRecensione");
-         else
-             $recensioni[] = $pm->load("locale",$id,"FRecensione");
-
+         $recensioni = $check->check($pm->load("locale",$id,"FRecensione"));
          $tipo = $sessione->leggi_valore('tipo_utente');
          $username = $sessione->leggi_valore('utente');
          $presente = $pm->existEsterna("utenti_locali", "ID_Locale", $id, "ID_Utente", $username);

@@ -1,6 +1,7 @@
 <?php
 require_once "autoload.php";
 require_once "utility/USession.php";
+require_once "utility/UCheck.php";
 
 /**
  * Classe utilizzata per la gestione delle operazioni all'interno dell'area personale dell'utente:

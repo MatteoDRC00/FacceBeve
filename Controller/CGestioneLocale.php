@@ -1,5 +1,7 @@
 <?php
-
+require_once "autoload.php";
+require_once "utility/USession.php";
+require_once "utility/UCheck.php";
 /**
  * La classe CGestioneLocale viene utilizzata per eseguire le operazioni CRUD sul locale con tutte le relative informazioni (orario, immagini, …).
  * @author Gruppo 8

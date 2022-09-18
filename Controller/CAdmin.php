@@ -1,5 +1,7 @@
 <?php
-
+require_once "autoload.php";
+require_once "utility/USession.php";
+require_once "utility/UCheck.php";
 
 /**
  * La classe CAdmin implementa funzionalità per l'admin della piattaforma, al quale è consentito
@@ -43,37 +45,20 @@ class CAdmin{
         $view = new VAdmin();
         if($sessione->isLogged() && ($sessione->leggi_valore("tipo_utente") == "EAdmin")){
             $pm = FPersistentManager::getInstance();
+            $check = UCheck::getInstance();
 
             //loadUtenti --> Separo in Utenti attivi e Bannati
-            if(is_array($pm->loadUtentiByState(1)))
-                $utentiAttivi = $pm->loadUtentiByState(1);
-            else
-                $utentiAttivi[] = $pm->loadUtentiByState(1);
-
-            if(is_array($pm->loadUtentiByState(0)))
-                $utentiBannati = $pm->loadUtentiByState(0);
-            else
-                $utentiBannati[] = $pm->loadUtentiByState(0);
+            $utentiAttivi = $check->check($pm->loadUtentiByState(1));
+            $utentiBannati = $check->check($pm->loadUtentiByState(0));
 
             //loadCategorie
-            if(is_array($pm->loadAll("FCategoria")))
-                $categorie = $pm->loadAll("FCategoria");
-            else
-                $categorie[] = $pm->loadAll("FCategoria");
-
+            $categorie = $check->check($pm->loadAll("FCategoria"));
 
             //loadRecensioni segnalate
-            if(is_array($pm->load("segnalato",true,"FRecensione")))
-                $recSegnalate = $pm->load("segnalato",true,"FRecensione");
-            else
-                $recSegnalate[] = $pm->load("segnalato",true,"FRecensione");
+            $recSegnalate = $check->check($pm->load("segnalato",true,"FRecensione"));
 
             //loadProprietari
-            if(is_array($pm->loadAll("FProprietario")))
-                $proprietari = $pm->loadAll("FProprietario");
-            else
-                $proprietari[] = $pm->loadAll("FProprietario");
-
+            $proprietari = $check->check($pm->loadAll("FProprietario"));
 
             $view->HomeAdmin($utentiAttivi, $utentiBannati, $categorie, $recSegnalate, $proprietari);
         }else{
