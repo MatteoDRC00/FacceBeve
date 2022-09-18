@@ -80,7 +80,7 @@
                                 </form>
                             {else}
                                 <form action="/Ricerca/aggiungiAPreferiti/{$locale->getId()}" method="POST">
-                                    <input onclick="change()" type="submit" value="Aggiungi ai preferiti" id="pref" name="pref">
+                                    <input class="stelline" onclick="change()" type="submit" value="Aggiungi ai preferiti" id="pref" name="pref">
                                 </form>
                             {/if}
                         {/if}
