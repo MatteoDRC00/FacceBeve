@@ -252,7 +252,7 @@
                                     <input type="hidden" name="idLocale" value={$locale->getId()}/>
                                     <div class="row">
                                         <div class="col-md-6 form-group">
-                                            <input name="titolo" type="text" class="form-control" placeholder="Titolo">
+                                            <input name="titolo" type="text" class="form-control" placeholder="Titolo" required title="Inserisci il titolo della recensione">
                                         </div>
                                         <div class="col-md-6 form-group">
                                             <select name="valutazione"

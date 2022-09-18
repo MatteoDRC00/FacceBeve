@@ -1,16 +1,16 @@
 /**
  * Funzione per controllare che vengano inseriti tutti i campi necessari per la recensione
-*/
-function validateRecensione(){
+ */
+function validateRecensione() {
     let titolo = document.forms.Recensione.elements.titolo.value;
     let descrizione = document.forms.Recensione.elements.descrizione.value;
     let k = document.forms.Recensione.elements.valutazione;
     var valutazione = "";
-    if(k.checked){
-    var valutazione = document.forms.Recensione.elements.valutazione.value;
+    if (k.checked) {
+        var valutazione = document.forms.Recensione.elements.valutazione.value;
     }
 
-    if(titolo==="" || valutazione===""){
+    if (titolo === "" || valutazione === "") {
         alert("Inserire i campi necessari");
         return false;
     }
@@ -19,7 +19,7 @@ function validateRecensione(){
 /**
  * Funzione per controllare che vengano inseriti tutti i campi necessari per la recensione
 
-function validateRisposta(){
+ function validateRisposta(){
     let risposta = document.forms.Risposta.elements.descrizione.value;
     if(risposta===""){
         alert("Inserire del testo nella risposta");
@@ -28,14 +28,11 @@ function validateRisposta(){
 } */
 
 
-
-
-
 /**
  *Funzione utilizzata per controllare che vengano inseriti tutti i campi
  */
-function validateRegForm(id){
-    if(id===1){ //Form registrazione utente
+function validateRegForm(id) {
+    if (id === 1) { //Form registrazione utente
         let password1 = document.forms.registrazioneProprietario.elements.password.value;
         let password2 = document.forms.registrazioneProprietario.elements.password2.value;
         let nome = document.forms.registrazioneProprietario.elements.nome.value;
@@ -44,12 +41,12 @@ function validateRegForm(id){
         let email = document.forms.registrazioneProprietario.elements.email.value;
         let img = document.forms.registrazioneProprietario.elements.img_profilo.value;
 
-        if(nome==="" || cognome==="" || email==="" || username==="" || password1==="" || password2==="" || img===""){
+        if (nome === "" || cognome === "" || email === "" || username === "" || password1 === "" || password2 === "" || img === "") {
             alert("Inserire i campi mancanti");
             return false;
         }
 
-        if(password1 !== password2){
+        if (password1 !== password2) {
             alert("Le password inserite non corrispondono!");
             return false;
         }
@@ -60,7 +57,7 @@ function validateRegForm(id){
             img.value = '';
             return false;
         }
-    }else if(id===0){ //Form registrazione utente
+    } else if (id === 0) { //Form registrazione utente
         let password1 = document.forms.registrazioneUtente.elements.password.value;
         let password2 = document.forms.registrazioneUtente.elements.password2.value;
         let nome = document.forms.registrazioneUtente.elements.nome.value;
@@ -69,11 +66,11 @@ function validateRegForm(id){
         let email = document.forms.registrazioneUtente.elements.email.value;
         let img = document.forms.registrazioneUtente.elements.img_profilo.value;
 
-        if(nome==="" || cognome==="" || email==="" || username==="" || password1==="" || password2==="" || img===""){
+        if (nome === "" || cognome === "" || email === "" || username === "" || password1 === "" || password2 === "" || img === "") {
             alert("Inserire i campi mancanti");
             return false;
         }
-        if(password1 !== password2){
+        if (password1 !== password2) {
             alert("Le password inserite non corrispondono!");
             return false;
         }
@@ -84,12 +81,12 @@ function validateRegForm(id){
             img.value = '';
             return false;
         }
-    }else if(id===2){  //Form registrazione Locale
+    } else if (id === 2) {  //Form registrazione Locale
         let nomeLocale = document.forms.registrazioneLocale.elements.nomeLocale.value;
         let descrizioneLocale = document.forms.registrazioneLocale.elements.descrizioneLocale.value;
         var k = document.forms.registrazioneLocale.elements.genere;
         var categorieLocale = "";
-        if(k.checked){
+        if (k.checked) {
             var categorieLocale = document.forms.registrazioneLocale.elements.genere.value;
         }
         let numeroLocale = document.forms.registrazioneLocale.elements.numeroLocale.value;
@@ -116,59 +113,54 @@ function validateRegForm(id){
             img.value = '';
             return false;
         }
-        if(nomeLocale ==="" || descrizioneLocale ==="" || categorieLocale ==="" || numeroLocale===""  || indirizzoLocale ==="" || civicoLocale ==="" || cittaLocale===""|| CAPLocale ===""|| imgLocale===""){
+        if (nomeLocale === "" || descrizioneLocale === "" || categorieLocale === "" || numeroLocale === "" || indirizzoLocale === "" || civicoLocale === "" || cittaLocale === "" || CAPLocale === "" || imgLocale === "") {
             alert("Inserire i campi mancanti");
             return false;
         }
 
-        }else if(id===3){ //Form registrazione Evento
-            let nomeEvento = document.forms.registrazioneEvento.elements.nomeEvento.value;
-            let descrizioneEvento = document.forms.registrazioneEvento.elements.descrizioneEvento.value;
-            let dataEvento = document.forms.registrazioneEvento.elements.dataEvento.value;
-            let imgEvento = document.forms.registrazioneEvento.elements.imgEvento.value;
+    } else if (id === 3) { //Form registrazione Evento
+        let nomeEvento = document.forms.registrazioneEvento.elements.nomeEvento.value;
+        let descrizioneEvento = document.forms.registrazioneEvento.elements.descrizioneEvento.value;
+        let dataEvento = document.forms.registrazioneEvento.elements.dataEvento.value;
+        let imgEvento = document.forms.registrazioneEvento.elements.imgEvento.value;
 
-            let DataEvento = new Date(dataEvento);
-            let Oggi = new Date();
+        let DataEvento = new Date(dataEvento);
+        let Oggi = new Date();
 
-            if(nomeEvento ==="" || descrizioneEvento ==="" || dataEvento ==="" || imgEvento===""){
-               alert("Inserire i campi mancanti");
-               return false;
-            }
-
-            if(DataEvento.getTime() < Oggi.getTime()) {
-              alert('La data del evento è precedente ad adesso, viaggiare nel tempo è pericoloso');
-              return false;
-            }
-
-            var allowedExtensions = /(\.jpg|\.jpeg|\.gif|\.png)$/i; //Controllo sul Type del img inserita
-
-            if (!allowedExtensions.exec(imgEvento)) {
-               alert('Tipo di file non valido, sono accettati, prova con  \n-jpg\n-jpeg\n-gif\n-png');
-               imgEvento.value = '';
-               return false;
-            }
+        if (nomeEvento === "" || descrizioneEvento === "" || dataEvento === "" || imgEvento === "") {
+            alert("Inserire i campi mancanti");
+            return false;
         }
-}
 
+        if (DataEvento.getTime() < Oggi.getTime()) {
+            alert('La data del evento è precedente ad adesso, viaggiare nel tempo è pericoloso');
+            return false;
+        }
+
+        var allowedExtensions = /(\.jpg|\.jpeg|\.gif|\.png)$/i; //Controllo sul Type del img inserita
+
+        if (!allowedExtensions.exec(imgEvento)) {
+            alert('Tipo di file non valido, sono accettati, prova con  \n-jpg\n-jpeg\n-gif\n-png');
+            imgEvento.value = '';
+            return false;
+        }
+    }
+}
 
 
 /**
  *Funzione utilizzata per controllare che venga inserito almeno un valore nei campi del form di ricerca
  */
 function validateResearchForm(id) {
-    if(id===1){
+    if (id === 1) {
         let x = document.getElementById("tipo");
         let y = x.value;
         if (y === "Locali") {
             //Gestione form ricerca locali utenti collegati
             let citta = document.forms.ricercaLocali1.elements.citta1.value;
             let nome = document.forms.ricercaLocali1.elements.nomeLocale1.value;
-            var k = document.forms.ricercaLocali1.elements.categorie1;
-            var categoria = "";
-            if(k.checked){
-                var categoria = document.forms.ricercaLocali1.elements.categorie1.value;
-            }
-            if (citta === "" && nome === "" && categoria === "" ) {
+            let categoria = document.forms.ricercaLocali1.elements.categorie1.value;
+            if (citta === "" && nome === "" && categoria === "--Scegli il tipo--") {
                 window.alert("Inserire almeno un campo per effettuare la ricerca ");
                 return false;
             }
@@ -192,40 +184,35 @@ function validateResearchForm(id) {
                 return false;
             }
         }
-    }
-    else{
-            //Gestione form ricerca locali utenti non collegati
-            let citta = document.forms.ricercaLocali0.elements.citta.value;
-            let nome = document.forms.ricercaLocali0.elements.nomeLocale.value;
-            var k = document.forms.ricercaLocali0.elements.categorie;
-            var categoria = "";
-            if(k.checked){
-               var categoria = document.forms.ricercaLocali0.elements.categorie.value;
-            }
-            if (citta === "" && nome === "" && categoria === "" ) {
-              window.alert("Inserire almeno un campo per effettuare la ricerca ");
-              return false;
-           }
+    } else {
+        //Gestione form ricerca locali utenti non collegati
+        let citta = document.forms.ricercaLocali0.elements.citta.value;
+        let nome = document.forms.ricercaLocali0.elements.nomeLocale.value;
+        let categoria = document.forms.ricercaLocali0.elements.categorie.value;
+        if (citta === "" && nome === "" && categoria === "--Scegli il tipo--") {
+            window.alert("Inserire almeno un campo per effettuare la ricerca ");
+            return false;
+        }
     }
 
 }
 
 function setList() {
-            let x = document.getElementById("tipo");
-            let y = x.value;
-            let z, q;
-            q = document.getElementById(y);
-            if (y === 'Locali') {
-                q.style.display = "flex";
-                z = document.getElementById("Eventi");
-                z.style.display = "none";
+    let x = document.getElementById("tipo");
+    let y = x.value;
+    let z, q;
+    q = document.getElementById(y);
+    if (y === 'Locali') {
+        q.style.display = "flex";
+        z = document.getElementById("Eventi");
+        z.style.display = "none";
 
-            } else if(y === 'Eventi'){
-                q.style.display = "inline-block";
-                z = document.getElementById("Locali");
-                z.style.display = "none";
-            }
-        }
+    } else if (y === 'Eventi') {
+        q.style.display = "inline-block";
+        z = document.getElementById("Locali");
+        z.style.display = "none";
+    }
+}
 
 ////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 

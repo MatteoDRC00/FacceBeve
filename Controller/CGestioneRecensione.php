@@ -41,6 +41,9 @@ class CGestioneRecensione
 
             $titolo = $value[0];
             $valutazione = $value[1];
+            if($valutazione==""){
+
+            }
             $descrizione = $value[2];
 
             $data = (string)date("d/m/Y");
