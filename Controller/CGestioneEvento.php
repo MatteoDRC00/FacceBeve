@@ -210,36 +210,6 @@ class CGestioneEvento{
         $view->showFormModify(null,$evento);
     }
 
-    //IMG EVENTO\\
-
-    /**
-     * Gestisce la modifica dell'immagine del locale. Preleva la nuova immagine dalla view e procede alla modifica.
-     * @return void
-     * @throws SmartyException
-     */
-    public function addImmagineEvento()
-    {
-        $view = new VGestioneEvento();
-        //$sessione = USession::getInstance();
-        //$utente = unserialize($sessione->leggi_valore('utente'));
-        $pm = FPersistentManager::getInstance();
-        $locale = $pm->load("id", $view->getIdEvento(), "FLocale");
-
-        $img = $view->getImgEvento();
-        list($check, $media) = static::upload($img);
-        if ($check == "type") {
-            $view->showFormModify( "size",$locale);
-        } elseif ($check == "size") {
-            $view->showFormModify( "size",$locale);
-        } elseif ($check == "ok") {
-            $pm = FPersistentManager::getInstance();
-            $pm->storeMedia($media, $img[1]); //Salvataggio dell'immagine sul db
-            $pm->storeEsterne("FEvento",$media,$view->getIdEvento()); //Salvataggio sulla tabella generata dalla relazione N:N
-            header('Location: /Ricerca/dettaglioEvento');
-        }
-    }
-
-
     /**
      * Gestisce la modifica dell'immagine del evento. Preleva la nuova immagine dalla view e procede alla modifica.
      * @return void
@@ -286,39 +256,5 @@ class CGestioneEvento{
         $pm->deleteEsterne("FEvento",$img);
         header('Location: /Ricerca/dettaglioEvento');
     }
-
-
-//----------------------------------METODI STATICI--------------------------------------------------------\\
-    /**
-     * Funzione che si preoccupa di verificare lo stato dell'immagine inserita
-     * @param $nome_file
-     * @return array , dove $ris è lo stato dell'immagine, $nome è il nome dell'immagine e $type è il MIME type dell'immagine
-     */
-    static function upload($img): array
-    {
-        //$ris = "no_img";
-        $nome = null;
-        $max_size = 300000;
-        $result = is_uploaded_file($result = is_uploaded_file($img[2])); //true se è stato caricato via HTTP POST.
-        if (!$result) {
-            $ris = "no_img";
-        } else {
-            $size = $img[3];
-            $type = $img[0];
-            if ($size > $max_size) {
-                $ris = "size";
-            } else {
-                if ($type == 'image/jpeg' || $type == 'image/png' || $type == 'image/jpg') {
-                    $immagine = @file_get_contents($img[2]);
-                    $immagine = addslashes ($immagine);
-                    $mutente = new EImmagine($nome,$size,$type,$immagine);;
-                } else {
-                    $ris = "type";
-                }
-            }
-        }
-        return array($ris,$mutente);
-    }
-
 
 }

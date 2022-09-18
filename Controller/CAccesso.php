@@ -203,53 +203,6 @@ class CAccesso
         }
     }
 
-
-    /**
-     * Funzione di supporto che si occupa di verificare la correttezza dell'immagine inserita nella form di registrazione.
-     * Nel caso in cui non ci sono errori di inserimento, avviene la store dell'utente e la corrispondente immagine nel database.
-     * @param $nome_file passato nella form pe l'immagine
-     * @return array stato verifica immagine
-    */
-    static function upload($img) {
-        $ris = null;
-        $nome = $img[0];
-        $max_size = 300000;
-        $result = is_uploaded_file($img[3]);
-        if (!$result) {
-            //no immagine
-            //$pm->store($utente);
-
-            //return "ok";
-            return $ris;
-        } else {
-            $size = $img[1];
-            $type = $img[2];
-            if ($size > $max_size) {
-                //Il file è troppo grande
-                $ris = "size";  // -->Errore relativo alla dimensione del img
-            }
-            //$type = $_FILES[$nome_file]['type'];
-            elseif ($type == 'image/jpeg' || $type == 'image/png' || $type == 'image/jpg') {
-                $immagine = @file_get_contents($img[3]);
-                $immagine = addslashes ($immagine);
-                //$pm->store($utente);
-                $mutente = new EImmagine($nome,$size,$type,$immagine);
-                //$pm->storeMedia($mutente,$nome_file);
-                //return "ok";
-                $ris = "ok";
-            }
-            else {
-                //formato diverso
-                //return "type";
-                $ris = "type";
-            }
-        }
-        if(!isset($mutente))
-            $mutente=null;
-        return array($ris,$mutente);
-    }
-
-
     /**
      * Funzione che provvede alla rimozione delle variabili di sessione, alla sua distruzione e a rinviare alla homepage
      */
