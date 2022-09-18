@@ -7,7 +7,7 @@
 {assign var='locali' value=$locali|default:null}
 {assign var='categoria' value=$categoria|default:null}
 {assign var='data' value=$data|default:null}
-{assign var='array' value=$array}
+{assign var='array' value=$array|default:null}
 <html lang="en">
 
 <head>
@@ -150,17 +150,14 @@
                                 </div>
                             {/foreach}
                         {/if}
-                    {else}
-                        <div class="entry-meta">
-                            <h2 class="accordion-body">La ricerca non ha prodotto alcun risultato. Riprova.</h2>
-                        </div>
+                    {/if}
+                    {if !isset($array)}
+                        <h2 class="accordion-body">La ricerca non ha prodotto alcun risultato. Riprova.</h2>
                     {/if}
                 </article>
             </div>
         </div>
-
     </section>
-
 </main>
 
 <footer id="footer" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">

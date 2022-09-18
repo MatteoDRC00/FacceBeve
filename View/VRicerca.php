@@ -71,7 +71,7 @@ class VRicerca
     public function getDataEvento(): ?string
     {
         $return = null;
-        if (isset($_POST['dataEvento'])){
+        if (($_POST['dataEvento'] != null)){
             $value = explode("-",$_POST['dataEvento']);
             $return = $value[2]."/".$value[1]."/".$value[0];
         }
@@ -158,7 +158,7 @@ class VRicerca
         if(isset($result)){
             $this->smarty->assign('array', $result);
         }else{
-            $this->smarty->assign('array', "vuoto");
+            $this->smarty->assign('array', null);
         }
 
         $this->smarty->assign('tipo', $tipo);

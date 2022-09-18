@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-18 19:28:39
+/* Smarty version 4.2.0, created on 2022-09-18 19:40:20
   from 'C:\xampp\htdocs\FacceBeve\template\risultatiRicerca.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_63275547b75974_72595464',
+  'unifunc' => 'content_63275804e2ad94_87397699',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '20d71acbda86db7b277443849883e1b442d75786' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\risultatiRicerca.tpl',
-      1 => 1663522116,
+      1 => 1663522805,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_63275547b75974_72595464 (Smarty_Internal_Template $_smarty_tpl) {
+function content_63275804e2ad94_87397699 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <?php $_smarty_tpl->_assignInScope('tipo', (($tmp = $_smarty_tpl->tpl_vars['tipo']->value ?? null)===null||$tmp==='' ? null ?? null : $tmp));
 $_smarty_tpl->_assignInScope('userlogged', (($tmp = $_smarty_tpl->tpl_vars['error']->value ?? null)===null||$tmp==='' ? null ?? null : $tmp));
@@ -30,7 +30,7 @@ $_smarty_tpl->_assignInScope('nomeLocale', (($tmp = $_smarty_tpl->tpl_vars['nome
 $_smarty_tpl->_assignInScope('locali', (($tmp = $_smarty_tpl->tpl_vars['locali']->value ?? null)===null||$tmp==='' ? null ?? null : $tmp));
 $_smarty_tpl->_assignInScope('categoria', (($tmp = $_smarty_tpl->tpl_vars['categoria']->value ?? null)===null||$tmp==='' ? null ?? null : $tmp));
 $_smarty_tpl->_assignInScope('data', (($tmp = $_smarty_tpl->tpl_vars['data']->value ?? null)===null||$tmp==='' ? null ?? null : $tmp));
-$_smarty_tpl->_assignInScope('array', $_smarty_tpl->tpl_vars['array']->value);?>
+$_smarty_tpl->_assignInScope('array', (($tmp = $_smarty_tpl->tpl_vars['array']->value ?? null)===null||$tmp==='' ? null ?? null : $tmp));?>
 <html lang="en">
 
 <head>
@@ -230,17 +230,14 @@ $_smarty_tpl->tpl_vars['evento'] = $__foreach_evento_1_saved;
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                         <?php }?>
-                    <?php } else { ?>
-                        <div class="entry-meta">
-                            <h2 class="accordion-body">La ricerca non ha prodotto alcun risultato. Riprova.</h2>
-                        </div>
+                    <?php }?>
+                    <?php if (!(isset($_smarty_tpl->tpl_vars['array']->value))) {?>
+                        <h2 class="accordion-body">La ricerca non ha prodotto alcun risultato. Riprova.</h2>
                     <?php }?>
                 </article>
             </div>
         </div>
-
     </section>
-
 </main>
 
 <footer id="footer" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
