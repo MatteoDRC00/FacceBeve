@@ -56,8 +56,8 @@ class UCheck
             $y = $result[1];
         }
         elseif(isset($result)){
-             $x = $result[0];
-             $y =  $result[1];
+             $x[]= $result[0];
+             $y[] =  $result[1];
         }
         return array ($x,$y);
     }

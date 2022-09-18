@@ -622,7 +622,7 @@ class FDB{
 				}
 			}
 			$query = $query . ";";
-			//print $query;
+			print $query;
 
 			$stmt = $this->database->prepare($query);
 			$stmt->execute();
@@ -663,26 +663,26 @@ class FDB{
 					switch ($i) {
 						case 0:
 							if ($query == null)
-								$query = "SELECT * FROM " . $class::getTable()  . " INNER JOIN Locale_Eventi ON Locale_Eventi.ID_Locale='" . $nomelocale . "'";
+								$query = "SELECT Evento.id,Evento.nome,Evento.descrizione,Evento.data,Evento.idImg FROM Evento INNER JOIN Locale_Eventi ON Locale_Eventi.ID_Evento=Evento.id INNER JOIN Locale ON Locale.nome='". $nomelocale. "'";
 							else
-								$query = $query . " INNER JOIN Locale_Eventi ON Locale_Eventi.ID_Locale='" . $nomelocale . "'";
+								$query = $query . " INNER JOIN Locale_Eventi ON Locale_Eventi.ID_Locale=Evento.id INNER JOIN Locale ON Locale.nome='".$nomelocale."';";
 							break;
 							break;
 						case 1:
 							if ($query == null)
-								$query = "SELECT * FROM " . $class::getTable()  . " WHERE nome ='" . $nomeevento . "'";
+								$query = "SELECT Evento.id,Evento.nome,Evento.descrizione,Evento.data,Evento.idImg FROM Evento WHERE nome ='" . $nomeevento . "'";
 							else
-								$query = $query . " AND nome ='" . $nomeevento . "'";
+								$query = $query . " AND Evento.nome ='" . $nomeevento . "'";
 							break;
 						case 2:
 							if ($query == null)
-								$query = "SELECT * FROM " . $class::getTable()  . " INNER JOIN Locale_Eventi ON Locale_Eventi.ID_Evento=".$class::getTable().id." INNER JOIN Locale ON Locale.id=Locale_Eventi.ID_Locale WHERE localizzazione ='" . $citta . "'";
+								$query = "SELECT Evento.id,Evento.nome,Evento.descrizione,Evento.data,Evento.idImg FROM Evento INNER JOIN Locale_Eventi ON Locale_Eventi.ID_Evento=".$class::getTable().id." INNER JOIN Locale ON Locale.id=Locale_Eventi.ID_Locale WHERE localizzazione ='" . $citta . "'";
 							else
 								$query = $query . " INNER JOIN Locale_Eventi ON Locale_Eventi.ID_Evento=".$class::getTable().id." INNER JOIN Locale ON Locale.id=Locale_Eventi.ID_Locale WHERE localizzazione ='" . $citta . "'";
 							break;
 						case 3:
 							if ($query == null)
-								$query = "SELECT * FROM " . $class::getTable()  . " WHERE data ='" . $data. "'";
+								$query = "SELECT Evento.id,Evento.nome,Evento.descrizione,Evento.data,Evento.idImg FROM Evento WHERE evento.data ='" . $data. "'";
 							else
 								$query = $query . " AND data ='" . $data . "'";
 							break;
@@ -690,7 +690,6 @@ class FDB{
 				}
 			}
 			$query = $query . ";";
-			//print $query;
 
 			$stmt = $this->database->prepare($query);
 			$stmt->execute();

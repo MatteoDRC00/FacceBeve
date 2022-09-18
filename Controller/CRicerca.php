@@ -80,26 +80,26 @@ class CRicerca
         $pm = FPersistentManager::getInstance();
         $check = UCheck::getInstance();
         if ($tipo == "Locali") {
-            $nomelocale = $vRicerca->getNomeLocale();
-            $citta = $vRicerca->getCitta();
-            $categoria = $vRicerca->getCategorie();
-            if ($nomelocale != null || $citta != null || $categoria != null) {
-                $result = $check->check($pm->loadForm($nomelocale, $citta, $categoria, "tmp", $tipo));
-                $vRicerca->showResult($result, $tipo, $nomelocale, $citta, $categoria, null, null);
-            } else
-                header('Location: /Ricerca/mostraHome');
-        } elseif ($tipo == "Eventi") {
-            $nomelocale = $vRicerca->getNomeLocale();
-            $nomeevento = $vRicerca->getNomeEvento();
-            $citta = $vRicerca->getCitta();
-            $data = $vRicerca->getDataEvento();
-            if ($nomelocale != null || $nomeevento != null || $citta != null || $data != null) {
-                $pm = FPersistentManager::GetInstance();
-                list($result[], $local[]) = $check->checkDouble($pm->loadForm($nomelocale, $nomeevento, $citta, $data, $tipo));
-                $vRicerca->showResult($result, $tipo, $nomelocale, $citta, $nomeevento, $data, $local);
-            } else
-                header('Location: /Ricerca/mostraHome');
-        } else {
+                $nomelocale = $vRicerca->getNomeLocale();
+                $citta= $vRicerca->getCitta();
+                $categoria = $vRicerca->getCategorie();
+                if ($nomelocale != null || $citta != null || $categoria != null){
+                    $result = $check->check($pm->loadForm($nomelocale, $citta,$categoria,"tmp",$tipo));
+                    $vRicerca->showResult($result, $tipo,$nomelocale,$citta,$categoria,null,null);
+                }else
+                    header('Location: /Ricerca/mostraHome');
+        }elseif ($tipo == "Eventi") {
+                $nomelocale = $vRicerca->getNomeLocaleEvento();
+                $nomeevento= $vRicerca->getNomeEvento();
+                $citta= $vRicerca->getCitta();
+                $data= $vRicerca->getDataEvento();
+                if ($nomelocale != null || $nomeevento != null || $citta != null || $data != null){
+                        $pm = FPersistentManager::GetInstance();
+                        list($result,$local) = $check->checkDouble($pm->loadForm($nomelocale, $nomeevento, $citta, $data,$tipo));
+                        $vRicerca->showResult($result, $tipo, $nomelocale, $citta, $nomeevento, $data,$local);
+                }else
+                    header('Location: /Ricerca/mostraHome');
+        }else{
             header('Location: /Ricerca/mostraHome');
         }
     }
@@ -122,6 +122,11 @@ class CRicerca
         $proprietario = null;
         $check = UCheck::getInstance();
 
+        if($sessione->isLogged())
+            $logged="loggato";
+        else
+            $logged="nouser";
+
         //Calcolo valutazione media locale + sue recensioni con le relative risposte
         $recensioni = $check->check($pm->load("locale", $id, "FRecensione"));
         $tipo = $sessione->leggi_valore('tipo_utente');
@@ -142,14 +147,13 @@ class CRicerca
             $rating = $recensioni->getVoto();
             $risposte[] = $pm->load("recensione", $idSearch, "FRisposta");
         }
-        if ($sessione->leggi_valore('utente')) {
-            if ($sessione->leggi_valore('tipo_utente') == "EProprietario") {
-                $check = $pm->exist("FLocale", "proprietario", $sessione->leggi_valore('utente'));
-                if ($check)
-                    $proprietario = 1;
-            }
+        if($sessione->leggi_valore('tipo_utente')=="EProprietario"){
+                $check = $pm->exist("FLocale","proprietario",$sessione->leggi_valore('utente'));
+                if($check)
+                    $proprietario=1;
         }
-        $vRicerca->dettagliLocale($tipo, $presente, $result, $recensioni, $risposte, $rating, $proprietario);
+
+        $vRicerca->dettagliLocale($tipo,$presente,$result, $recensioni, $risposte, $rating,$proprietario,$logged);
     }
 
 

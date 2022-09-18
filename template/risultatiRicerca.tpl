@@ -73,6 +73,12 @@
                             <li>{$categoria}</li>
                         {/if}
                     {else}
+                        {if isset($citta)}
+                            <li>{$citta}</li>
+                        {/if}
+                        {if isset($nomeLocale)}
+                            <li>{$nomeLocale}</li>
+                        {/if}
                         {if isset($nomeEvento)}
                             <li>{$nomeEvento}</li>
                         {/if}
@@ -115,6 +121,7 @@
                                         {$locale->getDescrizione()}
                                     </p>
                                 </div>
+                                <br><br>
                             {/foreach}
                         {else}
                             {foreach $array as $evento}

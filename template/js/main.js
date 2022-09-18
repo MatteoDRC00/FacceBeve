@@ -13,18 +13,6 @@ function validateRecensione() {
 }
 
 /**
- * Funzione per controllare che vengano inseriti tutti i campi necessari per la recensione
-
- function validateRisposta(){
-    let risposta = document.forms.Risposta.elements.descrizione.value;
-    if(risposta===""){
-        alert("Inserire del testo nella risposta");
-        return false;
-    }
-} */
-
-
-/**
  *Funzione utilizzata per controllare che vengano inseriti tutti i campi
  */
 function validateRegForm(id) {
@@ -163,7 +151,7 @@ function validateResearchForm(id) {
         } else {
             //Gestione form ricerca eventi utenti collegati
             let citta = document.forms.ricercaEventi.elements.citta.value;
-            let nomeLocale = document.forms.ricercaEventi.elements.nomeLocale.value;
+            let nomeLocale = document.forms.ricercaEventi.elements.nomeLocaleEvento.value;
             let nomeEvento = document.forms.ricercaEventi.elements.nomeEvento.value;
             let dataEvento = document.forms.ricercaEventi.elements.dataEvento.value;
 
