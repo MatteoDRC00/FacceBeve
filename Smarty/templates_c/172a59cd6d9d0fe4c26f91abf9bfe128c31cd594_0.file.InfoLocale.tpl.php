@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-18 11:10:29
+/* Smarty version 4.2.0, created on 2022-09-18 11:22:56
   from 'C:\xampp\htdocs\FacceBeve\template\InfoLocale.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_6326e08519d609_32597926',
+  'unifunc' => 'content_6326e370118de2_69154426',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '172a59cd6d9d0fe4c26f91abf9bfe128c31cd594' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\InfoLocale.tpl',
-      1 => 1663492227,
+      1 => 1663492974,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6326e08519d609_32597926 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6326e370118de2_69154426 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <?php $_smarty_tpl->_assignInScope('locale', (($tmp = $_smarty_tpl->tpl_vars['locale']->value ?? null)===null||$tmp==='' ? null ?? null : $tmp));
@@ -137,12 +137,10 @@ echo '<script'; ?>
                         <h3>Informazioni sul locale</h3>
                         <ul>
                             <li><strong>Indirizzo:</strong> <?php echo $_smarty_tpl->tpl_vars['locale']->value->getLocalizzazione()->getIndirizzo();?>
-
-                                , <?php echo $_smarty_tpl->tpl_vars['locale']->value->getLocalizzazione()->getNumCivico();?>
+, <?php echo $_smarty_tpl->tpl_vars['locale']->value->getLocalizzazione()->getNumCivico();?>
 </li>
                             <li><strong>Citt&agrave:</strong> <?php echo $_smarty_tpl->tpl_vars['locale']->value->getLocalizzazione()->getCitta();?>
-,
-                                <strong>CAP:</strong> <?php echo $_smarty_tpl->tpl_vars['locale']->value->getLocalizzazione()->getCAP();?>
+, <strong>CAP:</strong> <?php echo $_smarty_tpl->tpl_vars['locale']->value->getLocalizzazione()->getCAP();?>
 </li>
                             <li><strong>Categorie:</strong>
                                 <ul>
@@ -185,11 +183,9 @@ $_smarty_tpl->tpl_vars['evento']->do_else = false;
                                             <li><strong>Descrizione</strong>: <?php echo $_smarty_tpl->tpl_vars['evento']->value->getDescrizione();?>
 </li>
                                             <br>
-                                            <li><img class="photo"
-                                                     src="data:<?php echo $_smarty_tpl->tpl_vars['evento']->value->getImg()->getType();?>
+                                            <li><img class="photo" src="data:<?php echo $_smarty_tpl->tpl_vars['evento']->value->getImg()->getType();?>
 ;base64,<?php echo $_smarty_tpl->tpl_vars['evento']->value->getImg()->getImmagine();?>
-"
-                                                     alt="Poster evento" width="410px" height="155px"></li>
+" alt="Poster evento" width="410px" height="155px"></li>
                                         </ul>
                                     </div>
                                 <?php
@@ -231,26 +227,23 @@ $__foreach_recensione_2_saved = $_smarty_tpl->tpl_vars['recensione'];
 ?>
                                 <div id="comment-1" class="comment">
                                     <div class="d-flex">
-                                        <div class="comment-img"><img
-                                                    src="data:<?php echo $_smarty_tpl->tpl_vars['recensione']->value->getUtente()->getImgProfilo()->getType();?>
+                                        <div class="comment-img"><img src="data:<?php echo $_smarty_tpl->tpl_vars['recensione']->value->getUtente()->getImgProfilo()->getType();?>
 ;base64,<?php echo $_smarty_tpl->tpl_vars['recensione']->value->getUtente()->getImgProfilo()->getImmagine();?>
-"
-                                                    alt="Immagine profilo utente" style="border-radius: 35px;">
+" alt="Immagine profilo utente" style="border-radius: 35px;">
                                         </div>
                                         <div>
                                             <h5><?php echo $_smarty_tpl->tpl_vars['recensione']->value->getUtente()->getUsername();?>
 </h5>
 
                                             <h5><?php echo $_smarty_tpl->tpl_vars['recensione']->value->getData();?>
- | Voto:<?php echo $_smarty_tpl->tpl_vars['recensione']->value->getVoto();?>
-
-                                                /5
+ | <strong>Voto: <?php echo $_smarty_tpl->tpl_vars['recensione']->value->getVoto();?>
+/5</strong>
                                                 <?php if ($_smarty_tpl->tpl_vars['recensione']->value->getUtente()->getUsername() == $_smarty_tpl->tpl_vars['utente']->value) {?>
                                                     <form action="/GestioneRecensione/cancellaRecensione/<?php echo $_smarty_tpl->tpl_vars['recensione']->value->getId();?>
 "
                                                           method="POST">
-                                                        <button type="submit" style="border-radius:9px; height: 40px; color: #bb2d3b; font-weight: bold; border-color: #bb2d3b"><i
-                                                                    class="align-items-xxl-end"></i>Elimina la tua Recensione
+                                                        <button type="submit" style="border-radius:9px; height: 40px; color: #bb2d3b; font-weight: bold; border-color: #bb2d3b">
+                                                            <i class="align-items-xxl-end"></i>Elimina la tua Recensione
                                                         </button>
                                                     </form>
                                                 <?php }?>
@@ -302,8 +295,8 @@ if ($_smarty_tpl->tpl_vars['arrayRisposte']->value[$_prefixVariable6]->getPropri
                                                     <form action="/GestioneRecensione/cancellaRisposta/<?php echo $_smarty_tpl->tpl_vars['recensione']->value->getId();?>
 "
                                                           method="POST">
-                                                        <button type="submit" style="border-radius:9px; height: 40px"><i
-                                                                    class="align-items-xxl-end"></i>Elimina la tua Risposta:
+                                                        <button type="submit" style="border-radius:9px; height: 40px; color: #bb2d3b; font-weight: bold; border-color: #bb2d3b">
+                                                            <i class="align-items-xxl-end"></i>Elimina la tua Risposta
                                                         </button>
                                                     </form>
                                                 <?php }?>
