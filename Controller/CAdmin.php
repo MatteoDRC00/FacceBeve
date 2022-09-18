@@ -34,17 +34,31 @@ class CAdmin{
         return self::$instance;
     }
 
+    /**
+     * Metodo che instanzia
+     * @throws SmartyException
+     */
     public function dashboardAdmin(){
         $sessione = new USession();
         $view = new VAdmin();
         if($sessione->isLogged() && ($sessione->leggi_valore("tipo_utente") == "EAdmin")){
             $pm = FPersistentManager::getInstance();
+
             //loadUtenti --> Separo in Utenti attivi e Bannati
-            $utenti = $pm->loadUtentiByState("FUtente");
+            $utentiAttivi = $pm->loadUtentiByState(1);
+            $utentiBannati = $pm->loadUtentiByState(0);
+
+            //loadCategorie
+            $categorie = $pm->getCategorie();
+
+            //loadRecensioni segnalate
+            $recSegnalate = $pm->load("segnalato",true,"FRecensione");
+
+            $view->HomeAdmin($utentiAttivi, $utentiBannati, $categorie,$recSegnalate);
         }else{
+            print("AAAAAA");
             header('Location: /Accesso/login');
         }
-
     }
 
 
@@ -92,31 +106,6 @@ class CAdmin{
         }
     }*/
 
-    /**
-     * Funzione di supporto per le altre.
-     * Questo ha il compito di restituire:
-     * 1) array di oggetti EImmagine, se il parametro in ingresso è un array di EUtente;
-     * 2) un oggetto EImmagine, se il parametro in ingresso è un EUtente;
-     * 3) null, se la variabile in ingresso non è definita.
-     * @param $utenti
-     * @param $tipo se FUtente o FProprietario
-     * @return array|null|object
-     */
-    public function set_immagini($utenti, $tipo){
-        $pm = FPersistentManager::getInstance();
-        $img = null;
-        if (isset($utenti)) {
-            if (is_array($utenti)) {
-                foreach ($utenti as $item) {
-                    $x = $pm->load("username", $item->getUsername(), $tipo);
-                    $img[] = $pm->load("id",$x->getImgProfilo(),"FImmagine");
-                }
-            } else
-                $x = $pm->load("username", $utenti->getUsername(), $tipo);
-                $img[] = $pm->load("id",$x->getImgProfilo(),"FImmagine");
-        }
-        return $img;
-    }
 
     /**
      * Metodo utilizzato dal Admin per aggiungere categorie sul sito.

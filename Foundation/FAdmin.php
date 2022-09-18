@@ -123,13 +123,12 @@ class FAdmin{
      */
     public static function loadByField($field, $id){
         $db = FDB::getInstance();
-        $result = $db->load(static::getClass(), $field, $id);
-        $rows_number = $db->getNumRighe(static::getClass(), $field, $id);    //funzione richiamata,presente in FDB --> restituisce numero di righe interessate dalla query
-        if(($result!=null) && ($rows_number == 1)) {
+        list($result,$num) = $db->load(static::getClass(), $field, $id);
+        if(($result!=null) && ($num == 1)) {
             $admin = new EAdmin( $result['username'],$result['email'], $result['password']);
         }
         else {
-            if(($result!=null) && ($rows_number > 1)){
+            if(($result!=null) && ($num > 1)){
                 $admin = array();
                 for($i=0; $i<count($result); $i++){
                     $admin[$i] = new EAdmin( $result[$i]['username'],$result[$i]['email'], $result[$i]['password']);

@@ -204,27 +204,27 @@ class FUtente{
 
 
     /**
-     * @param $state
+     * @param bool $state
      * @return array|EUtente
      */
-    public static function loadUtentiByState($state){
+    public static function loadUtentiByState(bool $state){
         $utente = null;
         $db = FDB::getInstance();
-        list ($result, $num)=$db->getUtentiByState($state);
+        list ($result[], $num)=$db->getUtentiByState($state);
         if(($result!=null) && ($num == 1)) {
             $utente = new EUtente($result['password'], $result['nome'], $result['cognome'], $result['username'], $result['email']);
             $utente->setIscrizione($result['dataIscrizione']);
             $utente->setImgProfilo(FImmagine::loadByField('id', $result['idImg']));
-            $utente->setState($result['state']);
+            $utente->setState($state);
         }
         else {
             if(($result!=null) && ($num > 1)){
                 $utente = array();
                 for($i=0; $i<count($result); $i++){
-                    $utente[$i] = new EUtente($result[$i]['password'], $result[$i]['nome'], $result[$i]['cognome'], $result[$i]['username'], $result[$i]['email']);
+                    $utente[] = new EUtente($result[$i]['password'], $result[$i]['nome'], $result[$i]['cognome'], $result[$i]['username'], $result[$i]['email']);
                     $utente[$i]->setIscrizione($result[$i]['dataIscrizione']);
                     $utente[$i]->setImgProfilo(FImmagine::loadByField('id',$result[$i]['idImg']));
-                    $utente[$i]->setState($result[$i]['state']);
+                    $utente[$i]->setState($state);
                 }
             }
         }

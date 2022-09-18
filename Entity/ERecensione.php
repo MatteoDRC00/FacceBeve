@@ -31,7 +31,7 @@ class ERecensione implements JsonSerializable {
         $this->voto = $voto;
         $this->data = $data;
 		$this->locale=$locale;
-		$this->segnalata=0;
+		$this->segnalata=false;
     }
 
     /**

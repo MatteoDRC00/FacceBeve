@@ -39,7 +39,7 @@ class CRicerca{
         if($sessione->isLogged()){
             $tipo = $sessione->leggi_valore("tipo_utente");
             if($tipo == "EAdmin"){
-                header('Location: /Admin/dashboard');
+                header('Location: /Admin/dashboardAdmin');
             }
         }else{
             $tipo = "nouser";
