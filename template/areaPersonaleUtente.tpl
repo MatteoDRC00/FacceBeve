@@ -143,9 +143,11 @@
 
                         <div class="entries">
                             {if !empty($locali_preferiti)}
-                                {foreach $locali_preferiti as $locale}
-                                    <a href="/Ricerca/dettagliLocale/{$locale->getID()}">{$locale->getNome()}   <i class="fa fa-angle-right"></i></a>
-                                {/foreach}
+                                <ul>
+                                    {foreach $locali_preferiti as $locale}
+                                        <li><a href="/Ricerca/dettagliLocale/{$locale->getID()}">{$locale->getNome()}   <i class="fa fa-angle-right"></i></a></li>
+                                    {/foreach}
+                                </ul>
                             {else}
                                 <p>Non possiedi locali preferiti</p>
                             {/if}

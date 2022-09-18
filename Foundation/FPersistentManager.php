@@ -270,13 +270,17 @@ class FPersistentManager {
 
     public function getLocaliPreferiti($id_utente){
         $db = FDB::getInstance();
-        list($utente_locali[], $num) = $db->loadByTable("utenti_locali", "ID_Utente", $id_utente);
-
+        list($utente_locali, $num) = $db->loadByTable("utenti_locali", "ID_Utente", $id_utente);
         $locali_preferiti = array();
 
         if(!empty($utente_locali)){
-            for($i=0; $i<$num; $i++){
-                $locali_preferiti[] = FLocale::loadByField("id", $utente_locali[$i]['ID_Locale']);
+            if ($num == 1){
+                $locali_preferiti[] = FLocale::loadByField("id", $utente_locali['ID_Locale']);
+            }else{
+                for($i=0; $i<$num; $i++){
+                    $value = $utente_locali[$i];
+                    $locali_preferiti[] = FLocale::loadByField("id", $value['ID_Locale']);
+                }
             }
         }
         return $locali_preferiti;
