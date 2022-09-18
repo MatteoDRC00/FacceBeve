@@ -97,9 +97,10 @@ class VAdmin
      * @param $categorie array di oggetti ECategoria --> categorie del sito
      * @throws SmartyException
      */
-    public function HomeAdmin($utentiAttivi, $utentiBannati, $categorie, $recensioni) {
+    public function HomeAdmin($utentiAttivi, $utentiBannati, $categorie, $recensioni, $proprietari) {
 
         $this->smarty->assign('categorie',$categorie);
+        $this->smarty->assign('proprietari',$proprietari);
         $this->smarty->assign('recensioni',$recensioni);
         $this->smarty->assign('utentiAttivi',$utentiAttivi);
         $this->smarty->assign('utentiBannati',$utentiBannati);

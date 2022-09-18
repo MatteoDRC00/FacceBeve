@@ -177,7 +177,7 @@ class FPersistentManager {
     /** Metodo che permette il caricamento di tutti gli elementi di una classe/tabella*/
     public function loadAll(string $class) {
         $ris = null;
-        $ris = $class::loadNames();
+        $ris = $class::loadAll();
         return $ris;
     }
 

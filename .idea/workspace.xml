@@ -6,7 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="ca6e37f9-4df3-446e-a924-f4e38117399d" name="Changes" comment="login e registrazione aggiunta logo in alto da completare">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controller/CAdmin.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/CAdmin.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Foundation/FCategoria.php" beforeDir="false" afterPath="$PROJECT_DIR$/Foundation/FCategoria.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Foundation/FDB.php" beforeDir="false" afterPath="$PROJECT_DIR$/Foundation/FDB.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Foundation/FPersistentManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/Foundation/FPersistentManager.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Foundation/FProprietario.php" beforeDir="false" afterPath="$PROJECT_DIR$/Foundation/FProprietario.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Foundation/FRecensione.php" beforeDir="false" afterPath="$PROJECT_DIR$/Foundation/FRecensione.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Smarty/templates_c/61814e22ecca6cd2302bb05219c59cc01d7a92dc_0.file.dashboardAdmin.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/Smarty/templates_c/61814e22ecca6cd2302bb05219c59cc01d7a92dc_0.file.dashboardAdmin.tpl.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/VAdmin.php" beforeDir="false" afterPath="$PROJECT_DIR$/View/VAdmin.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/template/dashboardAdmin.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/template/dashboardAdmin.tpl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -185,6 +192,17 @@
     <MESSAGE value="get e set di qualcosa" />
     <MESSAGE value="login e registrazione aggiunta logo in alto da completare" />
     <option name="LAST_COMMIT_MESSAGE" value="login e registrazione aggiunta logo in alto da completare" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/View/VAdmin.php</url>
+          <line>88</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

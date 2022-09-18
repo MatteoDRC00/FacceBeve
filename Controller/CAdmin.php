@@ -50,12 +50,16 @@ class CAdmin{
 
 
             //loadCategorie
-            $categorie = $pm->getCategorie();
+            $categorie = $pm->loadAll("FCategoria");
+
 
             //loadRecensioni segnalate
             $recSegnalate = $pm->load("segnalato",true,"FRecensione");
 
-            $view->HomeAdmin($utentiAttivi, $utentiBannati, $categorie,$recSegnalate);
+            //loadProprietari
+            $proprietari = $pm->loadAll("FProprietario");
+
+            $view->HomeAdmin($utentiAttivi, $utentiBannati, $categorie, $recSegnalate, $proprietari);
         }else{
             header('Location: /Accesso/login');
         }

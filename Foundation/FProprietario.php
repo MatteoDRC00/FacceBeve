@@ -72,6 +72,30 @@ class FProprietario{
         return $db->store(static::getClass(), $proprietario);
     }
 
+    /**
+     * Ritorna tutte i proprietari di locali presenti sul db
+     * @return object $rec Recensione
+     */
+    public static function loadAll() {
+        $proprietario= null;
+        $db = FDB::getInstance();
+        list($result,$num) =$db->getAll("proprietario");
+        if(($result!=null) && ($num == 1)) {
+            $proprietario = new EProprietario($result['nome'],$result['cognome'], $result['email'], $result['username'], $result['password']); //Carica un Proprietario dal database
+            $proprietario->setImgProfilo(FImmagine::loadByField('id', $result['idImg']));
+        }else{
+            if(($result!=null) && ($num > 1)){
+                $proprietario = array();
+                for($i=0; $i<count($result); $i++){
+                    $proprietario[$i] = new EProprietario($result[$i]['nome'],$result[$i]['cognome'], $result[$i]['email'], $result[$i]['username'], $result[$i]['password']); //Carica un array di oggetti Proprietario dal database
+                    $proprietario[$i]->setImgProfilo(FImmagine::loadByField('id', $result[$i]['idImg']));
+                }
+            }
+        }
+        return $proprietario;
+    }
+
+
 
     /**
      * @param $field

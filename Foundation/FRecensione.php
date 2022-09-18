@@ -159,7 +159,7 @@ class FRecensione{
     public static function loadAll() {
         $rec = null;
         $db = FDB::getInstance();
-        list($result,$num) =$db->getAllRev(static::getClass());
+        list($result,$num) =$db->getAll(static::getTable());
         if(($result != null) && ($num == 1)) {
             $utente = FUtente::loadByField("username",$result['utente']);
             $locale = FLocale::loadByField("id",$result['locale']);

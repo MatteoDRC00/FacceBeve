@@ -766,10 +766,11 @@ class FDB{
 	 * Utilizzata nella pagina admin
 	 * @param $query query da eseguire
 	 */
-	public function getAllRev(){
+	public function getAll($table): ?array
+	{
 		try {
-			$query = "SELECT * FROM recensione;";
-			$stmt = $this->db->prepare($query);
+			$query = "SELECT * FROM ".$table.";";
+			$stmt = $this->database->prepare($query);
 			$stmt->execute();
 			$num = $stmt->rowCount();
 			if ($num == 0) {

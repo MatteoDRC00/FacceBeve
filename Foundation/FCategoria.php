@@ -159,6 +159,28 @@ class FCategoria {
         }
         return $categoria;
     }
+
+    /**
+     * Ritorna tutte le recensioni presenti sul db
+     * @return object $rec Recensione
+     */
+    public static function loadAll() {
+        $categoria= null;
+        $db = FDB::getInstance();
+        list($result,$num) =$db->getAll("categoria");
+        if (($result != null) && ($num == 1)) {
+            $categoria = new ECategoria($result['genere'], $result['descrizione']);
+        } else {
+            if (($result != null) && ($num > 1)) {
+                $categoria = array();
+                for ($i = 0; $i < count($result); $i++) {
+                    $categoria[$i] = new ECategoria($result[$i]['genere'], $result[$i]['descrizione']);
+                }
+            }
+        }
+        return $categoria;
+    }
+
 }
 
 ?>
