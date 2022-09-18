@@ -647,9 +647,9 @@ class FDB{
 					switch ($i) {
 						case 0:
 							if ($query == null)
-								$query = "SELECT * FROM " . $class::getTable()  . " INNER JOIN Locale_Eventi ON Locale_Eventi.ID_Locale='" . $nomelocale . "'";
+								$query = "SELECT * FROM " . $class::getTable()  . " INNER JOIN Locale_Eventi ON Locale_Eventi.ID_Locale=Evento.id INNER JOIN Locale ON Locale.nome='". $nomelocale. "'";
 							else
-								$query = $query . " INNER JOIN Locale_Eventi ON Locale_Eventi.ID_Locale='" . $nomelocale . "'";
+								$query = $query . " INNER JOIN Locale_Eventi ON Locale_Eventi.ID_Locale=Evento.id INNER JOIN Locale ON Locale.nome='".$nomelocale."';";
 							break;
 							break;
 						case 1:
@@ -674,7 +674,6 @@ class FDB{
 				}
 			}
 			$query = $query . ";";
-			//print $query;
 
 			$stmt = $this->database->prepare($query);
 			$stmt->execute();

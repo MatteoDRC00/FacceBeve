@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-18 11:40:06
+/* Smarty version 4.2.0, created on 2022-09-18 22:56:19
   from 'C:\xampp\htdocs\FacceBeve\template\home.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_6326e776684788_43272438',
+  'unifunc' => 'content_632785f3c38e56_12637716',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c953834e2bd280dacf9fe734edc7529afcd03f09' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\home.tpl',
-      1 => 1663493681,
+      1 => 1663534573,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6326e776684788_43272438 (Smarty_Internal_Template $_smarty_tpl) {
+function content_632785f3c38e56_12637716 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -101,7 +101,7 @@ function content_6326e776684788_43272438 (Smarty_Internal_Template $_smarty_tpl)
                     </select>
                 </div>
                 <div class="ricerca animate__animated animate__fadeInDown" id="Locali" style="display: flex;justify-content: center;">
-                    <form class="Search" name="ricercaLocali1" id="ricercaLocali1" onsubmit="return validateResearchForm(1)"  action="/Ricerca/ricerca" method="POST">
+                    <form class="Search" name="ricercaLocali1" id="ricercaLocali1" onsubmit="return validateResearchForm(1)" action="/Ricerca/ricerca" method="POST">
                         <input class="homeinput" type="hidden" value="x" name="checkLocale" id="checkLocale">
                         <input class="homeinput" type="text" placeholder="Inserisci la città" name="citta1">
                         <input class="homeinput" type="text" placeholder="Inserisci il nome" name="nomeLocale1">
@@ -128,7 +128,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                 <div class="ricerca animate__animated animate__fadeInDown" id="Eventi" style="display: none;justify-content: center;" >
                     <form class="Search" name="ricercaEventi" onsubmit="return validateResearchForm(1)"  action="/Ricerca/ricerca" method="POST">
                         <input class="homeinput" type="text" placeholder="Inserisci la città" name="citta">
-                        <input class="homeinput" type="text" placeholder="Inserisci il nome del Locale" name="nomeLocale">
+                        <input class="homeinput" type="text" placeholder="Inserisci il nome del Locale" name="nomeLocaleEvento">
                         <input class="homeinput" type="text" placeholder="Inserisci il nome del Evento" name="nomeEvento">
                         <input type="date" placeholder="Inserisci la data del Evento" name="dataEvento">
                         <button type="submit" style="border-radius:10px;"><i class="fa fa-search"></i></button>

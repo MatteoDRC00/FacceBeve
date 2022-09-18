@@ -78,7 +78,7 @@
                     </select>
                 </div>
                 <div class="ricerca animate__animated animate__fadeInDown" id="Locali" style="display: flex;justify-content: center;">
-                    <form class="Search" name="ricercaLocali1" id="ricercaLocali1" onsubmit="return validateResearchForm(1)"  action="/Ricerca/ricerca" method="POST">
+                    <form class="Search" name="ricercaLocali1" id="ricercaLocali1" onsubmit="return validateResearchForm(1)" action="/Ricerca/ricerca" method="POST">
                         <input class="homeinput" type="hidden" value="x" name="checkLocale" id="checkLocale">
                         <input class="homeinput" type="text" placeholder="Inserisci la città" name="citta1">
                         <input class="homeinput" type="text" placeholder="Inserisci il nome" name="nomeLocale1">
@@ -96,7 +96,7 @@
                 <div class="ricerca animate__animated animate__fadeInDown" id="Eventi" style="display: none;justify-content: center;" >
                     <form class="Search" name="ricercaEventi" onsubmit="return validateResearchForm(1)"  action="/Ricerca/ricerca" method="POST">
                         <input class="homeinput" type="text" placeholder="Inserisci la città" name="citta">
-                        <input class="homeinput" type="text" placeholder="Inserisci il nome del Locale" name="nomeLocale">
+                        <input class="homeinput" type="text" placeholder="Inserisci il nome del Locale" name="nomeLocaleEvento">
                         <input class="homeinput" type="text" placeholder="Inserisci il nome del Evento" name="nomeEvento">
                         <input type="date" placeholder="Inserisci la data del Evento" name="dataEvento">
                         <button type="submit" style="border-radius:10px;"><i class="fa fa-search"></i></button>

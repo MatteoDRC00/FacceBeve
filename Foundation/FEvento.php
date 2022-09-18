@@ -270,7 +270,7 @@ class FEvento {
                 $proprietario = array();
                 for($i=0; $i<count($result); $i++){
                     $evento[] = new EEvento($result[$i]["nome"],$result[$i]["descrizione"],$result[$i]["data"]);
-                    $x = $db->loadInfoEvento($result["id"]);
+                    $x = $db->loadInfoEvento($result[$i]["id"]);
                     $localizzazione[$i] = FLocalizzazione::loadByField("id" , $x["localizzazione"]);
                     $proprietario[$i] = FProprietario::loadByField("username" , $x["proprietario"]);
                     $locale[$i] = new ELocale($x['nome'],$x['numtelefono'],$x['descrizione'],$proprietario[$i],$localizzazione[$i]);

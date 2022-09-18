@@ -51,6 +51,19 @@ class VRicerca
     }
 
     /**
+     * Restituisce (se immesso) il valore del campo nome locale, quando si sta effettuando la ricerca degli eventi
+     * Inviato con metodo post
+     * @return string contenente il valore inserito dall'utente
+     */
+    public static function getNomeLocaleEvento(): ?string
+    {
+        $value = null;
+        if (isset($_POST['nomeLocaleEvento']))
+                $value = $_POST['nomeLocaleEvento'];
+        return $value;
+    }
+
+    /**
      * Restituisce (se immesso) il valore del campo nome evento
      * Inviato con metodo post
      * @return string contenente il valore inserito dall'utente
@@ -150,16 +163,8 @@ class VRicerca
      * @throws SmartyException
      */
     public function showResult($result, $tipo,$nomelocale,$citta, $eventoCat, $data,$localEventi){
-        $sessione = new USession();
-        if($sessione->isLogged())
-            $this->smarty->assign('userlogged',"loggato");
 
-
-        if(isset($result)){
-            $this->smarty->assign('array', $result);
-        }else{
-            $this->smarty->assign('array', null);
-        }
+        $this->smarty->assign('array', $result);
 
         $this->smarty->assign('tipo', $tipo);
         if($tipo == "Locali"){
@@ -192,7 +197,7 @@ class VRicerca
      * @param array contiene l'id dell'array da visualizzare
      * @throws SmartyException
      */
-    public function dettagliLocale($tipo, $presente, $result,$arrayRecensioni,$arrayRisposte,$valutazioneLocale,$proprietario) {
+    public function dettagliLocale($tipo, $presente, $result,$arrayRecensioni,$arrayRisposte,$valutazioneLocale,$proprietario, $logged) {
         $sessione = new USession();
         //Se l'utente è registrato può vedere gli eventi organizzati dal locale
         if($result->getEventiOrganizzati() !== null){
@@ -201,21 +206,10 @@ class VRicerca
         if(isset($proprietario)){
             $this->smarty->assign('proprietario', $proprietario);
         }
-        if(is_array($arrayRecensioni))
-            $nrece = count($arrayRecensioni);
-        elseif(isset($arrayRecensioni))
-            $nrece = 1;
-        else
-            $nrece = 0;
+        $this->smarty->assign('userlogged', $logged);
         $this->smarty->assign('arrayRecensioni', $arrayRecensioni);
-        $this->smarty->assign('nrece', $nrece);
         $this->smarty->assign('arrayRisposte', $arrayRisposte);
         $this->smarty->assign('valutazioneLocale', $valutazioneLocale);
-
-        if($sessione->isLogged())
-            $this->smarty->assign('userlogged',"loggato"); //Potrà cosi visualizzare gli eventi
-        else
-            $this->smarty->assign('userlogged',"nouser");
 
         $this->smarty->assign('utente', $sessione->leggi_valore('utente'));
         $this->smarty->assign('locale', $result);

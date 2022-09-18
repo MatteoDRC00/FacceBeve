@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-18 09:28:45
+/* Smarty version 4.2.0, created on 2022-09-18 22:27:01
   from 'C:\xampp\htdocs\FacceBeve\template\areaPersonaleProprietario.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_6326c8ad45e584_42582446',
+  'unifunc' => 'content_63277f159ff2d8_92899054',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'f01309d919bfd81c0c749befffc9728594dd37b3' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\areaPersonaleProprietario.tpl',
-      1 => 1663486123,
+      1 => 1663532813,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6326c8ad45e584_42582446 (Smarty_Internal_Template $_smarty_tpl) {
+function content_63277f159ff2d8_92899054 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -183,23 +183,27 @@ function content_6326c8ad45e584_42582446 (Smarty_Internal_Template $_smarty_tpl)
 
             <div class="items-body">
                 <?php if (!empty($_smarty_tpl->tpl_vars['locali']->value)) {?>
-                    <?php
+                    <ul>
+                        <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['locali']->value, 'locale');
 $_smarty_tpl->tpl_vars['locale']->do_else = true;
 if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['locale']->value) {
 $_smarty_tpl->tpl_vars['locale']->do_else = false;
 ?>
-                        <div class="items-body-content row-cols-3">
-                            <p><?php echo $_smarty_tpl->tpl_vars['locale']->value->getNome();?>
+                            <li>
+                                <div class="items-body-content row-cols-3">
+                                    <p><?php echo $_smarty_tpl->tpl_vars['locale']->value->getNome();?>
 </p>
-                            <a href="/GestioneLocale/mostraGestioneLocale/<?php echo $_smarty_tpl->tpl_vars['locale']->value->getId();?>
+                                    <a href="/GestioneLocale/mostraGestioneLocale/<?php echo $_smarty_tpl->tpl_vars['locale']->value->getId();?>
 "><input type="button" value="Gestisci locale"></a>
-                            <a href="/GestioneLocale/eliminaLocale/<?php echo $_smarty_tpl->tpl_vars['locale']->value->getId();?>
+                                    <a href="/GestioneLocale/eliminaLocale/<?php echo $_smarty_tpl->tpl_vars['locale']->value->getId();?>
 "><input type="button" value="Elimina Locale"></a>
-                        </div>
-                    <?php
+                                </div>
+                            </li>
+                        <?php
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
+                    </ul>
                 <?php } else { ?>
                     <p>Non possiedi locali locali</p>
                 <?php }?>

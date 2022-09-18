@@ -73,6 +73,12 @@
                             <li>{$categoria}</li>
                         {/if}
                     {else}
+                        {if isset($citta)}
+                            <li>{$citta}</li>
+                        {/if}
+                        {if isset($nomeLocale)}
+                            <li>{$nomeLocale}</li>
+                        {/if}
                         {if isset($nomeEvento)}
                             <li>{$nomeEvento}</li>
                         {/if}
@@ -129,11 +135,11 @@
                                 <div class="entry-meta">
                                     <ul>
                                         <li class="d-flex align-items-center"><i class="bi bi-person"></i>
-                                            {$locali[{$evento@iteration-1}]->getNome()}</li>
+                                            {$locali[0]->getNome()}</li>
                                         <li class="d-flex align-items-center"><i class="fas fa-map-marker-alt"></i>
-                                            {$locali[{$evento@iteration-1}]->getLocalizzazione()->getIndirizzo()}
-                                            ,{$locali[{$evento@iteration-1}]->getLocalizzazione()->getNumCivico()}
-                                            , {$locali[{$evento@iteration-1}]->getLocalizzazione()->getCitta()}
+                                            {$locali[0]->getLocalizzazione()->getIndirizzo()}
+                                            ,{$locali[0]->getLocalizzazione()->getNumCivico()}
+                                            , {$locali[0]->getLocalizzazione()->getCitta()}
                                         </li>
                                         <li class="d-flex align-items-center"><i class="bi bi-pin"></i>
                                             {$evento->getData()}</li>
@@ -144,7 +150,7 @@
                                         {$evento->getDescrizione()}
                                     </p>
                                     <div class="read-more">
-                                        <a href="/Ricerca/dettagliLocale/{$locali[{$evento@iteration-1}]->getId()}">
+                                        <a href="/Ricerca/dettagliLocale/{$locali[0]->getId()}">
                                             Visita la pagina del Locale <i class="fas fa-chevron-circle-right"></i></a>
                                     </div>
                                 </div>
