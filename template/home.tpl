@@ -82,7 +82,7 @@
                         <input class="homeinput" type="hidden" value="x" name="checkLocale" id="checkLocale">
                         <input class="homeinput" type="text" placeholder="Inserisci la città" name="citta1">
                         <input class="homeinput" type="text" placeholder="Inserisci il nome" name="nomeLocale1">
-                        <select form="ricercaLocali1" name="categorie1" style="border-radius:7px; height: 50px  ;">
+                        <select form="ricercaLocali1" name="categorie1" id="categorie1" style="border-radius:7px; height: 50px  ;">
                             <option>--Scegli il tipo--</option>
                             {if !empty($genere_cat)}
                                 {foreach $genere_cat as $genere}
