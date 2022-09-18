@@ -106,10 +106,8 @@
                     <div class="portfolio-info">
                         <h3>Informazioni sul locale</h3>
                         <ul>
-                            <li><strong>Indirizzo:</strong> {$locale->getLocalizzazione()->getIndirizzo()}
-                                , {$locale->getLocalizzazione()->getNumCivico()}</li>
-                            <li><strong>Citt&agrave:</strong> {$locale->getLocalizzazione()->getCitta()},
-                                <strong>CAP:</strong> {$locale->getLocalizzazione()->getCAP()}</li>
+                            <li><strong>Indirizzo:</strong> {$locale->getLocalizzazione()->getIndirizzo()}, {$locale->getLocalizzazione()->getNumCivico()}</li>
+                            <li><strong>Citt&agrave:</strong> {$locale->getLocalizzazione()->getCitta()}, <strong>CAP:</strong> {$locale->getLocalizzazione()->getCAP()}</li>
                             <li><strong>Categorie:</strong>
                                 <ul>
                                     {foreach $locale->getCategoria() as $categoria}
@@ -133,9 +131,7 @@
                                             <li><strong>Data</strong>: {$evento->getData()}.</li>
                                             <li><strong>Descrizione</strong>: {$evento->getDescrizione()}</li>
                                             <br>
-                                            <li><img class="photo"
-                                                     src="data:{$evento->getImg()->getType()};base64,{$evento->getImg()->getImmagine()}"
-                                                     alt="Poster evento" width="410px" height="155px"></li>
+                                            <li><img class="photo" src="data:{$evento->getImg()->getType()};base64,{$evento->getImg()->getImmagine()}" alt="Poster evento" width="410px" height="155px"></li>
                                         </ul>
                                     </div>
                                 {/foreach}
@@ -167,20 +163,17 @@
                             {foreach $arrayRecensioni as $recensione}
                                 <div id="comment-1" class="comment">
                                     <div class="d-flex">
-                                        <div class="comment-img"><img
-                                                    src="data:{$recensione->getUtente()->getImgProfilo()->getType()};base64,{$recensione->getUtente()->getImgProfilo()->getImmagine()}"
-                                                    alt="Immagine profilo utente" style="border-radius: 35px;">
+                                        <div class="comment-img"><img src="data:{$recensione->getUtente()->getImgProfilo()->getType()};base64,{$recensione->getUtente()->getImgProfilo()->getImmagine()}" alt="Immagine profilo utente" style="border-radius: 35px;">
                                         </div>
                                         <div>
                                             <h5>{$recensione->getUtente()->getUsername()}</h5>
 
-                                            <h5>{$recensione->getData()} | Voto:{$recensione->getVoto()}
-                                                /5
+                                            <h5>{$recensione->getData()} | <strong>Voto: {$recensione->getVoto()}/5</strong>
                                                 {if $recensione->getUtente()->getUsername() eq $utente}
                                                     <form action="/GestioneRecensione/cancellaRecensione/{$recensione->getId()}"
                                                           method="POST">
-                                                        <button type="submit" style="border-radius:9px; height: 40px"><i
-                                                                    class="align-items-xxl-end"></i>Elimina la tua Recensione:
+                                                        <button type="submit" style="border-radius:9px; height: 40px; color: #bb2d3b; font-weight: bold; border-color: #bb2d3b">
+                                                            <i class="align-items-xxl-end"></i>Elimina la tua Recensione
                                                         </button>
                                                     </form>
                                                 {/if}
@@ -207,8 +200,8 @@
                                                 {if $arrayRisposte[{$recensione@iteration-1}]->getProprietario()->getUsername() eq $utente}
                                                     <form action="/GestioneRecensione/cancellaRisposta/{$recensione->getId()}"
                                                           method="POST">
-                                                        <button type="submit" style="border-radius:9px; height: 40px"><i
-                                                                    class="align-items-xxl-end"></i>Elimina la tua Risposta:
+                                                        <button type="submit" style="border-radius:9px; height: 40px; color: #bb2d3b; font-weight: bold; border-color: #bb2d3b">
+                                                            <i class="align-items-xxl-end"></i>Elimina la tua Risposta
                                                         </button>
                                                     </form>
                                                 {/if}
