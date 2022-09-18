@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-15 22:50:02
+/* Smarty version 4.2.0, created on 2022-09-18 10:27:19
   from 'C:\xampp\htdocs\FacceBeve\template\home.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_63238ffaca72b8_04989977',
+  'unifunc' => 'content_6326d667d7e6c6_21556601',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c953834e2bd280dacf9fe734edc7529afcd03f09' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\home.tpl',
-      1 => 1663274994,
+      1 => 1663489621,
       2 => 'file',
     ),
   ),
@@ -20,10 +20,8 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_63238ffaca72b8_04989977 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6326d667d7e6c6_21556601 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
-<?php $_smarty_tpl->_assignInScope('genere_cat', $_smarty_tpl->tpl_vars['genere_cat']->value);
-$_smarty_tpl->_assignInScope('locali', $_smarty_tpl->tpl_vars['locali']->value);?>
 <html lang="en">
 
 <head>
@@ -186,11 +184,12 @@ $_smarty_tpl->tpl_vars['locale']->do_else = true;
 if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['locale']->value) {
 $_smarty_tpl->tpl_vars['locale']->do_else = false;
 ?>
-                        <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up">
+                        <div class="col-md-6 col-lg-3 d-flex align-items-stretch">
                             <div class="icon-box icon-box-pink">
-                                <h4 class="title"><a href=""><?php echo $_smarty_tpl->tpl_vars['locale']->value['nome'];?>
+                                <h4 class="title"><a href="/Ricerca/dettagliLocale/<?php echo $_smarty_tpl->tpl_vars['locale']->value->getId();?>
+"><?php echo $_smarty_tpl->tpl_vars['locale']->value->getNome();?>
 </a></h4>
-                                <p class="description"><?php echo $_smarty_tpl->tpl_vars['locale']->value['descrizione'];?>
+                                <p class="description"><?php echo $_smarty_tpl->tpl_vars['locale']->value->getDescrizione();?>
 </p>
                             </div>
                         </div>
@@ -200,28 +199,6 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                 <?php } else { ?>
                     <p>Non ci sono locali</p>
                 <?php }?>
-
-            </div>
-            <!--
-            <div class="row">
-                <h2>Eventi più vicini ad oggi:</h2>
-                <?php
-$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['locali']->value, 'locale');
-$_smarty_tpl->tpl_vars['locale']->do_else = true;
-if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['locale']->value) {
-$_smarty_tpl->tpl_vars['locale']->do_else = false;
-?>
-                    <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up">
-                        <div class="icon-box icon-box-pink">
-                            <h4 class="title"><a href=""><?php echo $_smarty_tpl->tpl_vars['locale']->value['nome'];?>
-</a></h4>
-                            <p class="description"><?php echo $_smarty_tpl->tpl_vars['locale']->value['descrizione'];?>
-</p>
-                        </div>
-                    </div>
-                <?php
-}
-$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>-->
             </div>
 
         </div>
@@ -230,7 +207,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>-->
 </main><!-- End #main -->
 
 <!-- ======= Footer ======= -->
-<footer id="footer" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
+<footer id="footer" data-aos-easing="ease-in-out" data-aos-duration="500">
     <div class="container">
         <div class="copyright">
             &copy; Copyright <strong><span>Moderna</span></strong>. All Rights Reserved

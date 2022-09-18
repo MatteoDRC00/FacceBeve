@@ -1,6 +1,4 @@
 <!DOCTYPE html>
-{assign var='genere_cat' value=$genere_cat}
-{assign var='locali' value=$locali}
 <html lang="en">
 
 <head>
@@ -138,31 +136,18 @@
 
             <div class="row">
                 <h2>Ecco i TOP 4 locali in Italia:</h2>
-                {if !empty($locali )}
+                {if !empty($locali)}
                     {foreach $locali as $locale}
-                        <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up">
+                        <div class="col-md-6 col-lg-3 d-flex align-items-stretch">
                             <div class="icon-box icon-box-pink">
-                                <h4 class="title"><a href="">{$locale.nome}</a></h4>
-                                <p class="description">{$locale.descrizione}</p>
+                                <h4 class="title"><a href="/Ricerca/dettagliLocale/{$locale->getId()}">{$locale->getNome()}</a></h4>
+                                <p class="description">{$locale->getDescrizione()}</p>
                             </div>
                         </div>
                     {/foreach}
                 {else}
                     <p>Non ci sono locali</p>
                 {/if}
-
-            </div>
-            <!--
-            <div class="row">
-                <h2>Eventi più vicini ad oggi:</h2>
-                {foreach $locali as $locale}
-                    <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up">
-                        <div class="icon-box icon-box-pink">
-                            <h4 class="title"><a href="">{$locale.nome}</a></h4>
-                            <p class="description">{$locale.descrizione}</p>
-                        </div>
-                    </div>
-                {/foreach}-->
             </div>
 
         </div>
@@ -171,7 +156,7 @@
 </main><!-- End #main -->
 
 <!-- ======= Footer ======= -->
-<footer id="footer" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
+<footer id="footer" data-aos-easing="ease-in-out" data-aos-duration="500">
     <div class="container">
         <div class="copyright">
             &copy; Copyright <strong><span>Moderna</span></strong>. All Rights Reserved

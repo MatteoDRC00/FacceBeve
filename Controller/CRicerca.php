@@ -53,7 +53,7 @@ class CRicerca{
 
         if(!empty($topLocali)){
             foreach($topLocali as $locale){
-                $locale = $pm::load("id", $locale["id"], "FLocale");
+                $locale = $pm->load("id", $locale["id"], "FLocale");
                 $locali[] = $locale;
             }
         }
