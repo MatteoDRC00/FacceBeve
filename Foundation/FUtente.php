@@ -204,10 +204,10 @@ class FUtente{
 
 
     /**
-     * @param bool $state
+     * @param int $state
      * @return array|EUtente
      */
-    public static function loadUtentiByState(bool $state){
+    public static function loadUtentiByState(int $state){
         $utente = null;
         $db = FDB::getInstance();
         list ($result, $num)=$db->getUtentiByState($state);

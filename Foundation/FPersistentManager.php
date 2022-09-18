@@ -210,10 +210,12 @@ class FPersistentManager {
         return $ris;
     }
 
-    /** Metodo che permette il caricamento degli utenti avendo come parametro di ricerca nome e/o cognome passati in input
-     * @param bool $state ==> Stato Utente
+    /**
+     * Metodo che permette il caricamento degli utenti avendo come parametro di ricerca lo stato, i.e.,
+     * 0) '0' ==> Bannato
+     * 1) '1' ==> Attivo
      */
-    public function loadUtentiByState(bool $state) {
+    public function loadUtentiByState($state) {
         $ris = FUtente::loadUtentiByState($state);
         return $ris;
     }

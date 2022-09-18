@@ -45,16 +45,28 @@ class CAdmin{
             $pm = FPersistentManager::getInstance();
 
             //loadUtenti --> Separo in Utenti attivi e Bannati
-            $utentiAttivi = $pm->loadUtentiByState(1);
-            $utentiBannati = $pm->loadUtentiByState(0);
+            if(is_array($pm->loadUtentiByState(1)))
+                $utentiAttivi = $pm->loadUtentiByState(1);
+            else
+                $utentiAttivi[] = $pm->loadUtentiByState(1);
 
+            if(is_array($pm->loadUtentiByState(0)))
+                $utentiBannati = $pm->loadUtentiByState(0);
+            else
+                $utentiBannati[] = $pm->loadUtentiByState(0);
 
             //loadCategorie
-            $categorie = $pm->loadAll("FCategoria");
+            if(is_array($pm->loadAll("FCategoria")))
+                $categorie = $pm->loadAll("FCategoria");
+            else
+                $categorie[] = $pm->loadAll("FCategoria");
 
 
             //loadRecensioni segnalate
-            $recSegnalate = $pm->load("segnalato",true,"FRecensione");
+            if(is_array($pm->load("segnalato",true,"FRecensione")))
+                $recSegnalate = $pm->load("segnalato",true,"FRecensione");
+            else
+                $recSegnalate[] = $pm->load("segnalato",true,"FRecensione");
 
             //loadProprietari
             if(is_array($pm->loadAll("FProprietario")))
