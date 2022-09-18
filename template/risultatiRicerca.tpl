@@ -121,7 +121,6 @@
                                         {$locale->getDescrizione()}
                                     </p>
                                 </div>
-                                <br><br>
                             {/foreach}
                         {else}
                             {foreach $array as $evento}
@@ -155,6 +154,7 @@
                                             Visita la pagina del Locale <i class="fas fa-chevron-circle-right"></i></a>
                                     </div>
                                 </div>
+                                <br>
                             {/foreach}
                         {/if}
                     {/if}

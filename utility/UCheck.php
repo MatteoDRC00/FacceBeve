@@ -32,12 +32,11 @@ class UCheck
      * -null, i.e. ==>(!isset)
     */
     public function check($result){
+        $x = null;
         if(is_array($result))
             $x = $result;
         elseif(isset($result))
             $x[] = $result;
-        else
-            $x = null;
         return $x;
     }
 

@@ -109,12 +109,13 @@ class CRicerca{
      static function dettagliLocale($id){
         $vRicerca = new VRicerca();
         $pm = FPersistentManager::GetInstance();
+        $check = UCheck::getInstance();
         $sessione = new USession();
         $sessione->cancella_valore('locale');
         $sessione->imposta_valore('locale',$id);
         $result = $pm->load("id", $id, "FLocale");
+        $eventiOrganizzati = $check->check($result->getEventiOrganizzati());
         $proprietario=null;
-        $check = UCheck::getInstance();
 
         if($sessione->isLogged())
             $logged="loggato";
@@ -136,10 +137,13 @@ class CRicerca{
                 $risposte[] = $pm->load("recensione", $idSearch, "FRisposta"); //-->Ogni elemento ha la recensione e le risposte associate a tale recensione
             }
             $rating=$sum/(count($recensioni));
-        }else{
+        }elseif(isset($recensioni)){
             $idSearch = $recensioni->getId();
             $rating=$recensioni->getVoto();
             $risposte[]=$pm->load("recensione",$idSearch,"FRisposta");
+        }else{
+            $risposte = null;
+            $rating = null;
         }
         if($sessione->leggi_valore('tipo_utente')=="EProprietario"){
                 $check = $pm->exist("FLocale","proprietario",$sessione->leggi_valore('utente'));
@@ -147,7 +151,7 @@ class CRicerca{
                     $proprietario=1;
         }
 
-        $vRicerca->dettagliLocale($tipo,$presente,$result, $recensioni, $risposte, $rating,$proprietario,$logged);
+        $vRicerca->dettagliLocale($tipo,$presente,$result, $recensioni, $risposte, $rating,$proprietario,$logged,$eventiOrganizzati);
     }
 
 

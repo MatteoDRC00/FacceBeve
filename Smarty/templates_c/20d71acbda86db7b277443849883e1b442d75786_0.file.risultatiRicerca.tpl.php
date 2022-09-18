@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-19 00:47:31
+/* Smarty version 4.2.0, created on 2022-09-19 00:49:15
   from 'C:\xampp\htdocs\FacceBeve\template\risultatiRicerca.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_6327a0030180d3_43107362',
+  'unifunc' => 'content_6327a06bddcdf4_95810549',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '20d71acbda86db7b277443849883e1b442d75786' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\risultatiRicerca.tpl',
-      1 => 1663541234,
+      1 => 1663541353,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6327a0030180d3_43107362 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6327a06bddcdf4_95810549 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <?php $_smarty_tpl->_assignInScope('tipo', (($tmp = $_smarty_tpl->tpl_vars['tipo']->value ?? null)===null||$tmp==='' ? null ?? null : $tmp));
 $_smarty_tpl->_assignInScope('userlogged', (($tmp = $_smarty_tpl->tpl_vars['error']->value ?? null)===null||$tmp==='' ? null ?? null : $tmp));
@@ -165,7 +165,6 @@ $_smarty_tpl->tpl_vars['locale']->do_else = false;
 
                                     </p>
                                 </div>
-                                <br><br>
                             <?php
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
@@ -234,6 +233,7 @@ echo $_smarty_tpl->tpl_vars['locali']->value[$_prefixVariable5]->getId();?>
                                             Visita la pagina del Locale <i class="fas fa-chevron-circle-right"></i></a>
                                     </div>
                                 </div>
+                                <br>
                             <?php
 $_smarty_tpl->tpl_vars['evento'] = $__foreach_evento_1_saved;
 }

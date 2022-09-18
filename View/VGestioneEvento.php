@@ -117,8 +117,10 @@ class VGestioneEvento{
     public function getDataEvento(): ?string
     {
         $value = null;
-        if (isset($_POST['dataEvento'])) //NON SO SE VANNO UTLIZZATI NOMI DIVERSI
-            $value = $_POST['dataEvento'];
+        if (($_POST['dataEvento'] != null)){
+            $value1 = explode("-",$_POST['dataEvento']);
+            $value = $value1[2]."/".$value1[1]."/".$value1[0];
+        }
         return $value;
     }
 

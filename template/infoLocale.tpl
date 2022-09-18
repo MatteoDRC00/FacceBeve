@@ -75,12 +75,14 @@
                         <h2>{$locale->getNome()}</h2>
                         {if $tipo == "EUtente"}
                             {if $presente == true}
-                                <form action="/Ricerca/aggiungiAPreferiti/{$locale->getId()}" method="POST" >
-                                    <input class="stelline" onclick="change()" type="submit" value="Aggiunto!" id="pref" name="pref">
+                                <form action="/Ricerca/aggiungiAPreferiti/{$locale->getId()}" method="POST">
+                                    <input class="stelline" onclick="change()" type="submit" value="Aggiunto!" id="pref"
+                                           name="pref">
                                 </form>
                             {else}
                                 <form action="/Ricerca/aggiungiAPreferiti/{$locale->getId()}" method="POST">
-                                    <input class="stelline" onclick="change()" type="submit" value="Aggiungi ai preferiti" id="pref" name="pref">
+                                    <input class="stelline" onclick="change()" type="submit"
+                                           value="Aggiungi ai preferiti" id="pref" name="pref">
                                 </form>
                             {/if}
                         {/if}
@@ -97,9 +99,14 @@
                     <div class="portfolio-info">
                         <h3>Informazioni sul locale</h3>
                         <ul>
-                            <li><strong>Indirizzo:</strong> {$locale->getLocalizzazione()->getIndirizzo()}, {$locale->getLocalizzazione()->getNumCivico()}</li>
-                            <li><strong>Citt&agrave:</strong> {$locale->getLocalizzazione()->getCitta()}, <strong>CAP:</strong> {$locale->getLocalizzazione()->getCAP()}</li>
-                            <li style="font-weight: bold;"><a href="https://maps.google.com/?q= {$locale->getLocalizzazione()->getIndirizzo()}, {$locale->getLocalizzazione()->getNumCivico()}, {$locale->getLocalizzazione()->getCitta()}, {$locale->getLocalizzazione()->getCAP()}" target="_blank"><i class="fas fa-map-marker-alt"></i> Come raggiungerci...</a> </li>
+                            <li><strong>Indirizzo:</strong> {$locale->getLocalizzazione()->getIndirizzo()}
+                                , {$locale->getLocalizzazione()->getNumCivico()}</li>
+                            <li><strong>Citt&agrave:</strong> {$locale->getLocalizzazione()->getCitta()},
+                                <strong>CAP:</strong> {$locale->getLocalizzazione()->getCAP()}</li>
+                            <li style="font-weight: bold;"><a
+                                        href="https://maps.google.com/?q= {$locale->getLocalizzazione()->getIndirizzo()}, {$locale->getLocalizzazione()->getNumCivico()}, {$locale->getLocalizzazione()->getCitta()}, {$locale->getLocalizzazione()->getCAP()}"
+                                        target="_blank"><i class="fas fa-map-marker-alt"></i> Come raggiungerci...</a>
+                            </li>
                             <li><strong>Categorie:</strong>
                                 <ul>
                                     {foreach $locale->getCategoria() as $categoria}
@@ -112,24 +119,29 @@
                         </ul>
                     </div>
                     {if ($userlogged eq 'loggato')}
-                        {if isset($eventi)}
+                        {if isset($eventi[0])}
                             <div class="portfolio-details-slider swiper">
                                 <br>
                                 <h4><strong>Eventi organizzati:</strong></h4>
-                                {foreach $eventi as $evento}
-                                    <div class="portfolio-info swiper-slide">
-                                        <h3>{$evento->getNome()}</h3>
-                                        <ul>
-                                            <li><strong>Data</strong>: {$evento->getData()}.</li>
-                                            <li><strong>Descrizione</strong>: {$evento->getDescrizione()}</li>
-                                            <br>
-                                            <li><img class="photo" src="data:{$evento->getImg()->getType()};base64,{$evento->getImg()->getImmagine()}" alt="Poster evento" width="410px" height="155px"></li>
-                                        </ul>
-                                    </div>
-                                {/foreach}
+                                <div class="swiper-wrapper align-items-center">
+                                    {foreach $eventi as $evento}
+                                        <div class="portfolio-info swiper-slide">
+                                            <h3>{$evento->getNome()}</h3>
+                                            <ul>
+                                                <li><strong>Data</strong>: {$evento->getData()}.</li>
+                                                <li><strong>Descrizione</strong>: {$evento->getDescrizione()}</li>
+                                                <br>
+                                                <li><img class="photo"
+                                                         src="data:{$evento->getImg()->getType()};base64,{$evento->getImg()->getImmagine()}"
+                                                         alt="Poster evento" width="410px" height="155px"></li>
+                                            </ul>
+                                        </div>
+                                    {/foreach}
+                                </div>
+                              <div class="swiper-pagination"></div>
                             </div>
                         {else}
-                            <div class="portfolio-details-slider swiper">
+                            <div class="portfolio-info">
                                 <p>Non ci sono ancora eventi organizzati</p>
                             </div>
                         {/if}
@@ -155,16 +167,20 @@
                             {foreach $arrayRecensioni as $recensione}
                                 <div id="comment-1" class="comment">
                                     <div class="d-flex">
-                                        <div class="comment-img"><img src="data:{$recensione->getUtente()->getImgProfilo()->getType()};base64,{$recensione->getUtente()->getImgProfilo()->getImmagine()}" alt="Immagine profilo utente" style="border-radius: 35px;">
+                                        <div class="comment-img"><img
+                                                    src="data:{$recensione->getUtente()->getImgProfilo()->getType()};base64,{$recensione->getUtente()->getImgProfilo()->getImmagine()}"
+                                                    alt="Immagine profilo utente" style="border-radius: 35px;">
                                         </div>
                                         <div>
                                             <h5>{$recensione->getUtente()->getUsername()}</h5>
 
-                                            <h5>{$recensione->getData()} | <strong>Voto: {$recensione->getVoto()}/5</strong>
+                                            <h5>{$recensione->getData()} | <strong>Voto: {$recensione->getVoto()}
+                                                    /5</strong>
                                                 {if $recensione->getUtente()->getUsername() eq $utente}
                                                     <form action="/GestioneRecensione/cancellaRecensione/{$recensione->getId()}"
                                                           method="POST">
-                                                        <button type="submit" style="border-radius:9px; height: 40px; color: #bb2d3b; font-weight: bold; border-color: #bb2d3b">
+                                                        <button type="submit"
+                                                                style="border-radius:9px; height: 40px; color: #bb2d3b; font-weight: bold; border-color: #bb2d3b">
                                                             <i class="align-items-xxl-end"></i>Elimina la tua Recensione
                                                         </button>
                                                     </form>
@@ -180,7 +196,7 @@
                                 </div>
                                 {if isset($arrayRisposte[{$recensione@iteration-1}])}
                                     <div id="comment-reply-1" class="comment comment-reply">
-                                        <div class="d-flex"> <h6><i class="bi-arrow-right-short">Re:</i></h6>
+                                        <div class="d-flex"><h6><i class="bi-arrow-right-short">Re:</i></h6>
                                             <div class="comment-img"><img
                                                         src="data:{$arrayRisposte[{$recensione@iteration-1}]->getProprietario()->getImgProfilo()->getType()};base64,{$arrayRisposte[{$recensione@iteration-1}]->getProprietario()->getImgProfilo()->getImmagine()}"
                                                         alt="Immagine profilo proprietario"
@@ -192,7 +208,8 @@
                                                 {if $arrayRisposte[{$recensione@iteration-1}]->getProprietario()->getUsername() eq $utente}
                                                     <form action="/GestioneRecensione/cancellaRisposta/{$recensione->getId()}"
                                                           method="POST">
-                                                        <button type="submit" style="border-radius:9px; height: 40px; color: #bb2d3b; font-weight: bold; border-color: #bb2d3b">
+                                                        <button type="submit"
+                                                                style="border-radius:9px; height: 40px; color: #bb2d3b; font-weight: bold; border-color: #bb2d3b">
                                                             <i class="align-items-xxl-end"></i>Elimina la tua Risposta
                                                         </button>
                                                     </form>
@@ -234,30 +251,31 @@
                                 <h4>Scrivi una recensione</h4>
                                 <form action="/GestioneRecensione/scriviRecensione/{$locale->getId()}" method="POST"
                                       id="Recensione" name="Recensione" onsubmit="return validateRecensione()>
-                                    <input type="hidden" name="idLocale" value={$locale->getId()}/>
-                                    <div class="row">
-                                        <div class="col-md-6 form-group">
-                                            <input name="titolo" type="text" class="form-control" >
-                                        </div>
-                                        <div class="col-md-6 form-group">
-                                            <select name="valutazione"
-                                                    style="font-family: 'FontAwesome',Arial,sans-serif;">
-                                                <option>-- Voto --</option>
-                                                <option value="1">&#xf005;</option>
-                                                <option value="2">&#xf005;&#xf005;</option>
-                                                <option value="3">&#xf005;&#xf005;&#xf005;</option>
-                                                <option value="4">&#xf005;&#xf005;&#xf005;&#xf005;</option>
-                                                <option value="5">&#xf005;&#xf005;&#xf005;&#xf005;&#xf005;</option>
-                                            </select>
-                                        </div>
+                                    <input type=" hidden
+                                " name="idLocale" value={$locale->getId()}/>
+                                <div class="row">
+                                    <div class="col-md-6 form-group">
+                                        <input name="titolo" type="text" class="form-control">
                                     </div>
-                                    <div class="row">
-                                        <div class="col form-group">
+                                    <div class="col-md-6 form-group">
+                                        <select name="valutazione"
+                                                style="font-family: 'FontAwesome',Arial,sans-serif;">
+                                            <option>-- Voto --</option>
+                                            <option value="1">&#xf005;</option>
+                                            <option value="2">&#xf005;&#xf005;</option>
+                                            <option value="3">&#xf005;&#xf005;&#xf005;</option>
+                                            <option value="4">&#xf005;&#xf005;&#xf005;&#xf005;</option>
+                                            <option value="5">&#xf005;&#xf005;&#xf005;&#xf005;&#xf005;</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col form-group">
                                             <textarea name="descrizione" class="form-control"
                                                       placeholder="Descrizione"></textarea>
-                                        </div>
                                     </div>
-                                    <button type="submit" class="btn btn-primary">Aggiungi recensione</button>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Aggiungi recensione</button>
                                 </form>
                             </div>
                         {/if}
