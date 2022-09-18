@@ -270,6 +270,7 @@ class CProfilo{
     public function mostraProfilo(){
         $sessione = new USession();
         $pm = FPersistentManager::getInstance();
+        $check = UCheck::getInstance();
 
         if($sessione->isLogged()){
             $username = $sessione->leggi_valore("utente");
@@ -281,7 +282,7 @@ class CProfilo{
                 $view->mostraProfiloUtente($utente, $locali_preferiti);
             }elseif($tipo == "EProprietario"){
                 $proprietario = $pm->load("username", $username, "FProprietario");
-                $locali[] = $pm->load("proprietario", $username, "FLocale");
+                $locali = $check->check($pm->load("proprietario", $username, "FLocale"));
                 if($locali[0] == null){
                     $locali = array();
                 }

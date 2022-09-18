@@ -10,10 +10,10 @@ class FLocale {
     private static $class="FLocale";
 
 	/** tabella con la quale opera nel DB */
-    private static $table="locale";
+    private static $table="Locale";
 
     /** valori della tabella nel DB */
-    private static $values="(:id,:nome,:numtelefono,:descrizione,:proprietario,:localizzazione)";
+    private static $values="(:id,:nome,:numtelefono,:descrizione,:proprietario,:localizzazione,:idImg)";
 
     /** costruttore */
     public function __construct(){
@@ -33,6 +33,7 @@ class FLocale {
 		$stmt->bindValue(':descrizione',$locale->getDescrizione(), PDO::PARAM_STR);
         $stmt->bindValue(':proprietario', $locale->getProprietario()->getUsername(), PDO::PARAM_STR);
         $stmt->bindValue(':localizzazione', $locale->getLocalizzazione()->getId(), PDO::PARAM_INT);
+        $stmt->bindValue(':idImg', NULL, PDO::PARAM_INT);
     }
 
     /**
@@ -66,9 +67,7 @@ class FLocale {
      */
     public static function store(ELocale $locale){
         $db = FDB::getInstance();
-        print_r($locale);
         $id = $db->store(static::getClass() ,$locale);
-        print($id);
         //Categorie Locale
         if($locale->getCategoria()!=null){
             foreach($locale->getCategoria() as $cat){
@@ -172,15 +171,17 @@ class FLocale {
                 $eventi = array();
                 $orari = array();
                 for($i=0; $i<count($result); $i++){
+                    $proprietario = FProprietario::loadByField("username" , $result[$i]["proprietario"]);
+                    $localizzazione = FLocalizzazione::loadByField("id" , $result[$i]["localizzazione"]);
                     $categorie[] = FCategoria::loadByLocale($result[$i]["id"]);
                     $eventi[] = FEvento::loadByLocale($result[$i]["id"]);
                     $orari[] = FOrario::loadByLocale($result[$i]["id"]);
-                    $immagine = FImmagine::loadByLocale($result["id"]);
-                    $locale[$i]=new ELocale($result[$i]['nome'], $result[$i]['descrizione'], $result[$i]['numtelefono'], $result[$i]['proprietario'], $result[$i]["localizzazione"]);
+                    $immagine = FImmagine::loadByLocale($result[$i]["id"]);
+                    $locale[$i]=new ELocale($result[$i]['nome'], $result[$i]['descrizione'], $result[$i]['numtelefono'], $proprietario, $localizzazione);
                     $locale[$i]->setImg($immagine);
-                    $locale[$i]->setCategoria($categorie[]);
-                    $locale[$i]->setEventiOrganizzati($eventi[]);
-                    $locale[$i]->setOrario($orari[]);
+                    $locale[$i]->setCategoria($categorie);
+                    $locale[$i]->setEventiOrganizzati($eventi);
+                    $locale[$i]->setOrario($orari);
                     $locale[$i]->setId($result[$i]["id"]);
                 }
             }
