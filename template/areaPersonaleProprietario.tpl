@@ -80,7 +80,7 @@
                     <div class="row">
                         <div class="col-12 bg-white p-0 px-3 py-3 mb-3">
                             <div class="d-flex flex-column align-items-center">
-                                <img class="photo" src=data:{$type};base64,{$pic64}" alt="immagine profilo">
+                                <img class="photo" src="data:{$type};base64,{$pic64}" alt="immagine profilo">
                                 <p class="fw-bold h4 mt-3">{$nome} {$cognome}</p>
                                 <p class="text-muted">{$username}</p>
                                 <p class="text-muted mb-3">{$email}</p>
