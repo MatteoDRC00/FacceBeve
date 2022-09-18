@@ -99,6 +99,7 @@
                         <ul>
                             <li><strong>Indirizzo:</strong> {$locale->getLocalizzazione()->getIndirizzo()}, {$locale->getLocalizzazione()->getNumCivico()}</li>
                             <li><strong>Citt&agrave:</strong> {$locale->getLocalizzazione()->getCitta()}, <strong>CAP:</strong> {$locale->getLocalizzazione()->getCAP()}</li>
+                            <li style="font-weight: bold;"><a href="https://maps.google.com/?q= {$locale->getLocalizzazione()->getIndirizzo()}, {$locale->getLocalizzazione()->getNumCivico()}, {$locale->getLocalizzazione()->getCitta()}, {$locale->getLocalizzazione()->getCAP()}" target="_blank"><i class="fas fa-map-marker-alt"></i> Come raggiungerci...</a> </li>
                             <li><strong>Categorie:</strong>
                                 <ul>
                                     {foreach $locale->getCategoria() as $categoria}
