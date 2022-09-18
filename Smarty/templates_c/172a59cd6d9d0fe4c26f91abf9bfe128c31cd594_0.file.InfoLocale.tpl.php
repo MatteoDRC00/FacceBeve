@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-19 01:36:13
+/* Smarty version 4.2.0, created on 2022-09-19 01:45:31
   from 'C:\xampp\htdocs\FacceBeve\template\InfoLocale.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_6327ab6d508b19_77202098',
+  'unifunc' => 'content_6327ad9b1c7cd3_42121361',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '172a59cd6d9d0fe4c26f91abf9bfe128c31cd594' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\InfoLocale.tpl',
-      1 => 1663544172,
+      1 => 1663544730,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6327ab6d508b19_77202098 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6327ad9b1c7cd3_42121361 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <?php $_smarty_tpl->_assignInScope('locale', (($tmp = $_smarty_tpl->tpl_vars['locale']->value ?? null)===null||$tmp==='' ? null ?? null : $tmp));
@@ -198,7 +198,7 @@ $_smarty_tpl->tpl_vars['evento']->do_else = false;
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                                 </div>
-                              <div class="swiper-pagination"></div>
+                                <div class="swiper-pagination"></div>
                             </div>
                         <?php } else { ?>
                             <div class="portfolio-info">
@@ -358,10 +358,8 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                                 <h4>Scrivi una recensione</h4>
                                 <form action="/GestioneRecensione/scriviRecensione/<?php echo $_smarty_tpl->tpl_vars['locale']->value->getId();?>
 " method="POST"
-                                      id="Recensione" name="Recensione" onsubmit="return validateRecensione()>
-                                    <input type=" hidden
-                                " name="idLocale" value=<?php echo $_smarty_tpl->tpl_vars['locale']->value->getId();?>
-/>
+                                      id="Recensione" name="Recensione" onsubmit="return validateRecensione()">
+
                                 <div class="row">
                                     <div class="col-md-6 form-group">
                                         <input name="titolo" type="text" class="form-control">
