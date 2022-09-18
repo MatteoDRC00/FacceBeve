@@ -1,18 +1,28 @@
 <?php
-/** La classe ECategoria caratterizza il tipo di locale con i suoi attributi:
- *  - genere: identifica il tipo di locale
- *  - descrizione: in base al genere specifica le attivita che il locale svolge
+
+/**
+ * La classe ECategoria caratterizza il tipo di locale
  *  @author Gruppo8
  *  @package Entity
  */
-class ECategoria implements JsonSerializable{
+class ECategoria{
 
+    /**
+     * Identifica il tipo di locale
+     * @var string
+     */
     private string $genere;
+
+    /**
+     * Descrive il genere, con relative informazioni
+     * @var string|null
+     */
     private ?string $descrizione;
 
     /**
+     * Costruttore della classe
      * @param string $genere
-     * @param string $descrizione
+     * @param string|null $descrizione
      */
     public function __construct(string $genere, ?string $descrizione){
         $this->genere = $genere;
@@ -21,6 +31,7 @@ class ECategoria implements JsonSerializable{
 
 
     /**
+     * Restituisce il genere di categoria
      * @return string
      */
     public function getGenere(): string
@@ -29,6 +40,7 @@ class ECategoria implements JsonSerializable{
     }
 
     /**
+     * Imposta/Modifica il genere di categoria
      * @param string $genere
      */
     public function setGenere(string $genere): void
@@ -37,42 +49,29 @@ class ECategoria implements JsonSerializable{
     }
 
     /**
-     * @return string
+     * Restituisce la descrizione del genere di categoria
+     * @return string|null
      */
-    public function getDescrizione(): string
+    public function getDescrizione(): ?string
     {
         return $this->descrizione;
     }
 
     /**
-     * @param string $descrizione
+     * Imposta/Modifica la descrizione del genere di categoria
+     * @param string|null $descrizione
      */
-    public function setDescrizione(string $descrizione): void
+    public function setDescrizione(?string $descrizione): void
     {
         $this->descrizione = $descrizione;
     }
 
-    public function jsonSerialize()
-    {
-        return
-            [
-                'genere'   => $this->getGenere(),
-                'descrizione' => $this->getDescrizione(),
-
-            ];
-    }
-
-
-
     /**
-     * @return $print String
+     * @return string
      */
     public function __toString() {
-        $print = "\ngenere: ".$this->getGenere()."\n"."descrizione: ".$this->getDescrizione()."\n";
-
-        return $print;
+        return "\ngenere: ".$this->getGenere()."\n"."descrizione: ".$this->getDescrizione()."\n";
     }
 
 
 }
-?>

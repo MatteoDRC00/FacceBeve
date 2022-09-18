@@ -1,34 +1,44 @@
 <?php
 
-
-class EImmagine implements JsonSerializable {
+/**
+ * La classe EImmagine definisce le immagini per Utenti, Proprietari, Locali e Eventi
+ * @author Gruppo 8
+ * @package Entity
+ */
+class EImmagine{
 
     /**
+     * Id dell'immagine che la caratterizza sul db
      * @var string|null
      */
     private ?string $id = null;
+
     /**
-     * Nome del media
-     * @AttributeType string
+     * Nome dell'immagine
+     * @var string
      */
     private string $nome;
+
     /**
-     * Dati del media
-     * @AttributeType string
+     * Dimensione dell'immagine
+     * @var string
      */
     private string $size;
+
     /**
-     * Tipo del media
-     * @AttributeType string
+     * Tipo di immagine
+     * @var string
      */
     private string $type;
+
     /**
-     * Media in binario
-     * @AttributeType blob
+     * File dell'immagine
+     * @var string
      */
     private string $immagine;
 
     /**
+     * Costruttore della classe
      * @param string $nome
      * @param string $size
      * @param string $type
@@ -44,6 +54,7 @@ class EImmagine implements JsonSerializable {
 
 
     /**
+     * Restituisce il nome dell'immagine
      * @return string
      */
     public function getNome(): string
@@ -52,6 +63,7 @@ class EImmagine implements JsonSerializable {
     }
 
     /**
+     * Imposta/Modifica il nome dell'immagine
      * @param string $nome
      */
     public function setNome(string $nome): void
@@ -60,6 +72,7 @@ class EImmagine implements JsonSerializable {
     }
 
     /**
+     * Restituisce la dimensione dell'immagine
      * @return string
      */
     public function getSize(): string
@@ -68,6 +81,7 @@ class EImmagine implements JsonSerializable {
     }
 
     /**
+     * Imposta/Modifica la dimensione dell'immagine
      * @param string $size
      */
     public function setSize(string $size): void
@@ -76,6 +90,7 @@ class EImmagine implements JsonSerializable {
     }
 
     /**
+     * Restituisce l'id dell'immagine
      * @return string|null
      */
     public function getId(): ?string
@@ -84,6 +99,7 @@ class EImmagine implements JsonSerializable {
     }
 
     /**
+     * Imposta/Modifica l'id dell'immagine
      * @param string|null $id
      */
     public function setId(?string $id): void
@@ -93,6 +109,7 @@ class EImmagine implements JsonSerializable {
 
 
     /**
+     * Restituisce il tipo dell'immagine
      * @return string
      */
     public function getType(): string
@@ -101,6 +118,7 @@ class EImmagine implements JsonSerializable {
     }
 
     /**
+     * Imposta/Modifica il tipo dell'immagine
      * @param string $type
      */
     public function setType(string $type): void
@@ -109,6 +127,7 @@ class EImmagine implements JsonSerializable {
     }
 
     /**
+     * Restituisce il file dell'immagine
      * @return string
      */
     public function getImmagine(): string
@@ -117,6 +136,7 @@ class EImmagine implements JsonSerializable {
     }
 
     /**
+     * Imposta/Modifica il file dell'immagine
      * @param string $immagine
      */
     public function setImmagine(string $immagine): void
@@ -124,28 +144,11 @@ class EImmagine implements JsonSerializable {
         $this->immagine = $immagine;
     }
 
-
-    public function jsonSerialize()
-    {
-        return
-            [
-                'nome' => $this->getNome(),
-                'size'   => $this->getSize(),
-                'type'   => $this->getType(),
-                'immagine'   => $this->getImmagine()
-            ];
-    }
-
-
-
     /**
-     * @return $print String
+     * @return string
      */
     public function __toString() {
-        $print = "\nome: ".$this->getNome()."\n"."size: ".$this->getSize()."\n"."type: ".$this->getType()."\n"."immagine: ".$this->getImmagine()."\n";
-
-        return $print;
+        return "\nome: ".$this->getNome()."\n"."size: ".$this->getSize()."\n"."type: ".$this->getType()."\n"."immagine: ".$this->getImmagine()."\n";
     }
-
 
 }

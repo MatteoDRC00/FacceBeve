@@ -1,22 +1,44 @@
 <?php
-/** La classe EEvento rapprensenta un evento organizzato da un locale ed è caratterizzato da:
- *  - nome: identifica il nome (titolo) dell'evento
- *  - tipo: identifica il tipo di evento
- *  - descrizione: aumenta le informazioni sull'evento
- *  - data: indentifica la data in cui si terrà l'evento
+
+/** La classe EEvento rapprensenta un evento organizzato da un locale
  *  @author Gruppo8
  *  @package Entity
  */
-class EEvento implements JsonSerializable{
+class EEvento{
 
+    /**
+     * Id dell'evento che lo caratterizza sul db
+     * @var int|null
+     */
     private ?int $id;
+
+    /**
+     * Nome del locale
+     * @var string
+     */
     private string $nome;
+
+    /**
+     * Descrizione del locale/Informazioni sul locale
+     * @var string
+     */
     private string $descrizione;
+
+    /**
+     * Data dell'evento
+     * @var string
+     */
     private string $data;
+
+    /**
+     * Immagine di locandina dell'evento
+     * @var EImmagine
+     */
     private EImmagine $img;
 
 
     /**
+     * Costruttore della classe
      * @param string $nome
      * @param string $descrizione
      * @param string $data
@@ -29,6 +51,7 @@ class EEvento implements JsonSerializable{
     }
 
     /**
+     * Restituisce l'Id dell'evento
      * @return int|null
      */
     public function getId(): ?int
@@ -37,6 +60,7 @@ class EEvento implements JsonSerializable{
     }
 
     /**
+     * Imposta/Modifica l'Id dell'evento
      * @param int|null $id
      */
     public function setId(?int $id): void
@@ -45,6 +69,7 @@ class EEvento implements JsonSerializable{
     }
 
     /**
+     * Restituisce il nome dell'evento
      * @return string
      */
     public function getNome(): string
@@ -53,6 +78,7 @@ class EEvento implements JsonSerializable{
     }
 
     /**
+     * Imposta/Modifica il nome dell'evento
      * @param string $nome
      */
     public function setNome(string $nome): void
@@ -61,6 +87,7 @@ class EEvento implements JsonSerializable{
     }
 
     /**
+     * Restituisce la descrizione dell'evento
      * @return string
      */
     public function getDescrizione(): string
@@ -69,6 +96,7 @@ class EEvento implements JsonSerializable{
     }
 
     /**
+     * Imposta/Modifica la descrizione dell'evento
      * @param string $descrizione
      */
     public function setDescrizione(string $descrizione): void
@@ -77,6 +105,7 @@ class EEvento implements JsonSerializable{
     }
 
     /**
+     * Restituisce la data dell'evento
      * @return string
      */
     public function getData(): string
@@ -85,6 +114,7 @@ class EEvento implements JsonSerializable{
     }
 
     /**
+     * Imposta/Modifica la data dell'evento
      * @param string $data
      */
     public function setData(string $data): void
@@ -93,6 +123,7 @@ class EEvento implements JsonSerializable{
     }
 
     /**
+     * Restituisce l'immagine di locandina dell'evento
      * @return EImmagine
      */
     public function getImg(): EImmagine
@@ -101,6 +132,7 @@ class EEvento implements JsonSerializable{
     }
 
     /**
+     * Imposta/Modifica l'immagine di locandina dell'evento
      * @param EImmagine $img
      */
     public function setImg(EImmagine $img): void
@@ -108,26 +140,11 @@ class EEvento implements JsonSerializable{
         $this->img = $img;
     }
 
-    public function jsonSerialize()
-    {
-        return
-            [
-                'id'   => $this->getId(),
-                'nome' => $this->getNome(),
-                'descrizione'   => $this->getNumTelefono(),
-                'data'  =>$this->getData(),
-                'img' =>$this->getImg()
-            ];
-    }
-
-
     /**
-     * @return $print String
+     * @return string
      */
     public function __toString() {
-        $print = "\nid: ".$this->getId()."\n"."nome: ".$this->Nome()."\n"."descrizione: ".$this->getDescrizione()."\n"."data: ".$this->getData()."\n";
-
-        return $print;
+        return "\nid: ".$this->getId()."\n"."nome: ".$this->Nome()."\n"."descrizione: ".$this->getDescrizione()."\n"."data: ".$this->getData()."\n";
     }
 
 

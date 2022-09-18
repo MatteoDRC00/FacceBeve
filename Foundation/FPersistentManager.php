@@ -299,6 +299,11 @@ class FPersistentManager {
         $db->deleteCategorieLocale($id_locale);
     }
 
+    public function deleteLocaleCategorie($genere){
+        $db = FDB::getInstance();
+        $db->deleteLocaleCategorie($genere);
+    }
+
     public function deleteUtenteLocale($id_locale){
         $db = FDB::getInstance();
         $db->deleteUtenteLocale($id_locale);

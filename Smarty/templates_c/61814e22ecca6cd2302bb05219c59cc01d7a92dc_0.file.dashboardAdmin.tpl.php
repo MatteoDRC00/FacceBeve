@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-18 19:07:57
+/* Smarty version 4.2.0, created on 2022-09-19 00:58:06
   from 'C:\xampp\htdocs\FacceBeve\template\dashboardAdmin.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_6327506d94ffb3_98279739',
+  'unifunc' => 'content_6327a27ee9cf00_20470820',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '61814e22ecca6cd2302bb05219c59cc01d7a92dc' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\dashboardAdmin.tpl',
-      1 => 1663520857,
+      1 => 1663541885,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6327506d94ffb3_98279739 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6327a27ee9cf00_20470820 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <?php $_smarty_tpl->_assignInScope('utentiAttivi', (($tmp = $_smarty_tpl->tpl_vars['utentiAttivi']->value ?? null)===null||$tmp==='' ? null ?? null : $tmp));
 $_smarty_tpl->_assignInScope('utentiBannati', (($tmp = $_smarty_tpl->tpl_vars['utentiBannati']->value ?? null)===null||$tmp==='' ? null ?? null : $tmp));
@@ -49,16 +49,13 @@ $_smarty_tpl->_assignInScope('recensioni', (($tmp = $_smarty_tpl->tpl_vars['rece
             <a href="#utentiBannati"><span class="links_name">Utenti Bannati</span></a>
         </li>
         <li>
-            <a href="#proprietari"><span class="links_name">Proprietari di locali</span></a>
-        </li>
-        <li>
-            <a href="#"><span class="links_name">Locali</span></a>
-        </li>
-        <li>
             <a href="#recensioni"><span class="links_name">Recensioni segnalate</span></a>
         </li>
         <li>
             <a href="#categorie"><span class="links_name">Categorie</span></a>
+        </li>
+        <li>
+            <a href="/Accesso/logout"><span class="links_name">Esci</span></a>
         </li>
     </ul>
 
@@ -73,7 +70,7 @@ $_smarty_tpl->_assignInScope('recensioni', (($tmp = $_smarty_tpl->tpl_vars['rece
                 <div class="sales-details">
                     <table id="customers">
                         <caption>
-                            <p>Utenti Attivi</p>
+                            <p style="font-weight: bold">Utenti Attivi</p>
                         </caption>
                         <thead>
                         <tr>
@@ -82,11 +79,9 @@ $_smarty_tpl->_assignInScope('recensioni', (($tmp = $_smarty_tpl->tpl_vars['rece
                             <th>Cognome</th>
                             <th>Email</th>
                             <th>Data Iscrizione</th>
+                            <th></th>
                         </tr>
                         </thead>
-                        <!--    <tfoot>
-                            <tr><td>Totale 1</td><td>Totale 2</td></tr>
-                            </tfoot> -->
                         <tbody>
                         <?php if ((isset($_smarty_tpl->tpl_vars['utentiAttivi']->value))) {?>
                             <?php
@@ -106,6 +101,12 @@ $_smarty_tpl->tpl_vars['utente']->do_else = false;
 </td>
                                     <td><?php echo $_smarty_tpl->tpl_vars['utente']->value->getIscrizione();?>
 </td>
+                                    <td>
+                                        <form action="/Admin/sospendiUtente/<?php echo $_smarty_tpl->tpl_vars['utente']->value->getUsername();?>
+" method="POST">
+                                            <input style="border-radius: 9px; padding: 3px; border-color: #0dcaf0" type="submit" value="Sospendi">
+                                        </form>
+                                    </td>
                                 </tr>
                             <?php
 }
@@ -113,11 +114,11 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                         <?php }?>
                         </tbody>
                     </table>
-                    <?php if (!(isset($_smarty_tpl->tpl_vars['utentiAttivi']->value))) {?>
-                        <br>
-                        <h2>Attualmente non ci sono utenti attivi </h2>
-                    <?php }?>
                 </div>
+                <?php if (!(isset($_smarty_tpl->tpl_vars['utentiAttivi']->value))) {?>
+                    <br>
+                    <p style="text-align: center">Attualmente non ci sono utenti attivi </p>
+                <?php }?>
             </div>
         </div>
 
@@ -129,7 +130,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                 <div class="sales-details">
                     <table id="customers">
                         <caption>
-                            <p>Utenti Bannati</p>
+                            <p style="font-weight: bold">Utenti Bannati</p>
                         </caption>
                         <thead>
                         <tr>
@@ -138,11 +139,9 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                             <th>Cognome</th>
                             <th>Email</th>
                             <th>Data Iscrizione</th>
+                            <th></th>
                         </tr>
                         </thead>
-                        <!--    <tfoot>
-                            <tr><td>Totale 1</td><td>Totale 2</td></tr>
-                            </tfoot> -->
                         <tbody>
                         <?php if ((isset($_smarty_tpl->tpl_vars['utentiBannati']->value))) {?>
                             <?php
@@ -162,6 +161,12 @@ $_smarty_tpl->tpl_vars['utente']->do_else = false;
 </td>
                                     <td><?php echo $_smarty_tpl->tpl_vars['utente']->value->getIscrizione();?>
 </td>
+                                    <td>
+                                        <form action="/Admin/riattivaUtente/<?php echo $_smarty_tpl->tpl_vars['utente']->value->getUsername();?>
+" method="POST">
+                                            <input style="border-radius: 9px; padding: 3px; border-color: #0dcaf0" type="submit" value="Riattiva">
+                                        </form>
+                                    </td>
                                 </tr>
                             <?php
 }
@@ -172,60 +177,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                 </div>
                 <?php if (!(isset($_smarty_tpl->tpl_vars['utentiBannati']->value))) {?>
                     <br>
-                    <h2>Attualmente non ci sono utenti bannati </h2>
-                <?php }?>
-            </div>
-        </div>
-
-        <br>
-
-        <!--Proprietari-->
-        <div class="sales-boxes" id="proprietari">
-            <div class="recent-sales box">
-                <div class="sales-details">
-                    <table id="customers">
-                        <caption>
-                            <p>Proprietari di locali</p>
-                        </caption>
-                        <thead>
-                        <tr>
-                            <th>Username</th>
-                            <th>Nome</th>
-                            <th>Cognome</th>
-                            <th>Email</th>
-                        </tr>
-                        </thead>
-                        <!--    <tfoot>
-                            <tr><td>Totale 1</td><td>Totale 2</td></tr>
-                            </tfoot> -->
-                        <tbody>
-                        <?php if ((isset($_smarty_tpl->tpl_vars['proprietari']->value))) {?>
-                            <?php
-$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['proprietari']->value, 'utente');
-$_smarty_tpl->tpl_vars['utente']->do_else = true;
-if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['utente']->value) {
-$_smarty_tpl->tpl_vars['utente']->do_else = false;
-?>
-                                <tr>
-                                    <td><?php echo $_smarty_tpl->tpl_vars['utente']->value->getUsername();?>
-</td>
-                                    <td><?php echo $_smarty_tpl->tpl_vars['utente']->value->getNome();?>
-</td>
-                                    <td><?php echo $_smarty_tpl->tpl_vars['utente']->value->getCognome();?>
-</td>
-                                    <td><?php echo $_smarty_tpl->tpl_vars['utente']->value->getEmail();?>
-</td>
-                                </tr>
-                            <?php
-}
-$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
-                        <?php }?>
-                        </tbody>
-                    </table>
-                </div>
-                <?php if (!(isset($_smarty_tpl->tpl_vars['proprietari']->value))) {?>
-                    <br>
-                    <h2>Attualmente non ci sono profili di utenti proprietari </h2>
+                    <p style="text-align: center">Attualmente non ci sono utenti bannati </p>
                 <?php }?>
             </div>
         </div>
@@ -238,17 +190,15 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                 <div class="sales-details">
                     <table id="customers">
                         <caption>
-                            <p>Categorie</p>
+                            <p style="font-weight: bold">Categorie</p>
                         </caption>
                         <thead>
                         <tr>
                             <th>Genere</th>
                             <th>Descrizione</th>
+                            <th></th>
                         </tr>
                         </thead>
-                        <!--    <tfoot>
-                            <tr><td>Totale 1</td><td>Totale 2</td></tr>
-                            </tfoot> -->
                         <tbody>
                         <?php if ((isset($_smarty_tpl->tpl_vars['categorie']->value))) {?>
                             <?php
@@ -262,17 +212,29 @@ $_smarty_tpl->tpl_vars['categoria']->do_else = false;
 </td>
                                     <td><?php echo $_smarty_tpl->tpl_vars['categoria']->value->getDescrizione();?>
 </td>
+                                    <td>
+                                        <form action="/Admin/rimuoviCategoria/<?php echo $_smarty_tpl->tpl_vars['categoria']->value->getGenere();?>
+" method="POST">
+                                            <input style="border-radius: 9px; padding: 3px; border-color: #0dcaf0" type="submit" value="Elimina">
+                                        </form>
+                                    </td>
                                 </tr>
                             <?php
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                         <?php }?>
+                        <tr>
+                            <form action="/Admin/aggiungiCategoria" method="POST">
+                                <td><input style="padding: 4px" type="text" placeholder="Genere" name="genere"></td>
+                                <td><input style="padding: 4px" type="text" placeholder="Descrizione" name="descrizione"></td>
+                                <td><input style="border-radius: 9px; padding: 3px; border-color: #0dcaf0" type="submit" value="Aggiungi"></td>
+                            </form>
                         </tbody>
                     </table>
                 </div>
                 <?php if (!(isset($_smarty_tpl->tpl_vars['categorie']->value))) {?>
                     <br>
-                    <h2>Attualmente non ci sono categorie di locali sul sito </h2>
+                    <p style="text-align: center">Attualmente non ci sono categorie di locali sul sito </p>
                 <?php }?>
             </div>
         </div>
@@ -285,19 +247,19 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                 <div class="sales-details">
                     <table id="customers">
                         <caption>
-                            <p>Recesioni</p>
+                            <p style="font-weight: bold">Recensioni</p>
                         </caption>
                         <thead>
                         <tr>
+                            <th>Id</th>
                             <th>Titolo</th>
                             <th>Descrizione</th>
                             <th>Autore</th>
                             <th>Locale</th>
+                            <th></th>
+                            <th></th>
                         </tr>
                         </thead>
-                        <!--    <tfoot>
-                            <tr><td>Totale 1</td><td>Totale 2</td></tr>
-                            </tfoot> -->
                         <tbody>
                         <?php if ((isset($_smarty_tpl->tpl_vars['recensioni']->value))) {?>
                             <?php
@@ -307,6 +269,8 @@ if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['rece']->value) {
 $_smarty_tpl->tpl_vars['rece']->do_else = false;
 ?>
                                 <tr>
+                                    <td><?php echo $_smarty_tpl->tpl_vars['rece']->value->getId();?>
+</td>
                                     <td><?php echo $_smarty_tpl->tpl_vars['rece']->value->getTitolo();?>
 </td>
                                     <td><?php echo $_smarty_tpl->tpl_vars['rece']->value->getDescrizione();?>
@@ -315,6 +279,18 @@ $_smarty_tpl->tpl_vars['rece']->do_else = false;
 </td>
                                     <td><?php echo $_smarty_tpl->tpl_vars['rece']->value->getLocale()->getNome();?>
 </td>
+                                    <td>
+                                        <form action="/Admin/eliminaRecensione/<?php echo $_smarty_tpl->tpl_vars['rece']->value->getId();?>
+" method="POST">
+                                            <input style="border-radius: 9px; padding: 3px; border-color: #0dcaf0" type="submit" value="Elimina">
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <form action="/Admin/reinserisciRecensione/<?php echo $_smarty_tpl->tpl_vars['rece']->value->getId();?>
+" method="POST">
+                                            <input style="border-radius: 9px; padding: 3px; border-color: #0dcaf0" type="submit" value="Reinserisci">
+                                        </form>
+                                    </td>
                                 </tr>
                             <?php
 }
@@ -325,16 +301,11 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                 </div>
                 <?php if (!(isset($_smarty_tpl->tpl_vars['recensioni']->value))) {?>
                     <br>
-                    <h2>Attualmente non ci sono recensioni segnalate </h2>
+                    <p style="text-align: center">Attualmente non ci sono recensioni segnalate </p>
                 <?php }?>
             </div>
         </div>
-
-
-
     </div>
-
-
 </section>
 </body>
 </html>
