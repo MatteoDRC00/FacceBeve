@@ -31,7 +31,7 @@ class FProprietario{
         $stmt->bindValue(':nome',$proprietario->getNome(), PDO::PARAM_STR);
         $stmt->bindValue(':cognome',$proprietario->getCognome(), PDO::PARAM_STR);
         $stmt->bindValue(':email', $proprietario->getEmail(), PDO::PARAM_STR);
-        $stmt->bindValue(':password', $proprietario->getPassword(), PDO::PARAM_STR);
+        $stmt->bindValue(':password', md5($proprietario->getPassword()), PDO::PARAM_STR);
         if($proprietario->getImgProfilo() != null)
             $stmt->bindValue(':idImg', $proprietario->getImgProfilo()->getId());
         else

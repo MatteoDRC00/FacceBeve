@@ -254,29 +254,38 @@ class VProfilo{
     }
 
     public function errore($tipo,$message,$user){
-            $this->smarty->assign("tipo",$tipo);
-            $this->smarty->assign("message",$message);
+        $pm = FPersistentManager::getInstance();
+
+        $this->smarty->assign("tipo",$tipo);
+        $this->smarty->assign("message",$message);
 
 
-            $username = $user->getUsername();
-            $nome = $user->getNome();
-            $cognome = $user->getCognome();
-            $email = $user->getEmail();
-            $img_profilo = $user->getImgProfilo();
-            $pic64 = $img_profilo->getImmagine();
-            $type = $img_profilo->getType();
-            $this->smarty->assign("username",$username);
-            $this->smarty->assign("nome",$nome);
-            $this->smarty->assign("cognome",$cognome);
-            $this->smarty->assign("email",$email);
-            $this->smarty->assign("pic64",$pic64);
-            $this->smarty->assign("type",$type);
+        $username = $user->getUsername();
+        $nome = $user->getNome();
+        $cognome = $user->getCognome();
+        $email = $user->getEmail();
+        $img_profilo = $user->getImgProfilo();
+        $pic64 = $img_profilo->getImmagine();
+        $type = $img_profilo->getType();
+        $this->smarty->assign("username",$username);
+        $this->smarty->assign("nome",$nome);
+        $this->smarty->assign("cognome",$cognome);
+        $this->smarty->assign("email",$email);
+        $this->smarty->assign("pic64",$pic64);
+        $this->smarty->assign("type",$type);
 
-            if(get_class($user) =="EUtente"){
-                $this->smarty->display('areaPersonaleUte.tpl');
-            }elseif (get_class($user)=="EProprietario"){
-                $this->smarty->display('areaPersonaleProprietario.tpl');
+        if(get_class($user) =="EUtente"){
+            $locali_preferiti = $pm->getLocaliPreferiti($username);
+            $this->smarty->assign("locali_preferiti",$locali_preferiti);
+            $this->smarty->display('areaPersonaleUtente.tpl');
+        }elseif (get_class($user)=="EProprietario"){
+            $locali[] = $pm->load("proprietario", $username, "FLocale");
+            if($locali[0] == null){
+                $locali = array();
             }
+            $this->smarty->assign("locali",$locali);
+            $this->smarty->display('areaPersonaleProprietario.tpl');
+        }
     }
 
 }

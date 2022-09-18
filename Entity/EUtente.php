@@ -30,7 +30,7 @@ class EUtente {
         $this->cognome = $cognome;
         $this->email = $email;
         $this->username = $username;
-        $this->password = md5($password);
+        $this->password = $password;
         $this->localipreferiti = array();
         $this->state = true;
     }

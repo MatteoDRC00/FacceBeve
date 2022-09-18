@@ -32,7 +32,7 @@ class FUtente{
 		$stmt->bindValue(':nome',$utente->getNome(), PDO::PARAM_STR);
 		$stmt->bindValue(':cognome',$utente->getCognome(), PDO::PARAM_STR);
         $stmt->bindValue(':email', $utente->getEmail(), PDO::PARAM_STR);
-        $stmt->bindValue(':password', $utente->getPassword(), PDO::PARAM_STR);
+        $stmt->bindValue(':password', md5($utente->getPassword()), PDO::PARAM_STR);
         if($utente->getImgProfilo() != null)
             $stmt->bindValue(':idImg', $utente->getImgProfilo()->getId());
         else
