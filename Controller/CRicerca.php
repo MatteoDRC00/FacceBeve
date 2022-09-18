@@ -143,23 +143,11 @@ class CRicerca{
             $risposte[]=$pm->load("recensione",$idSearch,"FRisposta");
         }
         if($sessione->leggi_valore('utente')){
-            if($sessione->leggi_valore('tipo_utente')=="EUtente"){
-                $utente = $pm->load("id",$sessione->leggi_valore('utente'),"FUtente");
-              /*  if($vRicerca->preferiti() && !($x)){
-                    $utente->addLocale($result);
-                    $x=true;
-                    $pm->storeEsterne("FLocale",$utente,$id);
-                }else{
-                    //Potrebbe dare errore
-                    $utente->deleteLocale($result);
-                    $x=false;
-                    $pm->deleteEsterne("FLocale",$utente,$id);
-                } */
-            }elseif($sessione->leggi_valore('tipo_utente')=="EProprietario"){
+             if($sessione->leggi_valore('tipo_utente')=="EProprietario"){
                 $check = $pm->exist("FLocale","proprietario",$sessione->leggi_valore('utente'));
                 if($check)
                     $proprietario=1;
-            }
+             }
         }
         $vRicerca->dettagliLocale($tipo,$presente,$result, $recensioni, $risposte, $rating,$proprietario);
     }

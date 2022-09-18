@@ -99,7 +99,7 @@ CREATE TABLE `Localizzazione` (
 );
 /*Inserimento dati Localizzazione*/
 INSERT INTO `Localizzazione` (`id`,`indirizzo`,`numCivico`,`citta`,`CAP`) VALUES
-('1','Via dei Sali','5','L Aquila','67100'); 
+('1','Via dei Sali','5','L Aquila','67100');
 
 /*Tabella relativa agli Orari */
 DROP TABLE IF EXISTS `Orario`;

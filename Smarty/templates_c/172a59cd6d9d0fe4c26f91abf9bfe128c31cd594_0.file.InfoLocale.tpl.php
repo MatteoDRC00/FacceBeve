@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-18 15:08:05
+/* Smarty version 4.2.0, created on 2022-09-18 12:55:56
   from 'C:\xampp\htdocs\FacceBeve\template\InfoLocale.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_632718355def73_82036551',
+  'unifunc' => 'content_6326f93c5bf632_06746824',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '172a59cd6d9d0fe4c26f91abf9bfe128c31cd594' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\InfoLocale.tpl',
-      1 => 1663506474,
+      1 => 1663498087,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_632718355def73_82036551 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6326f93c5bf632_06746824 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <?php $_smarty_tpl->_assignInScope('locale', (($tmp = $_smarty_tpl->tpl_vars['locale']->value ?? null)===null||$tmp==='' ? null ?? null : $tmp));
@@ -108,7 +108,7 @@ echo '<script'; ?>
                             <?php } else { ?>
                                 <form action="/Ricerca/aggiungiAPreferiti/<?php echo $_smarty_tpl->tpl_vars['locale']->value->getId();?>
 " method="POST">
-                                    <input class="stelline" onclick="change()" type="submit" value="Aggiungi ai preferiti" id="pref" name="pref">
+                                    <input onclick="change()" type="submit" value="Aggiungi ai preferiti" id="pref" name="pref">
                                 </form>
                             <?php }?>
                         <?php }?>

@@ -58,8 +58,6 @@ class CGestioneLocale
 
     }
 
-
-
     public function mostraGestioneLocale($id_locale){
         $sessione = new USession();
         $username = $sessione->leggi_valore("utente");
@@ -478,7 +476,7 @@ class CGestioneLocale
         $view = new VGestioneLocale();
         $pm = FPersistentManager::getInstance();
         $img = $pm->load("id", $view->getIdImmagine(), "FImmagine"); //Serve per l'eliminazione delle chiavi esterne
-        $Y = $pm->delete("id",$view->getIdImmagine(),"FImmagine");
+        $pm->delete("id",$view->getIdImmagine(),"FImmagine");
         $pm->deleteEsterne("FLocale",$img);
         header('Location: /Ricerca/dettaglioLocale');
     }
@@ -494,7 +492,7 @@ class CGestioneLocale
     {
         $sessione = new USession();
         $proprietario = unserialize($sessione->leggi_valore('utente'));
-        $pm = FPersistentManager::getIstance();
+        $pm = FPersistentManager::getInstance();
         $pm->delete("id", $id, "FLocale");
         header('Location: /FacceBeve/Ricerca/dettaglioLocale');
     }
@@ -519,39 +517,6 @@ class CGestioneLocale
         }else{
             header("Location: /Ricerca/mostraHome");
         }
-    }
-
-//----------------------------------METODI STATICI------------------------------------------------------\\
-    /**
-     * Funzione che si preoccupa di verificare lo stato dell'immagine inserita
-     * @param $nome_file
-     * @return array , dove $ris è lo stato dell'immagine, $nome è il nome dell'immagine e $type è il MIME type dell'immagine
-     */
-    static function upload($img): array
-    {
-        //$ris = "no_img";
-        $type = null;
-        $nome = null;
-        $max_size = 300000;
-        $result = is_uploaded_file($result = is_uploaded_file($img[2])); //true se è stato caricato via HTTP POST.
-        if (!$result) {
-            $ris = "no_img";
-        } else {
-            $size = $img[3];
-            $type = $img[0];
-            if ($size > $max_size) {
-                $ris = "size";
-            } else {
-                if ($type == 'image/jpeg' || $type == 'image/png' || $type == 'image/jpg') {
-                    $immagine = @file_get_contents($img[2]);
-                    $immagine = addslashes ($immagine);
-                    $mutente = new EImmagine($nome,$size,$type,$immagine);
-                } else {
-                    $ris = "type";
-                }
-            }
-        }
-        return array($ris,$mutente);
     }
 
 }
