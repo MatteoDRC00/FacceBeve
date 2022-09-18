@@ -10,7 +10,7 @@ class FLocale {
     private static $class="FLocale";
 
 	/** tabella con la quale opera nel DB */
-    private static $table="Locale";
+    private static $table="locale";
 
     /** valori della tabella nel DB */
     private static $values="(:id,:nome,:numtelefono,:descrizione,:proprietario,:localizzazione)";
@@ -27,7 +27,7 @@ class FLocale {
      * @return void
      */
     public static function bind(PDOStatement $stmt, ELocale $locale){
-        $stmt->bindValue(':id',NULL, PDO::PARAM_INT); //l'id è posto a NULL poichè viene dato automaticamente dal DBMS (AUTOINCREMENT_ID)
+        $stmt->bindValue(':id',NULL); //l'id è posto a NULL poichè viene dato automaticamente dal DBMS (AUTOINCREMENT_ID)
         $stmt->bindValue(':nome', $locale->getNome(), PDO::PARAM_STR);
 		$stmt->bindValue(':numtelefono',$locale->getNumTelefono(), PDO::PARAM_STR);
 		$stmt->bindValue(':descrizione',$locale->getDescrizione(), PDO::PARAM_STR);
@@ -66,7 +66,9 @@ class FLocale {
      */
     public static function store(ELocale $locale){
         $db = FDB::getInstance();
+        print_r($locale);
         $id = $db->store(static::getClass() ,$locale);
+        print($id);
         //Categorie Locale
         if($locale->getCategoria()!=null){
             foreach($locale->getCategoria() as $cat){

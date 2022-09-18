@@ -91,10 +91,9 @@ class CGestioneLocale
         $username = $sessione->leggi_valore('utente');
         $tipo = $sessione->leggi_valore("tipo_utente");
 
-        $tipo[0] = "F";
-        $class = $tipo;
 
-        $proprietario = $pm->load("username", $username, $class);
+        $proprietario = $pm->load("username", $username, "FProprietario");
+
 
         if($sessione->isLogged() && $tipo=="EProprietario"){
 
@@ -128,9 +127,6 @@ class CGestioneLocale
             $orario_apertura = $view->getOrarioApertura();
             $orario_chiusura = $view->getOrarioChiusura();
             $chiuso = $view->getOrarioClose();
-
-            print_r($orario_apertura);
-            print_r($orario_chiusura);
 
 
             $giorni_chiusi = array(0,0,0,0,0,0,0);
@@ -187,7 +183,7 @@ class CGestioneLocale
                 $pm->update("FLocale","idImg", $id, "id", $id_locale);
                 $locale->setImg($img_locale);
             }
-            header('Location: /Profilo/mostraProfilo');
+            //header('Location: /Profilo/mostraProfilo');
         }else{
             header('Location: /Ricerca/mostraHome');
         }

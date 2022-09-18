@@ -192,15 +192,16 @@ class ELocale implements JsonSerializable{
     /**
      * @return EImmagine|null
      */
-    public function getImg(): EImmagine
+    public function getImg(): ?EImmagine
     {
         return $this->img;
     }
 
     /**
-     * @param EImmagine $img
+     * @param EImmagine|null $img
+     * @return void
      */
-    public function setImg(EImmagine $img): void
+    public function setImg(?EImmagine $img): void
     {
         $this->img = $img;
     }
