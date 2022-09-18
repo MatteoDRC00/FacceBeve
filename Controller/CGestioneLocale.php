@@ -71,6 +71,7 @@ class CGestioneLocale
         if($sessione->isLogged() && $tipo == "EProprietario"){
             $genere_cat = $pm->getCategorie();
             $eventi = $pm->getEventiByLocale($locale->getId());
+
             $view->showFormModificaLocale($locale, $genere_cat, $eventi);
         }
     }

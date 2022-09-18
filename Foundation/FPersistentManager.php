@@ -62,15 +62,18 @@ class FPersistentManager {
 
     public function getEventiByLocale($id_locale){
         $db = FDB::getInstance();
-        $result[] = $db->getIdEventoByIdLocale($id_locale);
+        list($result, $num) = $db->getIdEventoByIdLocale($id_locale);
         $eventi = array();
 
-
-
-        if(!empty($result) && $result[0]!=null){
-            foreach ($result as $r){
-                $eventi[] = FEvento::loadByField("id", $r['ID_Evento']);
+        if(!empty($result)){
+            if($num == 1){
+                $eventi[] = FEvento::loadByField("id", $result['ID_Evento']);
+            }else{
+                foreach ($result as $r){
+                    $eventi[] = FEvento::loadByField("id", $r['ID_Evento']);
+                }
             }
+
         }
 
         return $eventi;
