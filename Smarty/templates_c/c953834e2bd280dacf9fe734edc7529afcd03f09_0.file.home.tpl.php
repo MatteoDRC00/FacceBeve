@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-18 10:27:19
+/* Smarty version 4.2.0, created on 2022-09-18 10:40:03
   from 'C:\xampp\htdocs\FacceBeve\template\home.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_6326d667d7e6c6_21556601',
+  'unifunc' => 'content_6326d9630a2447_68225010',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c953834e2bd280dacf9fe734edc7529afcd03f09' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\home.tpl',
-      1 => 1663489621,
+      1 => 1663490401,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6326d667d7e6c6_21556601 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6326d9630a2447_68225010 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -184,15 +184,19 @@ $_smarty_tpl->tpl_vars['locale']->do_else = true;
 if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['locale']->value) {
 $_smarty_tpl->tpl_vars['locale']->do_else = false;
 ?>
+                        <?php $_smarty_tpl->_assignInScope('i', 0);?>
                         <div class="col-md-6 col-lg-3 d-flex align-items-stretch">
                             <div class="icon-box icon-box-pink">
-                                <h4 class="title"><a href="/Ricerca/dettagliLocale/<?php echo $_smarty_tpl->tpl_vars['locale']->value->getId();?>
-"><?php echo $_smarty_tpl->tpl_vars['locale']->value->getNome();?>
-</a></h4>
+                                <a href="/Ricerca/dettagliLocale/<?php echo $_smarty_tpl->tpl_vars['locale']->value->getId();?>
+"><h3 style="font-weight: bold"><?php echo $_smarty_tpl->tpl_vars['locale']->value->getNome();?>
+</h3></a>
+                                <p style="font-weight: bold;">Voto: <?php echo $_smarty_tpl->tpl_vars['valutazione']->value[$_smarty_tpl->tpl_vars['i']->value];?>
+/5</p>
                                 <p class="description"><?php echo $_smarty_tpl->tpl_vars['locale']->value->getDescrizione();?>
 </p>
                             </div>
                         </div>
+                        <?php $_smarty_tpl->_assignInScope('i', $_smarty_tpl->tpl_vars['i']->value+1);?>
                     <?php
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>

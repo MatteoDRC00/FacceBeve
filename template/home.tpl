@@ -138,12 +138,15 @@
                 <h2>Ecco i TOP 4 locali in Italia:</h2>
                 {if !empty($locali)}
                     {foreach $locali as $locale}
+                        {$i=0}
                         <div class="col-md-6 col-lg-3 d-flex align-items-stretch">
                             <div class="icon-box icon-box-pink">
-                                <h4 class="title"><a href="/Ricerca/dettagliLocale/{$locale->getId()}">{$locale->getNome()}</a></h4>
+                                <a href="/Ricerca/dettagliLocale/{$locale->getId()}"><h3 style="font-weight: bold">{$locale->getNome()}</h3></a>
+                                <p style="font-weight: bold;">Voto: {$valutazione[$i]}/5</p>
                                 <p class="description">{$locale->getDescrizione()}</p>
                             </div>
                         </div>
+                        {$i = $i+1}
                     {/foreach}
                 {else}
                     <p>Non ci sono locali</p>

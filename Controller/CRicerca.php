@@ -50,16 +50,18 @@ class CRicerca{
         $topLocali = $pm->top4Locali();
 
         $locali = array();
+        $valutazione = array();
 
         if(!empty($topLocali)){
             foreach($topLocali as $locale){
+                $valutazione[] = $locale["ValutazioneMedia"];
                 $locale = $pm->load("id", $locale["id"], "FLocale");
                 $locali[] = $locale;
             }
         }
 
         $view = new VRicerca();
-        $view->mostraHome($tipo, $genere_cat, $locali);
+        $view->mostraHome($tipo, $genere_cat, $locali, $valutazione);
     }
 
     /**
