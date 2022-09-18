@@ -247,16 +247,16 @@ class FPersistentManager {
      * Metodo che restituisce i 4 locali con la valutazione più alta sul sito
     */
     public function top4Locali(){
-        $locali=null;
-        $result = FLocale::getTopLocali();
+        $locali = array();
+        list($result, $num) = FLocale::getTopLocali();
         if(!empty($result)){
-            if(count($result)>4){
+            if($num>4){
                 for($i=0; $i<4; $i++){
                     $locali[] = $result[$i];
                 }
-            }
-        }else
-            $locali = $result;
+            }else
+                $locali[] = $result;
+        }
         return $locali;
     }
 

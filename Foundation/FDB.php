@@ -846,7 +846,7 @@ class FDB{
 	}
 
 	/**
-	 * @return PDO
+	 * @return array|void
 	 */
 	public function getLocaliPerValutazione(){
 		try {
@@ -864,7 +864,7 @@ class FDB{
 				while ($row = $stmt->fetch())
 					$result[] = $row;                    //ritorna un array di righe.
 			}
-			return $result;
+			return array($result,$num);
 		}catch (PDOException $e) {
 			echo "Attenzione errore: " . $e->getMessage();
 			$this->database->rollBack();
