@@ -7,8 +7,10 @@
 <html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
+    <title>Dashboard Admin</title>
     <!--<title> Responsive Admin Dashboard | CodingLab </title>-->
     <link rel="stylesheet" href="/template/css/aadmin.css">
+    <link href="/template/img/favicon.png" rel="icon">
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

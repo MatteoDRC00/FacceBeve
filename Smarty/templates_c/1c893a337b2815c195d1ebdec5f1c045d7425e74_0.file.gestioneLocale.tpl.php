@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-17 23:29:41
+/* Smarty version 4.2.0, created on 2022-09-19 01:31:07
   from 'C:\xampp\htdocs\FacceBeve\template\gestioneLocale.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_63263c453ccac1_69927782',
+  'unifunc' => 'content_6327aa3b0f7510_32767639',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '1c893a337b2815c195d1ebdec5f1c045d7425e74' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\gestioneLocale.tpl',
-      1 => 1663450178,
+      1 => 1663543865,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_63263c453ccac1_69927782 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6327aa3b0f7510_32767639 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -203,23 +203,27 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
             </div>
             <div class="items-body">
                 <?php if (!empty($_smarty_tpl->tpl_vars['eventi']->value)) {?>
-                    <?php
+                    <ul>
+                        <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['eventi']->value, 'evento');
 $_smarty_tpl->tpl_vars['evento']->do_else = true;
 if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['evento']->value) {
 $_smarty_tpl->tpl_vars['evento']->do_else = false;
 ?>
-                    <div class="items-body-content row-cols-3">
-                        <p><?php echo $_smarty_tpl->tpl_vars['evento']->value->getNome();?>
+                            <li>
+                                <div class="items-body-content row-cols-3">
+                                    <p><?php echo $_smarty_tpl->tpl_vars['evento']->value->getNome();?>
 </p>
-                        <a href="/GestioneEvento/mostraFormGestioneEvento/<?php echo $_smarty_tpl->tpl_vars['evento']->value->getId();?>
+                                    <a href="/GestioneEvento/mostraFormGestioneEvento/<?php echo $_smarty_tpl->tpl_vars['evento']->value->getId();?>
 "><input type="button" value="Gestisci evento"></a>
-                        <a href="/GestioneEvento/eliminaEvento/<?php echo $_smarty_tpl->tpl_vars['evento']->value->getId();?>
+                                    <a href="/GestioneEvento/eliminaEvento/<?php echo $_smarty_tpl->tpl_vars['evento']->value->getId();?>
 "><input type="button" value="Elimina evento"></a>
-                    </div>
-                    <?php
+                                </div>
+                            </li>
+                        <?php
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
+                    </ul>
                 <?php } else { ?>
                     <p>Non ci sono eventi in programma</p>
                 <?php }?>
