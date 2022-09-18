@@ -1,28 +1,60 @@
 <?php
 
-/** La classe ELocale raggruppa tutti gli attributi che caratterizzano un singolo locale:
- *  - nome: identifica il nome del locale
- *  - descrizione: identifica le informazioni generali sul locale
- *  - num_telefono: identifica il numero di telefono
- *  - proprietario: indentifica il proprietario del locale
- *  - categoria: identifica la categoria del locale, cioè il tipo
- *  - localizzazione: identifica la posizione geografica in cui si trova il locale
- *  - eventi_organizzati: è l'insieme degli eventi organizzati dal locale
- *  - orario_apertura: indica gli orari in cui il locale è aperto in base al giorno della settimana
+/** La classe ELocale caratterizza un singolo locale
  *  @author Gruppo8
  *  @package Entity
  */
-class ELocale implements JsonSerializable{
+class ELocale{
 
+    /**
+     *
+     * @var int|null
+     */
     private ?int $id;
+
+    /**
+     * @var string
+     */
     private string $nome;
+
+    /**
+     * @var string
+     */
     private string $descrizione;
+
+    /**
+     * @var string
+     */
     private string $num_telefono;
+
+    /**
+     * @var EProprietario
+     */
     private EProprietario $proprietario;
+
+    /**
+     * @var array|null
+     */
     private ?array $categoria;
+
+    /**
+     * @var ELocalizzazione
+     */
     private ELocalizzazione $localizzazione;
+
+    /**
+     * @var array|null
+     */
     private ?array $eventi_organizzati;
+
+    /**
+     * @var array|null
+     */
     private ?array $orario;
+
+    /**
+     * @var EImmagine|null
+     */
     private ?EImmagine $img;
 
     /**

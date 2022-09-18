@@ -161,13 +161,17 @@
             </div>
             <div class="items-body">
                 {if !empty($eventi)}
-                    {foreach $eventi as $evento}
-                    <div class="items-body-content row-cols-3">
-                        <p>{$evento->getNome()}</p>
-                        <a href="/GestioneEvento/mostraFormGestioneEvento/{$evento->getId()}"><input type="button" value="Gestisci evento"></a>
-                        <a href="/GestioneEvento/eliminaEvento/{$evento->getId()}"><input type="button" value="Elimina evento"></a>
-                    </div>
-                    {/foreach}
+                    <ul>
+                        {foreach $eventi as $evento}
+                            <li>
+                                <div class="items-body-content row-cols-3">
+                                    <p>{$evento->getNome()}</p>
+                                    <a href="/GestioneEvento/mostraFormGestioneEvento/{$evento->getId()}"><input type="button" value="Gestisci evento"></a>
+                                    <a href="/GestioneEvento/eliminaEvento/{$evento->getId()}"><input type="button" value="Elimina evento"></a>
+                                </div>
+                            </li>
+                        {/foreach}
+                    </ul>
                 {else}
                     <p>Non ci sono eventi in programma</p>
                 {/if}

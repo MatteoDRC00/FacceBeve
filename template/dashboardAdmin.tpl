@@ -7,8 +7,10 @@
 <html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
+    <title>Dashboard Admin</title>
     <!--<title> Responsive Admin Dashboard | CodingLab </title>-->
     <link rel="stylesheet" href="/template/css/aadmin.css">
+    <link href="/template/img/favicon.png" rel="icon">
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,16 +28,13 @@
             <a href="#utentiBannati"><span class="links_name">Utenti Bannati</span></a>
         </li>
         <li>
-            <a href="#proprietari"><span class="links_name">Proprietari di locali</span></a>
-        </li>
-        <li>
-            <a href="#"><span class="links_name">Locali</span></a>
-        </li>
-        <li>
             <a href="#recensioni"><span class="links_name">Recensioni segnalate</span></a>
         </li>
         <li>
             <a href="#categorie"><span class="links_name">Categorie</span></a>
+        </li>
+        <li>
+            <a href="/Accesso/logout"><span class="links_name">Esci</span></a>
         </li>
     </ul>
 
@@ -50,7 +49,7 @@
                 <div class="sales-details">
                     <table id="customers">
                         <caption>
-                            <p>Utenti Attivi</p>
+                            <p style="font-weight: bold">Utenti Attivi</p>
                         </caption>
                         <thead>
                         <tr>
@@ -59,11 +58,9 @@
                             <th>Cognome</th>
                             <th>Email</th>
                             <th>Data Iscrizione</th>
+                            <th></th>
                         </tr>
                         </thead>
-                        <!--    <tfoot>
-                            <tr><td>Totale 1</td><td>Totale 2</td></tr>
-                            </tfoot> -->
                         <tbody>
                         {if isset($utentiAttivi)}
                             {foreach $utentiAttivi as $utente}
@@ -73,16 +70,21 @@
                                     <td>{$utente->getCognome()}</td>
                                     <td>{$utente->getEmail()}</td>
                                     <td>{$utente->getIscrizione()}</td>
+                                    <td>
+                                        <form action="/Admin/sospendiUtente/{$utente->getUsername()}" method="POST">
+                                            <input style="border-radius: 9px; padding: 3px; border-color: #0dcaf0" type="submit" value="Sospendi">
+                                        </form>
+                                    </td>
                                 </tr>
                             {/foreach}
                         {/if}
                         </tbody>
                     </table>
-                    {if !isset($utentiAttivi)}
-                        <br>
-                        <h2>Attualmente non ci sono utenti attivi </h2>
-                    {/if}
                 </div>
+                {if !isset($utentiAttivi)}
+                    <br>
+                    <p style="text-align: center">Attualmente non ci sono utenti attivi </p>
+                {/if}
             </div>
         </div>
 
@@ -94,7 +96,7 @@
                 <div class="sales-details">
                     <table id="customers">
                         <caption>
-                            <p>Utenti Bannati</p>
+                            <p style="font-weight: bold">Utenti Bannati</p>
                         </caption>
                         <thead>
                         <tr>
@@ -103,11 +105,9 @@
                             <th>Cognome</th>
                             <th>Email</th>
                             <th>Data Iscrizione</th>
+                            <th></th>
                         </tr>
                         </thead>
-                        <!--    <tfoot>
-                            <tr><td>Totale 1</td><td>Totale 2</td></tr>
-                            </tfoot> -->
                         <tbody>
                         {if isset($utentiBannati)}
                             {foreach $utentiBannati as $utente}
@@ -117,6 +117,11 @@
                                     <td>{$utente->getCognome()}</td>
                                     <td>{$utente->getEmail()}</td>
                                     <td>{$utente->getIscrizione()}</td>
+                                    <td>
+                                        <form action="/Admin/riattivaUtente/{$utente->getUsername()}" method="POST">
+                                            <input style="border-radius: 9px; padding: 3px; border-color: #0dcaf0" type="submit" value="Riattiva">
+                                        </form>
+                                    </td>
                                 </tr>
                             {/foreach}
                         {/if}
@@ -125,49 +130,7 @@
                 </div>
                 {if !isset($utentiBannati)}
                     <br>
-                    <h2>Attualmente non ci sono utenti bannati </h2>
-                {/if}
-            </div>
-        </div>
-
-        <br>
-
-        <!--Proprietari-->
-        <div class="sales-boxes" id="proprietari">
-            <div class="recent-sales box">
-                <div class="sales-details">
-                    <table id="customers">
-                        <caption>
-                            <p>Proprietari di locali</p>
-                        </caption>
-                        <thead>
-                        <tr>
-                            <th>Username</th>
-                            <th>Nome</th>
-                            <th>Cognome</th>
-                            <th>Email</th>
-                        </tr>
-                        </thead>
-                        <!--    <tfoot>
-                            <tr><td>Totale 1</td><td>Totale 2</td></tr>
-                            </tfoot> -->
-                        <tbody>
-                        {if isset($proprietari)}
-                            {foreach $proprietari as $utente}
-                                <tr>
-                                    <td>{$utente->getUsername()}</td>
-                                    <td>{$utente->getNome()}</td>
-                                    <td>{$utente->getCognome()}</td>
-                                    <td>{$utente->getEmail()}</td>
-                                </tr>
-                            {/foreach}
-                        {/if}
-                        </tbody>
-                    </table>
-                </div>
-                {if !isset($proprietari)}
-                    <br>
-                    <h2>Attualmente non ci sono profili di utenti proprietari </h2>
+                    <p style="text-align: center">Attualmente non ci sono utenti bannati </p>
                 {/if}
             </div>
         </div>
@@ -180,32 +143,41 @@
                 <div class="sales-details">
                     <table id="customers">
                         <caption>
-                            <p>Categorie</p>
+                            <p style="font-weight: bold">Categorie</p>
                         </caption>
                         <thead>
                         <tr>
                             <th>Genere</th>
                             <th>Descrizione</th>
+                            <th></th>
                         </tr>
                         </thead>
-                        <!--    <tfoot>
-                            <tr><td>Totale 1</td><td>Totale 2</td></tr>
-                            </tfoot> -->
                         <tbody>
                         {if isset($categorie)}
                             {foreach $categorie as $categoria}
                                 <tr>
                                     <td>{$categoria->getGenere()}</td>
                                     <td>{$categoria->getDescrizione()}</td>
+                                    <td>
+                                        <form action="/Admin/rimuoviCategoria/{$categoria->getGenere()}" method="POST">
+                                            <input style="border-radius: 9px; padding: 3px; border-color: #0dcaf0" type="submit" value="Elimina">
+                                        </form>
+                                    </td>
                                 </tr>
                             {/foreach}
                         {/if}
+                        <tr>
+                            <form action="/Admin/aggiungiCategoria" method="POST">
+                                <td><input style="padding: 4px" type="text" placeholder="Genere" name="genere"></td>
+                                <td><input style="padding: 4px" type="text" placeholder="Descrizione" name="descrizione"></td>
+                                <td><input style="border-radius: 9px; padding: 3px; border-color: #0dcaf0" type="submit" value="Aggiungi"></td>
+                            </form>
                         </tbody>
                     </table>
                 </div>
                 {if !isset($categorie)}
                     <br>
-                    <h2>Attualmente non ci sono categorie di locali sul sito </h2>
+                    <p style="text-align: center">Attualmente non ci sono categorie di locali sul sito </p>
                 {/if}
             </div>
         </div>
@@ -218,27 +190,38 @@
                 <div class="sales-details">
                     <table id="customers">
                         <caption>
-                            <p>Recesioni</p>
+                            <p style="font-weight: bold">Recensioni</p>
                         </caption>
                         <thead>
                         <tr>
+                            <th>Id</th>
                             <th>Titolo</th>
                             <th>Descrizione</th>
                             <th>Autore</th>
                             <th>Locale</th>
+                            <th></th>
+                            <th></th>
                         </tr>
                         </thead>
-                        <!--    <tfoot>
-                            <tr><td>Totale 1</td><td>Totale 2</td></tr>
-                            </tfoot> -->
                         <tbody>
                         {if isset($recensioni)}
                             {foreach $recensioni as $rece}
                                 <tr>
+                                    <td>{$rece->getId()}</td>
                                     <td>{$rece->getTitolo()}</td>
                                     <td>{$rece->getDescrizione()}</td>
                                     <td>{$rece->getUtente()->getUsername()}</td>
                                     <td>{$rece->getLocale()->getNome()}</td>
+                                    <td>
+                                        <form action="/Admin/eliminaRecensione/{$rece->getId()}" method="POST">
+                                            <input style="border-radius: 9px; padding: 3px; border-color: #0dcaf0" type="submit" value="Elimina">
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <form action="/Admin/reinserisciRecensione/{$rece->getId()}" method="POST">
+                                            <input style="border-radius: 9px; padding: 3px; border-color: #0dcaf0" type="submit" value="Reinserisci">
+                                        </form>
+                                    </td>
                                 </tr>
                             {/foreach}
                         {/if}
@@ -247,16 +230,11 @@
                 </div>
                 {if !isset($recensioni)}
                     <br>
-                    <h2>Attualmente non ci sono recensioni segnalate </h2>
+                    <p style="text-align: center">Attualmente non ci sono recensioni segnalate </p>
                 {/if}
             </div>
         </div>
-
-
-
     </div>
-
-
 </section>
 </body>
 </html>

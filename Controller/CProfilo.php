@@ -283,9 +283,6 @@ class CProfilo{
             }elseif($tipo == "EProprietario"){
                 $proprietario = $pm->load("username", $username, "FProprietario");
                 $locali = $check->check($pm->load("proprietario", $username, "FLocale"));
-                if($locali[0] == null){
-                    $locali = array();
-                }
                 $view = new VProfilo();
                 $view->mostraProfiloProprietario($proprietario, $locali);
             }

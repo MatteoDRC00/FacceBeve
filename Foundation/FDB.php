@@ -436,6 +436,22 @@ class FDB{
 		return false;
 	}
 
+	public function deleteLocaleCategorie($genere){
+		try {
+			$this->database->beginTransaction();
+			$query = "DELETE FROM " . "locale_categorie" . " WHERE " . "ID_Categoria" . "='" . $genere . "';";
+			$stmt = $this->database->prepare($query);
+			$stmt->execute();
+			$this->database->commit();
+			$this->closeDbConnection();
+			return true;
+		} catch (PDOException $e) {
+			echo "Attenzione errore: " . $e->getMessage();
+			$this->database->rollBack();
+		}
+		return false;
+	}
+
 	public function deleteOrariLocale($id_locale){
 		try {
 			$this->database->beginTransaction();
