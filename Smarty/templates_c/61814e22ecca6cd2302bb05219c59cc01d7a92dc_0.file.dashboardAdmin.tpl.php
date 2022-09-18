@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-18 16:02:07
+/* Smarty version 4.2.0, created on 2022-09-18 16:36:04
   from 'C:\xampp\htdocs\FacceBeve\template\dashboardAdmin.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_632724dfdc7343_99943890',
+  'unifunc' => 'content_63272cd498e804_36663858',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '61814e22ecca6cd2302bb05219c59cc01d7a92dc' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\dashboardAdmin.tpl',
-      1 => 1663507491,
+      1 => 1663511760,
       2 => 'file',
     ),
   ),
@@ -20,13 +20,13 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_632724dfdc7343_99943890 (Smarty_Internal_Template $_smarty_tpl) {
+function content_63272cd498e804_36663858 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
-<!-- Designined by CodingLab | www.youtube.com/codinglabyt -->
+<?php $_smarty_tpl->_assignInScope('utentiAttivi', (($tmp = $_smarty_tpl->tpl_vars['utentiAttivi']->value ?? null)===null||$tmp==='' ? null ?? null : $tmp));?>
 <html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
-    <!--<title> Responsiive Admin Dashboard | CodingLab </title>-->
+    <!--<title> Responsive Admin Dashboard | CodingLab </title>-->
     <link rel="stylesheet" href="/template/css/admin.css">
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
@@ -83,33 +83,46 @@ function content_632724dfdc7343_99943890 (Smarty_Internal_Template $_smarty_tpl)
     </nav>
 <!--eventi registrati-->
     <div class="home-content">
-       <!--<form method="post">
-            <div class="items-body">
-                    <?php if (!empty($_smarty_tpl->tpl_vars['utenti']->value)) {?>
-                        <?php
-$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['utenti']->value, 'utente');
-$_smarty_tpl->tpl_vars['utente']->do_else = true;
-if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['utente']->value) {
-$_smarty_tpl->tpl_vars['utente']->do_else = false;
-?>
-                        <div class="items-body-content row-cols-3">
-                            <p>Utenti Attivi</p>
-                            <a href="/Admin/getUtenti/1">
 
-                        </div>
-                        <?php
-}
-$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
-                    <?php } else { ?>
-                        <p>Non ci sono utenti attivi</p>
-                    <?php }?>
-            </div>
-        </form>-->
         <div class="sales-boxes">
             <div class="recent-sales box">
                 <div class="title" id="titolo">Benvenuto</div>
                 <div class="sales-details" id="dettagli">
                     <ul class="details" id="dato1">
+                        <table>
+                            <caption>
+                                <p>Utenti Attivi</p>
+                            </caption>
+                            <thead>
+                            <tr><th>Username</th><th>Nome</th><th>Cognome</th><th>Email</th><th>Data Iscrizione</th></tr>
+                            </thead>
+                        <!--    <tfoot>
+                            <tr><td>Totale 1</td><td>Totale 2</td></tr>
+                            </tfoot> -->
+                            <tbody>
+                            <?php if ((isset($_smarty_tpl->tpl_vars['utentiAttivi']->value))) {?>
+                                <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['utentiAttivi']->value, 'utente');
+$_smarty_tpl->tpl_vars['utente']->do_else = true;
+if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['utente']->value) {
+$_smarty_tpl->tpl_vars['utente']->do_else = false;
+?>
+                                    <tr><td><?php echo $_smarty_tpl->tpl_vars['utente']->value->getUsername();?>
+</td><td><?php echo $_smarty_tpl->tpl_vars['utente']->value->getNome();?>
+</td><td><?php echo $_smarty_tpl->tpl_vars['utente']->value->getCognome();?>
+</td><td><?php echo $_smarty_tpl->tpl_vars['utente']->value->getEmail();?>
+</td><td><?php echo $_smarty_tpl->tpl_vars['utente']->value->getIscrizione();?>
+</td></tr>
+                                <?php
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
+                            <?php }?>
+                            </tbody>
+                        </table>
+                            <?php if (!(isset($_smarty_tpl->tpl_vars['utentiAttivi']->value))) {?>
+                                <h2>DIRUSSOCICCARELLI</h2>
+                            <?php }?>
+
                     </ul>
                     <ul class="details" id="dato2">
                     </ul>
@@ -120,46 +133,9 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                     <ul class="details" id="dato5">
                     </ul>
                 </div>
-                <div class="button" id="bottone">
-
-                </div>
 
             </div>
 
-    <!--        <div class="top-sales box">
-                <div class="title">Top Seling Product</div>
-                <ul class="top-sales-details">
-                    <li>
-                        <a href="#">
-                            <img src="images/sunglasses.jpg" alt="">
-                            <span class="product">Vuitton Sunglasses</span>
-                        </a>
-                        <span class="price">$1107</span>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <img src="images/jeans.jpg" alt="">
-                            <span class="product">Hourglass Jeans </span>
-                        </a>
-                        <span class="price">$1567</span>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <img src="images/nike.jpg" alt="">
-                            <span class="product">Nike Sport Shoe</span>
-                        </a>
-                        <span class="price">$1234</span>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <img src="images/scarves.jpg" alt="">
-                            <span class="product">Hermes Silk Scarves.</span>
-                        </a>
-                        <span class="price">$2312</span>
-                    </li>
-
-                </ul>
-            </div>-->
         </div>
     </div>
 </section>
@@ -171,7 +147,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
     sidebarBtn.onclick = function (i) {
 
         switch (i) {
-            case 1: utentiRegistragti();
+            case 1: utentiRegistrati();
                 break;
             case 2: propetariLocali();
                 break;
@@ -184,7 +160,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
         }
     }
 
-    function utentiRegistragti(){
+    function utentiRegistrati(){
         document.getElementById('titolo').innerText="Utenti Registrati";
         document.getElementById('dato1').innerText="USERNAME";
         document.getElementById('dato2').innerText="EMAIL";

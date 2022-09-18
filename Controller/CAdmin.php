@@ -48,6 +48,7 @@ class CAdmin{
             $utentiAttivi = $pm->loadUtentiByState(1);
             $utentiBannati = $pm->loadUtentiByState(0);
 
+
             //loadCategorie
             $categorie = $pm->getCategorie();
 
@@ -56,7 +57,6 @@ class CAdmin{
 
             $view->HomeAdmin($utentiAttivi, $utentiBannati, $categorie,$recSegnalate);
         }else{
-            print("AAAAAA");
             header('Location: /Accesso/login');
         }
     }

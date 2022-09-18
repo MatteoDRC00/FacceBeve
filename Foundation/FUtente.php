@@ -210,7 +210,7 @@ class FUtente{
     public static function loadUtentiByState(bool $state){
         $utente = null;
         $db = FDB::getInstance();
-        list ($result[], $num)=$db->getUtentiByState($state);
+        list ($result, $num)=$db->getUtentiByState($state);
         if(($result!=null) && ($num == 1)) {
             $utente = new EUtente($result['password'], $result['nome'], $result['cognome'], $result['username'], $result['email']);
             $utente->setIscrizione($result['dataIscrizione']);
@@ -221,7 +221,7 @@ class FUtente{
             if(($result!=null) && ($num > 1)){
                 $utente = array();
                 for($i=0; $i<count($result); $i++){
-                    $utente[] = new EUtente($result[$i]['password'], $result[$i]['nome'], $result[$i]['cognome'], $result[$i]['username'], $result[$i]['email']);
+                    $utente[$i] = new EUtente($result[$i]['password'], $result[$i]['nome'], $result[$i]['cognome'], $result[$i]['username'], $result[$i]['email']);
                     $utente[$i]->setIscrizione($result[$i]['dataIscrizione']);
                     $utente[$i]->setImgProfilo(FImmagine::loadByField('id',$result[$i]['idImg']));
                     $utente[$i]->setState($state);
