@@ -8,7 +8,7 @@
 <head>
     <meta charset="UTF-8">
     <!--<title> Responsive Admin Dashboard | CodingLab </title>-->
-    <link rel="stylesheet" href="/template/css/admin.css">
+    <link rel="stylesheet" href="/template/css/aadmin.css">
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,52 +20,35 @@
     </div>
     <ul class="nav-links">
         <li>
-            <a href="/Admin/getUtenti/1" onclick="sidebarBtn.onclick(1)">
-                <span class="links_name">Utenti Attivi</span>
-            </a>
+            <a href="#utentiAttivi"><span class="links_name">Utenti Attivi</span></a>
         </li>
         <li>
-            <a href="/Admin/getUtenti/0" onclick="sidebarBtn.onclick(1)">
-                <span class="links_name">Utenti Bannati</span>
-            </a>
+            <a href="#utentiBannati"><span class="links_name">Utenti Bannati</span></a>
         </li>
         <li>
-            <a href="#" onclick="sidebarBtn.onclick(2)">
-                <span class="links_name">Proprietari di locali</span>
-            </a>
+            <a href="#proprietari"><span class="links_name">Proprietari di locali</span></a>
         </li>
         <li>
-            <a href="#" onclick="sidebarBtn.onclick(3)">
-                <span class="links_name">Locali</span>
-            </a>
+            <a href="#"><span class="links_name">Locali</span></a>
         </li>
         <li>
-            <a href="#" onclick="sidebarBtn.onclick(4)">
-                <span class="links_name">Recensioni segnalate</span>
-            </a>
+            <a href="#recensioni"><span class="links_name">Recensioni segnalate</span></a>
         </li>
         <li>
-            <a href="#" onclick="sidebarBtn.onclick(5)">
-                <span class="links_name">Categorie</span>
-            </a>
+            <a href="#categorie"><span class="links_name">Categorie</span></a>
         </li>
     </ul>
 
 </div>
 <section class="home-section">
-    <nav>
-        <div>
-            <input type="button" value="Esci">
-        </div>
-    </nav>
     <!--eventi registrati-->
     <div class="home-content">
 
          <!--Utenti Attivi-->
-        <div class="sales-boxes">
+        <div class="sales-boxes" id="utentiAttivi">
             <div class="recent-sales box">
-                <div class="sales-details" id="utentiAttivi">
-                    <table>
+                <div class="sales-details">
+                    <table id="customers">
                         <caption>
                             <p>Utenti Attivi</p>
                         </caption>
@@ -106,10 +89,10 @@
         <br>
 
         <!--Utenti Bannati-->
-        <div class="sales-boxes">
+        <div class="sales-boxes" id="utentiBannati">
             <div class="recent-sales box">
-                <div class="sales-details" id="utentiBannati">
-                    <table>
+                <div class="sales-details">
+                    <table id="customers">
                         <caption>
                             <p>Utenti Bannati</p>
                         </caption>
@@ -150,10 +133,10 @@
         <br>
 
         <!--Proprietari-->
-        <div class="sales-boxes">
+        <div class="sales-boxes" id="proprietari">
             <div class="recent-sales box">
-                <div class="sales-details" id="proprietari">
-                    <table>
+                <div class="sales-details">
+                    <table id="customers">
                         <caption>
                             <p>Proprietari di locali</p>
                         </caption>
@@ -192,10 +175,10 @@
         <br>
 
         <!--Categorie-->
-        <div class="sales-boxes">
+        <div class="sales-boxes" id="categorie">
             <div class="recent-sales box">
-                <div class="sales-details" id="categorie">
-                    <table>
+                <div class="sales-details">
+                    <table id="customers">
                         <caption>
                             <p>Categorie</p>
                         </caption>
@@ -230,10 +213,10 @@
         <br>
 
         <!--Recensioni Segnalate-->
-        <div class="sales-boxes">
+        <div class="sales-boxes" id="recensioni">
             <div class="recent-sales box">
-                <div class="sales-details" id="recensioni">
-                    <table>
+                <div class="sales-details">
+                    <table id="customers">
                         <caption>
                             <p>Recesioni</p>
                         </caption>
@@ -275,81 +258,6 @@
 
 
 </section>
-
-<script>
-    let sidebar = document.querySelector(".sidebar");
-    let sidebarBtn = document.querySelector(".nav-links");
-    sidebarBtn.onclick = function (i) {
-
-        switch (i) {
-            case 1:
-                utentiRegistrati();
-                break;
-            case 2:
-                propetariLocali();
-                break;
-            case 3:
-                locali();
-                break;
-            case 4:
-                recensioniSegnalate();
-                break;
-            case 5:
-                aggiuntaCategoria()
-                break;
-        }
-    }
-
-    function utentiRegistrati() {
-        document.getElementById('titolo').innerText = "Utenti Registrati";
-        document.getElementById('dato1').innerText = "USERNAME";
-        document.getElementById('dato2').innerText = "EMAIL";
-        document.getElementById('dato3').innerText = "STATO";
-        document.getElementById('dato4').innerText = "NOME";
-        document.getElementById('dato5').innerText = "COGNOME";
-        document.getElementById('bottone').innerHTML = '<a href="#">Vedi tutto</a>';
-
-    }
-
-    function propetariLocali() {
-        document.getElementById('titolo').innerText = "Propietario dei locali";
-        document.getElementById('dato1').innerText = "USERNAME";
-        document.getElementById('dato2').innerText = "EMAIL";
-        document.getElementById('dato3').innerText = "STATO";
-        document.getElementById('dato4').innerText = "NOME";
-        document.getElementById('dato5').innerText = "COGNOME";
-        document.getElementById('bottone').innerHTML = '<a href="#">Vedi tutto</a>';
-    }
-
-    function locali() {
-        document.getElementById('titolo').innerText = "Locali";
-        document.getElementById('dato1').innerText = "ID";
-        document.getElementById('dato2').innerText = "NOME";
-        document.getElementById('dato3').innerText = "PROPRIETARIO";
-        document.getElementById('dato4').innerText = "VISIBILITA'";
-        document.getElementById('dato5').innerText = "";
-        document.getElementById('bottone').innerHTML = '<a href="#">Vedi tutto</a>';
-    }
-
-    function recensioniSegnalate() {
-        document.getElementById('titolo').innerText = "Recensioni segnalate";
-        document.getElementById('dato1').innerText = "ID";
-        document.getElementById('dato2').innerText = "UTENTE";
-        document.getElementById('dato3').innerText = "LOCALE";
-        document.getElementById('dato4').innerText = "DESCRIZIONE'";
-        document.getElementById('dato5').innerText = "DATA";
-        document.getElementById('bottone').innerHTML = '<a href="#">Vedi tutto</a>';
-    }
-
-    function aggiuntaCategoria() {
-        document.getElementById('titolo').innerText = "Aggiungi categoria";
-        document.getElementById('dato1').innerHTML = "<label>Nome categoria:  </label> <input type='text'>";
-        document.getElementById('bottone').innerHTML = '<a href="#">Salva</a>';
-    }
-
-
-</script>
-
 </body>
 </html>
 
