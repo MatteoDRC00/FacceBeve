@@ -70,10 +70,12 @@ class VRicerca
      */
     public function getDataEvento(): ?string
     {
-        $value = null;
-        if (isset($_POST['dataEvento']))
-            $value = $_POST['dataEvento'];
-        return $value;
+        $return = null;
+        if (isset($_POST['dataEvento'])){
+            $value = explode("-",$_POST['dataEvento']);
+            $return = $value[2]."/".$value[1]."/".$value[0];
+        }
+        return $return;
     }
 
     /**

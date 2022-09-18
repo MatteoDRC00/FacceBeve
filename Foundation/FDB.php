@@ -572,24 +572,22 @@ class FDB{
 			$query = null;
 			$class = "FLocale";
 			$param = array($categorie, $nome, $citta);
-
-			if(is_array($categorie)){
-			  $nCategorie = count($categorie);
-			}elseif(isset($categorie)){
-				$nCategorie = 1;
-			}else{
-				$nCategorie = 0;
-			}
-
 			for ($i = 0; $i < count($param); $i++) {
 				if ($param[$i] != null) {
 					switch ($i) {
 						case 0:
-							for ($j = 0; $j < $nCategorie; $j++){
-							   if ($query == null)
-								  $query = "SELECT * FROM " . $class::getTable() . " INNER JOIN ON  Locale_Categorie  ON Locale_Categorie.ID_Categoria='" .$categorie[$j] . "'";
-							   else
-								  $query = $query . " INNER JOIN ON  Locale_Categorie  ON Locale_Categorie.ID_Categoria='" .$categorie[$j] ."'";
+							if(is_array($categorie)){
+								for ($j = 0; $j < count($categorie); $j++){
+									if ($query == null)
+										$query = "SELECT * FROM " . $class::getTable() . " INNER JOIN Locale_Categorie  ON Locale_Categorie.ID_Categoria='" .$categorie[$j] . "'";
+									else
+										$query = $query . " INNER JOIN Locale_Categorie  ON Locale_Categorie.ID_Categoria='" .$categorie[$j] ."'";
+								}
+							}elseif(isset($categorie)){
+								if ($query == null)
+									$query = "SELECT * FROM " . $class::getTable() . " INNER JOIN Locale_Categorie  ON Locale_Categorie.ID_Categoria='" .$categorie . "'";
+								else
+									$query = $query . " INNER JOIN Locale_Categorie  ON Locale_Categorie.ID_Categoria='" .$categorie ."'";
 							}
 							break;
 						case 1:
@@ -600,9 +598,9 @@ class FDB{
 							break;
 						case 2:
 							if ($query == null)
-								$query = "SELECT * FROM " . $class::getTable()  . " WHERE localizzazione ='" . $citta . "'";
+								$query = "SELECT * FROM " . $class::getTable()  . " INNER JOIN Localizzazione ON  Localizzazione.id=Locale.localizzazione WHERE localizzazione.citta ='" . $citta . "'";
 							else
-								$query = $query . " AND localizzazione ='" . $citta . "'";
+								$query = $query . " INNER JOIN Localizzazione ON  Localizzazione.id=Locale.localizzazione AND localizzazione.citta ='" . $citta . "'";
 							break;
 					}
 				}

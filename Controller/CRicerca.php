@@ -92,7 +92,6 @@ class CRicerca{
                 $citta= $vRicerca->getCitta();
                 $data= $vRicerca->getDataEvento();
                 if ($nomelocale != null || $nomeevento != null || $citta != null || $data != null){
-                    //Anche qui da testare
                         $pm = FPersistentManager::GetInstance();
                         list($result[],$local[]) = $pm->loadForm($nomelocale, $nomeevento, $citta, $data,$tipo);
                         $vRicerca->showResult($result, $tipo, $nomelocale, $citta, $nomeevento, $data,$local);

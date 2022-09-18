@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-17 15:51:12
+/* Smarty version 4.2.0, created on 2022-09-18 10:57:56
   from 'C:\xampp\htdocs\FacceBeve\template\risultatiRicerca.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_6325d0d0b33172_98157598',
+  'unifunc' => 'content_6326dd94b10594_93272237',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '20d71acbda86db7b277443849883e1b442d75786' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\risultatiRicerca.tpl',
-      1 => 1663422667,
+      1 => 1663491463,
       2 => 'file',
     ),
   ),
@@ -20,16 +20,16 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6325d0d0b33172_98157598 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6326dd94b10594_93272237 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
-<?php $_smarty_tpl->_assignInScope('tipo', (($tmp = $_smarty_tpl->tpl_vars['tipo']->value ?? null)===null||$tmp==='' ? 'Locali' ?? null : $tmp));
-$_smarty_tpl->_assignInScope('userlogged', (($tmp = $_smarty_tpl->tpl_vars['error']->value ?? null)===null||$tmp==='' ? 'nouser' ?? null : $tmp));
-$_smarty_tpl->_assignInScope('citta', (($tmp = $_smarty_tpl->tpl_vars['citta']->value ?? null)===null||$tmp==='' ? 'er45u' ?? null : $tmp));
-$_smarty_tpl->_assignInScope('nomeEvento', (($tmp = $_smarty_tpl->tpl_vars['nomeEvento']->value ?? null)===null||$tmp==='' ? 'er45u' ?? null : $tmp));
-$_smarty_tpl->_assignInScope('nomeLocale', (($tmp = $_smarty_tpl->tpl_vars['nomeLocale']->value ?? null)===null||$tmp==='' ? 'er45u' ?? null : $tmp));
+<?php $_smarty_tpl->_assignInScope('tipo', (($tmp = $_smarty_tpl->tpl_vars['tipo']->value ?? null)===null||$tmp==='' ? null ?? null : $tmp));
+$_smarty_tpl->_assignInScope('userlogged', (($tmp = $_smarty_tpl->tpl_vars['error']->value ?? null)===null||$tmp==='' ? null ?? null : $tmp));
+$_smarty_tpl->_assignInScope('citta', (($tmp = $_smarty_tpl->tpl_vars['citta']->value ?? null)===null||$tmp==='' ? null ?? null : $tmp));
+$_smarty_tpl->_assignInScope('nomeEvento', (($tmp = $_smarty_tpl->tpl_vars['nomeEvento']->value ?? null)===null||$tmp==='' ? null ?? null : $tmp));
+$_smarty_tpl->_assignInScope('nomeLocale', (($tmp = $_smarty_tpl->tpl_vars['nomeLocale']->value ?? null)===null||$tmp==='' ? null ?? null : $tmp));
 $_smarty_tpl->_assignInScope('locali', (($tmp = $_smarty_tpl->tpl_vars['locali']->value ?? null)===null||$tmp==='' ? null ?? null : $tmp));
-$_smarty_tpl->_assignInScope('categoria', (($tmp = $_smarty_tpl->tpl_vars['categoria']->value ?? null)===null||$tmp==='' ? 'er45u' ?? null : $tmp));
-$_smarty_tpl->_assignInScope('data', (($tmp = $_smarty_tpl->tpl_vars['data']->value ?? null)===null||$tmp==='' ? 'er45u' ?? null : $tmp));
+$_smarty_tpl->_assignInScope('categoria', (($tmp = $_smarty_tpl->tpl_vars['categoria']->value ?? null)===null||$tmp==='' ? null ?? null : $tmp));
+$_smarty_tpl->_assignInScope('data', (($tmp = $_smarty_tpl->tpl_vars['data']->value ?? null)===null||$tmp==='' ? null ?? null : $tmp));
 $_smarty_tpl->_assignInScope('array', $_smarty_tpl->tpl_vars['array']->value);?>
 <html lang="en">
 
@@ -86,24 +86,24 @@ $_smarty_tpl->_assignInScope('array', $_smarty_tpl->tpl_vars['array']->value);?>
                 <h2 style="font-weight: bold">Risultati per:</h2>
                 <ul>
                     <?php if ($_smarty_tpl->tpl_vars['tipo']->value == "Locali") {?>
-                        <?php if ($_smarty_tpl->tpl_vars['nomeLocale']->value != "er45u") {?>
+                        <?php if ((isset($_smarty_tpl->tpl_vars['nomeLocale']->value))) {?>
                             <li><?php echo $_smarty_tpl->tpl_vars['nomeLocale']->value;?>
 </li>
                         <?php }?>
-                        <?php if ($_smarty_tpl->tpl_vars['citta']->value != "er45u") {?>
+                        <?php if ((isset($_smarty_tpl->tpl_vars['citta']->value))) {?>
                             <li><?php echo $_smarty_tpl->tpl_vars['citta']->value;?>
 </li>
                         <?php }?>
-                        <?php if ($_smarty_tpl->tpl_vars['categoria']->value != "er45u") {?>
+                        <?php if ((isset($_smarty_tpl->tpl_vars['categoria']->value))) {?>
                             <li><?php echo $_smarty_tpl->tpl_vars['categoria']->value;?>
 </li>
                         <?php }?>
                     <?php } else { ?>
-                        <?php if ($_smarty_tpl->tpl_vars['nomeEvento']->value != "er45u") {?>
+                        <?php if ((isset($_smarty_tpl->tpl_vars['nomeEvento']->value))) {?>
                             <li><?php echo $_smarty_tpl->tpl_vars['nomeEvento']->value;?>
 </li>
                         <?php }?>
-                        <?php if ($_smarty_tpl->tpl_vars['data']->value != "er45u") {?>
+                        <?php if ((isset($_smarty_tpl->tpl_vars['data']->value))) {?>
                             <li><?php echo $_smarty_tpl->tpl_vars['data']->value;?>
 </li>
                         <?php }?>

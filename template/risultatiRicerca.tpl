@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-{assign var='tipo' value=$tipo|default:'Locali'}
-{assign var='userlogged' value=$error|default:'nouser'}
-{assign var='citta' value=$citta|default:'er45u'}
-{assign var='nomeEvento' value=$nomeEvento|default:'er45u'}
-{assign var='nomeLocale' value=$nomeLocale|default:'er45u'}
+{assign var='tipo' value=$tipo|default:null}
+{assign var='userlogged' value=$error|default:null}
+{assign var='citta' value=$citta|default:null}
+{assign var='nomeEvento' value=$nomeEvento|default:null}
+{assign var='nomeLocale' value=$nomeLocale|default:null}
 {assign var='locali' value=$locali|default:null}
-{assign var='categoria' value=$categoria|default:'er45u'}
-{assign var='data' value=$data|default:'er45u'}
+{assign var='categoria' value=$categoria|default:null}
+{assign var='data' value=$data|default:null}
 {assign var='array' value=$array}
 <html lang="en">
 
@@ -63,20 +63,20 @@
                 <h2 style="font-weight: bold">Risultati per:</h2>
                 <ul>
                     {if $tipo=="Locali"}
-                        {if $nomeLocale!="er45u"}
+                        {if isset($nomeLocale)}
                             <li>{$nomeLocale}</li>
                         {/if}
-                        {if $citta!="er45u"}
+                        {if isset($citta)}
                             <li>{$citta}</li>
                         {/if}
-                        {if $categoria!="er45u"}
+                        {if isset($categoria)}
                             <li>{$categoria}</li>
                         {/if}
                     {else}
-                        {if $nomeEvento!="er45u"}
+                        {if isset($nomeEvento)}
                             <li>{$nomeEvento}</li>
                         {/if}
-                        {if $data!="er45u"}
+                        {if isset($data)}
                             <li>{$data}</li>
                         {/if}
                     {/if}
