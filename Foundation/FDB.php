@@ -647,7 +647,7 @@ class FDB{
 					switch ($i) {
 						case 0:
 							if ($query == null)
-								$query = "SELECT Evento.id,Evento.nome,Evento.descrizione,Evento.data,Evento.idImg FROM Evento INNER JOIN Locale_Eventi ON Locale_Eventi.ID_Locale=Evento.id INNER JOIN Locale ON Locale.nome='". $nomelocale. "'";
+								$query = "SELECT Evento.id,Evento.nome,Evento.descrizione,Evento.data,Evento.idImg FROM Evento INNER JOIN Locale_Eventi ON Locale_Eventi.ID_Evento=Evento.id INNER JOIN Locale ON Locale.nome='". $nomelocale. "'";
 							else
 								$query = $query . " INNER JOIN Locale_Eventi ON Locale_Eventi.ID_Locale=Evento.id INNER JOIN Locale ON Locale.nome='".$nomelocale."';";
 							break;
