@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-18 00:37:02
+/* Smarty version 4.2.0, created on 2022-09-18 11:10:29
   from 'C:\xampp\htdocs\FacceBeve\template\InfoLocale.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_63264c0e06d8d2_01361764',
+  'unifunc' => 'content_6326e08519d609_32597926',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '172a59cd6d9d0fe4c26f91abf9bfe128c31cd594' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\InfoLocale.tpl',
-      1 => 1663454218,
+      1 => 1663492227,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_63264c0e06d8d2_01361764 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6326e08519d609_32597926 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <?php $_smarty_tpl->_assignInScope('locale', (($tmp = $_smarty_tpl->tpl_vars['locale']->value ?? null)===null||$tmp==='' ? null ?? null : $tmp));
@@ -249,8 +249,8 @@ $__foreach_recensione_2_saved = $_smarty_tpl->tpl_vars['recensione'];
                                                     <form action="/GestioneRecensione/cancellaRecensione/<?php echo $_smarty_tpl->tpl_vars['recensione']->value->getId();?>
 "
                                                           method="POST">
-                                                        <button type="submit" style="border-radius:9px; height: 40px"><i
-                                                                    class="align-items-xxl-end"></i>Elimina la tua Recensione:
+                                                        <button type="submit" style="border-radius:9px; height: 40px; color: #bb2d3b; font-weight: bold; border-color: #bb2d3b"><i
+                                                                    class="align-items-xxl-end"></i>Elimina la tua Recensione
                                                         </button>
                                                     </form>
                                                 <?php }?>
@@ -357,7 +357,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 />
                                     <div class="row">
                                         <div class="col-md-6 form-group">
-                                            <input name="titolo" type="text" class="form-control" placeholder="Titolo">
+                                            <input name="titolo" type="text" class="form-control" placeholder="Titolo" required title="Inserisci il titolo della recensione">
                                         </div>
                                         <div class="col-md-6 form-group">
                                             <select name="valutazione"

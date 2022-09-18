@@ -179,8 +179,8 @@
                                                 {if $recensione->getUtente()->getUsername() eq $utente}
                                                     <form action="/GestioneRecensione/cancellaRecensione/{$recensione->getId()}"
                                                           method="POST">
-                                                        <button type="submit" style="border-radius:9px; height: 40px"><i
-                                                                    class="align-items-xxl-end"></i>Elimina la tua Recensione:
+                                                        <button type="submit" style="border-radius:9px; height: 40px; color: #bb2d3b; font-weight: bold; border-color: #bb2d3b">
+                                                            <i class="align-items-xxl-end"></i>Elimina la tua Recensione
                                                         </button>
                                                     </form>
                                                 {/if}
@@ -207,8 +207,8 @@
                                                 {if $arrayRisposte[{$recensione@iteration-1}]->getProprietario()->getUsername() eq $utente}
                                                     <form action="/GestioneRecensione/cancellaRisposta/{$recensione->getId()}"
                                                           method="POST">
-                                                        <button type="submit" style="border-radius:9px; height: 40px"><i
-                                                                    class="align-items-xxl-end"></i>Elimina la tua Risposta:
+                                                        <button type="submit" style="border-radius:9px; height: 40px; color: #bb2d3b; font-weight: bold; border-color: #bb2d3b">
+                                                            <i class="align-items-xxl-end"></i>Elimina la tua Risposta
                                                         </button>
                                                     </form>
                                                 {/if}
