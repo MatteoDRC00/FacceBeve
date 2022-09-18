@@ -50,56 +50,104 @@
 </div>
 <section class="home-section">
     <nav>
-        <div class="search-box">
-            <input type="text" placeholder="Search...">
-            <i class='bx bx-search'></i>
-        </div>
         <div>
             <input type="button" value="Esci">
         </div>
     </nav>
-<!--eventi registrati-->
+    <!--eventi registrati-->
     <div class="home-content">
 
         <div class="sales-boxes">
             <div class="recent-sales box">
-                <div class="title" id="titolo">Benvenuto</div>
-                <div class="sales-details" id="dettagli">
-                    <ul class="details" id="dato1">
-                        <table>
-                            <caption>
-                                <p>Utenti Attivi</p>
-                            </caption>
-                            <thead>
-                            <tr><th>Username</th><th>Nome</th><th>Cognome</th><th>Email</th><th>Data Iscrizione</th></tr>
-                            </thead>
+                <div class="sales-details" id="utentiAttivi">
+
+                    <table>
+                        <caption>
+                            <p>Utenti Attivi</p>
+                        </caption>
+                        <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th>Nome</th>
+                            <th>Cognome</th>
+                            <th>Email</th>
+                            <th>Data Iscrizione</th>
+                        </tr>
+                        </thead>
                         <!--    <tfoot>
                             <tr><td>Totale 1</td><td>Totale 2</td></tr>
                             </tfoot> -->
-                            <tbody>
-                            {if isset($utentiAttivi)}
-                                {foreach $utentiAttivi as $utente}
-                                    <tr><td>{$utente->getUsername()}</td><td>{$utente->getNome()}</td><td>{$utente->getCognome()}</td><td>{$utente->getEmail()}</td><td>{$utente->getIscrizione()}</td></tr>
-                                {/foreach}
-                            {/if}
-                            </tbody>
-                        </table>
-                            {if !isset($utentiAttivi)}
-                                <h2>DIRUSSOCICCARELLI</h2>
-                            {/if}
-
-                    </ul>
-                    <ul class="details" id="dato2">
-                    </ul>
-                    <ul class="details" id="dato3">
-                    </ul>
-                    <ul class="details" id="dato4">
-                    </ul>
-                    <ul class="details" id="dato5">
-                    </ul>
+                        <tbody>
+                        {if isset($utentiAttivi)}
+                            {foreach $utentiAttivi as $utente}
+                                <tr>
+                                    <td>{$utente->getUsername()}</td>
+                                    <td>{$utente->getNome()}</td>
+                                    <td>{$utente->getCognome()}</td>
+                                    <td>{$utente->getEmail()}</td>
+                                    <td>{$utente->getIscrizione()}</td>
+                                </tr>
+                            {/foreach}
+                        {/if}
+                        </tbody>
+                    </table>
+                    {if !isset($utentiAttivi)}
+                        <h2>Attualmente non </h2>
+                    {/if}
                 </div>
 
             </div>
+
+
+
+
+        </div>
+
+        <br>
+
+        <div class="sales-boxes">
+            <div class="recent-sales box">
+                <div class="sales-details" id="utentiAttivi">
+
+                    <table>
+                        <caption>
+                            <p>Utenti Attivi</p>
+                        </caption>
+                        <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th>Nome</th>
+                            <th>Cognome</th>
+                            <th>Email</th>
+                            <th>Data Iscrizione</th>
+                        </tr>
+                        </thead>
+                        <!--    <tfoot>
+                            <tr><td>Totale 1</td><td>Totale 2</td></tr>
+                            </tfoot> -->
+                        <tbody>
+                        {if isset($utentiAttivi)}
+                            {foreach $utentiAttivi as $utente}
+                                <tr>
+                                    <td>{$utente->getUsername()}</td>
+                                    <td>{$utente->getNome()}</td>
+                                    <td>{$utente->getCognome()}</td>
+                                    <td>{$utente->getEmail()}</td>
+                                    <td>{$utente->getIscrizione()}</td>
+                                </tr>
+                            {/foreach}
+                        {/if}
+                        </tbody>
+                    </table>
+                    {if !isset($utentiAttivi)}
+                        <h2>Attualmente non </h2>
+                    {/if}
+                </div>
+
+            </div>
+
+
+
 
         </div>
     </div>
@@ -111,56 +159,65 @@
     sidebarBtn.onclick = function (i) {
 
         switch (i) {
-            case 1: utentiRegistrati();
+            case 1:
+                utentiRegistrati();
                 break;
-            case 2: propetariLocali();
+            case 2:
+                propetariLocali();
                 break;
-            case 3: locali();
+            case 3:
+                locali();
                 break;
-            case 4: recensioniSegnalate();
+            case 4:
+                recensioniSegnalate();
                 break;
-            case 5: aggiuntaCategoria()
+            case 5:
+                aggiuntaCategoria()
                 break;
         }
     }
 
-    function utentiRegistrati(){
-        document.getElementById('titolo').innerText="Utenti Registrati";
-        document.getElementById('dato1').innerText="USERNAME";
-        document.getElementById('dato2').innerText="EMAIL";
-        document.getElementById('dato3').innerText="STATO";
-        document.getElementById('dato4').innerText="NOME";
-        document.getElementById('dato5').innerText="COGNOME";
-        document.getElementById('bottone').innerHTML='<a href="#">Vedi tutto</a>';
+    function utentiRegistrati() {
+        document.getElementById('titolo').innerText = "Utenti Registrati";
+        document.getElementById('dato1').innerText = "USERNAME";
+        document.getElementById('dato2').innerText = "EMAIL";
+        document.getElementById('dato3').innerText = "STATO";
+        document.getElementById('dato4').innerText = "NOME";
+        document.getElementById('dato5').innerText = "COGNOME";
+        document.getElementById('bottone').innerHTML = '<a href="#">Vedi tutto</a>';
 
     }
-    function propetariLocali(){
-        document.getElementById('titolo').innerText="Propietario dei locali";
-        document.getElementById('dato1').innerText="USERNAME";
-        document.getElementById('dato2').innerText="EMAIL";
-        document.getElementById('dato3').innerText="STATO";
-        document.getElementById('dato4').innerText="NOME";
-        document.getElementById('dato5').innerText="COGNOME";
-        document.getElementById('bottone').innerHTML='<a href="#">Vedi tutto</a>';
+
+    function propetariLocali() {
+        document.getElementById('titolo').innerText = "Propietario dei locali";
+        document.getElementById('dato1').innerText = "USERNAME";
+        document.getElementById('dato2').innerText = "EMAIL";
+        document.getElementById('dato3').innerText = "STATO";
+        document.getElementById('dato4').innerText = "NOME";
+        document.getElementById('dato5').innerText = "COGNOME";
+        document.getElementById('bottone').innerHTML = '<a href="#">Vedi tutto</a>';
     }
-    function locali(){
-        document.getElementById('titolo').innerText="Locali";
-        document.getElementById('dato1').innerText="ID";
-        document.getElementById('dato2').innerText="NOME";
-        document.getElementById('dato3').innerText="PROPRIETARIO";
-        document.getElementById('dato4').innerText="VISIBILITA'";
-        document.getElementById('dato5').innerText="";
-        document.getElementById('bottone').innerHTML='<a href="#">Vedi tutto</a>';
+
+    function locali() {
+        document.getElementById('titolo').innerText = "Locali";
+        document.getElementById('dato1').innerText = "ID";
+        document.getElementById('dato2').innerText = "NOME";
+        document.getElementById('dato3').innerText = "PROPRIETARIO";
+        document.getElementById('dato4').innerText = "VISIBILITA'";
+        document.getElementById('dato5').innerText = "";
+        document.getElementById('bottone').innerHTML = '<a href="#">Vedi tutto</a>';
     }
-    function recensioniSegnalate(){
-        document.getElementById('titolo').innerText="Recensioni segnalate";
-        document.getElementById('dato1').innerText="ID";
-        document.getElementById('dato2').innerText="UTENTE";
-        document.getElementById('dato3').innerText="LOCALE";
-        document.getElementById('dato4').innerText="DESCRIZIONE'";
-        document.getElementById('dato5').innerText="DATA";
-        document.getElementById('bottone').innerHTML='<a href="#">Vedi tutto</a>';
+
+    function recensioniSegnalate() {
+        document.getElementById('titolo').innerText = "Recensioni segnalate";
+        document.getElementById('dato1').innerText = "ID";
+        document.getElementById('dato2').innerText = "UTENTE";
+        document.getElementById('dato3').innerText = "LOCALE";
+        document.getElementById('dato4').innerText = "DESCRIZIONE'";
+        document.getElementById('dato5').innerText = "DATA";
+        document.getElementById('bottone').innerHTML = '<a href="#">Vedi tutto</a>';
     }
+
     function aggiuntaCategoria() {
         document.getElementById('titolo').innerText = "Aggiungi categoria";
         document.getElementById('dato1').innerHTML = "<label>Nome categoria:  </label> <input type='text'>";
