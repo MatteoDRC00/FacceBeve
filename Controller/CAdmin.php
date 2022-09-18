@@ -57,7 +57,11 @@ class CAdmin{
             $recSegnalate = $pm->load("segnalato",true,"FRecensione");
 
             //loadProprietari
-            $proprietari = $pm->loadAll("FProprietario");
+            if(is_array($pm->loadAll("FProprietario")))
+                $proprietari = $pm->loadAll("FProprietario");
+            else
+                $proprietari[] = $pm->loadAll("FProprietario");
+
 
             $view->HomeAdmin($utentiAttivi, $utentiBannati, $categorie, $recSegnalate, $proprietari);
         }else{

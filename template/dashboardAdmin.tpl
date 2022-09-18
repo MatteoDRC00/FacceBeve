@@ -163,7 +163,6 @@
                             <th>Nome</th>
                             <th>Cognome</th>
                             <th>Email</th>
-                            <th>Email</th>
                         </tr>
                         </thead>
                         <!--    <tfoot>
@@ -177,7 +176,6 @@
                                     <td>{$utente->getNome()}</td>
                                     <td>{$utente->getCognome()}</td>
                                     <td>{$utente->getEmail()}</td>
-                                    <td>{$utente->getIscrizione()}</td>
                                 </tr>
                             {/foreach}
                         {/if}

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-18 17:53:48
+/* Smarty version 4.2.0, created on 2022-09-18 17:59:29
   from 'C:\xampp\htdocs\FacceBeve\template\dashboardAdmin.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_63273f0ccd1bb6_37809666',
+  'unifunc' => 'content_63274061294cf5_22826315',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '61814e22ecca6cd2302bb05219c59cc01d7a92dc' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\dashboardAdmin.tpl',
-      1 => 1663516427,
+      1 => 1663516767,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_63273f0ccd1bb6_37809666 (Smarty_Internal_Template $_smarty_tpl) {
+function content_63274061294cf5_22826315 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <?php $_smarty_tpl->_assignInScope('utentiAttivi', (($tmp = $_smarty_tpl->tpl_vars['utentiAttivi']->value ?? null)===null||$tmp==='' ? null ?? null : $tmp));
 $_smarty_tpl->_assignInScope('utentiBannati', (($tmp = $_smarty_tpl->tpl_vars['utentiBannati']->value ?? null)===null||$tmp==='' ? null ?? null : $tmp));
@@ -210,7 +210,6 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                             <th>Nome</th>
                             <th>Cognome</th>
                             <th>Email</th>
-                            <th>Email</th>
                         </tr>
                         </thead>
                         <!--    <tfoot>
@@ -232,8 +231,6 @@ $_smarty_tpl->tpl_vars['utente']->do_else = false;
                                     <td><?php echo $_smarty_tpl->tpl_vars['utente']->value->getCognome();?>
 </td>
                                     <td><?php echo $_smarty_tpl->tpl_vars['utente']->value->getEmail();?>
-</td>
-                                    <td><?php echo $_smarty_tpl->tpl_vars['utente']->value->getIscrizione();?>
 </td>
                                 </tr>
                             <?php
