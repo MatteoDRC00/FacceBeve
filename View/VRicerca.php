@@ -173,7 +173,7 @@ class VRicerca
             $this->smarty->assign('nomeEvento', $eventoCat);
             $this->smarty->assign('dataEvento', $data);
         }
-       $this->smarty->display('risultatiRicerca.tpl');
+        $this->smarty->display('risultatiRicerca.tpl');
     }
 
 

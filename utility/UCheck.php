@@ -51,16 +51,14 @@ class UCheck
     {
         $y = null;
         $x = null;
-        if(is_array($result[0]))
+        if(is_array($result[0])){
             $x = $result[0];
-        if (!empty($result[1])) {
             $y = $result[1];
         }
         elseif(isset($result)){
-             $x[] =$result[0];
+             $x = $result[0];
              $y =  $result[1];
-        }else
-            $x = null;
+        }
         return array ($x,$y);
     }
 
