@@ -151,13 +151,17 @@
 
             <div class="items-body">
                 {if !empty($locali)}
-                    {foreach $locali as $locale}
-                        <div class="items-body-content row-cols-3">
-                            <p>{$locale->getNome()}</p>
-                            <a href="/GestioneLocale/mostraGestioneLocale/{$locale->getId()}"><input type="button" value="Gestisci locale"></a>
-                            <a href="/GestioneLocale/eliminaLocale/{$locale->getId()}"><input type="button" value="Elimina Locale"></a>
-                        </div>
-                    {/foreach}
+                    <ul>
+                        {foreach $locali as $locale}
+                            <li>
+                                <div class="items-body-content row-cols-3">
+                                    <p>{$locale->getNome()}</p>
+                                    <a href="/GestioneLocale/mostraGestioneLocale/{$locale->getId()}"><input type="button" value="Gestisci locale"></a>
+                                    <a href="/GestioneLocale/eliminaLocale/{$locale->getId()}"><input type="button" value="Elimina Locale"></a>
+                                </div>
+                            </li>
+                        {/foreach}
+                    </ul>
                 {else}
                     <p>Non possiedi locali locali</p>
                 {/if}
