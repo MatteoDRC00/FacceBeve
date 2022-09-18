@@ -80,7 +80,7 @@ class CAccesso
                 $sessione->imposta_valore('utente', $user->getUsername());
                 $sessione->imposta_valore("tipo_utente", get_class($user));
                 if(get_class($user) == "EAdmin"){
-                    header("Location: /Admin/");
+                    header("Location: /Admin/dashboardAdmin");
                 }
                 header("Location: /Ricerca/mostraHome");
             }else{

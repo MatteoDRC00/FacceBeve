@@ -920,7 +920,7 @@ class FDB{
 	public function getUtentiByState($state)
 	{
 		try {
-			$query = "SELECT username FROM utente WHERE state = " . $state . ";";
+			$query = "SELECT * FROM utente WHERE state = " . $state . ";";
 			$stmt = $this->database->prepare($query);
 			$stmt->execute();
 			$num = $stmt->rowCount();

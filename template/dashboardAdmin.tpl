@@ -42,7 +42,7 @@
         </li>
         <li>
             <a href="#" onclick="sidebarBtn.onclick(5)">
-                <span class="links_name">Aggiungi categoria</span>
+                <span class="links_name">Categorie</span>
             </a>
         </li>
     </ul>

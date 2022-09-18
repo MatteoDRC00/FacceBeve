@@ -174,7 +174,7 @@ class FPersistentManager {
 
 
     /** Metodo che permette il caricamento di tutti gli elementi di una classe/tabella*/
-    public static function loadAll(string $class) {
+    public function loadAll(string $class) {
         $ris = null;
         $ris = $class::loadNames();
         return $ris;
@@ -212,9 +212,9 @@ class FPersistentManager {
     /** Metodo che permette il caricamento degli utenti avendo come parametro di ricerca nome e/o cognome passati in input
      * @param string ,string passato in input
      */
-    public static function loadUtentiByString ($string) {
+    public static function loadUtentiByState($string) {
         $ris = null;
-        $ris = FUtente::loadUtentiByString($string);
+        $ris = FUtente::loadUtentiByState($string);
         return $ris;
     }
 

@@ -37,9 +37,10 @@ class CAdmin{
     public function dashboardAdmin(){
         $sessione = new USession();
         $view = new VAdmin();
-
         if($sessione->isLogged() && ($sessione->leggi_valore("tipo_utente") == "EAdmin")){
-
+            $pm = FPersistentManager::getInstance();
+            //loadUtenti --> Separo in Utenti attivi e Bannati
+            $utenti = $pm->loadUtentiByState("FUtente");
         }else{
             header('Location: /Accesso/login');
         }
@@ -75,8 +76,8 @@ class CAdmin{
      * @param $tipo Int 0-> utenti bannati ; 1->utenti attivi
      * @return void
      * @throws SmartyException
-     */
-    public function getUtenti($tipo){
+
+    public static function getUtenti($tipo){
         $sessione = new USession();
         $tipo=$sessione->leggi_valore('tipo_utente');
         $view = new VAdmin();
@@ -84,13 +85,12 @@ class CAdmin{
 
         if ($sessione->isLogged() && $tipo== "admin") {
             $utenti = $pm->loadUtenti($tipo);
-            $img_utenti = static::set_immagini($utenti); //non so a cosa serve set_immagini
-            $view->showUtenti($utenti,$img_utenti);
+            $view->showUtenti($utenti);
         } else {
             $view = new VError();
             $view->error(1);
         }
-    }
+    }*/
 
     /**
      * Funzione di supporto per le altre.
