@@ -234,7 +234,7 @@
                                 <h4>Scrivi una recensione</h4>
                                 <form action="/GestioneRecensione/scriviRecensione/{$locale->getId()}" method="POST"
                                       id="Recensione" name="Recensione" onsubmit="return validateRecensione()>
-                                    <input type="hidden" name="idLocale" value={$locale->getId()}/>
+
                                     <div class="row">
                                         <div class="col-md-6 form-group">
                                             <input name="titolo" type="text" class="form-control" >
