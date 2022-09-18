@@ -164,6 +164,7 @@ class CRicerca{
         $vRicerca->dettagliLocale($tipo,$presente,$result, $recensioni, $risposte, $rating,$proprietario);
     }
 
+
     public function aggiungiAPreferiti($id_locale){
          $sessione = new USession();
          $view = new VRicerca();

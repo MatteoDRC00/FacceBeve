@@ -75,8 +75,8 @@
                         <h2>{$locale->getNome()}</h2>
                         {if $tipo == "EUtente"}
                             {if $presente == true}
-                                <form action="/Ricerca/aggiungiAPreferiti/{$locale->getId()}" method="POST">
-                                    <input onclick="change()" type="submit" value="Aggiunto!" id="pref" name="pref">
+                                <form action="/Ricerca/aggiungiAPreferiti/{$locale->getId()}" method="POST" >
+                                    <input class="stelline" onclick="change()" type="submit" value="Aggiunto!" id="pref" name="pref">
                                 </form>
                             {else}
                                 <form action="/Ricerca/aggiungiAPreferiti/{$locale->getId()}" method="POST">
@@ -84,15 +84,6 @@
                                 </form>
                             {/if}
                         {/if}
-                        <div class="stelline star-rating" data-rating="4.6">
-                            <div class="empty-stars">
-                                <i class="far fa-star"></i>
-                                <i class="far fa-star"></i>
-                                <i class="far fa-star"></i>
-                                <i class="far fa-star"></i>
-                                <i class="far fa-star"></i>
-                            </div>
-                        </div>
                         <div class="swiper-wrapper align-items-center">
                             <div class="swiper-slide">
                                 <img src="data:{$locale->getImg()->getType()};base64,{$locale->getImg()->getImmagine()}"
