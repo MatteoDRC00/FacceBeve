@@ -518,5 +518,5 @@ class CGestioneLocale
             header("Location: /Ricerca/mostraHome");
         }
     }
-    
+
 }

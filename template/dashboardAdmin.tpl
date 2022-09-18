@@ -17,32 +17,32 @@
     <ul class="nav-links">
         <li>
             <a href="/Admin/getUtenti/1" onclick="sidebarBtn.onclick(1)">
-                <span class="links_name"   >Utenti Attivi</span>
+                <span class="links_name">Utenti Attivi</span>
             </a>
         </li>
         <li>
             <a href="/Admin/getUtenti/0" onclick="sidebarBtn.onclick(1)">
-                <span class="links_name"   >Utenti Bannati</span>
+                <span class="links_name">Utenti Bannati</span>
             </a>
         </li>
         <li>
             <a href="#" onclick="sidebarBtn.onclick(2)">
-                <span class="links_name"  >Proprietari di locali</span>
+                <span class="links_name">Proprietari di locali</span>
             </a>
         </li>
         <li>
             <a href="#" onclick="sidebarBtn.onclick(3)">
-                <span class="links_name"  >Locali</span>
+                <span class="links_name">Locali</span>
             </a>
         </li>
         <li>
             <a href="#" onclick="sidebarBtn.onclick(4)">
-                <span class="links_name"  >Recensioni segnalate</span>
+                <span class="links_name">Recensioni segnalate</span>
             </a>
         </li>
         <li>
             <a href="#" onclick="sidebarBtn.onclick(5)">
-                <span class="links_name"  >Aggiungi categoria</span>
+                <span class="links_name">Aggiungi categoria</span>
             </a>
         </li>
     </ul>

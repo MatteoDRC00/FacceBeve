@@ -79,6 +79,9 @@ class CAccesso
                 $sessione = new USession();
                 $sessione->imposta_valore('utente', $user->getUsername());
                 $sessione->imposta_valore("tipo_utente", get_class($user));
+                if(get_class($user) == "EAdmin"){
+                    header("Location: /Admin/");
+                }
                 header("Location: /Ricerca/mostraHome");
             }else{
                 $tipo="credenziali";

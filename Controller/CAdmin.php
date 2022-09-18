@@ -34,6 +34,18 @@ class CAdmin{
         return self::$instance;
     }
 
+    public function dashboardAdmin(){
+        $sessione = new USession();
+        $view = new VAdmin();
+
+        if($sessione->isLogged() && ($sessione->leggi_valore("tipo_utente") == "EAdmin")){
+
+        }else{
+            header('Location: /Accesso/login');
+        }
+
+    }
+
 
 /*
     /**
