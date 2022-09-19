@@ -8,8 +8,7 @@ require_once "utility/UCheck.php";
  * @author Gruppo8
  * @package Controller
  */
-class CRicerca
-{
+class CRicerca{
 
     /**
      * @var CRicerca|null Variabile di classe che mantiene l'istanza della classe.
@@ -19,8 +18,7 @@ class CRicerca
     /**
      * Costruttore di classe.
      */
-    private function __construct()
-    {
+    private function __construct(){
 
     }
 
@@ -28,24 +26,22 @@ class CRicerca
      * Restituisce l'istanza della classe.
      * @return CRicerca|null
      */
-    public static function getInstance(): ?CRicerca
-    {
-        if (!isset(self::$instance)) {
+    public static function getInstance(): ?CRicerca {
+        if(!isset(self::$instance)) {
             self::$instance = new CRicerca();
         }
         return self::$instance;
     }
 
-    public function mostraHome()
-    {
+    public function mostraHome(){
         $sessione = new USession();
 
-        if ($sessione->isLogged()) {
+        if($sessione->isLogged()){
             $tipo = $sessione->leggi_valore("tipo_utente");
-            if ($tipo == "EAdmin") {
+            if($tipo == "EAdmin"){
                 header('Location: /Admin/dashboardAdmin');
             }
-        } else {
+        }else{
             $tipo = "nouser";
         }
 
@@ -56,8 +52,8 @@ class CRicerca
         $locali = array();
         $valutazione = array();
 
-        if (!empty($topLocali)) {
-            foreach ($topLocali as $locale) {
+        if(!empty($topLocali)){
+            foreach($topLocali as $locale){
                 $valutazione[] = $locale["ValutazioneMedia"];
                 $locale = $pm->load("id", $locale["id"], "FLocale");
                 $locali[] = $locale;
@@ -73,8 +69,7 @@ class CRicerca
      * In base al "tipo di ricerca" si andranno a prendere tre o quattro campi da passare al metodo della classe View(VRicerca)
      * @throws SmartyException
      */
-    public function ricerca()
-    {
+    public function ricerca(){
         $vRicerca = new VRicerca();
         $tipo = $vRicerca->getTipoRicerca();
         $pm = FPersistentManager::getInstance();
@@ -101,7 +96,7 @@ class CRicerca
                     header('Location: /Ricerca/mostraHome');
         }else{
             header('Location: /Ricerca/mostraHome');
-        }
+           }
     }
 
 
@@ -111,16 +106,16 @@ class CRicerca
      *
      * @throws SmartyException
      */
-    static function dettagliLocale($id)
-    {
+     static function dettagliLocale($id){
         $vRicerca = new VRicerca();
         $pm = FPersistentManager::GetInstance();
+        $check = UCheck::getInstance();
         $sessione = new USession();
         $sessione->cancella_valore('locale');
-        $sessione->imposta_valore('locale', $id);
+        $sessione->imposta_valore('locale',$id);
         $result = $pm->load("id", $id, "FLocale");
-        $proprietario = null;
-        $check = UCheck::getInstance();
+        $eventiOrganizzati = $check->check($result->getEventiOrganizzati());
+        $proprietario=null;
 
         if($sessione->isLogged())
             $logged="loggato";
@@ -128,10 +123,10 @@ class CRicerca
             $logged="nouser";
 
         //Calcolo valutazione media locale + sue recensioni con le relative risposte
-        $recensioni = $check->check($pm->load("locale", $id, "FRecensione"));
-        $tipo = $sessione->leggi_valore('tipo_utente');
-        $username = $sessione->leggi_valore('utente');
-        $presente = $pm->existEsterna("utenti_locali", "ID_Locale", $id, "ID_Utente", $username);
+         $recensioni = $check->check($pm->load("locale",$id,"FRecensione"));
+         $tipo = $sessione->leggi_valore('tipo_utente');
+         $username = $sessione->leggi_valore('utente');
+         $presente = $pm->existEsterna("utenti_locali", "ID_Locale", $id, "ID_Utente", $username);
 
         if (is_array($recensioni)) {
             $risposte = array();
@@ -141,41 +136,42 @@ class CRicerca
                 $sum += $item->getVoto();
                 $risposte[] = $pm->load("recensione", $idSearch, "FRisposta"); //-->Ogni elemento ha la recensione e le risposte associate a tale recensione
             }
-            $rating = $sum / (count($recensioni));
-        } else {
+            $rating=$sum/(count($recensioni));
+        }elseif(isset($recensioni)){
             $idSearch = $recensioni->getId();
-            $rating = $recensioni->getVoto();
-            $risposte[] = $pm->load("recensione", $idSearch, "FRisposta");
+            $rating=$recensioni->getVoto();
+            $risposte[]=$pm->load("recensione",$idSearch,"FRisposta");
+        }else{
+            $risposte = null;
+            $rating = null;
         }
         if($sessione->leggi_valore('tipo_utente')=="EProprietario"){
                 $check = $pm->exist("FLocale","proprietario",$sessione->leggi_valore('utente'));
                 if($check)
                     $proprietario=1;
         }
-
-        $vRicerca->dettagliLocale($tipo,$presente,$result, $recensioni, $risposte, $rating,$proprietario,$logged);
+        $vRicerca->dettagliLocale($tipo,$presente,$result, $recensioni, $risposte, $rating,$proprietario,$logged,$eventiOrganizzati);
     }
 
 
-    public function aggiungiAPreferiti($id_locale)
-    {
-        $sessione = new USession();
-        $view = new VRicerca();
-        $pm = FPersistentManager::getInstance();
+    public function aggiungiAPreferiti($id_locale){
+         $sessione = new USession();
+         $view = new VRicerca();
+         $pm = FPersistentManager::getInstance();
 
-        $username = $sessione->leggi_valore("utente");
-        $tipo = $sessione->leggi_valore("tipo_utente");
+         $username = $sessione->leggi_valore("utente");
+         $tipo = $sessione->leggi_valore("tipo_utente");
 
-        if ($sessione->isLogged() && $tipo == "EUtente") {
-            $value = $view->getPreferito();
-            if ($value == "Aggiunto!") {
-                $pm->storeUtentiLocali($username, $id_locale);
-                header("Location: /Profilo/mostraProfilo");
-            } elseif ($value == "Aggiungi ai preferiti") {
-                $pm->deleteUtentiLocali($username, $id_locale);
-                header("Location: /Profilo/mostraProfilo");
-            }
-        }
+         if($sessione->isLogged() && $tipo == "EUtente"){
+             $value = $view->getPreferito();
+             if($value == "Aggiunto!"){
+                 $pm->storeUtentiLocali($username, $id_locale);
+                 header("Location: /Profilo/mostraProfilo");
+             }elseif ($value == "Aggiungi ai preferiti"){
+                 $pm->deleteUtentiLocali($username, $id_locale);
+                 header("Location: /Profilo/mostraProfilo");
+             }
+         }
 
     }
 

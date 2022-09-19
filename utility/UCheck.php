@@ -29,15 +29,16 @@ class UCheck
      * Restituisce il risultato di una query
      * -Array
      * -Se non array, diventa un array ad un elemento per essere implementato nel foreach di smarty
-     * -null, i.e. ==>(!isset)
+     * -null, i.e. ==> (!isset)
     */
     public function check($result){
-        if(is_array($result))
+        $x = array();
+        if(!empty($result)){
+            for($i=0;$i<sizeof($result);$i++){
+                $x[] = $result[$i];
+            }
+        }elseif(isset($result))
             $x = $result;
-        elseif(isset($result))
-            $x[] = $result;
-        else
-            $x = null;
         return $x;
     }
 

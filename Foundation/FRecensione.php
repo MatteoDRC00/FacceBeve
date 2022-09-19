@@ -89,17 +89,17 @@ class FRecensione{
             $locale = FLocale::loadByField("id",$result['locale']);
             $rec = new ERecensione($utente, $result['titolo'],$result['descrizione'],$result['voto'],$result['data'],$locale);
             $rec->setId($result['id']);
+            $rec->setSegnala($result['segnalato']);
         }
         else {
             if(($result != null) && ($num > 1)){
                 $rec = array();
-                $utente = array();
-                $locale = array();
                 for($i = 0; $i < count($result); $i++){
-                     $utente[$i] = FUtente::loadByField("username",$result[$i]['utente']);
-                     $locale[$i] = FLocale::loadByField("id",$result[$i]['locale']);
-                     $rec[] = new ERecensione($utente[$i], $result[$i]['titolo'],$result[$i]['descrizione'],$result[$i]['voto'],$result[$i]['data'],$locale[$i]);
+                     $utente = FUtente::loadByField("username",$result[$i]['utente']);
+                     $locale = FLocale::loadByField("id",$result[$i]['locale']);
+                     $rec[] = new ERecensione($utente, $result[$i]['titolo'],$result[$i]['descrizione'],$result[$i]['voto'],$result[$i]['data'],$locale);
                      $rec[$i]->setId($result[$i]['id']);
+                     $rec[$i]->setSegnala($result[$i]['segnalato']);
                 }
             }
         }
@@ -165,7 +165,7 @@ class FRecensione{
             $locale = FLocale::loadByField("id",$result['locale']);
             $rec = new ERecensione($utente, $result['titolo'],$result['descrizione'],$result['voto'],$result['data'],$locale);
             $rec->setId($result['id']);
-            // $rec->setCounter($result['id']);
+            $rec->setSegnala($result['segnalato']);
         }
         else {
             if(($result != null) && ($num > 1)){
@@ -177,61 +177,11 @@ class FRecensione{
                     $locale[$i] = FLocale::loadByField("id",$result[$i]['locale']);
                     $rec[] = new ERecensione($utente[$i], $result[$i]['titolo'],$result[$i]['descrizione'],$result[$i]['voto'],$result[$i]['data'],$locale[$i]);
                     $rec[$i]->setId($result[$i]['id']);
+                    $rec[$i]->setSegnala($result[$i]['segnalato']);
                 }
             }
         }
         return $rec;
     }
-
-    /**
-     *
-     * @param $parola valore da ricercare all'interno del campo
-     * @return object $rec Recensione
-     */
-    public static function loadByParola($parola) {
-        $rec = null;
-        $db = FDB::getInstance();
-        list ($result, $rows_number)=$db->CercaByKeyword(static::getClass(),"descrizione",$parola);
-        if(($result != null) && ($rows_number == 1)) {
-            $rec = new ERecensione($result['titolo'],$result['descrizione'],$result['data'],$result['segnalato'],$result['counter'],$result['utente'],$result['nomelocale'],$result['luogolocale']);
-            $rec->setCodice($result['id']);
-        }
-        else {
-            if(($result != null) && ($rows_number > 1)){
-                $rec = array();
-                for($i = 0; $i < count($result); $i++){
-                    $rec[] = new ERecensione($result[$i]['titolo'],$result[$i]['descrizione'],$result[$i]['data'],$result[$i]['segnalato'],$result[$i]['counter'],$result[$i]['utente'],$result[$i]['nomelocale'],$result[$i]['luogolocale']);
-                    $rec[$i]->setCodice($result[$i]['id']);
-                }
-            }
-        }
-        return $rec;
-    }
-
-    /**
-     * metodo che permette il salvataggio di un Locale nel db
-     * @param int $id Locale
-     * @return float value
-
-    public static function ValutazioneLocale($id): float    {
-        $value=0;
-        $db = FDB::getInstance();
-        $result=$db->load(static::getClass(), "id", $id);
-        $rows_number = $db->interestedRows(static::getClass(), "locale", $id);    //funzione richiamata,presente in FDB --> restituisce numero di righe interessate dalla query
-        $sum = 0;
-        if(($result!=null) && ($rows_number == 1)) {
-            $value = $result['voto'];
-        }
-        else {
-            if(($result!=null) && ($rows_number > 1)){
-                for($i=0; $i<count($result); $i++){
-                    $sum=$sum+$result[$i]['voto'];
-                }
-                $value=$sum/count($result);
-            }
-        }
-        return $value;
-    } */
-
 
 }
