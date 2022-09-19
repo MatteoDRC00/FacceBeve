@@ -510,7 +510,7 @@ class CGestioneLocale
             $pm->deleteOrariLocale($id_locale);
             $pm->deleteUtenteLocale($id_locale);
 
-            $pm->delete("id", $locale->getLocalizzazione()->getId(), "FLocalizzazione");
+            $pm->delete("id", $locale[0]->getLocalizzazione()->getId(), "FLocalizzazione");
             $pm->delete("id", $id_locale, "FLocale");
             header("Location: /Profilo/mostraProfilo");
         }else{
