@@ -49,20 +49,19 @@ class CAdmin
         $view = new VAdmin();
         if ($sessione->isLogged() && ($sessione->leggi_valore("tipo_utente") == "EAdmin")) {
             $pm = FPersistentManager::getInstance();
-            $check = UCheck::getInstance();
 
             //loadUtenti --> Separo in Utenti attivi e Bannati
-            $utentiAttivi = $check->check($pm->loadUtentiByState(1));
-            $utentiBannati = $check->check($pm->loadUtentiByState(0));
+            $utentiAttivi = $pm->loadUtentiByState(1);
+            $utentiBannati = $pm->loadUtentiByState(0);
 
             //loadCategorie
-            $categorie = $check->check($pm->loadAll("FCategoria"));
+            $categorie = $pm->loadAll("FCategoria");
 
             //loadRecensioni segnalate
-            $recSegnalate = $check->check($pm->load("segnalato", true, "FRecensione"));
+            $recSegnalate = $pm->load("segnalato", true, "FRecensione");
 
             //loadProprietari
-            $proprietari = $check->check($pm->loadAll("FProprietario"));
+            $proprietari = $pm->loadAll("FProprietario");
 
             $view->HomeAdmin($utentiAttivi, $utentiBannati, $categorie, $recSegnalate, $proprietari);
         } else {
@@ -75,28 +74,29 @@ class CAdmin
      * Metodo utilizzato dal Admin per aggiungere categorie sul sito.
      * @throws SmartyException
      */
-    public function aggiungiCategoria(){
+    public function aggiungiCategoria()
+    {
         $sessione = new USession();
         $tipo = $sessione->leggi_valore("tipo_utente");
         $pm = FPersistentManager::getInstance();
         $view = new VAdmin();
 
-        if($sessione->isLogged() && $tipo == "EAdmin") {
+        if ($sessione->isLogged() && $tipo == "EAdmin") {
             $genere = $view->getGenere();
             $descrizione = $view->getDescrizione();
 
-            if(!$pm->exist("FCategoria", "genere", $genere)){
+            if (!$pm->exist("FCategoria", "genere", $genere)) {
                 $categoria = new ECategoria($genere, $descrizione);
                 $pm->store($categoria);
                 header("Location: /Admin/dashboardAdmin");
-            }else{
+            } else {
                 $message = "Categoria già esistente";
                 echo "<script type='text/javascript'>
                             alert('$message');
                             window.location.replace('/Admin/dashboardAdmin');
                       </script>";
             }
-        }else{
+        } else {
             header("Location: /Ricerca/mostraHome");
         }
     }
@@ -104,17 +104,18 @@ class CAdmin
     /**
      * Metodo utilizzato dal Admin per cancellare categorie dal sito.
      */
-    public function rimuoviCategoria($genere){
+    public function rimuoviCategoria($genere)
+    {
         $sessione = new USession();
         $tipo = $sessione->leggi_valore("tipo_utente");
         $pm = FPersistentManager::getInstance();
 
-        if($sessione->isLogged() && $tipo == "EAdmin") {
-            $genere = str_replace("%20"," ", $genere);
+        if ($sessione->isLogged() && $tipo == "EAdmin") {
+            $genere = str_replace("%20", " ", $genere);
             $pm->delete("genere", $genere, "FCategoria");
             $pm->deleteLocaleCategorie($genere);
             header("Location: /Admin/dashboardAdmin");
-        }else{
+        } else {
             header("Location: /Ricerca/mostraHome");
         }
     }
@@ -129,10 +130,10 @@ class CAdmin
         $tipo = $sessione->leggi_valore("tipo_utente");
         $pm = FPersistentManager::getInstance();
 
-        if($sessione->isLogged() && $tipo == "EAdmin") {
-            $pm->update("FUtente","state", false, "username", $username);
+        if ($sessione->isLogged() && $tipo == "EAdmin") {
+            $pm->update("FUtente", "state", false, "username", $username);
             header("Location: /Admin/dashboardAdmin");
-        }else{
+        } else {
             header("Location: /Ricerca/mostraHome");
         }
     }
@@ -146,17 +147,16 @@ class CAdmin
         $tipo = $sessione->leggi_valore("tipo_utente");
         $pm = FPersistentManager::getInstance();
 
-        if($sessione->isLogged() && $tipo == "EAdmin") {
-            $pm->update("FUtente","state", true, "username", $username);
+        if ($sessione->isLogged() && $tipo == "EAdmin") {
+            $pm->update("FUtente", "state", true, "username", $username);
             header("Location: /Admin/dashboardAdmin");
-        }else{
+        } else {
             header("Location: /Ricerca/mostraHome");
         }
     }
 
     /**
      * Funzione utile per eliminare una recensione segnalata.
-
      * @param $id
      * @throws SmartyException
      */
@@ -166,10 +166,10 @@ class CAdmin
         $tipo = $sessione->leggi_valore("tipo_utente");
         $pm = FPersistentManager::getInstance();
 
-        if($sessione->isLogged() && $tipo == "EAdmin") {
+        if ($sessione->isLogged() && $tipo == "EAdmin") {
             $pm->delete("id", $id_recensione, "FRecensione");
             header("Location: /Admin/dashboardAdmin");
-        }else{
+        } else {
             header("Location: /Ricerca/mostraHome");
         }
     }
@@ -180,10 +180,10 @@ class CAdmin
         $tipo = $sessione->leggi_valore("tipo_utente");
         $pm = FPersistentManager::getInstance();
 
-        if($sessione->isLogged() && $tipo == "EAdmin") {
+        if ($sessione->isLogged() && $tipo == "EAdmin") {
             $pm->update("FRecensione", "segnalato", false, "id", $id_recensione);
             header("Location: /Admin/dashboardAdmin");
-        }else{
+        } else {
             header("Location: /Ricerca/mostraHome");
         }
     }
