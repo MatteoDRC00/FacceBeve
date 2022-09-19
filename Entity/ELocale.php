@@ -7,57 +7,67 @@
 class ELocale{
 
     /**
-     *
+     * Id del locale che lo identifica sul db
      * @var int|null
      */
     private ?int $id;
 
     /**
+     * * Nome del locale
      * @var string
      */
     private string $nome;
 
     /**
+     * Descrizione del locale/Informazioni sul locale
      * @var string
      */
     private string $descrizione;
 
     /**
+     * Numero di telefono del locale
      * @var string
      */
     private string $num_telefono;
 
     /**
+     * Proprietario del locale, i.e., utente che ne gestisce il profilo, anch'egli presente sul sito
      * @var EProprietario
      */
     private EProprietario $proprietario;
 
     /**
+     * Categorie che caratterizzano il locale
      * @var array|null
      */
     private ?array $categoria;
 
     /**
+     * Indirizzo del locale -> utilizzato poi per rimandare al indirizzo del locale per avere informazione sul come raggiungerlo
      * @var ELocalizzazione
      */
     private ELocalizzazione $localizzazione;
 
     /**
+     * Array degli eventi organizzati dal locale
      * @var array|null
      */
     private ?array $eventi_organizzati;
 
     /**
+     * Orario settimanale del locale
      * @var array|null
      */
     private ?array $orario;
 
     /**
+     * Img del locale
      * @var EImmagine|null
      */
     private ?EImmagine $img;
 
     /**
+     *  Costruttore della classe
      * @param string $nome
      * @param string $descrizione
      * @param string $num_telefono
@@ -78,6 +88,7 @@ class ELocale{
     }
 
     /**
+     *  Restituisce l'Id dell'evento
      * @return int|null
      */
     public function getId(): ?int
@@ -86,6 +97,7 @@ class ELocale{
     }
 
     /**
+     * Imposta/Modifica l'Id dell'evento
      * @param int|null $id
      */
     public function setId(?int $id): void
@@ -94,6 +106,7 @@ class ELocale{
     }
 
     /**
+     * Restituisce il nome del locale
      * @return string
      */
     public function getNome(): string
@@ -102,6 +115,7 @@ class ELocale{
     }
 
     /**
+     * Imposta/Modifica il nome del locale
      * @param string $nome
      */
     public function setNome(string $nome): void
@@ -110,6 +124,7 @@ class ELocale{
     }
 
     /**
+     * Restituisce la descrizione del locale
      * @return string
      */
     public function getDescrizione(): string
@@ -118,6 +133,7 @@ class ELocale{
     }
 
     /**
+     * Imposta/Modifica la descrizione del locale
      * @param string $descrizione
      */
     public function setDescrizione(string $descrizione): void
@@ -126,6 +142,7 @@ class ELocale{
     }
 
     /**
+     *  Restituisce il numero di telefono del locale
      * @return string
      */
     public function getNumTelefono(): string
@@ -134,6 +151,7 @@ class ELocale{
     }
 
     /**
+     * Imposta/Modifica la numero di telefono del locale
      * @param string $num_telefono
      */
     public function setNumTelefono(string $num_telefono): void
@@ -142,6 +160,7 @@ class ELocale{
     }
 
     /**
+     *  Restituisce il proprietario del locale
      * @return EProprietario
      */
     public function getProprietario(): EProprietario
@@ -150,6 +169,7 @@ class ELocale{
     }
 
     /**
+     * Imposta/Modifica il proprietario del locale
      * @param EProprietario $proprietario
      */
     public function setProprietario(EProprietario $proprietario): void
@@ -158,7 +178,8 @@ class ELocale{
     }
 
     /**
-     * @return array|null
+     *  Restituisce la/e categoria/e del locale
+     *  @return array|null
      */
     public function getCategoria(): ?array
     {
@@ -166,6 +187,7 @@ class ELocale{
     }
 
     /**
+     * Imposta/Modifica la/e categoria/e del locale
      * @param array|null $categoria
      */
     public function setCategoria(?array $categoria): void
@@ -174,6 +196,7 @@ class ELocale{
     }
 
     /**
+     * Restituisce la localizzazione del locale
      * @return ELocalizzazione
      */
     public function getLocalizzazione(): ELocalizzazione
@@ -182,6 +205,7 @@ class ELocale{
     }
 
     /**
+     * Imposta/Modifica la localizzazione del locale
      * @param ELocalizzazione $localizzazione
      */
     public function setLocalizzazione(ELocalizzazione $localizzazione): void
@@ -190,6 +214,7 @@ class ELocale{
     }
 
     /**
+     * Restituisce gli eventi organizzati dal locale
      * @return array|null
      */
     public function getEventiOrganizzati(): ?array
@@ -198,6 +223,7 @@ class ELocale{
     }
 
     /**
+     * Imposta/Modifica gli eventi organizzati dal locale
      * @param array|null $eventi_organizzati
      */
     public function setEventiOrganizzati(?array $eventi_organizzati): void
@@ -206,6 +232,7 @@ class ELocale{
     }
 
     /**
+     * Restituisce l'orario del locale
      * @return array|null
      */
     public function getOrario(): ?array
@@ -214,6 +241,7 @@ class ELocale{
     }
 
     /**
+     * Imposta/Modifica l'orario del locale
      * @param array|null $orario
      */
     public function setOrario(?array $orario): void
@@ -222,6 +250,7 @@ class ELocale{
     }
 
     /**
+     * Restituisce l'immagine del locale
      * @return EImmagine|null
      */
     public function getImg(): ?EImmagine
@@ -230,6 +259,7 @@ class ELocale{
     }
 
     /**
+     * Imposta/Modifica l'immagine del locale
      * @param EImmagine|null $img
      * @return void
      */

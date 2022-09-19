@@ -13,13 +13,13 @@ class EEvento{
     private ?int $id;
 
     /**
-     * Nome del locale
+     * Nome Evento
      * @var string
      */
     private string $nome;
 
     /**
-     * Descrizione del locale/Informazioni sul locale
+     * Descrizione del locale/Informazioni dell'evento
      * @var string
      */
     private string $descrizione;
