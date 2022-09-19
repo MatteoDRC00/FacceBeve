@@ -4,7 +4,7 @@ require_once "autoload.php";
 require_once "utility/USession.php";
 
 /**
- * Classe utilizzata la registrazione e l'autenticazione dell'utente.
+ * La classe CAccesso è la classe CONTROLLER utilizzata per la registrazione e l'autenticazione dell'utente/proprietario.
  * @package Controller
  */
 class CAccesso
@@ -15,14 +15,12 @@ class CAccesso
     public static ?CAccesso $instance = null;
 
     /**
-     * Costruttore della classe.
+     * Costruttore della classe
      */
-    private function __construct()
-    {
-    }
+    private function __construct(){}
 
     /**
-     * Restituisce l'istanza della classe.
+     * Restituisce l'istanza della classe
      * @return CAccesso|null
      */
     public static function getInstance(): ?CAccesso
@@ -34,6 +32,7 @@ class CAccesso
     }
 
     /**
+     * Mostra il form del login
      * @throws SmartyException
      */
     public function formLogin(){
@@ -42,6 +41,7 @@ class CAccesso
     }
 
     /**
+     * Mostra il form della registrazione dell'utente
      * @throws SmartyException
      */
     public function formRegistrazioneUtente(){
@@ -50,6 +50,7 @@ class CAccesso
     }
 
     /**
+     * Mostra il form della registrazione del proprietario
      * @throws SmartyException
      */
     public function formRegistrazioneProprietario(){
@@ -59,9 +60,8 @@ class CAccesso
 
 
     /**
-     * Funzione che gestisce il login dell'utente, prelevando le credenziali di accesso dalla view, verifica se un utente con queste credenziali esiste,
-     * dopo aver messo in sessione le informazioni riguardo l'utente, reindirizza alla homepage.
-     * @throws SmartyException
+     * Funzione che gestisce il login di utente/proprietario/admin
+     * @return void
      */
     public function login()
     {
@@ -91,10 +91,8 @@ class CAccesso
     }
 
     /**
-     * Funzione di supporto che si occupa di verificare i dati inseriti nella form di registrazione per il cliente .
-     * In questo metodo avviene la verifica sull'univocità dell'email inserita;
-     * se questa verifiche non riscontrano problemi, si passa verifica dell'immagine inserita e quindi alla store nel db vera e propria del cliente.
-     * @throws SmartyException
+     * Funzione che si occupa di prelevare i dati dal form, creare un oggetto EUtente e salvarlo nel db
+     * @return void
      */
     static function registrazioneUtente() {
         $pm = FPersistentManager::getInstance();
@@ -104,19 +102,22 @@ class CAccesso
         $username = $view->getUsername();
         $userP = $pm->exist("FProprietario", "username", $username);
         $userU = $pm->exist("FUtente", "username", $username);
+        $admin = $pm->exist("FAdmin", "username", $username);
 
-        if (($userP) || ($userU) && ($username!="admin")){
-            $view->registrazioneUtenteError ("username"); //username già esistente
-        }
-        else {
-            //FARE CONTROLLO VIA CLIENT
+        if ($userP || $userU || $admin){
+            $message = "Username già esistente, si prega di scriverne un altro";
+            echo "<script type='text/javascript'>
+                            alert('$message');
+                            window.location.replace('/Accesso/registrazioneUtent');
+                      </script>";
+        } else {
             $utente = new EUtente($view->getPassword(),$view->getNome(),$view->getCognome(),$username,$view->getEmail());
             $utente->Iscrizione();
 
             $img_profilo = null;
 
             $img = $view->getImgProfilo();
-            //list($check, $img_profilo) = static::upload($img);
+
             if (!empty($img)) {
                 $img_profilo = new EImmagine($img[0], $img[1], $img[2], $img[3]);
                 $id = $pm->store($img_profilo);
@@ -135,10 +136,8 @@ class CAccesso
 
 
     /**
-     * Funzione di supporto che si occupa di verificare i dati inseriti nella form di registrazione per il cliente .
-     * In questo metodo avviene la verifica sull'univocità dell'email inserita;
-     * se questa verifiche non riscontrano problemi, si passa verifica dell'immagine inserita e quindi alla store nel db vera e propria del cliente.
-     * @throws SmartyException
+     * Funzione che si occupa di prelevare i dati dal form, creare un oggetto EProprietario e salvarlo nel db
+     * @return void
      */
     static function registrazioneProprietario() {
         $pm = FPersistentManager::getInstance();
@@ -148,17 +147,22 @@ class CAccesso
         $username = $view->getUsername();
         $userP = $pm->exist("FProprietario", "username", $username);
         $userU = $pm->exist("FUtente", "username", $username);
+        $admin = $pm->exist("FAdmin", "username", $username);
 
-        if (($userP) || ($userU) && ($username!="admin")){
-            $view->registrazioneUtenteError ("username"); //username già esistente
+        if ($userP || $userU || $admin){
+            $message = "Username già esistente, si prega di scriverne un altro";
+            echo "<script type='text/javascript'>
+                            alert('$message');
+                            window.location.replace('/Accesso/registrazioneUtent');
+                      </script>";
         }
         else {
-            //FARE CONTROLLO VIA CLIENT
             $proprietario = new EProprietario($view->getNome(),$view->getCognome(),$view->getEmail(),$username,$view->getPassword());
 
             $img_profilo = null;
 
             $img = $view->getImgProfilo();
+
             if (!empty($img)) {
                 $img_profilo = new EImmagine($img[0], $img[1], $img[2], $img[3]);
                 $id = $pm->store($img_profilo);
@@ -174,50 +178,14 @@ class CAccesso
         }
     }
 
-
-
-    public function error() {
-        $view = new VError();
-        $view->error('1');
-    }
-
-
-    /////////////////////////////////////METODI STATICI///////////////////////////////
-    /**
-     * Metodo statico invocato quando l'Utente effettua il login.
-     * @return array|null
-    */
-    static function eventiUtente($utente): ?array
-    {
-        $pm = FPersistentManager::getInstance();
-        $result = $pm->loadEventi($utente);
-        if(isset($result)){
-            //Vengono mostrati, se presenti, solo gli eventi futuri, quelli passati sono visualizzabili nella pagina del locale
-            $eventi = array();
-            $oggi = date("d/m/Y");
-            foreach($result as $evento){
-                if($evento->getData() > $oggi){
-                    $eventi[] = $evento;
-                }
-            }
-            return $eventi;
-        }else{
-            return null;
-        }
-    }
-
     /**
      * Funzione che provvede alla rimozione delle variabili di sessione, alla sua distruzione e a rinviare alla homepage
+     * @return void
      */
-    static function logout(){
+    public function logout(){
         $sessione = new USession();
         $sessione->chiudi_sessione();
         header('Location: /Ricerca/mostraHome');
     }
 
-
-    public function erroreLogin($tipo): void {
-        $view = new VAccesso();
-        $view->erroreLogin($tipo);
-    }
 }
