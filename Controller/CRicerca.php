@@ -150,7 +150,6 @@ class CRicerca{
                 if($check)
                     $proprietario=1;
         }
-
         $vRicerca->dettagliLocale($tipo,$presente,$result, $recensioni, $risposte, $rating,$proprietario,$logged,$eventiOrganizzati);
     }
 

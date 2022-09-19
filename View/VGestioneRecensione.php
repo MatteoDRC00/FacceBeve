@@ -107,9 +107,9 @@ class VGestioneRecensione{
     /**
      * Restituisce la descrizione della risposta ad una recensione
      * Inviato con metodo post
-     * @return string
+     * @return int
      */
-    public function getIdLocale(): ?string
+    public function getIdLocale(): ?int
     {
         $value = null;
         if (isset($_POST['idLocale']))

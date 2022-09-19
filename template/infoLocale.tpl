@@ -179,10 +179,19 @@
                                                 {if $recensione->getUtente()->getUsername() eq $utente}
                                                     <form action="/GestioneRecensione/cancellaRecensione/{$recensione->getId()}"
                                                           method="POST">
+                                                        <input type="hidden" value="{$locale->getId()}" name="idLocale">
                                                         <button type="submit"
                                                                 style="border-radius:9px; height: 40px; color: #bb2d3b; font-weight: bold; border-color: #bb2d3b">
                                                             <i class="align-items-xxl-end"></i>Elimina la tua Recensione
                                                         </button>
+                                                    </form>
+                                                {/if}
+                                                {if ($arrayRisposte[{$recensione@iteration-1}]->getProprietario()->getUsername() eq $utente) && ($recensione->isSegnalata() == 1)}
+                                                    <form action="/GestioneRecensione/segnalaRecensione/{$recensione->getId()}"
+                                                          method="POST">
+                                                        <button type="submit" id="segnala"
+                                                                style="border-radius:9px; height: 40px; color: #bb2d3b; font-weight: bold; border-color: #bb2d3b">
+                                                            <i class="align-items-xxl-end"></i>Segnala la Recensione</button>
                                                     </form>
                                                 {/if}
                                             </h5>
@@ -208,6 +217,7 @@
                                                 {if $arrayRisposte[{$recensione@iteration-1}]->getProprietario()->getUsername() eq $utente}
                                                     <form action="/GestioneRecensione/cancellaRisposta/{$recensione->getId()}"
                                                           method="POST">
+                                                        <input type="hidden" value="{$locale->getId()}" name="idLocale">
                                                         <button type="submit"
                                                                 style="border-radius:9px; height: 40px; color: #bb2d3b; font-weight: bold; border-color: #bb2d3b">
                                                             <i class="align-items-xxl-end"></i>Elimina la tua Risposta
