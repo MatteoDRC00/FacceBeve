@@ -61,9 +61,7 @@ class FCategoria {
      */
     public static function store(ECategoria $categoria){
         $db = FDB::getInstance();
-        $genere = $db->store(static::getClass(), $categoria);
-        //$categoria->setId($id);
-        return $genere;
+        return $db->store(static::getClass(), $categoria);
     }
 
     /**
@@ -74,41 +72,7 @@ class FCategoria {
      */
     public static function exist(string $attributo,string $valore){
         $db = FDB::getInstance();
-        $result = $db->exist(static::getClass(), $attributo, $valore);
-        if($result!=null)
-            return true;
-        else
-            return false;
-    }
-
-    /**
-     * Permette la load dal database
-     * @param $id campo da confrontare per trovare l'oggetto --> id locale
-     * @return object $categoria
-     */
-    public static function loadByLocale($id){
-        $categoria = null;
-        $db = FDB::getInstance();
-        list($result,$num)=$db->loadInfoLocale(static::getClass(),"Locale_Categorie",$id,"ID_Categoria","genere");
-        if(isset($result)){//funzione richiamata,presente in FDB --> restituisce numero di righe interessate dalla query
-            if(($result!=null) && ($num == 1)) {
-                $categoria=new ECategoria($result['genere'], $result['descrizione']); //Carica una categoria dal database
-            }
-            else {
-                if(($result!=null) && ($num > 1)){
-                    $categoria = array();
-                    for($i=0; $i<count($result); $i++){
-                        $categoria[]=new ECategoria($result[$i]['genere'], $result[$i]['descrizione']); //Carica un array di oggetti Categoria dal database
-                    }
-                }
-            }
-        }
-        return $categoria;
-    }
-
-    public static function loadTutteCategorie(){
-        $db = FDB::getInstance();
-        return $db->loadAll(static::getClass());
+        return $db->exist(static::getClass(), $attributo, $valore);
     }
 
     /**
@@ -121,11 +85,7 @@ class FCategoria {
      */
     public static function update(string $attributo, string $newvalue, string $attributo_pk, string $value_pk){
         $db = FDB::getInstance();
-        $result = $db->update(static::getClass(), $attributo, $newvalue, $attributo_pk, $value_pk);
-        if($result)
-            return true;
-        else
-            return false;
+        return $db->update(static::getClass(), $attributo, $newvalue, $attributo_pk, $value_pk);
     }
 
     /**
@@ -134,24 +94,19 @@ class FCategoria {
      * @return bool
      */
     public static function delete(string $attributo, string $valore){
-        $db=FDB::getInstance();
-        $result = $db->delete(static::getClass(), $attributo, $valore);
-        if($result)
-            return true;
-        else
-            return false;
+        $db = FDB::getInstance();
+        return $db->delete(static::getClass(), $attributo, $valore);
     }
 
     public static function loadByField($field, $id)
     {
-        $categoria = null;
+        $categoria = array();
         $db = FDB::getInstance();
         list($result, $num) = $db->load(static::getClass(), $field, $id);
         if (($result != null) && ($num == 1)) {
-            $categoria = new ECategoria($result['genere'], $result['descrizione']);
+            $categoria[0] = new ECategoria($result['genere'], $result['descrizione']);
         } else {
             if (($result != null) && ($num > 1)) {
-                $categoria = array();
                 for ($i = 0; $i < count($result); $i++) {
                     $categoria[$i] = new ECategoria($result[$i]['genere'], $result[$i]['descrizione']);
                 }
@@ -161,15 +116,37 @@ class FCategoria {
     }
 
     /**
-     * Ritorna tutte le recensioni presenti sul db
-     * @return object $rec Recensione
+     * @param $id
+     * @return array
      */
-    public static function loadAll() {
-        $categoria= null;
+    public static function loadByLocale($id){
+        $categoria = array();
+        $db = FDB::getInstance();
+        list($result,$num)=$db->loadInfoLocale(static::getClass(),"Locale_Categorie",$id,"ID_Categoria","genere");
+        if(($result!=null) && ($num == 1)) {
+            $categoria[0] = new ECategoria($result['genere'], $result['descrizione']); //Carica una categoria dal database
+        }
+        else {
+            if(($result!=null) && ($num > 1)){
+                for($i=0; $i<count($result); $i++){
+                    $categoria[$i]=new ECategoria($result[$i]['genere'], $result[$i]['descrizione']); //Carica un array di oggetti Categoria dal database
+                }
+            }
+        }
+
+        return $categoria;
+    }
+
+
+    /**
+     * @return array
+     */
+    public static function loadAllCategorie() {
+        $categoria = array();
         $db = FDB::getInstance();
         list($result,$num) =$db->getAll("categoria");
         if (($result != null) && ($num == 1)) {
-            $categoria = new ECategoria($result['genere'], $result['descrizione']);
+            $categoria[0] = new ECategoria($result['genere'], $result['descrizione']);
         } else {
             if (($result != null) && ($num > 1)) {
                 $categoria = array();

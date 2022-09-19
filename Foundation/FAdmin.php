@@ -16,9 +16,7 @@ class FAdmin{
     private static $values="(:username,:email,:password)";
 
     /** costruttore*/
-    public function __construct(){
-
-    }
+    public function __construct(){}
 
     /**
      * metodo che lega gli attributi dell'Admin da inserire con i parametri della INSERT
@@ -64,9 +62,7 @@ class FAdmin{
     public static function store(EAdmin $admin): string
     {
         $db = FDB::getInstance();
-        $username = $db->store(self::getClass(), $admin);
-        //$admin->setId($id);
-        return $username;
+        return $db->store(self::getClass(), $admin);
     }
 
     /**
@@ -77,11 +73,7 @@ class FAdmin{
      */
     public static function exist(string $attributo,string $valore) {
         $db = FDB::getInstance();
-        $result = $db->exist(static::getClass(), $attributo, $valore);
-        if($result!=null)
-            return true;
-        else
-            return false;
+        return $db->exist(static::getClass(), $attributo, $valore);
     }
 
     /**
@@ -94,11 +86,7 @@ class FAdmin{
      */
     public static function update(string $attributo, string $newvalue, string $attributo_pk, string $value_pk){
         $db=FDB::getInstance();
-        $result = $db->update(static::getClass(), $attributo, $newvalue, $attributo_pk, $value_pk);
-        if($result)
-            return true;
-        else
-            return false;
+        return $db->update(static::getClass(), $attributo, $newvalue, $attributo_pk, $value_pk);
     }
 
     /**
@@ -107,31 +95,27 @@ class FAdmin{
      * @return bool
      */
     public static function delete(string $attributo, string $valore){
-        $db=FDB::getInstance();
-        $result = $db->delete(static::getClass(), $attributo, $valore);
-        if($result)
-            return true;
-        else
-            return false;
+        $db = FDB::getInstance();
+        return $db->delete(static::getClass(), $attributo, $valore);
     }
 
 
     /**
-     * Permette la load sul database
-     * @param $id campo da confrontare per trovare l'oggetto
-     * @return object $utente Utente
+     * @param $field
+     * @param $id
+     * @return array
      */
     public static function loadByField($field, $id){
+        $admin = array();
         $db = FDB::getInstance();
         list($result,$num) = $db->load(static::getClass(), $field, $id);
         if(($result!=null) && ($num == 1)) {
-            $admin = new EAdmin( $result['username'],$result['email'], $result['password']);
+            $admin[0] = new EAdmin($result['username'], $result['email'], $result['password']);
         }
         else {
             if(($result!=null) && ($num > 1)){
-                $admin = array();
                 for($i=0; $i<count($result); $i++){
-                    $admin[$i] = new EAdmin( $result[$i]['username'],$result[$i]['email'], $result[$i]['password']);
+                    $admin[$i] = new EAdmin( $result[$i]['username'], $result[$i]['email'], $result[$i]['password']);
                 }
             }
         }
