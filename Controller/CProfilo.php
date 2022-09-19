@@ -8,7 +8,8 @@ require_once "utility/USession.php";
  * @author Gruppo 8
  * @package Controller
  */
-class CProfilo{
+class CProfilo
+{
 
     /**
      * @var CProfilo|null Variabile di classe che mantiene l'istanza della classe.
@@ -18,14 +19,17 @@ class CProfilo{
     /**
      * Costruttore della classe.
      */
-    private function __construct(){}
+    private function __construct()
+    {
+    }
 
     /**
      * Restituisce l'istanza della classe.
      * @return CProfilo|null
      */
-    public static function getInstance(): ?CProfilo{
-        if(!isset(self::$instance)) {
+    public static function getInstance(): ?CProfilo
+    {
+        if (!isset(self::$instance)) {
             self::$instance = new CProfilo();
         }
         return self::$instance;
@@ -34,25 +38,26 @@ class CProfilo{
     /**
      * @return void
      */
-    public function mostraProfilo(){
+    public function mostraProfilo()
+    {
         $sessione = new USession();
         $pm = FPersistentManager::getInstance();
 
-        if($sessione->isLogged()){
+        if ($sessione->isLogged()) {
             $username = $sessione->leggi_valore("utente");
             $tipo = $sessione->leggi_valore("tipo_utente");
-            if($tipo == "EUtente"){
+            if ($tipo == "EUtente") {
                 $utente = $pm->load("username", $username, "FUtente");
                 $locali_preferiti = $pm->getLocaliPreferiti($username);
                 $view = new VProfilo();
                 $view->mostraProfiloUtente($utente, $locali_preferiti);
-            }elseif($tipo == "EProprietario"){
+            } elseif ($tipo == "EProprietario") {
                 $proprietario = $pm->load("username", $username, "FProprietario");
                 $locali = $pm->load("proprietario", $username, "FLocale");
                 $view = new VProfilo();
                 $view->mostraProfiloProprietario($proprietario, $locali);
             }
-        }else{
+        } else {
             $sessione->chiudi_sessione();
             header("Location: /Ricerca/mostraHome");
         }
@@ -64,12 +69,13 @@ class CProfilo{
      * @return false|void False se la vecchia password inserita non è corretta, altrimenti lancia un errore che rimanda alla View del errore.
      * @throws SmartyException
      */
-    public function modificaPassword(){
+    public function modificaPassword()
+    {
         $view = new VProfilo();
         $sessione = new USession();
         $pm = FPersistentManager::getInstance();
 
-        if($sessione->isLogged()){
+        if ($sessione->isLogged()) {
             $username = $sessione->leggi_valore('utente');
             $tipo = $sessione->leggi_valore('tipo_utente');
             $tipo[0] = "F";
@@ -80,29 +86,29 @@ class CProfilo{
 
             $user = $pm->load("username", $username, $class);
 
-            if($password != null && $newpassword != null){
-                if(md5($password) == $user->getPassword()){
-                    if($newpassword != $password){
+            if ($password != null && $newpassword != null) {
+                if (md5($password) == $user->getPassword()) {
+                    if ($newpassword != $password) {
                         $user->setPassword($newpassword);
-                        $pm->update($class,"password", md5($newpassword),"username",$username);
+                        $pm->update($class, "password", md5($newpassword), "username", $username);
                         header('Location: /Profilo/mostraProfilo');
-                    }else{
+                    } else {
                         $message = "La password inserita è identica a quella precedente, si prega di scriverne un'altra";
-                        $tipo="password";
-                        self::erroreModifica($tipo,$message,$user);
+                        $tipo = "password";
+                        self::erroreModifica($tipo, $message, $user);
                     }
-                }else{
+                } else {
                     $message = "La password precedente inserita è sbagliata, si prega di riprovare";
-                    $tipo="password";
-                    self::erroreModifica($tipo,$message,$user);
+                    $tipo = "password";
+                    self::erroreModifica($tipo, $message, $user);
                 }
 
-            }else{
+            } else {
                 $message = "Entrambi i campi devono essere pieni";
-                $tipo="password";
-                self::erroreModifica($tipo,$message,$user);
+                $tipo = "password";
+                self::erroreModifica($tipo, $message, $user);
             }
-        }else{
+        } else {
             header("Location: /Ricerca/mostraHome");
         }
     }
@@ -112,12 +118,13 @@ class CProfilo{
      * @return void
      * @throws SmartyException
      */
-    public function modificaUsername(){
+    public function modificaUsername()
+    {
         $view = new VProfilo();
         $sessione = new USession();
         $pm = FPersistentManager::getInstance();
 
-        if($sessione->isLogged()){
+        if ($sessione->isLogged()) {
             $username = $sessione->leggi_valore('utente');
             $tipo = $sessione->leggi_valore('tipo_utente');
             $tipo[0] = "F";
@@ -126,26 +133,26 @@ class CProfilo{
             $user = $pm->load("username", $username, $class);
 
             $newusername = $view->getNewUsername();
-            if($username == $newusername){
+            if ($username == $newusername) {
                 $message = "L'username è identico a quello precedente";
-                $tipo="user";
-                self::erroreModifica($tipo,$message,$user);
-            }elseif($newusername == null) {
+                $tipo = "user";
+                self::erroreModifica($tipo, $message, $user);
+            } elseif ($newusername == null) {
                 $message = "Si prega di inserire il nuovo username prima di cliccare sul tasto modifica";
-                $tipo="user";
-                self::erroreModifica($tipo,$message,$user);
-            }elseif($pm->exist("FUtente", "username", $newusername) || $pm->exist("FProprietario", "username", $newusername)){
+                $tipo = "user";
+                self::erroreModifica($tipo, $message, $user);
+            } elseif ($pm->exist("FUtente", "username", $newusername) || $pm->exist("FProprietario", "username", $newusername)) {
                 $message = "L'username inserito esiste già, inserirne un altro";
-                $tipo="user";
-                self::erroreModifica($tipo,$message,$user);
-            }else{
+                $tipo = "user";
+                self::erroreModifica($tipo, $message, $user);
+            } else {
                 $pm->update($class, "username", $newusername, "username", $username);
                 $user->setUsername($newusername);
                 $sessione->imposta_valore("utente", $newusername);
-                $sessione->imposta_valore("tipo_utente",get_class($user));
+                $sessione->imposta_valore("tipo_utente", get_class($user));
                 header("Location: /Profilo/mostraProfilo");
             }
-        }else{
+        } else {
             header("Location: /Ricerca/mostraHome");
         }
 
@@ -155,12 +162,13 @@ class CProfilo{
      * Funzione che gestisce la modifica del email del Utente/Proprietario. Preleva la nuova email dalla View e procede alla modifica.
      * @return void
      */
-    public function modificaEmail(){
+    public function modificaEmail()
+    {
         $view = new VProfilo();
         $sessione = new USession();
         $pm = FPersistentManager::getInstance();
 
-        if($sessione->isLogged()) {
+        if ($sessione->isLogged()) {
             $username = $sessione->leggi_valore('utente');
             $tipo = $sessione->leggi_valore('tipo_utente');
             $tipo[0] = "F";
@@ -169,22 +177,22 @@ class CProfilo{
             $newemail = $view->getNewEmail();
             $user = $pm->load("username", $username, $class);
 
-            if($newemail != null){
-                if($newemail != $user->getEmail()){
+            if ($newemail != null) {
+                if ($newemail != $user->getEmail()) {
                     $user->setEmail($newemail);
-                    $pm->update($class,"email", $newemail, "username", $username);
+                    $pm->update($class, "email", $newemail, "username", $username);
                     header('Location: /Profilo/mostraProfilo');
-                }else{
+                } else {
                     $message = "La email inserita è identica a quella precedente, si prega di scriverne un'altra";
-                    $tipo="email";
-                    self::erroreModifica($tipo,$message,$user);
+                    $tipo = "email";
+                    self::erroreModifica($tipo, $message, $user);
                 }
-            }else{
+            } else {
                 $message = "Entrambi i campi devono essere pieni";
-                $tipo="email";
-                self::erroreModifica($tipo,$message,$user);
+                $tipo = "email";
+                self::erroreModifica($tipo, $message, $user);
             }
-        }else{
+        } else {
             header("Location: /Ricerca/mostraHome");
         }
     }
@@ -195,19 +203,20 @@ class CProfilo{
      * @return void
      * @throws SmartyException
      */
-    public function modificaImmagineProfilo(){
+    public function modificaImmagineProfilo()
+    {
         $view = new VProfilo();
         $sessione = new USession();
         $pm = FPersistentManager::getInstance();
 
-        if($sessione->isLogged()) {
+        if ($sessione->isLogged()) {
             $username = $sessione->leggi_valore('utente');
             $tipo = $sessione->leggi_valore('tipo_utente');
             $tipo[0] = "F";
             $class = $tipo;
 
             $img = $view->getNewImgProfilo();
-            if(!empty($img)){
+            if (!empty($img)) {
                 $img_profilo = new EImmagine($img[0], $img[1], $img[2], $img[3]);
                 $id = $pm->store($img_profilo);
                 $img_profilo->setId($id);
@@ -221,7 +230,7 @@ class CProfilo{
                 $pm->update($class, "idImg", $id, "username", $username);
             }
             header('Location: /Profilo/mostraProfilo');
-        }else{
+        } else {
             header("Location: /Ricerca/mostraHome");
         }
     }
@@ -231,24 +240,26 @@ class CProfilo{
     /**
      * @throws SmartyException
      */
-    public function formModificaUtente(){
+    public function formModificaUtente()
+    {
         $view = new VProfilo();
         $sessione = new USession();
         $utente = unserialize(($sessione->leggi_valore('utente')));
         $localiUtente = static::caricaLocali($utente);
-        $view->profilo($utente,$localiUtente,null);
+        $view->profilo($utente, $localiUtente, null);
     }
 
     /**
      * @throws SmartyException
      */
-    public function formModificaProprietario(){
+    public function formModificaProprietario()
+    {
         $view = new VProfilo();
         $sessione = new USession();
-        if($sessione->leggi_valore('utente')){
+        if ($sessione->leggi_valore('utente')) {
             $proprietario = unserialize(($sessione->leggi_valore('utente')));
             $localiProprietario = static::caricaLocali($proprietario);
-            $view->profilo($proprietario,$localiProprietario,null);
+            $view->profilo($proprietario, $localiProprietario, null);
         }
     }
 
@@ -257,18 +268,19 @@ class CProfilo{
      * @return void
      * @throws SmartyException
      */
-    public function profilo(){
+    public function profilo()
+    {
         $sessione = USession::getInstance();
-        if(!$sessione->leggi_valore('utente')){
+        if (!$sessione->leggi_valore('utente')) {
             $log = CAccesso::getInstance();
             $log->mostraLogin();
-        }else{
-            if ((get_class($sessione->leggi_valore('utente')) == 'EUtente') || (get_class($sessione->leggi_valore('utente')) == 'EProprietario') ) {
+        } else {
+            if ((get_class($sessione->leggi_valore('utente')) == 'EUtente') || (get_class($sessione->leggi_valore('utente')) == 'EProprietario')) {
                 $sessione->cancella_valore("last_visited");
                 $utente = unserialize($sessione->leggi_valore('utente'));
                 $view = new VProfilo();
                 $locali = static::caricaLocali($utente);
-                $view->profilo($utente,$locali,null);
+                $view->profilo($utente, $locali, null);
             }
             if (get_class($sessione->leggi_valore('utente')) == 'EAdmin') {
                 $sessione->cancella_valore("last_visited");
@@ -279,10 +291,10 @@ class CProfilo{
     }
 
 
-
-    public function erroreModifica ($tipo,$message,$user): void {
+    public function erroreModifica($tipo, $message, $user): void
+    {
         $view = new VProfilo();
-        $view->errore($tipo,$message,$user);
+        $view->errore($tipo, $message, $user);
     }
 
 
@@ -292,13 +304,13 @@ class CProfilo{
      * Metodo richiamato per individuare i locali collegati ad un utente, se questo è un Proprietario allora saranno i locali da l*i gestiti,
      * se invece è un Utente saranno i suoi locali preferiti
      * @return array|null
-    */
+     */
     static function caricaLocali($utente): ?array
     {
         $pm = FPersistentManager::getInstance();
-        if(get_class($utente) == "EProprietario"){
-            return $pm->load("proprietario",$utente->getUsername(),"FLocale");
-        }else{
+        if (get_class($utente) == "EProprietario") {
+            return $pm->load("proprietario", $utente->getUsername(), "FLocale");
+        } else {
             return null;
         }
     }

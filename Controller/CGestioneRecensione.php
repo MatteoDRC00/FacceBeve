@@ -31,7 +31,7 @@ class CGestioneRecensione
     {
         $sessione = new USession();
         $pm = FPersistentManager::getInstance();
-        $utente = $pm->load("username",$sessione->leggi_valore('utente'),"FUtente");
+        $utente = $pm->load("username", $sessione->leggi_valore('utente'), "FUtente");
         $locale = $pm->load("id", $id, "FLocale");
         if (($sessione->leggi_valore('tipo_utente') == "EUtente")) {
 
@@ -68,7 +68,7 @@ class CGestioneRecensione
         if (($sessione->leggi_valore('tipo_utente') == "EProprietario")) {
             $view = new VGestioneRecensione();
 
-            $proprietario = $pm->load("username",$utente,"FProprietario");
+            $proprietario = $pm->load("username", $utente, "FProprietario");
 
             $descrizione = $view->getDescrizioneRisposta();
 
@@ -76,7 +76,7 @@ class CGestioneRecensione
 
             $pm->store($risposta);
 
-            header('Location: /Ricerca/dettagliLocale/'.$view->getIdLocale());
+            header('Location: /Ricerca/dettagliLocale/' . $view->getIdLocale());
         } else {
             header('Location: /Ricerca/mostraHome');
         }
@@ -97,10 +97,10 @@ class CGestioneRecensione
         $pm = FPersistentManager::GetInstance();
         if ($tipo == "EUtente") {
             $recensione = $pm->load("id", $id, "FRecensione");
-            $utente = $pm->load("username",$user,"FUtente");
+            $utente = $pm->load("username", $user, "FUtente");
             if ($utente->getUsername() == $recensione->getUtente()->getUsername()) {
                 $pm->delete("id", $id, "FRecensione");
-                header('Location: /Ricerca/dettagliLocale/'.$view->getIdLocale());
+                header('Location: /Ricerca/dettagliLocale/' . $view->getIdLocale());
             } else {
                 $sessione->cancella_valore('locale');
                 header('Location: /Ricerca/mostraHome');
@@ -123,10 +123,10 @@ class CGestioneRecensione
         $pm = FPersistentManager::GetInstance();
         if ($tipo == "EProprietario") {
             $risposta = $pm->load("id", $id, "FRisposta");
-            $proprietario = $pm->load("username",$user,"FProprietario");
+            $proprietario = $pm->load("username", $user, "FProprietario");
             if ($proprietario->getUsername() == $risposta->getProprietario()->getUsername()) {
                 $pm->delete("id", $id, "FRisposta");
-                header('Location: /Ricerca/dettagliLocale/'.$view->getIdLocale());
+                header('Location: /Ricerca/dettagliLocale/' . $view->getIdLocale());
             }
         } else {
             header('Location: /Ricerca/mostraHome'); //Qualcosa va mostrato però
@@ -141,9 +141,8 @@ class CGestioneRecensione
         $tipo = $sessione->leggi_valore('tipo_utente');
         $pm = FPersistentManager::GetInstance();
         if ($tipo == "EProprietario") {
-                $
-                $pm->update("FRecensione","state",1,"id", $id );
-                header('Location: /Ricerca/dettagliLocale/'.$view->getIdLocale());
+            $pm->update("FRecensione", "state", 1, "id", $id);
+            header('Location: /Ricerca/dettagliLocale/' . $view->getIdLocale());
         } else {
             header('Location: /Ricerca/mostraHome'); //Qualcosa va mostrato però
         }

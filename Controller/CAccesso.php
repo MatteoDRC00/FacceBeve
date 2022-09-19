@@ -18,7 +18,9 @@ class CAccesso
     /**
      * Costruttore della classe
      */
-    private function __construct(){}
+    private function __construct()
+    {
+    }
 
     /**
      * Restituisce l'istanza della classe
@@ -36,7 +38,8 @@ class CAccesso
      * Mostra il form del login
      * @throws SmartyException
      */
-    public function formLogin(){
+    public function formLogin()
+    {
         $view = new VAccesso();
         $view->showFormLogin();
     }
@@ -45,7 +48,8 @@ class CAccesso
      * Mostra il form della registrazione dell'utente
      * @throws SmartyException
      */
-    public function formRegistrazioneUtente(){
+    public function formRegistrazioneUtente()
+    {
         $view = new VAccesso();
         $view->registra_utente();
     }
@@ -54,7 +58,8 @@ class CAccesso
      * Mostra il form della registrazione del proprietario
      * @throws SmartyException
      */
-    public function formRegistrazioneProprietario(){
+    public function formRegistrazioneProprietario()
+    {
         $view = new VAccesso();
         $view->registra_proprietario();
     }
@@ -72,7 +77,7 @@ class CAccesso
         $usernameLogin = $view->getUsername();
         $passwordLogin = md5($view->getPassword());
         if ($usernameLogin == null || $passwordLogin == null) {
-            $tipo="vuoti";
+            $tipo = "vuoti";
             self::erroreLogin($tipo);
         } else {
             $user = $pm->verificaLogin($usernameLogin, $passwordLogin);
@@ -80,12 +85,12 @@ class CAccesso
                 $sessione = new USession();
                 $sessione->imposta_valore('utente', $user->getUsername());
                 $sessione->imposta_valore("tipo_utente", get_class($user));
-                if(get_class($user) == "EAdmin"){
+                if (get_class($user) == "EAdmin") {
                     header("Location: /Admin/dashboardAdmin");
                 }
                 header("Location: /Ricerca/mostraHome");
-            }else{
-                $tipo="credenziali";
+            } else {
+                $tipo = "credenziali";
                 self::erroreLogin($tipo);
             }
         }
@@ -95,7 +100,8 @@ class CAccesso
      * Funzione che si occupa di prelevare i dati dal form, creare un oggetto EUtente e salvarlo nel db
      * @return void
      */
-    static function registrazioneUtente() {
+    static function registrazioneUtente()
+    {
         $pm = FPersistentManager::getInstance();
         $view = new VAccesso();
         $sessione = new USession();
@@ -105,14 +111,14 @@ class CAccesso
         $userU = $pm->exist("FUtente", "username", $username);
         $admin = $pm->exist("FAdmin", "username", $username);
 
-        if ($userP || $userU || $admin){
+        if ($userP || $userU || $admin) {
             $message = "Username già esistente, si prega di scriverne un altro";
             echo "<script type='text/javascript'>
                             alert('$message');
                             window.location.replace('/Accesso/registrazioneUtent');
                       </script>";
         } else {
-            $utente = new EUtente($view->getPassword(),$view->getNome(),$view->getCognome(),$username,$view->getEmail());
+            $utente = new EUtente($view->getPassword(), $view->getNome(), $view->getCognome(), $username, $view->getEmail());
             $utente->Iscrizione();
 
             $img_profilo = null;
@@ -128,7 +134,7 @@ class CAccesso
 
             $pm->store($utente);
 
-            $sessione->imposta_valore('utente',$utente->getUsername());
+            $sessione->imposta_valore('utente', $utente->getUsername());
             $sessione->imposta_valore("tipo_utente", get_class($utente));
 
             header("Location: /Ricerca/mostraHome");
@@ -140,7 +146,8 @@ class CAccesso
      * Funzione che si occupa di prelevare i dati dal form, creare un oggetto EProprietario e salvarlo nel db
      * @return void
      */
-    static function registrazioneProprietario() {
+    static function registrazioneProprietario()
+    {
         $pm = FPersistentManager::getInstance();
         $view = new VAccesso();
         $sessione = new USession();
@@ -150,15 +157,14 @@ class CAccesso
         $userU = $pm->exist("FUtente", "username", $username);
         $admin = $pm->exist("FAdmin", "username", $username);
 
-        if ($userP || $userU || $admin){
+        if ($userP || $userU || $admin) {
             $message = "Username già esistente, si prega di scriverne un altro";
             echo "<script type='text/javascript'>
                             alert('$message');
                             window.location.replace('/Accesso/registrazioneUtent');
                       </script>";
-        }
-        else {
-            $proprietario = new EProprietario($view->getNome(),$view->getCognome(),$view->getEmail(),$username,$view->getPassword());
+        } else {
+            $proprietario = new EProprietario($view->getNome(), $view->getCognome(), $view->getEmail(), $username, $view->getPassword());
 
             $img_profilo = null;
 
@@ -172,7 +178,7 @@ class CAccesso
             $proprietario->setImgProfilo($img_profilo);
             $pm->store($proprietario);
 
-            $sessione->imposta_valore('utente',$proprietario->getUsername());
+            $sessione->imposta_valore('utente', $proprietario->getUsername());
             $sessione->imposta_valore("tipo_utente", get_class($proprietario));
 
             header("Location: /Ricerca/mostraHome");
@@ -183,7 +189,8 @@ class CAccesso
      * Funzione che provvede alla rimozione delle variabili di sessione, alla sua distruzione e a rinviare alla homepage
      * @return void
      */
-    public function logout(){
+    public function logout()
+    {
         $sessione = new USession();
         $sessione->chiudi_sessione();
         header('Location: /Ricerca/mostraHome');
@@ -194,7 +201,8 @@ class CAccesso
      * @param $tipo
      * @return void
      */
-    public function erroreLogin($tipo): void {
+    public function erroreLogin($tipo): void
+    {
         $view = new VAccesso();
         $view->erroreLogin($tipo);
     }

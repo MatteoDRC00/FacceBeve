@@ -3,11 +3,12 @@
 require_once 'autoload.php';
 require_once 'StartSmarty.php';
 
-class CFrontController{
+class CFrontController
+{
 
-    public function run ($path)
+    public function run($path)
     {
-        if($path !='/') {
+        if ($path != '/') {
             $resource = explode('/', $path);
 
             array_shift($resource);
@@ -21,15 +22,23 @@ class CFrontController{
                     $objController = $controller::getInstance();
                     $function = $resource[1];
                     if (method_exists($objController, $function)) {
-                        if(isset($resource[2])){
+                        if (isset($resource[2])) {
                             $objController->$function(($resource[2]));
-                        }
-                        else
+                        } else
                             $objController->$function();
+                    } else {
+                        $controller = CRicerca::getInstance();
+                        $controller->mostraHome();
                     }
+                } else {
+                    $controller = CRicerca::getInstance();
+                    $controller->mostraHome();
                 }
+            } else {
+                $controller = CRicerca::getInstance();
+                $controller->mostraHome();
             }
-        }else{
+        } else {
             $controller = CRicerca::getInstance();
             $controller->mostraHome();
         }

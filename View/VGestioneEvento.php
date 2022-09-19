@@ -18,12 +18,7 @@ class VGestioneEvento{
 
 
     /**
-     * Metodo richiamato quando un Proprietario crea un locale.
-     * In caso di errori nella compilazione dei campi del locale, verrÃ  ricaricata la stessa pagina con un messaggio esplicativo
-     * dell'errore commesso in fase di compilazione.
-     * @param $utente oggetto utente che effettua l'inserimento dei dati nei campi dell'evento
-     * @param $error codice di errore con svariati significati. In base al suo valore verrÃ  eventualmente visualizzato un messaggio
-     * di errore nella pagina di creazione del locale
+     * Metodo richiamato quando un Proprietario crea un evento.
      * @throws SmartyException
      */
     public function showFormCreaEvento($id_locale)
