@@ -1,8 +1,7 @@
 <?php
 
 /**
- * Classe utilizzata per trasmettere risultati di query alle View
- *
+DA TOLTO
  */
 
 class UCheck
@@ -30,13 +29,20 @@ class UCheck
      * -Array
      * -Se non array, diventa un array ad un elemento per essere implementato nel foreach di smarty
      * -null, i.e. ==> (!isset)
+     * @return array
     */
-    public function check($result){
+    public function check($result,$num): array
+    {
         $x = array();
-        if(!empty($result)){
-            $x = $result;
-        }elseif(isset($result))
-            $x[] = $result;
+        if(!empty($result)) {
+            if ($num == 1) {
+                $x[] = $result;
+            } else {
+                for ($i = 0; $i < $num; $i++) {
+                    $x[] = $result[$i];
+                }
+            }
+        }
         return $x;
     }
 
