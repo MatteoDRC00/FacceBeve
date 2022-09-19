@@ -53,62 +53,13 @@ class CProfilo{
                 $view->mostraProfiloProprietario($proprietario, $locali);
             }
         }else{
-            $sessione->chiudi_sessione();
             header("Location: /Ricerca/mostraHome");
         }
 
     }
 
     /**
-     * Funzione che gestisce la modifica della password del Utente/Proprietario. Preleva la vecchia e la nuova password dalla View, verifica la correttezza della vecchia e procede alla modifica.
-     * @return false|void False se la vecchia password inserita non è corretta, altrimenti lancia un errore che rimanda alla View del errore.
-     * @throws SmartyException
-     */
-    public function modificaPassword(){
-        $view = new VProfilo();
-        $sessione = new USession();
-        $pm = FPersistentManager::getInstance();
-
-        if($sessione->isLogged()){
-            $username = $sessione->leggi_valore('utente');
-            $tipo = $sessione->leggi_valore('tipo_utente');
-            $tipo[0] = "F";
-            $class = $tipo;
-
-            $password = $view->getPassword();
-            $newpassword = $view->getNewPassword();
-
-            $user = $pm->load("username", $username, $class);
-
-            if($password != null && $newpassword != null){
-                if(md5($password) == $user->getPassword()){
-                    if($newpassword != $password){
-                        $user->setPassword($newpassword);
-                        $pm->update($class,"password", md5($newpassword),"username",$username);
-                        header('Location: /Profilo/mostraProfilo');
-                    }else{
-                        $message = "La password inserita è identica a quella precedente, si prega di scriverne un'altra";
-                        $tipo="password";
-                        self::erroreModifica($tipo,$message,$user);
-                    }
-                }else{
-                    $message = "La password precedente inserita è sbagliata, si prega di riprovare";
-                    $tipo="password";
-                    self::erroreModifica($tipo,$message,$user);
-                }
-
-            }else{
-                $message = "Entrambi i campi devono essere pieni";
-                $tipo="password";
-                self::erroreModifica($tipo,$message,$user);
-            }
-        }else{
-            header("Location: /Ricerca/mostraHome");
-        }
-    }
-
-    /**
-     * Funzione che gestisce la modifica dello Username del Utente/Proprietario. Preleva lo username nuovo dalla view e procede alla modifica.
+     * Funzione che gestisce la modifica dello Username per utente/Proprietario. Preleva lo username nuovo dalla view e procede alla modifica.
      * @return void
      * @throws SmartyException
      */
@@ -188,6 +139,57 @@ class CProfilo{
             header("Location: /Ricerca/mostraHome");
         }
     }
+
+    /**
+     * Funzione che gestisce la modifica della password del Utente/Proprietario. Preleva la vecchia e la nuova password dalla View, verifica la correttezza della vecchia e procede alla modifica.
+     * @return false|void False se la vecchia password inserita non è corretta, altrimenti lancia un errore che rimanda alla View del errore.
+     * @throws SmartyException
+     */
+    public function modificaPassword(){
+        $view = new VProfilo();
+        $sessione = new USession();
+        $pm = FPersistentManager::getInstance();
+
+        if($sessione->isLogged()){
+            $username = $sessione->leggi_valore('utente');
+            $tipo = $sessione->leggi_valore('tipo_utente');
+            $tipo[0] = "F";
+            $class = $tipo;
+
+            $password = $view->getPassword();
+            $newpassword = $view->getNewPassword();
+
+            $user = $pm->load("username", $username, $class);
+
+            if($password != null && $newpassword != null){
+                if(md5($password) == $user->getPassword()){
+                    if($newpassword != $password){
+                        $user->setPassword($newpassword);
+                        $pm->update($class,"password", md5($newpassword),"username",$username);
+                        header('Location: /Profilo/mostraProfilo');
+                    }else{
+                        $message = "La password inserita è identica a quella precedente, si prega di scriverne un'altra";
+                        $tipo="password";
+                        self::erroreModifica($tipo,$message,$user);
+                    }
+                }else{
+                    $message = "La password precedente inserita è sbagliata, si prega di riprovare";
+                    $tipo="password";
+                    self::erroreModifica($tipo,$message,$user);
+                }
+
+            }else{
+                $message = "Entrambi i campi devono essere pieni";
+                $tipo="password";
+                self::erroreModifica($tipo,$message,$user);
+            }
+        }else{
+            header("Location: /Ricerca/mostraHome");
+        }
+    }
+
+
+
 
 
     /**

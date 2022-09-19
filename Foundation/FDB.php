@@ -702,7 +702,7 @@ class FDB{
 				while ($row = $stmt->fetch())
 					$result[] = $row;                    //ritorna un array di righe.
 			}
-			//  $this->closeDbConnection();
+			//$this->closeDbConnection();
 			return array($result, $num);
 
 		} catch (PDOException $e) {
@@ -745,9 +745,9 @@ class FDB{
 	 * @param idlocale identificativo del locale
 	 * @return info del locale
 	 */
-	public function loadInfoEvento($id){
+	public function loadLocaleByEvento($id_evento){
 		try{
-			$query = ("SELECT * FROM Locale INNER JOIN Locale_Eventi ON Locale_Eventi.ID_Evento=".$id);
+			$query = "SELECT id FROM Locale INNER JOIN Locale_Eventi ON Locale_Eventi.ID_Evento=".$id_evento;
 			$stmt = $this->database->prepare($query); //Prepared Statement
 			$stmt->execute();
 			$num = $stmt->rowCount();
