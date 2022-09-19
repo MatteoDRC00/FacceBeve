@@ -1,12 +1,11 @@
 <?php
+
 require_once "autoload.php";
 require_once "utility/USession.php";
-require_once "utility/UCheck.php";
 
 /**
- * Classe utilizzata per la gestione delle operazioni all'interno dell'area personale dell'utente:
- * -Modifica del profilo
- * -Visualizzazione del profilo
+ * La classe CProfilo viene utilizzata per la gestione delle aree personali, con le relative possibili modifiche e gestioni
+ * @author Gruppo 8
  * @package Controller
  */
 class CProfilo{
@@ -33,20 +32,32 @@ class CProfilo{
     }
 
     /**
-     * Funzione che provvede alla rimozione delle variabili di sessione, alla sua distruzione e a rinviare alla homepage
+     * @return void
      */
-    static function logout(){
+    public function mostraProfilo(){
         $sessione = new USession();
-        $sessione->chiudi_sessione();
-        header('Location: Ricerca/mostraHome');
+        $pm = FPersistentManager::getInstance();
+
+        if($sessione->isLogged()){
+            $username = $sessione->leggi_valore("utente");
+            $tipo = $sessione->leggi_valore("tipo_utente");
+            if($tipo == "EUtente"){
+                $utente = $pm->load("username", $username, "FUtente");
+                $locali_preferiti = $pm->getLocaliPreferiti($username);
+                $view = new VProfilo();
+                $view->mostraProfiloUtente($utente, $locali_preferiti);
+            }elseif($tipo == "EProprietario"){
+                $proprietario = $pm->load("username", $username, "FProprietario");
+                $locali = $pm->load("proprietario", $username, "FLocale");
+                $view = new VProfilo();
+                $view->mostraProfiloProprietario($proprietario, $locali);
+            }
+        }else{
+            $sessione->chiudi_sessione();
+            header("Location: /Ricerca/mostraHome");
+        }
+
     }
-
-/*
-    public function error() {
-        $view = new VError();
-        $view->error('1');
-    } */
-
 
     /**
      * Funzione che gestisce la modifica della password del Utente/Proprietario. Preleva la vecchia e la nuova password dalla View, verifica la correttezza della vecchia e procede alla modifica.
@@ -267,31 +278,7 @@ class CProfilo{
         }
     }
 
-    public function mostraProfilo(){
-        $sessione = new USession();
-        $pm = FPersistentManager::getInstance();
-        $check = UCheck::getInstance();
 
-        if($sessione->isLogged()){
-            $username = $sessione->leggi_valore("utente");
-            $tipo = $sessione->leggi_valore("tipo_utente");
-            if($tipo == "EUtente"){
-                $utente = $pm->load("username", $username, "FUtente");
-                $locali_preferiti = $pm->getLocaliPreferiti($username);
-                $view = new VProfilo();
-                $view->mostraProfiloUtente($utente, $locali_preferiti);
-            }elseif($tipo == "EProprietario"){
-                $proprietario = $pm->load("username", $username, "FProprietario");
-                $locali = $check->check($pm->load("proprietario", $username, "FLocale"));
-                $view = new VProfilo();
-                $view->mostraProfiloProprietario($proprietario, $locali);
-            }
-        }else{
-            $sessione->chiudi_sessione();
-            header("Location: /Ricerca/mostraHome");
-        }
-
-    }
 
     public function erroreModifica ($tipo,$message,$user): void {
         $view = new VProfilo();

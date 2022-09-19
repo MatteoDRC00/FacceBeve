@@ -4,7 +4,8 @@ require_once "autoload.php";
 require_once "utility/USession.php";
 
 /**
- * La classe CAccesso è la classe CONTROLLER utilizzata per la registrazione e l'autenticazione dell'utente/proprietario.
+ * La classe CAccesso è utilizzata per la registrazione e l'autenticazione dell'utente/proprietario.
+ * @author Gruppo 8
  * @package Controller
  */
 class CAccesso
@@ -186,6 +187,16 @@ class CAccesso
         $sessione = new USession();
         $sessione->chiudi_sessione();
         header('Location: /Ricerca/mostraHome');
+    }
+
+    /**
+     * Permette il reinserimento delle credenziali nel caso di errato login
+     * @param $tipo
+     * @return void
+     */
+    public function erroreLogin($tipo): void {
+        $view = new VAccesso();
+        $view->erroreLogin($tipo);
     }
 
 }

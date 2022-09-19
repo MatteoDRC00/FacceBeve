@@ -126,12 +126,14 @@ class FPersistentManager {
         return $db->existEsterne($class, $attributo1, $chiave1, $attributo2, $chiave2);
     }
 
-    /**  Metodo che permette di cercare/caricare un campo con un valore passato come parametro
-     *  @param field , campo da caricare
-     *  @param  val , valore da caricare
-     *  @param  Fclass ,classe Foundation interessata
+    /**
+     *
+     * @param $field
+     * @param $val
+     * @param $Fclass
+     * @return mixed
      */
-    public function load($field, $val,$Fclass) {
+    public function load($field, $val, $Fclass) {
         return $Fclass::loadByField($field,$val);
     }
 
