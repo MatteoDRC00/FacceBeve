@@ -666,7 +666,6 @@ class FDB{
 							else
 								$query = $query . " INNER JOIN Locale_Eventi ON Locale_Eventi.ID_Locale=Evento.id INNER JOIN Locale ON Locale.nome='".$nomelocale."';";
 							break;
-							break;
 						case 1:
 							if ($query == null)
 								$query = "SELECT Evento.id,Evento.nome,Evento.descrizione,Evento.data,Evento.idImg FROM Evento WHERE nome ='" . $nomeevento . "'";

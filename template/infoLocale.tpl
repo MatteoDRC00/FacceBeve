@@ -119,7 +119,7 @@
                         </ul>
                     </div>
                     {if ($userlogged eq 'loggato')}
-                        {if isset($eventi[0])}
+                        {if isset($eventi)}
                             <div class="portfolio-details-slider swiper">
                                 <br>
                                 <h4><strong>Eventi organizzati:</strong></h4>

@@ -34,11 +34,9 @@ class UCheck
     public function check($result){
         $x = array();
         if(!empty($result)){
-            for($i=0;$i<sizeof($result);$i++){
-                $x[] = $result[$i];
-            }
-        }elseif(isset($result))
             $x = $result;
+        }elseif(isset($result))
+            $x[] = $result;
         return $x;
     }
 

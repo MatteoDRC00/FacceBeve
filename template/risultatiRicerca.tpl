@@ -94,7 +94,7 @@
         <div class="container" data-aos="fade-up">
             <div class="row">
                 <article class="entry">
-                    {if isset($array)}
+                    {if !empty($array)}
                         {if $tipo eq "Locali"}
                             {foreach $array as $locale}
                                 <div class="entry-img">
