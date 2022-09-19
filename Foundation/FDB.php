@@ -622,7 +622,6 @@ class FDB{
 				}
 			}
 			$query = $query . ";";
-			print $query;
 
 			$stmt = $this->database->prepare($query);
 			$stmt->execute();
