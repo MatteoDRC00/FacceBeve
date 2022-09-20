@@ -776,9 +776,9 @@ class FDB{
 	}
 
 	/**
-	 * Funzione utilizzata per ritornare tutte le recensioni presenti sul database
-	 * Utilizzata nella pagina admin
-	 * @param $query query da eseguire
+	 * Metodo che restituisce tutte le righe di una tabella
+	 * @param $table
+	 * @return array|null
 	 */
 	public function getAll($table): ?array
 	{

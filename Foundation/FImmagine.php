@@ -33,7 +33,7 @@ class FImmagine
     }
 
     /**
-     * questo metodo restituisce il nome della classe per la costruzione delle Query
+     * Metodo che restituisce il nome della classe per la costruzione delle Query
      * @return string $class nome della classe
      */
     public static function getClass(){

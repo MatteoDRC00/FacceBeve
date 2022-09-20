@@ -10,7 +10,7 @@ class FAdmin
 
     /**
      * Classe Foundation
-     *
+     * @var string
      */
     private static $class = "FAdmin";
 
