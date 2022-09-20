@@ -2,6 +2,7 @@
 
 /**
  * La classe EProprietario contiene tutti gli attributi e metodi base riguardanti i proprietari di locali attraverso:
+ * * Id: identificativo dell'immagine
  * * Nome: identifica il nome del proprietario
  * * Cognome: identifica il cognome del proprietario
  * * Email: identifica l'email del proprietario
@@ -46,7 +47,7 @@ class EProprietario implements JsonSerializable
 
     /**
      * Immagine del profilo del Proprietario
-     * @var EImmagine
+     * @var EImmagine|null
      */
     private ?EImmagine $img_profilo = null;
 
