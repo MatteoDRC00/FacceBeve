@@ -741,13 +741,14 @@ class FDB{
 		}
 	}
 
-	/** Metodo che restituisce il locale in cui si svolge un determinato evento, individuato dal suo id
-	 * @param idlocale identificativo del locale
-	 * @return info del locale
+	/**
+	 * Metodo che restituisce l'id del locale dato l'id di un suo evento
+	 * @param $id_evento
+	 * @return array|mixed|null
 	 */
 	public function loadLocaleByEvento($id_evento){
 		try{
-			$query = "SELECT id FROM Locale INNER JOIN Locale_Eventi ON Locale_Eventi.ID_Evento=".$id_evento;
+			$query = "SELECT ID_Locale FROM Locale_Eventi WHERE ID_Evento=".$id_evento.";";
 			$stmt = $this->database->prepare($query); //Prepared Statement
 			$stmt->execute();
 			$num = $stmt->rowCount();

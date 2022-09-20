@@ -181,8 +181,6 @@ class FEvento {
     }
 
 
-
-
     /** Metodo che permette di caricare un evento che ha determinati parametri, i quali vengono passati in input da una form */
     public static function loadByForm($part1, $part2,$part3,$part4) {
         $evento = array();
@@ -209,50 +207,5 @@ class FEvento {
         }
         return array($evento,$locale);
     }
-
-    /**
-     * metodo che permette di salvare le immagini di un evento nel db
-     * @param EEVento $evento di cui si vuole salvare le img
-     * @return void
-     */
-    public static function addImmagine(EEvento $evento){
-        $id = NULL;
-        $db = FDB::getInstance();
-        //Immagini Evento
-        if($evento->getImmagini()!=null){
-            foreach($evento->getImmagini() as $img){
-                $idImg = $img->getId();
-                $db->chiaviEsterne("Evento_Immagini","ID_Evento","ID_Immagine",$id,$idImg);
-            }
-        }
-    }
-
-    /**
-     * metodo che permette di cancellare tuple nelle tabelle generate da relazioni N:N
-     * @param Object $obj oggetto da cancellare
-     * @return void
-     */
-    public static function deleteEsterne(Object $obj){;
-        $db = FDB::getInstance();
-        if(get_class($obj)=="EImmagine") {
-            $db->delete("Evento_Immagini", "ID_Immagine", $obj->getId());
-        }
-    }
-
-    /**
-     * metodo che permette di cancellare tuple nelle tabelle generate da relazioni N:N
-     * @param Object $obj oggetto da cancellare
-     * @return void
-     */
-    public static function storeEsterne(Object $obj,$id){
-        $db = FDB::getInstance();
-        if(get_class($obj)=="EImmagine"){
-            $idImg = $obj->getId();
-            $db->chiaviEsterne("Evento_Immagini","ID_Evento","ID_Immagine",$id,$idImg);
-        }
-    }
-
-
-
 
 }

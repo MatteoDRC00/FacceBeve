@@ -1,29 +1,45 @@
 <?php
+
 /**
  * La classe FAdmin fornisce query per gli oggetti EAdmin
  * @author Gruppo8
  * @package Foundation
  */
-class FAdmin{
-
-    /** classe Foundation */
-    private static $class="FAdmin";
-
-    /** tabella con la quale opera nel DB */
-    private static $table="Admin";
-
-    /** valori della tabella nel DB */
-    private static $values="(:username,:email,:password)";
-
-    /** costruttore*/
-    public function __construct(){}
+class FAdmin
+{
 
     /**
-     * metodo che lega gli attributi dell'Admin da inserire con i parametri della INSERT
+     * Classe Foundation
+     *
+     */
+    private static $class = "FAdmin";
+
+    /**
+     * Tabella con la quale opera nel DB
+     * @var string
+     */
+    private static $table = "Admin";
+
+    /**
+     * Valori della tabella nel DB
+     * @var string
+     */
+    private static $values = "(:username,:email,:password)";
+
+    /**
+     * Costruttore della classe
+     */
+    public function __construct()
+    {
+    }
+
+    /**
+     * Metodo che lega gli attributi dell'Admin da inserire con i parametri della INSERT
      * @param PDOStatement $stmt
      * @param EAdmin $admin
      */
-    public static function bind(PDOStatement $stmt, EAdmin $admin){
+    public static function bind(PDOStatement $stmt, EAdmin $admin)
+    {
         $stmt->bindValue(':username', $admin->getUsername(), PDO::PARAM_STR);
         $stmt->bindValue(':email', $admin->getEmail(), PDO::PARAM_STR);
         $stmt->bindValue(':password', $admin->getPassword(), PDO::PARAM_STR);
@@ -31,31 +47,34 @@ class FAdmin{
 
 
     /**
-     * metodo che restituisce il nome della classe per la costruzione delle query
-     * @return string $class Nome della classe
+     * Metodo che restituisce il nome della classe per la costruzione delle query
+     * @return string
      */
-    public static function getClass(){
+    public static function getClass()
+    {
         return self::$class;
     }
 
     /**
-     * metodo che restituisce il nome della tabella per la costruzione delle query
-     * @return string $table Nome della tabella
+     * Metodo che restituisce il nome della tabella per la costruzione delle query
+     * @return string
      */
-    public static function getTable(){
+    public static function getTable()
+    {
         return self::$table;
     }
 
     /**
-     * metodo che restituisce l'insieme dei valori per la costruzione delle query
-     * @return string $values Nomi delle colonne della tabella
+     * Metodo che restituisce l'insieme dei valori per la costruzione delle query
+     * @return string
      */
-    public static function getValues(){
+    public static function getValues()
+    {
         return self::$values;
     }
 
     /**
-     * metodo che permette il salvataggio di un Admin nel db
+     * Metodo che permette il salvataggio di un Admin nel db
      * @param EAdmin $admin Admin da salvare
      * @return string
      */
@@ -66,66 +85,78 @@ class FAdmin{
     }
 
     /**
-     * metodo che verifica l'esistenza di un Admin nel DB considerato un attributo
+     * Metodo che verifica l'esistenza di un Admin nel DB dato un attributo
      * @param string $attributo
      * @param string $valore
      * @return bool
      */
-    public static function exist(string $attributo,string $valore) {
+    public static function exist(string $attributo, string $valore)
+    {
         $db = FDB::getInstance();
         return $db->exist(static::getClass(), $attributo, $valore);
     }
 
     /**
-     * metodo che aggiorna il valore di un attributo dell'Admin sul DB data la chiave primaria
+     * Metodo che aggiorna il valore di un attributo dell'Admin sul DB data la chiave primaria
      * @param string $attributo
      * @param string $newvalue
      * @param string $attributo_pk
      * @param string $value_pk
      * @return bool
      */
-    public static function update(string $attributo, string $newvalue, string $attributo_pk, string $value_pk){
-        $db=FDB::getInstance();
+    public static function update(string $attributo, string $newvalue, string $attributo_pk, string $value_pk)
+    {
+        $db = FDB::getInstance();
         return $db->update(static::getClass(), $attributo, $newvalue, $attributo_pk, $value_pk);
     }
 
     /**
+     * Metodo che elimina dal DB un Admin sul DB dato il valore di un attributo
      * @param string $attributo
      * @param string $valore
      * @return bool
      */
-    public static function delete(string $attributo, string $valore){
+    public static function delete(string $attributo, string $valore)
+    {
         $db = FDB::getInstance();
         return $db->delete(static::getClass(), $attributo, $valore);
     }
 
 
     /**
-     * @param $field
-     * @param $id
+     * Metodo che carica Admin dal DB dato il valore di un attributo
+     * @param string $attributo
+     * @param string $valore
      * @return array
      */
-    public static function loadByField($field, $id){
+    public static function loadByField(string $attributo, string $valore)
+    {
         $admin = array();
         $db = FDB::getInstance();
-        list($result,$num) = $db->load(static::getClass(), $field, $id);
-        if(($result!=null) && ($num == 1)) {
-            $admin[0] = new EAdmin($result['username'], $result['email'], $result['password']);
-        }
-        else {
-            if(($result!=null) && ($num > 1)){
-                for($i=0; $i<count($result); $i++){
-                    $admin[$i] = new EAdmin( $result[$i]['username'], $result[$i]['email'], $result[$i]['password']);
+        list($result, $num) = $db->load(static::getClass(), $attributo, $valore);
+        if (($result != null) && ($num == 1)) {
+            $admin = new EAdmin($result['username'], $result['email'], $result['password']);
+        } else {
+            if (($result != null) && ($num > 1)) {
+                for ($i = 0; $i < count($result); $i++) {
+                    $admin[$i] = new EAdmin($result[$i]['username'], $result[$i]['email'], $result[$i]['password']);
                 }
             }
         }
         return $admin;
     }
 
-    public static function verificaLogin($user, $pass) {
+    /**
+     * Metodo che verifica se esiste un Admin date le credenziali
+     * @param string $username
+     * @param string $password
+     * @return array|EAdmin|null
+     */
+    public static function verificaLogin(string $username, string $password)
+    {
         $db = FDB::getInstance();
-        $admin = $db->loadVerificaAccesso($user, $pass, static::getClass());
-        if(!empty($admin))
+        $admin = $db->loadVerificaAccesso($username, $password, static::getClass());
+        if (!empty($admin))
             return self::loadByField("username", $admin["username"]);
         else
             return null;
