@@ -1,17 +1,55 @@
 <?php
 
 /**
- * La classe EUtente contiene tutti gli attributi e metodi base riguardanti gli utenti.
+ * La classe EUtente contiene tutti gli attributi e metodi base riguardanti gli utenti attraverso:
+ * * Nome: identifica il nome del proprietario
+ * * Cognome: identifica il cognome del proprietario
+ * * Email: identifica l'email del proprietario
+ * * Username: identifica l'username utilizzata dal Proprietario in fase di login
+ * * Password: identifica la password utilizzata dal Proprietario in fase di login
+ * * Img_Profilo: identifica l'immagine di profilo del Proprietario
+ * * Iscrizione: indica la data d'iscrizione al sito da parte dell'utente
+ * * State: indica se l'utente è bannato o meno, i.e., se può o meno scrivere recensioni
  *  @author Gruppo 8
  *  @package Entity
  */ 
 class EUtente {
 
+
+    /**
+     * Password del Utente, per l'identificazione
+     * @var string
+     */
     private string $password;
+
+    /**
+     * Username del Utente, per l'identificazione
+     * @var string
+     */
     private string $username;
+
+    /**
+     * Email del Utente
+     * @var string
+     */
     private string $email;
+
+    /**
+     * Nome del Utente
+     * @var string
+     */
     private string $nome;
+
+    /**
+     * Cognome del Utente
+     * @var string
+     */
     private string $cognome;
+
+    /**
+     * Lista 
+     * @var
+     */
     private array $localipreferiti;
     private ?string $iscrizione = null;
     private ?EImmagine $img_profilo = null;

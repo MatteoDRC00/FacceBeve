@@ -1,10 +1,15 @@
 <?php
 
-/** La classe EEvento rapprensenta un evento organizzato da un locale
- *  @author Gruppo8
- *  @package Entity
+/** La classe EEvento rappresenta un evento organizzato da un locale attraverso:
+ * * Nome: identifica il nome del evento
+ * * Descrizione: identifica la descrizione del evento
+ * * Data: identifica il giorno in cui si svolge l'evento (gg/mm/aaaa)
+ * * Img: identifica il poster/copertina del evento
+ * @author Gruppo8
+ * @package Entity
  */
-class EEvento{
+class EEvento
+{
 
     /**
      * Id dell'evento che lo caratterizza sul db
@@ -43,7 +48,8 @@ class EEvento{
      * @param string $descrizione
      * @param string $data
      */
-    public function __construct(string $nome, string $descrizione, string $data){
+    public function __construct(string $nome, string $descrizione, string $data)
+    {
         $this->id = NULL;
         $this->nome = $nome;
         $this->descrizione = $descrizione;
@@ -143,8 +149,9 @@ class EEvento{
     /**
      * @return string
      */
-    public function __toString() {
-        return "\nid: ".$this->getId()."\n"."nome: ".$this->Nome()."\n"."descrizione: ".$this->getDescrizione()."\n"."data: ".$this->getData()."\n";
+    public function __toString()
+    {
+        return "\nid: " . $this->getId() . "\n" . "nome: " . $this->Nome() . "\n" . "descrizione: " . $this->getDescrizione() . "\n" . "data: " . $this->getData() . "\n";
     }
 
 

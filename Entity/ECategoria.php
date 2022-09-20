@@ -1,14 +1,17 @@
 <?php
 
 /**
- * La classe ECategoria caratterizza il tipo di locale
- *  @author Gruppo8
- *  @package Entity
+ * La classe ECategoria caratterizza il tipo di locale attraverso:
+ * * Genere: identifica il nome della categoria(es:Bar, Pub...)
+ * * Descrizione: rappresenta una breve descrizione della categoria
+ * @author Gruppo8
+ * @package Entity
  */
-class ECategoria{
+class ECategoria
+{
 
     /**
-     * Identifica il tipo di locale
+     * Identifica la categoria
      * @var string
      */
     private string $genere;
@@ -24,7 +27,8 @@ class ECategoria{
      * @param string $genere
      * @param string|null $descrizione
      */
-    public function __construct(string $genere, ?string $descrizione){
+    public function __construct(string $genere, ?string $descrizione)
+    {
         $this->genere = $genere;
         $this->descrizione = $descrizione;
     }
@@ -69,8 +73,9 @@ class ECategoria{
     /**
      * @return string
      */
-    public function __toString() {
-        return "\ngenere: ".$this->getGenere()."\n"."descrizione: ".$this->getDescrizione()."\n";
+    public function __toString()
+    {
+        return "\ngenere: " . $this->getGenere() . "\n" . "descrizione: " . $this->getDescrizione() . "\n";
     }
 
 

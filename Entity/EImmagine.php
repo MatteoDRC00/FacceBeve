@@ -1,11 +1,16 @@
 <?php
 
 /**
- * La classe EImmagine definisce le immagini per Utenti, Proprietari, Locali e Eventi
+ * La classe EImmagine definisce le immagini per Utenti, Proprietari, Locali ed Eventi attraverso:
+ *  * Nome: nome dell'immagine
+ * * Immagine: dati binari codificati in base64 dell'immagine
+ * * Type: MIME type dell'immagine
+ * * Size: dimensione immagine
  * @author Gruppo 8
  * @package Entity
  */
-class EImmagine{
+class EImmagine
+{
 
     /**
      * Id dell'immagine che la caratterizza sul db
@@ -147,8 +152,9 @@ class EImmagine{
     /**
      * @return string
      */
-    public function __toString() {
-        return "\nome: ".$this->getNome()."\n"."size: ".$this->getSize()."\n"."type: ".$this->getType()."\n"."immagine: ".$this->getImmagine()."\n";
+    public function __toString()
+    {
+        return "\nome: " . $this->getNome() . "\n" . "size: " . $this->getSize() . "\n" . "type: " . $this->getType() . "\n" . "immagine: " . $this->getImmagine() . "\n";
     }
 
 }

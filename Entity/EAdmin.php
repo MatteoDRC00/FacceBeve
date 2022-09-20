@@ -1,11 +1,15 @@
 <?php
 
 /**
- * La classe EAdmin contiene le informazioni e metodi riguardanti gli admin.
- *  @author Gruppo 8
- *  @package Entity
- */ 
-class EAdmin{
+ * La classe EAdmin contiene le informazioni e metodi riguardanti gli admin:
+ * * Username: identifica l'username utilizzata dal Admin in fase di login
+ * * Password: identifica la password utilizzata dal Admin in fase di login
+ * * Email: identifica l'email del Admin
+ * @author Gruppo 8
+ * @package Entity
+ */
+class EAdmin
+{
 
     /**
      * Password dell'admin, per l'identificazione
@@ -31,7 +35,8 @@ class EAdmin{
      * @param string $email
      * @param string $password
      */
-    public function __construct(string $username, string $email, string $password ){
+    public function __construct(string $username, string $email, string $password)
+    {
         $this->username = $username;
         $this->password = $password;
         $this->email = $email;
@@ -94,7 +99,8 @@ class EAdmin{
     /**
      * @return string
      */
-    public function __toString() {
-        return "\nusername: ".$this->getUsername()."\n"."email: ".$this->getEmail()."\n"."password: ".$this->getPassword()."\n";
+    public function __toString()
+    {
+        return "\nusername: " . $this->getUsername() . "\n" . "email: " . $this->getEmail() . "\n" . "password: " . $this->getPassword() . "\n";
     }
 }

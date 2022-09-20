@@ -1,10 +1,20 @@
 <?php
 
-/** La classe ELocale caratterizza un singolo locale
- *  @author Gruppo8
- *  @package Entity
+/** La classe ELocale caratterizza un locale attraverso:
+ * * Nome: identifica il nome del locale
+ * * Descrizione: identifica la descrizione del locale/cosa si fa/storia del locale
+ * * NumTelefono: identifica il numero di telefono del locale
+ * * Proprietario: identifica l'account proprietario che gestisce il locale
+ * * Categoria: identifica la/e categoria/e associata/e al locale
+ * * Localizzazione: identifica il luogo in cui risiede il locale
+ * * Eventi Organizzati: identifica gli eventi organizzati dal locale
+ * * Orario: identifica l'orario settimanale del locale
+ * * Immagine: identifica la foto/le foto del locale
+ * @author Gruppo8
+ * @package Entity
  */
-class ELocale{
+class ELocale
+{
 
     /**
      * Id del locale che lo identifica sul db
@@ -13,7 +23,7 @@ class ELocale{
     private ?int $id;
 
     /**
-     * * Nome del locale
+     * Nome del locale
      * @var string
      */
     private string $nome;
@@ -74,7 +84,8 @@ class ELocale{
      * @param EProprietario $proprietario
      * @param ELocalizzazione $localizzazione
      */
-    public function __construct(string $nome, string $descrizione, string $num_telefono, EProprietario $proprietario, ELocalizzazione $localizzazione){
+    public function __construct(string $nome, string $descrizione, string $num_telefono, EProprietario $proprietario, ELocalizzazione $localizzazione)
+    {
         $this->id = NULL;
         $this->nome = $nome;
         $this->num_telefono = $num_telefono;
@@ -147,7 +158,7 @@ class ELocale{
      */
     public function getNumTelefono(): string
     {
-    return $this->num_telefono;
+        return $this->num_telefono;
     }
 
     /**
@@ -179,7 +190,7 @@ class ELocale{
 
     /**
      *  Restituisce la/e categoria/e del locale
-     *  @return array|null
+     * @return array|null
      */
     public function getCategoria(): ?array
     {
@@ -268,38 +279,40 @@ class ELocale{
         $this->img = $img;
     }
 
-   /* public function addImg(EImmagine $img): void
-    {
-        $this->img[] = $img;
-    }*/
+    /* public function addImg(EImmagine $img): void
+     {
+         $this->img[] = $img;
+     }*/
 
 
     public function jsonSerialize()
     {
         return
             [
-                'id'   => $this->getId(),
+                'id' => $this->getId(),
                 'nome' => $this->getNome(),
-                'numTelefono'   => $this->getNumTelefono(),
-                'descrizione'   => $this->getDescrizione(),
-                'proprietario'   => $this->getProprietario(),
-                'categoria'   => $this->getCategoria(),
-                'localizzazione'   => $this->getLocalizzazione(),
-                'eventi'   => $this->getEventiOrganizzati(),
-                'orario'   => $this->getOrario(),
-                'visibility'  => $this->getVisibility(),
-                'img'   => $this->getImg()
+                'numTelefono' => $this->getNumTelefono(),
+                'descrizione' => $this->getDescrizione(),
+                'proprietario' => $this->getProprietario(),
+                'categoria' => $this->getCategoria(),
+                'localizzazione' => $this->getLocalizzazione(),
+                'eventi' => $this->getEventiOrganizzati(),
+                'orario' => $this->getOrario(),
+                'visibility' => $this->getVisibility(),
+                'img' => $this->getImg()
             ];
     }
 
     /**
      * @return $print String
      */
-    public function __toString() {
-        $print = "\nid: ".$this->getId()."\n"."nome: ".$this->Nome()."\n"."numero di telefono: ".$this->getNumTelefono()."\n"."proprietario: ".$this->getProprietario()->getUsername()."\n"."descrizione: ".$this->getDescrizione()."\n"."categoria: ".$this->getCategoria()."\n"."Luogo: ".$this->getLocalizzazione()->getCodice()."\n"."Eventi: ".$this->getEventiOrganizzati()."\n"."Orario: ".$this->getOrario()."\n"."Visibilità: ".$this->getVisibility()."\n"."Img: ".$this->getImg()."\n";
+    public function __toString()
+    {
+        $print = "\nid: " . $this->getId() . "\n" . "nome: " . $this->Nome() . "\n" . "numero di telefono: " . $this->getNumTelefono() . "\n" . "proprietario: " . $this->getProprietario()->getUsername() . "\n" . "descrizione: " . $this->getDescrizione() . "\n" . "categoria: " . $this->getCategoria() . "\n" . "Luogo: " . $this->getLocalizzazione()->getCodice() . "\n" . "Eventi: " . $this->getEventiOrganizzati() . "\n" . "Orario: " . $this->getOrario() . "\n" . "Visibilità: " . $this->getVisibility() . "\n" . "Img: " . $this->getImg() . "\n";
 
         return $print;
     }
 
 }
+
 ?>

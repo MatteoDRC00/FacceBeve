@@ -1,14 +1,29 @@
 <?php
-/** La classe orario definisce in base al giorno della settimana l'orario di apertura e l'orario di chiusura del locale, caratterizzato da:
- *  - giorno_settimana: indica il giorno della settimana
- *  - orario_aperuta: indica l'ora di apertura del locale in base al giorno della settimana
- *  - orario_chiusura: indica l'ora di chiusura del locale in base al giorno della settimana
+/** La classe EOrarioo definisce in base al giorno della settimana l'orario di apertura e l'orario di chiusura del locale, attraverso:
+ * * Giorno_settimana: indica il giorno della settimana
+ * * Orario_aperuta: indica l'ora di apertura del locale in base al giorno della settimana
+ * * Orario_chiusura: indica l'ora di chiusura del locale in base al giorno della settimana
  */
 class EOrario implements JsonSerializable {
 
     private ?int $id;
+
+    /**
+     * Giorno della settimana
+     * @var string
+     */
     private string $giorno_settimana;
+
+    /**
+     * Orario di apertura (HH:HH)
+     * @var string
+     */
     private ?string $orario_apertura;
+
+    /**
+     * Orario di chiusura (HH:HH)
+     * @var string
+     */
     private ?string $orario_chiusura;
 
     /**
