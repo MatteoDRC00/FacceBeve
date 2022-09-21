@@ -1,4 +1,5 @@
 <?php
+
 /**
  * La classe FLocalizzazione fornisce query per gli oggetti ELocalizzazione
  * @author Gruppo 8
@@ -6,22 +7,32 @@
  */
 class FLocalizzazione {
 
-    /** classe Foundation */
+    /**
+     * Classe Foundation
+     * @var string
+     */
     private static $class="FLocalizzazione";
 
-	/** tabella con la quale opera nel DB */
+    /**
+     * Tabella con la quale opera nel DB
+     * @var string
+     */
     private static $table="Localizzazione";
 
-    /** valori della tabella nel DB */
+    /**
+     * Valori della tabella nel DB
+     * @var string
+     */
     private static $values="(:id,:indirizzo,:numCivico,:citta, :CAP)";
 
-    /** costruttore */
+    /**
+     * Costruttore della classe
+     */
     public function __construct(){
-
     }
 
     /**
-    * metodo che lega gli attributi della Localizzazione da inserire con i parametri della INSERT
+    * Metodo che lega gli attributi della Localizzazione da inserire con i parametri della INSERT
     * @param PDOStatement $stmt
     * @param ELocalizzazione $localizzazione
     */
@@ -34,84 +45,52 @@ class FLocalizzazione {
     }
 
     /**
-    * metodo che restituisce il nome della classe per la costruzione delle query
-    * @return string $class Nome della classe
+    * Metodo che restituisce il nome della classe per la costruzione delle query
+    * @return string
     */
     public static function getClass(){
         return self::$class;
     }
 
     /**
-    * metodo che restituisce il nome della tabella per la costruzione delle query
-    * @return string $table Nome della tabella
+    * Metodo che restituisce il nome della tabella per la costruzione delle query
+    * @return string
     */
     public static function getTable(){
         return self::$table;
     }
 
     /**
-    * metodo che restituisce l'insieme dei valori per la costruzione delle uery
-    * @return string $values Nomi delle colonne della tabella
+    * Metodo che restituisce l'insieme dei valori per la costruzione delle uery
+    * @return string
     */
     public static function getValues(){
         return self::$values;
     }
 
     /**
-     * metodo che permette il salvataggio di una Localizzazione nel db
-     * @param ELocalizzazione $localizzazione Localizzazione da salvare
-     * @return void
+     * Metodo che permette il salvataggio di una Localizzazione nel db
+     * @param ELocalizzazione $localizzazione
+     * @return false|string|null
      */
     public static function store(ELocalizzazione $localizzazione){
-        $db=FDB::getInstance();
-        $id = $db->store(static::getClass() ,$localizzazione);
-        //$localizzazione->setId($id);
-        return $id;
-    }
-
-
-    /**
-    * Permette la load sul database
-    * @param $id campo da confrontare per trovare l'oggetto
-    * @return object $utente Utente
-    */
-    public static function loadByField($field, $id){
-        $luogo = null;
         $db = FDB::getInstance();
-        list($result,$num) = $db->load(static::getClass(), $field, $id);
-        if(($result!=null) && ($num == 1)) {
-		    $luogo = new ELocalizzazione($result['indirizzo'],$result['numCivico'],$result['citta'], $result['CAP']); //Carica un Luogo dal database
-            $luogo->setId($result['id']);
-        }
-        else {
-            if(($result!=null) && ($num > 1)){
-                $luogo = array();
-        	    for($i=0; $i<count($result); $i++){
-                    $luogo[$i] = new ELocalizzazione($result[$i]['indirizzo'], $result[$i]['numCivico'], $result[$i]['citta'], $result[$i]['CAP']); //Carica un array di oggetti Localizzazione dal database
-                    $luogo[$i]->setId($result[$i]['id']);
-                }
-            }
-        }
-        return $luogo;
+        return $db->store(static::getClass() ,$localizzazione);
     }
 
     /**
-     * metodo che verifica l'esistenza di una Localizzazione nel DB considerato un attributo
+     * Metodo che verifica l'esistenza di una Localizzazione nel DB dato un attributo
      * @param string $attributo
      * @param string $valore
      * @return bool
      */
     public static function exist(string $attributo,string $valore) {
         $db = FDB::getInstance();
-        $result = $db->exist(static::getClass(), $attributo, $valore);
-        if($result!=null)
-            return true;
-        else
-            return false;
+        return $db->exist(static::getClass(), $attributo, $valore);
     }
 
     /**
-     * metodo che aggiorna il valore di un attributo della Localizzazione sul DB data la chiave primaria
+     * Metodo che aggiorna il valore di un attributo della Localizzazione sul DB data la chiave primaria
      * @param string $attributo
      * @param string $newvalue
      * @param string $attributo_pk
@@ -121,25 +100,45 @@ class FLocalizzazione {
     public static function update(string $attributo, string $newvalue, string $attributo_pk, string $value_pk): bool
     {
         $db=FDB::getInstance();
-        $result = $db->update(static::getClass(), $attributo, $newvalue, $attributo_pk, $value_pk);
-        if($result)
-            return true;
-        else
-            return false;
+        return $db->update(static::getClass(), $attributo, $newvalue, $attributo_pk, $value_pk);
     }
 
     /**
+     * Metodo che elimina una Localizzazione dal DB dato il valore di un attibuto
      * @param string $attributo
      * @param string $valore
      * @return bool
      */
     public static function delete(string $attributo, string $valore){
-        $db=FDB::getInstance();
-        $result = $db->delete(static::getClass(), $attributo, $valore);
-        if($result)
-            return true;
-        else
-            return false;
+        $db = FDB::getInstance();
+        return $db->delete(static::getClass(), $attributo, $valore);
+    }
+
+
+    /**
+     * Metodo che carica Localizzazione dal DB dato il valore di un attributo
+     * @param string $attributo
+     * @param string $valore
+     * @return array
+     */
+    public static function loadByField(string $attributo, string $valore){
+        $localizzazione = null;
+        $db = FDB::getInstance();
+        list($result,$num) = $db->load(static::getClass(), $attributo, $valore);
+        if(($result!=null) && ($num == 1)) {
+            $localizzazione = new ELocalizzazione($result['indirizzo'],$result['numCivico'],$result['citta'], $result['CAP']); //Carica un Luogo dal database
+            $localizzazione->setId($result['id']);
+        }
+        else {
+            if(($result!=null) && ($num > 1)){
+                $localizzazione = array();
+        	    for($i=0; $i<count($result); $i++){
+                    $luogo[$i] = new ELocalizzazione($result[$i]['indirizzo'], $result[$i]['numCivico'], $result[$i]['citta'], $result[$i]['CAP']); //Carica un array di oggetti Localizzazione dal database
+                    $luogo[$i]->setId($result[$i]['id']);
+                }
+            }
+        }
+        return $localizzazione;
     }
 
 }

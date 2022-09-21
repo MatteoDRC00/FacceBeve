@@ -126,16 +126,16 @@ class FLocale
     }
 
     /**
-     * Metodo che permette la load sul DB
-     * @param $field
-     * @param $id
+     * Metodo che carica Locale dal DB dato il valore di un attributo
+     * @param string $attributo
+     * @param string $valore
      * @return array
      */
-    public static function loadByField($field, $id)
+    public static function loadByField(string $attributo, string $valore)
     {
         $locale = array();
         $db = FDB::getInstance();
-        list($result, $num) = $db->load(static::getClass(), $field, $id);
+        list($result, $num) = $db->load(static::getClass(), $attributo, $valore);
         if (($result != null) && ($num == 1)) {
             $proprietario = FProprietario::loadByField("username", $result["proprietario"]);
             $categorie[] = FCategoria::loadByLocale($result["id"]);
