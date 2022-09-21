@@ -206,14 +206,6 @@ class FPersistentManager {
         return $ris;
     }
 
-
-    /** Metodo che permette di caricare tutte le recensioni presenti sul db */
-    public static function loadAllRec () {
-        $ris = null;
-        $ris = FRecensione::loadAll();
-        return $ris;
-    }
-
     /**
      * Metodo che permette il caricamento degli utenti avendo come parametro di ricerca lo stato, i.e.,
      * 0) '0' ==> Bannato

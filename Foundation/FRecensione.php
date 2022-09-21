@@ -5,183 +5,157 @@
  * @author Gruppo 8
  * @package Foundation
  */
-class FRecensione{
+class FRecensione
+{
 
-    /** classe Foundation */
+    /**
+     * Classe Foundation
+     * @var string
+     */
     private static $class = "FRecensione";
 
-    /** tabella con la quale opera nel DB */
+    /**
+     * Tabella con la quale opera nel DB
+     * @var string
+     */
     private static $table = "Recensione";
 
-    /** valori della tabella nel DB */
-    private static $values="(:id,:titolo,:descrizione,:voto,:data,:segnalato,:utente,:locale)";
+    /**
+     * Valori della tabella nel DB
+     * @var string
+     */
+    private static $values = "(:id,:titolo,:descrizione,:voto,:data,:segnalato,:utente,:locale)";
 
-    /** costruttore */
-    public function __construct() {
-
+    /**
+     * Costruttore della classe
+     */
+    public function __construct()
+    {
     }
 
     /**
-     * metodo che lega gli attributi della Recensione da inserire con i parametri della INSERT
+     * Metodo che lega gli attributi della Recensione da inserire con i parametri della INSERT
      * @param PDOStatement $stmt
      * @param ERecensione $recensione
      */
-    public static function bind(PDOStatement $stmt, ERecensione $recensione) {
-        $stmt->bindValue(':id',NULL, PDO::PARAM_INT);
-        $stmt->bindValue(':titolo',$recensione->getTitolo(),PDO::PARAM_STR);
-        $stmt->bindValue(':descrizione',$recensione->getDescrizione(),PDO::PARAM_STR);
-        $stmt->bindValue(':voto',$recensione->getVoto(),PDO::PARAM_INT);
-        $stmt->bindValue(':data',$recensione->getData(),PDO::PARAM_STR);
-        $stmt->bindValue(':segnalato',$recensione->isSegnalata(),PDO::PARAM_BOOL);
-        $stmt->bindValue(':utente',$recensione->getUtente()->getUsername(),PDO::PARAM_STR);
-        $stmt->bindValue(':locale',$recensione->getLocale()->getId(),PDO::PARAM_INT);
+    public static function bind(PDOStatement $stmt, ERecensione $recensione)
+    {
+        $stmt->bindValue(':id', NULL, PDO::PARAM_INT);
+        $stmt->bindValue(':titolo', $recensione->getTitolo(), PDO::PARAM_STR);
+        $stmt->bindValue(':descrizione', $recensione->getDescrizione(), PDO::PARAM_STR);
+        $stmt->bindValue(':voto', $recensione->getVoto(), PDO::PARAM_INT);
+        $stmt->bindValue(':data', $recensione->getData(), PDO::PARAM_STR);
+        $stmt->bindValue(':segnalato', $recensione->isSegnalata(), PDO::PARAM_BOOL);
+        $stmt->bindValue(':utente', $recensione->getUtente()->getUsername(), PDO::PARAM_STR);
+        $stmt->bindValue(':locale', $recensione->getLocale()->getId(), PDO::PARAM_INT);
     }
 
     /**
-     * metodo che restituisce il nome della classe per la costruzione delle query
-     * @return string $class Nome della classe
+     * Metodo che restituisce il nome della classe per la costruzione delle query
+     * @return string
      */
-    public static function getClass(){
+    public static function getClass()
+    {
         return self::$class;
     }
 
     /**
-     * metodo che restituisce il nome della tabella per la costruzione delle query
-     * @return string $table Nome della tabella
+     * Metodo che restituisce il nome della tabella per la costruzione delle query
+     * @return string
      */
-    public static function getTable(){
+    public static function getTable()
+    {
         return self::$table;
     }
 
     /**
-     * metodo che restituisce l'insieme dei valori per la costruzione delle query
-     * @return string $values Nomi delle colonne della tabella
+     * Metodo che restituisce l'insieme dei valori per la costruzione delle query
+     * @return string
      */
-    public static function getValues(){
+    public static function getValues()
+    {
         return self::$values;
     }
 
     /**
-     * metodo che permette il salvataggio una Recensione nel db
-     * @param ERecensione $recensione Recensione da salvare
+     * Metodo che permette il salvataggio una Recensione nel db
+     * @param ERecensione $recensione
+     * @return false|string|null
      */
-    public static function store(ERecensione $recensione) {
-        $id = NULL;
+    public static function store(ERecensione $recensione)
+    {
         $db = FDB::getInstance();
-        //$utente = $db->exist("FUtente", "username", $recensione->getUtente()->getUsername());
-        //$locale = $db->exist("FLocale", "id", $recensione->getLocale()->getId());
-        $id = $db->store(static::getClass(), $recensione);
-        return $id;
+        return $db->store(static::getClass(), $recensione);
     }
 
     /**
-     * Permette il caricamento dal db dato un campo e il valore di quel campo
-     * @param $campo mixed
-     * @param $valore mixed
-     * @return array|mixed|null
-     */
-    public static function loadByField($campo, $valore) {
-        $db = FDB::getInstance();
-        $rec = null;
-        list($result,$num) =$db->load(static::getClass(), $campo, $valore);
-        if(($result != null) && ($num == 1)) {
-            $utente = FUtente::loadByField("username",$result['utente']);
-            $locale = FLocale::loadByField("id",$result['locale']);
-            $rec = new ERecensione($utente, $result['titolo'],$result['descrizione'],$result['voto'],$result['data'],$locale);
-            $rec->setId($result['id']);
-            $rec->setSegnala($result['segnalato']);
-        }
-        else {
-            if(($result != null) && ($num > 1)){
-                $rec = array();
-                for($i = 0; $i < count($result); $i++){
-                     $utente = FUtente::loadByField("username",$result[$i]['utente']);
-                     $locale = FLocale::loadByField("id",$result[$i]['locale']);
-                     $rec[] = new ERecensione($utente, $result[$i]['titolo'],$result[$i]['descrizione'],$result[$i]['voto'],$result[$i]['data'],$locale);
-                     $rec[$i]->setId($result[$i]['id']);
-                     $rec[$i]->setSegnala($result[$i]['segnalato']);
-                }
-            }
-        }
-        return $rec;
-    }
-
-    /**
-     * metodo che verifica l'esistenza di una Recensione nel DB considerato un attributo
+     * Metodo che verifica l'esistenza di una Recensione nel DB dato un attributo
      * @param string $attributo
      * @param string $valore
      * @return bool
      */
-    public static function exist(string $attributo,string $valore) {
+    public static function exist(string $attributo, string $valore)
+    {
         $db = FDB::getInstance();
-        $result = $db->exist(static::getClass(), $attributo, $valore);
-        if($result!=null)
-            return true;
-        else
-            return false;
+        return $db->exist(static::getClass(), $attributo, $valore);
     }
 
     /**
-     * metodo che aggiorna il valore di un attributo della Recensione sul DB data la chiave primaria
+     * Metodo che aggiorna il valore di un attributo della Recensione sul DB data la chiave primaria
      * @param string $attributo
      * @param string $newvalue
      * @param string $attributo_pk
      * @param string $value_pk
      * @return bool
      */
-    public static function update(string $attributo, string $newvalue, string $attributo_pk, string $value_pk){
-        $db=FDB::getInstance();
-        $result = $db->update(static::getClass(), $attributo, $newvalue, $attributo_pk, $value_pk);
-        if($result)
-            return true;
-        else
-            return false;
+    public static function update(string $attributo, string $newvalue, string $attributo_pk, string $value_pk)
+    {
+        $db = FDB::getInstance();
+        return $db->update(static::getClass(), $attributo, $newvalue, $attributo_pk, $value_pk);
     }
 
     /**
+     * Metodo che elimina una Recensione dal DB
      * @param string $attributo
      * @param string $valore
      * @return bool
      */
-    public static function delete(string $attributo, string $valore){
-        $db=FDB::getInstance();
-        $result = $db->delete(static::getClass(), $attributo, $valore);
-        if($result)
-            return true;
-        else
-            return false;
+    public static function delete(string $attributo, string $valore)
+    {
+        $db = FDB::getInstance();
+        return $db->delete(static::getClass(), $attributo, $valore);
     }
 
     /**
-     * Ritorna tutte le recensioni presenti sul db
-     * @return object $rec Recensione
+     * Metodo che restituisce Recensione dato il valore di un attributo
+     * @param string $attributo
+     * @param string $valore
+     * @return array
      */
-    public static function loadAll() {
-        $rec = null;
+    public static function loadByField(string $attributo, string $valore)
+    {
         $db = FDB::getInstance();
-        list($result,$num) =$db->getAll(static::getTable());
-        if(($result != null) && ($num == 1)) {
-            $utente = FUtente::loadByField("username",$result['utente']);
-            $locale = FLocale::loadByField("id",$result['locale']);
-            $rec = new ERecensione($utente, $result['titolo'],$result['descrizione'],$result['voto'],$result['data'],$locale);
-            $rec->setId($result['id']);
-            $rec->setSegnala($result['segnalato']);
-        }
-        else {
-            if(($result != null) && ($num > 1)){
-                $rec = array();
-                $utente = array();
-                $locale = array();
-                for($i = 0; $i < count($result); $i++){
-                    $utente[$i] = FUtente::loadByField("username",$result[$i]['utente']);
-                    $locale[$i] = FLocale::loadByField("id",$result[$i]['locale']);
-                    $rec[] = new ERecensione($utente[$i], $result[$i]['titolo'],$result[$i]['descrizione'],$result[$i]['voto'],$result[$i]['data'],$locale[$i]);
-                    $rec[$i]->setId($result[$i]['id']);
-                    $rec[$i]->setSegnala($result[$i]['segnalato']);
+        $recensione = array();
+        list($result, $num) = $db->load(static::getClass(), $attributo, $valore);
+        if (($result != null) && ($num == 1)) {
+            $utente = FUtente::loadByField("username", $result['utente']);
+            $locale[0] = FLocale::loadByField("id", $result['locale']);
+            $recensione[0] = new ERecensione($utente, $result['titolo'], $result['descrizione'], $result['voto'], $result['data'], $locale);
+            $recensione[0]->setId($result['id']);
+            $recensione[0]->setSegnala($result['segnalato']);
+        } else {
+            if (($result != null) && ($num > 1)) {
+                for ($i = 0; $i < count($result); $i++) {
+                    $utente = FUtente::loadByField("username", $result[$i]['utente']);
+                    $locale[0] = FLocale::loadByField("id", $result[$i]['locale']);
+                    $recensione[$i] = new ERecensione($utente, $result[$i]['titolo'], $result[$i]['descrizione'], $result[$i]['voto'], $result[$i]['data'], $locale);
+                    $recensione[$i]->setId($result[$i]['id']);
+                    $recensione[$i]->setSegnala($result[$i]['segnalato']);
                 }
             }
         }
-        return $rec;
+        return $recensione;
     }
+
 
 }
