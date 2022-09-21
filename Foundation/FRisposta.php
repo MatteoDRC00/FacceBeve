@@ -5,195 +5,148 @@
  * @author Gruppo 8
  * @package Foundation
  */
-class FRisposta{
+class FRisposta
+{
 
-    /** classe Foundation */
+    /**
+     * Classe Foundation
+     * @var string
+     */
     private static $class = "FRisposta";
 
-    /** tabella con la quale opera nel DB */
+    /**
+     * Tabella con la quale opera nel DB
+     * @var string
+     */
     private static $table = "Risposta";
 
-    /** valori della tabella nel DB */
-    private static $values="(:id,:descrizione,:proprietario,:recensione)";
+    /**
+     * Valori della tabella nel DB
+     * @var string
+     */
+    private static $values = "(:id,:descrizione,:proprietario,:recensione)";
 
-    /** costruttore */
-    public function __construct() {
-
+    /**
+     * Costruttore della classe
+     */
+    public function __construct()
+    {
     }
 
     /**
-     * metodo che lega gli attributi della Risposta da inserire con i parametri della INSERT
+     * Metodo che lega gli attributi della Risposta da inserire con i parametri della INSERT
      * @param PDOStatement $stmt
      * @param ERisposta $risposta
      */
-    public static function bind(PDOStatement $stmt, ERisposta $risposta) {
+    public static function bind(PDOStatement $stmt, ERisposta $risposta)
+    {
         $stmt->bindValue(':id', NULL, PDO::PARAM_INT);
-        $stmt->bindValue(':descrizione',$risposta->getDescrizione(),PDO::PARAM_STR);
-        $stmt->bindValue(':proprietario',$risposta->getProprietario()->getUsername(),PDO::PARAM_STR);
-        $stmt->bindValue(':recensione',$risposta->getIdRecensione(),PDO::PARAM_INT);
+        $stmt->bindValue(':descrizione', $risposta->getDescrizione(), PDO::PARAM_STR);
+        $stmt->bindValue(':proprietario', $risposta->getProprietario()->getUsername(), PDO::PARAM_STR);
+        $stmt->bindValue(':recensione', $risposta->getIdRecensione(), PDO::PARAM_INT);
     }
 
     /**
-     * metodo che restituisce il nome della classe per la costruzione delle query
-     * @return string $class Nome della classe
+     * Metodo che restituisce il nome della classe per la costruzione delle query
+     * @return string
      */
-    public static function getClass(){
+    public static function getClass()
+    {
         return self::$class;
     }
 
     /**
-     * metodo che restituisce il nome della tabella per la costruzione delle query
-     * @return string $table Nome della tabella
+     * Metodo che restituisce il nome della tabella per la costruzione delle query
+     * @return string
      */
-    public static function getTable(){
+    public static function getTable()
+    {
         return self::$table;
     }
 
     /**
-     * metodo che restituisce l'insieme dei valori per la costruzione delle query
-     * @return string $values Nomi delle colonne della tabella
+     * Metodo che restituisce l'insieme dei valori per la costruzione delle query
+     * @return string
      */
-    public static function getValues(){
+    public static function getValues()
+    {
         return self::$values;
     }
 
     /**
-     * metodo che permette il salvataggio una Risposta nel db
-     * @param ERisposta $risposta Risposta da salvare
+     * Metodo che permette il salvataggio una Risposta nel DB
+     * @param ERisposta $risposta
+     * @return false|string|null
      */
-    public static function store(ERisposta $risposta) {
-        $id = null;
+    public static function store(ERisposta $risposta)
+    {
         $db = FDB::getInstance();
-        //$proprietario = $db->exist("FProprietario", "username", $risposta->getProprietario()->getUsername());
-        //$recensione = $db->exist("FRecensione", "id", $risposta->getIdRecensione());
-        //if($proprietario && $recensione){
-        //}
         return $db->store(static::getClass(), $risposta);
     }
 
     /**
-     * Permette la load sul db
-     * @param $id campo da confrontare per trovare l'oggetto
-     * @return object $rec Recensione
-     */
-    public static function loadByField($field, $id) {
-        $ris = null;
-        $db = FDB::getInstance();
-        list($result,$num) = $db->load(static::getClass(), $field, $id);
-        if(($result != null) && ($num == 1)) {
-            $proprietario = FProprietario::loadByField("username" , $result["proprietario"]);
-            $ris = new ERisposta($result['recensione'],$result['descrizione'],$proprietario);
-            $ris->setId($result['id']);
-        }
-        else {
-            if(($result != null) && ($num > 1)){
-                $ris = array();
-                for($i = 0; $i < count($result); $i++){
-                    $proprietario = FProprietario::loadByField("username" , $result[$i]["proprietario"]);
-                    $ris[] = new ERisposta($result[$i]['recensione'],$result[$i]['descrizione'],$proprietario);
-                    $ris[$i]->setId($result[$i]['id']);
-                }
-            }
-        }
-        return $ris;
-    }
-
-
-
-    /**
-     * metodo che verifica l'esistenza di una Risposta nel DB considerato un attributo
+     * Metodo che verifica l'esistenza di una Risposta nel DB dato un attributo
      * @param string $attributo
      * @param string $valore
      * @return bool
      */
-    public static function exist(string $attributo,string $valore) {
+    public static function exist(string $attributo, string $valore)
+    {
         $db = FDB::getInstance();
-        $result = $db->exist(static::getClass(), $attributo, $valore);
-        if($result!=null)
-            return true;
-        else
-            return false;
+        return $db->exist(static::getClass(), $attributo, $valore);
     }
 
     /**
-     * metodo che aggiorna il valore di un attributo della Risposta sul DB data la chiave primaria
+     * Metodo che aggiorna il valore di un attributo della Risposta sul DB data la chiave primaria
      * @param string $attributo
      * @param string $newvalue
      * @param string $attributo_pk
      * @param string $value_pk
      * @return bool
      */
-    public static function update(string $attributo, string $newvalue, string $attributo_pk, string $value_pk){
-        $db=FDB::getInstance();
-        $result = $db->update(static::getClass(), $attributo, $newvalue, $attributo_pk, $value_pk);
-        if($result)
-            return true;
-        else
-            return false;
+    public static function update(string $attributo, string $newvalue, string $attributo_pk, string $value_pk)
+    {
+        $db = FDB::getInstance();
+        return $db->update(static::getClass(), $attributo, $newvalue, $attributo_pk, $value_pk);
     }
 
     /**
+     * Metodo che elimina una Risposta dal DB dato il valore di un attributo
      * @param string $attributo
      * @param string $valore
      * @return bool
      */
-    public static function delete(string $attributo, string $valore){
-        $db=FDB::getInstance();
-        $result = $db->delete(static::getClass(), $attributo, $valore);
-        if($result)
-            return true;
-        else
-            return false;
+    public static function delete(string $attributo, string $valore)
+    {
+        $db = FDB::getInstance();
+        return $db->delete(static::getClass(), $attributo, $valore);
     }
 
     /**
-     * Ritorna tutte le recensioni presenti sul db
-     * @return object $rec Recensione
+     * Permette la load di una risposta dal DB dato il valore di un attributo
+     * @param string $attributo
+     * @param string $valore
+     * @return array
      */
-    public static function loadAll() {
-        $ris = null;
+    public static function loadByField(string $attributo, string $valore)
+    {
+        $risposta = array();
         $db = FDB::getInstance();
-        list ($result, $rows_number)=$db->getAllRev();
-        if(($result != null) && ($rows_number == 1)) {
-            $ris = new ERisposta($result['titolo'],$result['descrizione'],$result['proprietario'],$result['recensione']);
-            $ris->setCodice($result['codicerisposta']);
-        }
-        else {
-            if(($result != null) && ($rows_number > 1)){
-                $ris = array();
-                for($i = 0; $i < count($result); $i++){
-                    $ris[] = new ERisposta($result[$i]['titolo'],$result[$i]['descrizione'],$result[$i]['proprietario'],$result[$i]['recensione']);
-                    $ris[$i]->setCodice($result[$i]['codicerisposta']);
+        list($result, $num) = $db->load(static::getClass(), $attributo, $valore);
+        if (($result != null) && ($num == 1)) {
+            $proprietario = FProprietario::loadByField("username", $result["proprietario"]);
+            $risposta[0] = new ERisposta($result['recensione'], $result['descrizione'], $proprietario);
+            $risposta[0]->setId($result['id']);
+        } else {
+            if (($result != null) && ($num > 1)) {
+                for ($i = 0; $i < count($result); $i++) {
+                    $proprietario = FProprietario::loadByField("username", $result[$i]["proprietario"]);
+                    $risposta[$i] = new ERisposta($result[$i]['recensione'], $result[$i]['descrizione'], $proprietario);
+                    $risposta[$i]->setId($result[$i]['id']);
                 }
             }
         }
-        return $ris;
+        return $risposta;
     }
-
-    /**
-     *
-     * @param $parola valore da ricercare all'interno del campo text
-     * @return object $rec Recensione
-
-    public static function loadByParola($parola) {
-        $ris = null;
-        $db = FDB::getInstance();
-        list ($result, $rows_number)=$db->CercaByKeyword(static::getClass(),"descrizione",$parola);
-        if(($result != null) && ($rows_number == 1)) {
-            $ris = new ERisposta($result['titolo'],$result['descrizione'],$result['proprietario'],$result['recensione']);
-            $ris->setCodice($result['codicerisposta']);
-        }
-        else {
-            if(($result != null) && ($rows_number > 1)){
-                $rec = array();
-                for($i = 0; $i < count($result); $i++){
-                    $ris[] = new ERisposta($result[$i]['titolo'],$result[$i]['descrizione'],$result[$i]['proprietario'],$result[$i]['recensione']);
-                    $ris[$i]->setCodice($result[$i]['codicerisposta']);
-                }
-            }
-        }
-        return $ris;
-    } */
-
 
 }
