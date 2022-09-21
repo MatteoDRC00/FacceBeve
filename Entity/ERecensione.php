@@ -1,21 +1,69 @@
 <?php
-/**
- *
+
+/** La classe ERecensione caratterizza una recensione di un locale attraverso:
+ * * Id: identificativo della recensione
+ * * Titolo: identifica il titolo della recensione
+ * * Descrizione: identifica il testo della recensione
+ * * Utente: identifica l'autore della recensione
+ * * Locale: identifica il locale su cui viene scritta la recensione
+ * * Voto: identifica il voto dato al locale dal singolo utente
+ * * Data: identifica il momento in cui è stat scritta la recensione
+ * * Segnalata: indica lo stato della recensione, i.e., se essa è stata segnalata o meno
  * @author Gruppo8
  * @package Entity
  */
 class ERecensione implements JsonSerializable {
 
+    /**
+     * Id della recensione che lo identifica sul db
+     * @var int|null
+     */
     private ?int $id;
+
+    /**
+     * Utente autore della recensione
+     * @var EUtente
+     */
     private EUtente $utente;
+
+    /**
+     * Locale cui viene scritta la recensione
+     * @var ELocale
+     */
 	private ELocale $locale;
+
+    /**
+     * Titolo della recensione
+     * @var string
+     */
     private string $titolo;
+
+    /**
+     * Testo della recensione
+     * @var string
+     */
     private string $descrizione;
+
+    /**
+     * Voto nella recensione
+     * @var float
+     */
     private float $voto;
+
+    /**
+     * Data in cui viene scritta/pubblicata la recensione
+     * @var string
+     */
     private string $data;
+
+    /**
+     * Stato della recensione, se segnalata o meno
+     * @var bool
+     */
 	private bool $segnalata;
 
     /**
+     * Costruttore della classe
      * @param EUtente $utente
      * @param string $titolo
      * @param string $descrizione
@@ -35,6 +83,7 @@ class ERecensione implements JsonSerializable {
     }
 
     /**
+     * Restituisce l'id della recensione
      * @return int|null
      */
     public function getId(): ?int
@@ -43,6 +92,7 @@ class ERecensione implements JsonSerializable {
     }
 
     /**
+     * Imposta/Modifica l'id della recensione
      * @param int|null $id
      */
     public function setId(?int $id): void
@@ -52,6 +102,7 @@ class ERecensione implements JsonSerializable {
 
 
     /**
+     * Restituisce l'autore della recensione
      * @return EUtente
      */
     public function getUtente(): EUtente
@@ -61,6 +112,7 @@ class ERecensione implements JsonSerializable {
 
 
     /**
+     * Imposta/Modifica l'autore della recensione
      * @param EUtente $utente
      */
     public function setUtente(EUtente $utente): void
@@ -69,6 +121,7 @@ class ERecensione implements JsonSerializable {
     }
 
     /**
+     * Restituisce il titolo della recensione
      * @return string
      */
     public function getTitolo(): string
@@ -77,6 +130,7 @@ class ERecensione implements JsonSerializable {
     }
 
     /**
+     * Imposta/Modifica il titolo della recensione
      * @param string $titolo
      */
     public function setTitolo(string $titolo): void
@@ -85,6 +139,7 @@ class ERecensione implements JsonSerializable {
     }
 
     /**
+     * Restituisce il testo/descrizione della recensione
      * @return string
      */
     public function getDescrizione(): string
@@ -93,6 +148,7 @@ class ERecensione implements JsonSerializable {
     }
 
     /**
+     * Imposta/Modifica il testo/descrizione della recensione
      * @param string $descrizione
      */
     public function setDescrizione(string $descrizione): void
@@ -101,22 +157,25 @@ class ERecensione implements JsonSerializable {
     }
 
     /**
-     * @return int
+     * Restituisce il voto della recensione
+     * @return float
      */
-    public function getVoto(): int
+    public function getVoto(): float
     {
         return $this->voto;
     }
 
     /**
-     * @param int $voto
+     * Imposta/Modifica il voto della recensione
+     * @param float $voto
      */
-    public function setVoto(int $voto): void
+    public function setVoto(float $voto): void
     {
         $this->voto = $voto;
     }
 
     /**
+     * Restituisce la data di pubblicazione della recensione
      * @return string
      */
     public function getData(): string
@@ -125,6 +184,7 @@ class ERecensione implements JsonSerializable {
     }
 
     /**
+     * Imposta/Modifica la data di pubblicazione della recensione
      * @param string $data
      */
     public function setData(string $data): void
@@ -133,6 +193,7 @@ class ERecensione implements JsonSerializable {
     }
 
     /**
+     * Restituisce il locale relativo alla recensione
 	* @return ELocale $locale
 	*/
     public function getLocale() : ELocale
@@ -141,6 +202,7 @@ class ERecensione implements JsonSerializable {
 	}
 
     /**
+     * Imposta/Modifica il locale relativo alla recensione
      * @param ELocale $locale
      */
     public function setLocale(ELocale $locale): void
@@ -149,6 +211,7 @@ class ERecensione implements JsonSerializable {
     }
 
     /**
+     * Restituisce lo stato della recensione
      * @return bool
      */
     public function isSegnalata(): bool
@@ -157,6 +220,7 @@ class ERecensione implements JsonSerializable {
     }
 
     /**
+     * Imposta/Modifica lo stato della recensione
      * @param bool $segnalata
      */
     public function setSegnala(bool $segnalata): void

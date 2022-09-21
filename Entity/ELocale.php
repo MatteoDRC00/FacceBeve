@@ -1,6 +1,7 @@
 <?php
 
 /** La classe ELocale caratterizza un locale attraverso:
+ * * Id: identificativo del locale
  * * Nome: identifica il nome del locale
  * * Descrizione: identifica la descrizione del locale/cosa si fa/storia del locale
  * * NumTelefono: identifica il numero di telefono del locale
@@ -77,7 +78,7 @@ class ELocale
     private ?EImmagine $img;
 
     /**
-     *  Costruttore della classe
+     * Costruttore della classe
      * @param string $nome
      * @param string $descrizione
      * @param string $num_telefono
@@ -99,7 +100,7 @@ class ELocale
     }
 
     /**
-     *  Restituisce l'Id dell'evento
+     *  Restituisce l'Id del locale
      * @return int|null
      */
     public function getId(): ?int
@@ -108,7 +109,7 @@ class ELocale
     }
 
     /**
-     * Imposta/Modifica l'Id dell'evento
+     * Imposta/Modifica l'Id del locale
      * @param int|null $id
      */
     public function setId(?int $id): void

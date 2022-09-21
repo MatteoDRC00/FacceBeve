@@ -2,7 +2,8 @@
 
 /**
  * La classe EImmagine definisce le immagini per Utenti, Proprietari, Locali ed Eventi attraverso:
- *  * Nome: nome dell'immagine
+ * * Id: Identificativo dell'immagine
+ * * Nome: nome dell'immagine
  * * Immagine: dati binari codificati in base64 dell'immagine
  * * Type: MIME type dell'immagine
  * * Size: dimensione immagine

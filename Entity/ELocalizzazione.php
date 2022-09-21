@@ -1,6 +1,7 @@
 <?php
 
 /** La classe ELocalizzazione caratterizza un luogo fisico di un locale attraverso:
+ * * Id: identificativo della localizzazione
  * * Indirizzo: identifica l'indirizzo
  * * NumCivico: identifica il numero civico
  * * Citta: identifica la città
@@ -18,6 +19,7 @@ class ELocalizzazione implements JsonSerializable
     private int $CAP;
 
     /**
+     * Costruttore della classe
      * @param string $indirizzo
      * @param string $numCivico
      * @param string $citta

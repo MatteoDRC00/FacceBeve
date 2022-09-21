@@ -47,16 +47,31 @@ class EUtente {
     private string $cognome;
 
     /**
-     * Lista 
-     * @var
+     * Lista dei locali salvati dal Utente
+     * @var array ELocale
      */
     private array $localipreferiti;
+
+    /**
+     * Data in cui l'Utente si è iscritto al sito
+     * @var string
+     */
     private ?string $iscrizione = null;
+
+    /**
+     * Immagine del profilo del Utente
+     * @var EImmagine|null
+     */
     private ?EImmagine $img_profilo = null;
+
+    /**
+     * Stato del Utente(Bannato/Attivo)
+    */
     private bool $state;
 
 
     /**
+     * Costruttore della classe
      * @param string $password
      * @param string $nome
      * @param string $cognome
@@ -81,20 +96,25 @@ class EUtente {
 //----------------------METODI GET-----------------------------
 
     /**
+     * Restituisce l'username del Utente
      * @return string
      */
-    public function getUsername(){
+    public function getUsername(): string
+    {
         return $this->username;
     }
 
     /**
+     * Restituisce la password del Utente
      * @return string
      */
-    public function getPassword(){
+    public function getPassword(): string
+    {
         return $this->password;
     }
 
-     /**
+    /**
+     * Restituisce l'email del Utente
      * @return string
      */
     public function getEmail(): string
@@ -103,6 +123,7 @@ class EUtente {
     }
 
     /**
+     * Restituisce il nome del Utente
      * @return string
      */
     public function getNome(): string
@@ -111,6 +132,7 @@ class EUtente {
     }
 
     /**
+     * Restituisce il cognome del Utente
      * @return string
      */
     public function getCognome(): string
@@ -119,72 +141,36 @@ class EUtente {
     }
 
     /**
-     * @return array
+     * Restituisce la lista dei locali preferiti del Utente
+     * @return array ELocale
      */
     public function getLocalipreferiti(): array
     {
         return $this->localipreferiti;
     }
 
-
-    public function getIscrizione()
+    /**
+     * Restituisce la data d'iscrizione al sito del Utente
+     * @return string
+     */
+    public function getIscrizione(): ?string
     {
         return $this->iscrizione;
     }
 
     /**
-     * @return bool
+     * Restituisce lo stato sul sito del Utente(Bannato/Attivo)
+     * @return string
      */
     public function getState(): bool
     {
         return $this->state;
     }
 
-
-
-
-    //-----------------------------METODI SET-----------------------------
-
     /**
-     * @param string $password
+     * Restituisce l'immagine di profilo del Utente
+     * @return EImmagine|null
      */
-    public function setPassword(string $password): void
-    {
-        $this->password = $password;
-    }
-
-    /**
-     * @param string $username
-     */
-    public function setUsername(string $username): void
-    {
-        $this->username = $username;
-    }
-
-    /**
-     * @param string $email
-     */
-    public function setEmail(string $email): void
-    {
-        $this->email = $email;
-    }
-
-    /**
-     * @param string $nome
-     */
-    public function setNome(string $nome): void
-    {
-        $this->nome = $nome;
-    }
-
-    /**
-     * @param string $cognome
-     */
-    public function setCognome(string $cognome): void
-    {
-        $this->cognome = $cognome;
-    }
-
     /**
      * @return EImmagine|null
      */
@@ -193,7 +179,58 @@ class EUtente {
         return $this->img_profilo;
     }
 
+
+
+
+    //-----------------------------METODI SET-----------------------------
+
     /**
+     * Imposta/Modifica la password del Utente
+     * @param string $password
+     */
+    public function setPassword(string $password): void
+    {
+        $this->password = $password;
+    }
+
+    /**
+     * Imposta/Modifica l'email del Utente
+     * @param string $email
+     */
+    public function setEmail(string $email): void
+    {
+        $this->email = $email;
+    }
+
+    /**
+     * Imposta/Modifica il nome del Utente
+     * @param string $nome
+     */
+    public function setNome(string $nome): void
+    {
+        $this->nome = $nome;
+    }
+
+    /**
+     * Imposta/Modifica il cognome del Utente
+     * @param string $cognome
+     */
+    public function setCognome(string $cognome): void
+    {
+        $this->cognome = $cognome;
+    }
+
+    /**
+     * Imposta/Modifica l'username del Utente
+     * @param string $username
+     */
+    public function setUsername(string $username): void
+    {
+        $this->username = $username;
+    }
+
+    /**
+     * Imposta/Modifica l'immagine di profilo del Utente
      * @param EImmagine|null $img_profilo
      */
     public function setImgProfilo(?EImmagine $img_profilo): void
@@ -202,17 +239,17 @@ class EUtente {
     }
 
 
-
     /**
-     * Metodo che va a modificare lo stato di un utente(bannato/attivo)
+     * Metodo che va a modificare lo stato del Utente(Bannato/Attivo)
      * @param bool $state
      */
-    public function setState($state): void
+    public function setState(bool $state): void
     {
         $this->state=$state;
     }
 
     /**
+     * Metodo che va a modificare la data d'iscrizione al sito del Utente(Bannato/Attivo)
      * @param string|null $iscrizione
      */
     public function setIscrizione(?string $iscrizione): void
