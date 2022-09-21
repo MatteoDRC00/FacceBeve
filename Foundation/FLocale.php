@@ -7,24 +7,33 @@
  */
 class FLocale
 {
-
-    /** classe Foundation */
+    /**
+     * Classe Foundation
+     * @var string
+     */
     private static $class = "FLocale";
 
-    /** tabella con la quale opera nel DB */
+    /**
+     * Tabella con la quale opera nel DB
+     * @var string
+     */
     private static $table = "Locale";
 
-    /** valori della tabella nel DB */
+    /**
+     * Valori della tabella nel DB
+     * @var string
+     */
     private static $values = "(:id,:nome,:numtelefono,:descrizione,:proprietario,:localizzazione,:idImg)";
 
-    /** costruttore */
+    /**
+     * Costruttore della classe
+     */
     public function __construct()
     {
-
     }
 
     /**
-     * metodo che lega gli attributi del Locale da inserire con i parametri della INSERT
+     * Metodo che lega gli attributi del Locale da inserire con i parametri della INSERT
      * @param PDOStatement $stmt
      * @param ELocale $locale
      * @return void
@@ -41,8 +50,8 @@ class FLocale
     }
 
     /**
-     * metodo che restituisce il nome della classe per la costruzione delle query
-     * @return string $class Nome della classe
+     * Metodo che restituisce il nome della classe per la costruzione delle query
+     * @return string
      */
     public static function getClass()
     {
@@ -50,8 +59,8 @@ class FLocale
     }
 
     /**
-     * metodo che restituisce il nome della tabella per la costruzione delle query
-     * @return string $table Nome della tabella
+     * Metodo che restituisce il nome della tabella per la costruzione delle query
+     * @return string
      */
     public static function getTable()
     {
@@ -59,8 +68,8 @@ class FLocale
     }
 
     /**
-     * metodo che restituisce l'insieme dei valori per la costruzione delle query
-     * @return string $values Nomi delle colonne della tabella
+     * Metodo che restituisce l'insieme dei valori per la costruzione delle query
+     * @return string
      */
     public static function getValues()
     {
@@ -68,94 +77,59 @@ class FLocale
     }
 
     /**
-     * metodo che permette il salvataggio di un Locale nel db
-     * @param ELocale $locale Locale da salvare
+     * Metodo che permette il salvataggio di un Locale nel DB
+     * @param ELocale
      * @return string
      */
     public static function store(ELocale $locale)
     {
         $db = FDB::getInstance();
-        $id = $db->store(static::getClass(), $locale);
-        //Categorie Locale
-        if ($locale->getCategoria() != null) {
-            foreach ($locale->getCategoria() as $cat) {
-                $genere = $cat->getGenere();
-                $db->chiaviEsterne("Locale_Categorie", "ID_Locale", "ID_Categoria", $id, $genere);
-            }
-        }
-        //Orari Locale
-        if ($locale->getOrario() != null) {
-            foreach ($locale->getOrario() as $or) {
-                $idOrario = $or->getId();
-                $db->chiaviEsterne("Locale_Orari", "ID_Locale", "ID_Orario", $id, $idOrario);
-            }
-        }
-        //Locale Eventi
-        if ($locale->getEventiOrganizzati() != null) {
-            foreach ($locale->getEventiOrganizzati() as $ev) {
-                $idEvento = $ev->getId();
-                $db->chiaviEsterne("Locale_Eventi", "ID_Locale", "ID_Evento", $id, $idEvento);
-            }
-        }
-        //Locale Immag
-        if ($locale->getImg() != null) {
-            foreach ($locale->getImg() as $img) {
-                $idImg = $img->getId();
-                $db->chiaviEsterne("Locale_Immagini", "ID_Locale", "ID_Immagine", $id, $idImg);
-            }
-        }
-        return $id;
+        return $db->store(static::getClass(), $locale);
     }
 
     /**
-     * metodo che permette di cancellare tuple nelle tabelle generate da relazioni N:N
-     * @param Object $obj oggetto da cancellare
-     * @return void
+     * Metodo che verifica l'esistenza di un Locale nel DB dato un attributo
+     * @param string $attributo
+     * @param string $valore
+     * @return bool
      */
-    public static function deleteEsterne(object $obj)
-    {
-        $id = NULL;
-        $db = FDB::getInstance();
-        //Immagini Locale
-        if (get_class($obj) == "ECategoria") {
-            $db->delete("Locale_Categorie", "ID_Categoria", $obj->getGenere());
-        } elseif (get_class($obj) == "EImmagine") {
-            $db->delete("Locale_Immagini", "ID_Immagine", $obj->getId());
-        } elseif (get_class($obj) == "EUtente") {
-            $idUtente = $obj->getUsername();
-            $db->delete("Utenti_Locali", "ID_Utente", $idUtente);
-        }
-    }
-
-    /**
-     * metodo che permette di cancellare tuple nelle tabelle generate da relazioni N:N
-     * @param Object $obj oggetto da cancellare
-     * @return void
-     */
-    public static function storeEsterne(object $obj, $id)
+    public static function exist(string $attributo, string $valore): bool
     {
         $db = FDB::getInstance();
-        //Immagini Locale
-        if (get_class($obj) == "ECategoria") {
-            $genere = $obj->getGenere();
-            $db->chiaviEsterne("Locale_Categorie", "ID_Locale", "ID_Categoria", $id, $genere);
-        } elseif (get_class($obj) == "EImmagine") {
-            $idImg = $obj->getId();
-            $db->chiaviEsterne("Locale_Immagini", "ID_Locale", "ID_Immagine", $id, $idImg);
-        } elseif (get_class($obj) == "EEvento") {
-            $idEvento = $obj->getId();
-            $db->chiaviEsterne("Locale_Eventi", "ID_Locale", "ID_Evento", $id, $idEvento);
-        } elseif (get_class($obj) == "EUtente") {
-            $idUtente = $obj->getUsername();
-            $db->chiaviEsterne("Utenti_Locali", "ID_Locale", "ID_Utente", $id, $idUtente);
-        }
+        return $db->exist(static::getClass(), $attributo, $valore);
     }
 
     /**
-     * Permette la load dal database
+     * Metodo che aggiorna il valore di un attributo del Locale sul DB data la chiave primaria
+     * @param string $attributo
+     * @param string $newvalue
+     * @param string $attributo_pk
+     * @param string $value_pk
+     * @return bool
+     */
+    public static function update(string $attributo, string $newvalue, string $attributo_pk, string $value_pk): bool
+    {
+        $db = FDB::getInstance();
+        return $db->update(static::getClass(), $attributo, $newvalue, $attributo_pk, $value_pk);
+    }
+
+    /**
+     * Metodo che elimina un Locale dal DB dato il valore di un attibuto
+     * @param string $attributo
+     * @param string $valore
+     * @return bool
+     */
+    public static function delete(string $attributo, string $valore): bool
+    {
+        $db = FDB::getInstance();
+        return $db->delete(static::getClass(), $attributo, $valore);
+    }
+
+    /**
+     * Metodo che permette la load sul DB
      * @param $field
      * @param $id
-     * @return array|ELocale
+     * @return array
      */
     public static function loadByField($field, $id)
     {
@@ -168,7 +142,7 @@ class FLocale
             $localizzazione = FLocalizzazione::loadByField("id", $result["localizzazione"]);
             $eventi[] = FEvento::loadByLocale($result["id"]);
             $orari[] = FOrario::loadByLocale($result["id"]);
-            $immagini = FImmagine::loadByField("id", $result["idImg"]);
+            $immagini[0] = FImmagine::loadByField("id", $result["idImg"]);
             $locale[0] = new ELocale($result['nome'], $result['descrizione'], $result['numtelefono'], $proprietario, $localizzazione);
             $locale[0]->setImg($immagini);
             $locale[0]->setCategoria($categorie);
@@ -177,17 +151,13 @@ class FLocale
             $locale[0]->setId($result["id"]);
         } else {
             if (($result != null) && ($num > 1)) {
-                $locale = array();
-                $categorie = array();
-                $eventi = array();
-                $orari = array();
                 for ($i = 0; $i < count($result); $i++) {
                     $proprietario = FProprietario::loadByField("username", $result[$i]["proprietario"]);
                     $localizzazione = FLocalizzazione::loadByField("id", $result[$i]["localizzazione"]);
                     $categorie[] = FCategoria::loadByLocale($result[$i]["id"]);
                     $eventi[] = FEvento::loadByLocale($result[$i]["id"]);
                     $orari[] = FOrario::loadByLocale($result[$i]["id"]);
-                    $immagine = FImmagine::loadByLocale($result[$i]["id"]);
+                    $immagine[0] = FImmagine::loadByLocale($result[$i]["id"]);
                     $locale[$i] = new ELocale($result[$i]['nome'], $result[$i]['descrizione'], $result[$i]['numtelefono'], $proprietario, $localizzazione);
                     $locale[$i]->setImg($immagine);
                     $locale[$i]->setCategoria($categorie);
@@ -198,55 +168,6 @@ class FLocale
             }
         }
         return $locale;
-    }
-
-    /**
-     * metodo che verifica l'esistenza di un Locale nel DB considerato un attributo
-     * @param string $attributo
-     * @param string $valore
-     * @return bool
-     */
-    public static function exist(string $attributo, string $valore): bool
-    {
-        $db = FDB::getInstance();
-        $result = $db->exist(static::getClass(), $attributo, $valore);
-        if ($result != null)
-            return true;
-        else
-            return false;
-    }
-
-    /**
-     * metodo che aggiorna il valore di un attributo del Locale sul DB data la chiave primaria
-     * @param string $attributo
-     * @param string $newvalue
-     * @param string $attributo_pk
-     * @param string $value_pk
-     * @return bool
-     */
-    public static function update(string $attributo, string $newvalue, string $attributo_pk, string $value_pk): bool
-    {
-        $db = FDB::getInstance();
-        $result = $db->update(static::getClass(), $attributo, $newvalue, $attributo_pk, $value_pk);
-        if ($result)
-            return true;
-        else
-            return false;
-    }
-
-    /**
-     * @param string $attributo
-     * @param string $valore
-     * @return bool
-     */
-    public static function delete(string $attributo, string $valore): bool
-    {
-        $db = FDB::getInstance();
-        $result = $db->delete(static::getClass(), $attributo, $valore);
-        if ($result)
-            return true;
-        else
-            return false;
     }
 
     /** Metodo che permette di caricare un locale che ha determinati parametri, i quali vengono passati in input da una form */
@@ -261,7 +182,7 @@ class FLocale
             $localizzazione = FLocalizzazione::loadByField("id", $result["localizzazione"]);
             $eventi[] = FEvento::loadByLocale($result["id"]);
             $orari[] = FOrario::loadByLocale($result["id"]);
-            $immagini = FImmagine::loadByField("id", $result["idImg"]);
+            $immagini[0] = FImmagine::loadByField("id", $result["idImg"]);
             $locale[0] = new ELocale($result['nome'], $result['descrizione'], $result['numtelefono'], $proprietario, $localizzazione);
             $locale[0]->setImg($immagini);
             $locale[0]->setCategoria($categorie);
@@ -280,7 +201,7 @@ class FLocale
                     $categorie[] = FCategoria::loadByLocale($result[$i]["id"]);
                     $eventi[] = FEvento::loadByLocale($result[$i]["id"]);
                     $orari[] = FOrario::loadByLocale($result[$i]["id"]);
-                    $immagine = FImmagine::loadByLocale($result[$i]["id"]);
+                    $immagine[0] = FImmagine::loadByLocale($result[$i]["id"]);
                     $locale[$i] = new ELocale($result[$i]['nome'], $result[$i]['descrizione'], $result[$i]['numtelefono'], $proprietario, $localizzazione);
                     $locale[$i]->setImg($immagine);
                     $locale[$i]->setCategoria($categorie);
@@ -293,45 +214,10 @@ class FLocale
         return $locale;
     }
 
-    /** Metodo che recupera dal db tutte le istanze che contengono il parametro passato in inpu
-     * @param $parola input ricevuto
+    /**
+     * Metodo che restituisce i locali in ordine di valutazione media
+     * @return array|void
      */
-    public static function loadByParola($parola)
-    {
-        $db = FDB::getInstance();
-        list ($result, $rows_number) = $db->CercaByKeyword($parola, static::getClass(), "descrizione");
-        if (($result != null) && ($rows_number == 1)) {
-            $luogo = FLocalizzazione::loadByField("id", $result["localizzazione"]);
-            $proprietario = FProprietario::loadByField("id", $result["proprietario"]);
-            $categoria = FCategoria::loadByLocale($result["id"]);
-            $orario = FOrario::loadByLocale($result["id"]);
-            $eventi = FEvento::loadByLocale($result["id"]);
-
-            $locale = new ELocale($result['nome'], $result['descrizione'], $result['numtelefono'], $proprietario, $categoria, $luogo, $eventi, $orario);
-        } else {
-            if (($result != null) && ($rows_number > 1)) {
-                $luogo = array();
-                $proprietario = array();
-                $categoria = array();
-                $orario = array();
-                $eventi = array();
-                $locale = array();
-                for ($i = 0; $i < count($result); $i++) {
-                    $luogo[] = FLocalizzazione::loadByField("id", $result[$i]["localizzazione"]);
-                    $proprietario[] = FProprietario::loadByField("id", $result[$i]["proprietario"]);
-                    $categoria[] = FCategoria::loadByLocale($result[$i]["id"]);
-                    $orario[] = FOrario::loadByLocale($result[$i]["id"]);
-                    $eventi[] = FEvento::loadByLocale($result[$i]["id"]);
-                    $locale[] = new ELocale($result[$i]['nome'], $result[$i]['descrizione'], $result[$i]['numtelefono'], $proprietario[$i], $categoria[$i], $luogo[$i], $eventi[$i], $orario[$i]);
-                    $locale[$i]->setId($result[$i]['id']);
-
-                }
-            }
-        }
-        return $locale;
-    }
-
-
     public static function getTopLocali()
     {
         $db = FDB::getInstance();

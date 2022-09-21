@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ca6e37f9-4df3-446e-a924-f4e38117399d" name="Changes" comment="login e registrazione aggiunta logo in alto da completare">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Foundation/FImmagine.php" beforeDir="false" afterPath="$PROJECT_DIR$/Foundation/FImmagine.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Foundation/FLocale.php" beforeDir="false" afterPath="$PROJECT_DIR$/Foundation/FLocale.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
