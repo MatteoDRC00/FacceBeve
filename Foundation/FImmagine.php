@@ -1,106 +1,147 @@
 <?php
 
-
 /**
  * La classe FImmagine fornisce query per gli oggetti EImmagine (foto)
  * @author Gruppo 8
  * @package Foundation
  */
-
 class FImmagine
 {
-    /** nome della classe */
+    /**
+     * Classe Foundation
+     * @var string
+     */
     private static string $class = "FImmagine";
-    /** tabella con la quale opera */
-    private static $table="Immagine";
-    /** valori della tabella */
-    private static $values="(:id,:nome,:size,:type,:immagine)";
-
-    /** costruttore */
-    public function __construct(){}
 
     /**
-     * Questo metodo lega gli attributi dell'oggetto multimediale da inserire con i parametri della INSERT
+     * Tabella con la quale opera nel DB
+     * @var string
+     */
+    private static $table = "Immagine";
+
+    /**
+     * Valori della tabella nel DB
+     * @var string
+     */
+    private static $values = "(:id,:nome,:size,:type,:immagine)";
+
+    /**
+     * Costruttore della classe
+     */
+    public function __construct()
+    {
+    }
+
+    /**
+     * Metodo che lega gli attributi dell'oggetto multimediale da inserire con i parametri della INSERT
      * @param PDOStatement $stmt
      * @param EImmagine $img media i cui dati devono essere inseriti nel DB
      */
-    public static function bind(PDOStatement $stmt, EImmagine $img){
-        $stmt->bindValue(':id',NULL, PDO::PARAM_INT); //l'id � posto a NULL poich� viene dato automaticamente dal DBMS (AUTOINCREMENT_ID)
-        $stmt->bindValue(':nome',$img->getNome(), PDO::PARAM_STR);
-        $stmt->bindValue(':size',$img->getSize(), PDO::PARAM_INT);
-        $stmt->bindValue(':type',$img->getType(), PDO::PARAM_STR);
+    public static function bind(PDOStatement $stmt, EImmagine $img)
+    {
+        $stmt->bindValue(':id', NULL, PDO::PARAM_INT); //l'id � posto a NULL poich� viene dato automaticamente dal DBMS (AUTOINCREMENT_ID)
+        $stmt->bindValue(':nome', $img->getNome(), PDO::PARAM_STR);
+        $stmt->bindValue(':size', $img->getSize(), PDO::PARAM_INT);
+        $stmt->bindValue(':type', $img->getType(), PDO::PARAM_STR);
         $stmt->bindValue(':immagine', base64_encode($img->getImmagine()), PDO::PARAM_LOB);
     }
 
     /**
      * Metodo che restituisce il nome della classe per la costruzione delle Query
-     * @return string $class nome della classe
+     * @return string
      */
-    public static function getClass(){
+    public static function getClass()
+    {
         return self::$class;
     }
 
     /**
      *
-     * questo metodo restituisce il nome della tabella sul DB per la costruzione delle Query
-     * @return string $tables nome della tabella
+     * Metodo che restituisce il nome della tabella sul DB per la costruzione delle Query
+     * @return string
      */
-    public static function getTable(){
+    public static function getTable()
+    {
         return static::$table;
     }
 
     /**
      * Metodo che restituisce la stringa dei valori della tabella sul DB per la costruzione delle Query
-     * @return string $values valori della tabella
+     * @return string
      */
-    public static function getValues(){
+    public static function getValues()
+    {
         return static::$values;
     }
 
     /**
-     * Metodo che permette il salvataggio del media relativo all utente
-     * @param object $media
-     * @return int $id dell'oggetto salvato
+     * Metodo che aggiunge una Immagine nel DB
+     * @param EImmagine $immagine
+     * @return int
      */
-    public static function store(EImmagine $media): int{
+    public static function store(EImmagine $immagine): int
+    {
         $db = FDB::getInstance();
-        $id = $db->store(static::getClass(), $media);
-        return $id;
+        return $db->store(static::getClass(), $immagine);
     }
 
     /**
-     * metodo che aggiorna il valore di un attributo della Localizzazione sul DB data la chiave primaria
-     * @param EImmagine $img
-     * @param string $nome_file
+     * Metodo che aggiorna il valore di un attributo dell'Immagine sul DB data la chiave primaria
+     * @param string $attributo
+     * @param string $newvalue
+     * @param string $attributo_pk
+     * @param string $value_pk
      * @return bool
      */
-    public static function update(EImmagine $img,string $nome_file): bool
+    public static function update(string $attributo, string $newvalue, string $attributo_pk, string $value_pk)
     {
-        $db=FDB::getInstance();
-        $result = $db->updateMedia(static::getClass(), $img, $nome_file);
-        if($result)
-            return true;
-        else
-            return false;
+        $db = FDB::getInstance();
+        return $db->update(static::getClass(), $attributo, $newvalue, $attributo_pk, $value_pk);
+    }
+
+    /**
+     * Metodo che verifica l'esistenza di un Evento nel DB dato un attributo
+     * @param string $attributo
+     * @param string $valore
+     * @return bool
+     */
+    public static function exist(string $attributo, string $valore)
+    {
+        $db = FDB::getInstance();
+        return $db->exist(static::getClass(), $attributo, $valore);
     }
 
 
     /**
-     * @param $field
-     * @param $id
-     * @return array|EImmagine
+     * Metodo che elimina una Immagine dal DB dato il valore di un attibuto
+     * @param string $attributo
+     * @param string $valore
+     * @return bool
      */
-    public static function loadByField($field ,$id){
+    public static function delete(string $attributo, string $valore)
+    {
         $db = FDB::getInstance();
-        list($result,$num) = $db->load(static::getClass(), $field, $id);
-        if(($result!=null) && ($num == 1)) {
-            $img = new EImmagine($result['nome'], $result['size'], $result['type'], $result['immagine']);
-            $img->setId($result['id']);
-        }
-        else {
-            if(($result!=null) && ($num > 1)){
-                $img = array();
-                for($i=0; $i<count($result); $i++){
+        return $db->delete(static::getClass(), $attributo, $valore);
+    }
+
+
+    /**
+     * Metodo che carica Immagine dal DB dato il valore di un attributo
+     * @param string $attributo
+     * @param string $valore
+     * @return array
+     */
+    public static function loadByField(string $attributo, string $valore)
+    {
+        $img = array();
+        $db = FDB::getInstance();
+        list($result, $num) = $db->load(static::getClass(), $attributo, $valore);
+        if (($result != null) && ($num == 1)) {
+            $img[0] = new EImmagine($result['nome'], $result['size'], $result['type'], $result['immagine']);
+            $img[0]->setId($result['id']);
+        } else {
+            if (($result != null) && ($num > 1)) {
+                for ($i = 0; $i < count($result); $i++) {
                     $img[$i] = new EImmagine($result[$i]['nome'], $result[$i]['size'], $result[$i]['type'], $result[$i]['immagine']);
                     $img[$i]->setId($result[$i]['id']);
                 }
@@ -109,49 +150,25 @@ class FImmagine
         return $img;
     }
 
-    /**
-     * Metodo che verifica se esiste un media con un dato valore in uno dei campi
-     * @param $id valore da usare come ricerca
-     * @param $field campo da usare come ricerca
-     * @return true se esiste il mezzo, altrimenti false
-     */
-    public static function exist($field, $id){
-        $db=FDB::getInstance();
-        $result=$db->exist(static::getClass(), $field, $id);
-        if($result!=null)
-            return true;
-        else
-            return false;
-    }
 
-
+    //Se rimettiamo più immagini è da verificare se funziona
     /**
-     * Metodo che permette la cancellazione del media di un utente in base all id(del media)
-     * @param int $id del media (dell utente)
-     * @return bool
+     * Metodo che restituisce le Immagini di un locale
+     * @param $id_locale
+     * @return array
      */
-    public static function delete($field, $id){
-        $db=FDB::getInstance();
-        $db->delete(static::getClass(), $field, $id);
-    }
+    public static function loadByLocale($id_locale)
+    {
+        $img = array();
+        $db = FDB::getInstance();
+        list($result, $num) = $db->loadByTable("Locale_Immagini", "ID_Locale", $id_locale);
 
-    /**
-     * Permette la load dal database
-     * @param $id campo da confrontare per trovare l'oggetto
-     * @return object $orario
-     */
-    public static function loadByLocale($id){
-        $img = null;
-        $db=FDB::getInstance();
-        list($result,$num)=$db->loadInfoLocale(static::getClass(),"Locale_Immagini",$id,"ID_Immagine","id");
-        if(($result!=null) && ($num == 1)) {
-            $img=new EImmagine($result['nome'],$result['size'],$result['type'],$result['immagine']); //Carica un Orario dal database
-        }
-        else {
-            if(($result!=null) && ($num > 1)){
-                $utente = array();
-                for($i=0; $i<count($result); $i++){
-                    $img[]=new EImmagine($result[$i]['nome'],$result[$i]['size'],$result[$i]['type'],$result[$i]['immagine']);
+        if (($result != null) && ($num == 1)) {
+            $img = self::loadByField("id", $result["ID_Immagine"]);
+        } else {
+            if (($result != null) && ($num > 1)) {
+                for ($i = 0; $i < count($result); $i++) {
+                    $img = array_merge($img, self::loadByField("id", $result["ID_Immagine"]));
                 }
             }
         }
