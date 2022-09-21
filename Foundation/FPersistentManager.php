@@ -197,15 +197,6 @@ class FPersistentManager {
     }
 
 
-    /** Metodo che permette il caricamento degli utenti in base al loro stato
-     * @param input, stato immesso
-     */
-    public static function loadUtenti ($input) {
-        $ris = null;
-        $ris = FUtente::loadUtenti($input);
-        return $ris;
-    }
-
     /**
      * Metodo che permette il caricamento degli utenti avendo come parametro di ricerca lo stato, i.e.,
      * 0) '0' ==> Bannato

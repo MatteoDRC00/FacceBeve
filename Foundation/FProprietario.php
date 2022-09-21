@@ -132,7 +132,7 @@ class FProprietario
      * Metodo che carica Proprietario dal DB dato il valore di un attributo
      * @param string $attributo
      * @param string $valore
-     * @return array|EProprietario
+     * @return array|EProprietario|null
      */
     public static function loadByField(string $attributo, string $valore)
     {
