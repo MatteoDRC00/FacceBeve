@@ -1,121 +1,152 @@
 <?php
+
 /**
  * La classe FEvento fornisce query per gli oggetti EEvento
  * @author Gruppo8
  * @package Foundation
  */
-class FEvento {
+class FEvento
+{
 
-    /** classe Foundation */
-    private static $class="FEvento";
+    /**
+     * Classe Foundation
+     * @var string
+     */
+    private static $class = "FEvento";
 
-    /** tabella con la quale opera nel DB */
-    private static $table="Evento";
+    /**
+     * Tabella con la quale opera nel DB
+     * @var string
+     */
+    private static $table = "Evento";
 
-    /** valori della tabella nel DB */
-    private static $values="(:id,:nome,:descrizione,:data,:idImg)";
+    /**
+     * Valori della tabella nel DB
+     * @var string
+     */
+    private static $values = "(:id,:nome,:descrizione,:data,:idImg)";
 
-    public function __construct(){
-
+    /**
+     * Costruttore della classe
+     */
+    public function __construct()
+    {
     }
 
     /**
-     * metodo che lega gli attributi dell'Evento da inserire con i parametri della INSERT
+     * Metodo che lega gli attributi dell'Evento da inserire con i parametri della INSERT
      * @param PDOStatement $stmt
      * @param EEvento $evento
      * @return void
      */
-    public static function bind(PDOStatement $stmt, EEvento $evento){
-        $stmt->bindValue(':id',NULL, PDO::PARAM_INT);
+    public static function bind(PDOStatement $stmt, EEvento $evento)
+    {
+        $stmt->bindValue(':id', NULL, PDO::PARAM_INT);
         $stmt->bindValue(':nome', $evento->getNome(), PDO::PARAM_STR);
         $stmt->bindValue(':descrizione', $evento->getDescrizione(), PDO::PARAM_STR);
         $stmt->bindValue(':data', $evento->getData());
-        if($evento->getImg() != null)
+        if ($evento->getImg() != null)
             $stmt->bindValue(':idImg', $evento->getImg()->getId());
         else
             $stmt->bindValue(':idImg', null);
     }
 
     /**
-     * metodo che restituisce il nome della classe per la costruzione delle query
-     * @return string $class Nome della classe
+     * Metodo che restituisce il nome della classe per la costruzione delle query
+     * @return string
      */
-    public static function getClass(){
+    public static function getClass()
+    {
         return self::$class;
     }
 
     /**
-     * metodo che restituisce il nome della tabella per la costruzione delle query
-     * @return string $table Nome della tabella
+     * Metodo che restituisce il nome della tabella per la costruzione delle query
+     * @return string
      */
-    public static function getTable(){
+    public static function getTable()
+    {
         return self::$table;
     }
 
     /**
-     * metodo che restituisce l'insieme dei valori per la costruzione delle query
-     * @return string $values Nomi delle colonne della tabella
+     * Metodo che restituisce l'insieme dei valori per la costruzione delle query
+     * @return string
      */
-    public static function getValues(){
+    public static function getValues()
+    {
         return self::$values;
     }
 
     /**
+     * Metodo che aggiunge un Evento nel DB
      * @param EEvento $evento
      * @return false|string|null
      */
-    public static function store(EEvento $evento){
+    public static function store(EEvento $evento)
+    {
         $db = FDB::getInstance();
         return $db->store(self::getClass(), $evento);
     }
 
     /**
-     * metodo che verifica l'esistenza di un Evento nel DB considerato un attributo
+     * Metodo che verifica l'esistenza di un Evento nel DB dato un attributo
      * @param string $attributo
      * @param string $valore
      * @return bool
      */
-    public static function exist(string $attributo,string $valore) {
+    public static function exist(string $attributo, string $valore)
+    {
         $db = FDB::getInstance();
         return $db->exist(static::getClass(), $attributo, $valore);
     }
 
     /**
-     * metodo che aggiorna il valore di un attributo dell'Evento sul DB data la chiave primaria
+     * Metodo che aggiorna il valore di un attributo dell'Evento sul DB data la chiave primaria
      * @param string $attributo
      * @param string $newvalue
      * @param string $attributo_pk
      * @param string $value_pk
      * @return bool
      */
-    public static function update(string $attributo, string $newvalue, string $attributo_pk, string $value_pk){
+    public static function update(string $attributo, string $newvalue, string $attributo_pk, string $value_pk)
+    {
         $db = FDB::getInstance();
         return $db->update(static::getClass(), $attributo, $newvalue, $attributo_pk, $value_pk);
     }
 
     /**
+     * Metodo che elimina un Evento dal DB dato il valore di un attibuto
      * @param string $attributo
      * @param string $valore
      * @return bool
      */
-    public static function delete(string $attributo, string $valore){
-        $db=FDB::getInstance();
+    public static function delete(string $attributo, string $valore)
+    {
+        $db = FDB::getInstance();
         return $db->delete(static::getClass(), $attributo, $valore);
     }
 
-    public static function loadByField($field, $value){
+    /**
+     * Metodo che carica Evento dal DB dato il valore di un attributo
+     * @param string $attributo
+     * @param string $valore
+     * @return array
+     */
+    public static function loadByField(string $attributo, string $valore)
+    {
         $evento = array();
         $db = FDB::getInstance();
-        list($result,$num) = $db->load(static::getClass(), $field, $value);
-        if(($result!=null) && ($num == 1)) {
-            $immagine = FImmagine::loadByField("id",$result['idImg']);
+        list($result, $num) = $db->load(static::getClass(), $attributo, $valore);
+        if (($result != null) && ($num == 1)) {
+            $immagine = FImmagine::loadByField("id", $result['idImg']);
             $evento[0] = new EEvento($result['nome'], $result['descrizione'], $result['data']); //Carica un evento dal database
             $evento[0]->setImg($immagine);
             $evento[0]->setId($result['id']);
         } else {
-            if(($result!=null) && ($num > 1)){
-                for($i=0; $i<count($result); $i++){
-                    $immagine = FImmagine::loadByField("id",$result[$i]['idImg']);
+            if (($result != null) && ($num > 1)) {
+                for ($i = 0; $i < count($result); $i++) {
+                    $immagine = FImmagine::loadByField("id", $result[$i]['idImg']);
                     $evento[$i] = new EEvento($result[$i]['nome'], $result[$i]['descrizione'], $result[$i]['data']); //Carica un array di oggetti Evento dal database
                     $evento[$i]->setImg($immagine);
                     $evento[$i]->setId($result['id']);
@@ -126,86 +157,61 @@ class FEvento {
     }
 
     /**
-     * @param $id
+     * Metodo che restituisce gli eventi organizzati da un locale
+     * @param $id_locale
      * @return array
      */
-    public static function loadByLocale($id){
-        $evento = array();
+    public static function loadByLocale($id_locale)
+    {
+        $eventi = array();
         $db = FDB::getInstance();
-        list($result,$num) = $db->loadInfoLocale(static::getClass(),"Locale_Eventi",$id,"ID_Evento","id");
-        if(($result!=null) && ($num == 1)) {
-            $immagine = FImmagine::loadByField("id",$result['idImg']);
-            $evento[0] = new EEvento($result['nome'], $result['descrizione'], $result['data']); //Carica un evento dal database
-            $evento[0]->setImg($immagine);
-            $evento[0]->setId($result['id']);
-        }
-        else {
-            if(($result!=null) && ($num > 1)){
-                for($i=0; $i<count($result); $i++){
-                    $immagine = FImmagine::loadByField("id",$result[$i]['idImg']);
-                    $evento[$i] = new EEvento($result[$i]['nome'], $result[$i]['descrizione'], $result[$i]['data']); //Carica un array di oggetti Evento dal database
-                    $evento[$i]->setImg($immagine);
-                    $evento[$i]->setId($result[$i]['id']);
+        list($result, $num) = $db->loadByTable("Locale_Eventi", "ID_Locale", $id_locale);
+
+        if (($result != null) && ($num == 1)) {
+            $eventi = self::loadByField("id", $result["ID_Evento"]);
+        } else {
+            if (($result != null) && ($num > 1)) {
+                for ($i = 0; $i < count($result); $i++) {
+                    $eventi = array_merge($eventi, self::loadByField("id", $result[$i]["ID_Evento"]));
                 }
             }
         }
-        return $evento;
+        return $eventi;
     }
 
 
     /**
-     * @param $username
-     * @return array
+     * Metodo che permette di caricare un evento che ha determinati parametri, i quali vengono passati in input da una form
+     * @param $part1
+     * @param $part2
+     * @param $part3
+     * @param $part4
+     * @return array[]
      */
-    public static function loadByUtente($username){
-        $evento = array();
-        $db = FDB::getInstance();
-        list($result,$num) = $db->loadEventiUtente(static::getClass(),static::getTable().id,$username);
-        if(($result!=null) && ($num == 1)) {
-            $immagine = FImmagine::loadByField("id",$result['idImg']);
-            $evento[0] = new EEvento($result['nome'], $result['descrizione'], $result['data']); //Carica un evento dal database
-            $evento[0]->setImg($immagine);
-            $evento[0]->setId($result['id']);
-        }
-        else {
-            if(($result!=null) && ($num > 1)){
-                for($i=0; $i<count($result); $i++){
-                    $immagine = FImmagine::loadByField("id",$result[$i]['idImg']);
-                    $evento[$i] = new EEvento($result[$i]['nome'], $result[$i]['descrizione'], $result[$i]['data']); //Carica un array di oggetti Evento dal database
-                    $evento[$i]->setImg($immagine);
-                    $evento[$i]->setId($result['id']);
-                }
-            }
-        }
-        return $evento;
-    }
-
-
-    /** Metodo che permette di caricare un evento che ha determinati parametri, i quali vengono passati in input da una form */
-    public static function loadByForm($part1, $part2,$part3,$part4) {
+    public static function loadByForm($part1, $part2, $part3, $part4)
+    {
         $evento = array();
         $locale = array();
         $db = FDB::getInstance();
-        list($result,$num) = $db->loadMultipleEvento($part1, $part2, $part3, $part4);
-        if(($result != null) && ($num == 1)) {
+        list($result, $num) = $db->loadMultipleEvento($part1, $part2, $part3, $part4);
+        if (($result != null) && ($num == 1)) {
             $id_locale = $db->loadLocaleByEvento($result["id"]);
             $locale[0] = FLocale::loadByField("id", $id_locale);
-            $evento[0] = new EEvento($result["nome"],$result["descrizione"],$result["data"]);
+            $evento[0] = new EEvento($result["nome"], $result["descrizione"], $result["data"]);
             $evento[0]->setImg(FImmagine::loadByField('id', $result['idImg']));
             $evento[0]->setId($result["id"]);
-        }
-        else {
-            if(($result!=null) && ($num> 1)){
-                for($i=0; $i<count($result); $i++){
+        } else {
+            if (($result != null) && ($num > 1)) {
+                for ($i = 0; $i < count($result); $i++) {
                     $id_locale = $db->loadLocaleByEvento($result["id"]);
                     $locale[$i] = FLocale::loadByField("id", $id_locale);
-                    $evento[$i] = new EEvento($result[$i]["nome"],$result[$i]["descrizione"],$result[$i]["data"]);
+                    $evento[$i] = new EEvento($result[$i]["nome"], $result[$i]["descrizione"], $result[$i]["data"]);
                     $evento[$i]->setImg(FImmagine::loadByField('id', $result[$i]['idImg']));
                     $evento[$i]->setId($result[$i]["id"]);
                 }
             }
         }
-        return array($evento,$locale);
+        return array($evento, $locale);
     }
 
 }

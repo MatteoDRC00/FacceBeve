@@ -238,17 +238,6 @@ class FPersistentManager {
         return $ris;
     }
 
-    /**   Metodo che permette il caricamento di una chat e quindi lo scambio di messaggi tra due utenti che vengono identificati
-     *dal sistema tramite la loro email
-     *  *@param email ,email del utente
-     *  @param pass, password dell utente
-     */
-    public function loadEventi($utentelogged){
-        $ris = null;
-        $ris = FEvento::loadByUtente($utentelogged->getUsername());
-        return $ris;
-    }
-
     /**
      * Metodo che restituisce i 4 locali con la valutazione più alta sul sito
     */
