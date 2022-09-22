@@ -188,7 +188,7 @@ class FEvento
      * @param $part4
      * @return array[]
      */
-    public static function loadByForm($part1, $part2, $part3, $part4)
+    public static function loadByForm($part1, $part2, $part3, $part4): array
     {
         $evento = array();
         $locale = array();
@@ -198,7 +198,8 @@ class FEvento
             $id_locale = $db->loadLocaleByEvento($result["id"]);
             $locale[0] = FLocale::loadByField("id", $id_locale);
             $evento[0] = new EEvento($result["nome"], $result["descrizione"], $result["data"]);
-            $evento[0]->setImg(FImmagine::loadByField('id', $result['idImg']));
+            $img = FImmagine::loadByField('id', $result['idImg']);
+            $evento[0]->setImg($img[0]);
             $evento[0]->setId($result["id"]);
         } else {
             if (($result != null) && ($num > 1)) {
@@ -206,7 +207,8 @@ class FEvento
                     $id_locale = $db->loadLocaleByEvento($result["id"]);
                     $locale[$i] = FLocale::loadByField("id", $id_locale);
                     $evento[$i] = new EEvento($result[$i]["nome"], $result[$i]["descrizione"], $result[$i]["data"]);
-                    $evento[$i]->setImg(FImmagine::loadByField('id', $result[$i]['idImg']));
+                    $img = FImmagine::loadByField('id', $result[$i]['idImg']);
+                    $evento[$i]->setImg($img[0]);
                     $evento[$i]->setId($result[$i]["id"]);
                 }
             }

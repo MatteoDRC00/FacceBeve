@@ -140,15 +140,15 @@ class FRecensione
         if (($result != null) && ($num == 1)) {
             $utente = FUtente::loadByField("username", $result['utente']);
             $locale[0] = FLocale::loadByField("id", $result['locale']);
-            $recensione[0] = new ERecensione($utente, $result['titolo'], $result['descrizione'], $result['voto'], $result['data'], $locale);
+            $recensione[0] = new ERecensione($utente, $result['titolo'], $result['descrizione'], $result['voto'], $result['data'], $locale[0]);
             $recensione[0]->setId($result['id']);
             $recensione[0]->setSegnala($result['segnalato']);
         } else {
             if (($result != null) && ($num > 1)) {
                 for ($i = 0; $i < count($result); $i++) {
                     $utente = FUtente::loadByField("username", $result[$i]['utente']);
-                    $locale[0] = FLocale::loadByField("id", $result[$i]['locale']);
-                    $recensione[$i] = new ERecensione($utente, $result[$i]['titolo'], $result[$i]['descrizione'], $result[$i]['voto'], $result[$i]['data'], $locale);
+                    $locale = FLocale::loadByField("id", $result[$i]['locale']);
+                    $recensione[$i] = new ERecensione($utente, $result[$i]['titolo'], $result[$i]['descrizione'], $result[$i]['voto'], $result[$i]['data'], $locale[0]);
                     $recensione[$i]->setId($result[$i]['id']);
                     $recensione[$i]->setSegnala($result[$i]['segnalato']);
                 }
