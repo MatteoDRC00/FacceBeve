@@ -279,7 +279,7 @@ DROP TABLE IF EXISTS `Locale_Immagini`;
 
 CREATE TABLE `Locale_Immagini` (
     `ID_Locale` INT(11) NOT NULL,
-    `ID_Immagine` VARCHAR(30) NOT NULL,
+    `ID_Immagine` INT(11) NOT NULL,
     CONSTRAINT Locale_Immagine_PK PRIMARY KEY ( `ID_Locale` ,`ID_Immagine`),
     FOREIGN KEY (`ID_Immagine`)
         REFERENCES Immagine (`id`)
