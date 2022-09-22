@@ -132,16 +132,14 @@ CREATE TABLE `Locale` (
     `descrizione` VARCHAR(320),
 	`proprietario` VARCHAR(24),
 	`localizzazione` INT(11),
-    `idImg` int(11),
     UNIQUE (`nome`,`localizzazione`),
     PRIMARY KEY (`id`),
-	FOREIGN KEY (`idImg`) REFERENCES Immagine(`id`),
     FOREIGN KEY (`proprietario`) REFERENCES Proprietario(`username`),
     FOREIGN KEY (`localizzazione`) REFERENCES Localizzazione(`id`) ON DELETE CASCADE ON UPDATE CASCADE
 );
 /*Inserimento dati Locale*/
-INSERT INTO `Locale` (`id`,`nome`,`numtelefono`,`descrizione`,`proprietario`,`localizzazione`,`idImg`) VALUES
-(1,'Morrison','3279071461','Qui ci si diverte, dalle altre parti no!','DRKing',1,2);
+INSERT INTO `Locale` (`id`,`nome`,`numtelefono`,`descrizione`,`proprietario`,`localizzazione`) VALUES
+(1,'Morrison','3279071461','Qui ci si diverte, dalle altre parti no!','DRKing',1);
 
 
 /*Tabella relativa agli Eventi 
@@ -276,3 +274,20 @@ CREATE TABLE `Locale_Categorie` (
 INSERT INTO Locale_Categorie(`ID_Locale`,`ID_Categoria`) VALUES
 (1,'Irish Pub');
 
+/*Tabella che mette in relazione il Locale con le attività svolte*/
+DROP TABLE IF EXISTS `Locale_Immagini`;
+
+CREATE TABLE `Locale_Immagini` (
+    `ID_Locale` INT(11) NOT NULL,
+    `ID_Immagine` VARCHAR(30) NOT NULL,
+    CONSTRAINT Locale_Immagine_PK PRIMARY KEY ( `ID_Locale` ,`ID_Immagine`),
+    FOREIGN KEY (`ID_Immagine`)
+        REFERENCES Immagine (`id`)
+        ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (`ID_Locale`)
+        REFERENCES Locale (`id`)
+        ON DELETE CASCADE ON UPDATE CASCADE
+);
+/*Inserimento dati Locale_Categorie*/
+INSERT INTO Locale_Immagini(`ID_Locale`,`ID_Immagine`) VALUES
+    (1, 2);

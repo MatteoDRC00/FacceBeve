@@ -173,6 +173,7 @@ class FImmagine
                 }
             }
         }
+        print_r($img);
         return $img;
     }
 

@@ -23,7 +23,7 @@ class FLocale
      * Valori della tabella nel DB
      * @var string
      */
-    private static $values = "(:id,:nome,:numtelefono,:descrizione,:proprietario,:localizzazione,:idImg)";
+    private static $values = "(:id,:nome,:numtelefono,:descrizione,:proprietario,:localizzazione)";
 
     /**
      * Costruttore della classe
@@ -46,7 +46,6 @@ class FLocale
         $stmt->bindValue(':descrizione', $locale->getDescrizione(), PDO::PARAM_STR);
         $stmt->bindValue(':proprietario', $locale->getProprietario()->getUsername(), PDO::PARAM_STR);
         $stmt->bindValue(':localizzazione', $locale->getLocalizzazione()->getId(), PDO::PARAM_INT);
-        $stmt->bindValue(':idImg', NULL, PDO::PARAM_INT);
     }
 
     /**
