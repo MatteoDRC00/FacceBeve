@@ -139,33 +139,29 @@ class FLocale
             $proprietario = FProprietario::loadByField("username", $result["proprietario"]);
             $categorie = FCategoria::loadByLocale($result["id"]);
             $localizzazione = FLocalizzazione::loadByField("id", $result["localizzazione"]);
-            $eventi[] = FEvento::loadByLocale($result["id"]);
-            $orari[] = FOrario::loadByLocale($result["id"]);
-            $immagini = FImmagine::loadByField("id", $result["idImg"]);
+            $eventi = FEvento::loadByLocale($result["id"]);
+            $orari = FOrario::loadByLocale($result["id"]);
+            $immagini = FImmagine::loadByLocale($result["id"]);
             $locale[0] = new ELocale($result['nome'], $result['descrizione'], $result['numtelefono'], $proprietario, $localizzazione);
-            $locale[0]->setImg($immagini[0]);
+            $locale[0]->setImg($immagini);
             $locale[0]->setCategoria($categorie);
-            $locale[0]->setEventiOrganizzati($eventi[0]);
+            $locale[0]->setEventiOrganizzati($eventi);
             $locale[0]->setOrario($orari);
             $locale[0]->setId($result["id"]);
         } else {
             if (($result != null) && ($num > 1)) {
-                $locale = array();
-                $categorie = array();
-                $eventi = array();
-                $orari = array();
                 for ($i = 0; $i < count($result); $i++) {
                     $proprietario = FProprietario::loadByField("username", $result[$i]["proprietario"]);
                     $localizzazione = FLocalizzazione::loadByField("id", $result[$i]["localizzazione"]);
                     $categorie = FCategoria::loadByLocale($result[$i]["id"]);
-                    $eventi[] = FEvento::loadByLocale($result[$i]["id"]);
-                    $orari[] = FOrario::loadByLocale($result[$i]["id"]);
+                    $eventi = FEvento::loadByLocale($result[$i]["id"]);
+                    $orari = FOrario::loadByLocale($result[$i]["id"]);
                     $immagine = FImmagine::loadByLocale($result[$i]["id"]);
                     $locale[$i] = new ELocale($result[$i]['nome'], $result[$i]['descrizione'], $result[$i]['numtelefono'], $proprietario, $localizzazione);
-                    $locale[$i]->setImg($immagine[0]);
+                    $locale[$i]->setImg($immagine);
                     $locale[$i]->setCategoria($categorie);
-                    $locale[$i]->setEventiOrganizzati($eventi[0]);
-                    $locale[$i]->setOrario($orari[$i]);
+                    $locale[$i]->setEventiOrganizzati($eventi);
+                    $locale[$i]->setOrario($orari);
                     $locale[$i]->setId($result[$i]["id"]);
                 }
             }
