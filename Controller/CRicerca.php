@@ -105,7 +105,7 @@ class CRicerca
         $pm = FPersistentManager::GetInstance();
         $sessione = new USession();
         $result = $pm->load("id", $id, "FLocale");
-        $eventiOrganizzati = $result->getEventiOrganizzati();
+        $eventiOrganizzati = $result[0]->getEventiOrganizzati();
         $proprietario = null;
 
         if ($sessione->isLogged())
