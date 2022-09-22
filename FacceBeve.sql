@@ -39,7 +39,8 @@ CREATE TABLE `Utente` (
 );
 /*Inserimento dati Utente*/
 INSERT INTO `Utente` (`username`,`nome`,`cognome`,`email`,`password`,`dataIscrizione`,`idImg`,`state`) VALUES
-('JSabbly','Alex','Sablo','sabloyes@gmail.com','fc921691abbcce2e91a52be32c26ddba','09/08/2022',1,1); /**pw=AlexSab0*/
+('JSabbly','Alex','Sablo','sabloyes@gmail.com','fc921691abbcce2e91a52be32c26ddba','09/08/2022',1,1);
+/*pw=AlexSab0*/
 
 /*Tabella relativa ai Proprietari dei Locali*/
 DROP TABLE IF EXISTS `Proprietario`;

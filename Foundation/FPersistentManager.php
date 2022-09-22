@@ -29,13 +29,16 @@ class FPersistentManager {
     }
 
     /**
-     * @param Object $obj
-     * @param string $Fclass
-     * @param int $id del Locale
+     * @param string $table
+     * @param string $field1
+     * @param string $field2
+     * @param string $fk1
+     * @param string $fk2
      * @return void
      */
-    public static function storeEsterne(string $Fclass, Object $obj,int $id) {
-        $Fclass::storeEsterne($obj,$id);
+    public function storeEsterne(string $table, string $field1, string $field2, string $fk1, string $fk2) {
+        $db = FDB::getInstance();
+        $db->storeEsterne($table, $field1, $field2, $fk1, $fk2);
     }
 
     /**

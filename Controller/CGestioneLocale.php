@@ -117,9 +117,9 @@ class CGestioneLocale
 
             $categorie = array();
 
-            foreach ($generi as $g) {
-                $pm->storeCategorieLocale($g, $id_locale);
-                $categorie[] = $pm->load("genere", $g, "FCategoria");
+            foreach ($generi as $genere) {
+                $pm->storeEsterne("Locale_Categorie", "ID_Locale", "ID_Categoria", $id_locale, $genere);
+                $categorie = $pm->load("genere", $genere, "FCategoria");
             }
             $locale->setCategoria($categorie);
 
@@ -158,17 +158,20 @@ class CGestioneLocale
                         $id = $pm->store($orario);
                         $orario->setId($id);
                         $o[] = $orario;
-                        $pm->storeOrariLocale($id, $id_locale);
+                        $pm->storeEsterne("Locale_Orari", "ID_Locale", "ID_Orario", $id_locale, $id);
                     } else {
-
-                        //errore
+                        $message = "Inserire entrambi i campi degli orari ";
+                        echo "<script type='text/javascript'>
+                            alert('$message');
+                            window.location.replace('/GestioneLocale/mostraFormCreaLocale');
+                            </script>";
                     }
                 } else {
                     $orario = new EOrario($giorno, "Chiuso", "Chiuso");
                     $id = $pm->store($orario);
                     $orario->setId($id);
                     $o[] = $orario;
-                    $pm->storeOrariLocale($id, $id_locale);
+                    $pm->storeEsterne("Locale_Orari", "ID_Locale", "ID_Orario", $id_locale, $id);
                 }
             }
 
@@ -179,8 +182,7 @@ class CGestioneLocale
                 $img_locale = new EImmagine($img[0], $img[1], $img[2], $img[3]);
                 $id = $pm->store($img_locale);
                 $img_locale->setId($id);
-                $pm->update("FLocale", "idImg", $id, "id", $id_locale);
-                $locale->setImg($img_locale);
+                $pm->storeEsterne("Locale_Immagini", "ID_Locale", "ID_Immagine", $id_locale, $id);
             }
             header('Location: /Profilo/mostraProfilo');
         } else {

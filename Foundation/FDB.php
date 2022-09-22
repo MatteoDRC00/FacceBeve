@@ -300,7 +300,7 @@ class FDB{
 	 * @param string $fk1 Foreign key della prima classe
 	 * @param string $fk2 Foreign key della seconda classe
 	 */
-	public function chiaviEsterne(string $table, string $field1, string $field2, string $fk1, string $fk2){
+	public function storeEsterne(string $table, string $field1, string $field2, string $fk1, string $fk2){
 		try {
 			$this->database->beginTransaction();
 			$query = "INSERT INTO " . $table . " (" . $field1 . "," . $field2 . ") VALUES (" . $fk1 . "," . $fk2 . ");";
@@ -308,6 +308,7 @@ class FDB{
 			$stmt->execute();
 			$this->database->commit();
 			$this->closeDbConnection();
+			return true;
 		} catch (PDOException $e) {
 			echo "Attenzione errore: " . $e->getMessage();
 			$this->database->rollBack();
