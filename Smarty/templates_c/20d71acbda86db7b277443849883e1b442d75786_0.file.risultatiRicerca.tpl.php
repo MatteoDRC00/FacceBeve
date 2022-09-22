@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-19 16:12:09
+/* Smarty version 4.2.0, created on 2022-09-22 11:56:44
   from 'C:\xampp\htdocs\FacceBeve\template\risultatiRicerca.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_632878b9829c46_06081373',
+  'unifunc' => 'content_632c315c847284_10894411',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '20d71acbda86db7b277443849883e1b442d75786' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\risultatiRicerca.tpl',
-      1 => 1663596722,
+      1 => 1663596766,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_632878b9829c46_06081373 (Smarty_Internal_Template $_smarty_tpl) {
+function content_632c315c847284_10894411 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <?php $_smarty_tpl->_assignInScope('tipo', (($tmp = $_smarty_tpl->tpl_vars['tipo']->value ?? null)===null||$tmp==='' ? null ?? null : $tmp));
 $_smarty_tpl->_assignInScope('userlogged', (($tmp = $_smarty_tpl->tpl_vars['error']->value ?? null)===null||$tmp==='' ? null ?? null : $tmp));
@@ -169,7 +169,75 @@ $_smarty_tpl->tpl_vars['locale']->do_else = false;
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                         <?php } else { ?>
+                            <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['array']->value, 'evento');
+$_smarty_tpl->tpl_vars['evento']->iteration = 0;
+$_smarty_tpl->tpl_vars['evento']->do_else = true;
+if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['evento']->value) {
+$_smarty_tpl->tpl_vars['evento']->do_else = false;
+$_smarty_tpl->tpl_vars['evento']->iteration++;
+$__foreach_evento_1_saved = $_smarty_tpl->tpl_vars['evento'];
+?>
+                                <div class="entry-img">
+                                    <img class="photo"
+                                         src="data:<?php echo $_smarty_tpl->tpl_vars['evento']->value->getImg()->getType();?>
+;base64,<?php echo $_smarty_tpl->tpl_vars['evento']->value->getImg()->getImmagine();?>
+"
+                                         alt="immagine evento" width="200px" height="100px" style="border-radius:5px">
+                                </div>
+                                <h2 class="entry-title">
+                                    <?php echo $_smarty_tpl->tpl_vars['evento']->value->getNome();?>
 
+                                </h2>
+                                <div class="entry-meta">
+                                    <ul>
+                                        <li class="d-flex align-items-center"><i class="bi bi-person"></i>
+                                            <?php ob_start();
+echo $_smarty_tpl->tpl_vars['evento']->iteration-1;
+$_prefixVariable1 = ob_get_clean();
+echo $_smarty_tpl->tpl_vars['locali']->value[$_prefixVariable1]->getNome();?>
+</li>
+                                        <li class="d-flex align-items-center"><i class="fas fa-map-marker-alt"></i>
+                                            <?php ob_start();
+echo $_smarty_tpl->tpl_vars['evento']->iteration-1;
+$_prefixVariable2 = ob_get_clean();
+echo $_smarty_tpl->tpl_vars['locali']->value[$_prefixVariable2]->getLocalizzazione()->getIndirizzo();?>
+
+                                            ,<?php ob_start();
+echo $_smarty_tpl->tpl_vars['evento']->iteration-1;
+$_prefixVariable3 = ob_get_clean();
+echo $_smarty_tpl->tpl_vars['locali']->value[$_prefixVariable3]->getLocalizzazione()->getNumCivico();?>
+
+                                            , <?php ob_start();
+echo $_smarty_tpl->tpl_vars['evento']->iteration-1;
+$_prefixVariable4 = ob_get_clean();
+echo $_smarty_tpl->tpl_vars['locali']->value[$_prefixVariable4]->getLocalizzazione()->getCitta();?>
+
+                                        </li>
+                                        <li class="d-flex align-items-center"><i class="bi bi-pin"></i>
+                                            <?php echo $_smarty_tpl->tpl_vars['evento']->value->getData();?>
+</li>
+                                    </ul>
+                                </div>
+                                <div class="entry-content">
+                                    <p>
+                                        <?php echo $_smarty_tpl->tpl_vars['evento']->value->getDescrizione();?>
+
+                                    </p>
+                                    <div class="read-more">
+                                        <a href="/Ricerca/dettagliLocale/<?php ob_start();
+echo $_smarty_tpl->tpl_vars['evento']->iteration-1;
+$_prefixVariable5 = ob_get_clean();
+echo $_smarty_tpl->tpl_vars['locali']->value[$_prefixVariable5]->getId();?>
+">
+                                            Visita la pagina del Locale <i class="fas fa-chevron-circle-right"></i></a>
+                                    </div>
+                                </div>
+                                <br>
+                            <?php
+$_smarty_tpl->tpl_vars['evento'] = $__foreach_evento_1_saved;
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                         <?php }?>
                     <?php }?>
                     <?php if (!(isset($_smarty_tpl->tpl_vars['array']->value))) {?>
