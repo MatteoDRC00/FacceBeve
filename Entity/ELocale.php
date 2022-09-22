@@ -72,10 +72,10 @@ class ELocale
     private ?array $orario;
 
     /**
-     * Img del locale
-     * @var EImmagine|null
+     * Immagini del locale
+     * @var array|null
      */
-    private ?EImmagine $img;
+    private ?array $img;
 
     /**
      * Costruttore della classe
@@ -87,7 +87,7 @@ class ELocale
      */
     public function __construct(string $nome, string $descrizione, string $num_telefono, EProprietario $proprietario, ELocalizzazione $localizzazione)
     {
-        $this->id = NULL;
+        $this->id = null;
         $this->nome = $nome;
         $this->num_telefono = $num_telefono;
         $this->descrizione = $descrizione;
@@ -262,28 +262,25 @@ class ELocale
     }
 
     /**
-     * Restituisce l'immagine del locale
-     * @return EImmagine|null
+     * @return array|null
      */
-    public function getImg(): ?EImmagine
+    public function getImg(): ?array
     {
         return $this->img;
     }
 
     /**
-     * Imposta/Modifica l'immagine del locale
-     * @param EImmagine|null $img
-     * @return void
+     * @param array|null $img
      */
-    public function setImg(?EImmagine $img): void
+    public function setImg(?array $img): void
     {
         $this->img = $img;
     }
 
-    /* public function addImg(EImmagine $img): void
-     {
-         $this->img[] = $img;
-     }*/
+    public function addImg(EImmagine $img): void
+    {
+        $this->img[] = $img;
+    }
 
 
     public function jsonSerialize()
