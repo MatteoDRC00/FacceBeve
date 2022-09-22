@@ -715,7 +715,7 @@ class FDB{
 	/**
 	 * Metodo che restituisce l'id del locale dato l'id di un suo evento
 	 * @param $id_evento
-	 * @return array|mixed|null
+	 * @return int|null
 	 */
 	public function loadLocaleByEvento($id_evento){
 		try{
@@ -733,7 +733,7 @@ class FDB{
 				while ($row = $stmt->fetch())
 					$result[] = $row;                    //ritorna un array di righe.
 			}
-			return $result;
+			return $result['ID_Locale'];
 		} catch (PDOException $e) {
 			echo "Attenzione errore: " . $e->getMessage();
 			$this->database->rollBack();

@@ -212,7 +212,7 @@ class VRicerca
         $this->smarty->assign('valutazioneLocale', $valutazioneLocale);
 
         $this->smarty->assign('utente', $sessione->leggi_valore('utente'));
-        $this->smarty->assign('locale', $result);
+        $this->smarty->assign('locale', $result[0]);
         $this->smarty->assign('tipo', $tipo);
         $this->smarty->assign('presente', $presente);
         $this->smarty->display('InfoLocale.tpl');
