@@ -259,7 +259,6 @@ class VProfilo{
         $this->smarty->assign("tipo",$tipo);
         $this->smarty->assign("message",$message);
 
-
         $username = $user->getUsername();
         $nome = $user->getNome();
         $cognome = $user->getCognome();
@@ -279,10 +278,7 @@ class VProfilo{
             $this->smarty->assign("locali_preferiti",$locali_preferiti);
             $this->smarty->display('areaPersonaleUtente.tpl');
         }elseif (get_class($user)=="EProprietario"){
-            $locali[] = $pm->load("proprietario", $username, "FLocale");
-            if($locali[0] == null){
-                $locali = array();
-            }
+            $locali = $pm->load("proprietario", $username, "FLocale");
             $this->smarty->assign("locali",$locali);
             $this->smarty->display('areaPersonaleProprietario.tpl');
         }

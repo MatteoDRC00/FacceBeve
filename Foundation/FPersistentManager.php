@@ -28,16 +28,6 @@ class FPersistentManager {
         return $FClass::store($obj);
     }
 
-    /**   Metodo che permette di salvare un media di un oggetto sul db
-     * @param obj oggetto di cui si vuole salvare il media
-     * @param nome_file ,nome del media da salvare
-
-    public static function storeMedia($obj,$nome_file) {
-        $EClass = get_class($obj);
-        $Fclass = str_replace("E", "F", $EClass);
-        return $Fclass::store($obj,$nome_file);
-    }*/
-
     /**
      * @param Object $obj
      * @param string $Fclass
@@ -53,13 +43,6 @@ class FPersistentManager {
     */
     public function getCategorie(): array{
         return FCategoria::loadAllCategorie();
-        /*print_r($result);
-        $genere = array();
-        foreach ($result as $c){
-            print_r($c);
-            $genere[] = $c['genere'];
-        }
-        return $genere;*/
     }
 
     public function getEventiByLocale($id_locale){
@@ -238,21 +221,7 @@ class FPersistentManager {
 
     public function getLocaliPreferiti($id_utente): array
     {
-        $db = FDB::getInstance();
-        list($utente_locali, $num) = $db->loadByTable("utenti_locali", "ID_Utente", $id_utente);
-        $locali_preferiti = array();
-
-        if(!empty($utente_locali)){
-            if ($num == 1){
-                $locali_preferiti[] = FLocale::loadByField("id", $utente_locali['ID_Locale']);
-            }else{
-                for($i=0; $i<$num; $i++){
-                    $value = $utente_locali[$i];
-                    $locali_preferiti[] = FLocale::loadByField("id", $value['ID_Locale']);
-                }
-            }
-        }
-        return $locali_preferiti;
+        return FLocale::loadByUsername($id_utente);
     }
 
     public function storeCategorieLocale($categoria, $locale){
