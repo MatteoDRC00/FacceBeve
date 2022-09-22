@@ -84,9 +84,9 @@
                         <input class="homeinput" type="text" placeholder="Inserisci il nome" name="nomeLocale1">
                         <select form="ricercaLocali1" name="categorie1" id="categorie1" style="border-radius:7px; height: 50px  ;">
                             <option>--Scegli il tipo--</option>
-                            {if !empty($genere_cat)}
-                                {foreach $genere_cat as $genere}
-                                    <option type="radio" name="genere" value="{$genere}">{$genere}</option>
+                            {if !empty($categorie)}
+                                {foreach $categorie as $c}
+                                    <option type="radio" name="genere" value="{$c->getGenere()}"> {$c->getGenere()}</option>
                                 {/foreach}
                             {/if}
                         </select>
@@ -114,9 +114,9 @@
                         <input class="homeinput" type="text" placeholder="Inserisci il nome" name="nomeLocale">
                         <select name="categorie" id="categorie" form="ricercaLocali0" style="border-radius:7px; height: 50px ">
                             <option>--Scegli il tipo--</option>
-                            {if !empty($genere_cat)}
-                                {foreach $genere_cat as $genere}
-                                    <option type="radio" name="genere" value="{$genere}"> {$genere}</option>
+                            {if !empty($categorie)}
+                                {foreach $categorie as $c}
+                                    <option type="radio" name="genere" value="{$c->getGenere()}"> {$c->getGenere()}</option>
                                 {/foreach}
                             {/if}
                         </select>
@@ -136,8 +136,8 @@
 
             <div class="row">
                 <h2>Ecco i TOP 4 locali in Italia:</h2>
-                {if !empty($locali)}
-                    {foreach $locali as $locale}
+                {if !empty($topLocali)}
+                    {foreach $topLocali as $locale}
                         {$i=0}
                         <div class="col-md-6 col-lg-3 d-flex align-items-stretch">
                             <div class="icon-box icon-box-pink">

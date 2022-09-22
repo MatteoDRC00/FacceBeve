@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-18 22:56:19
+/* Smarty version 4.2.0, created on 2022-09-22 11:42:13
   from 'C:\xampp\htdocs\FacceBeve\template\home.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_632785f3c38e56_12637716',
+  'unifunc' => 'content_632c2df598d1b7_52607109',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c953834e2bd280dacf9fe734edc7529afcd03f09' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\home.tpl',
-      1 => 1663534573,
+      1 => 1663839731,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_632785f3c38e56_12637716 (Smarty_Internal_Template $_smarty_tpl) {
+function content_632c2df598d1b7_52607109 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -107,15 +107,15 @@ function content_632785f3c38e56_12637716 (Smarty_Internal_Template $_smarty_tpl)
                         <input class="homeinput" type="text" placeholder="Inserisci il nome" name="nomeLocale1">
                         <select form="ricercaLocali1" name="categorie1" id="categorie1" style="border-radius:7px; height: 50px  ;">
                             <option>--Scegli il tipo--</option>
-                            <?php if (!empty($_smarty_tpl->tpl_vars['genere_cat']->value)) {?>
+                            <?php if (!empty($_smarty_tpl->tpl_vars['categorie']->value)) {?>
                                 <?php
-$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['genere_cat']->value, 'genere');
-$_smarty_tpl->tpl_vars['genere']->do_else = true;
-if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['genere']->value) {
-$_smarty_tpl->tpl_vars['genere']->do_else = false;
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['categorie']->value, 'c');
+$_smarty_tpl->tpl_vars['c']->do_else = true;
+if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['c']->value) {
+$_smarty_tpl->tpl_vars['c']->do_else = false;
 ?>
-                                    <option type="radio" name="genere" value="<?php echo $_smarty_tpl->tpl_vars['genere']->value;?>
-"><?php echo $_smarty_tpl->tpl_vars['genere']->value;?>
+                                    <option type="radio" name="genere" value="<?php echo $_smarty_tpl->tpl_vars['c']->value->getGenere();?>
+"> <?php echo $_smarty_tpl->tpl_vars['c']->value->getGenere();?>
 </option>
                                 <?php
 }
@@ -146,15 +146,15 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                         <input class="homeinput" type="text" placeholder="Inserisci il nome" name="nomeLocale">
                         <select name="categorie" id="categorie" form="ricercaLocali0" style="border-radius:7px; height: 50px ">
                             <option>--Scegli il tipo--</option>
-                            <?php if (!empty($_smarty_tpl->tpl_vars['genere_cat']->value)) {?>
+                            <?php if (!empty($_smarty_tpl->tpl_vars['categorie']->value)) {?>
                                 <?php
-$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['genere_cat']->value, 'genere');
-$_smarty_tpl->tpl_vars['genere']->do_else = true;
-if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['genere']->value) {
-$_smarty_tpl->tpl_vars['genere']->do_else = false;
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['categorie']->value, 'c');
+$_smarty_tpl->tpl_vars['c']->do_else = true;
+if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['c']->value) {
+$_smarty_tpl->tpl_vars['c']->do_else = false;
 ?>
-                                    <option type="radio" name="genere" value="<?php echo $_smarty_tpl->tpl_vars['genere']->value;?>
-"> <?php echo $_smarty_tpl->tpl_vars['genere']->value;?>
+                                    <option type="radio" name="genere" value="<?php echo $_smarty_tpl->tpl_vars['c']->value->getGenere();?>
+"> <?php echo $_smarty_tpl->tpl_vars['c']->value->getGenere();?>
 </option>
                                 <?php
 }
@@ -177,9 +177,9 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 
             <div class="row">
                 <h2>Ecco i TOP 4 locali in Italia:</h2>
-                <?php if (!empty($_smarty_tpl->tpl_vars['locali']->value)) {?>
+                <?php if (!empty($_smarty_tpl->tpl_vars['topLocali']->value)) {?>
                     <?php
-$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['locali']->value, 'locale');
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['topLocali']->value, 'locale');
 $_smarty_tpl->tpl_vars['locale']->do_else = true;
 if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['locale']->value) {
 $_smarty_tpl->tpl_vars['locale']->do_else = false;

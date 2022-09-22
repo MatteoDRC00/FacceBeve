@@ -141,14 +141,14 @@ class FEvento
         if (($result != null) && ($num == 1)) {
             $immagine = FImmagine::loadByField("id", $result['idImg']);
             $evento[0] = new EEvento($result['nome'], $result['descrizione'], $result['data']); //Carica un evento dal database
-            $evento[0]->setImg($immagine);
+            $evento[0]->setImg($immagine[0]);
             $evento[0]->setId($result['id']);
         } else {
             if (($result != null) && ($num > 1)) {
                 for ($i = 0; $i < count($result); $i++) {
                     $immagine = FImmagine::loadByField("id", $result[$i]['idImg']);
                     $evento[$i] = new EEvento($result[$i]['nome'], $result[$i]['descrizione'], $result[$i]['data']); //Carica un array di oggetti Evento dal database
-                    $evento[$i]->setImg($immagine);
+                    $evento[$i]->setImg($immagine[0]);
                     $evento[$i]->setId($result['id']);
                 }
             }

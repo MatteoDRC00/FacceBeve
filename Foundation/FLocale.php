@@ -142,9 +142,9 @@ class FLocale
             $localizzazione = FLocalizzazione::loadByField("id", $result["localizzazione"]);
             $eventi[] = FEvento::loadByLocale($result["id"]);
             $orari[] = FOrario::loadByLocale($result["id"]);
-            $immagini[0] = FImmagine::loadByField("id", $result["idImg"]);
+            $immagini = FImmagine::loadByField("id", $result["idImg"]);
             $locale[0] = new ELocale($result['nome'], $result['descrizione'], $result['numtelefono'], $proprietario, $localizzazione);
-            $locale[0]->setImg($immagini);
+            $locale[0]->setImg($immagini[0]);
             $locale[0]->setCategoria($categorie);
             $locale[0]->setEventiOrganizzati($eventi);
             $locale[0]->setOrario($orari);
@@ -157,9 +157,9 @@ class FLocale
                     $categorie[] = FCategoria::loadByLocale($result[$i]["id"]);
                     $eventi[] = FEvento::loadByLocale($result[$i]["id"]);
                     $orari[] = FOrario::loadByLocale($result[$i]["id"]);
-                    $immagine[0] = FImmagine::loadByLocale($result[$i]["id"]);
+                    $immagine = FImmagine::loadByLocale($result[$i]["id"]);
                     $locale[$i] = new ELocale($result[$i]['nome'], $result[$i]['descrizione'], $result[$i]['numtelefono'], $proprietario, $localizzazione);
-                    $locale[$i]->setImg($immagine);
+                    $locale[$i]->setImg($immagine[0]);
                     $locale[$i]->setCategoria($categorie);
                     $locale[$i]->setEventiOrganizzati($eventi);
                     $locale[$i]->setOrario($orari);
@@ -182,9 +182,9 @@ class FLocale
             $localizzazione = FLocalizzazione::loadByField("id", $result["localizzazione"]);
             $eventi[] = FEvento::loadByLocale($result["id"]);
             $orari[] = FOrario::loadByLocale($result["id"]);
-            $immagini[0] = FImmagine::loadByField("id", $result["idImg"]);
+            $immagini = FImmagine::loadByField("id", $result["idImg"]);
             $locale[0] = new ELocale($result['nome'], $result['descrizione'], $result['numtelefono'], $proprietario, $localizzazione);
-            $locale[0]->setImg($immagini);
+            $locale[0]->setImg($immagini[0]);
             $locale[0]->setCategoria($categorie);
             $locale[0]->setEventiOrganizzati($eventi);
             $locale[0]->setOrario($orari);
@@ -201,9 +201,9 @@ class FLocale
                     $categorie[] = FCategoria::loadByLocale($result[$i]["id"]);
                     $eventi[] = FEvento::loadByLocale($result[$i]["id"]);
                     $orari[] = FOrario::loadByLocale($result[$i]["id"]);
-                    $immagine[0] = FImmagine::loadByLocale($result[$i]["id"]);
+                    $immagine = FImmagine::loadByLocale($result[$i]["id"]);
                     $locale[$i] = new ELocale($result[$i]['nome'], $result[$i]['descrizione'], $result[$i]['numtelefono'], $proprietario, $localizzazione);
-                    $locale[$i]->setImg($immagine);
+                    $locale[$i]->setImg($immagine[0]);
                     $locale[$i]->setCategoria($categorie);
                     $locale[$i]->setEventiOrganizzati($eventi);
                     $locale[$i]->setOrario($orari[$i]);
@@ -216,12 +216,27 @@ class FLocale
 
     /**
      * Metodo che restituisce i locali in ordine di valutazione media
-     * @return array|void
+     * @return array
      */
     public static function getTopLocali()
     {
+        $locali = array();
+        $valutazione = array();
         $db = FDB::getInstance();
-        return $db->getLocaliPerValutazione();
+        list($result, $num) = $db->getLocaliPerValutazione();
+
+        if (($result != null) && ($num == 1)) {
+            $locali = self::loadByField("id", $result["id"]);
+            $valutazione[0] = $result["ValutazioneMedia"];
+        } else {
+            if (($result != null) && ($num > 1)) {
+                for ($i = 0; $i < count($result); $i++) {
+                    $locali = array_merge($locali, self::loadByField("id", $result[$i]["id"]));
+                    $valutazione[$i] = $result[$i]["ValutazioneMedia"];
+                }
+            }
+        }
+        return array($locali, $valutazione);
     }
 
 

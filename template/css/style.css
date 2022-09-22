@@ -38,6 +38,34 @@ h6,
 /*--------------------------------------------------------------
 # Back to top button
 --------------------------------------------------------------*/
+#customers {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#customers td, #customers th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+
+#customers tr:hover {
+    background-color: #ddd;
+}
+
+#customers th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4c99c1;
+    color: white;
+}
+
+#customers caption{
+    font-size: 20px;
+}
+
 .back-to-top {
     position: fixed;
     visibility: hidden;

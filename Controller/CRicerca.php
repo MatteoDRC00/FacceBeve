@@ -49,22 +49,12 @@ class CRicerca
         }
 
         $pm = FPersistentManager::getInstance();
-        $genere_cat = $pm->getCategorie();
-        $topLocali = $pm->top4Locali();
+        $categorie = $pm->getCategorie();
+        list($topLocali, $valutazione) = $pm->top4Locali();
 
-        $locali = array();
-        $valutazione = array();
-
-        if (!empty($topLocali)) {
-            foreach ($topLocali as $locale) {
-                $valutazione[] = $locale["ValutazioneMedia"];
-                $locale = $pm->load("id", $locale["id"], "FLocale");
-                $locali[] = $locale;
-            }
-        }
 
         $view = new VRicerca();
-        $view->mostraHome($tipo, $genere_cat, $locali, $valutazione);
+        $view->mostraHome($tipo, $categorie, $topLocali, $valutazione);
     }
 
     /**

@@ -834,7 +834,7 @@ class FDB{
 	 */
 	public function getLocaliPerValutazione(){
 		try {
-			$query = "SELECT locale.id,AVG(recensione.voto) AS ValutazioneMedia FROM locale INNER JOIN recensione ON locale.id = recensione.locale GROUP BY locale.id ORDER BY AVG(recensione.voto) DESC;";
+			$query = "SELECT locale.id,AVG(recensione.voto) AS ValutazioneMedia FROM locale INNER JOIN recensione ON locale.id = recensione.locale GROUP BY locale.id ORDER BY AVG(recensione.voto) DESC LIMIT 4;";
 			$stmt = $this->database->prepare($query);
 			$stmt->execute();
 			$num = $stmt->rowCount();

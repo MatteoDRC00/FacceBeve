@@ -52,12 +52,14 @@ class FPersistentManager {
      * Metodo utilizzato per caricare TUTTE le categorie di locale presenti sul sito
     */
     public function getCategorie(): array{
-        $result = FCategoria::loadTutteCategorie();
+        return FCategoria::loadAllCategorie();
+        /*print_r($result);
         $genere = array();
         foreach ($result as $c){
+            print_r($c);
             $genere[] = $c['genere'];
         }
-        return $genere;
+        return $genere;*/
     }
 
     public function getEventiByLocale($id_locale){
@@ -225,17 +227,7 @@ class FPersistentManager {
      * Metodo che restituisce i 4 locali con la valutazione più alta sul sito
     */
     public function top4Locali(){
-        $locali = array();
-        list($result, $num) = FLocale::getTopLocali();
-        if(!empty($result)){
-            if($num>4){
-                for($i=0; $i<4; $i++){
-                    $locali[] = $result[$i];
-                }
-            }else
-                $locali[] = $result;
-        }
-        return $locali;
+        return FLocale::getTopLocali();
     }
 
 
