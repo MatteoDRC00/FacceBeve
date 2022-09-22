@@ -243,7 +243,7 @@ class FLocale
      * @param string $username
      * @return array
      */
-    public static function loadByUsername(string $username)
+    public static function loadByUsername(string $username): array
     {
         $locali = array();
         $db = FDB::getInstance();
