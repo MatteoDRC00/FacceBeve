@@ -148,8 +148,8 @@ class FProprietario
                 $proprietario = array();
                 for ($i = 0; $i < count($result); $i++) {
                     $proprietario[$i] = new EProprietario($result[$i]['nome'], $result[$i]['cognome'], $result[$i]['email'], $result[$i]['username'], $result[$i]['password']); //Carica un array di oggetti Proprietario dal database
-                    $img_profilo[0] = FImmagine::loadByField('id', $result[$i]['idImg']);
-                    $proprietario[$i]->setImgProfilo($img_profilo);
+                    $img_profilo = FImmagine::loadByField('id', $result[$i]['idImg']);
+                    $proprietario[$i]->setImgProfilo($img_profilo[0]);
                 }
             }
         }
