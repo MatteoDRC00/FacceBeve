@@ -94,8 +94,8 @@
                         <div class="form-example">
                             <label style="font-weight: bold">Inserisci le categorie: </label><br>
                             {if !empty($categorie)}
-                                {foreach $categorie as $genere}
-                                    <input type="checkbox" name="genereLocale[]" value="{$genere}">{$genere}
+                                {foreach $categorie as $c}
+                                    <input type="checkbox" name="genereLocale[]" value="{$c->getGenere()}">{$c->getGenere()}
                                 {/foreach}
                             {else}
                                 <p>Non ci sono categorie</p>

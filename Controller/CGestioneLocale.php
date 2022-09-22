@@ -41,8 +41,8 @@ class CGestioneLocale
         if ($sessione->isLogged() && $sessione->leggi_valore("tipo_utente") == "EProprietario") {
             $view = new VGestioneLocale();
             $pm = FPersistentManager::getInstance();
-            $genere_cat = $pm->getCategorie();
-            $view->showFormCreaLocale($genere_cat);
+            $categorie = $pm->getCategorie();
+            $view->showFormCreaLocale($categorie);
         } else {
             header("Location: /Ricerca/mostraHome");
         }
@@ -72,10 +72,10 @@ class CGestioneLocale
         $locale = $pm->load("id", $id_locale, "FLocale");
 
         if ($sessione->isLogged() && $tipo == "EProprietario") {
-            $genere_cat = $pm->getCategorie();
+            $categorie = $pm->getCategorie();
             $eventi = $pm->getEventiByLocale($locale->getId());
 
-            $view->showFormModificaLocale($locale, $genere_cat, $eventi);
+            $view->showFormModificaLocale($locale, $categorie, $eventi);
         }
     }
 

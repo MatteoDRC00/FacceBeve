@@ -239,6 +239,28 @@ class FLocale
         return array($locali, $valutazione);
     }
 
+    /**
+     *
+     * @param string $username
+     * @return array
+     */
+    public static function loadByUsername(string $username)
+    {
+        $locali = array();
+        $db = FDB::getInstance();
+        list($result, $num) = $db->loadByTable("Utenti_Locali", "ID_Utente", $username);
+        if (($result != null) && ($num == 1)) {
+            $locali = self::loadByField("id", $result["ID_Locale"]);
+        } else {
+            if (($result != null) && ($num > 1)) {
+                for ($i = 0; $i < count($result); $i++) {
+                    $locali = array_merge($locali, self::loadByField("id", $result[$i]["ID_Locale"]));
+                }
+            }
+        }
+        return $locali;
+    }
+
 
 }
 
