@@ -120,7 +120,7 @@ class CRicerca
         $presente = $pm->existEsterna("utenti_locali", "ID_Locale", $id, "ID_Utente", $username);
 
         if (is_array($recensioni)) {
-            $risposte = array();
+            //$risposte = array();
             $sum = 0;
             foreach ($recensioni as $item) {
                 $idSearch = $item->getId();
@@ -141,7 +141,7 @@ class CRicerca
             if ($check)
                 $proprietario = 1;
         }
-        $vRicerca->dettagliLocale($tipo, $presente, $result, $recensioni, $risposte, $rating, $proprietario, $logged, $eventiOrganizzati);
+        $vRicerca->dettagliLocale($tipo, $presente, $result, $recensioni, $risposte[0], $rating, $proprietario, $logged, $eventiOrganizzati);
     }
 
 
