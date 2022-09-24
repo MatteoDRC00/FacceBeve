@@ -166,7 +166,7 @@ class FImmagine
         } else {
             if (($result != null) && ($num > 1)) {
                 for ($i = 0; $i < count($result); $i++) {
-                    $img = array_merge($img, self::loadByField("id", $result["ID_Immagine"]));
+                    $img = array_merge($img, self::loadByField("id", $result[$i]["ID_Immagine"]));
                 }
             }
         }

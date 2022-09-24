@@ -422,9 +422,8 @@ class CGestioneLocale
     }
 
     /**
-     * Gestisce la modifica dell'immagine del locale. Preleva la nuova immagine dalla view e procede alla modifica.
+     * @param $id_immagine
      * @return void
-     * @throws SmartyException
      */
     public function eliminaImmagineLocale($id_immagine)
     {

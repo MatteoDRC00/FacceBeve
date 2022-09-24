@@ -148,16 +148,17 @@
                         <input name="img_locale" class="w-50 p-2 m-2" type="file" required><br>
                         <button type="submit" class="btnAggiorna">AGGIUNGI IMMAGINE</button>
                     </form>
-                    <p>ELIMINA LE IMMAGINI</p>
+                    <p style="font-weight: bold; font-size: 20px; color: #0d2735; text-align: center">ELIMINA LE IMMAGINI</p>
                     {if !empty(($immagini))}
                         {foreach $immagini as $img}
                             <form action="/GestioneLocale/eliminaImmagineLocale/{$img->getId()}" method="POST" class="aggiorna"> <!-- aggiungin i controlli -->
-                                <img class="photo" src="data:{$img->getType};base64,{$img->getImmagine}" alt="immagine profilo">
+                                <img style="height: 120px; width: 120px; border-radius: 0" src="data:{$img->getType()};base64,{$img->getImmagine()}" alt="immagine profilo">
                                 <button type="submit" class="btnAggiorna">ELIMINA IMMAGINE</button>
                             </form>
+                            <br>
                         {/foreach}
                     {else}
-                        <p>Non sono presenti immagini per il locale</p>
+                        <p style="text-align: center">Non sono presenti immagini per il locale</p>
                     {/if}
                 </div>
             </div>
