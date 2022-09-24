@@ -293,17 +293,39 @@ class FDB{
 	}
 
 	/**
-	 * Metodo che va ad inserire le chiavi esterne in tabelle originate da una relazione molti-a-molti
-	 * @param string $table Nome della tabella
-	 * @param string $field1 Nome della prima chiave
-	 * @param string $field2 Nome della seconda chiave
-	 * @param string $fk1 Foreign key della prima classe
-	 * @param string $fk2 Foreign key della seconda classe
+	 * @param string $table
+	 * @param string $field1
+	 * @param string $field2
+	 * @param string $fk1
+	 * @param string $fk2
+	 * @return bool|null
 	 */
 	public function storeEsterne(string $table, string $field1, string $field2, string $fk1, string $fk2){
 		try {
 			$this->database->beginTransaction();
 			$query = "INSERT INTO " . $table . " (" . $field1 . "," . $field2 . ") VALUES (" . $fk1 . "," . $fk2 . ");";
+			$stmt = $this->database->prepare($query); //Prepared Statement
+			$stmt->execute();
+			$this->database->commit();
+			$this->closeDbConnection();
+			return true;
+		} catch (PDOException $e) {
+			echo "Attenzione errore: " . $e->getMessage();
+			$this->database->rollBack();
+			return null;
+		}
+	}
+
+	/**
+	 * @param string $table
+	 * @param string $field
+	 * @param string $fk
+	 * @return bool|null
+	 */
+	public function deleteEsterne(string $table, string $field, string $fk){
+		try {
+			$this->database->beginTransaction();
+			$query = "DELETE FROM " . $table . " WHERE " . $field . " = " . $fk . ";";
 			$stmt = $this->database->prepare($query); //Prepared Statement
 			$stmt->execute();
 			$this->database->commit();

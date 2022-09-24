@@ -150,9 +150,6 @@ class FImmagine
         return $img;
     }
 
-
-    //Se rimettiamo più immagini è da verificare se funziona
-
     /**
      * Metodo che restituisce le Immagini di un locale
      * @param $id_locale

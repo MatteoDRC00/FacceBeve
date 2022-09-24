@@ -2526,8 +2526,8 @@ section {
     font-family: inherit;
     font-size: inherit;
     outline: none;
-    padding-inline-end: 30px;
-    padding-inline-start: 30px;
+    padding-inline-end: 10px;
+    padding-inline-start: 10px;
     position: relative;
     width: 100%;
     height: 50px;

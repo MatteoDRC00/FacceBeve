@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-19 01:31:07
+/* Smarty version 4.2.0, created on 2022-09-24 10:26:41
   from 'C:\xampp\htdocs\FacceBeve\template\gestioneLocale.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_6327aa3b0f7510_32767639',
+  'unifunc' => 'content_632ebf41d76d42_24334251',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '1c893a337b2815c195d1ebdec5f1c045d7425e74' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\gestioneLocale.tpl',
-      1 => 1663543865,
+      1 => 1664008000,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6327aa3b0f7510_32767639 (Smarty_Internal_Template $_smarty_tpl) {
+function content_632ebf41d76d42_24334251 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -116,13 +116,13 @@ function content_6327aa3b0f7510_32767639 (Smarty_Internal_Template $_smarty_tpl)
                             <label style="font-weight: bold">Aggiorna la categoria: </label><br>
                             <?php if (!empty($_smarty_tpl->tpl_vars['categorie']->value)) {?>
                                 <?php
-$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['categorie']->value, 'genere');
-$_smarty_tpl->tpl_vars['genere']->do_else = true;
-if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['genere']->value) {
-$_smarty_tpl->tpl_vars['genere']->do_else = false;
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['categorie']->value, 'c');
+$_smarty_tpl->tpl_vars['c']->do_else = true;
+if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['c']->value) {
+$_smarty_tpl->tpl_vars['c']->do_else = false;
 ?>
-                                    <input type="checkbox" name="genereLocale[]" value="<?php echo $_smarty_tpl->tpl_vars['genere']->value;?>
-"><?php echo $_smarty_tpl->tpl_vars['genere']->value;?>
+                                    <input type="checkbox" name="genereLocale[]" value="<?php echo $_smarty_tpl->tpl_vars['c']->value->getGenere();?>
+"><?php echo $_smarty_tpl->tpl_vars['c']->value->getGenere();?>
 
                                 <?php
 }

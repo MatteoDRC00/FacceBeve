@@ -34,11 +34,16 @@ class FPersistentManager {
      * @param string $field2
      * @param string $fk1
      * @param string $fk2
-     * @return void
+     * @return bool|null
      */
     public function storeEsterne(string $table, string $field1, string $field2, string $fk1, string $fk2) {
         $db = FDB::getInstance();
-        $db->storeEsterne($table, $field1, $field2, $fk1, $fk2);
+        return $db->storeEsterne($table, $field1, $field2, $fk1, $fk2);
+    }
+
+    public function deleteEsterne(string $table, string $field, string $fk) {
+        $db = FDB::getInstance();
+        return $db->deleteEsterne($table, $field, $fk);
     }
 
     /**
@@ -49,23 +54,11 @@ class FPersistentManager {
     }
 
     public function getEventiByLocale($id_locale){
-        $db = FDB::getInstance();
-        list($result, $num) = $db->getIdEventoByIdLocale($id_locale);
-        $eventi = array();
+        return FEvento::loadByLocale($id_locale);
+    }
 
-        if(!empty($result)){
-            if($num == 1){
-                $eventi[] = FEvento::loadByField("id", $result['ID_Evento']);
-            }else{
-                foreach ($result as $r){
-                    $eventi[] = FEvento::loadByField("id", $r['ID_Evento']);
-                }
-            }
-
-        }
-
-        return $eventi;
-
+    public function getImmaginiByLocale($id_locale){
+        return FImmagine::loadByLocale($id_locale);
     }
 
 
@@ -87,14 +80,6 @@ class FPersistentManager {
         $Fclass::delete($attributo,$valore);
     }
 
-    /**
-     * @param Object $obj
-     * @param string $Fclass
-     * @return void
-     */
-    public static function deleteEsterne(string $Fclass, Object $obj) {
-        $Fclass::deleteEsterne($obj);
-    }
 
     /**
      * metodo che accerta l'esistenza di un valore di un campo passato come parametro

@@ -86,8 +86,8 @@
                         <div class="form-example">
                             <label style="font-weight: bold">Aggiorna la categoria: </label><br>
                             {if !empty($categorie)}
-                                {foreach $categorie as $genere}
-                                    <input type="checkbox" name="genereLocale[]" value="{$genere}">{$genere}
+                                {foreach $categorie as $c}
+                                    <input type="checkbox" name="genereLocale[]" value="{$c->getGenere()}">{$c->getGenere()}
                                 {/foreach}
                             {else}
                                 <p>Non ci sono categorie</p>
@@ -143,11 +143,22 @@
                     </form>
                 </div>
                 <div class="col-6 bg-white px-3 mb-3 pb-3">
-                    <form action="/GestioneLocale/modificaImmagineLocale/{$locale->getId()}" enctype="multipart/form-data" method="POST" class="aggiorna"> <!-- aggiungin i controlli -->
+                    <form action="/GestioneLocale/addImmagineLocale/{$locale->getId()}" enctype="multipart/form-data" method="POST" class="aggiorna"> <!-- aggiungin i controlli -->
                         <p>AGGIUNGI LE IMMAGINI</p>
                         <input name="img_locale" class="w-50 p-2 m-2" type="file" required><br>
-                        <button type="submit" class="btnAggiorna">AGGIORNA IMMAGINE <i class="fa fa-refresh"></i></button>
+                        <button type="submit" class="btnAggiorna">AGGIUNGI IMMAGINE</button>
                     </form>
+                    <p>ELIMINA LE IMMAGINI</p>
+                    {if !empty(($immagini))}
+                        {foreach $immagini as $img}
+                            <form action="/GestioneLocale/eliminaImmagineLocale/{$img->getId()}" method="POST" class="aggiorna"> <!-- aggiungin i controlli -->
+                                <img class="photo" src="data:{$img->getType};base64,{$img->getImmagine}" alt="immagine profilo">
+                                <button type="submit" class="btnAggiorna">ELIMINA IMMAGINE</button>
+                            </form>
+                        {/foreach}
+                    {else}
+                        <p>Non sono presenti immagini per il locale</p>
+                    {/if}
                 </div>
             </div>
         </div>

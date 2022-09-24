@@ -33,8 +33,6 @@ class CGestioneLocale
         return self::$instance;
     }
 
-//----------------------------------CREAZIONE DEL LOCALE------------------------------------------------------\\
-
     public function mostraFormCreaLocale()
     {
         $sessione = new USession();
@@ -48,20 +46,6 @@ class CGestioneLocale
         }
     }
 
-    public function mostraInfoLocale($id_locale)
-    {
-        $sessione = new USession();
-        $username = $sessione->leggi_valore("utente");
-        $tipo = $sessione->leggi_valore("tipo_utente");
-        $pm = FPersistentManager::getInstance();
-        $view = new VGestioneLocale();
-        $locale = $pm->load("id", $id_locale, "FLocale");
-        if ($sessione->isLogged()) {
-            $view->showInfoLocale($locale);
-        }
-
-    }
-
     public function mostraGestioneLocale($id_locale)
     {
         $sessione = new USession();
@@ -73,9 +57,10 @@ class CGestioneLocale
 
         if ($sessione->isLogged() && $tipo == "EProprietario") {
             $categorie = $pm->getCategorie();
-            $eventi = $pm->getEventiByLocale($locale->getId());
+            $eventi = $pm->getEventiByLocale($locale[0]->getId());
+            $immagini = $pm->getImmaginiByLocale($id_locale);
 
-            $view->showFormModificaLocale($locale, $categorie, $eventi);
+            $view->showFormModificaLocale($locale[0], $categorie, $eventi, $immagini);
         }
     }
 
@@ -189,10 +174,6 @@ class CGestioneLocale
             header('Location: /Ricerca/mostraHome');
         }
     }
-//----------------------------------CREAZIONE DEL LOCALE------------------------------------------------------\\
-
-
-//----------------------------------MODIFICA DEL LOCALE------------------------------------------------------\\
 
     /**
      * Funzione che gestisce la modifica del nome del Locale. Preleva il nuovo nome dalla View e procede alla modifica.
@@ -212,7 +193,7 @@ class CGestioneLocale
         if ($sessione->isLogged() && $tipo == "EProprietario") {
             $nomeNuovo = $view->getNomeLocale();
             $pm->update("FLocale", "nome", $nomeNuovo, "id", $id_locale);
-            $locale->setNome($nomeNuovo);
+            $locale[0]->setNome($nomeNuovo);
             header("Location: /GestioneLocale/mostraGestioneLocale/" . $id_locale);
         } else {
             header('Location: /Ricerca/mostraHome');
@@ -236,7 +217,7 @@ class CGestioneLocale
         if ($sessione->isLogged() && $tipo == "EProprietario") {
             $newDescrizione = $view->getDescrizioneLocale();
             $pm->update("FLocale", "descrizione", $newDescrizione, "id", $id_locale);
-            $locale->setDescrizione($newDescrizione);
+            $locale[0]->setDescrizione($newDescrizione);
             header("Location: /GestioneLocale/mostraGestioneLocale/" . $id_locale);
         } else {
             header('Location: /Ricerca/mostraHome');
@@ -260,7 +241,7 @@ class CGestioneLocale
         if ($sessione->isLogged() && $tipo == "EProprietario") {
             $numeroTelefono = $view->getNumTelefono();
             $pm->update("FLocale", "numtelefono", $numeroTelefono, "id", $id_locale);
-            $locale->setNumTelefono($numeroTelefono);
+            $locale[0]->setNumTelefono($numeroTelefono);
             header("Location: /GestioneLocale/mostraGestioneLocale/" . $id_locale);
         } else {
             header('Location: /Ricerca/mostraHome');
@@ -268,9 +249,8 @@ class CGestioneLocale
     }
 
     /**
-     * Funzione che gestisce la modifica della categoria del locale. Preleva il nuovo nome dalla View e procede alla modifica.
+     * @param $id_locale
      * @return void
-     * @throws SmartyException
      */
     public function modificaCategorieLocale($id_locale)
     {
@@ -283,12 +263,11 @@ class CGestioneLocale
 
         if ($sessione->isLogged() && $tipo == "EProprietario") {
             $generi = $view->getCategorie();
-            for ($i = 0; $i < count($generi); $i++) {
-                $pm->deleteCategorieLocale($id_locale);
-            }
-            foreach ($generi as $g) {
-                $categorie[] = $pm->load("genere", $g, "FCategoria");
-                $pm->storeCategorieLocale($g, $id_locale);
+            $pm->deleteEsterne("Locale_Categorie", "ID_Locale", $id_locale);
+            foreach ($generi as $genere) {
+                $categoria = $pm->load("genere", $genere, "FCategoria");
+                $pm->storeEsterne("Locale_Categorie", "ID_Locale", "ID_Categoria", $id_locale, $genere);
+                $categorie = array_merge($categoria);
             }
             $locale->setCategoria($categorie);
 
@@ -299,9 +278,8 @@ class CGestioneLocale
     }
 
     /**
-     * Funzione che gestisce la modifica della categoria del locale. Preleva il nuovo nome dalla View e procede alla modifica.
+     * @param $id_locale
      * @return void
-     * @throws SmartyException
      */
     public function modificaLocalizzazioneLocale($id_locale)
     {
@@ -314,7 +292,7 @@ class CGestioneLocale
 
         if ($sessione->isLogged() && $tipo == "EProprietario") {
 
-            $id_localizzazione = $locale->getLocalizzazione()->getId();
+            $id_localizzazione = $locale[0]->getLocalizzazione()->getId();
 
             $indirizzo = $view->getIndirizzo();
             $pm->update("FLocalizzazione", "indirizzo", $indirizzo, "id", $id_localizzazione);
@@ -331,7 +309,7 @@ class CGestioneLocale
             $localizzazioneNuova = new ELocalizzazione($indirizzo, $numCivico, $citta, $cap);
             $localizzazioneNuova->setId($id_localizzazione);
 
-            $locale->setLocalizzazione($localizzazioneNuova);
+            $locale[0]->setLocalizzazione($localizzazioneNuova);
             header("Location: /GestioneLocale/mostraGestioneLocale/" . $id_locale);
         } else {
             header('Location: /Ricerca/mostraHome');
@@ -353,9 +331,8 @@ class CGestioneLocale
         $locale = $pm->load("id", $id_locale, "FLocale");
 
         if ($sessione->isLogged() && $tipo == "EProprietario") {
-            for ($i = 0; $i < 7; $i++) {
-                $pm->deleteOrariLocale($id_locale);
-            }
+
+            $pm->deleteEsterne("Locali_Orari", "ID_Locale", $id_locale);
 
             $orario_apertura = $view->getOrarioApertura();
             $orario_chiusura = $view->getOrarioChiusura();
@@ -391,17 +368,20 @@ class CGestioneLocale
                         $id = $pm->store($orario);
                         $orario->setId($id);
                         $o[] = $orario;
-                        $pm->storeOrariLocale($id, $id_locale);
+                        $pm->storeEsterne("Locale_Orari", "ID_Locale", "ID_Orario", $id_locale, $id);
                     } else {
-
-                        //errore
+                        $message = "Inserire entrambi i campi degli orari ";
+                        echo "<script type='text/javascript'>
+                            alert('$message');
+                            window.location.replace('/GestioneLocale/mostraFormCreaLocale');
+                            </script>";
                     }
                 } else {
                     $orario = new EOrario($giorno, "Chiuso", "Chiuso");
                     $id = $pm->store($orario);
                     $orario->setId($id);
                     $o[] = $orario;
-                    $pm->storeOrariLocale($id, $id_locale);
+                    $pm->storeEsterne("Locale_Orari", "ID_Locale", "ID_Orario", $id_locale, $id);
                 }
             }
             $locale->setOrario($o);
@@ -412,41 +392,12 @@ class CGestioneLocale
     }
 
 
-    //IMG LOCALE\\
-
     /**
      * Gestisce la modifica dell'immagine del locale. Preleva la nuova immagine dalla view e procede alla modifica.
      * @return void
      * @throws SmartyException
      */
-    public function addImmagineLocale()
-    {
-        $view = new VGestioneLocale();
-        $sessione = USession::getInstance();
-        //$utente = unserialize($sessione->leggi_valore('utente'));
-        $pm = FPersistentManager::getInstance();
-        $locale = $pm->load("id", $view->getIdLocale(), "FLocale");
-
-        $img = $view->getImgLocale();
-        list($check, $media) = static::upload($img);
-        if ($check == "type") {
-            $view->showFormModify("size", $locale);
-        } elseif ($check == "size") {
-            $view->showFormModify("size", $locale);
-        } elseif ($check == "ok") {
-            $pm = FPersistentManager::getInstance();
-            $pm->storeMedia($media, $img[1]); //Salvataggio dell'immagine sul db
-            $pm->storeEsterne("FLocale", $media, $view->getIdLocale()); //Salvataggio sulla tabella generata dalla relazione N:N
-            header('Location: /Ricerca/dettaglioLocale');
-        }
-    }
-
-    /**
-     * Gestisce la modifica dell'immagine del locale. Preleva la nuova immagine dalla view e procede alla modifica.
-     * @return void
-     * @throws SmartyException
-     */
-    public function modificaImmagineLocale($id_locale)
+    public function addImmagineLocale($id_locale)
     {
         $sessione = new USession();
         $username = $sessione->leggi_valore("utente");
@@ -461,10 +412,8 @@ class CGestioneLocale
                 $img_locale = new EImmagine($img[0], $img[1], $img[2], $img[3]);
                 $id = $pm->store($img_locale);
                 $img_locale->setId($id);
-                $id_imgvecchia = $locale->getImg()->getId();
-                $pm->delete("id", $id_imgvecchia, "FImmagine");
-                $pm->update("FLocale", "idImg", $id, "id", $id_locale);
-                $locale->setImg($img_locale);
+                $pm->storeEsterne("Locale_Immagini", "ID_Locale", "ID_Immagine", $id_locale, $id);
+                $locale[0]->addImg($img_locale);
             }
             header("Location: /GestioneLocale/mostraGestioneLocale/" . $id_locale);
         } else {
@@ -472,36 +421,25 @@ class CGestioneLocale
         }
     }
 
-
     /**
-     * Gestisce la cancellazione dell'immagine del locale. Preleva la nuova immagine dalla view e procede alla modifica.
+     * Gestisce la modifica dell'immagine del locale. Preleva la nuova immagine dalla view e procede alla modifica.
      * @return void
      * @throws SmartyException
      */
-    public function deleteImmagineLocale()
-    {
-        $view = new VGestioneLocale();
-        $pm = FPersistentManager::getInstance();
-        $img = $pm->load("id", $view->getIdImmagine(), "FImmagine"); //Serve per l'eliminazione delle chiavi esterne
-        $pm->delete("id", $view->getIdImmagine(), "FImmagine");
-        $pm->deleteEsterne("FLocale", $img);
-        header('Location: /Ricerca/dettaglioLocale');
-    }
-
-//----------------------------------MODIFICA DEL LOCALE------------------------------------------------------\\
-
-//----------------------------------CANCELLAZIONE DEL LOCALE------------------------------------------------------\\
-    /**
-     * Funzione utilizzata per eliminare un locale, di cui si è proprietari
-     * @param $id id del locale da eliminare
-     */
-    static function deleteLocale($id)
+    public function eliminaImmagineLocale($id_immagine)
     {
         $sessione = new USession();
-        $proprietario = unserialize($sessione->leggi_valore('utente'));
+        $username = $sessione->leggi_valore("utente");
+        $tipo = $sessione->leggi_valore("tipo_utente");
         $pm = FPersistentManager::getInstance();
-        $pm->delete("id", $id, "FLocale");
-        header('Location: /FacceBeve/Ricerca/dettaglioLocale');
+
+        if ($sessione->isLogged() && $tipo == "EProprietario") {
+            $pm->deleteEsterne("Locale_Immagini", "ID_Immagine", $id_immagine);
+            $pm->delete("id", $id_immagine, "FImmagine");
+            header("Location: /Profilo/mostraProfilo/");
+        } else {
+            header('Location: /Ricerca/mostraHome');
+        }
     }
 
     public function eliminaLocale($id_locale)
