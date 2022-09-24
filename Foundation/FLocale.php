@@ -181,9 +181,9 @@ class FLocale
             $localizzazione = FLocalizzazione::loadByField("id", $result["localizzazione"]);
             $eventi[] = FEvento::loadByLocale($result["id"]);
             $orari[] = FOrario::loadByLocale($result["id"]);
-            $immagini = FImmagine::loadByField("id", $result["idImg"]);
+            $immagini = FImmagine::loadByLocale($result["id"]);
             $locale[0] = new ELocale($result['nome'], $result['descrizione'], $result['numtelefono'], $proprietario, $localizzazione);
-            $locale[0]->setImg($immagini[0]);
+            $locale[0]->setImg($immagini);
             $locale[0]->setCategoria($categorie);
             $locale[0]->setEventiOrganizzati($eventi[0]);
             $locale[0]->setOrario($orari);
@@ -202,7 +202,7 @@ class FLocale
                     $orari[] = FOrario::loadByLocale($result[$i]["id"]);
                     $immagine = FImmagine::loadByLocale($result[$i]["id"]);
                     $locale[$i] = new ELocale($result[$i]['nome'], $result[$i]['descrizione'], $result[$i]['numtelefono'], $proprietario, $localizzazione);
-                    $locale[$i]->setImg($immagine[0]);
+                    $locale[$i]->setImg($immagine);
                     $locale[$i]->setCategoria($categorie);
                     $locale[$i]->setEventiOrganizzati($eventi[0]);
                     $locale[$i]->setOrario($orari[$i]);

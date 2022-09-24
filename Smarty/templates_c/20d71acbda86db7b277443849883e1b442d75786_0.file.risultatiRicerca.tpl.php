@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-22 11:56:44
+/* Smarty version 4.2.0, created on 2022-09-24 12:16:18
   from 'C:\xampp\htdocs\FacceBeve\template\risultatiRicerca.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_632c315c847284_10894411',
+  'unifunc' => 'content_632ed8f2884ea6_48300262',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '20d71acbda86db7b277443849883e1b442d75786' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\risultatiRicerca.tpl',
-      1 => 1663596766,
+      1 => 1664014570,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_632c315c847284_10894411 (Smarty_Internal_Template $_smarty_tpl) {
+function content_632ed8f2884ea6_48300262 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <?php $_smarty_tpl->_assignInScope('tipo', (($tmp = $_smarty_tpl->tpl_vars['tipo']->value ?? null)===null||$tmp==='' ? null ?? null : $tmp));
 $_smarty_tpl->_assignInScope('userlogged', (($tmp = $_smarty_tpl->tpl_vars['error']->value ?? null)===null||$tmp==='' ? null ?? null : $tmp));
@@ -134,8 +134,8 @@ $_smarty_tpl->tpl_vars['locale']->do_else = false;
 ?>
                                 <div class="entry-img">
                                     <img class="photo"
-                                         src="data:<?php echo $_smarty_tpl->tpl_vars['locale']->value->getImg()->getType();?>
-;base64,<?php echo $_smarty_tpl->tpl_vars['locale']->value->getImg()->getImmagine();?>
+                                         src="data:<?php echo $_smarty_tpl->tpl_vars['locale']->value->getPrimaImg()->getType();?>
+;base64,<?php echo $_smarty_tpl->tpl_vars['locale']->value->getPrimaImg()->getImmagine();?>
 "
                                          alt="immagine locale" width="200px" height="100px" style="border-radius:5px">
                                 </div>

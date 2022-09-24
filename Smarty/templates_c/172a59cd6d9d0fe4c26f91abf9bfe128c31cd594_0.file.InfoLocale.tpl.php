@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-22 16:05:58
+/* Smarty version 4.2.0, created on 2022-09-24 12:37:06
   from 'C:\xampp\htdocs\FacceBeve\template\InfoLocale.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_632c6bc64c3340_81363657',
+  'unifunc' => 'content_632eddd2c48462_26264829',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '172a59cd6d9d0fe4c26f91abf9bfe128c31cd594' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\InfoLocale.tpl',
-      1 => 1663855491,
+      1 => 1664015824,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_632c6bc64c3340_81363657 (Smarty_Internal_Template $_smarty_tpl) {
+function content_632eddd2c48462_26264829 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <?php $_smarty_tpl->_assignInScope('locale', (($tmp = $_smarty_tpl->tpl_vars['locale']->value ?? null)===null||$tmp==='' ? null ?? null : $tmp));
@@ -114,12 +114,23 @@ echo '<script'; ?>
                                 </form>
                             <?php }?>
                         <?php }?>
-                        <div class="swiper-wrapper align-items-center">
-                            <div class="swiper-slide">
-                                <img src="data:<?php echo $_smarty_tpl->tpl_vars['locale']->value->getImg()->getType();?>
-;base64,<?php echo $_smarty_tpl->tpl_vars['locale']->value->getImg()->getImmagine();?>
+                        <div class="portfolio-details-slider swiper">
+                            <div class="swiper-wrapper align-items-center">
+                                <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['locale']->value->getImg(), 'img');
+$_smarty_tpl->tpl_vars['img']->do_else = true;
+if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['img']->value) {
+$_smarty_tpl->tpl_vars['img']->do_else = false;
+?>
+                                    <div class="portfolio-info swiper-slide">
+                                        <img src="data:<?php echo $_smarty_tpl->tpl_vars['img']->value->getType();?>
+;base64,<?php echo $_smarty_tpl->tpl_vars['img']->value->getImmagine();?>
 "
-                                     alt="Immagine locale">
+                                             alt="Immagine locale" style="height:600px; width:600px; border-radius:50px;">
+                                    </div>
+                                <?php
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                             </div>
                         </div>
                         <div class="swiper-pagination"></div>
@@ -231,7 +242,7 @@ $_smarty_tpl->tpl_vars['recensione']->do_else = true;
 if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['recensione']->value) {
 $_smarty_tpl->tpl_vars['recensione']->do_else = false;
 $_smarty_tpl->tpl_vars['recensione']->iteration++;
-$__foreach_recensione_2_saved = $_smarty_tpl->tpl_vars['recensione'];
+$__foreach_recensione_3_saved = $_smarty_tpl->tpl_vars['recensione'];
 ?>
                                 <div id="comment-1" class="comment">
                                     <div class="d-flex">
@@ -270,7 +281,8 @@ if (($_smarty_tpl->tpl_vars['arrayRisposte']->value[$_prefixVariable1]->getPropr
                                                           method="POST">
                                                         <button type="submit" id="segnala"
                                                                 style="border-radius:9px; height: 40px; color: #bb2d3b; font-weight: bold; border-color: #bb2d3b">
-                                                            <i class="align-items-xxl-end"></i>Segnala la Recensione</button>
+                                                            <i class="align-items-xxl-end"></i>Segnala la Recensione
+                                                        </button>
                                                     </form>
                                                 <?php }?>
                                             </h5>
@@ -360,7 +372,7 @@ echo $_smarty_tpl->tpl_vars['arrayRecensioni']->value[$_prefixVariable8]->getId(
                                     <?php }?>
                                 <?php }?>
                             <?php
-$_smarty_tpl->tpl_vars['recensione'] = $__foreach_recensione_2_saved;
+$_smarty_tpl->tpl_vars['recensione'] = $__foreach_recensione_3_saved;
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                         <?php } else { ?>
@@ -376,29 +388,29 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 " method="POST"
                                       id="Recensione" name="Recensione" onsubmit="return validateRecensione()">
 
-                                <div class="row">
-                                    <div class="col-md-6 form-group">
-                                        <input name="titolo" type="text" class="form-control">
+                                    <div class="row">
+                                        <div class="col-md-6 form-group">
+                                            <input name="titolo" type="text" class="form-control">
+                                        </div>
+                                        <div class="col-md-6 form-group">
+                                            <select name="valutazione"
+                                                    style="font-family: 'FontAwesome',Arial,sans-serif;">
+                                                <option>-- Voto --</option>
+                                                <option value="1">&#xf005;</option>
+                                                <option value="2">&#xf005;&#xf005;</option>
+                                                <option value="3">&#xf005;&#xf005;&#xf005;</option>
+                                                <option value="4">&#xf005;&#xf005;&#xf005;&#xf005;</option>
+                                                <option value="5">&#xf005;&#xf005;&#xf005;&#xf005;&#xf005;</option>
+                                            </select>
+                                        </div>
                                     </div>
-                                    <div class="col-md-6 form-group">
-                                        <select name="valutazione"
-                                                style="font-family: 'FontAwesome',Arial,sans-serif;">
-                                            <option>-- Voto --</option>
-                                            <option value="1">&#xf005;</option>
-                                            <option value="2">&#xf005;&#xf005;</option>
-                                            <option value="3">&#xf005;&#xf005;&#xf005;</option>
-                                            <option value="4">&#xf005;&#xf005;&#xf005;&#xf005;</option>
-                                            <option value="5">&#xf005;&#xf005;&#xf005;&#xf005;&#xf005;</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col form-group">
+                                    <div class="row">
+                                        <div class="col form-group">
                                             <textarea name="descrizione" class="form-control"
                                                       placeholder="Descrizione"></textarea>
+                                        </div>
                                     </div>
-                                </div>
-                                <button type="submit" class="btn btn-primary">Aggiungi recensione</button>
+                                    <button type="submit" class="btn btn-primary">Aggiungi recensione</button>
                                 </form>
                             </div>
                         <?php }?>

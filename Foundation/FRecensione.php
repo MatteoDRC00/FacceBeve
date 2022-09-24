@@ -139,7 +139,7 @@ class FRecensione
         list($result, $num) = $db->load(static::getClass(), $attributo, $valore);
         if (($result != null) && ($num == 1)) {
             $utente = FUtente::loadByField("username", $result['utente']);
-            $locale[0] = FLocale::loadByField("id", $result['locale']);
+            $locale = FLocale::loadByField("id", $result['locale']);
             $recensione[0] = new ERecensione($utente, $result['titolo'], $result['descrizione'], $result['voto'], $result['data'], $locale[0]);
             $recensione[0]->setId($result['id']);
             $recensione[0]->setSegnala($result['segnalato']);

@@ -99,7 +99,7 @@
                             {foreach $array as $locale}
                                 <div class="entry-img">
                                     <img class="photo"
-                                         src="data:{$locale->getImg()->getType()};base64,{$locale->getImg()->getImmagine()}"
+                                         src="data:{$locale->getPrimaImg()->getType()};base64,{$locale->getPrimaImg()->getImmagine()}"
                                          alt="immagine locale" width="200px" height="100px" style="border-radius:5px">
                                 </div>
                                 <h2 class="entry-title">

@@ -270,6 +270,15 @@ class ELocale
     }
 
     /**
+     * Restituisce la prima immagine inserita nel locale --> utilizzato nei risultati ricerca
+     * @return EImmagine
+     */
+    public function getPrimaImg(): EImmagine
+    {
+        return $this->img[0];
+    }
+
+    /**
      * @param array|null $img
      */
     public function setImg(?array $img): void

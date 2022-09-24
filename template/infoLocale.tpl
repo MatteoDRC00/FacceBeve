@@ -86,10 +86,14 @@
                                 </form>
                             {/if}
                         {/if}
-                        <div class="swiper-wrapper align-items-center">
-                            <div class="swiper-slide">
-                                <img src="data:{$locale->getImg()->getType()};base64,{$locale->getImg()->getImmagine()}"
-                                     alt="Immagine locale">
+                        <div class="portfolio-details-slider swiper">
+                            <div class="swiper-wrapper align-items-center">
+                                {foreach $locale->getImg() as $img}
+                                    <div class="portfolio-info swiper-slide">
+                                        <img src="data:{$img->getType()};base64,{$img->getImmagine()}"
+                                             alt="Immagine locale" style="height:600px; width:600px; border-radius:50px;">
+                                    </div>
+                                {/foreach}
                             </div>
                         </div>
                         <div class="swiper-pagination"></div>
@@ -191,7 +195,8 @@
                                                           method="POST">
                                                         <button type="submit" id="segnala"
                                                                 style="border-radius:9px; height: 40px; color: #bb2d3b; font-weight: bold; border-color: #bb2d3b">
-                                                            <i class="align-items-xxl-end"></i>Segnala la Recensione</button>
+                                                            <i class="align-items-xxl-end"></i>Segnala la Recensione
+                                                        </button>
                                                     </form>
                                                 {/if}
                                             </h5>
@@ -262,29 +267,29 @@
                                 <form action="/GestioneRecensione/scriviRecensione/{$locale->getId()}" method="POST"
                                       id="Recensione" name="Recensione" onsubmit="return validateRecensione()">
 
-                                <div class="row">
-                                    <div class="col-md-6 form-group">
-                                        <input name="titolo" type="text" class="form-control">
+                                    <div class="row">
+                                        <div class="col-md-6 form-group">
+                                            <input name="titolo" type="text" class="form-control">
+                                        </div>
+                                        <div class="col-md-6 form-group">
+                                            <select name="valutazione"
+                                                    style="font-family: 'FontAwesome',Arial,sans-serif;">
+                                                <option>-- Voto --</option>
+                                                <option value="1">&#xf005;</option>
+                                                <option value="2">&#xf005;&#xf005;</option>
+                                                <option value="3">&#xf005;&#xf005;&#xf005;</option>
+                                                <option value="4">&#xf005;&#xf005;&#xf005;&#xf005;</option>
+                                                <option value="5">&#xf005;&#xf005;&#xf005;&#xf005;&#xf005;</option>
+                                            </select>
+                                        </div>
                                     </div>
-                                    <div class="col-md-6 form-group">
-                                        <select name="valutazione"
-                                                style="font-family: 'FontAwesome',Arial,sans-serif;">
-                                            <option>-- Voto --</option>
-                                            <option value="1">&#xf005;</option>
-                                            <option value="2">&#xf005;&#xf005;</option>
-                                            <option value="3">&#xf005;&#xf005;&#xf005;</option>
-                                            <option value="4">&#xf005;&#xf005;&#xf005;&#xf005;</option>
-                                            <option value="5">&#xf005;&#xf005;&#xf005;&#xf005;&#xf005;</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col form-group">
+                                    <div class="row">
+                                        <div class="col form-group">
                                             <textarea name="descrizione" class="form-control"
                                                       placeholder="Descrizione"></textarea>
+                                        </div>
                                     </div>
-                                </div>
-                                <button type="submit" class="btn btn-primary">Aggiungi recensione</button>
+                                    <button type="submit" class="btn btn-primary">Aggiungi recensione</button>
                                 </form>
                             </div>
                         {/if}
