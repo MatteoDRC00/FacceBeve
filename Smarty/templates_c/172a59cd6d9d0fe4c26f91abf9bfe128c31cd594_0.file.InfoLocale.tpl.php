@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-24 12:37:06
+/* Smarty version 4.2.0, created on 2022-09-24 13:17:13
   from 'C:\xampp\htdocs\FacceBeve\template\InfoLocale.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_632eddd2c48462_26264829',
+  'unifunc' => 'content_632ee739942749_74704444',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '172a59cd6d9d0fe4c26f91abf9bfe128c31cd594' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\InfoLocale.tpl',
-      1 => 1664015824,
+      1 => 1664018231,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_632eddd2c48462_26264829 (Smarty_Internal_Template $_smarty_tpl) {
+function content_632ee739942749_74704444 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <?php $_smarty_tpl->_assignInScope('locale', (($tmp = $_smarty_tpl->tpl_vars['locale']->value ?? null)===null||$tmp==='' ? null ?? null : $tmp));
@@ -126,7 +126,8 @@ $_smarty_tpl->tpl_vars['img']->do_else = false;
                                         <img src="data:<?php echo $_smarty_tpl->tpl_vars['img']->value->getType();?>
 ;base64,<?php echo $_smarty_tpl->tpl_vars['img']->value->getImmagine();?>
 "
-                                             alt="Immagine locale" style="height:600px; width:600px; border-radius:50px;">
+                                             alt="Immagine locale"
+                                             style="height:575px; width:575px; border-radius:40px; ">
                                     </div>
                                 <?php
 }
@@ -134,6 +135,37 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                             </div>
                         </div>
                         <div class="swiper-pagination"></div>
+                        <div class="portfolio-info">
+                            <h3>Orario settimanale del locale</h3>
+                            <table id="customers">
+                                <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Orario di apertura</th>
+                                    <th>Orario di chiusura</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['locale']->value->getOrario(), 'orario');
+$_smarty_tpl->tpl_vars['orario']->do_else = true;
+if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['orario']->value) {
+$_smarty_tpl->tpl_vars['orario']->do_else = false;
+?>
+                                    <tr>
+                                        <td><strong><?php echo $_smarty_tpl->tpl_vars['orario']->value->getGiornoSettimana();?>
+</strong></td>
+                                        <td><?php echo $_smarty_tpl->tpl_vars['orario']->value->getOrarioApertura();?>
+</td>
+                                        <td><?php echo $_smarty_tpl->tpl_vars['orario']->value->getOrarioChiusura();?>
+ </td>
+                                    </tr>
+                                <?php
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-4">
@@ -197,12 +229,13 @@ $_smarty_tpl->tpl_vars['evento']->do_else = false;
 .</li>
                                                 <li><strong>Descrizione</strong>: <?php echo $_smarty_tpl->tpl_vars['evento']->value->getDescrizione();?>
 </li>
-                                                <br>
                                                 <li><img class="photo"
                                                          src="data:<?php echo $_smarty_tpl->tpl_vars['evento']->value->getImg()->getType();?>
 ;base64,<?php echo $_smarty_tpl->tpl_vars['evento']->value->getImg()->getImmagine();?>
 "
-                                                         alt="Poster evento" width="410px" height="155px"></li>
+                                                         alt="Poster evento"
+                                                         style="width:210px; height:240px; display:block; text-align:center; border-radius:30px;">
+                                                </li>
                                             </ul>
                                         </div>
                                     <?php
@@ -242,7 +275,7 @@ $_smarty_tpl->tpl_vars['recensione']->do_else = true;
 if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['recensione']->value) {
 $_smarty_tpl->tpl_vars['recensione']->do_else = false;
 $_smarty_tpl->tpl_vars['recensione']->iteration++;
-$__foreach_recensione_3_saved = $_smarty_tpl->tpl_vars['recensione'];
+$__foreach_recensione_4_saved = $_smarty_tpl->tpl_vars['recensione'];
 ?>
                                 <div id="comment-1" class="comment">
                                     <div class="d-flex">
@@ -372,7 +405,7 @@ echo $_smarty_tpl->tpl_vars['arrayRecensioni']->value[$_prefixVariable8]->getId(
                                     <?php }?>
                                 <?php }?>
                             <?php
-$_smarty_tpl->tpl_vars['recensione'] = $__foreach_recensione_3_saved;
+$_smarty_tpl->tpl_vars['recensione'] = $__foreach_recensione_4_saved;
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                         <?php } else { ?>

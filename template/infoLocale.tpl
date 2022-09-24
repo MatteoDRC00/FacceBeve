@@ -91,12 +91,34 @@
                                 {foreach $locale->getImg() as $img}
                                     <div class="portfolio-info swiper-slide">
                                         <img src="data:{$img->getType()};base64,{$img->getImmagine()}"
-                                             alt="Immagine locale" style="height:600px; width:600px; border-radius:50px;">
+                                             alt="Immagine locale"
+                                             style="height:575px; width:575px; border-radius:40px; ">
                                     </div>
                                 {/foreach}
                             </div>
                         </div>
                         <div class="swiper-pagination"></div>
+                        <div class="portfolio-info">
+                            <h3>Orario settimanale del locale</h3>
+                            <table id="customers">
+                                <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Orario di apertura</th>
+                                    <th>Orario di chiusura</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {foreach $locale->getOrario() as $orario}
+                                    <tr>
+                                        <td><strong>{$orario->getGiornoSettimana()}</strong></td>
+                                        <td>{$orario->getOrarioApertura()}</td>
+                                        <td>{$orario->getOrarioChiusura()} </td>
+                                    </tr>
+                                {/foreach}
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-4">
@@ -134,10 +156,11 @@
                                             <ul>
                                                 <li><strong>Data</strong>: {$evento->getData()}.</li>
                                                 <li><strong>Descrizione</strong>: {$evento->getDescrizione()}</li>
-                                                <br>
                                                 <li><img class="photo"
                                                          src="data:{$evento->getImg()->getType()};base64,{$evento->getImg()->getImmagine()}"
-                                                         alt="Poster evento" width="410px" height="155px"></li>
+                                                         alt="Poster evento"
+                                                         style="width:210px; height:240px; display:block; text-align:center; border-radius:30px;">
+                                                </li>
                                             </ul>
                                         </div>
                                     {/foreach}
