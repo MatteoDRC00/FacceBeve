@@ -185,6 +185,7 @@ class FDB{
 		try {
 			$this->database->beginTransaction();
 			$query = "UPDATE " . $class::getTable() . " SET " . $attributo . "='" . $newvalue . "' WHERE " . $attributo_pk . "='" . $value_pk . "';";
+			echo $query;
 			$stmt = $this->database->prepare($query); //Prepared Statement
 			$stmt->execute();
 			$this->database->commit();

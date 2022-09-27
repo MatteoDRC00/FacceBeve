@@ -135,7 +135,7 @@ CREATE TABLE `Locale` (
 	`localizzazione` INT(11),
     UNIQUE (`nome`,`localizzazione`),
     PRIMARY KEY (`id`),
-    FOREIGN KEY (`proprietario`) REFERENCES Proprietario(`username`),
+    FOREIGN KEY (`proprietario`) REFERENCES Proprietario(`username`) ON UPDATE CASCADE,
     FOREIGN KEY (`localizzazione`) REFERENCES Localizzazione(`id`) ON DELETE CASCADE ON UPDATE CASCADE
 );
 /*Inserimento dati Locale*/
