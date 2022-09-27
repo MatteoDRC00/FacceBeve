@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-24 11:59:54
+/* Smarty version 4.2.0, created on 2022-09-24 12:02:26
   from 'C:\xampp\htdocs\FacceBeve\template\gestioneLocale.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_632ed51a73bdb7_88611675',
+  'unifunc' => 'content_632ed5b2ddbe88_09550882',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '1c893a337b2815c195d1ebdec5f1c045d7425e74' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\gestioneLocale.tpl',
-      1 => 1664013593,
+      1 => 1664013745,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_632ed51a73bdb7_88611675 (Smarty_Internal_Template $_smarty_tpl) {
+function content_632ed5b2ddbe88_09550882 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -200,7 +200,7 @@ $_smarty_tpl->tpl_vars['img']->do_else = false;
 ?>
                             <form action="/GestioneLocale/eliminaImmagineLocale/<?php echo $_smarty_tpl->tpl_vars['img']->value->getId();?>
 " method="POST" class="aggiorna"> <!-- aggiungin i controlli -->
-                                <img style="height: 120px; width: 120px; border-radius: 0" src="data:<?php echo $_smarty_tpl->tpl_vars['img']->value->getType();?>
+                                <img style="height: 120px; width: 120px; border-radius: 25%" src="data:<?php echo $_smarty_tpl->tpl_vars['img']->value->getType();?>
 ;base64,<?php echo $_smarty_tpl->tpl_vars['img']->value->getImmagine();?>
 " alt="immagine profilo">
                                 <button type="submit" class="btnAggiorna">ELIMINA IMMAGINE</button>

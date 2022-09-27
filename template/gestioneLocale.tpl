@@ -152,7 +152,7 @@
                     {if !empty(($immagini))}
                         {foreach $immagini as $img}
                             <form action="/GestioneLocale/eliminaImmagineLocale/{$img->getId()}" method="POST" class="aggiorna"> <!-- aggiungin i controlli -->
-                                <img style="height: 120px; width: 120px; border-radius: 0" src="data:{$img->getType()};base64,{$img->getImmagine()}" alt="immagine profilo">
+                                <img style="height: 120px; width: 120px; border-radius: 25%" src="data:{$img->getType()};base64,{$img->getImmagine()}" alt="immagine profilo">
                                 <button type="submit" class="btnAggiorna">ELIMINA IMMAGINE</button>
                             </form>
                             <br>

@@ -104,7 +104,8 @@ class CGestioneLocale
 
             foreach ($generi as $genere) {
                 $pm->storeEsterne("Locale_Categorie", "ID_Locale", "ID_Categoria", $id_locale, $genere);
-                $categorie = $pm->load("genere", $genere, "FCategoria");
+                $categoria = $pm->load("genere", $genere, "FCategoria");
+                $categorie = array_merge($categoria);
             }
             $locale->setCategoria($categorie);
 
@@ -267,9 +268,9 @@ class CGestioneLocale
             foreach ($generi as $genere) {
                 $categoria = $pm->load("genere", $genere, "FCategoria");
                 $pm->storeEsterne("Locale_Categorie", "ID_Locale", "ID_Categoria", $id_locale, $genere);
-                $categorie = array_merge($categoria);
+                $categorie = array_merge($categoria[0]);
             }
-            $locale->setCategoria($categorie);
+            $locale[0]->setCategoria($categorie);
 
             header("Location: /GestioneLocale/mostraGestioneLocale/" . $id_locale);
         } else {
@@ -384,7 +385,7 @@ class CGestioneLocale
                     $pm->storeEsterne("Locale_Orari", "ID_Locale", "ID_Orario", $id_locale, $id);
                 }
             }
-            $locale->setOrario($o);
+            $locale[0]->setOrario($o);
             header("Location: /GestioneLocale/mostraGestioneLocale/" . $id_locale);
         } else {
             header('Location: /Ricerca/mostraHome');
