@@ -96,12 +96,11 @@ class CProfilo
                 $tipo = "user";
                 self::erroreModifica($tipo, $message, $user);
             } else {
-                echo "ok";
                 $pm->update($class, "username", $newusername, "username", $username);
                 $user->setUsername($newusername);
                 $sessione->imposta_valore("utente", $newusername);
                 $sessione->imposta_valore("tipo_utente", get_class($user));
-                //header("Location: /Profilo/mostraProfilo");
+                header("Location: /Profilo/mostraProfilo");
             }
         } else {
             header("Location: /Ricerca/mostraHome");
