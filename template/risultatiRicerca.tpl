@@ -158,7 +158,7 @@
                             {/foreach}
                         {/if}
                     {/if}
-                    {if !isset($array)}
+                    {if empty($array)}
                         <h2 class="accordion-body">La ricerca non ha prodotto alcun risultato. Riprova.</h2>
                     {/if}
                 </article>
