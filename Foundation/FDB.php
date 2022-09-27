@@ -631,15 +631,15 @@ class FDB{
 							break;
 						case 1:
 							if ($query == null)
-								$query = "SELECT * FROM " . $class::getTable()  . " WHERE nome ='" . $nome . "'";
+								$query = "SELECT * FROM " . $class::getTable()  . " WHERE nome LIKE '" . $nome . "%'"; //LIKE '%" . $input . "%';";
 							else
-								$query = $query . " AND nome ='" . $nome . "'";
+								$query = $query . " AND nome LIKE '" . $nome . "%'";
 							break;
 						case 2:
 							if ($query == null)
-								$query = "SELECT * FROM " . $class::getTable()  . " INNER JOIN Localizzazione ON  Localizzazione.id=Locale.localizzazione WHERE localizzazione.citta ='" . $citta . "'";
+								$query = "SELECT * FROM " . $class::getTable()  . " INNER JOIN Localizzazione ON  Localizzazione.id=Locale.localizzazione WHERE localizzazione.citta LIKE '" . $citta . "%'";
 							else
-								$query = $query . " INNER JOIN Localizzazione ON  Localizzazione.id=Locale.localizzazione AND localizzazione.citta ='" . $citta . "'";
+								$query = $query . " INNER JOIN Localizzazione ON  Localizzazione.id=Locale.localizzazione AND localizzazione.citta LIKE '" . $citta . "%'";
 							break;
 					}
 				}
@@ -685,21 +685,21 @@ class FDB{
 					switch ($i) {
 						case 0:
 							if ($query == null)
-								$query = "SELECT Evento.id,Evento.nome,Evento.descrizione,Evento.data,Evento.idImg FROM Evento INNER JOIN Locale_Eventi ON Locale_Eventi.ID_Evento=Evento.id INNER JOIN Locale ON Locale.nome='". $nomelocale. "'";
+								$query = "SELECT Evento.id,Evento.nome,Evento.descrizione,Evento.data,Evento.idImg FROM Evento INNER JOIN Locale_Eventi ON Locale_Eventi.ID_Evento=Evento.id INNER JOIN Locale ON Locale.nome LIKE '". $nomelocale. "%'";
 							else
-								$query = $query . " INNER JOIN Locale_Eventi ON Locale_Eventi.ID_Locale=Evento.id INNER JOIN Locale ON Locale.nome='".$nomelocale."';";
+								$query = $query . " INNER JOIN Locale_Eventi ON Locale_Eventi.ID_Locale=Evento.id INNER JOIN Locale ON Locale.nome LIKE '".$nomelocale."%';";
 							break;
 						case 1:
 							if ($query == null)
-								$query = "SELECT Evento.id,Evento.nome,Evento.descrizione,Evento.data,Evento.idImg FROM Evento WHERE nome ='" . $nomeevento . "'";
+								$query = "SELECT Evento.id,Evento.nome,Evento.descrizione,Evento.data,Evento.idImg FROM Evento WHERE nome  LIKE '" . $nomeevento . "%'";
 							else
-								$query = $query . " AND Evento.nome ='" . $nomeevento . "'";
+								$query = $query . " AND Evento.nome  LIKE '" . $nomeevento . "%'";
 							break;
 						case 2:
 							if ($query == null)
-								$query = "SELECT Evento.id,Evento.nome,Evento.descrizione,Evento.data,Evento.idImg FROM Evento INNER JOIN Locale_Eventi ON Locale_Eventi.ID_Evento=".$class::getTable().id." INNER JOIN Locale ON Locale.id=Locale_Eventi.ID_Locale WHERE localizzazione ='" . $citta . "'";
+								$query = "SELECT Evento.id,Evento.nome,Evento.descrizione,Evento.data,Evento.idImg FROM Evento INNER JOIN Locale_Eventi ON Locale_Eventi.ID_Evento=".$class::getTable().id." INNER JOIN Locale ON Locale.id=Locale_Eventi.ID_Locale WHERE localizzazione  LIKE '" . $citta . "%'";
 							else
-								$query = $query . " INNER JOIN Locale_Eventi ON Locale_Eventi.ID_Evento=".$class::getTable().id." INNER JOIN Locale ON Locale.id=Locale_Eventi.ID_Locale WHERE localizzazione ='" . $citta . "'";
+								$query = $query . " INNER JOIN Locale_Eventi ON Locale_Eventi.ID_Evento=".$class::getTable().id." INNER JOIN Locale ON Locale.id=Locale_Eventi.ID_Locale WHERE localizzazione LIKE '" . $citta . "%'";
 							break;
 						case 3:
 							if ($query == null)
@@ -801,8 +801,7 @@ class FDB{
 
 
 	/**
-	 * Funzione utilizzata per ritornare tutti gli utenti che verificano determinate caratteristiche date in input
-	 * Utilizzata nella pagina admin
+	 * AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 	 * @param $campo colonna nel db sul quale viene fatto il controllo
 	 * @param $query query da eseguire*/
 	public function CercaByKeyword($class,$campo,$input)
