@@ -265,10 +265,11 @@ class CGestioneLocale
         if ($sessione->isLogged() && $tipo == "EProprietario") {
             $generi = $view->getCategorie();
             $pm->deleteEsterne("Locale_Categorie", "ID_Locale", $id_locale);
+            $categorie = array();
             foreach ($generi as $genere) {
-                $categoria = $pm->load("genere", $genere, "FCategoria");
                 $pm->storeEsterne("Locale_Categorie", "ID_Locale", "ID_Categoria", $id_locale, $genere);
-                $categorie = array_merge($categoria[0]);
+                $c = $pm->load("genere", $genere, "FCategoria");
+                $categorie = array_merge($categorie, $c);
             }
             $locale[0]->setCategoria($categorie);
 
@@ -333,7 +334,7 @@ class CGestioneLocale
 
         if ($sessione->isLogged() && $tipo == "EProprietario") {
 
-            $pm->deleteEsterne("Locali_Orari", "ID_Locale", $id_locale);
+            $pm->deleteEsterne("Locale_Orari", "ID_Locale", $id_locale);
 
             $orario_apertura = $view->getOrarioApertura();
             $orario_chiusura = $view->getOrarioChiusura();
