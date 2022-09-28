@@ -39,8 +39,8 @@ class CFrontController
                 $controller->mostraPaginaErrore();
             }
         } else {
-            $controller = CError::getInstance();
-            $controller->mostraPaginaErrore();
+            $controller = CRicerca::getInstance();
+            $controller->mostraHome();
         }
     }
 
