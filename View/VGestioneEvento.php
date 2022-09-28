@@ -21,55 +21,16 @@ class VGestioneEvento{
      * Metodo richiamato quando un Proprietario crea un evento.
      * @throws SmartyException
      */
-    public function showFormCreaEvento($id_locale)
+    public function showFormCreaEvento($locale)
     {
-        $pm = FPersistentManager::getInstance();
-        $locale = $pm->load("id", $id_locale, "FLocale");
-        $this->smarty->assign('locale', $locale[0]);
+        $this->smarty->assign('locale', $locale);
         $this->smarty->display('registrazioneEvento.tpl');
     }
 
     public function showFormModificaEvento($evento)
     {
-        $this->smarty->assign('evento', $evento[0]);
+        $this->smarty->assign('evento', $evento);
         $this->smarty->display('gestioneEvento.tpl');
-    }
-
-
-    /**
-     * Metodo richiamato quando un Proprietario crea un locale.
-     * In caso di errori nella compilazione dei campi del locale, verrÃ  ricaricata la stessa pagina con un messaggio esplicativo
-     * dell'errore commesso in fase di compilazione.
-     * @param $error codice di errore con svariati significati. In base al suo valore verrÃ  eventualmente visualizzato un messaggio
-     * di errore nella pagina di creazione del locale
-     * @param $locale
-     * @throws SmartyException
-     */
-    public function showFormModify($error,$evento) //Poi vedo Id
-    {
-
-            switch ($error) {
-                case "type" :
-                    $this->smarty->assign('errorType', "errore");
-                    break;
-                case "size" :
-                    $this->smarty->assign('errorSize', "errore");
-                    break;
-            }
-            if ($evento->getImg() != null) {
-                $pic64 = base64_encode($evento->getImg());
-            }
-            else {
-                $data = file_get_contents( $_SERVER['DOCUMENT_ROOT'] . '/FacceBeve/template/img/user.png');
-                $pic64 = base64_encode($data);
-            }
-            $this->smarty->assign('pic64', $evento->getImg());
-            $this->smarty->assign('nomeEvento', $evento->getNome());
-            $this->smarty->assign('descrizioneEvento', $evento->getDescrizione());
-            $this->smarty->assign('dataEvento', $evento->getData());
-
-            $this->smarty->assign('userlogged', "loggato");
-            $this->smarty->display('infoLocale.tpl'); //?
     }
 
     /**
@@ -123,8 +84,7 @@ class VGestioneEvento{
         $nome = $_FILES['img_evento']['name'];
         $file = $_FILES['img_evento']['tmp_name'];
         $size = $_FILES['img_evento']['size'];
-        $arrayImg = array($nome, $size, $type, file_get_contents($file));
-        return $arrayImg;
+        return array($nome, $size, $type, file_get_contents($file));
     }
 
 

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-24 12:02:26
+/* Smarty version 4.2.0, created on 2022-09-28 16:59:28
   from 'C:\xampp\htdocs\FacceBeve\template\gestioneLocale.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_632ed5b2ddbe88_09550882',
+  'unifunc' => 'content_63346150308eb6_46898489',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '1c893a337b2815c195d1ebdec5f1c045d7425e74' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\gestioneLocale.tpl',
-      1 => 1664013745,
+      1 => 1664377166,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_632ed5b2ddbe88_09550882 (Smarty_Internal_Template $_smarty_tpl) {
+function content_63346150308eb6_46898489 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -232,7 +232,7 @@ $_smarty_tpl->tpl_vars['evento']->do_else = true;
 if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['evento']->value) {
 $_smarty_tpl->tpl_vars['evento']->do_else = false;
 ?>
-                            <li>
+                            <li style="padding: 3px;">
                                 <div class="items-body-content row-cols-3">
                                     <p><?php echo $_smarty_tpl->tpl_vars['evento']->value->getNome();?>
 </p>
