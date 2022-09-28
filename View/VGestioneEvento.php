@@ -87,5 +87,4 @@ class VGestioneEvento{
         return array($nome, $size, $type, file_get_contents($file));
     }
 
-
 }

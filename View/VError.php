@@ -7,7 +7,7 @@ class VError
     /**
      * @var Smarty
      */
-    private $smarty;
+    private Smarty $smarty;
 
     /**
      * Funzione che inizializza e configura smarty.
@@ -18,21 +18,11 @@ class VError
     }
 
     /**
-     * @param $i tipo di errore da mostrare
+     * @return void
      * @throws SmartyException
      */
-    public function error(int $i)
+    public function error()
     {
-        $this->smarty->assign('i', $i);
-        switch ($i) {
-            case 1 :
-                $this->smarty->assign('testo', 'Autorizzazione necessaria.');
-                break;
-            case 4 :
-                $this->smarty->assign('testo', 'La URL richiesta non esiste/non è stata trovata su questo server.');
-                break;
-        }
-
         $this->smarty->display('error.tpl');
 
     }

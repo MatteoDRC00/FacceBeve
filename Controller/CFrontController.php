@@ -27,20 +27,20 @@ class CFrontController
                         } else
                             $objController->$function();
                     } else {
-                        $controller = CRicerca::getInstance();
-                        $controller->mostraHome();
+                        $controller = CError::getInstance();
+                        $controller->mostraPaginaErrore();
                     }
                 } else {
-                    $controller = CRicerca::getInstance();
-                    $controller->mostraHome();
+                    $controller = CError::getInstance();
+                    $controller->mostraPaginaErrore();
                 }
             } else {
-                $controller = CRicerca::getInstance();
-                $controller->mostraHome();
+                $controller = CError::getInstance();
+                $controller->mostraPaginaErrore();
             }
         } else {
-            $controller = CRicerca::getInstance();
-            $controller->mostraHome();
+            $controller = CError::getInstance();
+            $controller->mostraPaginaErrore();
         }
     }
 
