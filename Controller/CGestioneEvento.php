@@ -42,9 +42,12 @@ class CGestioneEvento
         $sessione = new USession();
         $tipo = $sessione->leggi_valore("tipo_utente");
         $username = $sessione->leggi_valore("utente");
+        $pm = FPersistentManager::getInstance();
+        $locale = $pm->load("id", $id_locale, "FLocale");
+
         if ($sessione->isLogged() && $tipo == "EProprietario") {
             $view = new VGestioneEvento();
-            $view->showFormCreaEvento($id_locale);
+            $view->showFormCreaEvento($locale[0]);
         } else {
             header("Location: /Ricerca/mostraHome");
         }
@@ -61,16 +64,15 @@ class CGestioneEvento
         $evento = $pm->load("id", $id_evento, "FEvento");
 
         if ($sessione->isLogged() && $tipo == "EProprietario") {
-            $view->showFormModificaEvento($evento);
+            $view->showFormModificaEvento($evento[0]);
         } else {
             header("Location: /Ricerca/mostraHome");
         }
     }
 
     /**
-     * Funzione che viene richiamata per la creazione di un evento.
      * @param $id_locale
-     * @throws SmartyException
+     * @return void
      */
     public function creaEvento($id_locale)
     {

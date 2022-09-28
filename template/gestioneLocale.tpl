@@ -175,7 +175,7 @@
                 {if !empty($eventi)}
                     <ul>
                         {foreach $eventi as $evento}
-                            <li>
+                            <li style="padding: 3px;">
                                 <div class="items-body-content row-cols-3">
                                     <p>{$evento->getNome()}</p>
                                     <a href="/GestioneEvento/mostraFormGestioneEvento/{$evento->getId()}"><input type="button" value="Gestisci evento"></a>
