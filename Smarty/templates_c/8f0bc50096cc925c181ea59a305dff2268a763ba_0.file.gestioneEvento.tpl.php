@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-17 16:58:44
+/* Smarty version 4.2.0, created on 2022-09-28 16:24:10
   from 'C:\xampp\htdocs\FacceBeve\template\gestioneEvento.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_6325e0a44b06f8_28294771',
+  'unifunc' => 'content_6334590a0b6931_79776251',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '8f0bc50096cc925c181ea59a305dff2268a763ba' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\gestioneEvento.tpl',
-      1 => 1663426718,
+      1 => 1664375048,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6325e0a44b06f8_28294771 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6334590a0b6931_79776251 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -79,9 +79,8 @@ function content_6325e0a44b06f8_28294771 (Smarty_Internal_Template $_smarty_tpl)
         <div class="container">
 
             <div class="d-flex justify-content-between align-items-center">
-                <h2 style="font-weight: bold">Gestisci evento: <a href="/GestioneLocale/mostraInfoLocale/<?php echo $_smarty_tpl->tpl_vars['locale']->value;?>
-"><?php echo $_smarty_tpl->tpl_vars['evento']->value->getNome();?>
-</a></h2>
+                <h2 style="font-weight: bold">Gestisci evento: <?php echo $_smarty_tpl->tpl_vars['evento']->value->getNome();?>
+</h2>
             </div>
 
             <div class="gestioneutente">
@@ -122,14 +121,14 @@ function content_6325e0a44b06f8_28294771 (Smarty_Internal_Template $_smarty_tpl)
                         <button type="submit" class="btnAggiorna">AGGIORNA DATA <i class="fa fa-refresh"></i></button>
                     </form>
                 </div>
-                <form action="/GestioneEvento/modificaImmagineEvento/<?php echo $_smarty_tpl->tpl_vars['evento']->value->getId();?>
+                <div class="col-6 bg-white px-3 mb-3 pb-3">
+                    <form action="/GestioneEvento/modificaImmagineEvento/<?php echo $_smarty_tpl->tpl_vars['evento']->value->getId();?>
 " enctype="multipart/form-data" method="POST" class="aggiorna"> <!-- aggiungin i controlli -->
-                    <div class="col-6 bg-white px-3 pb-2">
                         <p>AGGIORNA LA LOCANDINA</p>
                         <input name="img_evento" class="w-50 p-2 m-2" type="file"><br>
                         <button type="submit" class="btnAggiorna">AGGIORNA LOCANDINA <i class="fa fa-refresh"></i></button>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
     </section><!-- End Contact Section -->

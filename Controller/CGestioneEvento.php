@@ -32,8 +32,6 @@ class CGestioneEvento
         return self::$instance;
     }
 
-//----------------------------------CREAZIONE EVENTO------------------------------------------------------\\
-
     /**
      * Funzione che viene richiamata per la creazione di un evento.
      * @param $id_locale
@@ -43,10 +41,27 @@ class CGestioneEvento
     {
         $sessione = new USession();
         $tipo = $sessione->leggi_valore("tipo_utente");
-        //$username = $sessione->leggi_valore("utente");
+        $username = $sessione->leggi_valore("utente");
         if ($sessione->isLogged() && $tipo == "EProprietario") {
             $view = new VGestioneEvento();
             $view->showFormCreaEvento($id_locale);
+        } else {
+            header("Location: /Ricerca/mostraHome");
+        }
+    }
+
+    public function mostraFormGestioneEvento($id_evento)
+    {
+        $sessione = new USession();
+        $view = new VGestioneEvento();
+        $username = $sessione->leggi_valore('utente');
+        $tipo = $sessione->leggi_valore("tipo_utente");
+        $pm = FPersistentManager::getInstance();
+
+        $evento = $pm->load("id", $id_evento, "FEvento");
+
+        if ($sessione->isLogged() && $tipo == "EProprietario") {
+            $view->showFormModificaEvento($evento);
         } else {
             header("Location: /Ricerca/mostraHome");
         }
@@ -81,7 +96,7 @@ class CGestioneEvento
             }
             $id_evento = $pm->store($evento);
 
-            $pm->storeEventiLocale($id_evento, $id_locale);
+            $pm->storeEsterne("Locale_Eventi", "ID_Locale", "ID_Evento", $id_locale, $id_evento);
 
             header("Location: /GestioneLocale/mostraGestioneLocale/" . $id_locale);
         } else {
@@ -99,51 +114,13 @@ class CGestioneEvento
         $tipo = $sessione->leggi_valore("tipo_utente");
 
         if ($sessione->isLogged() && $tipo == "EProprietario") {
-            $pm->deleteEventoLocale($id_evento);
+            $pm->deleteEsterne("Locale_Eventi", "ID_Evento", $id_evento);
             $pm->delete("id", $id_evento, "FEvento");
             header("Location: /Profilo/mostraProfilo");
         } else {
             header("Location: /Ricerca/mostraHome");
         }
     }
-
-    public function mostraFormGestioneEvento($id_evento)
-    {
-        $sessione = new USession();
-        $view = new VGestioneEvento();
-        $pm = FPersistentManager::getInstance();
-        $username = $sessione->leggi_valore('utente');
-        $tipo = $sessione->leggi_valore("tipo_utente");
-
-        if ($sessione->isLogged() && $tipo == "EProprietario") {
-            $view->showFormModificaEvento($id_evento);
-        } else {
-            header("Location: /Ricerca/mostraHome");
-        }
-    }
-//----------------------------------CREAZIONE EVENTO------------------------------------------------------\\
-
-
-//----------------------------------MODIFICA EVENTO------------------------------------------------------\\
-    /**
-     * @throws SmartyException
-     */
-    /* public function formModificaEvento(){
-         $view = new VGestioneEvento();
-         $pm = FPersistentManager::getInstance();
-         /**if($sessione->leggi_valore('utente')){
-         $proprietario = unserialize(($sessione->leggi_valore('utente')));
-         if(get_class($proprietario) == "EProprietario")
-         $view->showFormCreation($proprietario,null);
-         else
-         $view->showFormCreation($proprietario,'wrong_class');
-         }else{
-         $error = new VError();
-         $error->error(1); //401 -> Forbidden Access
-         }
-         $evento = $pm->load("id",$view->getIdEvento(),"FEvento");
-         $view->showFormModify(null,$evento);
-     }*/
 
     /**
      * Funzione che gestisce la modifica del nome del Evento. Preleva il nuovo nome dalla View e procede alla modifica.
@@ -159,8 +136,8 @@ class CGestioneEvento
         $evento = $pm->load("id", $id_evento, "FEvento");
         if ($sessione->isLogged() && $tipo == "EProprietario") {
             $nomeNuovo = $view->getNomeEvento();
-            $evento->setNome($nomeNuovo);
             $pm->update("FEvento", "nome", $nomeNuovo, "id", $id_evento);
+            $evento[0]->setNome($nomeNuovo);
             header("Location: /GestioneEvento/mostraFormGestioneEvento/" . $id_evento);
         } else {
             header('Location: /Ricerca/mostraHome');
@@ -185,7 +162,7 @@ class CGestioneEvento
         if ($sessione->isLogged() && $tipo == "EProprietario") {
             $descrizioneNuova = $view->getDescrizioneEvento();
             $pm->update("FEvento", "descrizione", $descrizioneNuova, "id", $id_evento);
-            $evento->setDescrizione($descrizioneNuova);
+            $evento[0]->setDescrizione($descrizioneNuova);
             header("Location: /GestioneEvento/mostraFormGestioneEvento/" . $id_evento);
         } else {
             header('Location: /Ricerca/mostraHome');
@@ -203,17 +180,17 @@ class CGestioneEvento
         $tipo = $sessione->leggi_valore("tipo_utente");
         $view = new VGestioneEvento();
         $pm = FPersistentManager::getInstance();
+
+        $evento = $pm->load("id", $id_evento, "FEvento");
+
         if ($sessione->isLogged() && $tipo == "EProprietario") {
-            $evento = $pm->load("id", $id_evento, "FEvento");
             $dataNuova = $view->getDataEvento();
-            $evento->setData($dataNuova);
             $pm->update("FEvento", "data", $dataNuova, "id", $id_evento);
+            $evento[0]->setData($dataNuova);
             header("Location: /GestioneEvento/mostraFormGestioneEvento/" . $id_evento);
         } else {
             header('Location: /Ricerca/mostraHome');
         }
-
-        $view->showFormModify(null, $evento);
     }
 
     /**
@@ -227,41 +204,26 @@ class CGestioneEvento
         $tipo = $sessione->leggi_valore("tipo_utente");
         $view = new VGestioneEvento();
         $pm = FPersistentManager::getInstance();
+
         $evento = $pm->load("id", $id_evento, "FEvento");
 
-        if ($sessione->isLogged() && $tipo = "EProprietario") {
+        if ($sessione->isLogged() && $tipo == "EProprietario") {
             $img = $view->getImgEvento();
             if (!empty($img)) {
                 $img_evento = new EImmagine($img[0], $img[1], $img[2], $img[3]);
                 $id = $pm->store($img_evento);
                 $img_evento->setId($id);
-                $id_imgvecchia = $evento->getImg()->getId();
-                $pm->delete("idImg", $id_imgvecchia, "FImmagine");
+                $id_imgvecchia = $evento[0]->getImg()->getId();
                 $pm->update("FEvento", "idImg", $id, "id", $id_evento);
-                $evento->setImg($img_evento);
+                $pm->delete("id", $id_imgvecchia, "FImmagine");
+                $evento[0]->setImg($img_evento);
             }
             header("Location: /GestioneEvento/mostraFormGestioneEvento/" . $id_evento);
         } else {
             header('Location: /Ricerca/mostraHome');
         }
 
-
     }
 
-
-    /**
-     * Gestisce la cancellazione dell'immagine del evento.
-     * @return void
-     * @throws SmartyException
-     */
-    public function deleteImmagineEvento()
-    {
-        $view = new VGestioneEvento();
-        $pm = FPersistentManager::getInstance();
-        $img = $pm->load("id", $view->getIdImmagine(), "FImmagine"); //Serve per l'eliminazione delle chiavi esterne
-        $Y = $pm->delete("id", $view->getIdImmagine(), "FImmagine");
-        $pm->deleteEsterne("FEvento", $img);
-        header('Location: /Ricerca/dettaglioEvento');
-    }
 
 }

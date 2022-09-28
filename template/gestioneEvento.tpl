@@ -56,7 +56,7 @@
         <div class="container">
 
             <div class="d-flex justify-content-between align-items-center">
-                <h2 style="font-weight: bold">Gestisci evento: <a href="/GestioneLocale/mostraInfoLocale/{$locale}">{$evento->getNome()}</a></h2>
+                <h2 style="font-weight: bold">Gestisci evento: {$evento->getNome()}</h2>
             </div>
 
             <div class="gestioneutente">
@@ -94,13 +94,13 @@
                         <button type="submit" class="btnAggiorna">AGGIORNA DATA <i class="fa fa-refresh"></i></button>
                     </form>
                 </div>
-                <form action="/GestioneEvento/modificaImmagineEvento/{$evento->getId()}" enctype="multipart/form-data" method="POST" class="aggiorna"> <!-- aggiungin i controlli -->
-                    <div class="col-6 bg-white px-3 pb-2">
+                <div class="col-6 bg-white px-3 mb-3 pb-3">
+                    <form action="/GestioneEvento/modificaImmagineEvento/{$evento->getId()}" enctype="multipart/form-data" method="POST" class="aggiorna"> <!-- aggiungin i controlli -->
                         <p>AGGIORNA LA LOCANDINA</p>
                         <input name="img_evento" class="w-50 p-2 m-2" type="file"><br>
                         <button type="submit" class="btnAggiorna">AGGIORNA LOCANDINA <i class="fa fa-refresh"></i></button>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
     </section><!-- End Contact Section -->

@@ -427,15 +427,12 @@ class FDB{
 	public function delete(string $class, string $attributo, string $value){
 		try {
 			$this->database->beginTransaction();
-			$esiste = $this->exist($class, $attributo, $value);
-			if ($esiste) {
-				$query = "DELETE FROM " . $class::getTable() . " WHERE " . $attributo . "='" . $value . "';";
-				$stmt = $this->database->prepare($query);
-				$stmt->execute();
-				$this->database->commit();
-				$this->closeDbConnection();
-				return true;
-			}
+			$query = "DELETE FROM " . $class::getTable() . " WHERE " . $attributo . "='" . $value . "';";
+			$stmt = $this->database->prepare($query);
+			$stmt->execute();
+			$this->database->commit();
+			$this->closeDbConnection();
+			return true;
 		} catch (PDOException $e) {
 			echo "Attenzione errore: " . $e->getMessage();
 			$this->database->rollBack();
