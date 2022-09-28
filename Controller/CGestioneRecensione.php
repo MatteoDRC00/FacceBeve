@@ -98,7 +98,7 @@ class CGestioneRecensione
         if ($tipo == "EUtente") {
             $recensione = $pm->load("id", $id, "FRecensione");
             $utente = $pm->load("username", $user, "FUtente");
-            if ($utente->getUsername() == $recensione->getUtente()->getUsername()) {
+            if ($utente->getUsername() == $recensione[0]->getUtente()->getUsername()) {
                 $pm->delete("id", $id, "FRecensione");
                 header('Location: /Ricerca/dettagliLocale/' . $view->getIdLocale());
             } else {
