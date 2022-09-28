@@ -45,7 +45,7 @@ class CGestioneRecensione
 
             $data = (string)date("d/m/Y");
 
-            $recensione = new ERecensione($utente, $titolo, $descrizione, $valutazione, $data, $locale);
+            $recensione = new ERecensione($utente, $titolo, $descrizione, $valutazione, $data, $locale[0]);
 
             $idR = $pm->store($recensione);
 
@@ -141,10 +141,10 @@ class CGestioneRecensione
         $tipo = $sessione->leggi_valore('tipo_utente');
         $pm = FPersistentManager::GetInstance();
         if ($tipo == "EProprietario") {
-            $pm->update("FRecensione", "state", 1, "id", $id);
+            $pm->update("FRecensione", "segnalato", 1, "id", $id);
             header('Location: /Ricerca/dettagliLocale/' . $view->getIdLocale());
         } else {
-            header('Location: /Ricerca/mostraHome'); //Qualcosa va mostrato però
+            header('Location: /Ricerca/mostraHome');
         }
     }
 

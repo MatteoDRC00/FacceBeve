@@ -160,15 +160,15 @@ class FProprietario
      * Metodo che restituisce la lista di tutti i proprietari
      * @return array
      */
-    public static function loadAllProprietari()
+    public static function loadAll(): array
     {
         $proprietario = array();
         $db = FDB::getInstance();
         list($result, $num) = $db->getAll("Proprietario");
         if (($result != null) && ($num == 1)) {
             $proprietario[0] = new EProprietario($result['nome'], $result['cognome'], $result['email'], $result['username'], $result['password']); //Carica un Proprietario dal database
-            $img_profilo[0] = FImmagine::loadByField('id', $result['idImg']);
-            $proprietario[0]->setImgProfilo($img_profilo);
+            $img_profilo = FImmagine::loadByField('id', $result['idImg']);
+            $proprietario[0]->setImgProfilo($img_profilo[0]);
         } else {
             if (($result != null) && ($num > 1)) {
                 for ($i = 0; $i < count($result); $i++) {

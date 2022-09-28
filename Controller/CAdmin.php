@@ -1,7 +1,6 @@
 <?php
 require_once "autoload.php";
 require_once "utility/USession.php";
-require_once "utility/UCheck.php";
 
 /**
  * La classe CAdmin implementa funzionalità per l'admin della piattaforma, al quale è consentito
@@ -55,7 +54,7 @@ class CAdmin
             $utentiBannati = $pm->loadUtentiByState(0);
 
             //loadCategorie
-            $categorie = $pm->loadAll("FCategoria");
+            $categorie = $pm->getCategorie();
 
             //loadRecensioni segnalate
             $recSegnalate = $pm->load("segnalato", true, "FRecensione");

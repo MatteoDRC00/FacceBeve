@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 {assign var='locale' value=$locale|default:null}
-{assign var='arrayRecensioni' value=$arrayRecensioni|default:null}
+{assign var='arrayRecensioni' value=$arrayRecensioni|default:empty}
 {assign var='nrece' value=$nrece|default:0}
 {assign var='eventi' value=$eventi|default:null}
 {assign var='proprietario' value=$proprietario|default:null}
@@ -202,7 +202,7 @@
                                             <h5>{$recensione->getUtente()->getUsername()}</h5>
 
                                             <h5>{$recensione->getData()} | <strong>Voto: {$recensione->getVoto()}
-                                                    /5</strong>
+                                                    / 5</strong>
                                                 {if $recensione->getUtente()->getUsername() eq $utente}
                                                     <form action="/GestioneRecensione/cancellaRecensione/{$recensione->getId()}"
                                                           method="POST">
@@ -213,9 +213,10 @@
                                                         </button>
                                                     </form>
                                                 {/if}
-                                                {if ($arrayRisposte[{$recensione@iteration-1}]->getProprietario()->getUsername() eq $utente) && ($recensione->isSegnalata() == 1)}
+                                                {if isset($proprietario) && ($recensione->isSegnalata() == 0)}
                                                     <form action="/GestioneRecensione/segnalaRecensione/{$recensione->getId()}"
                                                           method="POST">
+                                                        <input type="hidden" value="{$locale->getId()}" name="idLocale">
                                                         <button type="submit" id="segnala"
                                                                 style="border-radius:9px; height: 40px; color: #bb2d3b; font-weight: bold; border-color: #bb2d3b">
                                                             <i class="align-items-xxl-end"></i>Segnala la Recensione

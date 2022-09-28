@@ -141,6 +141,7 @@ class CRicerca
             if ($check)
                 $proprietario = 1;
         }
+
         $vRicerca->dettagliLocale($tipo, $presente, $result, $recensioni, $risposte[0], $rating, $proprietario, $logged, $eventiOrganizzati);
     }
 
