@@ -125,7 +125,8 @@ class CRicerca
             foreach ($recensioni as $item) {
                 $idSearch = $item->getId();
                 $sum += $item->getVoto();
-                $risposte = $pm->load("recensione", $idSearch, "FRisposta"); //-->Ogni elemento ha la recensione e le risposte associate a tale recensione
+                $risposta = $pm->load("recensione", $idSearch, "FRisposta"); //-->Ogni elemento ha la recensione e le risposte associate a tale recensione
+                $risposte[] = $risposta;
             }
             $rating = $sum / (count($recensioni));
         } elseif (isset($recensioni)) {

@@ -244,7 +244,7 @@
                                                 <p>{$arrayRisposte[{$recensione@iteration-1}]->getDescrizione()}</p>
 
                                                 {if $arrayRisposte[{$recensione@iteration-1}]->getProprietario()->getUsername() eq $utente}
-                                                    <form action="/GestioneRecensione/cancellaRisposta/{$recensione->getId()}"
+                                                    <form action="/GestioneRecensione/cancellaRisposta/{$arrayRisposte[{$recensione@iteration-1}]->getId()}"
                                                           method="POST">
                                                         <input type="hidden" value="{$locale->getId()}" name="idLocale">
                                                         <button type="submit"
