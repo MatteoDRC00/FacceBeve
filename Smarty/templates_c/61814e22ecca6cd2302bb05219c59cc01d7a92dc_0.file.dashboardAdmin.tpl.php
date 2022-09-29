@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-28 16:25:13
+/* Smarty version 4.2.0, created on 2022-09-28 18:05:30
   from 'C:\xampp\htdocs\FacceBeve\template\dashboardAdmin.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_633459492f8c83_50399084',
+  'unifunc' => 'content_633470ca3820c5_38257676',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '61814e22ecca6cd2302bb05219c59cc01d7a92dc' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\dashboardAdmin.tpl',
-      1 => 1663840474,
+      1 => 1664381128,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_633459492f8c83_50399084 (Smarty_Internal_Template $_smarty_tpl) {
+function content_633470ca3820c5_38257676 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -81,11 +81,12 @@ function content_633459492f8c83_50399084 (Smarty_Internal_Template $_smarty_tpl)
     <!-- ======= Contact Section ======= -->
     <section class="breadcrumbs">
         <div class="container">
-
             <div class="d-flex justify-content-between align-items-center">
                 <h2>Dashboard ADMIN</h2>
             </div>
-
+            <div class="gestioneutente">
+                <a href="/Accesso/logout">Esci <i class="fa fa-sign-out"></i></a>
+            </div>
         </div>
     </section><!-- End Contact Section -->
 

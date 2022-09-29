@@ -37,9 +37,9 @@ class EEvento
 
     /**
      * Immagine di locandina dell'evento
-     * @var EImmagine
+     * @var EImmagine|null
      */
-    private EImmagine $img;
+    private ?EImmagine $img;
 
 
     /**
@@ -130,18 +130,18 @@ class EEvento
 
     /**
      * Restituisce l'immagine di locandina dell'evento
-     * @return EImmagine
+     * @return EImmagine|null
      */
-    public function getImg(): EImmagine
+    public function getImg(): ?EImmagine
     {
         return $this->img;
     }
 
     /**
      * Imposta/Modifica l'immagine di locandina dell'evento
-     * @param EImmagine $img
+     * @param EImmagine|null $img
      */
-    public function setImg(EImmagine $img): void
+    public function setImg(?EImmagine $img): void
     {
         $this->img = $img;
     }

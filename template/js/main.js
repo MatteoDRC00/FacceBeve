@@ -50,7 +50,7 @@ function validateRegForm(id) {
         let email = document.forms.registrazioneUtente.elements.email.value;
         let img = document.forms.registrazioneUtente.elements.img_profilo.value;
 
-        if (nome === "" || cognome === "" || email === "" || username === "" || password1 === "" || password2 === "" || img === "") {
+        if (nome === "" || cognome === "" || email === "" || username === "" || password1 === "" || password2 === "") {
             alert("Inserire i campi mancanti");
             return false;
         }

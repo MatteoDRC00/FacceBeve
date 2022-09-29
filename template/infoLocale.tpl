@@ -88,13 +88,21 @@
                         {/if}
                         <div class="portfolio-details-slider swiper">
                             <div class="swiper-wrapper align-items-center">
-                                {foreach $locale->getImg() as $img}
+                                {if !empty($locale->getImg())}
+                                    {foreach $locale->getImg() as $img}
+                                        <div class="portfolio-info swiper-slide">
+                                            <img src="data:{$img->getType()};base64,{$img->getImmagine()}"
+                                                 alt="Immagine locale"
+                                                 style="height:575px; width:575px; border-radius:40px; ">
+                                        </div>
+                                    {/foreach}
+                                {else}
                                     <div class="portfolio-info swiper-slide">
-                                        <img src="data:{$img->getType()};base64,{$img->getImmagine()}"
+                                        <img src="/template/img/no_foto.jpg"
                                              alt="Immagine locale"
                                              style="height:575px; width:575px; border-radius:40px; ">
                                     </div>
-                                {/foreach}
+                                {/if}
                             </div>
                         </div>
                         <div class="swiper-pagination"></div>
