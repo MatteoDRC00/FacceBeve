@@ -95,6 +95,8 @@ class CGestioneEvento
                 $id = $pm->store($img_evento);
                 $img_evento->setId($id);
                 $evento->setImg($img_evento);
+            }else{
+                $evento->setImg(null);
             }
             $id_evento = $pm->store($evento);
 
