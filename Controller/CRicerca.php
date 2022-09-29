@@ -125,13 +125,13 @@ class CRicerca
             foreach ($recensioni as $item) {
                 $idSearch = $item->getId();
                 $sum += $item->getVoto();
-                $risposte[] = $pm->load("recensione", $idSearch, "FRisposta"); //-->Ogni elemento ha la recensione e le risposte associate a tale recensione
+                $risposte = $pm->load("recensione", $idSearch, "FRisposta"); //-->Ogni elemento ha la recensione e le risposte associate a tale recensione
             }
             $rating = $sum / (count($recensioni));
         } elseif (isset($recensioni)) {
             $idSearch = $recensioni->getId();
             $rating = $recensioni->getVoto();
-            $risposte[] = $pm->load("recensione", $idSearch, "FRisposta");
+            $risposte = $pm->load("recensione", $idSearch, "FRisposta");
         } else {
             $risposte = null;
             $rating = null;
@@ -142,7 +142,7 @@ class CRicerca
                 $proprietario = 1;
         }
 
-        $vRicerca->dettagliLocale($tipo, $presente, $result, $recensioni, $risposte[0], $rating, $proprietario, $logged, $eventiOrganizzati);
+        $vRicerca->dettagliLocale($tipo, $presente, $result, $recensioni, $risposte, $rating, $proprietario, $logged, $eventiOrganizzati);
     }
 
 
