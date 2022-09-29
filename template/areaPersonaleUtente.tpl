@@ -67,7 +67,11 @@
                     <div class="row">
                         <div class="col-12 bg-white p-0 px-3 py-3 mb-3">
                             <div class="d-flex flex-column align-items-center">
-                                <img class="photo" src="data:{$type};base64,{$pic64}" alt="immagine profilo">
+                                {if is_null($type) && is_null($pic64)}
+                                    <img class="photo" src="/template/img/utente.jpg" alt="immagine profilo">
+                                {else}
+                                    <img class="photo" src="data:{$type};base64,{$pic64}" alt="immagine profilo">
+                                {/if}
                                 <p class="fw-bold h4 mt-3">{$nome} {$cognome}</p>
                                 <p class="text-muted" style="font-weight: bold">{$username}</p>
                                 <p class="text-muted mb-3">{$email}</p>

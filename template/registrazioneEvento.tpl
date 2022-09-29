@@ -80,7 +80,7 @@
                         </div>
                         <div class="form-example">
                             <p>AGGIUNGI LA LOCANDINA</p>
-                            <input name="img_evento" class="w-50 p-2 m-2" type="file" required><br>
+                            <input name="img_evento" class="w-50 p-2 m-2" type="file"><br>
                         </div>
                         <button type="submit" class="btnAggiorna">INSERISCI <i class="fa fa-refresh"></i></button>
                     </form>

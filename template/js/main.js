@@ -25,7 +25,7 @@ function validateRegForm(id) {
         let email = document.forms.registrazioneProprietario.elements.email.value;
         let img = document.forms.registrazioneProprietario.elements.img_profilo.value;
 
-        if (nome === "" || cognome === "" || email === "" || username === "" || password1 === "" || password2 === "" || img === "") {
+        if (nome === "" || cognome === "" || email === "" || username === "" || password1 === "" || password2 === "") {
             alert("Inserire i campi mancanti");
             return false;
         }
@@ -50,7 +50,7 @@ function validateRegForm(id) {
         let email = document.forms.registrazioneUtente.elements.email.value;
         let img = document.forms.registrazioneUtente.elements.img_profilo.value;
 
-        if (nome === "" || cognome === "" || email === "" || username === "" || password1 === "" || password2 === "" || img === "") {
+        if (nome === "" || cognome === "" || email === "" || username === "" || password1 === "" || password2 === "") {
             alert("Inserire i campi mancanti");
             return false;
         }
@@ -97,7 +97,7 @@ function validateRegForm(id) {
             img.value = '';
             return false;
         }
-        if (nomeLocale === "" || descrizioneLocale === "" || categorieLocale === "" || numeroLocale === "" || indirizzoLocale === "" || civicoLocale === "" || cittaLocale === "" || CAPLocale === "" || imgLocale === "") {
+        if (nomeLocale === "" || descrizioneLocale === "" || categorieLocale === "" || numeroLocale === "" || indirizzoLocale === "" || civicoLocale === "" || cittaLocale === "" || CAPLocale === "") {
             alert("Inserire i campi mancanti");
             return false;
         }
@@ -111,7 +111,7 @@ function validateRegForm(id) {
         let DataEvento = new Date(dataEvento);
         let Oggi = new Date();
 
-        if (nomeEvento === "" || descrizioneEvento === "" || dataEvento === "" || imgEvento === "") {
+        if (nomeEvento === "" || descrizioneEvento === "" || dataEvento === "") {
             alert("Inserire i campi mancanti");
             return false;
         }
