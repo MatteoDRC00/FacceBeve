@@ -57,21 +57,6 @@
             <button type="submit">Registrati</button>
             <p class="message">Hai gi&agrave un account? <a href="login.html">Accedi</a></p>
         </form>
-        <!--  {if $errorSize!='ok'}
-              <div style="color: red;">
-                  <p align="center">Attenzione! Formato immagine troppo grande!  </p>
-              </div>
-              {/if}
-              {if $errorType!='ok'}
-              <div style="color: red;">
-                  <p align="center">Attenzione! Formato immagine non supportato (provare con .png o .jpg)!  </p>
-              </div>
-              {/if}
-              {if $errorEmail!='ok'}
-              <div style="color: red;">
-                  <p align="center">Attenzione! Email già esistente!  </p>
-              </div>
-              {/if} -->
     </div>
 </div>
 <script src="/template/js/main.js"></script>

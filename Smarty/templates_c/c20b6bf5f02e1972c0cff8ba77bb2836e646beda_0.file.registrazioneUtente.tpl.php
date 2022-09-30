@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-14 14:34:19
+/* Smarty version 4.2.0, created on 2022-09-30 11:10:30
   from 'C:\xampp\htdocs\FacceBeve\template\registrazioneUtente.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_6321ca4ba98be9_81910943',
+  'unifunc' => 'content_6336b286382e11_87264513',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c20b6bf5f02e1972c0cff8ba77bb2836e646beda' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\registrazioneUtente.tpl',
-      1 => 1663158702,
+      1 => 1664528887,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6321ca4ba98be9_81910943 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6336b286382e11_87264513 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <!--<?php $_smarty_tpl->_assignInScope('error', (($tmp = $_smarty_tpl->tpl_vars['error']->value ?? null)===null||$tmp==='' ? 'ok' ?? null : $tmp));?> -->
 <html lang="it">
@@ -80,21 +80,6 @@ function content_6321ca4ba98be9_81910943 (Smarty_Internal_Template $_smarty_tpl)
             <button type="submit">Registrati</button>
             <p class="message">Hai gi&agrave un account? <a href="login.html">Accedi</a></p>
         </form>
-        <!--  <?php if ($_smarty_tpl->tpl_vars['errorSize']->value != 'ok') {?>
-              <div style="color: red;">
-                  <p align="center">Attenzione! Formato immagine troppo grande!  </p>
-              </div>
-              <?php }?>
-              <?php if ($_smarty_tpl->tpl_vars['errorType']->value != 'ok') {?>
-              <div style="color: red;">
-                  <p align="center">Attenzione! Formato immagine non supportato (provare con .png o .jpg)!  </p>
-              </div>
-              <?php }?>
-              <?php if ($_smarty_tpl->tpl_vars['errorEmail']->value != 'ok') {?>
-              <div style="color: red;">
-                  <p align="center">Attenzione! Email già esistente!  </p>
-              </div>
-              <?php }?> -->
     </div>
 </div>
 <?php echo '<script'; ?>

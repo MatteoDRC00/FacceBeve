@@ -36,11 +36,14 @@ function validateRegForm(id) {
         }
         var allowedExtensions = /(\.jpg|\.jpeg|\.gif|\.png)$/i; //Controllo sul Type del img inserita
 
-        if (!allowedExtensions.exec(img)) {
-            alert('Tipo di file non valido, sono accettati, prova con  \n-jpg\n-jpeg\n-gif\n-png');
-            img.value = '';
-            return false;
+        if (img !== ""){
+            if (!allowedExtensions.exec(img)) {
+                alert('Tipo di file non valido, sono accettati, prova con  \n-jpg\n-jpeg\n-gif\n-png');
+                img.value = '';
+                return false;
+            }
         }
+
     } else if (id === 0) { //Form registrazione utente
         let password1 = document.forms.registrazioneUtente.elements.password.value;
         let password2 = document.forms.registrazioneUtente.elements.password2.value;
@@ -60,11 +63,14 @@ function validateRegForm(id) {
         }
         var allowedExtensions = /(\.jpg|\.jpeg|\.gif|\.png)$/i; //Controllo sul Type del img inserita
 
-        if (!allowedExtensions.exec(img)) {
-            alert('Tipo di file non valido, sono accettati, prova con  \n-jpg\n-jpeg\n-gif\n-png');
-            img.value = '';
-            return false;
+        if (img !== ""){
+            if (!allowedExtensions.exec(img)) {
+                alert('Tipo di file non valido, sono accettati, prova con  \n-jpg\n-jpeg\n-gif\n-png');
+                img.value = '';
+                return false;
+            }
         }
+
     } else if (id === 2) {  //Form registrazione Locale
         let nomeLocale = document.forms.registrazioneLocale.elements.nomeLocale.value;
         let descrizioneLocale = document.forms.registrazioneLocale.elements.descrizioneLocale.value;
@@ -92,11 +98,14 @@ function validateRegForm(id) {
         let imgLocale = document.forms.registrazioneLocale.elements.imgLocale.value;
         var allowedExtensions = /(\.jpg|\.jpeg|\.gif|\.png)$/i; //Controllo sul Type del img inserita
 
-        if (!allowedExtensions.exec(img)) {
-            alert('Tipo di file non valido, sono accettati, prova con  \n-jpg\n-jpeg\n-gif\n-png');
-            img.value = '';
-            return false;
+        if (imgLocale !== ""){
+            if (!allowedExtensions.exec(imgLocale)) {
+                alert('Tipo di file non valido, sono accettati, prova con  \n-jpg\n-jpeg\n-gif\n-png');
+                imgLocale.value = '';
+                return false;
+            }
         }
+
         if (nomeLocale === "" || descrizioneLocale === "" || categorieLocale === "" || numeroLocale === "" || indirizzoLocale === "" || civicoLocale === "" || cittaLocale === "" || CAPLocale === "") {
             alert("Inserire i campi mancanti");
             return false;
@@ -123,11 +132,14 @@ function validateRegForm(id) {
 
         var allowedExtensions = /(\.jpg|\.jpeg|\.gif|\.png)$/i; //Controllo sul Type del img inserita
 
-        if (!allowedExtensions.exec(imgEvento)) {
-            alert('Tipo di file non valido, sono accettati, prova con  \n-jpg\n-jpeg\n-gif\n-png');
-            imgEvento.value = '';
-            return false;
+        if (imgEvento !== ""){
+            if (!allowedExtensions.exec(imgEvento)) {
+                alert('Tipo di file non valido, sono accettati, prova con  \n-jpg\n-jpeg\n-gif\n-png');
+                imgEvento.value = '';
+                return false;
+            }
         }
+
     }
 }
 
