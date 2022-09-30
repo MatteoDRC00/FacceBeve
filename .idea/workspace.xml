@@ -5,10 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ca6e37f9-4df3-446e-a924-f4e38117399d" name="Changes" comment="login e registrazione aggiunta logo in alto da completare">
+      <change afterPath="$PROJECT_DIR$/template/img/no_foto.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/template/img/utente.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/templates_c/c20b6bf5f02e1972c0cff8ba77bb2836e646beda_0.file.registrazioneUtente.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/Smarty/templates_c/c20b6bf5f02e1972c0cff8ba77bb2836e646beda_0.file.registrazioneUtente.tpl.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controller/CGestioneEvento.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/CGestioneEvento.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Entity/EEvento.php" beforeDir="false" afterPath="$PROJECT_DIR$/Entity/EEvento.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Smarty/templates_c/172a59cd6d9d0fe4c26f91abf9bfe128c31cd594_0.file.InfoLocale.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/Smarty/templates_c/172a59cd6d9d0fe4c26f91abf9bfe128c31cd594_0.file.InfoLocale.tpl.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Smarty/templates_c/61814e22ecca6cd2302bb05219c59cc01d7a92dc_0.file.dashboardAdmin.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/Smarty/templates_c/61814e22ecca6cd2302bb05219c59cc01d7a92dc_0.file.dashboardAdmin.tpl.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Smarty/templates_c/f01309d919bfd81c0c749befffc9728594dd37b3_0.file.areaPersonaleProprietario.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/Smarty/templates_c/f01309d919bfd81c0c749befffc9728594dd37b3_0.file.areaPersonaleProprietario.tpl.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/areaPersonaleProprietario.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/template/areaPersonaleProprietario.tpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/areaPersonaleUtente.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/template/areaPersonaleUtente.tpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/template/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/dashboardAdmin.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/template/dashboardAdmin.tpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/infoLocale.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/template/infoLocale.tpl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/template/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/template/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/registrazioneUtente.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/template/registrazioneUtente.tpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/registrazioneEvento.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/template/registrazioneEvento.tpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/registrazioneLocale.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/template/registrazioneLocale.tpl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -171,9 +183,7 @@
       <workItem from="1664007013568" duration="6148000" />
       <workItem from="1664262900547" duration="4791000" />
       <workItem from="1664268312569" duration="1007000" />
-      <workItem from="1664444977480" duration="2776000" />
-      <workItem from="1664528783105" duration="908000" />
-      <workItem from="1664529718605" duration="1590000" />
+      <workItem from="1664444977480" duration="2078000" />
     </task>
     <servers />
   </component>

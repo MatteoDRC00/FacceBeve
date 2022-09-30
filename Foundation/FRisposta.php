@@ -130,14 +130,15 @@ class FRisposta
      */
     public static function loadByField(string $attributo, string $valore)
     {
-        $risposta = array();
+        $risposta = null;
         $db = FDB::getInstance();
         list($result, $num) = $db->load(static::getClass(), $attributo, $valore);
         if (($result != null) && ($num == 1)) {
             $proprietario = FProprietario::loadByField("username", $result["proprietario"]);
-            $risposta[0] = new ERisposta($result['recensione'], $result['descrizione'], $proprietario);
-            $risposta[0]->setId($result['id']);
+            $risposta = new ERisposta($result['recensione'], $result['descrizione'], $proprietario);
+            $risposta->setId($result['id']);
         } else {
+            $risposte = array();
             if (($result != null) && ($num > 1)) {
                 for ($i = 0; $i < count($result); $i++) {
                     $proprietario = FProprietario::loadByField("username", $result[$i]["proprietario"]);
