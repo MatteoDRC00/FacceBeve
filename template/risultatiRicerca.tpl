@@ -98,9 +98,11 @@
                         {if $tipo eq "Locali"}
                             {foreach $array as $locale}
                                 <div class="entry-img">
-                                    <img class="photo"
-                                         src="data:{$locale->getPrimaImg()->getType()};base64,{$locale->getPrimaImg()->getImmagine()}"
-                                         alt="immagine locale" width="200px" height="100px" style="border-radius:5px">
+                                    {if is_null($locale->getPrimaImg())}
+                                        <img class="photo" src="/template/img/no_foto.jpg" alt="immagine locale" width="200px" height="100px" style="border-radius:5px">
+                                        {else}
+                                        <img class="photo" src="data:{$locale->getPrimaImg()->getType()};base64,{$locale->getPrimaImg()->getImmagine()}" alt="immagine locale" width="200px" height="100px" style="border-radius:5px">
+                                    {/if}
                                 </div>
                                 <h2 class="entry-title">
                                     <a href="/Ricerca/dettagliLocale/{$locale->getId()}">{$locale->getNome()}</a>

@@ -32,7 +32,7 @@ CREATE TABLE `Utente` (
     `email` VARCHAR(40) NOT NULL,
     `password` VARCHAR(32) NOT NULL,
     `dataIscrizione` CHAR(11) NOT NULL,
-    `idImg` int(11),
+    `idImg` int(11) DEFAULT NULL,
     `state` tinyint(1) NOT NULL,
     FOREIGN KEY (`idImg`) REFERENCES Immagine(`id`),
     PRIMARY KEY (`username`)
@@ -51,7 +51,7 @@ CREATE TABLE `Proprietario` (
     `cognome` VARCHAR(26),    
     `email` VARCHAR(40) NOT NULL,
     `password` VARCHAR(32) NOT NULL,
-    `idImg` int(11),
+    `idImg` int(11) DEFAULT NULL,
     FOREIGN KEY (`idImg`) REFERENCES Immagine(`id`),
     PRIMARY KEY (`username`)
 );
@@ -151,7 +151,7 @@ CREATE TABLE `Evento` (
     `nome` VARCHAR(26),
     `descrizione` VARCHAR(320),
 	`data` CHAR(11),
-    `idImg` int(11),
+    `idImg` int(11) DEFAULT NULL,
     FOREIGN KEY (`idImg`) REFERENCES Immagine(`id`),
     PRIMARY KEY (`id`)
 );

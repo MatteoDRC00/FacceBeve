@@ -67,7 +67,7 @@
                     <div class="row">
                         <div class="col-12 bg-white p-0 px-3 py-3 mb-3">
                             <div class="d-flex flex-column align-items-center">
-                                {if is_null($type) && is_null($pic64)}
+                                {if $type=="" && $pic64==""}
                                     <img class="photo" src="/template/img/utente.jpg" alt="immagine profilo">
                                 {else}
                                     <img class="photo" src="data:{$type};base64,{$pic64}" alt="immagine profilo">

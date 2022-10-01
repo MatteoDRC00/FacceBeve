@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-18 21:51:41
+/* Smarty version 4.2.0, created on 2022-10-01 15:35:52
   from 'C:\xampp\htdocs\FacceBeve\template\areaPersonaleUtente.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_632776cdef5dd9_90376276',
+  'unifunc' => 'content_633842380c01b0_76559760',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '7757a365921f193a5e1677eb3c4671e453775876' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\areaPersonaleUtente.tpl',
-      1 => 1663530700,
+      1 => 1664631350,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_632776cdef5dd9_90376276 (Smarty_Internal_Template $_smarty_tpl) {
+function content_633842380c01b0_76559760 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -90,9 +90,13 @@ function content_632776cdef5dd9_90376276 (Smarty_Internal_Template $_smarty_tpl)
                     <div class="row">
                         <div class="col-12 bg-white p-0 px-3 py-3 mb-3">
                             <div class="d-flex flex-column align-items-center">
-                                <img class="photo" src="data:<?php echo $_smarty_tpl->tpl_vars['type']->value;?>
+                                <?php if ($_smarty_tpl->tpl_vars['type']->value == '' && $_smarty_tpl->tpl_vars['pic64']->value == '') {?>
+                                    <img class="photo" src="/template/img/utente.jpg" alt="immagine profilo">
+                                <?php } else { ?>
+                                    <img class="photo" src="data:<?php echo $_smarty_tpl->tpl_vars['type']->value;?>
 ;base64,<?php echo $_smarty_tpl->tpl_vars['pic64']->value;?>
 " alt="immagine profilo">
+                                <?php }?>
                                 <p class="fw-bold h4 mt-3"><?php echo $_smarty_tpl->tpl_vars['nome']->value;?>
  <?php echo $_smarty_tpl->tpl_vars['cognome']->value;?>
 </p>

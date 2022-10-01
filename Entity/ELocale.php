@@ -271,11 +271,14 @@ class ELocale
 
     /**
      * Restituisce la prima immagine inserita nel locale --> utilizzato nei risultati ricerca
-     * @return EImmagine
+     * @return EImmagine|null
      */
-    public function getPrimaImg(): EImmagine
+    public function getPrimaImg(): ?EImmagine
     {
-        return $this->img[0];
+        if(!empty($this->img))
+            return $this->img[0];
+        else
+            return null;
     }
 
     /**

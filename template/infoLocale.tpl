@@ -93,40 +93,50 @@
                                         <div class="portfolio-info swiper-slide">
                                             <img src="data:{$img->getType()};base64,{$img->getImmagine()}"
                                                  alt="Immagine locale"
-                                                 style="height:575px; width:575px; border-radius:40px; ">
+                                                 style="height:575px; width:575px; border-radius:40px">
                                         </div>
                                     {/foreach}
                                 {else}
                                     <div class="portfolio-info swiper-slide">
-                                        <img src="/template/img/no_foto.jpg"
-                                             alt="Immagine locale"
-                                             style="height:575px; width:575px; border-radius:40px; ">
+                                        <img src="/template/img/no_foto.jpg" alt="Immagine locale" style="height:575px; width:575px; border-radius:40px">
                                     </div>
                                 {/if}
                             </div>
                         </div>
                         <div class="swiper-pagination"></div>
-                        <div class="portfolio-info">
-                            <h3>Orario settimanale del locale</h3>
-                            <table id="customers">
-                                <thead+>
-                                <tr>
-                                    <th></th>
-                                    <th>Orario di apertura</th>
-                                    <th>Orario di chiusura</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                {foreach $locale->getOrario() as $orario}
-                                    <tr>
-                                        <td><strong>{$orario->getGiornoSettimana()}</strong></td>
-                                        <td>{$orario->getOrarioApertura()}</td>
-                                        <td>{$orario->getOrarioChiusura()} </td>
-                                    </tr>
-                                {/foreach}
-                                </tbody>
-                            </table>
-                        </div>
+                        {if ($userlogged eq 'loggato')}
+                            {if isset($eventi)}
+                                <div class="portfolio-details-slider swiper">
+                                    <h4 style="display: list-item; font-weight: bold">Eventi organizzati:</h4>
+                                    <div class="swiper-wrapper align-items-center">
+                                        {foreach $eventi as $evento}
+                                            <div class="portfolio-info swiper-slide">
+                                                <h3>{$evento->getNome()}</h3>
+                                                <img class="photo" src="data:{$evento->getImg()->getType()};base64,{$evento->getImg()->getImmagine()}" alt="Poster evento" style="width:225px; height:250px; float:right; display: block; border-radius:30px;">
+                                                <ul>
+                                                    <li><strong>Data</strong>: {$evento->getData()}.</li>
+                                                    <li><strong>Descrizione</strong>: {$evento->getDescrizione()}</li>
+                                                </ul>
+                                            </div>
+                                        {/foreach}
+                                    </div>
+                                    <div class="swiper-pagination"></div>
+                                </div>
+                            {else}
+                                <div class="portfolio-info">
+                                    <p>Non ci sono ancora eventi organizzati</p>
+                                </div>
+                            {/if}
+                        {else}
+                            <h4 style="display: list-item; font-weight: bold">Eventi organizzati:</h4>
+                            <div class="swiper-wrapper align-items-center">
+                                <div class="portfolio-info">
+                                    <p>Questa sezione è dedicata agli utenti iscritti, accedi o registrati per non perderti gli
+                                        eventi
+                                        dei tuoi locali preferiti </p>
+                                </div>
+                            </div>
+                        {/if}
                     </div>
                 </div>
                 <div class="col-lg-4">
@@ -152,41 +162,27 @@
                             <li><strong>Valutazione:</strong> {$valutazioneLocale}/5</li>
                         </ul>
                     </div>
-                    {if ($userlogged eq 'loggato')}
-                        {if isset($eventi)}
-                            <div class="portfolio-details-slider swiper">
-                                <br>
-                                <h4><strong>Eventi organizzati:</strong></h4>
-                                <div class="swiper-wrapper align-items-center">
-                                    {foreach $eventi as $evento}
-                                        <div class="portfolio-info swiper-slide">
-                                            <h3>{$evento->getNome()}</h3>
-                                            <ul>
-                                                <li><strong>Data</strong>: {$evento->getData()}.</li>
-                                                <li><strong>Descrizione</strong>: {$evento->getDescrizione()}</li>
-                                                <li><img class="photo"
-                                                         src="data:{$evento->getImg()->getType()};base64,{$evento->getImg()->getImmagine()}"
-                                                         alt="Poster evento"
-                                                         style="width:210px; height:240px; display:block; text-align:center; border-radius:30px;">
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    {/foreach}
-                                </div>
-                                <div class="swiper-pagination"></div>
-                            </div>
-                        {else}
-                            <div class="portfolio-info">
-                                <p>Non ci sono ancora eventi organizzati</p>
-                            </div>
-                        {/if}
-                    {else}
-                        <div class="portfolio-info">
-                            <p>Questa sezione è dedicata agli utenti iscritti, accedi o registrati per non perderti gli
-                                eventi
-                                dei tuoi locali preferiti </p>
-                        </div>
-                    {/if}
+                    <div class="portfolio-info">
+                        <h3>Orario settimanale del locale</h3>
+                        <table id="customers">
+                            <thead+>
+                            <tr>
+                                <th></th>
+                                <th>Apertura</th>
+                                <th>Chiusura</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {foreach $locale->getOrario() as $orario}
+                                <tr>
+                                    <td><strong>{$orario->getGiornoSettimana()}</strong></td>
+                                    <td>{$orario->getOrarioApertura()}</td>
+                                    <td>{$orario->getOrarioChiusura()} </td>
+                                </tr>
+                            {/foreach}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
