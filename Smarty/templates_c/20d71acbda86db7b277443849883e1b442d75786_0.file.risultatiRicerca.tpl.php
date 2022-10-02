@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-27 10:09:45
+/* Smarty version 4.2.0, created on 2022-10-01 18:05:44
   from 'C:\xampp\htdocs\FacceBeve\template\risultatiRicerca.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_6332afc9241544_26742174',
+  'unifunc' => 'content_6338655898bd52_90090695',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '20d71acbda86db7b277443849883e1b442d75786' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\risultatiRicerca.tpl',
-      1 => 1664266180,
+      1 => 1664640264,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6332afc9241544_26742174 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6338655898bd52_90090695 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <?php $_smarty_tpl->_assignInScope('tipo', (($tmp = $_smarty_tpl->tpl_vars['tipo']->value ?? null)===null||$tmp==='' ? null ?? null : $tmp));
 $_smarty_tpl->_assignInScope('userlogged', (($tmp = $_smarty_tpl->tpl_vars['error']->value ?? null)===null||$tmp==='' ? null ?? null : $tmp));
@@ -133,11 +133,13 @@ if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['locale']->value)
 $_smarty_tpl->tpl_vars['locale']->do_else = false;
 ?>
                                 <div class="entry-img">
-                                    <img class="photo"
-                                         src="data:<?php echo $_smarty_tpl->tpl_vars['locale']->value->getPrimaImg()->getType();?>
+                                    <?php if (is_null($_smarty_tpl->tpl_vars['locale']->value->getPrimaImg())) {?>
+                                        <img class="photo" src="/template/img/no_foto.jpg" alt="immagine locale" width="200px" height="100px" style="border-radius:5px">
+                                        <?php } else { ?>
+                                        <img class="photo" src="data:<?php echo $_smarty_tpl->tpl_vars['locale']->value->getPrimaImg()->getType();?>
 ;base64,<?php echo $_smarty_tpl->tpl_vars['locale']->value->getPrimaImg()->getImmagine();?>
-"
-                                         alt="immagine locale" width="200px" height="100px" style="border-radius:5px">
+" alt="immagine locale" width="200px" height="100px" style="border-radius:5px">
+                                    <?php }?>
                                 </div>
                                 <h2 class="entry-title">
                                     <a href="/Ricerca/dettagliLocale/<?php echo $_smarty_tpl->tpl_vars['locale']->value->getId();?>

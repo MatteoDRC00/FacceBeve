@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-29 12:15:02
+/* Smarty version 4.2.0, created on 2022-10-01 15:34:59
   from 'C:\xampp\htdocs\FacceBeve\template\areaPersonaleProprietario.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_63357026377063_98788700',
+  'unifunc' => 'content_633842037d0746_37551529',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'f01309d919bfd81c0c749befffc9728594dd37b3' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\areaPersonaleProprietario.tpl',
-      1 => 1664445722,
+      1 => 1664631260,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_63357026377063_98788700 (Smarty_Internal_Template $_smarty_tpl) {
+function content_633842037d0746_37551529 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -103,12 +103,12 @@ function content_63357026377063_98788700 (Smarty_Internal_Template $_smarty_tpl)
                     <div class="row">
                         <div class="col-12 bg-white p-0 px-3 py-3 mb-3">
                             <div class="d-flex flex-column align-items-center">
-                                <?php if (is_null($_smarty_tpl->tpl_vars['type']->value) && is_null($_smarty_tpl->tpl_vars['pic64']->value)) {?>
-                                    <img class="photo" src="/template/img/utente.jpg" alt="immagine profilo">
+                                <?php if ($_smarty_tpl->tpl_vars['type']->value == '' && $_smarty_tpl->tpl_vars['pic64']->value == '') {?>
+                                    <img class="photo" src="/template/img/utente.jpg" alt="immagine profiloooo">
                                 <?php } else { ?>
                                     <img class="photo" src="data:<?php echo $_smarty_tpl->tpl_vars['type']->value;?>
 ;base64,<?php echo $_smarty_tpl->tpl_vars['pic64']->value;?>
-" alt="immagine profilo">
+" alt="immagine profilo00">
                                 <?php }?>
                                 <p class="fw-bold h4 mt-3"><?php echo $_smarty_tpl->tpl_vars['nome']->value;?>
  <?php echo $_smarty_tpl->tpl_vars['cognome']->value;?>
