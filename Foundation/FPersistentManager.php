@@ -189,6 +189,13 @@ class FPersistentManager {
         return FLocale::getTopLocali();
     }
 
+    /**
+     * Metodo che restituisce gli eventi disponibili per un utente
+     */
+    public function eventiUtente(string $username){
+        return FEvento::loadByUtente($username);
+    }
+
 
     public function loadRecensioniByLocale($id){
         $result = FRecensione::loadByField("locale", $id);

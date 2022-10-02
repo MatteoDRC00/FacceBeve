@@ -153,6 +153,29 @@
                 {/if}
             </div>
 
+            {if isset($eventiUtente)}
+
+                <div class="row">
+                    <h2>Ecco gli eventi in arrivo dei tuoi locali preferiti:</h2>
+                    {if !empty($eventiUtente)}
+                        {foreach $eventiUtente as $evento}
+                            {$i=0}
+                            <div class="col-md-6 col-lg-3 d-flex align-items-stretch">
+                                <div class="icon-box icon-box-pink">
+                                    <a href="/Ricerca/dettagliLocale/{$evento->getId()}"><h3 style="font-weight: bold">{$evento->getNome()}</h3></a>
+                                    <p style="font-weight: bold;">{$evento->getData()}</p>
+                                    <p class="description">{$evento->getDescrizione()}</p>
+                                </div>
+                            </div>
+                        {/foreach}
+                    {else}
+                        <p>Non ci sono eventi tra i tuoi locali</p>
+                    {/if}
+                </div>
+
+            {/if}
+
+
         </div>
     </section><!-- End Services Section -->
 

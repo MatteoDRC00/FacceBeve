@@ -38,23 +38,26 @@ class CRicerca
     public function mostraHome()
     {
         $sessione = new USession();
+        $pm = FPersistentManager::getInstance();
+        $eventiUtente = null;
 
         if ($sessione->isLogged()) {
             $tipo = $sessione->leggi_valore("tipo_utente");
             if ($tipo == "EAdmin") {
                 header('Location: /Admin/dashboardAdmin');
+            }elseif ($tipo == "EUtente") {
+                $eventiUtente = $pm->eventiUtente($sessione->leggi_valore("utente"));
             }
         } else {
             $tipo = "nouser";
         }
 
-        $pm = FPersistentManager::getInstance();
         $categorie = $pm->getCategorie();
         list($topLocali, $valutazione) = $pm->top4Locali();
 
 
         $view = new VRicerca();
-        $view->mostraHome($tipo, $categorie, $topLocali, $valutazione);
+        $view->mostraHome($tipo, $categorie, $topLocali, $valutazione,$eventiUtente);
     }
 
     /**

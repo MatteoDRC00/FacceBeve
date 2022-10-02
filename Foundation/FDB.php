@@ -262,16 +262,16 @@ class FDB{
 	}
 
 	/**
-	 * Funzione che viene utilizzata per far vedere ad un utente loggato gli eventi dei localli che segue
+	 * Funzione che viene utilizzata per far vedere ad un utente loggato gli eventi dei locali che segue
 	 * @param $field campo della tabella  da confrontare
 	 * @param $id valore da confrontare
 	 * @param $idU idutente-username
 	 */
-	public function loadEventiUtente($class,$id,$idU): ?array
+	public function loadEventiUtente($class, $utente): ?array
 	{
 		try {
-			$query = "SELECT * FROM " . $class::getTable() . " INNER JOIN Locali_Eventi ON Locali_Eventi.ID_Evento=" . $id . " INNER JOIN Utenti_Locali ON Utenti_Locali.ID_Locale=Locali_Eventi.ID_Locale WHERE Utenti_Locali.ID_Utente =" . $idU . ";";
-			$stmt = $this->db->prepare($query); //Prepared Statement
+			$query = "SELECT * FROM " . $class::getTable() . " INNER JOIN Locale_Eventi ON Locale_Eventi.ID_Evento=Evento.id INNER JOIN Utenti_Locali ON Utenti_Locali.ID_Locale=Locale_Eventi.ID_Locale WHERE Utenti_Locali.ID_Utente ='" . $utente . "';";
+			$stmt = $this->database->prepare($query); //Prepared Statement
 			$stmt->execute();
 			$num = $stmt->rowCount();
 			if ($num == 0) {
@@ -284,7 +284,7 @@ class FDB{
 				while ($row = $stmt->fetch())
 					$result[] = $row;                    //ritorna un array di righe.
 			}
-			return $result;
+			return array ($result,$num);
 		} catch (PDOException $e) {
 			echo "Attenzione errore: " . $e->getMessage();
 			$this->db->rollBack();

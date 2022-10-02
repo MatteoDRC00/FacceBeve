@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-22 11:42:13
+/* Smarty version 4.2.0, created on 2022-10-02 11:43:45
   from 'C:\xampp\htdocs\FacceBeve\template\home.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_632c2df598d1b7_52607109',
+  'unifunc' => 'content_63395d51421b16_80379891',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c953834e2bd280dacf9fe734edc7529afcd03f09' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\home.tpl',
-      1 => 1663839731,
+      1 => 1664703771,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_632c2df598d1b7_52607109 (Smarty_Internal_Template $_smarty_tpl) {
+function content_63395d51421b16_80379891 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -204,6 +204,40 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                     <p>Non ci sono locali</p>
                 <?php }?>
             </div>
+
+            <?php if ((isset($_smarty_tpl->tpl_vars['eventiUtente']->value))) {?>
+
+                <div class="row">
+                    <h2>Ecco gli eventi in arrivo dei tuoi locali preferiti:</h2>
+                    <?php if (!empty($_smarty_tpl->tpl_vars['eventiUtente']->value)) {?>
+                        <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['eventiUtente']->value, 'evento');
+$_smarty_tpl->tpl_vars['evento']->do_else = true;
+if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['evento']->value) {
+$_smarty_tpl->tpl_vars['evento']->do_else = false;
+?>
+                            <?php $_smarty_tpl->_assignInScope('i', 0);?>
+                            <div class="col-md-6 col-lg-3 d-flex align-items-stretch">
+                                <div class="icon-box icon-box-pink">
+                                    <a href="/Ricerca/dettagliLocale/<?php echo $_smarty_tpl->tpl_vars['evento']->value->getId();?>
+"><h3 style="font-weight: bold"><?php echo $_smarty_tpl->tpl_vars['evento']->value->getNome();?>
+</h3></a>
+                                    <p style="font-weight: bold;"><?php echo $_smarty_tpl->tpl_vars['evento']->value->getData();?>
+</p>
+                                    <p class="description"><?php echo $_smarty_tpl->tpl_vars['evento']->value->getDescrizione();?>
+</p>
+                                </div>
+                            </div>
+                        <?php
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
+                    <?php } else { ?>
+                        <p>Non ci sono eventi tra i tuoi locali</p>
+                    <?php }?>
+                </div>
+
+            <?php }?>
+
 
         </div>
     </section><!-- End Services Section -->

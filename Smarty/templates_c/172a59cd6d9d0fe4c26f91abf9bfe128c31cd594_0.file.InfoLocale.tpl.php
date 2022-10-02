@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-29 17:33:16
+/* Smarty version 4.2.0, created on 2022-10-02 10:18:32
   from 'C:\xampp\htdocs\FacceBeve\template\InfoLocale.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_6335babcd006d7_43977086',
+  'unifunc' => 'content_633949588d8ce2_79619816',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '172a59cd6d9d0fe4c26f91abf9bfe128c31cd594' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\InfoLocale.tpl',
-      1 => 1664465303,
+      1 => 1664698375,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6335babcd006d7_43977086 (Smarty_Internal_Template $_smarty_tpl) {
+function content_633949588d8ce2_79619816 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <?php $_smarty_tpl->_assignInScope('locale', (($tmp = $_smarty_tpl->tpl_vars['locale']->value ?? null)===null||$tmp==='' ? null ?? null : $tmp));
@@ -128,52 +128,64 @@ $_smarty_tpl->tpl_vars['img']->do_else = false;
 ;base64,<?php echo $_smarty_tpl->tpl_vars['img']->value->getImmagine();?>
 "
                                                  alt="Immagine locale"
-                                                 style="height:575px; width:575px; border-radius:40px; ">
+                                                 style="height:575px; width:575px; border-radius:40px">
                                         </div>
                                     <?php
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                                 <?php } else { ?>
                                     <div class="portfolio-info swiper-slide">
-                                        <img src="/template/img/no_foto.jpg"
-                                             alt="Immagine locale"
-                                             style="height:575px; width:575px; border-radius:40px; ">
+                                        <img src="/template/img/no_foto.jpg" alt="Immagine locale" style="height:575px; width:575px; border-radius:40px">
                                     </div>
                                 <?php }?>
                             </div>
                         </div>
                         <div class="swiper-pagination"></div>
-                        <div class="portfolio-info">
-                            <h3>Orario settimanale del locale</h3>
-                            <table id="customers">
-                                <thead+>
-                                <tr>
-                                    <th></th>
-                                    <th>Orario di apertura</th>
-                                    <th>Orario di chiusura</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <?php
-$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['locale']->value->getOrario(), 'orario');
-$_smarty_tpl->tpl_vars['orario']->do_else = true;
-if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['orario']->value) {
-$_smarty_tpl->tpl_vars['orario']->do_else = false;
+                        <?php if (($_smarty_tpl->tpl_vars['userlogged']->value == 'loggato')) {?>
+                            <?php if ((isset($_smarty_tpl->tpl_vars['eventi']->value))) {?>
+                                <div class="portfolio-details-slider swiper">
+                                    <h4 style="display: list-item; font-weight: bold">Eventi organizzati:</h4>
+                                    <div class="swiper-wrapper align-items-center">
+                                        <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['eventi']->value, 'evento');
+$_smarty_tpl->tpl_vars['evento']->do_else = true;
+if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['evento']->value) {
+$_smarty_tpl->tpl_vars['evento']->do_else = false;
 ?>
-                                    <tr>
-                                        <td><strong><?php echo $_smarty_tpl->tpl_vars['orario']->value->getGiornoSettimana();?>
-</strong></td>
-                                        <td><?php echo $_smarty_tpl->tpl_vars['orario']->value->getOrarioApertura();?>
-</td>
-                                        <td><?php echo $_smarty_tpl->tpl_vars['orario']->value->getOrarioChiusura();?>
- </td>
-                                    </tr>
-                                <?php
+                                            <div class="portfolio-info swiper-slide">
+                                                <h3><?php echo $_smarty_tpl->tpl_vars['evento']->value->getNome();?>
+</h3>
+                                                <img class="photo" src="data:<?php echo $_smarty_tpl->tpl_vars['evento']->value->getImg()->getType();?>
+;base64,<?php echo $_smarty_tpl->tpl_vars['evento']->value->getImg()->getImmagine();?>
+" alt="Poster evento" style="width:225px; height:250px; float:right; display: block; border-radius:30px;">
+                                                <ul>
+                                                    <li><strong>Data</strong>: <?php echo $_smarty_tpl->tpl_vars['evento']->value->getData();?>
+.</li>
+                                                    <li><strong>Descrizione</strong>: <?php echo $_smarty_tpl->tpl_vars['evento']->value->getDescrizione();?>
+</li>
+                                                </ul>
+                                            </div>
+                                        <?php
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
-                                </tbody>
-                            </table>
-                        </div>
+                                    </div>
+                                    <div class="swiper-pagination"></div>
+                                </div>
+                            <?php } else { ?>
+                                <div class="portfolio-info">
+                                    <p>Non ci sono ancora eventi organizzati</p>
+                                </div>
+                            <?php }?>
+                        <?php } else { ?>
+                            <h4 style="display: list-item; font-weight: bold">Eventi organizzati:</h4>
+                            <div class="swiper-wrapper align-items-center">
+                                <div class="portfolio-info">
+                                    <p>Questa sezione è dedicata agli utenti iscritti, accedi o registrati per non perderti gli
+                                        eventi
+                                        dei tuoi locali preferiti </p>
+                                </div>
+                            </div>
+                        <?php }?>
                     </div>
                 </div>
                 <div class="col-lg-4">
@@ -217,53 +229,37 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 /5</li>
                         </ul>
                     </div>
-                    <?php if (($_smarty_tpl->tpl_vars['userlogged']->value == 'loggato')) {?>
-                        <?php if ((isset($_smarty_tpl->tpl_vars['eventi']->value))) {?>
-                            <div class="portfolio-details-slider swiper">
-                                <br>
-                                <h4><strong>Eventi organizzati:</strong></h4>
-                                <div class="swiper-wrapper align-items-center">
-                                    <?php
-$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['eventi']->value, 'evento');
-$_smarty_tpl->tpl_vars['evento']->do_else = true;
-if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['evento']->value) {
-$_smarty_tpl->tpl_vars['evento']->do_else = false;
+                    <div class="portfolio-info">
+                        <h3>Orario settimanale del locale</h3>
+                        <table id="customers">
+                            <thead+>
+                            <tr>
+                                <th></th>
+                                <th>Apertura</th>
+                                <th>Chiusura</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['locale']->value->getOrario(), 'orario');
+$_smarty_tpl->tpl_vars['orario']->do_else = true;
+if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['orario']->value) {
+$_smarty_tpl->tpl_vars['orario']->do_else = false;
 ?>
-                                        <div class="portfolio-info swiper-slide">
-                                            <h3><?php echo $_smarty_tpl->tpl_vars['evento']->value->getNome();?>
-</h3>
-                                            <ul>
-                                                <li><strong>Data</strong>: <?php echo $_smarty_tpl->tpl_vars['evento']->value->getData();?>
-.</li>
-                                                <li><strong>Descrizione</strong>: <?php echo $_smarty_tpl->tpl_vars['evento']->value->getDescrizione();?>
-</li>
-                                                <li><img class="photo"
-                                                         src="data:<?php echo $_smarty_tpl->tpl_vars['evento']->value->getImg()->getType();?>
-;base64,<?php echo $_smarty_tpl->tpl_vars['evento']->value->getImg()->getImmagine();?>
-"
-                                                         alt="Poster evento"
-                                                         style="width:210px; height:240px; display:block; text-align:center; border-radius:30px;">
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    <?php
+                                <tr>
+                                    <td><strong><?php echo $_smarty_tpl->tpl_vars['orario']->value->getGiornoSettimana();?>
+</strong></td>
+                                    <td><?php echo $_smarty_tpl->tpl_vars['orario']->value->getOrarioApertura();?>
+</td>
+                                    <td><?php echo $_smarty_tpl->tpl_vars['orario']->value->getOrarioChiusura();?>
+ </td>
+                                </tr>
+                            <?php
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
-                                </div>
-                                <div class="swiper-pagination"></div>
-                            </div>
-                        <?php } else { ?>
-                            <div class="portfolio-info">
-                                <p>Non ci sono ancora eventi organizzati</p>
-                            </div>
-                        <?php }?>
-                    <?php } else { ?>
-                        <div class="portfolio-info">
-                            <p>Questa sezione è dedicata agli utenti iscritti, accedi o registrati per non perderti gli
-                                eventi
-                                dei tuoi locali preferiti </p>
-                        </div>
-                    <?php }?>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

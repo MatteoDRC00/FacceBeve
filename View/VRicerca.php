@@ -183,11 +183,12 @@ class VRicerca
     }
 
 
-    public function mostraHome($tipo, $categorie, $topLocali, $valutazione){
+    public function mostraHome($tipo, $categorie, $topLocali, $valutazione,$eventiUtente){
         $this->smarty->assign('tipo',$tipo);
         $this->smarty->assign('categorie',$categorie);
         $this->smarty->assign('topLocali',$topLocali);
         $this->smarty->assign('valutazione',$valutazione);
+        $this->smarty->assign('eventiUtente',$eventiUtente);
 
         $this->smarty->display('home.tpl');
     }
