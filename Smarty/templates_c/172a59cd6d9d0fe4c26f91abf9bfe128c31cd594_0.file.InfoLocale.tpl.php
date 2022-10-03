@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-10-02 10:18:32
+/* Smarty version 4.2.0, created on 2022-10-03 18:21:40
   from 'C:\xampp\htdocs\FacceBeve\template\InfoLocale.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_633949588d8ce2_79619816',
+  'unifunc' => 'content_633b0c14f15c96_07766059',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '172a59cd6d9d0fe4c26f91abf9bfe128c31cd594' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\InfoLocale.tpl',
-      1 => 1664698375,
+      1 => 1664814099,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_633949588d8ce2_79619816 (Smarty_Internal_Template $_smarty_tpl) {
+function content_633b0c14f15c96_07766059 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <?php $_smarty_tpl->_assignInScope('locale', (($tmp = $_smarty_tpl->tpl_vars['locale']->value ?? null)===null||$tmp==='' ? null ?? null : $tmp));
@@ -127,7 +127,7 @@ $_smarty_tpl->tpl_vars['img']->do_else = false;
                                             <img src="data:<?php echo $_smarty_tpl->tpl_vars['img']->value->getType();?>
 ;base64,<?php echo $_smarty_tpl->tpl_vars['img']->value->getImmagine();?>
 "
-                                                 alt="Immagine locale"
+                                                 alt="Immagine localeeee"
                                                  style="height:575px; width:575px; border-radius:40px">
                                         </div>
                                     <?php
@@ -135,7 +135,7 @@ $_smarty_tpl->tpl_vars['img']->do_else = false;
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                                 <?php } else { ?>
                                     <div class="portfolio-info swiper-slide">
-                                        <img src="/template/img/no_foto.jpg" alt="Immagine locale" style="height:575px; width:575px; border-radius:40px">
+                                        <img src="/template/img/no_foto.jpg" alt="Immagine localeee" style="height:575px; width:575px; border-radius:40px">
                                     </div>
                                 <?php }?>
                             </div>
@@ -232,7 +232,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                     <div class="portfolio-info">
                         <h3>Orario settimanale del locale</h3>
                         <table id="customers">
-                            <thead+>
+                            <thead>
                             <tr>
                                 <th></th>
                                 <th>Apertura</th>

@@ -80,8 +80,9 @@ class VGestioneEvento{
      */
     public function getImgEvento(): array
     {
-        $arrayImg = array();
-        if(isset($_FILES['img_evento'])){
+        if($_FILES['img_evento']['type'] == "" || $_FILES['img_evento']['name'] == "" || $_FILES['img_evento']['tmp_name'] == "" || $_FILES['img_evento']['size'] == ""){
+            $arrayImg = array();
+        }else{
             $type = $_FILES['img_evento']['type'];
             $nome = $_FILES['img_evento']['name'];
             $file = $_FILES['img_evento']['tmp_name'];

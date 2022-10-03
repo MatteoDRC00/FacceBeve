@@ -204,8 +204,9 @@ class VProfilo{
      */
     public function getNewImgProfilo(): array
     {
-        $arrayImg = array();
-        if(isset($_FILES['newimg_profilo'])){
+        if($_FILES['newimg_profilo']['type'] == "" || $_FILES['newimg_profilo']['name'] == "" || $_FILES['newimg_profilo']['tmp_name'] == "" || $_FILES['newimg_profilo']['size'] == ""){
+            $arrayImg = array();
+        }else{
             $type = $_FILES['newimg_profilo']['type'];
             $nome = $_FILES['newimg_profilo']['name'];
             $file = $_FILES['newimg_profilo']['tmp_name'];

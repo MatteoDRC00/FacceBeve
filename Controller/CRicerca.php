@@ -133,10 +133,6 @@ class CRicerca
             }
             $rating = $sum / (count($recensioni));
 
-        } elseif (isset($recensioni)) {
-            $idSearch = $recensioni->getId();
-            $rating = $recensioni->getVoto();
-            $risposte = $pm->load("recensione", $idSearch, "FRisposta");
         } else {
             $risposte = null;
             $rating = null;

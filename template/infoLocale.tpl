@@ -92,13 +92,13 @@
                                     {foreach $locale->getImg() as $img}
                                         <div class="portfolio-info swiper-slide">
                                             <img src="data:{$img->getType()};base64,{$img->getImmagine()}"
-                                                 alt="Immagine locale"
+                                                 alt="Immagine localeeee"
                                                  style="height:575px; width:575px; border-radius:40px">
                                         </div>
                                     {/foreach}
                                 {else}
                                     <div class="portfolio-info swiper-slide">
-                                        <img src="/template/img/no_foto.jpg" alt="Immagine locale" style="height:575px; width:575px; border-radius:40px">
+                                        <img src="/template/img/no_foto.jpg" alt="Immagine localeee" style="height:575px; width:575px; border-radius:40px">
                                     </div>
                                 {/if}
                             </div>

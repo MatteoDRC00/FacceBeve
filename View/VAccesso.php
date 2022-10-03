@@ -186,8 +186,9 @@ class VAccesso
      * @return array|null
      */
     public function getImgProfilo() {
-        $arrayImg = array();
-        if(isset($_FILES['img_profilo'])){
+        if($_FILES['img_profilo']['type'] == "" || $_FILES['img_profilo']['name'] == "" || $_FILES['img_profilo']['tmp_name'] == "" || $_FILES['img_profilo']['size'] == ""){
+            $arrayImg = array();
+        }else{
             $type = $_FILES['img_profilo']['type'];
             $nome = $_FILES['img_profilo']['name'];
             $file = $_FILES['img_profilo']['tmp_name'];

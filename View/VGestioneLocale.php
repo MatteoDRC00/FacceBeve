@@ -197,8 +197,9 @@ class VGestioneLocale{
      */
     public function getImgLocale(): array
     {
-        $arrayImg = array();
-        if(isset($_FILES['img_locale'])){
+        if($_FILES['img_locale']['type'] == "" || $_FILES['img_locale']['name'] == "" || $_FILES['img_locale']['tmp_name'] == "" || $_FILES['img_locale']['size'] == ""){
+            $arrayImg = array();
+        }else{
             $type = $_FILES['img_locale']['type'];
             $nome = $_FILES['img_locale']['name'];
             $file = $_FILES['img_locale']['tmp_name'];
