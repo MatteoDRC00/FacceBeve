@@ -137,7 +137,7 @@ class CRicerca
             else
                 $rating = 0;
         }else{
-            $recensioni=null;
+            $recensioni= array();
             $rating = 0;
         }
         if ($sessione->leggi_valore('tipo_utente') == "EProprietario") {
