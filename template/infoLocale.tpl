@@ -165,7 +165,7 @@
                     <div class="portfolio-info">
                         <h3>Orario settimanale del locale</h3>
                         <table id="customers">
-                            <thead+>
+                            <thead>
                             <tr>
                                 <th></th>
                                 <th>Apertura</th>

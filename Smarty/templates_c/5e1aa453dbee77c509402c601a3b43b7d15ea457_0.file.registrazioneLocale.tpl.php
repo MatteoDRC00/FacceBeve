@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-22 15:37:49
+/* Smarty version 4.2.0, created on 2022-10-03 17:52:32
   from 'C:\xampp\htdocs\FacceBeve\template\registrazioneLocale.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_632c652de1d489_63125753',
+  'unifunc' => 'content_633b05409a76f1_58377432',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '5e1aa453dbee77c509402c601a3b43b7d15ea457' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\registrazioneLocale.tpl',
-      1 => 1663853867,
+      1 => 1664446026,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_632c652de1d489_63125753 (Smarty_Internal_Template $_smarty_tpl) {
+function content_633b05409a76f1_58377432 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -158,7 +158,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                         </div>
                         <div class="form-example">
                             <p>AGGIUNGI LE IMMAGINI</p>
-                            <input name="img_locale" class="w-50 p-2 m-2" type="file" required><br>
+                            <input name="img_locale" class="w-50 p-2 m-2" type="file"><br>
                         </div>
                         <button type="submit" class="btnAggiorna">CREA IL LOCALE</button>
                     </form>

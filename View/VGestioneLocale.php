@@ -197,11 +197,14 @@ class VGestioneLocale{
      */
     public function getImgLocale(): array
     {
-        $type = $_FILES['img_locale']['type'];
-        $nome = $_FILES['img_locale']['name'];
-        $file = $_FILES['img_locale']['tmp_name'];
-        $size = $_FILES['img_locale']['size'];
-        $arrayImg = array($nome, $size, $type, file_get_contents($file));
+        $arrayImg = array();
+        if(isset($_FILES['img_locale'])){
+            $type = $_FILES['img_locale']['type'];
+            $nome = $_FILES['img_locale']['name'];
+            $file = $_FILES['img_locale']['tmp_name'];
+            $size = $_FILES['img_locale']['size'];
+            $arrayImg = array($nome, $size, $type, file_get_contents($file));
+        }
         return $arrayImg;
     }
 

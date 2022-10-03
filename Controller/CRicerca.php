@@ -122,7 +122,7 @@ class CRicerca
         $username = $sessione->leggi_valore('utente');
         $presente = $pm->existEsterna("utenti_locali", "ID_Locale", $id, "ID_Utente", $username);
 
-        if (is_array($recensioni)) {
+        if (!empty($recensioni)) {
             //$risposte = array();
             $sum = 0;
             foreach ($recensioni as $item) {
@@ -132,6 +132,7 @@ class CRicerca
                 $risposte[] = $risposta;
             }
             $rating = $sum / (count($recensioni));
+
         } elseif (isset($recensioni)) {
             $idSearch = $recensioni->getId();
             $rating = $recensioni->getVoto();

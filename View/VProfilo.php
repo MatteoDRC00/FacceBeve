@@ -204,11 +204,14 @@ class VProfilo{
      */
     public function getNewImgProfilo(): array
     {
-        $type = $_FILES['newimg_profilo']['type'];
-        $nome = $_FILES['newimg_profilo']['name'];
-        $file = $_FILES['newimg_profilo']['tmp_name'];
-        $size = $_FILES['newimg_profilo']['size'];
-        $arrayImg = array($nome, $size, $type, file_get_contents($file));
+        $arrayImg = array();
+        if(isset($_FILES['newimg_profilo'])){
+            $type = $_FILES['newimg_profilo']['type'];
+            $nome = $_FILES['newimg_profilo']['name'];
+            $file = $_FILES['newimg_profilo']['tmp_name'];
+            $size = $_FILES['newimg_profilo']['size'];
+            $arrayImg = array($nome, $size, $type, file_get_contents($file));
+        }
         return $arrayImg;
     }
 
