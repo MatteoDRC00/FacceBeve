@@ -40,13 +40,14 @@ class CRicerca
         $sessione = new USession();
         $pm = FPersistentManager::getInstance();
         $eventiUtente = null;
+        $localiEventiUtente = null;
 
         if ($sessione->isLogged()) {
             $tipo = $sessione->leggi_valore("tipo_utente");
             if ($tipo == "EAdmin") {
                 header('Location: /Admin/dashboardAdmin');
             }elseif ($tipo == "EUtente") {
-                $eventiUtente = $pm->eventiUtente($sessione->leggi_valore("utente"));
+                list ($eventiUtente, $localiEventiUtente)  = $pm->eventiUtente($sessione->leggi_valore("utente"));
             }
         } else {
             $tipo = "nouser";
@@ -57,7 +58,7 @@ class CRicerca
 
 
         $view = new VRicerca();
-        $view->mostraHome($tipo, $categorie, $topLocali, $valutazione,$eventiUtente);
+        $view->mostraHome($tipo, $categorie, $topLocali, $valutazione,$eventiUtente, $localiEventiUtente);
     }
 
     /**
@@ -118,12 +119,13 @@ class CRicerca
 
         //Calcolo valutazione media locale + sue recensioni con le relative risposte
         $recensioni = $pm->load("locale", $id, "FRecensione");
+        $risposte = null;
         $tipo = $sessione->leggi_valore('tipo_utente');
         $username = $sessione->leggi_valore('utente');
         $presente = $pm->existEsterna("utenti_locali", "ID_Locale", $id, "ID_Utente", $username);
 
+        //$rating = 0;
         if (is_array($recensioni)) {
-            //$risposte = array();
             $sum = 0;
             foreach ($recensioni as $item) {
                 $idSearch = $item->getId();
@@ -131,14 +133,10 @@ class CRicerca
                 $risposta = $pm->load("recensione", $idSearch, "FRisposta"); //-->Ogni elemento ha la recensione e le risposte associate a tale recensione
                 $risposte[] = $risposta;
             }
-            $rating = $sum / (count($recensioni));
-        } elseif (isset($recensioni)) {
-            $idSearch = $recensioni->getId();
-            $rating = $recensioni->getVoto();
-            $risposte = $pm->load("recensione", $idSearch, "FRisposta");
-        } else {
-            $risposte = null;
-            $rating = null;
+            if((count($recensioni)!=0))
+               $rating = $sum / (count($recensioni));
+            else
+                $rating = 0;
         }
         if ($sessione->leggi_valore('tipo_utente') == "EProprietario") {
             $check = $pm->exist("FLocale", "proprietario", $sessione->leggi_valore('utente'));
@@ -146,7 +144,7 @@ class CRicerca
                 $proprietario = 1;
         }
 
-        $vRicerca->dettagliLocale($tipo, $presente, $result, $recensioni, $risposte, $rating, $proprietario, $logged, $eventiOrganizzati);
+       $vRicerca->dettagliLocale($tipo, $presente, $result, $recensioni, $risposte, $rating, $proprietario, $logged, $eventiOrganizzati);
     }
 
 

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-10-02 11:43:45
+/* Smarty version 4.2.0, created on 2022-10-03 18:04:09
   from 'C:\xampp\htdocs\FacceBeve\template\home.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_63395d51421b16_80379891',
+  'unifunc' => 'content_633b07f9cb89b4_35285120',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c953834e2bd280dacf9fe734edc7529afcd03f09' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\home.tpl',
-      1 => 1664703771,
+      1 => 1664813046,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_63395d51421b16_80379891 (Smarty_Internal_Template $_smarty_tpl) {
+function content_633b07f9cb89b4_35285120 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -212,14 +212,20 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                     <?php if (!empty($_smarty_tpl->tpl_vars['eventiUtente']->value)) {?>
                         <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['eventiUtente']->value, 'evento');
+$_smarty_tpl->tpl_vars['evento']->iteration = 0;
 $_smarty_tpl->tpl_vars['evento']->do_else = true;
 if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['evento']->value) {
 $_smarty_tpl->tpl_vars['evento']->do_else = false;
+$_smarty_tpl->tpl_vars['evento']->iteration++;
+$__foreach_evento_3_saved = $_smarty_tpl->tpl_vars['evento'];
 ?>
                             <?php $_smarty_tpl->_assignInScope('i', 0);?>
                             <div class="col-md-6 col-lg-3 d-flex align-items-stretch">
                                 <div class="icon-box icon-box-pink">
-                                    <a href="/Ricerca/dettagliLocale/<?php echo $_smarty_tpl->tpl_vars['evento']->value->getId();?>
+                                    <a href="/Ricerca/dettagliLocale/<?php ob_start();
+echo $_smarty_tpl->tpl_vars['evento']->iteration-1;
+$_prefixVariable1 = ob_get_clean();
+echo $_smarty_tpl->tpl_vars['localiEventiUtente']->value[$_prefixVariable1];?>
 "><h3 style="font-weight: bold"><?php echo $_smarty_tpl->tpl_vars['evento']->value->getNome();?>
 </h3></a>
                                     <p style="font-weight: bold;"><?php echo $_smarty_tpl->tpl_vars['evento']->value->getData();?>
@@ -229,6 +235,7 @@ $_smarty_tpl->tpl_vars['evento']->do_else = false;
                                 </div>
                             </div>
                         <?php
+$_smarty_tpl->tpl_vars['evento'] = $__foreach_evento_3_saved;
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                     <?php } else { ?>

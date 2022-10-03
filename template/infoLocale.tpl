@@ -98,21 +98,25 @@
                                     {/foreach}
                                 {else}
                                     <div class="portfolio-info swiper-slide">
-                                        <img src="/template/img/no_foto.jpg" alt="Immagine locale" style="height:575px; width:575px; border-radius:40px">
+                                        <img src="/template/img/no_foto.jpg" alt="Immagine locale"
+                                             style="height:575px; width:575px; border-radius:40px">
                                     </div>
                                 {/if}
                             </div>
                         </div>
                         <div class="swiper-pagination"></div>
                         {if ($userlogged eq 'loggato')}
-                            {if isset($eventi)}
-                                <div class="portfolio-details-slider swiper">
-                                    <h4 style="display: list-item; font-weight: bold">Eventi organizzati:</h4>
+                            {if !empty($eventi)}
+                            <div class="portfolio-details-slider swiper">
+                                <h4 style="display: list-item; font-weight: bold">Eventi organizzati:</h4>
                                     <div class="swiper-wrapper align-items-center">
                                         {foreach $eventi as $evento}
                                             <div class="portfolio-info swiper-slide">
                                                 <h3>{$evento->getNome()}</h3>
-                                                <img class="photo" src="data:{$evento->getImg()->getType()};base64,{$evento->getImg()->getImmagine()}" alt="Poster evento" style="width:225px; height:250px; float:right; display: block; border-radius:30px;">
+                                                <img class="photo"
+                                                     src="data:{$evento->getImg()->getType()};base64,{$evento->getImg()->getImmagine()}"
+                                                     alt="Poster evento"
+                                                     style="width:225px; height:250px; float:right; display: block; border-radius:30px;">
                                                 <ul>
                                                     <li><strong>Data</strong>: {$evento->getData()}.</li>
                                                     <li><strong>Descrizione</strong>: {$evento->getDescrizione()}</li>
@@ -121,17 +125,21 @@
                                         {/foreach}
                                     </div>
                                     <div class="swiper-pagination"></div>
+                                {else}
+                                <div class="portfolio-details-slider swiper">
+                                    <h4 style="display: list-item; font-weight: bold">Eventi organizzati:</h4>
+                                    <div class="portfolio-info">
+                                        <p>Non ci sono ancora eventi organizzati</p>
+                                    <div>
                                 </div>
-                            {else}
-                                <div class="portfolio-info">
-                                    <p>Non ci sono ancora eventi organizzati</p>
-                                </div>
-                            {/if}
+                                {/if}
+                            </div>
                         {else}
                             <h4 style="display: list-item; font-weight: bold">Eventi organizzati:</h4>
                             <div class="swiper-wrapper align-items-center">
                                 <div class="portfolio-info">
-                                    <p>Questa sezione è dedicata agli utenti iscritti, accedi o registrati per non perderti gli
+                                    <p>Questa sezione è dedicata agli utenti iscritti, accedi o registrati per non
+                                        perderti gli
                                         eventi
                                         dei tuoi locali preferiti </p>
                                 </div>
@@ -159,13 +167,16 @@
                                 </ul>
                             </li>
                             <li><strong>Descrizione:</strong> {$locale->getDescrizione()}</li>
-                            <li><strong>Valutazione:</strong> {$valutazioneLocale}/5</li>
+                            {if ($valutazioneLocale != 0)}
+                                <li><strong>Valutazione:</strong> {$valutazioneLocale}/5</li>
+                            {/if}
                         </ul>
                     </div>
                     <div class="portfolio-info">
                         <h3>Orario settimanale del locale</h3>
                         <table id="customers">
-                            <thead+>
+                            <thead
+                                    +>
                             <tr>
                                 <th></th>
                                 <th>Apertura</th>
@@ -187,14 +198,14 @@
             </div>
         </div>
     </section>
-
+    <br>
     <section id="blog" class="blog">
         <div class="container" data-aos="fade-up">
             <div class="row">
                 <div class="col-lg-8 entries">
                     <div class="blog-comments">
                         <h4 class="comments-count">Area Recensioni:</h4>
-                        {if isset($arrayRecensioni)}
+                        {if !empty($arrayRecensioni)}
                             {foreach $arrayRecensioni as $recensione}
                                 <div id="comment-1" class="comment">
                                     <div class="d-flex">

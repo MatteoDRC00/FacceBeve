@@ -187,9 +187,9 @@ class FEvento
     public static function loadByUtente($username): array
     {
         $evento = array();
+        $locale = array();
         $db = FDB::getInstance();
         list($result, $num) = $db->loadEventiUtente(static::$class, $username);
-        //print_r($result);
         if (($result != null) && ($num == 1)) {
             //Prendo solo gli eventi futuri ad oggi
             $time = strtotime($result["data"]);
@@ -199,6 +199,7 @@ class FEvento
                 $evento[0] = new EEvento($result['nome'], $result['descrizione'], $result['data']); //Carica un evento dal database
                 $evento[0]->setImg($immagine[0]);
                 $evento[0]->setId($result['id']);
+                $locale[0] = $result['ID_Locale'];
             }
 
         } else {
@@ -212,11 +213,12 @@ class FEvento
                         $evento[$i] = new EEvento($result[$i]['nome'], $result[$i]['descrizione'], $result[$i]['data']); //Carica un array di oggetti Evento dal database
                         $evento[$i]->setImg($immagine[0]);
                         $evento[$i]->setId($result[$i]['id']);
+                        $locale[$i] = $result[$i]['ID_Locale'];
                     }
                 }
             }
         }
-        return $evento;
+        return  array($evento, $locale);
     }
 
 

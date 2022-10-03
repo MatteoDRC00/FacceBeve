@@ -162,7 +162,7 @@
                             {$i=0}
                             <div class="col-md-6 col-lg-3 d-flex align-items-stretch">
                                 <div class="icon-box icon-box-pink">
-                                    <a href="/Ricerca/dettagliLocale/{$evento->getId()}"><h3 style="font-weight: bold">{$evento->getNome()}</h3></a>
+                                    <a href="/Ricerca/dettagliLocale/{$localiEventiUtente[{$evento@iteration-1}]}"><h3 style="font-weight: bold">{$evento->getNome()}</h3></a>
                                     <p style="font-weight: bold;">{$evento->getData()}</p>
                                     <p class="description">{$evento->getDescrizione()}</p>
                                 </div>

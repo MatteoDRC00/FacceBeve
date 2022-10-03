@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-17 09:55:11
+/* Smarty version 4.2.0, created on 2022-10-03 18:27:45
   from 'C:\xampp\htdocs\FacceBeve\template\registrazioneEvento.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_63257d5f6ee993_63142251',
+  'unifunc' => 'content_633b0d818caeb1_74212945',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '41f3f532d161fcdde726d896e1169591782631ff' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\registrazioneEvento.tpl',
-      1 => 1663400185,
+      1 => 1664465303,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_63257d5f6ee993_63142251 (Smarty_Internal_Template $_smarty_tpl) {
+function content_633b0d818caeb1_74212945 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -106,7 +106,7 @@ function content_63257d5f6ee993_63142251 (Smarty_Internal_Template $_smarty_tpl)
                         </div>
                         <div class="form-example">
                             <p>AGGIUNGI LA LOCANDINA</p>
-                            <input name="img_evento" class="w-50 p-2 m-2" type="file" required><br>
+                            <input name="img_evento" class="w-50 p-2 m-2" type="file"><br>
                         </div>
                         <button type="submit" class="btnAggiorna">INSERISCI <i class="fa fa-refresh"></i></button>
                     </form>
