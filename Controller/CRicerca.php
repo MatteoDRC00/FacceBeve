@@ -163,10 +163,10 @@ class CRicerca
             $value = $view->getPreferito();
             if ($value == "Aggiunto!") {
                 $pm->storeUtentiLocali($username, $id_locale);
-                header("Location: /Profilo/mostraProfilo");
+                header("Location: /Ricerca/dettagliLocale/".$id_locale);
             } elseif ($value == "Aggiungi ai preferiti") {
                 $pm->deleteUtentiLocali($username, $id_locale);
-                header("Location: /Profilo/mostraProfilo");
+                header("Location: /Ricerca/dettagliLocale/".$id_locale);
             }
         }
     }
