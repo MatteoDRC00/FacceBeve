@@ -80,11 +80,16 @@ class VGestioneEvento{
      */
     public function getImgEvento(): array
     {
-        $type = $_FILES['img_evento']['type'];
-        $nome = $_FILES['img_evento']['name'];
-        $file = $_FILES['img_evento']['tmp_name'];
-        $size = $_FILES['img_evento']['size'];
-        return array($nome, $size, $type, file_get_contents($file));
+        if($_FILES['img_evento']['type'] == "" || $_FILES['img_evento']['name'] == "" || $_FILES['img_evento']['tmp_name'] == "" || $_FILES['img_evento']['size'] == ""){
+            $arrayImg = array();
+        }else{
+            $type = $_FILES['img_evento']['type'];
+            $nome = $_FILES['img_evento']['name'];
+            $file = $_FILES['img_evento']['tmp_name'];
+            $size = $_FILES['img_evento']['size'];
+            $arrayImg = array($nome, $size, $type, file_get_contents($file));
+        }
+        return $arrayImg;
     }
 
 }

@@ -164,6 +164,7 @@ class CGestioneLocale
             $locale->setOrario($o);
 
             $img = $view->getImgLocale();
+            print_r($img);
             if (!empty($img)) {
                 $img_locale = new EImmagine($img[0], $img[1], $img[2], $img[3]);
                 $id = $pm->store($img_locale);

@@ -123,9 +123,8 @@ class CRicerca
         $tipo = $sessione->leggi_valore('tipo_utente');
         $username = $sessione->leggi_valore('utente');
         $presente = $pm->existEsterna("utenti_locali", "ID_Locale", $id, "ID_Utente", $username);
-
-        //$rating = 0;
-        if (is_array($recensioni)) {
+        if (!empty($recensioni)) {
+            //$risposte = array();
             $sum = 0;
             foreach ($recensioni as $item) {
                 $idSearch = $item->getId();
@@ -137,6 +136,9 @@ class CRicerca
                $rating = $sum / (count($recensioni));
             else
                 $rating = 0;
+        }else{
+            $recensioni=null;
+            $rating = 0;
         }
         if ($sessione->leggi_valore('tipo_utente') == "EProprietario") {
             $check = $pm->exist("FLocale", "proprietario", $sessione->leggi_valore('utente'));

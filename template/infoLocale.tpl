@@ -92,7 +92,7 @@
                                     {foreach $locale->getImg() as $img}
                                         <div class="portfolio-info swiper-slide">
                                             <img src="data:{$img->getType()};base64,{$img->getImmagine()}"
-                                                 alt="Immagine locale"
+                                                 alt="Immagine localeeee"
                                                  style="height:575px; width:575px; border-radius:40px">
                                         </div>
                                     {/foreach}
@@ -175,8 +175,7 @@
                     <div class="portfolio-info">
                         <h3>Orario settimanale del locale</h3>
                         <table id="customers">
-                            <thead
-                                    +>
+                            <thead>
                             <tr>
                                 <th></th>
                                 <th>Apertura</th>
