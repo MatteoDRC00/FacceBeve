@@ -108,7 +108,7 @@
                         <div class="portfolio-details-slider swiper">
                             <h4 style="display: list-item; font-weight: bold">Eventi organizzati:</h4>
                             <div class="swiper-wrapper align-items-center">
-                                {if ($userlogged eq 'loggato')}
+                                {if ($tipo == "EUtente" || $tipo == "EProprietario")}
                                     {if !empty($eventi)}
                                         {foreach $eventi as $evento}
                                             <div class="portfolio-info swiper-slide">
@@ -293,7 +293,7 @@
 
                         <!--onsubmit="return validateRecensione()"  -->
                         <!--/\/\//\/\//\/\//\/\//\/\//\/\///////////////////////\\\\\\\\\\\\\\\\\/\/\//\/\//\/\//\/\//\/\//\/\/////\\\\\/\/\/\/\/\/\/\/\/\//\/\/\-->
-                        {if ($userlogged eq 'loggato') && !(isset($proprietario))}
+                        {if ($tipo == "EUtente")}
                             <div class="reply-form">
                                 <h4>Scrivi una recensione</h4>
                                 <form action="/GestioneRecensione/scriviRecensione/{$locale->getId()}" method="POST"

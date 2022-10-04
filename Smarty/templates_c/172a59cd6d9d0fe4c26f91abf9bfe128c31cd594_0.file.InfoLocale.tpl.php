@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-10-04 09:39:05
+/* Smarty version 4.2.0, created on 2022-10-04 10:22:52
   from 'C:\xampp\htdocs\FacceBeve\template\InfoLocale.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_633be319405901_42598702',
+  'unifunc' => 'content_633bed5c54b120_36173462',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '172a59cd6d9d0fe4c26f91abf9bfe128c31cd594' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\InfoLocale.tpl',
-      1 => 1664869096,
+      1 => 1664871769,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_633be319405901_42598702 (Smarty_Internal_Template $_smarty_tpl) {
+function content_633bed5c54b120_36173462 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <?php $_smarty_tpl->_assignInScope('locale', (($tmp = $_smarty_tpl->tpl_vars['locale']->value ?? null)===null||$tmp==='' ? null ?? null : $tmp));
@@ -145,7 +145,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                         <div class="portfolio-details-slider swiper">
                             <h4 style="display: list-item; font-weight: bold">Eventi organizzati:</h4>
                             <div class="swiper-wrapper align-items-center">
-                                <?php if (($_smarty_tpl->tpl_vars['userlogged']->value == 'loggato')) {?>
+                                <?php if (($_smarty_tpl->tpl_vars['tipo']->value == "EUtente" || $_smarty_tpl->tpl_vars['tipo']->value == "EProprietario")) {?>
                                     <?php if (!empty($_smarty_tpl->tpl_vars['eventi']->value)) {?>
                                         <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['eventi']->value, 'evento');
@@ -424,7 +424,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 
                         <!--onsubmit="return validateRecensione()"  -->
                         <!--/\/\//\/\//\/\//\/\//\/\//\/\///////////////////////\\\\\\\\\\\\\\\\\/\/\//\/\//\/\//\/\//\/\//\/\/////\\\\\/\/\/\/\/\/\/\/\/\//\/\/\-->
-                        <?php if (($_smarty_tpl->tpl_vars['userlogged']->value == 'loggato') && !((isset($_smarty_tpl->tpl_vars['proprietario']->value)))) {?>
+                        <?php if (($_smarty_tpl->tpl_vars['tipo']->value == "EUtente")) {?>
                             <div class="reply-form">
                                 <h4>Scrivi una recensione</h4>
                                 <form action="/GestioneRecensione/scriviRecensione/<?php echo $_smarty_tpl->tpl_vars['locale']->value->getId();?>

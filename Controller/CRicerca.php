@@ -99,30 +99,25 @@ class CRicerca
 
     /**
      * Funzione con il compito di indirizzare alla pagina specifica del locale selezionato
-     * @param $id id del locale selezionato
-     *
+     * @param $id_locale
+     * @return void
      * @throws SmartyException
      */
-    static function dettagliLocale($id)
+    static function dettagliLocale($id_locale)
     {
         $vRicerca = new VRicerca();
-        $pm = FPersistentManager::GetInstance();
+        $pm = FPersistentManager::getInstance();
         $sessione = new USession();
-        $result = $pm->load("id", $id, "FLocale");
-        $eventiOrganizzati = $result[0]->getEventiOrganizzati();
+        $locale = $pm->load("id", $id_locale, "FLocale");
+        $eventiOrganizzati = $locale[0]->getEventiOrganizzati();
         $proprietario = null;
 
-        if ($sessione->isLogged())
-            $logged = "loggato";
-        else
-            $logged = "nouser";
-
         //Calcolo valutazione media locale + sue recensioni con le relative risposte
-        $recensioni = $pm->load("locale", $id, "FRecensione");
+        $recensioni = $pm->load("locale", $id_locale, "FRecensione");
         $risposte = null;
         $tipo = $sessione->leggi_valore('tipo_utente');
         $username = $sessione->leggi_valore('utente');
-        $presente = $pm->existEsterna("utenti_locali", "ID_Locale", $id, "ID_Utente", $username);
+        $presente = $pm->existEsterna("utenti_locali", "ID_Locale", $id_locale, "ID_Utente", $username);
         if (!empty($recensioni)) {
             //$risposte = array();
             $sum = 0;
@@ -146,7 +141,7 @@ class CRicerca
                 $proprietario = 1;
         }
 
-       $vRicerca->dettagliLocale($tipo, $presente, $result, $recensioni, $risposte, $rating, $proprietario, $logged, $eventiOrganizzati);
+       $vRicerca->dettagliLocale($tipo, $presente, $locale, $recensioni, $risposte, $rating, $proprietario, $eventiOrganizzati);
     }
 
 

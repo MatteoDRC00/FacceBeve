@@ -200,7 +200,7 @@ class VRicerca
      * @param array contiene l'id dell'array da visualizzare
      * @throws SmartyException
      */
-    public function dettagliLocale($tipo, $presente, $result,$arrayRecensioni,$arrayRisposte,$valutazioneLocale,$proprietario, $logged,$eventiOrganizzati) {
+    public function dettagliLocale($tipo, $presente, $result,$arrayRecensioni,$arrayRisposte,$valutazioneLocale,$proprietario,$eventiOrganizzati) {
         $sessione = new USession();
         //Se l'utente è registrato può vedere gli eventi organizzati dal locale
         $this->smarty->assign('eventi', $eventiOrganizzati);
@@ -208,7 +208,6 @@ class VRicerca
         if(isset($proprietario)){
             $this->smarty->assign('proprietario', $proprietario);
         }
-        $this->smarty->assign('userlogged', $logged);
         $this->smarty->assign('arrayRecensioni', $arrayRecensioni);
         $this->smarty->assign('arrayRisposte', $arrayRisposte);
         $this->smarty->assign('valutazioneLocale', $valutazioneLocale);
