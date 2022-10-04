@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-10-04 17:12:06
+/* Smarty version 4.2.0, created on 2022-10-04 18:09:38
   from 'C:\xampp\htdocs\FacceBeve\template\home.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_633c4d4697c5f7_27313616',
+  'unifunc' => 'content_633c5ac22a6f34_18110271',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c953834e2bd280dacf9fe734edc7529afcd03f09' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\home.tpl',
-      1 => 1664896321,
+      1 => 1664899771,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_633c4d4697c5f7_27313616 (Smarty_Internal_Template $_smarty_tpl) {
+function content_633c5ac22a6f34_18110271 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -55,7 +55,7 @@ function content_633c4d4697c5f7_27313616 (Smarty_Internal_Template $_smarty_tpl)
     <link href="/template/css/style.css" rel="stylesheet">
 </head>
 
-<body> <!--onload="defaultView()"-->
+<body> <!--onload="setList()"-->
 
 <!-- ======= Header ======= -->
 <header id="header" class="fixed-top d-flex align-items-center header-transparent">
