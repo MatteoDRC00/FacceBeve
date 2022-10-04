@@ -56,7 +56,6 @@ class CRicerca
         $categorie = $pm->getCategorie();
         list($topLocali, $valutazione) = $pm->top4Locali();
 
-
         $view = new VRicerca();
         $view->mostraHome($tipo, $categorie, $topLocali, $valutazione,$eventiUtente, $localiEventiUtente);
     }

@@ -120,7 +120,7 @@
                                 {/foreach}
                             {/if}
                         </select>
-                        <button type="submit" style="border-radius:7px; height: 50px"><i class="fa fa-search"></i></button>
+                        <button type="submit" style="border-radius:10px;"><i class="fa fa-search"></i></button>
                     </form>
                 </div>
             {/if}

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-10-04 10:22:52
+/* Smarty version 4.2.0, created on 2022-10-04 10:42:20
   from 'C:\xampp\htdocs\FacceBeve\template\InfoLocale.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_633bed5c54b120_36173462',
+  'unifunc' => 'content_633bf1ecf28e33_31633563',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '172a59cd6d9d0fe4c26f91abf9bfe128c31cd594' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\InfoLocale.tpl',
-      1 => 1664871769,
+      1 => 1664872939,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_633bed5c54b120_36173462 (Smarty_Internal_Template $_smarty_tpl) {
+function content_633bf1ecf28e33_31633563 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <?php $_smarty_tpl->_assignInScope('locale', (($tmp = $_smarty_tpl->tpl_vars['locale']->value ?? null)===null||$tmp==='' ? null ?? null : $tmp));
@@ -156,8 +156,7 @@ $_smarty_tpl->tpl_vars['evento']->do_else = false;
                                             <div class="portfolio-info swiper-slide">
                                                 <h3><?php echo $_smarty_tpl->tpl_vars['evento']->value->getNome();?>
 </h3>
-                                                <img class="photo"
-                                                     src="data:<?php echo $_smarty_tpl->tpl_vars['evento']->value->getImg()->getType();?>
+                                                <img src="data:<?php echo $_smarty_tpl->tpl_vars['evento']->value->getImg()->getType();?>
 ;base64,<?php echo $_smarty_tpl->tpl_vars['evento']->value->getImg()->getImmagine();?>
 "
                                                      alt="Poster evento"

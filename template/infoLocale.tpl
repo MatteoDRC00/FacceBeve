@@ -113,8 +113,7 @@
                                         {foreach $eventi as $evento}
                                             <div class="portfolio-info swiper-slide">
                                                 <h3>{$evento->getNome()}</h3>
-                                                <img class="photo"
-                                                     src="data:{$evento->getImg()->getType()};base64,{$evento->getImg()->getImmagine()}"
+                                                <img src="data:{$evento->getImg()->getType()};base64,{$evento->getImg()->getImmagine()}"
                                                      alt="Poster evento"
                                                      style="max-width:225px; max-height:250px; float:right; display: block; border-radius:30px;">
                                                 <ul>

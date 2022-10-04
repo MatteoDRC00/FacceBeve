@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-10-03 18:04:09
+/* Smarty version 4.2.0, created on 2022-10-04 10:44:25
   from 'C:\xampp\htdocs\FacceBeve\template\home.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_633b07f9cb89b4_35285120',
+  'unifunc' => 'content_633bf2696922c4_87820993',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c953834e2bd280dacf9fe734edc7529afcd03f09' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\home.tpl',
-      1 => 1664813046,
+      1 => 1664873063,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_633b07f9cb89b4_35285120 (Smarty_Internal_Template $_smarty_tpl) {
+function content_633bf2696922c4_87820993 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -161,7 +161,7 @@ $_smarty_tpl->tpl_vars['c']->do_else = false;
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                             <?php }?>
                         </select>
-                        <button type="submit" style="border-radius:7px; height: 50px"><i class="fa fa-search"></i></button>
+                        <button type="submit" style="border-radius:10px;"><i class="fa fa-search"></i></button>
                     </form>
                 </div>
             <?php }?>

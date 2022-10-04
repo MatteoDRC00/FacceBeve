@@ -223,7 +223,6 @@ class FLocale
         $valutazione = array();
         $db = FDB::getInstance();
         list($result, $num) = $db->getLocaliPerValutazione();
-
         if (($result != null) && ($num == 1)) {
             $locali = self::loadByField("id", $result["id"]);
             $valutazione[0] = $result["ValutazioneMedia"];
