@@ -615,15 +615,15 @@ class FDB{
 							if(is_array($categorie)){
 								for ($j = 0; $j < count($categorie); $j++){
 									if ($query == null)
-										$query = "SELECT * FROM " . $class::getTable() . " INNER JOIN Locale_Categorie  ON Locale_Categorie.ID_Categoria='" .$categorie[$j] . "'";
+										$query = "SELECT * FROM " . $class::getTable() . " INNER JOIN Locale_Categorie ON  Locale_Categorie.ID_Locale=Locale.id INNER JOIN Categoria ON Categoria.genere=Locale_Categorie.ID_Categoria WHERE Categoria.genere='" .$categorie[$j] . "'";
 									else
-										$query = $query . " INNER JOIN Locale_Categorie  ON Locale_Categorie.ID_Categoria='" .$categorie[$j] ."'";
+										$query = $query . "; INTERSECT SELECT * Locale INNER JOIN Locale_Categorie  ON  Locale_Categorie.ID_Locale=Locale.id INNER JOIN Categoria ON Categoria.genere=Locale_Categorie.ID_Categoria WHERE Categoria.genere'" .$categorie[$j] ."'";
 								}
 							}elseif(isset($categorie)){
 								if ($query == null)
-									$query = "SELECT * FROM " . $class::getTable() . " INNER JOIN Locale_Categorie  ON Locale_Categorie.ID_Categoria='" .$categorie . "'";
+									$query = "SELECT * FROM " . $class::getTable() . " INNER JOIN Locale_Categorie ON  Locale_Categorie.ID_Locale=Locale.id INNER JOIN Categoria ON Categoria.genere=Locale_Categorie.ID_Categoria WHERE Categoria.genere='" .$categorie . "'";
 								else
-									$query = $query . " INNER JOIN Locale_Categorie  ON Locale_Categorie.ID_Categoria='" .$categorie ."'";
+									$query = $query . "; INTERSECT SELECT * Locale INNER JOIN Locale_Categorie  ON  Locale_Categorie.ID_Locale=Locale.id INNER JOIN Categoria ON Categoria.genere=Locale_Categorie.ID_Categoria WHERE Categoria.genere'" .$categorie ."'";
 							}
 							break;
 						case 1:
@@ -636,7 +636,7 @@ class FDB{
 							if ($query == null)
 								$query = "SELECT * FROM " . $class::getTable()  . " INNER JOIN Localizzazione ON  Localizzazione.id=Locale.localizzazione WHERE localizzazione.citta LIKE '" . $citta . "%'";
 							else
-								$query = $query . " INNER JOIN Localizzazione ON  Localizzazione.id=Locale.localizzazione AND localizzazione.citta LIKE '" . $citta . "%'";
+								$query = $query . "; INTERSECT SELECT * Locale INNER JOIN Localizzazione ON  Localizzazione.id=Locale.localizzazione AND localizzazione.citta LIKE '" . $citta . "%'";
 							break;
 					}
 				}
@@ -656,7 +656,6 @@ class FDB{
 				while ($row = $stmt->fetch())
 					$result[] = $row;                    //ritorna un array di righe.
 			}
-			//  $this->closeDbConnection();
 			return array($result, $num);
 
 		} catch (PDOException $e) {
