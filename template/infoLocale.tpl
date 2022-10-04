@@ -93,58 +93,51 @@
                                         <div class="portfolio-info swiper-slide">
                                             <img src="data:{$img->getType()};base64,{$img->getImmagine()}"
                                                  alt="Immagine localeeee"
-                                                 style="height:575px; width:575px; border-radius:40px">
+                                                 style="max-height:575px; max-width:575px; border-radius:40px">
                                         </div>
                                     {/foreach}
                                 {else}
                                     <div class="portfolio-info swiper-slide">
                                         <img src="/template/img/no_foto.jpg" alt="Immagine locale"
-                                             style="height:575px; width:575px; border-radius:40px">
+                                             style="max-height:575px; max-width:575px; border-radius:40px">
                                     </div>
                                 {/if}
                             </div>
                         </div>
-                        <div class="swiper-pagination"></div>
-                        {if ($userlogged eq 'loggato')}
-                            {if !empty($eventi)}
-                            <div class="portfolio-details-slider swiper">
-                                <h4 style="display: list-item; font-weight: bold">Eventi organizzati:</h4>
-                                    <div class="swiper-wrapper align-items-center">
+                        <br>
+                        <div class="portfolio-details-slider swiper">
+                            <h4 style="display: list-item; font-weight: bold">Eventi organizzati:</h4>
+                            <div class="swiper-wrapper align-items-center">
+                                {if ($userlogged eq 'loggato')}
+                                    {if !empty($eventi)}
                                         {foreach $eventi as $evento}
                                             <div class="portfolio-info swiper-slide">
                                                 <h3>{$evento->getNome()}</h3>
                                                 <img class="photo"
                                                      src="data:{$evento->getImg()->getType()};base64,{$evento->getImg()->getImmagine()}"
                                                      alt="Poster evento"
-                                                     style="width:225px; height:250px; float:right; display: block; border-radius:30px;">
+                                                     style="max-width:225px; max-height:250px; float:right; display: block; border-radius:30px;">
                                                 <ul>
                                                     <li><strong>Data</strong>: {$evento->getData()}.</li>
                                                     <li><strong>Descrizione</strong>: {$evento->getDescrizione()}</li>
                                                 </ul>
                                             </div>
                                         {/foreach}
-                                    </div>
-                                    <div class="swiper-pagination"></div>
+                                    {else}
+                                        <div class="portfolio-info">
+                                            <p>Non ci sono ancora eventi organizzati</p>
+                                        </div>
+                                    {/if}
                                 {else}
-                                <div class="portfolio-details-slider swiper">
-                                    <h4 style="display: list-item; font-weight: bold">Eventi organizzati:</h4>
                                     <div class="portfolio-info">
-                                        <p>Non ci sono ancora eventi organizzati</p>
-                                    <div>
-                                </div>
+                                        <p>Questa sezione è dedicata agli utenti iscritti, accedi o registrati per non
+                                            perderti gli
+                                            eventi
+                                            dei tuoi locali preferiti </p>
+                                    </div>
                                 {/if}
                             </div>
-                        {else}
-                            <h4 style="display: list-item; font-weight: bold">Eventi organizzati:</h4>
-                            <div class="swiper-wrapper align-items-center">
-                                <div class="portfolio-info">
-                                    <p>Questa sezione è dedicata agli utenti iscritti, accedi o registrati per non
-                                        perderti gli
-                                        eventi
-                                        dei tuoi locali preferiti </p>
-                                </div>
-                            </div>
-                        {/if}
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-4">
@@ -157,7 +150,8 @@
                                 <strong>CAP:</strong> {$locale->getLocalizzazione()->getCAP()}</li>
                             <li style="font-weight: bold;"><a
                                         href="https://maps.google.com/?q= {$locale->getLocalizzazione()->getIndirizzo()}, {$locale->getLocalizzazione()->getNumCivico()}, {$locale->getLocalizzazione()->getCitta()}, {$locale->getLocalizzazione()->getCAP()}"
-                                        target="_blank"><i class="fas fa-map-marker-alt"></i> Come raggiungerci...</a>
+                                        target="_blank"><i class="fas fa-map-marker-alt"></i> Come
+                                    raggiungerci...</a>
                             </li>
                             <li><strong>Categorie:</strong>
                                 <ul>

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-10-03 18:27:01
+/* Smarty version 4.2.0, created on 2022-10-04 09:15:44
   from 'C:\xampp\htdocs\FacceBeve\template\InfoLocale.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_633b0d551d45f5_59522060',
+  'unifunc' => 'content_633bdda01b54e7_67990634',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '172a59cd6d9d0fe4c26f91abf9bfe128c31cd594' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\InfoLocale.tpl',
-      1 => 1664814416,
+      1 => 1664867742,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_633b0d551d45f5_59522060 (Smarty_Internal_Template $_smarty_tpl) {
+function content_633bdda01b54e7_67990634 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <?php $_smarty_tpl->_assignInScope('locale', (($tmp = $_smarty_tpl->tpl_vars['locale']->value ?? null)===null||$tmp==='' ? null ?? null : $tmp));
@@ -127,8 +127,8 @@ $_smarty_tpl->tpl_vars['img']->do_else = false;
                                             <img src="data:<?php echo $_smarty_tpl->tpl_vars['img']->value->getType();?>
 ;base64,<?php echo $_smarty_tpl->tpl_vars['img']->value->getImmagine();?>
 "
-                                                 alt="Immagine locale"
-                                                 style="height:575px; width:575px; border-radius:40px">
+                                                 alt="Immagine localeeee"
+                                                 style="max-height:575px; max-width:575px; border-radius:40px">
                                         </div>
                                     <?php
 }
@@ -136,17 +136,17 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                                 <?php } else { ?>
                                     <div class="portfolio-info swiper-slide">
                                         <img src="/template/img/no_foto.jpg" alt="Immagine locale"
-                                             style="height:575px; width:575px; border-radius:40px">
+                                             style="max-height:575px; max-width:575px; border-radius:40px">
                                     </div>
                                 <?php }?>
                             </div>
                         </div>
-                        <div class="swiper-pagination"></div>
-                        <?php if (($_smarty_tpl->tpl_vars['userlogged']->value == 'loggato')) {?>
-                            <?php if (!empty($_smarty_tpl->tpl_vars['eventi']->value)) {?>
-                            <div class="portfolio-details-slider swiper">
-                                <h4 style="display: list-item; font-weight: bold">Eventi organizzati:</h4>
-                                    <div class="swiper-wrapper align-items-center">
+                        <br>
+                        <div class="portfolio-details-slider swiper">
+                            <h4 style="display: list-item; font-weight: bold">Eventi organizzati:</h4>
+                            <div class="swiper-wrapper align-items-center">
+                                <?php if (($_smarty_tpl->tpl_vars['userlogged']->value == 'loggato')) {?>
+                                    <?php if (!empty($_smarty_tpl->tpl_vars['eventi']->value)) {?>
                                         <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['eventi']->value, 'evento');
 $_smarty_tpl->tpl_vars['evento']->do_else = true;
@@ -161,7 +161,7 @@ $_smarty_tpl->tpl_vars['evento']->do_else = false;
 ;base64,<?php echo $_smarty_tpl->tpl_vars['evento']->value->getImg()->getImmagine();?>
 "
                                                      alt="Poster evento"
-                                                     style="width:225px; height:250px; float:right; display: block; border-radius:30px;">
+                                                     style="max-width:225px; max-height:250px; float:right; display: block; border-radius:30px;">
                                                 <ul>
                                                     <li><strong>Data</strong>: <?php echo $_smarty_tpl->tpl_vars['evento']->value->getData();?>
 .</li>
@@ -172,28 +172,21 @@ $_smarty_tpl->tpl_vars['evento']->do_else = false;
                                         <?php
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
-                                    </div>
-                                    <div class="swiper-pagination"></div>
+                                    <?php } else { ?>
+                                        <div class="portfolio-info">
+                                            <p>Non ci sono ancora eventi organizzati</p>
+                                        </div>
+                                    <?php }?>
                                 <?php } else { ?>
-                                <div class="portfolio-details-slider swiper">
-                                    <h4 style="display: list-item; font-weight: bold">Eventi organizzati:</h4>
                                     <div class="portfolio-info">
-                                        <p>Non ci sono ancora eventi organizzati</p>
-                                    <div>
-                                </div>
+                                        <p>Questa sezione è dedicata agli utenti iscritti, accedi o registrati per non
+                                            perderti gli
+                                            eventi
+                                            dei tuoi locali preferiti </p>
+                                    </div>
                                 <?php }?>
                             </div>
-                        <?php } else { ?>
-                            <h4 style="display: list-item; font-weight: bold">Eventi organizzati:</h4>
-                            <div class="swiper-wrapper align-items-center">
-                                <div class="portfolio-info">
-                                    <p>Questa sezione è dedicata agli utenti iscritti, accedi o registrati per non
-                                        perderti gli
-                                        eventi
-                                        dei tuoi locali preferiti </p>
-                                </div>
-                            </div>
-                        <?php }?>
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-4">
@@ -214,7 +207,8 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 , <?php echo $_smarty_tpl->tpl_vars['locale']->value->getLocalizzazione()->getCitta();?>
 , <?php echo $_smarty_tpl->tpl_vars['locale']->value->getLocalizzazione()->getCAP();?>
 "
-                                        target="_blank"><i class="fas fa-map-marker-alt"></i> Come raggiungerci...</a>
+                                        target="_blank"><i class="fas fa-map-marker-alt"></i> Come
+                                    raggiungerci...</a>
                             </li>
                             <li><strong>Categorie:</strong>
                                 <ul>
@@ -242,8 +236,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                     <div class="portfolio-info">
                         <h3>Orario settimanale del locale</h3>
                         <table id="customers">
-                            <thead
-                                    +>
+                            <thead>
                             <tr>
                                 <th></th>
                                 <th>Apertura</th>

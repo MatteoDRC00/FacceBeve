@@ -59,34 +59,39 @@
     <section class="breadcrumbs">
         <div class="container">
 
-            <div class="d-flex justify-content-between align-items-center">
-                <h2 style="font-weight: bold">Risultati per:</h2>
-                <ul>
-                    {if $tipo=="Locali"}
-                        {if isset($nomeLocale)}
-                            <li>{$nomeLocale}</li>
+            <div class="d-flex">
+                <div>
+                    <h2 style="font-weight: bold">Risultati per:</h2>
+                </div>
+                <div>
+                    <ul>
+                        {if $tipo=="Locali"}
+                            {if isset($nomeLocale)}
+                                <li>{$nomeLocale}</li>
+                            {/if}
+                            {if isset($citta)}
+                                <li>{$citta}</li>
+                            {/if}
+                            {if isset($categoria)}
+                                <li>{$categoria}</li>
+                            {/if}
+                        {else}
+                            {if isset($citta)}
+                                <li>{$citta}</li>
+                            {/if}
+                            {if isset($nomeLocale)}
+                                <li>{$nomeLocale}</li>
+                            {/if}
+                            {if isset($nomeEvento)}
+                                <li>{$nomeEvento}</li>
+                            {/if}
+                            {if isset($data)}
+                                <li>{$data}</li>
+                            {/if}
                         {/if}
-                        {if isset($citta)}
-                            <li>{$citta}</li>
-                        {/if}
-                        {if isset($categoria)}
-                            <li>{$categoria}</li>
-                        {/if}
-                    {else}
-                        {if isset($citta)}
-                            <li>{$citta}</li>
-                        {/if}
-                        {if isset($nomeLocale)}
-                            <li>{$nomeLocale}</li>
-                        {/if}
-                        {if isset($nomeEvento)}
-                            <li>{$nomeEvento}</li>
-                        {/if}
-                        {if isset($data)}
-                            <li>{$data}</li>
-                        {/if}
-                    {/if}
-                </ul>
+                    </ul>
+                </div>
+
             </div>
         </div>
     </section>
