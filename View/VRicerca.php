@@ -101,8 +101,14 @@ class VRicerca
         $value = null;
         $sessione = new USession();
         if($sessione->isLogged()){
-            if (isset($_POST['citta1']))
-                $value = $_POST['citta1'];
+            if(static::getTipoRicerca() == "Locali"){
+                if (isset($_POST['citta1']))
+                    $value = $_POST['citta1'];
+            }else{
+                if (isset($_POST['citta2']))
+                    $value = $_POST['citta2'];
+            }
+
         }else{
             if (isset($_POST['citta']))
                 $value = $_POST['citta'];
@@ -141,7 +147,7 @@ class VRicerca
      * Inviato con metodo post
      * @return string
      */
-    public function getTipoRicerca(): ?string
+    public static function getTipoRicerca(): ?string
     {
         $value = null;
         $sessione = new USession();

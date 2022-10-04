@@ -617,13 +617,13 @@ class FDB{
 									if ($query == null)
 										$query = "SELECT * FROM " . $class::getTable() . " INNER JOIN Locale_Categorie ON  Locale_Categorie.ID_Locale=Locale.id INNER JOIN Categoria ON Categoria.genere=Locale_Categorie.ID_Categoria WHERE Categoria.genere='" .$categorie[$j] . "'";
 									else
-										$query = $query . "; INTERSECT SELECT * Locale INNER JOIN Locale_Categorie  ON  Locale_Categorie.ID_Locale=Locale.id INNER JOIN Categoria ON Categoria.genere=Locale_Categorie.ID_Categoria WHERE Categoria.genere'" .$categorie[$j] ."'";
+										$query = $query . "; INTERSECT SELECT * FROM Locale INNER JOIN Locale_Categorie  ON  Locale_Categorie.ID_Locale=Locale.id INNER JOIN Categoria ON Categoria.genere=Locale_Categorie.ID_Categoria WHERE Categoria.genere'" .$categorie[$j] ."'";
 								}
 							}elseif(isset($categorie)){
 								if ($query == null)
 									$query = "SELECT * FROM " . $class::getTable() . " INNER JOIN Locale_Categorie ON  Locale_Categorie.ID_Locale=Locale.id INNER JOIN Categoria ON Categoria.genere=Locale_Categorie.ID_Categoria WHERE Categoria.genere='" .$categorie . "'";
 								else
-									$query = $query . "; INTERSECT SELECT * Locale INNER JOIN Locale_Categorie  ON  Locale_Categorie.ID_Locale=Locale.id INNER JOIN Categoria ON Categoria.genere=Locale_Categorie.ID_Categoria WHERE Categoria.genere'" .$categorie ."'";
+									$query = $query . "; INTERSECT SELECT * FROM Locale INNER JOIN Locale_Categorie  ON  Locale_Categorie.ID_Locale=Locale.id INNER JOIN Categoria ON Categoria.genere=Locale_Categorie.ID_Categoria WHERE Categoria.genere'" .$categorie ."'";
 							}
 							break;
 						case 1:
@@ -636,7 +636,7 @@ class FDB{
 							if ($query == null)
 								$query = "SELECT * FROM " . $class::getTable()  . " INNER JOIN Localizzazione ON  Localizzazione.id=Locale.localizzazione WHERE localizzazione.citta LIKE '" . $citta . "%'";
 							else
-								$query = $query . "; INTERSECT SELECT * Locale INNER JOIN Localizzazione ON  Localizzazione.id=Locale.localizzazione AND localizzazione.citta LIKE '" . $citta . "%'";
+								$query = $query . "; INTERSECT SELECT * FROM Locale INNER JOIN Localizzazione ON  Localizzazione.id=Locale.localizzazione AND localizzazione.citta LIKE '" . $citta . "%'";
 							break;
 					}
 				}
@@ -681,21 +681,21 @@ class FDB{
 					switch ($i) {
 						case 0:
 							if ($query == null)
-								$query = "SELECT Evento.id,Evento.nome,Evento.descrizione,Evento.data,Evento.idImg FROM Evento INNER JOIN Locale_Eventi ON Locale_Eventi.ID_Evento=Evento.id INNER JOIN Locale ON Locale.nome LIKE '". $nomelocale. "%'";
+								$query = "SELECT Evento.id,Evento.nome,Evento.descrizione,Evento.data,Evento.idImg FROM Evento INNER JOIN Locale_Eventi ON Locale_Eventi.ID_Evento=Evento.id INNER JOIN Locale ON Locale_Eventi.ID_Locale=Locale.id WHERE Locale.nome LIKE '". $nomelocale. "%'";
 							else
-								$query = $query . " INNER JOIN Locale_Eventi ON Locale_Eventi.ID_Locale=Evento.id INNER JOIN Locale ON Locale.nome LIKE '".$nomelocale."%';";
+								$query = $query . "; INTERSECT SELECT Evento.id,Evento.nome,Evento.descrizione,Evento.data,Evento.idImg FROM Evento INNER JOIN Locale_Eventi ON Locale_Eventi.ID_Locale=Evento.id INNER JOIN Locale ON Locale_Eventi.ID_Locale=Locale.id WHERE Locale.nome LIKE '".$nomelocale."%';";
 							break;
 						case 1:
 							if ($query == null)
 								$query = "SELECT Evento.id,Evento.nome,Evento.descrizione,Evento.data,Evento.idImg FROM Evento WHERE nome  LIKE '" . $nomeevento . "%'";
 							else
-								$query = $query . " AND Evento.nome  LIKE '" . $nomeevento . "%'";
+								$query = $query . "; INTERSECT SELECT Evento.id,Evento.nome,Evento.descrizione,Evento.data,Evento.idImg FROM Evento WHERE Evento.nome  LIKE '" . $nomeevento . "%'";
 							break;
 						case 2:
 							if ($query == null)
-								$query = "SELECT Evento.id,Evento.nome,Evento.descrizione,Evento.data,Evento.idImg FROM Evento INNER JOIN Locale_Eventi ON Locale_Eventi.ID_Evento=".$class::getTable().id." INNER JOIN Locale ON Locale.id=Locale_Eventi.ID_Locale WHERE localizzazione  LIKE '" . $citta . "%'";
+								$query = "SELECT Evento.id,Evento.nome,Evento.descrizione,Evento.data,Evento.idImg FROM Evento INNER JOIN Locale_Eventi ON Locale_Eventi.ID_Evento=Evento.id INNER JOIN Locale ON Locale.id=Locale_Eventi.ID_Locale INNER JOIN Localizzazione ON  Localizzazione.id=Locale.localizzazione WHERE Localizzazione.citta LIKE '" . $citta . "%'";
 							else
-								$query = $query . " INNER JOIN Locale_Eventi ON Locale_Eventi.ID_Evento=".$class::getTable().id." INNER JOIN Locale ON Locale.id=Locale_Eventi.ID_Locale WHERE localizzazione LIKE '" . $citta . "%'";
+								$query = $query . "; INTERSECT SELECT Evento.id,Evento.nome,Evento.descrizione,Evento.data,Evento.idImg FROM Evento INNER JOIN Locale_Eventi ON Locale_Eventi.ID_Evento=Evento.id INNER JOIN Locale ON Locale.id=Locale_Eventi.ID_Locale INNER JOIN Localizzazione ON Localizzazione.id=Locale.localizzazione WHERE Localizzazione.citta LIKE '" . $citta . "%'";
 							break;
 						case 3:
 							if ($query == null)
@@ -738,20 +738,20 @@ class FDB{
 	 */
 	public function loadLocaleByEvento($id_evento){
 		try{
-			$query = "SELECT ID_Locale FROM Locale_Eventi WHERE ID_Evento=".$id_evento.";";
+			$query = "SELECT ID_Locale FROM Locale_Eventi WHERE ID_Evento='".$id_evento."';";
 			$stmt = $this->database->prepare($query); //Prepared Statement
 			$stmt->execute();
 			$num = $stmt->rowCount();
 			if ($num == 0) {
 				$result = null;        //nessuna riga interessata. return null
-			} elseif ($num == 1) {                          //nel caso in cui una sola riga fosse interessata
+			} else{                          //nel caso in cui una sola riga fosse interessata
 				$result = $stmt->fetch(PDO::FETCH_ASSOC);   //ritorna una sola riga
-			} else {
+			} /*else {
 				$result = array();                         //nel caso in cui piu' righe fossero interessate
 				$stmt->setFetchMode(PDO::FETCH_ASSOC);   //imposta la modalità di fetch come array associativo
 				while ($row = $stmt->fetch())
 					$result[] = $row;                    //ritorna un array di righe.
-			}
+			}*/
 			return $result['ID_Locale'];
 		} catch (PDOException $e) {
 			echo "Attenzione errore: " . $e->getMessage();
@@ -794,31 +794,6 @@ class FDB{
 			return null;
 		}
 	}
-
-
-	/**
-	 * AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-	 * @param $campo colonna nel db sul quale viene fatto il controllo
-	 * @param $query query da eseguire*/
-	public function CercaByKeyword($class,$campo,$input)
-	{
-		$query = "SELECT * FROM " . $class::getTable() . " WHERE " . $campo . " LIKE '%" . $input . "%';";
-		$stmt = $this->db->prepare($query);
-		$stmt->execute();
-		$num = $stmt->rowCount();
-		if ($num == 0)
-			$result = null;
-		elseif ($num == 1)
-			$result = $stmt->fetch(PDO::FETCH_ASSOC);
-		else {
-			$result = array();
-			$stmt->setFetchMode(PDO::FETCH_ASSOC);
-			while ($row = $stmt->fetch())
-				$result[] = $row;
-		}
-		return array($result, $num);
-	}
-
 
 
 	/**

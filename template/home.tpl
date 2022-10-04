@@ -95,7 +95,7 @@
                 </div>
                 <div class="ricerca animate__animated animate__fadeInDown" id="Eventi" style="display: none;justify-content: center;" >
                     <form class="Search" name="ricercaEventi" onsubmit="return validateResearchForm(1)"  action="/Ricerca/ricerca" method="POST">
-                        <input class="homeinput" type="text" placeholder="Inserisci la città" name="citta">
+                        <input class="homeinput" type="text" placeholder="Inserisci la città" name="citta2">
                         <input class="homeinput" type="text" placeholder="Inserisci il nome del Locale" name="nomeLocaleEvento">
                         <input class="homeinput" type="text" placeholder="Inserisci il nome del Evento" name="nomeEvento">
                         <input type="date" placeholder="Inserisci la data del Evento" name="dataEvento">

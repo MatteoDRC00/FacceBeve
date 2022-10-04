@@ -242,7 +242,7 @@ class FEvento
         } else {
             if (($result != null) && ($num > 1)) {
                 for ($i = 0; $i < count($result); $i++) {
-                    $id_locale = $db->loadLocaleByEvento($result["id"]);
+                    $id_locale = $db->loadLocaleByEvento($result[$i]["id"]);
                     $locale = array_merge($locale,FLocale::loadByField("id", $id_locale));
                     $evento[$i] = new EEvento($result[$i]["nome"], $result[$i]["descrizione"], $result[$i]["data"]);
                     $img = FImmagine::loadByField('id', $result[$i]['idImg']);
