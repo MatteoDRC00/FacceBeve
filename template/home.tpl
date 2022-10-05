@@ -64,59 +64,75 @@
 </header><!-- End Header -->
 
 <!-- ======= Hero Section ======= -->
-<section id="hero" class="d-flex justify-content-center align-items-center" >
+<section id="hero" class="d-flex justify-content-center align-items-center">
     <div id="heroCarousel" class="container carousel carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
         <div class="carousel-item active">
             {if $tipo!='nouser'}
                 <div class="carousel-container">
                     <h2 class="animate__animated animate__fadeInDown">Benvenuti in <span>FacceBeve</span></h2>
-                    <p class="animate__animated animate__fadeInUp">È scientificamente provato che un aperitivo patatine e birretta non salveranno il mondo, ma la giornata sicuramente sì.</p>
+                    <p class="animate__animated animate__fadeInUp">È scientificamente provato che un aperitivo patatine
+                        e birretta non salveranno il mondo, ma la giornata sicuramente sì.</p>
                     <h4 class="mb-0" style="color:white">Puoi ricercare...</h4>
                     <select name="tipo" id="tipo" onchange="setList()" style="border-radius:10px;">
                         <option selected value="Locali">Locali</option>
                         <option value="Eventi">Eventi</option>
                     </select>
                 </div>
-                <div class="ricerca animate__animated animate__fadeInDown" id="Locali" style="display: flex;justify-content: center;">
-                    <form class="Search" name="ricercaLocali1" id="ricercaLocali1" onsubmit="return validateResearchForm(1)" action="/Ricerca/ricerca" method="POST">
+                <div class="ricerca animate__animated animate__fadeInDown" id="Locali"
+                     style="display: flex;justify-content: center;">
+                    <form class="Search" id="ricercaLocali1" onsubmit="return validateResearchForm(1)"
+                          action="/Ricerca/ricerca" method="POST">
                         <input class="homeinput" type="hidden" value="x" name="checkLocale" id="checkLocale">
                         <input class="homeinput" type="text" placeholder="Inserisci la città" name="citta1">
                         <input class="homeinput" type="text" placeholder="Inserisci il nome" name="nomeLocale1">
-                        <select form="ricercaLocali1" name="categorie1" id="categorie1" style="border-radius:7px; height: 50px  ;">
+                        <select form="ricercaLocali1" name="categorie1" id="categorie1"
+                                style="border-radius:7px; height: 50px  ;">
                             <option>--Scegli il tipo--</option>
                             {if !empty($categorie)}
                                 {foreach $categorie as $c}
-                                    <option type="radio" name="genere" value="{$c->getGenere()}"> {$c->getGenere()}</option>
+                                    <option type="radio" name="genere"
+                                            value="{$c->getGenere()}"> {$c->getGenere()}</option>
                                 {/foreach}
                             {/if}
                         </select>
-                        <button class="input" type="submit" style="border-radius:10px;"><i class="fa fa-search"></i></button>
+                        <button class="input" type="submit" style="border-radius:10px;"><i class="fa fa-search"></i>
+                        </button>
                     </form>
                 </div>
-                <div class="ricerca animate__animated animate__fadeInDown" id="Eventi" style="display: none;justify-content: center;" >
-                    <form class="Search" name="ricercaEventi" onsubmit="return validateResearchForm(1)"  action="/Ricerca/ricerca" method="POST">
+                <div class="ricerca animate__animated animate__fadeInDown" id="Eventi"
+                     style="display: none;justify-content: center;">
+                    <form class="Search" id="ricercaEventi" onsubmit="return validateResearchForm(1)"
+                          action="/Ricerca/ricerca" method="POST">
                         <input class="homeinput" type="text" placeholder="Inserisci la città" name="citta2">
-                        <input class="homeinput" type="text" placeholder="Inserisci il nome del Locale" name="nomeLocaleEvento">
-                        <input class="homeinput" type="text" placeholder="Inserisci il nome del Evento" name="nomeEvento">
-                        <input type="date" placeholder="Inserisci la data del Evento" name="dataEvento">
+                        <input class="homeinput" type="text" placeholder="Inserisci il nome del Locale"
+                               name="nomeLocaleEvento">
+                        <input class="homeinput" type="text" placeholder="Inserisci il nome del Evento"
+                               name="nomeEvento">
+                        <input class="homeinput" type="date" placeholder="Inserisci la data del Evento"
+                               name="dataEvento">
                         <button type="submit" style="border-radius:10px;"><i class="fa fa-search"></i></button>
                     </form>
                 </div>
             {else}
                 <div class="carousel-container">
                     <h2 class="animate__animated animate__fadeInDown">Benvenuti in <span>FacceBeve</span></h2>
-                    <p class="animate__animated animate__fadeInUp">È scientificamente provato che un aperitivo patatine e birretta non salveranno il mondo, ma la giornata sicuramente sì.</p>
+                    <p class="animate__animated animate__fadeInUp">È scientificamente provato che un aperitivo patatine
+                        e birretta non salveranno il mondo, ma la giornata sicuramente sì.</p>
                     <h4 class="mb-0" style="color:white;">Trova i locali della tua città</h4>
                 </div>
-                <div class="ricerca animate__animated animate__fadeInDown" style="display: flex;justify-content: center;">
-                    <form class="Search" name="ricercaLocali0" id="ricercaLocali0" action="/Ricerca/ricerca" method="POST" onsubmit="return validateResearchForm(0)">
+                <div class="ricerca animate__animated animate__fadeInDown"
+                     style="display: flex;justify-content: center;">
+                    <form class="Search" name="ricercaLocali0" id="ricercaLocali0" action="/Ricerca/ricerca"
+                          method="POST" onsubmit="return validateResearchForm(0)">
                         <input class="homeinput" type="text" placeholder="Inserisci la città" name="citta">
                         <input class="homeinput" type="text" placeholder="Inserisci il nome" name="nomeLocale">
-                        <select name="categorie" id="categorie" form="ricercaLocali0" style="border-radius:7px; height: 50px ">
+                        <select name="categorie" id="categorie" form="ricercaLocali0"
+                                style="border-radius:7px; height: 50px ">
                             <option>--Scegli il tipo--</option>
                             {if !empty($categorie)}
                                 {foreach $categorie as $c}
-                                    <option type="radio" name="genere" value="{$c->getGenere()}"> {$c->getGenere()}</option>
+                                    <option type="radio" name="genere"
+                                            value="{$c->getGenere()}"> {$c->getGenere()}</option>
                                 {/foreach}
                             {/if}
                         </select>
@@ -141,7 +157,8 @@
                         {$i=0}
                         <div class="col-md-6 col-lg-3 d-flex align-items-stretch">
                             <div class="icon-box icon-box-pink">
-                                <a href="/Ricerca/dettagliLocale/{$locale->getId()}"><h3 style="font-weight: bold">{$locale->getNome()}</h3></a>
+                                <a href="/Ricerca/dettagliLocale/{$locale->getId()}"><h3
+                                            style="font-weight: bold">{$locale->getNome()}</h3></a>
                                 <p style="font-weight: bold;">Voto: {$valutazione[$i]}/5</p>
                                 <p class="description">{$locale->getDescrizione()}</p>
                             </div>
@@ -154,7 +171,6 @@
             </div>
 
             {if isset($eventiUtente)}
-
                 <div class="row">
                     <h2>Ecco gli eventi in arrivo dei tuoi locali preferiti:</h2>
                     {if !empty($eventiUtente)}
@@ -162,7 +178,8 @@
                             {$i=0}
                             <div class="col-md-6 col-lg-3 d-flex align-items-stretch">
                                 <div class="icon-box icon-box-pink">
-                                    <a href="/Ricerca/dettagliLocale/{$localiEventiUtente[{$evento@iteration-1}]}"><h3 style="font-weight: bold">{$evento->getNome()}</h3></a>
+                                    <a href="/Ricerca/dettagliLocale/{$localiEventiUtente[{$evento@iteration-1}]}"><h3
+                                                style="font-weight: bold">{$evento->getNome()}</h3></a>
                                     <p style="font-weight: bold;">{$evento->getData()}</p>
                                     <p class="description">{$evento->getDescrizione()}</p>
                                 </div>
@@ -172,7 +189,6 @@
                         <p>Non ci sono eventi tra i tuoi locali</p>
                     {/if}
                 </div>
-
             {/if}
 
 

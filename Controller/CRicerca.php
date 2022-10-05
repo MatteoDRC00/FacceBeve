@@ -88,21 +88,18 @@ class CRicerca
                 $pm = FPersistentManager::GetInstance();
                 list($result, $local) = $pm->loadForm($nomelocale, $nomeevento, $citta, $data, $tipo);
                 $vRicerca->showResult($result, $tipo, $nomelocale, $citta, $nomeevento, $data, $local);
-            } else
+            } else {
                 header('Location: /Ricerca/mostraHome');
-        } else {
-            header('Location: /Ricerca/mostraHome');
+            }
         }
     }
-
 
     /**
      * Funzione con il compito di indirizzare alla pagina specifica del locale selezionato
      * @param $id_locale
      * @return void
-     * @throws SmartyException
      */
-    static function dettagliLocale($id_locale)
+    public function dettagliLocale($id_locale)
     {
         $vRicerca = new VRicerca();
         $pm = FPersistentManager::getInstance();
@@ -126,12 +123,12 @@ class CRicerca
                 $risposta = $pm->load("recensione", $idSearch, "FRisposta"); //-->Ogni elemento ha la recensione e le risposte associate a tale recensione
                 $risposte[] = $risposta;
             }
-            if((count($recensioni)!=0))
-               $rating = $sum / (count($recensioni));
+            if ((count($recensioni) != 0))
+                $rating = $sum / (count($recensioni));
             else
                 $rating = 0;
-        }else{
-            $recensioni= array();
+        } else {
+            $recensioni = array();
             $rating = 0;
         }
         if ($sessione->leggi_valore('tipo_utente') == "EProprietario") {
@@ -140,7 +137,7 @@ class CRicerca
                 $proprietario = 1;
         }
 
-       $vRicerca->dettagliLocale($tipo, $presente, $locale, $recensioni, $risposte, $rating, $proprietario, $eventiOrganizzati);
+        $vRicerca->dettagliLocale($tipo, $presente, $locale, $recensioni, $risposte, $rating, $proprietario, $eventiOrganizzati);
     }
 
 
@@ -157,13 +154,12 @@ class CRicerca
             $value = $view->getPreferito();
             if ($value == "Aggiunto!") {
                 $pm->storeUtentiLocali($username, $id_locale);
-                header("Location: /Ricerca/dettagliLocale/".$id_locale);
+                header("Location: /Ricerca/dettagliLocale/" . $id_locale);
             } elseif ($value == "Aggiungi ai preferiti") {
                 $pm->deleteUtentiLocali($username, $id_locale);
-                header("Location: /Ricerca/dettagliLocale/".$id_locale);
+                header("Location: /Ricerca/dettagliLocale/" . $id_locale);
             }
         }
     }
-
 
 }

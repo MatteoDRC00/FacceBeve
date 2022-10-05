@@ -149,7 +149,6 @@ class VRicerca
      */
     public static function getTipoRicerca(): ?string
     {
-        $value = null;
         $sessione = new USession();
         if($sessione->isLogged()){
             if (isset($_POST['checkLocale']))

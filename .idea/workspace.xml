@@ -6,15 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="2e58f0f9-142d-4fe5-83c4-7ac5ce6fd200" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controller/CGestioneLocale.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/CGestioneLocale.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/templates_c/41f3f532d161fcdde726d896e1169591782631ff_0.file.registrazioneEvento.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/Smarty/templates_c/41f3f532d161fcdde726d896e1169591782631ff_0.file.registrazioneEvento.tpl.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/templates_c/5e1aa453dbee77c509402c601a3b43b7d15ea457_0.file.registrazioneLocale.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/Smarty/templates_c/5e1aa453dbee77c509402c601a3b43b7d15ea457_0.file.registrazioneLocale.tpl.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/View/VGestioneLocale.php" beforeDir="false" afterPath="$PROJECT_DIR$/View/VGestioneLocale.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controller/CRicerca.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/CRicerca.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Smarty/templates_c/c953834e2bd280dacf9fe734edc7529afcd03f09_0.file.home.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/Smarty/templates_c/c953834e2bd280dacf9fe734edc7529afcd03f09_0.file.home.tpl.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/VRicerca.php" beforeDir="false" afterPath="$PROJECT_DIR$/View/VRicerca.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/home.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/template/home.tpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/infoLocale.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/template/infoLocale.tpl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/template/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/template/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/registrazioneEvento.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/template/registrazioneEvento.tpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/registrazioneLocale.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/template/registrazioneLocale.tpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/registrazioneProprietario.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/template/registrazioneProprietario.tpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/registrazioneUtente.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/template/registrazioneUtente.tpl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -184,7 +181,7 @@
       <workItem from="1664875232539" duration="3696000" />
       <workItem from="1664954601495" duration="1976000" />
       <workItem from="1664973429164" duration="5538000" />
-      <workItem from="1664981646912" duration="4856000" />
+      <workItem from="1664981646912" duration="7449000" />
     </task>
     <servers />
   </component>

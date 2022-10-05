@@ -2,9 +2,9 @@
  * Funzione per controllare che vengano inseriti tutti i campi necessari per la recensione
  */
 function validateRecensione() {
-    let titolo = document.forms.Recensione.elements.titolo.value;
-    let descrizione = document.forms.Recensione.elements.descrizione.value;
-    let valutazione = document.forms.Recensione.elements.valutazione.value;
+    let titolo = document.forms["Recensione"]["titolo"].value;
+    let descrizione = document.forms["Recensione"]["descrizione"].value;
+    let valutazione = document.forms["Recensione"]["valutazione"].value;
 
     if (titolo === "" || valutazione === "-- Voto --") {
         alert("Inserire i campi necessari");
@@ -151,28 +151,28 @@ function validateRegForm(id) {
 function validateResearchForm(id) {
     if (id === 1) {
         let x = document.getElementById("tipo");
-        let y = x.value;
-        if (y === "Locali") {
+        if (x.value === "Locali") {
             //Gestione form ricerca locali utenti collegati
-            let citta = document.forms.ricercaLocali1.elements.citta1.value;
-            let nome = document.forms.ricercaLocali1.elements.nomeLocale1.value;
-            let categoria = document.forms.ricercaLocali1.elements.categorie1.value;
+            let citta = document.forms["ricercaLocali1"]["citta1"].value;
+            let nome = document.forms["ricercaLocali1"]["nomeLocale1"].value;
+            let categoria = document.forms["ricercaLocali1"]["categorie1"].value;
+
             if (citta === "" && nome === "" && categoria === "--Scegli il tipo--") {
                 window.alert("Inserire almeno un campo per effettuare la ricerca ");
                 return false;
             }
-        } else {
+        } else if(x.value === "Eventi") {
             //Gestione form ricerca eventi utenti collegati
-            let citta = document.forms.ricercaEventi.elements.citta.value;
-            let nomeLocale = document.forms.ricercaEventi.elements.nomeLocaleEvento.value;
-            let nomeEvento = document.forms.ricercaEventi.elements.nomeEvento.value;
-            let dataEvento = document.forms.ricercaEventi.elements.dataEvento.value;
+            let citta = document.forms["ricercaEventi"]["citta2"].value;
+            let nomeLocale = document.forms["ricercaEventi"]["nomeLocaleEvento"].value;
+            let nomeEvento = document.forms["ricercaEventi"]["nomeEvento"].value;
+            let dataEvento = document.forms["ricercaEventi"]["dataEvento"].value;
 
             let DataEvento = new Date(dataEvento);
             let Oggi = new Date();
 
             if (citta === "" && nomeLocale === "" && nomeEvento === "" && dataEvento === "") {
-                window.alert("Inserire almeno un campo per effettuare la ricerca");
+                alert("Inserire almeno un campo per effettuare la ricerca");
                 return false;
             }
 
@@ -181,13 +181,13 @@ function validateResearchForm(id) {
                 return false;
             }
         }
-    } else {
+    } else if(id === 0){
         //Gestione form ricerca locali utenti non collegati
-        let citta = document.forms.ricercaLocali0.elements.citta.value;
-        let nome = document.forms.ricercaLocali0.elements.nomeLocale.value;
-        let categoria = document.forms.ricercaLocali0.elements.categorie.value;
+        let citta = document.forms["ricercaLocali0"]["citta"].value;
+        let nome = document.forms["ricercaLocali0"]["nomeLocale"].value;
+        let categoria = document.forms["ricercaLocali0"]["categorie"].value;
         if (citta === "" && nome === "" && categoria === "--Scegli il tipo--") {
-            window.alert("Inserire almeno un campo per effettuare la ricerca ");
+            alert("Inserire almeno un campo per effettuare la ricerca ");
             return false;
         }
     }
