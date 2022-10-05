@@ -145,12 +145,6 @@ class CGestioneLocale
                         $orario->setId($id);
                         $o[] = $orario;
                         $pm->storeEsterne("Locale_Orari", "ID_Locale", "ID_Orario", $id_locale, $id);
-                    } else {
-                        $message = "Inserire entrambi i campi degli orari ";
-                        echo "<script type='text/javascript'>
-                            alert('$message');
-                            window.location.replace('/GestioneLocale/mostraFormCreaLocale');
-                            </script>";
                     }
                 } else {
                     $orario = new EOrario($giorno, "Chiuso", "Chiuso");

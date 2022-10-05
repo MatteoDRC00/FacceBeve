@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-10-03 18:05:10
+/* Smarty version 4.2.0, created on 2022-10-05 16:58:59
   from 'C:\xampp\htdocs\FacceBeve\template\registrazioneLocale.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_633b08366dfd59_38341897',
+  'unifunc' => 'content_633d9bb39f4d41_83248988',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '5e1aa453dbee77c509402c601a3b43b7d15ea457' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\registrazioneLocale.tpl',
-      1 => 1664465303,
+      1 => 1664981820,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_633b08366dfd59_38341897 (Smarty_Internal_Template $_smarty_tpl) {
+function content_633d9bb39f4d41_83248988 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -93,26 +93,26 @@ function content_633b08366dfd59_38341897 (Smarty_Internal_Template $_smarty_tpl)
         <div class="container">
             <div class="row">
                 <div class="col-12 bg-white px-3 mb-3 pb-3">
-                    <form action="/GestioneLocale/creaLocale" enctype="multipart/form-data" method="POST" class="aggiorna" name="registrazioneLocale" onsubmit="return validateRegForm(2)">
+                    <form action="/GestioneLocale/creaLocale" enctype="multipart/form-data" method="POST" class="aggiorna" id="registrazioneLocale" onsubmit="return validateRegForm(2)">
                         <p>INSERISCI LE INFORMAZIONI DEL LOCALE</p>
                         <div class="form-example">
                             <label style="font-weight: bold">Inserisci il nome: </label><br>
-                            <input type="text" name="nomeLocale" required>
+                            <input type="text" name="nomeLocale">
                         </div>
                         <div class="form-example">
                             <label style="font-weight: bold">Inserisci la descrizione: </label><br>
-                            <textarea type="text" name="descrizioneLocale" required></textarea>
+                            <textarea type="text" name="descrizioneLocale"></textarea>
                         </div>
                         <div class="form-example">
                             <label style="font-weight: bold">Inserisci il numero di telefono: </label><br>
-                            <input type="text" name="numeroLocale" required>
+                            <input type="text" name="numeroLocale">
                         </div>
                         <div class="form-example">
                             <label style="font-weight: bold">Inserisci la localizzazione: </label><br>
-                            <input type="text" name="indirizzoLocale" placeholder="Inserisci l'indirizzo" required>
-                            <input type="text" name="civicoLocale" placeholder="Inserisci il numero civico" title="Attenzione, inserire un numero." required>
-                            <input type="text" name="cittaLocale" placeholder="Inserisci città" required>
-                            <input type="text" name="CAPLocale" placeholder="Inserisci il CAP" title="Attenzione il CAP è un codice numerico." required>
+                            <input type="text" name="indirizzoLocale" placeholder="Inserisci l'indirizzo">
+                            <input type="text" name="civicoLocale" placeholder="Inserisci il numero civico" title="Attenzione, inserire un numero.">
+                            <input type="text" name="cittaLocale" placeholder="Inserisci città">
+                            <input type="text" name="CAPLocale" placeholder="Inserisci il CAP" title="Attenzione il CAP è un codice numerico.">
                         </div>
                         <div class="form-example">
                             <label style="font-weight: bold">Inserisci le categorie: </label><br>

@@ -16,14 +16,14 @@ function validateRecensione() {
  *Funzione utilizzata per controllare che vengano inseriti tutti i campi
  */
 function validateRegForm(id) {
-    if (id === 1) { //Form registrazione utente
-        let password1 = document.forms.registrazioneProprietario.elements.password.value;
-        let password2 = document.forms.registrazioneProprietario.elements.password2.value;
-        let nome = document.forms.registrazioneProprietario.elements.nome.value;
-        let cognome = document.forms.registrazioneProprietario.elements.cognome.value;
-        let username = document.forms.registrazioneProprietario.elements.username.value;
-        let email = document.forms.registrazioneProprietario.elements.email.value;
-        let img = document.forms.registrazioneProprietario.elements.img_profilo.value;
+    if (id === 1) { //Form registrazione Utente/Proprietario
+        let nome = document.forms["registrazioneUser"]["nome"].value;
+        let cognome = document.forms["registrazioneUser"]["cognome"].value;
+        let username = document.forms["registrazioneUser"]["username"].value;
+        let email = document["registrazioneUser"]["email"].value;
+        let password1 = document.forms["registrazioneUser"]["password"].value;
+        let password2 = document.forms["registrazioneUser"]["password2"].value;
+        let img = document.forms["registrazioneUser"]["img_profilo"].value;
 
         if (nome === "" || cognome === "" || email === "" || username === "" || password1 === "" || password2 === "") {
             alert("Inserire i campi mancanti");
@@ -34,34 +34,7 @@ function validateRegForm(id) {
             alert("Le password inserite non corrispondono!");
             return false;
         }
-        var allowedExtensions = /(\.jpg|\.jpeg|\.gif|\.png)$/i; //Controllo sul Type del img inserita
-
-        if (img !== ""){
-            if (!allowedExtensions.exec(img)) {
-                alert('Tipo di file non valido, sono accettati, prova con  \n-jpg\n-jpeg\n-gif\n-png');
-                img.value = '';
-                return false;
-            }
-        }
-
-    } else if (id === 0) { //Form registrazione utente
-        let password1 = document.forms.registrazioneUtente.elements.password.value;
-        let password2 = document.forms.registrazioneUtente.elements.password2.value;
-        let nome = document.forms.registrazioneUtente.elements.nome.value;
-        let cognome = document.forms.registrazioneUtente.elements.cognome.value;
-        let username = document.forms.registrazioneUtente.elements.username.value;
-        let email = document.forms.registrazioneUtente.elements.email.value;
-        let img = document.forms.registrazioneUtente.elements.img_profilo.value;
-
-        if (nome === "" || cognome === "" || email === "" || username === "" || password1 === "" || password2 === "") {
-            alert("Inserire i campi mancanti");
-            return false;
-        }
-        if (password1 !== password2) {
-            alert("Le password inserite non corrispondono!");
-            return false;
-        }
-        var allowedExtensions = /(\.jpg|\.jpeg|\.gif|\.png)$/i; //Controllo sul Type del img inserita
+        let allowedExtensions = /(\.jpg|\.jpeg|\.gif|\.png)$/i; //Controllo sul Type del img inserita
 
         if (img !== ""){
             if (!allowedExtensions.exec(img)) {
@@ -72,34 +45,54 @@ function validateRegForm(id) {
         }
 
     } else if (id === 2) {  //Form registrazione Locale
-        let nomeLocale = document.forms.registrazioneLocale.elements.nomeLocale.value;
-        let descrizioneLocale = document.forms.registrazioneLocale.elements.descrizioneLocale.value;
-        var k = document.forms.registrazioneLocale.elements.genere;
-        var categorieLocale = "";
-        if (k.checked)
-            categorieLocale = document.forms.registrazioneLocale.elements.genere.value;
-        let numeroLocale = document.forms.registrazioneLocale.elements.numeroLocale.value;
-        //Localizzazione
-        let indirizzoLocale = document.forms.registrazioneLocale.elements.indirizzoLocale.value;
-        let civicoLocale = document.forms.registrazioneLocale.elements.civicoLocale.value;
-        let cittaLocale = document.forms.registrazioneLocale.elements.cittaLocale.value;
-        let CAPLocale = document.forms.registrazioneLocale.elements.CAPLocale.value;
-        //Orario
-        for (let i = 0; i < 7; i++) {
-            var orario1 = document.forms.registrazioneLocale.elements.orarioapertura[i];
-            var orario2 = document.forms.registrazioneLocale.elements.orariochiusura[i];
-            var chiuso = document.forms.registrazioneLocale.elements.chiuso[i];
-            if (((orario1.checked) && (orario2.checked)) && (chiuso.checked)) {
-                alert("Valori inconsistenti, il locale è aperto o chiuso?");
-                return false;
-            }
-            if (((orario1.checked) && (orario2.checked)) && (chiuso.checked)) {
-                alert("Valori inconsistenti, il locale è aperto o chiuso?");
-                return false;
-            }
+
+        let nomeLocale = document.forms["registrazioneLocale"]["nomeLocale"].value;
+        let descrizioneLocale = document.forms["registrazioneLocale"]["descrizioneLocale"].value;
+        var values = document.forms["registrazioneLocale"]["genereLocale[]"];
+        var generi = [];
+        for (var i = 0; i < values.length; i++) {
+            if(values[i].checked)
+                generi.push(values[i].value);
         }
-        let imgLocale = document.forms.registrazioneLocale.elements.imgLocale.value;
-        var allowedExtensions = /(\.jpg|\.jpeg|\.gif|\.png)$/i; //Controllo sul Type del img inserita
+        let numeroLocale = document.forms["registrazioneLocale"]["numeroLocale"].value;
+        //Localizzazione
+        let indirizzoLocale = document.forms["registrazioneLocale"]["indirizzoLocale"].value;
+        let civicoLocale = document.forms["registrazioneLocale"]["civicoLocale"].value;
+        let cittaLocale = document.forms["registrazioneLocale"]["cittaLocale"].value;
+        let CAPLocale = document.forms["registrazioneLocale"]["CAPLocale"].value;
+
+        if(CAPLocale.length !== 5){
+            alert("Inserire Il CAP giusto");
+            return false;
+        }
+
+        //Orario
+        let orario1 = document.forms["registrazioneLocale"]["orarioapertura[]"];
+        let orario2 = document.forms["registrazioneLocale"]["orariochiusura[]"];
+        let chiuso = document.forms["registrazioneLocale"]["close[]"];
+
+        for (let i = 0; i < 7; i++) {
+
+            if ((orario1[i].value !== "") && (orario2[i].value !== "") && (chiuso[i].checked)) {
+                alert("Valori inconsistenti, il locale è aperto o chiuso?");
+                return false;
+            }
+            if ((orario1[i].value === "") && (orario2[i].value === "") && !(chiuso[i].checked)) {
+                alert("Scegliere o una coppia di orari (apertura/chiusura) o chiuso");
+                return false;
+            }
+            if ((orario1[i].value === "") && (orario2[i].value !== "")) {
+                alert("Scegliere o una coppia di orari (apertura/chiusura) o chiuso");
+                return false;
+            }
+            if ((orario1[i].value !== "") && (orario2[i].value === "")) {
+                alert("Scegliere o una coppia di orari (apertura/chiusura) o chiuso");
+                return false;
+            }
+
+        }
+        let imgLocale = document.forms["registrazioneLocale"]["img_locale"].value;
+        let allowedExtensions = /(\.jpg|\.jpeg|\.gif|\.png)$/i; //Controllo sul Type del img inserita
 
         if (imgLocale !== ""){
             if (!allowedExtensions.exec(imgLocale)) {
@@ -109,16 +102,21 @@ function validateRegForm(id) {
             }
         }
 
-        if (nomeLocale === "" || descrizioneLocale === "" || categorieLocale === "" || numeroLocale === "" || indirizzoLocale === "" || civicoLocale === "" || cittaLocale === "" || CAPLocale === "") {
+        if (nomeLocale === "" || descrizioneLocale === "" || numeroLocale === "" || indirizzoLocale === "" || civicoLocale === "" || cittaLocale === "" || CAPLocale === "") {
             alert("Inserire i campi mancanti");
             return false;
         }
 
+        if(generi.length === 0){
+            alert("Scegliere almeno una categoria");
+            return false;
+        }
+
     } else if (id === 3) { //Form registrazione Evento
-        let nomeEvento = document.forms.registrazioneEvento.elements.nomeEvento.value;
-        let descrizioneEvento = document.forms.registrazioneEvento.elements.descrizioneEvento.value;
-        let dataEvento = document.forms.registrazioneEvento.elements.dataEvento.value;
-        let imgEvento = document.forms.registrazioneEvento.elements.imgEvento.value;
+        let nomeEvento = document.forms["registrazioneEvento"]["nomeEvento"].value;
+        let descrizioneEvento = document.forms["registrazioneEvento"]["descrizioneEvento"].value;
+        let dataEvento = document.forms["registrazioneEvento"]["dataEvento"].value;
+        let imgEvento = document.forms["registrazioneEvento"]["img_evento"].value;
 
         let DataEvento = new Date(dataEvento);
         let Oggi = new Date();
@@ -133,7 +131,7 @@ function validateRegForm(id) {
             return false;
         }
 
-        var allowedExtensions = /(\.jpg|\.jpeg|\.gif|\.png)$/i; //Controllo sul Type del img inserita
+        let allowedExtensions = /(\.jpg|\.jpeg|\.gif|\.png)$/i; //Controllo sul Type del img inserita
 
         if (imgEvento !== ""){
             if (!allowedExtensions.exec(imgEvento)) {

@@ -70,26 +70,26 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 bg-white px-3 mb-3 pb-3">
-                    <form action="/GestioneLocale/creaLocale" enctype="multipart/form-data" method="POST" class="aggiorna" name="registrazioneLocale" onsubmit="return validateRegForm(2)">
+                    <form action="/GestioneLocale/creaLocale" enctype="multipart/form-data" method="POST" class="aggiorna" id="registrazioneLocale" onsubmit="return validateRegForm(2)">
                         <p>INSERISCI LE INFORMAZIONI DEL LOCALE</p>
                         <div class="form-example">
                             <label style="font-weight: bold">Inserisci il nome: </label><br>
-                            <input type="text" name="nomeLocale" required>
+                            <input type="text" name="nomeLocale">
                         </div>
                         <div class="form-example">
                             <label style="font-weight: bold">Inserisci la descrizione: </label><br>
-                            <textarea type="text" name="descrizioneLocale" required></textarea>
+                            <textarea type="text" name="descrizioneLocale"></textarea>
                         </div>
                         <div class="form-example">
                             <label style="font-weight: bold">Inserisci il numero di telefono: </label><br>
-                            <input type="text" name="numeroLocale" required>
+                            <input type="text" name="numeroLocale">
                         </div>
                         <div class="form-example">
                             <label style="font-weight: bold">Inserisci la localizzazione: </label><br>
-                            <input type="text" name="indirizzoLocale" placeholder="Inserisci l'indirizzo" required>
-                            <input type="text" name="civicoLocale" placeholder="Inserisci il numero civico" title="Attenzione, inserire un numero." required>
-                            <input type="text" name="cittaLocale" placeholder="Inserisci città" required>
-                            <input type="text" name="CAPLocale" placeholder="Inserisci il CAP" title="Attenzione il CAP è un codice numerico." required>
+                            <input type="text" name="indirizzoLocale" placeholder="Inserisci l'indirizzo">
+                            <input type="text" name="civicoLocale" placeholder="Inserisci il numero civico" title="Attenzione, inserire un numero.">
+                            <input type="text" name="cittaLocale" placeholder="Inserisci città">
+                            <input type="text" name="CAPLocale" placeholder="Inserisci il CAP" title="Attenzione il CAP è un codice numerico.">
                         </div>
                         <div class="form-example">
                             <label style="font-weight: bold">Inserisci le categorie: </label><br>

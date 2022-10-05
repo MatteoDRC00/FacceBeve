@@ -173,7 +173,7 @@ class VGestioneLocale{
     {
         $value = null;
         if (isset($_POST['CAPLocale']))
-            $value = $_POST['CAPLocale'];
+            $value = (int) $_POST['CAPLocale'];
         return $value;
     }
 
