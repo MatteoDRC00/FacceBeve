@@ -223,8 +223,10 @@ class CProfilo
                 $img_profilo->setId($id);
 
                 $user = $pm->load("username", $username, $class);
-                $id_imgvecchia = $user->getImgProfilo()->getId();
-                $pm->delete("id", $id_imgvecchia, "FImmagine");
+                if($user->getImgProfilo() != null){
+                    $id_imgvecchia = $user->getImgProfilo()->getId();
+                    $pm->delete("id", $id_imgvecchia, "FImmagine");
+                }
 
                 $user->setImgProfilo($img_profilo);
 
@@ -295,6 +297,7 @@ class CProfilo
     public function erroreModifica($tipo, $message, $user): void
     {
         $view = new VProfilo();
+
         $view->errore($tipo, $message, $user);
     }
 

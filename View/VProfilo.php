@@ -222,8 +222,13 @@ class VProfilo{
         $cognome = $utente->getCognome();
         $email = $utente->getEmail();
         $img_profilo = $utente->getImgProfilo();
-        $pic64 = $img_profilo->getImmagine();
-        $type = $img_profilo->getType();
+        if($img_profilo != null){
+            $pic64 = $img_profilo->getImmagine();
+            $type = $img_profilo->getType();
+        }else{
+            $pic64 = "";
+            $type = "";
+        }
 
         $this->smarty->assign("username",$username);
         $this->smarty->assign("nome",$nome);
@@ -242,9 +247,13 @@ class VProfilo{
         $cognome = $proprietario->getCognome();
         $email = $proprietario->getEmail();
         $img_profilo = $proprietario->getImgProfilo();
-        $pic64 = $img_profilo->getImmagine();
-        $type = $img_profilo->getType();
-
+        if($img_profilo != null){
+            $pic64 = $img_profilo->getImmagine();
+            $type = $img_profilo->getType();
+        }else{
+            $pic64 = "";
+            $type = "";
+        }
 
         $this->smarty->assign("username",$username);
         $this->smarty->assign("nome",$nome);
@@ -268,8 +277,13 @@ class VProfilo{
         $cognome = $user->getCognome();
         $email = $user->getEmail();
         $img_profilo = $user->getImgProfilo();
-        $pic64 = $img_profilo->getImmagine();
-        $type = $img_profilo->getType();
+        if($img_profilo != null){
+            $pic64 = $img_profilo->getImmagine();
+            $type = $img_profilo->getType();
+        }else{
+            $pic64 = "";
+            $type = "";
+        }
         $this->smarty->assign("username",$username);
         $this->smarty->assign("nome",$nome);
         $this->smarty->assign("cognome",$cognome);

@@ -146,8 +146,10 @@ class FUtente
         if (($result != null) && ($num == 1)) {
             $utente = new EUtente($result['password'], $result['nome'], $result['cognome'], $result['username'], $result['email']);
             $utente->setIscrizione($result['dataIscrizione']);
-            $img_profilo = FImmagine::loadByField('id', $result['idImg']);
-            $utente->setImgProfilo($img_profilo[0]);
+            if ($result['idImg'] != null){
+                $img_profilo = FImmagine::loadByField('id', $result['idImg']);
+                $utente->setImgProfilo($img_profilo[0]);
+            }
             $utente->setState($result['state']);
         } else {
             if (($result != null) && ($num > 1)) {
@@ -155,8 +157,10 @@ class FUtente
                 for ($i = 0; $i < count($result); $i++) {
                     $utente[$i] = new EUtente($result[$i]['password'], $result[$i]['nome'], $result[$i]['cognome'], $result[$i]['username'], $result[$i]['email']);
                     $utente[$i]->setIscrizione($result[$i]['dataIscrizione']);
-                    $img_profilo = FImmagine::loadByField('id', $result[$i]['idImg']);
-                    $utente[$i]->setImgProfilo($img_profilo[0]);
+                    if($result[$i]['idImg'] != null){
+                        $img_profilo = FImmagine::loadByField('id', $result[$i]['idImg']);
+                        $utente[$i]->setImgProfilo($img_profilo[0]);
+                    }
                     $utente[$i]->setState($result[$i]['state']);
                 }
             }

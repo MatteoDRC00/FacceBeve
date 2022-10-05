@@ -67,26 +67,26 @@
                     <ul>
                         {if $tipo=="Locali"}
                             {if isset($nomeLocale)}
-                                <li>{$nomeLocale}</li>
+                                <li style="font-size: 20px">{$nomeLocale}</li>
                             {/if}
                             {if isset($citta)}
-                                <li>{$citta}</li>
+                                <li style="font-size: 20px">{$citta}</li>
                             {/if}
                             {if isset($categoria)}
-                                <li>{$categoria}</li>
+                                <li style="font-size: 20px">{$categoria}</li>
                             {/if}
                         {else}
                             {if isset($citta)}
-                                <li>{$citta}</li>
+                                <li style="font-size: 20px">{$citta}</li>
                             {/if}
                             {if isset($nomeLocale)}
-                                <li>{$nomeLocale}</li>
+                                <li style="font-size: 20px">{$nomeLocale}</li>
                             {/if}
                             {if isset($nomeEvento)}
-                                <li>{$nomeEvento}</li>
+                                <li style="font-size: 20px">{$nomeEvento}</li>
                             {/if}
                             {if isset($data)}
-                                <li>{$data}</li>
+                                <li style="font-size: 20px">{$data}</li>
                             {/if}
                         {/if}
                     </ul>

@@ -141,15 +141,19 @@ class FProprietario
         list($result, $num) = $db->load(static::getClass(), $attributo, $valore);
         if (($result != null) && ($num == 1)) {
             $proprietario = new EProprietario($result['nome'], $result['cognome'], $result['email'], $result['username'], $result['password']); //Carica un Proprietario dal database
-            $img_profilo = FImmagine::loadByField('id', $result['idImg']);
-            $proprietario->setImgProfilo($img_profilo[0]);
+            if($result['idImg'] != null){
+                $img_profilo = FImmagine::loadByField('id', $result['idImg']);
+                $proprietario->setImgProfilo($img_profilo[0]);
+            }
         } else {
             if (($result != null) && ($num > 1)) {
                 $proprietario = array();
                 for ($i = 0; $i < count($result); $i++) {
                     $proprietario[$i] = new EProprietario($result[$i]['nome'], $result[$i]['cognome'], $result[$i]['email'], $result[$i]['username'], $result[$i]['password']); //Carica un array di oggetti Proprietario dal database
-                    $img_profilo = FImmagine::loadByField('id', $result[$i]['idImg']);
-                    $proprietario[$i]->setImgProfilo($img_profilo[0]);
+                    if($result[$i]['idImg'] == null){
+                        $img_profilo = FImmagine::loadByField('id', $result[$i]['idImg']);
+                        $proprietario[$i]->setImgProfilo($img_profilo[0]);
+                    }
                 }
             }
         }
@@ -167,14 +171,18 @@ class FProprietario
         list($result, $num) = $db->getAll("Proprietario");
         if (($result != null) && ($num == 1)) {
             $proprietario[0] = new EProprietario($result['nome'], $result['cognome'], $result['email'], $result['username'], $result['password']); //Carica un Proprietario dal database
-            $img_profilo = FImmagine::loadByField('id', $result['idImg']);
-            $proprietario[0]->setImgProfilo($img_profilo[0]);
+            if($result['idImg'] != null){
+                $img_profilo = FImmagine::loadByField('id', $result['idImg']);
+                $proprietario->setImgProfilo($img_profilo[0]);
+            }
         } else {
             if (($result != null) && ($num > 1)) {
                 for ($i = 0; $i < count($result); $i++) {
                     $proprietario[$i] = new EProprietario($result[$i]['nome'], $result[$i]['cognome'], $result[$i]['email'], $result[$i]['username'], $result[$i]['password']); //Carica un array di oggetti Proprietario dal database
-                    $img_profilo = FImmagine::loadByField('id', $result[$i]['idImg']);
-                    $proprietario[$i]->setImgProfilo($img_profilo[0]);
+                    if($result[$i]['idImg'] == null){
+                        $img_profilo = FImmagine::loadByField('id', $result[$i]['idImg']);
+                        $proprietario[$i]->setImgProfilo($img_profilo[0]);
+                    }
                 }
             }
         }

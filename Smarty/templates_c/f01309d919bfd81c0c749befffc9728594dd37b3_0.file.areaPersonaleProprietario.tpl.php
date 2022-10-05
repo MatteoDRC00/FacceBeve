@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-10-03 17:50:43
+/* Smarty version 4.2.0, created on 2022-10-05 15:00:26
   from 'C:\xampp\htdocs\FacceBeve\template\areaPersonaleProprietario.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_633b04d3913943_77159867',
+  'unifunc' => 'content_633d7fea8e4f11_92561668',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'f01309d919bfd81c0c749befffc9728594dd37b3' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\areaPersonaleProprietario.tpl',
-      1 => 1664631711,
+      1 => 1664974824,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_633b04d3913943_77159867 (Smarty_Internal_Template $_smarty_tpl) {
+function content_633d7fea8e4f11_92561668 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -185,7 +185,7 @@ function content_633b04d3913943_77159867 (Smarty_Internal_Template $_smarty_tpl)
                 <h2 id="locali">Ecco i tuoi locali:</h2>
             </div>
 
-            <div class="items-body">
+            <div class="items-body" style="color: #f0c040">
                 <?php if (!empty($_smarty_tpl->tpl_vars['locali']->value)) {?>
                     <ul>
                         <?php
@@ -209,7 +209,7 @@ $_smarty_tpl->tpl_vars['locale']->do_else = false;
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                     </ul>
                 <?php } else { ?>
-                    <p>Non possiedi locali locali</p>
+                    <p>Non possiedi locali</p>
                 <?php }?>
             </div>
         </div>

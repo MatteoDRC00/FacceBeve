@@ -153,7 +153,7 @@
                 <h2 id="locali">Ecco i tuoi locali:</h2>
             </div>
 
-            <div class="items-body">
+            <div class="items-body" style="color: #f0c040">
                 {if !empty($locali)}
                     <ul>
                         {foreach $locali as $locale}
@@ -167,7 +167,7 @@
                         {/foreach}
                     </ul>
                 {else}
-                    <p>Non possiedi locali locali</p>
+                    <p>Non possiedi locali</p>
                 {/if}
             </div>
         </div>

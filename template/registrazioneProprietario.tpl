@@ -48,7 +48,7 @@
 <div class="login-page">
     <div class="form">
         <form class="login-form" action="/Accesso/registrazioneProprietario" enctype="multipart/form-data" method="POST" name="registrazioneProprietario" onsubmit="return validateRegForm(1)" >
-            <h1 style="font-weight: bold">Registrati come proprietario di locali</h1>
+            <h1 style="font-weight: bold; font-size: 24px">Registrati come proprietario di locali</h1>
             <input type="text" class="form-control" placeholder="nome" name="nome" pattern="[a-zA-Z]+\"/>
             <input type="text" class="form-control" placeholder="cognome" name="cognome" pattern="[a-zA-Z]+\"/>
             <input type="text" placeholder="email" name="email"  {literal}pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"{/literal} title="Deve essere inclusa una chiocciola @ essendo un email"/>

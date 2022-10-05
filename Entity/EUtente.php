@@ -62,7 +62,7 @@ class EUtente {
      * Immagine del profilo del Utente
      * @var EImmagine|null
      */
-    private ?EImmagine $img_profilo = null;
+    private ?EImmagine $img_profilo;
 
     /**
      * Stato del Utente(Bannato/Attivo)
@@ -84,6 +84,7 @@ class EUtente {
         $this->email = $email;
         $this->username = $username;
         $this->password = $password;
+        $this->img_profilo = null;
         $this->localipreferiti = array();
         $this->state = true;
     }
@@ -255,23 +256,6 @@ class EUtente {
     public function setIscrizione(?string $iscrizione): void
     {
         $this->iscrizione = $iscrizione;
-    }
-
-
-    public function jsonSerialize()
-    {
-        return
-            [
-                'password'   => $this->getPassword(),
-                'username' => $this->getUsername(),
-                'email'   => $this->getEmail(),
-                'nome'   => $this->getNome(),
-                'cognome'   => $this->getCognome(),
-                'localipreferiti'   => $this->getLocalipreferiti(),
-                'iscrizione'   => $this->getIscrizione(),
-                'img_profilo'   => $this->getImgProfilo(),
-                'state' =>$this->getState()
-            ];
     }
 
 

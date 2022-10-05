@@ -115,7 +115,7 @@ class CAccesso
             $message = "Username già esistente, si prega di scriverne un altro";
             echo "<script type='text/javascript'>
                             alert('$message');
-                            window.location.replace('/Accesso/registrazioneUtent');
+                            window.location.replace('/Accesso/formRegistrazioneUtente');
                       </script>";
         } else {
             $utente = new EUtente($view->getPassword(), $view->getNome(), $view->getCognome(), $username, $view->getEmail());
@@ -161,7 +161,7 @@ class CAccesso
             $message = "Username già esistente, si prega di scriverne un altro";
             echo "<script type='text/javascript'>
                             alert('$message');
-                            window.location.replace('/Accesso/registrazioneUtent');
+                            window.location.replace('/Accesso/formRegistrazioneProprietario');
                       </script>";
         } else {
             $proprietario = new EProprietario($view->getNome(), $view->getCognome(), $view->getEmail(), $username, $view->getPassword());
