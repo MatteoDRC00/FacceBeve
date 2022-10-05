@@ -74,10 +74,10 @@ function validateRegForm(id) {
     } else if (id === 2) {  //Form registrazione Locale
         let nomeLocale = document.forms.registrazioneLocale.elements.nomeLocale.value;
         let descrizioneLocale = document.forms.registrazioneLocale.elements.descrizioneLocale.value;
-        var k = document.forms.registrazioneLocale.elements.genere;
-        var categorieLocale = "";
+        let k = document.forms.registrazioneLocale.elements.genere;
+        let categorieLocale = "";
         if (k.checked) {
-            var categorieLocale = document.forms.registrazioneLocale.elements.genere.value;
+            categorieLocale = document.forms.registrazioneLocale.elements.genere.value;
         }
         let numeroLocale = document.forms.registrazioneLocale.elements.numeroLocale.value;
         //Localizzazione

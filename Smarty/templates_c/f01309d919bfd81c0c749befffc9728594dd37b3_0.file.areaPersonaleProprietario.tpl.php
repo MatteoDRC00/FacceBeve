@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-10-05 15:00:26
+/* Smarty version 4.2.0, created on 2022-10-05 15:16:12
   from 'C:\xampp\htdocs\FacceBeve\template\areaPersonaleProprietario.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_633d7fea8e4f11_92561668',
+  'unifunc' => 'content_633d839c46d5d2_79674499',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'f01309d919bfd81c0c749befffc9728594dd37b3' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\areaPersonaleProprietario.tpl',
-      1 => 1664974824,
+      1 => 1664975766,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_633d7fea8e4f11_92561668 (Smarty_Internal_Template $_smarty_tpl) {
+function content_633d839c46d5d2_79674499 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -168,7 +168,7 @@ function content_633d7fea8e4f11_92561668 (Smarty_Internal_Template $_smarty_tpl)
                         <div class="col-12 bg-white px-3 pb-2">
                             <form action="/Profilo/modificaImmagineProfilo" enctype="multipart/form-data" method="POST" class="aggiorna"> <!-- aggiungin i controlli -->
                                 <p>Modifica l'immagine di profilo</p>
-                                <input name="newimg_profilo" class="w-50 p-2 m-2" type="file"><br>
+                                <input name="newimg_profilo" class="w-50 p-2 m-2" type="file" required><br>
                                 <button type="submit" class="btnAggiorna">Modifica Immagine</button>
                             </form>
                         </div>
