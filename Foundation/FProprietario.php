@@ -179,7 +179,7 @@ class FProprietario
             if (($result != null) && ($num > 1)) {
                 for ($i = 0; $i < count($result); $i++) {
                     $proprietario[$i] = new EProprietario($result[$i]['nome'], $result[$i]['cognome'], $result[$i]['email'], $result[$i]['username'], $result[$i]['password']); //Carica un array di oggetti Proprietario dal database
-                    if($result[$i]['idImg'] == null){
+                    if($result[$i]['idImg'] != null){
                         $img_profilo = FImmagine::loadByField('id', $result[$i]['idImg']);
                         $proprietario[$i]->setImgProfilo($img_profilo[0]);
                     }

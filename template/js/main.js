@@ -74,11 +74,10 @@ function validateRegForm(id) {
     } else if (id === 2) {  //Form registrazione Locale
         let nomeLocale = document.forms.registrazioneLocale.elements.nomeLocale.value;
         let descrizioneLocale = document.forms.registrazioneLocale.elements.descrizioneLocale.value;
-        let k = document.forms.registrazioneLocale.elements.genere;
-        let categorieLocale = "";
-        if (k.checked) {
+        var k = document.forms.registrazioneLocale.elements.genere;
+        var categorieLocale = "";
+        if (k.checked)
             categorieLocale = document.forms.registrazioneLocale.elements.genere.value;
-        }
         let numeroLocale = document.forms.registrazioneLocale.elements.numeroLocale.value;
         //Localizzazione
         let indirizzoLocale = document.forms.registrazioneLocale.elements.indirizzoLocale.value;
@@ -87,9 +86,13 @@ function validateRegForm(id) {
         let CAPLocale = document.forms.registrazioneLocale.elements.CAPLocale.value;
         //Orario
         for (let i = 0; i < 7; i++) {
-            var orario1 = document.forms.registrazioneLocale.elements.orario[i][0];
-            var orario2 = document.forms.registrazioneLocale.elements.orario[i][1];
-            var chiuso = document.forms.registrazioneLocale.elements.orario[i][0];
+            var orario1 = document.forms.registrazioneLocale.elements.orarioapertura[i];
+            var orario2 = document.forms.registrazioneLocale.elements.orariochiusura[i];
+            var chiuso = document.forms.registrazioneLocale.elements.chiuso[i];
+            if (((orario1.checked) && (orario2.checked)) && (chiuso.checked)) {
+                alert("Valori inconsistenti, il locale è aperto o chiuso?");
+                return false;
+            }
             if (((orario1.checked) && (orario2.checked)) && (chiuso.checked)) {
                 alert("Valori inconsistenti, il locale è aperto o chiuso?");
                 return false;
