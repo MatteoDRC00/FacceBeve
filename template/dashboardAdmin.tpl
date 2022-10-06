@@ -59,7 +59,7 @@
     <section class="breadcrumbs">
         <div class="container">
             <div class="d-flex justify-content-between align-items-center">
-                <h2>Dashboard ADMIN</h2>
+                <h2 style="font-weight: bold">Dashboard ADMIN</h2>
             </div>
             <div class="gestioneutente">
                 <a href="/Accesso/logout">Esci <i class="fa fa-sign-out"></i></a>

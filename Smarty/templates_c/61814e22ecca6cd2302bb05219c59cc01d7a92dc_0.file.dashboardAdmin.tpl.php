@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-10-06 15:23:54
+/* Smarty version 4.2.0, created on 2022-10-06 15:25:14
   from 'C:\xampp\htdocs\FacceBeve\template\dashboardAdmin.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_633ed6eaf2a8c7_36273643',
+  'unifunc' => 'content_633ed73a8657d0_52529513',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '61814e22ecca6cd2302bb05219c59cc01d7a92dc' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\dashboardAdmin.tpl',
-      1 => 1665062633,
+      1 => 1665062713,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_633ed6eaf2a8c7_36273643 (Smarty_Internal_Template $_smarty_tpl) {
+function content_633ed73a8657d0_52529513 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -82,7 +82,7 @@ function content_633ed6eaf2a8c7_36273643 (Smarty_Internal_Template $_smarty_tpl)
     <section class="breadcrumbs">
         <div class="container">
             <div class="d-flex justify-content-between align-items-center">
-                <h2>Dashboard ADMIN</h2>
+                <h2 style="font-weight: bold">Dashboard ADMIN</h2>
             </div>
             <div class="gestioneutente">
                 <a href="/Accesso/logout">Esci <i class="fa fa-sign-out"></i></a>
@@ -92,7 +92,7 @@ function content_633ed6eaf2a8c7_36273643 (Smarty_Internal_Template $_smarty_tpl)
 
     <!-- ======= Contact Section ======= -->
     <section class="contact" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
-        <div class="container" style="display: grid">
+        <div class="container">
             <div class="row">
                 <table id="customers">
                     <p style="padding: 3px; font-weight: bold; font-size: 20px; text-align: center; color: #17455e;">Utenti Attivi</p>
