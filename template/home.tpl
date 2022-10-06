@@ -152,9 +152,10 @@
 
             <div class="row">
                 <h2>Ecco i TOP 4 locali in Italia:</h2>
+                {$i=0}
                 {if !empty($topLocali)}
                     {foreach $topLocali as $locale}
-                        {$i=0}
+
                         <div class="col-md-6 col-lg-3 d-flex align-items-stretch">
                             <div class="icon-box icon-box-pink">
                                 <a href="/Ricerca/dettagliLocale/{$locale->getId()}"><h3
@@ -163,7 +164,7 @@
                                 <p class="description">{$locale->getDescrizione()}</p>
                             </div>
                         </div>
-                        {$i = $i+1}
+                        {$i=$i+1}
                     {/foreach}
                 {else}
                     <p>Non ci sono locali</p>
