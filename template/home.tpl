@@ -154,8 +154,8 @@
                 <h2>Ecco i TOP 4 locali in Italia:</h2>
                 {$i=0}
                 {if !empty($topLocali)}
+                    {$i=0}
                     {foreach $topLocali as $locale}
-
                         <div class="col-md-6 col-lg-3 d-flex align-items-stretch">
                             <div class="icon-box icon-box-pink">
                                 <a href="/Ricerca/dettagliLocale/{$locale->getId()}"><h3

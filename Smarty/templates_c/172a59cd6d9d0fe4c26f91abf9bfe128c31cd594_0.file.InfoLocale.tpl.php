@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-10-04 10:42:20
+/* Smarty version 4.2.0, created on 2022-10-06 18:11:09
   from 'C:\xampp\htdocs\FacceBeve\template\InfoLocale.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_633bf1ecf28e33_31633563',
+  'unifunc' => 'content_633efe1d45eaf5_01427096',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '172a59cd6d9d0fe4c26f91abf9bfe128c31cd594' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\InfoLocale.tpl',
-      1 => 1664872939,
+      1 => 1665072667,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_633bf1ecf28e33_31633563 (Smarty_Internal_Template $_smarty_tpl) {
+function content_633efe1d45eaf5_01427096 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <?php $_smarty_tpl->_assignInScope('locale', (($tmp = $_smarty_tpl->tpl_vars['locale']->value ?? null)===null||$tmp==='' ? null ?? null : $tmp));
@@ -286,12 +286,19 @@ $__foreach_recensione_4_saved = $_smarty_tpl->tpl_vars['recensione'];
 ?>
                                 <div id="comment-1" class="comment">
                                     <div class="d-flex">
-                                        <div class="comment-img"><img
-                                                    src="data:<?php echo $_smarty_tpl->tpl_vars['recensione']->value->getUtente()->getImgProfilo()->getType();?>
+                                        <?php if (($_smarty_tpl->tpl_vars['recensione']->value->getUtente()->getImgProfilo()->getImmagine() == '')) {?>
+                                            <div class="comment-img"><img
+                                                        src="data:<?php echo $_smarty_tpl->tpl_vars['recensione']->value->getUtente()->getImgProfilo()->getType();?>
 ;base64,<?php echo $_smarty_tpl->tpl_vars['recensione']->value->getUtente()->getImgProfilo()->getImmagine();?>
 "
-                                                    alt="Immagine profilo utente" style="border-radius: 35px;">
-                                        </div>
+                                                        alt="Immagine profilo utente" style="border-radius: 35px;">
+                                            </div>
+                                        <?php } else { ?>
+                                            <div class="comment-img"><img
+                                                        src="/template/img/utente.jpg" alt="immagine profiloooo" style="border-radius: 35px;">
+                                            </div>
+                                        <?php }?>
+
                                         <div>
                                             <h5><?php echo $_smarty_tpl->tpl_vars['recensione']->value->getUtente()->getUsername();?>
 </h5>
@@ -427,9 +434,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                             <div class="reply-form">
                                 <h4>Scrivi una recensione</h4>
                                 <form action="/GestioneRecensione/scriviRecensione/<?php echo $_smarty_tpl->tpl_vars['locale']->value->getId();?>
-" method="POST"
-                                      id="Recensione" name="Recensione" onsubmit="return validateRecensione()">
-
+" method="POST" id="Recensione" onsubmit="return validateRecensione()">
                                     <div class="row">
                                         <div class="col-md-6 form-group">
                                             <input name="titolo" type="text" class="form-control">

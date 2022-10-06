@@ -5,8 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2e58f0f9-142d-4fe5-83c4-7ac5ce6fd200" name="Changes" comment="login e registrazione aggiunta logo in alto da completare">
-      <change beforePath="$PROJECT_DIR$/Smarty/templates_c/61814e22ecca6cd2302bb05219c59cc01d7a92dc_0.file.dashboardAdmin.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/Smarty/templates_c/61814e22ecca6cd2302bb05219c59cc01d7a92dc_0.file.dashboardAdmin.tpl.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/dashboardAdmin.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/template/dashboardAdmin.tpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Smarty/templates_c/172a59cd6d9d0fe4c26f91abf9bfe128c31cd594_0.file.InfoLocale.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/Smarty/templates_c/172a59cd6d9d0fe4c26f91abf9bfe128c31cd594_0.file.InfoLocale.tpl.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Smarty/templates_c/c953834e2bd280dacf9fe734edc7529afcd03f09_0.file.home.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/Smarty/templates_c/c953834e2bd280dacf9fe734edc7529afcd03f09_0.file.home.tpl.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/home.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/template/home.tpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/infoLocale.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/template/infoLocale.tpl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -177,6 +180,7 @@
       <workItem from="1664954601495" duration="1976000" />
       <workItem from="1664973429164" duration="5538000" />
       <workItem from="1664981646912" duration="7449000" />
+      <workItem from="1665071953431" duration="705000" />
     </task>
     <servers />
   </component>

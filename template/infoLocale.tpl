@@ -201,10 +201,17 @@
                             {foreach $arrayRecensioni as $recensione}
                                 <div id="comment-1" class="comment">
                                     <div class="d-flex">
-                                        <div class="comment-img"><img
-                                                    src="data:{$recensione->getUtente()->getImgProfilo()->getType()};base64,{$recensione->getUtente()->getImgProfilo()->getImmagine()}"
-                                                    alt="Immagine profilo utente" style="border-radius: 35px;">
-                                        </div>
+                                        {if ($recensione->getUtente()->getImgProfilo()->getImmagine() eq "")}
+                                            <div class="comment-img"><img
+                                                        src="data:{$recensione->getUtente()->getImgProfilo()->getType()};base64,{$recensione->getUtente()->getImgProfilo()->getImmagine()}"
+                                                        alt="Immagine profilo utente" style="border-radius: 35px;">
+                                            </div>
+                                        {else}
+                                            <div class="comment-img"><img
+                                                        src="/template/img/utente.jpg" alt="immagine profiloooo" style="border-radius: 35px;">
+                                            </div>
+                                        {/if}
+
                                         <div>
                                             <h5>{$recensione->getUtente()->getUsername()}</h5>
 
