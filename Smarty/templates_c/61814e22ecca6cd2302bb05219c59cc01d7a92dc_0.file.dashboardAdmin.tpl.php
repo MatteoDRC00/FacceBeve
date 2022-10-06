@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-10-06 15:11:55
+/* Smarty version 4.2.0, created on 2022-10-06 15:23:54
   from 'C:\xampp\htdocs\FacceBeve\template\dashboardAdmin.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_633ed41bed7382_68986840',
+  'unifunc' => 'content_633ed6eaf2a8c7_36273643',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '61814e22ecca6cd2302bb05219c59cc01d7a92dc' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\dashboardAdmin.tpl',
-      1 => 1665061914,
+      1 => 1665062633,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_633ed41bed7382_68986840 (Smarty_Internal_Template $_smarty_tpl) {
+function content_633ed6eaf2a8c7_36273643 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -92,7 +92,7 @@ function content_633ed41bed7382_68986840 (Smarty_Internal_Template $_smarty_tpl)
 
     <!-- ======= Contact Section ======= -->
     <section class="contact" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
-        <div class="container">
+        <div class="container" style="display: grid">
             <div class="row">
                 <table id="customers">
                     <p style="padding: 3px; font-weight: bold; font-size: 20px; text-align: center; color: #17455e;">Utenti Attivi</p>
@@ -277,7 +277,7 @@ $_smarty_tpl->tpl_vars['categoria']->do_else = false;
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                     <?php }?>
                     <tr>
-                        <form action="/Admin/aggiungiCategoria" method="POST">
+                        <form action="/Admin/aggiungiCategoria" method="POST" id="aggiuntaCategoria" onsubmit="return validateRegForm(4)">
                             <td><input style="padding: 4px" type="text" placeholder="Genere" name="genere"></td>
                             <td><input style="padding: 4px" type="text" placeholder="Descrizione" name="descrizione"></td>
                             <td><input style="border-radius: 9px; padding: 3px; border-color: #0dcaf0" type="submit" value="Aggiungi"></td>

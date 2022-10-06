@@ -207,7 +207,7 @@
                         {/foreach}
                     {/if}
                     <tr>
-                        <form action="/Admin/aggiungiCategoria" method="POST">
+                        <form action="/Admin/aggiungiCategoria" method="POST" id="aggiuntaCategoria" onsubmit="return validateRegForm(4)">
                             <td><input style="padding: 4px" type="text" placeholder="Genere" name="genere"></td>
                             <td><input style="padding: 4px" type="text" placeholder="Descrizione" name="descrizione"></td>
                             <td><input style="border-radius: 9px; padding: 3px; border-color: #0dcaf0" type="submit" value="Aggiungi"></td>

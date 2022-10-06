@@ -141,6 +141,14 @@ function validateRegForm(id) {
             }
         }
 
+    } else if (id === 4) {
+        let genere = document.forms["aggiuntaCategoria"]["genere"].value;
+        let descrizione = document.forms["aggiuntaCategoria"]["descrizione"].value;
+
+        if(genere === "" || descrizione === ""){
+            alert('Inserire entrambi i campi per proseguire');
+            return false;
+        }
     }
 }
 
