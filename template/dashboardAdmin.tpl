@@ -72,9 +72,7 @@
         <div class="container">
             <div class="row">
                 <table id="customers">
-                    <caption>
-                        <p style="font-weight: bold">Utenti Attivi</p>
-                    </caption>
+                    <p style="padding: 3px; font-weight: bold; font-size: 20px; text-align: center; color: #17455e;">Utenti Attivi</p>
                     <thead>
                     <tr>
                         <th>Username</th>
@@ -86,7 +84,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    {if isset($utentiAttivi)}
+                    {if !empty($utentiAttivi)}
                         {foreach $utentiAttivi as $utente}
                             <tr>
                                 <td>{$utente->getUsername()}</td>
@@ -105,7 +103,7 @@
                     </tbody>
                 </table>
             </div>
-            {if !isset($utentiAttivi)}
+            {if empty($utentiAttivi)}
                 <br>
                 <p style="text-align: center">Attualmente non ci sono utenti attivi </p>
             {/if}
@@ -114,9 +112,7 @@
         <div class="container">
             <div class="row">
                 <table id="customers">
-                    <caption>
-                        <p style="font-weight: bold">Utenti Bannati</p>
-                    </caption>
+                    <p style="padding: 3px; font-weight: bold; font-size: 20px; text-align: center; color: #17455e;">Utenti Bannati</p>
                     <thead>
                     <tr>
                         <th>Username</th>
@@ -128,7 +124,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    {if isset($utentiBannati)}
+                    {if !empty($utentiBannati)}
                         {foreach $utentiBannati as $utente}
                             <tr>
                                 <td>{$utente->getUsername()}</td>
@@ -147,7 +143,7 @@
                     </tbody>
                 </table>
             </div>
-            {if !isset($utentiBannati)}
+            {if empty($utentiBannati)}
                 <br>
                 <p style="text-align: center">Attualmente non ci sono utenti bannati </p>
             {/if}
@@ -156,9 +152,39 @@
         <div class="container">
             <div class="row">
                 <table id="customers">
-                    <caption>
-                        <p style="font-weight: bold">Categorie</p>
-                    </caption>
+                    <p style="padding: 3px; font-weight: bold; font-size: 20px; text-align: center; color: #17455e;">Proprietari di Locali</p>
+                    <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Nome</th>
+                        <th>Cognome</th>
+                        <th>Email</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {if !empty($proprietari)}
+                        {foreach $proprietari as $proprietario}
+                            <tr>
+                                <td>{$proprietario->getUsername()}</td>
+                                <td>{$proprietario->getNome()}</td>
+                                <td>{$proprietario->getCognome()}</td>
+                                <td>{$proprietario->getEmail()}</td>
+                            </tr>
+                        {/foreach}
+                    {/if}
+                    </tbody>
+                </table>
+            </div>
+            {if empty($proprietari)}
+                <br>
+                <p style="text-align: center">Attualmente non ci sono proprietari di locali </p>
+            {/if}
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <table id="customers">
+                    <p style="padding: 3px; font-weight: bold; font-size: 20px; text-align: center; color: #17455e;">Categorie</p>
                     <thead>
                     <tr>
                         <th>Genere</th>
@@ -167,7 +193,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    {if isset($categorie)}
+                    {if !empty($categorie)}
                         {foreach $categorie as $categoria}
                             <tr>
                                 <td>{$categoria->getGenere()}</td>
@@ -189,7 +215,7 @@
                     </tbody>
                 </table>
             </div>
-            {if !isset($categorie)}
+            {if empty($categorie)}
                 <br>
                 <p style="text-align: center">Attualmente non ci sono categorie di locali sul sito </p>
             {/if}
@@ -198,9 +224,7 @@
         <div class="container">
             <div class="row">
                 <table id="customers">
-                    <caption>
-                        <p style="font-weight: bold">Recensioni</p>
-                    </caption>
+                    <p style="padding: 3px; font-weight: bold; font-size: 20px; text-align: center; color: #17455e;">Recensioni Segnalate</p>
                     <thead>
                     <tr>
                         <th>Id</th>
@@ -213,7 +237,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    {if isset($recensioni)}
+                    {if !empty($recensioni)}
                         {foreach $recensioni as $rece}
                             <tr>
                                 <td>{$rece->getId()}</td>
@@ -237,7 +261,7 @@
                     </tbody>
                 </table>
             </div>
-            {if !isset($recensioni)}
+            {if empty($recensioni)}
                 <br>
                 <p style="text-align: center">Attualmente non ci sono recensioni segnalate </p>
             {/if}

@@ -170,11 +170,12 @@ class FProprietario
         $db = FDB::getInstance();
         list($result, $num) = $db->getAll("Proprietario");
         if (($result != null) && ($num == 1)) {
-            $proprietario[0] = new EProprietario($result['nome'], $result['cognome'], $result['email'], $result['username'], $result['password']); //Carica un Proprietario dal database
+            $p = new EProprietario($result['nome'], $result['cognome'], $result['email'], $result['username'], $result['password']); //Carica un Proprietario dal database
             if($result['idImg'] != null){
                 $img_profilo = FImmagine::loadByField('id', $result['idImg']);
-                $proprietario->setImgProfilo($img_profilo[0]);
+                $p->setImgProfilo($img_profilo[0]);
             }
+            $proprietario[0] = $p;
         } else {
             if (($result != null) && ($num > 1)) {
                 for ($i = 0; $i < count($result); $i++) {

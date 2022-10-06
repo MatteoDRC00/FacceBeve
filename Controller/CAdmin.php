@@ -50,9 +50,17 @@ class CAdmin
             $pm = FPersistentManager::getInstance();
 
             //loadUtenti --> Separo in Utenti attivi e Bannati
-            $utentiAttivi = $pm->loadUtentiByState(1);
-            $utentiBannati = $pm->loadUtentiByState(0);
+            $utentiAttivi = $pm->load("state", 1, "FUtente");
+            $utentiA = array();
+            if(!is_array($utentiAttivi) && $utentiAttivi != null){
+                $utentiA[0] = $utentiAttivi;
+            }
 
+            $utentiBannati = $pm->load("state", 0, "FUtente");
+            $utentiB = array();
+            if(!is_array($utentiBannati) && $utentiBannati != null){
+                $utentiB[0] = $utentiBannati;
+            }
             //loadCategorie
             $categorie = $pm->getCategorie();
 
@@ -62,7 +70,7 @@ class CAdmin
             //loadProprietari
             $proprietari = $pm->loadAll("FProprietario");
 
-            $view->HomeAdmin($utentiAttivi, $utentiBannati, $categorie, $recSegnalate, $proprietari);
+            $view->HomeAdmin($utentiA, $utentiB, $categorie, $recSegnalate, $proprietari);
         } else {
             header('Location: /Accesso/login');
         }
