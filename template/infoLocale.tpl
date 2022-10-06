@@ -201,7 +201,7 @@
                             {foreach $arrayRecensioni as $recensione}
                                 <div id="comment-1" class="comment">
                                     <div class="d-flex">
-                                        {if ($recensione->getUtente()->getImgProfilo()->getImmagine() eq "")}
+                                        {if (!is_null($recensione->getUtente()->getImgProfilo()))}
                                             <div class="comment-img"><img
                                                         src="data:{$recensione->getUtente()->getImgProfilo()->getType()};base64,{$recensione->getUtente()->getImgProfilo()->getImmagine()}"
                                                         alt="Immagine profilo utente" style="border-radius: 35px;">
@@ -249,11 +249,19 @@
                                 {if isset($arrayRisposte[{$recensione@iteration-1}])}
                                     <div id="comment-reply-1" class="comment comment-reply">
                                         <div class="d-flex"><h6><i class="bi-arrow-right-short">Re:</i></h6>
-                                            <div class="comment-img"><img
-                                                        src="data:{$arrayRisposte[{$recensione@iteration-1}]->getProprietario()->getImgProfilo()->getType()};base64,{$arrayRisposte[{$recensione@iteration-1}]->getProprietario()->getImgProfilo()->getImmagine()}"
-                                                        alt="Immagine profilo proprietario"
-                                                        style="border-radius: 35px;"></div>
-                                            <div>
+                                            {if !(is_null($arrayRisposte[{$recensione@iteration-1}]->getProprietario()->getImgProfilo()))}
+                                                <div class="comment-img"><img
+                                                            src="data:{$arrayRisposte[{$recensione@iteration-1}]->getProprietario()->getImgProfilo()->getType()};base64,{$arrayRisposte[{$recensione@iteration-1}]->getProprietario()->getImgProfilo()->getImmagine()}"
+                                                            alt="Immagine profilo proprietario"
+                                                            style="border-radius: 35px;"></div>
+                                                <div>
+                                            {else}
+                                                <div class="comment-img"><img
+                                                            src="/template/img/utente.jpg"
+                                                            alt="Immagine profilo proprietario"
+                                                            style="border-radius: 35px;"></div>
+                                                <div>
+                                            {/if}
                                                 <h5>{$arrayRisposte[{$recensione@iteration-1}]->getProprietario()->getUsername()}</h5>
                                                 <p>{$arrayRisposte[{$recensione@iteration-1}]->getDescrizione()}</p>
 

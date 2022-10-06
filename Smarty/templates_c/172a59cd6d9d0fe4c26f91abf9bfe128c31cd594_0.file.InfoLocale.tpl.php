@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-10-06 18:11:09
+/* Smarty version 4.2.0, created on 2022-10-06 18:40:47
   from 'C:\xampp\htdocs\FacceBeve\template\InfoLocale.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_633efe1d45eaf5_01427096',
+  'unifunc' => 'content_633f050f4321f3_68868483',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '172a59cd6d9d0fe4c26f91abf9bfe128c31cd594' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\InfoLocale.tpl',
-      1 => 1665072667,
+      1 => 1665074445,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_633efe1d45eaf5_01427096 (Smarty_Internal_Template $_smarty_tpl) {
+function content_633f050f4321f3_68868483 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <?php $_smarty_tpl->_assignInScope('locale', (($tmp = $_smarty_tpl->tpl_vars['locale']->value ?? null)===null||$tmp==='' ? null ?? null : $tmp));
@@ -286,7 +286,7 @@ $__foreach_recensione_4_saved = $_smarty_tpl->tpl_vars['recensione'];
 ?>
                                 <div id="comment-1" class="comment">
                                     <div class="d-flex">
-                                        <?php if (($_smarty_tpl->tpl_vars['recensione']->value->getUtente()->getImgProfilo()->getImmagine() == '')) {?>
+                                        <?php if ((!is_null($_smarty_tpl->tpl_vars['recensione']->value->getUtente()->getImgProfilo()))) {?>
                                             <div class="comment-img"><img
                                                         src="data:<?php echo $_smarty_tpl->tpl_vars['recensione']->value->getUtente()->getImgProfilo()->getType();?>
 ;base64,<?php echo $_smarty_tpl->tpl_vars['recensione']->value->getUtente()->getImgProfilo()->getImmagine();?>
@@ -348,38 +348,49 @@ $_prefixVariable1 = ob_get_clean();
 if ((isset($_smarty_tpl->tpl_vars['arrayRisposte']->value[$_prefixVariable1]))) {?>
                                     <div id="comment-reply-1" class="comment comment-reply">
                                         <div class="d-flex"><h6><i class="bi-arrow-right-short">Re:</i></h6>
-                                            <div class="comment-img"><img
-                                                        src="data:<?php ob_start();
+                                            <?php ob_start();
 echo $_smarty_tpl->tpl_vars['recensione']->iteration-1;
 $_prefixVariable2 = ob_get_clean();
-echo $_smarty_tpl->tpl_vars['arrayRisposte']->value[$_prefixVariable2]->getProprietario()->getImgProfilo()->getType();?>
-;base64,<?php ob_start();
+if (!(is_null($_smarty_tpl->tpl_vars['arrayRisposte']->value[$_prefixVariable2]->getProprietario()->getImgProfilo()))) {?>
+                                                <div class="comment-img"><img
+                                                            src="data:<?php ob_start();
 echo $_smarty_tpl->tpl_vars['recensione']->iteration-1;
 $_prefixVariable3 = ob_get_clean();
-echo $_smarty_tpl->tpl_vars['arrayRisposte']->value[$_prefixVariable3]->getProprietario()->getImgProfilo()->getImmagine();?>
-"
-                                                        alt="Immagine profilo proprietario"
-                                                        style="border-radius: 35px;"></div>
-                                            <div>
-                                                <h5><?php ob_start();
+echo $_smarty_tpl->tpl_vars['arrayRisposte']->value[$_prefixVariable3]->getProprietario()->getImgProfilo()->getType();?>
+;base64,<?php ob_start();
 echo $_smarty_tpl->tpl_vars['recensione']->iteration-1;
 $_prefixVariable4 = ob_get_clean();
-echo $_smarty_tpl->tpl_vars['arrayRisposte']->value[$_prefixVariable4]->getProprietario()->getUsername();?>
+echo $_smarty_tpl->tpl_vars['arrayRisposte']->value[$_prefixVariable4]->getProprietario()->getImgProfilo()->getImmagine();?>
+"
+                                                            alt="Immagine profilo proprietario"
+                                                            style="border-radius: 35px;"></div>
+                                                <div>
+                                            <?php } else { ?>
+                                                <div class="comment-img"><img
+                                                            src="/template/img/utente.jpg"
+                                                            alt="Immagine profilo proprietario"
+                                                            style="border-radius: 35px;"></div>
+                                                <div>
+                                            <?php }?>
+                                                <h5><?php ob_start();
+echo $_smarty_tpl->tpl_vars['recensione']->iteration-1;
+$_prefixVariable5 = ob_get_clean();
+echo $_smarty_tpl->tpl_vars['arrayRisposte']->value[$_prefixVariable5]->getProprietario()->getUsername();?>
 </h5>
                                                 <p><?php ob_start();
 echo $_smarty_tpl->tpl_vars['recensione']->iteration-1;
-$_prefixVariable5 = ob_get_clean();
-echo $_smarty_tpl->tpl_vars['arrayRisposte']->value[$_prefixVariable5]->getDescrizione();?>
+$_prefixVariable6 = ob_get_clean();
+echo $_smarty_tpl->tpl_vars['arrayRisposte']->value[$_prefixVariable6]->getDescrizione();?>
 </p>
 
                                                 <?php ob_start();
 echo $_smarty_tpl->tpl_vars['recensione']->iteration-1;
-$_prefixVariable6 = ob_get_clean();
-if ($_smarty_tpl->tpl_vars['arrayRisposte']->value[$_prefixVariable6]->getProprietario()->getUsername() == $_smarty_tpl->tpl_vars['utente']->value) {?>
+$_prefixVariable7 = ob_get_clean();
+if ($_smarty_tpl->tpl_vars['arrayRisposte']->value[$_prefixVariable7]->getProprietario()->getUsername() == $_smarty_tpl->tpl_vars['utente']->value) {?>
                                                     <form action="/GestioneRecensione/cancellaRisposta/<?php ob_start();
 echo $_smarty_tpl->tpl_vars['recensione']->iteration-1;
-$_prefixVariable7 = ob_get_clean();
-echo $_smarty_tpl->tpl_vars['arrayRisposte']->value[$_prefixVariable7]->getId();?>
+$_prefixVariable8 = ob_get_clean();
+echo $_smarty_tpl->tpl_vars['arrayRisposte']->value[$_prefixVariable8]->getId();?>
 "
                                                           method="POST">
                                                         <input type="hidden" value="<?php echo $_smarty_tpl->tpl_vars['locale']->value->getId();?>
@@ -400,8 +411,8 @@ echo $_smarty_tpl->tpl_vars['arrayRisposte']->value[$_prefixVariable7]->getId();
                                             <h4>Rispondi</h4>
                                             <form action="/GestioneRecensione/rispondi/<?php ob_start();
 echo $_smarty_tpl->tpl_vars['recensione']->iteration-1;
-$_prefixVariable8 = ob_get_clean();
-echo $_smarty_tpl->tpl_vars['arrayRecensioni']->value[$_prefixVariable8]->getId();?>
+$_prefixVariable9 = ob_get_clean();
+echo $_smarty_tpl->tpl_vars['arrayRecensioni']->value[$_prefixVariable9]->getId();?>
 "
                                                   method="POST"
                                                   name="Risposta"> <!--onsubmit="return validateRisposta()"-->
