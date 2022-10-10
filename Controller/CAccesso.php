@@ -181,7 +181,7 @@ class CAccesso
             $sessione->imposta_valore('utente', $proprietario->getUsername());
             $sessione->imposta_valore("tipo_utente", get_class($proprietario));
 
-            header("Location: /Ricerca/mostraHome");
+           header("Location: /Ricerca/mostraHome");
         }
     }
 
