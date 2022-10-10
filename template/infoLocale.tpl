@@ -238,6 +238,9 @@
                                                 </button>
                                             </form>
                                         {/if}
+                                        {if isset($proprietario) && ($recensione->isSegnalata() == 1)}
+                                            <h5><i> Recensione Segnalata </i></h5>
+                                        {/if}
                                     </h5>
 
                                     <h4 style="font-weight:bold;">{$recensione->getTitolo()} </h4>

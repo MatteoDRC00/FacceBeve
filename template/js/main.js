@@ -126,7 +126,7 @@ function validateRegForm(id) {
             return false;
         }
 
-        if (DataEvento.getTime() < Oggi.getTime()) {
+        if (DataEvento.getTime() <= Oggi.getTime()) {
             alert('La data del evento è precedente ad adesso, viaggiare nel tempo è pericoloso');
             return false;
         }
@@ -199,12 +199,26 @@ function validatemodificaDataForm(){
     let DataEvento = new Date(dataEvento);
     let Oggi = new Date();
 
-    if (DataEvento.getTime() < Oggi.getTime()) {
+    if (DataEvento.getTime() <= Oggi.getTime()) {
         alert('La data del evento è precedente ad adesso, viaggiare nel tempo è pericoloso');
         return false;
     }
 }
 
+
+function validateImg(){
+    let img = document.forms.modificaImg.elements.newimg_profilo.value;
+
+    let allowedExtensions = /(\.jpg|\.jpeg|\.gif|\.png)$/i; //Controllo sul Type del img inserita
+
+    if (img !== ""){
+        if (!allowedExtensions.exec(img)) {
+            alert('Tipo di file non valido, sono accettati, prova con  \n-jpg\n-jpeg\n-gif\n-png');
+            img.value = '';
+            return false;
+        }
+    }
+}
 
 /**
  *Funzione utilizzata per controllare che venga inserito almeno un valore nei campi del form di ricerca

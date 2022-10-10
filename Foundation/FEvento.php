@@ -192,7 +192,7 @@ class FEvento
         list($result, $num) = $db->loadEventiUtente(static::$class, $username);
         if (($result != null) && ($num == 1)) {
             //Prendo solo gli eventi futuri ad oggi
-            if( $result["data"] >=  date("d/m/Y")){
+            if( strtotime($result["data"]) >=  strtotime(date("d/m/Y"))){
                 $immagine = FImmagine::loadByField("id", $result['idImg']);
                 $evento[0] = new EEvento($result['nome'], $result['descrizione'], $result['data']); //Carica un evento dal database
                 $evento[0]->setImg($immagine[0]);
