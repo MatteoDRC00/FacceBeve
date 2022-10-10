@@ -152,6 +152,59 @@ function validateRegForm(id) {
     }
 }
 
+function validateModificaOrarioForm(){
+    let orario1 = document.forms["modificaOrario"]["orarioapertura[]"];
+    let orario2 = document.forms["modificaOrario"]["orariochiusura[]"];
+    let chiuso = document.forms["modificaOrario"]["close[]"];
+
+    for (let i = 0; i < 7; i++) {
+
+        if ((orario1[i].value !== "") && (orario2[i].value !== "") && (chiuso[i].checked)) {
+            alert("Valori inconsistenti, il locale è aperto o chiuso?");
+            return false;
+        }
+        if ((orario1[i].value === "") && (orario2[i].value === "") && !(chiuso[i].checked)) {
+            alert("Scegliere o una coppia di orari (apertura/chiusura) o chiuso");
+            return false;
+        }
+        if ((orario1[i].value === "") && (orario2[i].value !== "")) {
+            alert("Scegliere o una coppia di orari (apertura/chiusura) o chiuso");
+            return false;
+        }
+        if ((orario1[i].value !== "") && (orario2[i].value === "")) {
+            alert("Scegliere o una coppia di orari (apertura/chiusura) o chiuso");
+            return false;
+        }
+
+    }
+}
+
+function validatemodificaGeneriForm(){
+    var values = document.forms["modificaGenere"]["genereLocale[]"];
+    var generi = [];
+    for (var i = 0; i < values.length; i++) {
+        if(values[i].checked)
+            generi.push(values[i].value);
+    }
+
+    if(generi.length === 0){
+        alert("Scegliere almeno una categoria");
+        return false;
+    }
+}
+
+function validatemodificaDataForm(){
+    let dataEvento = document.forms["modificaData"]["dataEvento"].value;
+
+    let DataEvento = new Date(dataEvento);
+    let Oggi = new Date();
+
+    if (DataEvento.getTime() < Oggi.getTime()) {
+        alert('La data del evento è precedente ad adesso, viaggiare nel tempo è pericoloso');
+        return false;
+    }
+}
+
 
 /**
  *Funzione utilizzata per controllare che venga inserito almeno un valore nei campi del form di ricerca
