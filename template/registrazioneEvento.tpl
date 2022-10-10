@@ -68,7 +68,7 @@
                         <p>Inserisci informazioni sull'evento</p>
                         <div class="form-example">
                             <label style="font-weight: bold">Inserisci il nome: </label><br>
-                            <input type="text" name="nomeEvento">
+                            <input type="text" name="nomeEvento" required>
                         </div>
                         <div class="form-example">
                             <label style="font-weight: bold">Inserisci la descrizione: </label><br>
@@ -76,11 +76,11 @@
                         </div>
                         <div class="form-example">
                             <label style="font-weight: bold">Inserisci la data: </label><br>
-                            <input type="date" name="dataEvento">
+                            <input type="date" name="dataEvento" required>
                         </div>
                         <div class="form-example">
                             <p>AGGIUNGI LA LOCANDINA</p>
-                            <input name="img_evento" class="w-50 p-2 m-2" type="file"><br>
+                            <input name="img_evento" class="w-50 p-2 m-2" type="file" required><br>
                         </div>
                         <button type="submit" class="btnAggiorna">INSERISCI</button>
                     </form>
