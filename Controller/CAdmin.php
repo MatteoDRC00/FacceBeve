@@ -54,12 +54,16 @@ class CAdmin
             $utentiA = array();
             if(!is_array($utentiAttivi) && $utentiAttivi != null){
                 $utentiA[0] = $utentiAttivi;
+            }else if(!empty($utentiAttivi)){
+                $utentiA = $utentiAttivi;
             }
 
             $utentiBannati = $pm->load("state", 0, "FUtente");
             $utentiB = array();
             if(!is_array($utentiBannati) && $utentiBannati != null){
                 $utentiB[0] = $utentiBannati;
+            }else if(!empty($utentiBannati)){
+                $utentiB = $utentiBannati;
             }
             //loadCategorie
             $categorie = $pm->getCategorie();
@@ -69,6 +73,7 @@ class CAdmin
 
             //loadProprietari
             $proprietari = $pm->loadAll("FProprietario");
+
 
             $view->HomeAdmin($utentiA, $utentiB, $categorie, $recSegnalate, $proprietari);
         } else {

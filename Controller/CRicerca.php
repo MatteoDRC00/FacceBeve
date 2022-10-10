@@ -136,7 +136,14 @@ class CRicerca
             if ($check)
                 $proprietario = 1;
         }
-        $vRicerca->dettagliLocale($tipo, $presente, $locale, $recensioni, $risposte, $rating, $proprietario, $eventiOrganizzati);
+
+        $utente = $pm->load("username",$username,"FUtente");
+        if($utente)
+            $stato = $utente->getState();
+        else
+            $stato = 0;
+
+       $vRicerca->dettagliLocale($username,$stato, $tipo, $presente, $locale, $recensioni, $risposte, $rating, $proprietario, $eventiOrganizzati);
     }
 
 

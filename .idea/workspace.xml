@@ -6,9 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="2e58f0f9-142d-4fe5-83c4-7ac5ce6fd200" name="Changes" comment="login e registrazione aggiunta logo in alto da completare">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/templates_c/1c893a337b2815c195d1ebdec5f1c045d7425e74_0.file.gestioneLocale.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/Smarty/templates_c/1c893a337b2815c195d1ebdec5f1c045d7425e74_0.file.gestioneLocale.tpl.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/gestioneLocale.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/template/gestioneLocale.tpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/template/js/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controller/CAdmin.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/CAdmin.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controller/CGestioneLocale.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/CGestioneLocale.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controller/CRicerca.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/CRicerca.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Entity/EUtente.php" beforeDir="false" afterPath="$PROJECT_DIR$/Entity/EUtente.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Smarty/templates_c/172a59cd6d9d0fe4c26f91abf9bfe128c31cd594_0.file.InfoLocale.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/Smarty/templates_c/172a59cd6d9d0fe4c26f91abf9bfe128c31cd594_0.file.InfoLocale.tpl.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/VRicerca.php" beforeDir="false" afterPath="$PROJECT_DIR$/View/VRicerca.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/infoLocale.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/template/infoLocale.tpl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,7 +102,7 @@
     <configuration name="index.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/index.php">
       <CommandLine>
         <PhpTestInterpreterSettings>
-          <option name="interpreterName" value="PHP" />
+          <option name="interpreterName" value="PHP 7.4.1" />
         </PhpTestInterpreterSettings>
       </CommandLine>
       <method v="2" />
@@ -182,6 +186,7 @@
       <workItem from="1665071953431" duration="705000" />
       <workItem from="1665404518871" duration="814000" />
       <workItem from="1665406287660" duration="1746000" />
+      <workItem from="1665408834091" duration="3773000" />
     </task>
     <servers />
   </component>

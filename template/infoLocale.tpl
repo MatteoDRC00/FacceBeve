@@ -308,7 +308,7 @@
 
                             <!--onsubmit="return validateRecensione()"  -->
                             <!--/\/\//\/\//\/\//\/\//\/\//\/\///////////////////////\\\\\\\\\\\\\\\\\/\/\//\/\//\/\//\/\//\/\//\/\/////\\\\\/\/\/\/\/\/\/\/\/\//\/\/\-->
-                            {if ($tipo == "EUtente")}
+                            {if ($tipo == "EUtente" & $stato == "1")}
                                 <div class="reply-form">
                                     <h4>Scrivi una recensione</h4>
                                     <form action="/GestioneRecensione/scriviRecensione/{$locale->getId()}" method="POST"

@@ -147,7 +147,7 @@ class CGestioneLocale
                         $pm->storeEsterne("Locale_Orari", "ID_Locale", "ID_Orario", $id_locale, $id);
                     }
                 } else {
-                    $orario = new EOrario($giorno, "Chiuso", "Chiuso");
+                    $orario = new EOrario($giorno, "Chiuso", "");
                     $id = $pm->store($orario);
                     $orario->setId($id);
                     $o[] = $orario;

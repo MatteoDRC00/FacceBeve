@@ -264,7 +264,6 @@ class EUtente {
      */
     public function __toString() {
         $print = "\npassword: ".$this->getPassword()."\n"."username: ".$this->getUsername()."\n"."email: ".$this->getEmail()."\n"."nome: ".$this->getNome()."\n"."cognome: ".$this->getCognome()."\n"."localipreferiti: ".$this->getLocalipreferiti()."\n"."iscrizione: ".$this->getIscrizione()."\n"."stato: ".$this->StaToString()."\n";
-
         return $print;
     }
 
