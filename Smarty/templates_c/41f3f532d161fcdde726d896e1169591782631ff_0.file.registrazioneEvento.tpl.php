@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-10-05 19:12:34
+/* Smarty version 4.2.0, created on 2022-10-10 17:58:00
   from 'C:\xampp\htdocs\FacceBeve\template\registrazioneEvento.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_633dbb02223b29_45935411',
+  'unifunc' => 'content_634441080c4b80_37232832',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '41f3f532d161fcdde726d896e1169591782631ff' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\registrazioneEvento.tpl',
-      1 => 1664989952,
+      1 => 1665417440,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_633dbb02223b29_45935411 (Smarty_Internal_Template $_smarty_tpl) {
+function content_634441080c4b80_37232832 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -94,7 +94,7 @@ function content_633dbb02223b29_45935411 (Smarty_Internal_Template $_smarty_tpl)
                         <p>Inserisci informazioni sull'evento</p>
                         <div class="form-example">
                             <label style="font-weight: bold">Inserisci il nome: </label><br>
-                            <input type="text" name="nomeEvento">
+                            <input type="text" name="nomeEvento" required>
                         </div>
                         <div class="form-example">
                             <label style="font-weight: bold">Inserisci la descrizione: </label><br>
@@ -102,11 +102,11 @@ function content_633dbb02223b29_45935411 (Smarty_Internal_Template $_smarty_tpl)
                         </div>
                         <div class="form-example">
                             <label style="font-weight: bold">Inserisci la data: </label><br>
-                            <input type="date" name="dataEvento">
+                            <input type="date" name="dataEvento" required>
                         </div>
                         <div class="form-example">
                             <p>AGGIUNGI LA LOCANDINA</p>
-                            <input name="img_evento" class="w-50 p-2 m-2" type="file"><br>
+                            <input name="img_evento" class="w-50 p-2 m-2" type="file" required><br>
                         </div>
                         <button type="submit" class="btnAggiorna">INSERISCI</button>
                     </form>
