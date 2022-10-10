@@ -77,7 +77,7 @@ class FPersistentManager {
      * @return void
      */
     public function delete(string $attributo, string $valore, string $Fclass) {
-        $Fclass::delete($attributo,$valore);
+        return $Fclass::delete($attributo,$valore);
     }
 
 

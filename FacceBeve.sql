@@ -84,7 +84,7 @@ CREATE TABLE `Categoria` (
 );
 /*Inserimento dati Categoria*/
 INSERT INTO `Categoria` (`genere`,`descrizione`) VALUES
-('Bar','Il bar è un locale aperto al pubblico adibito alla somministrazione di bevande calde e fredde ed in alcuni casi di snacks.'), 
+('Bar','Il bar è un locale aperto al pubblico adibito alla somministrazione di bevande calde e fredde ed in alcuni casi di snacks.'),
 ('Irish Pub','Quel locale legnoso fatto di luci soffuse, pinte brillanti e un gradevole abbraccio di calore.');
 
 /*Tabella relativa alla Localizzazione*/
@@ -143,8 +143,8 @@ INSERT INTO `Locale` (`id`,`nome`,`numtelefono`,`descrizione`,`proprietario`,`lo
 (1,'Morrison','3279071461','Qui ci si diverte, dalle altre parti no!','DRKing',1);
 
 
-/*Tabella relativa agli Eventi 
-DROP TABLE IF EXISTS `Evento`; /*Poi fare seconda tabella / aggiornamento evento*/
+/*Tabella relativa agli Eventi*/
+DROP TABLE IF EXISTS `Evento`;
 
 CREATE TABLE `Evento` (
     `id` int(11) NOT NULL AUTO_INCREMENT, 

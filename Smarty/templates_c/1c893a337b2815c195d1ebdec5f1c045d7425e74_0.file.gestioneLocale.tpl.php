@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-10-03 17:58:20
+/* Smarty version 4.2.0, created on 2022-10-10 15:27:54
   from 'C:\xampp\htdocs\FacceBeve\template\gestioneLocale.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_633b069c720639_11600179',
+  'unifunc' => 'content_63441ddaa24723_40851338',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '1c893a337b2815c195d1ebdec5f1c045d7425e74' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\gestioneLocale.tpl',
-      1 => 1664812634,
+      1 => 1665408470,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_633b069c720639_11600179 (Smarty_Internal_Template $_smarty_tpl) {
+function content_63441ddaa24723_40851338 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -111,7 +111,7 @@ function content_633b069c720639_11600179 (Smarty_Internal_Template $_smarty_tpl)
                         <button type="submit" class="btnAggiorna">AGGIORNA DESCRIZIONE <i class="fa fa-refresh"></i></button>
                     </form>
                     <form action="/GestioneLocale/modificaCategorieLocale/<?php echo $_smarty_tpl->tpl_vars['locale']->value->getId();?>
-" method="POST" class="aggiorna">
+" method="POST" class="aggiorna" id="modificaGenere" onsubmit="return validatemodificaGeneriForm()">
                         <div class="form-example">
                             <label style="font-weight: bold">Aggiorna la categoria: </label><br>
                             <?php if (!empty($_smarty_tpl->tpl_vars['categorie']->value)) {?>
@@ -145,15 +145,15 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 " method="POST" class="aggiorna">
                         <div class="form-example">
                             <label style="font-weight: bold">Aggiorna la localizzazione: </label><br>
-                            <input type="text" name="indirizzoLocale" placeholder="Nuovo indirizzo">
-                            <input type="text" name="civicoLocale" placeholder="Nuovo numero civico">
-                            <input type="text" name="cittaLocale" placeholder="Nuova città">
-                            <input type="text" name="CAPLocale" placeholder="Nuovo CAP">
+                            <input type="text" name="indirizzoLocale" placeholder="Nuovo indirizzo" required>
+                            <input type="text" name="civicoLocale" placeholder="Nuovo numero civico" required>
+                            <input type="text" name="cittaLocale" placeholder="Nuova città" required>
+                            <input type="text" name="CAPLocale" placeholder="Nuovo CAP" required>
                         </div>
                         <button type="submit" class="btnAggiorna">AGGIORNA LOCALIZZAZIONE <i class="fa fa-refresh"></i></button>
                     </form>
                     <form action="/GestioneLocale/modificaOrarioLocale/<?php echo $_smarty_tpl->tpl_vars['locale']->value->getId();?>
-" method="POST" class="aggiorna">
+" method="POST" class="aggiorna" id="modificaOrario" onsubmit="return validateModificaOrarioForm()">
                         <div class="form-example">
                             <label style="font-weight: bold">Aggiorna l'orario di apertura e chiusura: </label><br>
                             <div class="">

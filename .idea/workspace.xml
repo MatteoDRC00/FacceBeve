@@ -6,10 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="2e58f0f9-142d-4fe5-83c4-7ac5ce6fd200" name="Changes" comment="login e registrazione aggiunta logo in alto da completare">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/templates_c/172a59cd6d9d0fe4c26f91abf9bfe128c31cd594_0.file.InfoLocale.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/Smarty/templates_c/172a59cd6d9d0fe4c26f91abf9bfe128c31cd594_0.file.InfoLocale.tpl.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/templates_c/7757a365921f193a5e1677eb3c4671e453775876_0.file.areaPersonaleUtente.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/Smarty/templates_c/7757a365921f193a5e1677eb3c4671e453775876_0.file.areaPersonaleUtente.tpl.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/templates_c/c20b6bf5f02e1972c0cff8ba77bb2836e646beda_0.file.registrazioneUtente.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/Smarty/templates_c/c20b6bf5f02e1972c0cff8ba77bb2836e646beda_0.file.registrazioneUtente.tpl.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/infoLocale.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/template/infoLocale.tpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Smarty/templates_c/1c893a337b2815c195d1ebdec5f1c045d7425e74_0.file.gestioneLocale.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/Smarty/templates_c/1c893a337b2815c195d1ebdec5f1c045d7425e74_0.file.gestioneLocale.tpl.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/gestioneLocale.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/template/gestioneLocale.tpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/template/js/main.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -181,6 +180,8 @@
       <workItem from="1664973429164" duration="5538000" />
       <workItem from="1664981646912" duration="7449000" />
       <workItem from="1665071953431" duration="705000" />
+      <workItem from="1665404518871" duration="814000" />
+      <workItem from="1665406287660" duration="1746000" />
     </task>
     <servers />
   </component>

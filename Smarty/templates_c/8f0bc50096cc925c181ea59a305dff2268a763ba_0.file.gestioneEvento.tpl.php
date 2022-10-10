@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-28 16:24:10
+/* Smarty version 4.2.0, created on 2022-10-10 15:31:08
   from 'C:\xampp\htdocs\FacceBeve\template\gestioneEvento.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_6334590a0b6931_79776251',
+  'unifunc' => 'content_63441e9c6e51a2_31742823',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '8f0bc50096cc925c181ea59a305dff2268a763ba' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\gestioneEvento.tpl',
-      1 => 1664375048,
+      1 => 1665408665,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6334590a0b6931_79776251 (Smarty_Internal_Template $_smarty_tpl) {
+function content_63441e9c6e51a2_31742823 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -100,7 +100,7 @@ function content_6334590a0b6931_79776251 (Smarty_Internal_Template $_smarty_tpl)
                         <p>MODIFICA LE INFORMAZIONI DELL'EVENTO</p>
                         <div class="form-example">
                             <label style="font-weight: bold">Aggiorna il nome: </label><br>
-                            <input type="text" name="nomeEvento">
+                            <input type="text" name="nomeEvento" required>
                         </div>
                         <button type="submit" class="btnAggiorna">AGGIORNA NOME <i class="fa fa-refresh"></i></button>
                     </form>
@@ -108,12 +108,12 @@ function content_6334590a0b6931_79776251 (Smarty_Internal_Template $_smarty_tpl)
 " method="post" class="aggiorna">
                         <div class="form-example">
                             <label style="font-weight: bold">Aggiorna la descrizione: </label><br>
-                            <textarea type="text" name="descrizioneEvento"></textarea>
+                            <textarea type="text" name="descrizioneEvento" required></textarea>
                         </div>
                         <button type="submit" class="btnAggiorna">AGGIORNA DESCRIZIONE <i class="fa fa-refresh"></i></button>
                     </form>
                     <form action="/GestioneEvento/modificaDataEvento/<?php echo $_smarty_tpl->tpl_vars['evento']->value->getId();?>
-" method="post" class="aggiorna">
+" method="post" class="aggiorna" id="modificaData" onsubmit="return validatemodificaDataForm()">
                         <div class="form-example">
                             <label style="font-weight: bold">Aggiorna la data: </label><br>
                             <input type="date" name="dataEvento">

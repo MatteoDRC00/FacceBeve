@@ -225,12 +225,11 @@ class CProfilo
                 $user = $pm->load("username", $username, $class);
                 if($user->getImgProfilo() != null){
                     $id_imgvecchia = $user->getImgProfilo()->getId();
+                    $pm->update($class, "idImg", $id, "username", $username);
                     $pm->delete("id", $id_imgvecchia, "FImmagine");
+                    $user->setImgProfilo($img_profilo);
                 }
 
-                $user->setImgProfilo($img_profilo);
-
-                $pm->update($class, "idImg", $id, "username", $username);
             }
             header('Location: /Profilo/mostraProfilo');
         } else {

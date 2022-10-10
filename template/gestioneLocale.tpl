@@ -82,7 +82,7 @@
                         </div>
                         <button type="submit" class="btnAggiorna">AGGIORNA DESCRIZIONE <i class="fa fa-refresh"></i></button>
                     </form>
-                    <form action="/GestioneLocale/modificaCategorieLocale/{$locale->getId()}" method="POST" class="aggiorna">
+                    <form action="/GestioneLocale/modificaCategorieLocale/{$locale->getId()}" method="POST" class="aggiorna" id="modificaGenere" onsubmit="return validatemodificaGeneriForm()">
                         <div class="form-example">
                             <label style="font-weight: bold">Aggiorna la categoria: </label><br>
                             {if !empty($categorie)}
@@ -105,14 +105,14 @@
                     <form action="/GestioneLocale/modificaLocalizzazioneLocale/{$locale->getId()}" method="POST" class="aggiorna">
                         <div class="form-example">
                             <label style="font-weight: bold">Aggiorna la localizzazione: </label><br>
-                            <input type="text" name="indirizzoLocale" placeholder="Nuovo indirizzo">
-                            <input type="text" name="civicoLocale" placeholder="Nuovo numero civico">
-                            <input type="text" name="cittaLocale" placeholder="Nuova città">
-                            <input type="text" name="CAPLocale" placeholder="Nuovo CAP">
+                            <input type="text" name="indirizzoLocale" placeholder="Nuovo indirizzo" required>
+                            <input type="text" name="civicoLocale" placeholder="Nuovo numero civico" required>
+                            <input type="text" name="cittaLocale" placeholder="Nuova città" required>
+                            <input type="text" name="CAPLocale" placeholder="Nuovo CAP" required>
                         </div>
                         <button type="submit" class="btnAggiorna">AGGIORNA LOCALIZZAZIONE <i class="fa fa-refresh"></i></button>
                     </form>
-                    <form action="/GestioneLocale/modificaOrarioLocale/{$locale->getId()}" method="POST" class="aggiorna">
+                    <form action="/GestioneLocale/modificaOrarioLocale/{$locale->getId()}" method="POST" class="aggiorna" id="modificaOrario" onsubmit="return validateModificaOrarioForm()">
                         <div class="form-example">
                             <label style="font-weight: bold">Aggiorna l'orario di apertura e chiusura: </label><br>
                             <div class="">

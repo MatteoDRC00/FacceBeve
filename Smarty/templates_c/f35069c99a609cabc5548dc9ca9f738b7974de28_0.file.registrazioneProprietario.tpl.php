@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-10-05 14:46:29
+/* Smarty version 4.2.0, created on 2022-10-10 15:06:41
   from 'C:\xampp\htdocs\FacceBeve\template\registrazioneProprietario.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_633d7ca5a51809_29681554',
+  'unifunc' => 'content_634418e12058d1_63157984',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'f35069c99a609cabc5548dc9ca9f738b7974de28' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\registrazioneProprietario.tpl',
-      1 => 1664955054,
+      1 => 1665057914,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_633d7ca5a51809_29681554 (Smarty_Internal_Template $_smarty_tpl) {
+function content_634418e12058d1_63157984 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <!-- <?php $_smarty_tpl->_assignInScope('error', (($tmp = $_smarty_tpl->tpl_vars['error']->value ?? null)===null||$tmp==='' ? 'ok' ?? null : $tmp));?> -->
 <html lang="it">
@@ -70,7 +70,7 @@ function content_633d7ca5a51809_29681554 (Smarty_Internal_Template $_smarty_tpl)
 
 <div class="login-page">
     <div class="form">
-        <form class="login-form" action="/Accesso/registrazioneProprietario" enctype="multipart/form-data" method="POST" name="registrazioneProprietario" onsubmit="return validateRegForm(1)" >
+        <form class="login-form" action="/Accesso/registrazioneProprietario" enctype="multipart/form-data" method="POST" id="registrazioneUser" onsubmit="return validateRegForm(1)" >
             <h1 style="font-weight: bold; font-size: 24px">Registrati come proprietario di locali</h1>
             <input type="text" class="form-control" placeholder="nome" name="nome" pattern="[a-zA-Z]+\"/>
             <input type="text" class="form-control" placeholder="cognome" name="cognome" pattern="[a-zA-Z]+\"/>

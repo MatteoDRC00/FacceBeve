@@ -75,21 +75,21 @@
                         <p>MODIFICA LE INFORMAZIONI DELL'EVENTO</p>
                         <div class="form-example">
                             <label style="font-weight: bold">Aggiorna il nome: </label><br>
-                            <input type="text" name="nomeEvento">
+                            <input type="text" name="nomeEvento" required>
                         </div>
                         <button type="submit" class="btnAggiorna">AGGIORNA NOME <i class="fa fa-refresh"></i></button>
                     </form>
                     <form action="/GestioneEvento/modificaDescrizioneEvento/{$evento->getId()}" method="post" class="aggiorna">
                         <div class="form-example">
                             <label style="font-weight: bold">Aggiorna la descrizione: </label><br>
-                            <textarea type="text" name="descrizioneEvento"></textarea>
+                            <textarea type="text" name="descrizioneEvento" required></textarea>
                         </div>
                         <button type="submit" class="btnAggiorna">AGGIORNA DESCRIZIONE <i class="fa fa-refresh"></i></button>
                     </form>
-                    <form action="/GestioneEvento/modificaDataEvento/{$evento->getId()}" method="post" class="aggiorna">
+                    <form action="/GestioneEvento/modificaDataEvento/{$evento->getId()}" method="post" class="aggiorna" id="modificaData" onsubmit="return validatemodificaDataForm()">
                         <div class="form-example">
                             <label style="font-weight: bold">Aggiorna la data: </label><br>
-                            <input type="date" name="dataEvento">
+                            <input type="date" name="dataEvento" required>
                         </div>
                         <button type="submit" class="btnAggiorna">AGGIORNA DATA <i class="fa fa-refresh"></i></button>
                     </form>
@@ -97,7 +97,7 @@
                 <div class="col-6 bg-white px-3 mb-3 pb-3">
                     <form action="/GestioneEvento/modificaImmagineEvento/{$evento->getId()}" enctype="multipart/form-data" method="POST" class="aggiorna"> <!-- aggiungin i controlli -->
                         <p>AGGIORNA LA LOCANDINA</p>
-                        <input name="img_evento" class="w-50 p-2 m-2" type="file"><br>
+                        <input name="img_evento" class="w-50 p-2 m-2" type="file" required><br>
                         <button type="submit" class="btnAggiorna">AGGIORNA LOCANDINA <i class="fa fa-refresh"></i></button>
                     </form>
                 </div>
