@@ -128,8 +128,9 @@ class CAccesso
             if (!empty($img)) {
                 $img_profilo = new EImmagine($img[0], $img[1], $img[2], $img[3]);
                 $id = $pm->store($img_profilo);
-                if(!($id))
+                if(!($id)){
                     $img_profilo = null;
+                }
                 else
                     $img_profilo->setId($id);
             }
@@ -176,8 +177,9 @@ class CAccesso
             if (!empty($img)) {
                 $img_profilo = new EImmagine($img[0], $img[1], $img[2], $img[3]);
                 $id = $pm->store($img_profilo);
-                if(!($id))
+                if(!($id)){
                     $img_profilo = null;
+                }
                 else
                     $img_profilo->setId($id);
             }
