@@ -6,6 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="2e58f0f9-142d-4fe5-83c4-7ac5ce6fd200" name="Changes" comment="login e registrazione aggiunta logo in alto da completare">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controller/CProfilo.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/CProfilo.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Foundation/FImmagine.php" beforeDir="false" afterPath="$PROJECT_DIR$/Foundation/FImmagine.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Foundation/FPersistentManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/Foundation/FPersistentManager.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Smarty/templates_c/1c893a337b2815c195d1ebdec5f1c045d7425e74_0.file.gestioneLocale.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/Smarty/templates_c/1c893a337b2815c195d1ebdec5f1c045d7425e74_0.file.gestioneLocale.tpl.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Smarty/templates_c/f01309d919bfd81c0c749befffc9728594dd37b3_0.file.areaPersonaleProprietario.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/Smarty/templates_c/f01309d919bfd81c0c749befffc9728594dd37b3_0.file.areaPersonaleProprietario.tpl.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Smarty/templates_c/f35069c99a609cabc5548dc9ca9f738b7974de28_0.file.registrazioneProprietario.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/Smarty/templates_c/f35069c99a609cabc5548dc9ca9f738b7974de28_0.file.registrazioneProprietario.tpl.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/css/aadmin.css" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -178,6 +185,7 @@
       <workItem from="1664981646912" duration="7449000" />
       <workItem from="1665071953431" duration="705000" />
       <workItem from="1665404518871" duration="814000" />
+      <workItem from="1665406287660" duration="995000" />
     </task>
     <servers />
   </component>
