@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-10-06 15:25:14
+/* Smarty version 4.2.0, created on 2022-10-12 15:03:05
   from 'C:\xampp\htdocs\FacceBeve\template\dashboardAdmin.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_633ed73a8657d0_52529513',
+  'unifunc' => 'content_6346bb093a0ed2_07429880',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '61814e22ecca6cd2302bb05219c59cc01d7a92dc' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\dashboardAdmin.tpl',
-      1 => 1665062713,
+      1 => 1665579783,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_633ed73a8657d0_52529513 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6346bb093a0ed2_07429880 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -279,7 +279,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                     <tr>
                         <form action="/Admin/aggiungiCategoria" method="POST" id="aggiuntaCategoria" onsubmit="return validateRegForm(4)">
                             <td><input style="padding: 4px" type="text" placeholder="Genere" name="genere"></td>
-                            <td><input style="padding: 4px" type="text" placeholder="Descrizione" name="descrizione"></td>
+                            <td><input style="width: 98%; padding: 4px" type="text" placeholder="Descrizione" name="descrizione"></td>
                             <td><input style="border-radius: 9px; padding: 3px; border-color: #0dcaf0" type="submit" value="Aggiungi"></td>
                         </form>
                     </tbody>
