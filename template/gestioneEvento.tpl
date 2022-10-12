@@ -100,6 +100,14 @@
                         <input name="img_evento" class="w-50 p-2 m-2" type="file" required><br>
                         <button type="submit" class="btnAggiorna">AGGIORNA LOCANDINA <i class="fa fa-refresh"></i></button>
                     </form>
+                    <p style="font-weight: bold; font-size: 20px; color: #0d2735; text-align: center">IMMAGINE DI LOCANDINA CORRENTE</p>
+                    {if isset(($img))}
+                        <div style="text-align: center">
+                            <img style="height: 300px; width: 300px; border-radius: 25%" src="data:{$img->getType()};base64,{$img->getImmagine()}" alt="immagine profilo">
+                        </div>
+                    {else}
+                        <p style="text-align: center">Non sono presenti immagini per il locale</p>
+                    {/if}
                 </div>
             </div>
         </div>

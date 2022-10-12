@@ -29,7 +29,9 @@ class VGestioneEvento{
 
     public function showFormModificaEvento($evento)
     {
+        $img = $evento->getImg();
         $this->smarty->assign('evento', $evento);
+        $this->smarty->assign('img', $img);
         $this->smarty->display('gestioneEvento.tpl');
     }
 

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-10-10 15:31:08
+/* Smarty version 4.2.0, created on 2022-10-12 14:45:19
   from 'C:\xampp\htdocs\FacceBeve\template\gestioneEvento.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_63441e9c6e51a2_31742823',
+  'unifunc' => 'content_6346b6df0f74a6_81609183',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '8f0bc50096cc925c181ea59a305dff2268a763ba' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\gestioneEvento.tpl',
-      1 => 1665408665,
+      1 => 1665578717,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_63441e9c6e51a2_31742823 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6346b6df0f74a6_81609183 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -116,7 +116,7 @@ function content_63441e9c6e51a2_31742823 (Smarty_Internal_Template $_smarty_tpl)
 " method="post" class="aggiorna" id="modificaData" onsubmit="return validatemodificaDataForm()">
                         <div class="form-example">
                             <label style="font-weight: bold">Aggiorna la data: </label><br>
-                            <input type="date" name="dataEvento">
+                            <input type="date" name="dataEvento" required>
                         </div>
                         <button type="submit" class="btnAggiorna">AGGIORNA DATA <i class="fa fa-refresh"></i></button>
                     </form>
@@ -125,9 +125,19 @@ function content_63441e9c6e51a2_31742823 (Smarty_Internal_Template $_smarty_tpl)
                     <form action="/GestioneEvento/modificaImmagineEvento/<?php echo $_smarty_tpl->tpl_vars['evento']->value->getId();?>
 " enctype="multipart/form-data" method="POST" class="aggiorna"> <!-- aggiungin i controlli -->
                         <p>AGGIORNA LA LOCANDINA</p>
-                        <input name="img_evento" class="w-50 p-2 m-2" type="file"><br>
+                        <input name="img_evento" class="w-50 p-2 m-2" type="file" required><br>
                         <button type="submit" class="btnAggiorna">AGGIORNA LOCANDINA <i class="fa fa-refresh"></i></button>
                     </form>
+                    <p style="font-weight: bold; font-size: 20px; color: #0d2735; text-align: center">IMMAGINE DI LOCANDINA</p>
+                    <?php if (((($_smarty_tpl->tpl_vars['img']->value) !== null ))) {?>
+                        <div style="text-align: center">
+                            <img style="height: 300px; width: 300px; border-radius: 25%" src="data:<?php echo $_smarty_tpl->tpl_vars['img']->value->getType();?>
+;base64,<?php echo $_smarty_tpl->tpl_vars['img']->value->getImmagine();?>
+" alt="immagine profilo">
+                        </div>
+                    <?php } else { ?>
+                        <p style="text-align: center">Non sono presenti immagini per il locale</p>
+                    <?php }?>
                 </div>
             </div>
         </div>
