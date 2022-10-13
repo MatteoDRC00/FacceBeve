@@ -6,7 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="2e58f0f9-142d-4fe5-83c4-7ac5ce6fd200" name="Changes" comment="login e registrazione aggiunta logo in alto da completare">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FacceBeve.sql" beforeDir="false" afterPath="$PROJECT_DIR$/FacceBeve.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FacceBeveDump.sql" beforeDir="false" afterPath="$PROJECT_DIR$/FacceBeveDump.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Foundation/FDB.php" beforeDir="false" afterPath="$PROJECT_DIR$/Foundation/FDB.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/VRicerca.php" beforeDir="false" afterPath="$PROJECT_DIR$/View/VRicerca.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -181,7 +183,9 @@
       <workItem from="1665404518871" duration="814000" />
       <workItem from="1665406287660" duration="1746000" />
       <workItem from="1665408834091" duration="6870000" />
-      <workItem from="1665417655695" duration="2767000" />
+      <workItem from="1665417655695" duration="3217000" />
+      <workItem from="1665583528597" duration="596000" />
+      <workItem from="1665662066542" duration="1008000" />
     </task>
     <servers />
   </component>

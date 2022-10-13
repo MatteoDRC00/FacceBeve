@@ -630,7 +630,7 @@ class FDB{
 							if ($query == null)
 								$query = "SELECT * FROM " . $class::getTable()  . " WHERE nome LIKE '" . $nome . "%'"; //LIKE '%" . $input . "%';";
 							else
-								$query = $query . " AND nome LIKE '" . $nome . "%'";
+								$query = $query . " AND nome LIKE '% " . $nome . " %'";
 							break;
 						case 2:
 							if ($query == null)
