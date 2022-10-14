@@ -157,7 +157,7 @@
                 {if !empty($locali)}
                     <ul>
                         {foreach $locali as $locale}
-                            <li style="padding: 4px">
+                            <li style="padding: 4px; color: #f0c040">
                                 <div class="items-body-content row-cols-3">
                                     <p>{$locale->getNome()}</p>
                                     <a href="/GestioneLocale/mostraGestioneLocale/{$locale->getId()}"><input type="button" value="Gestisci locale"></a>

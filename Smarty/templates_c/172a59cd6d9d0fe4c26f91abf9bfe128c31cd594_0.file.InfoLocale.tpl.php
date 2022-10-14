@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-10-10 16:53:31
+/* Smarty version 4.2.0, created on 2022-10-14 20:51:20
   from 'C:\xampp\htdocs\FacceBeve\template\InfoLocale.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_634431eb52c606_44485383',
+  'unifunc' => 'content_6349afa80bfde5_13314852',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '172a59cd6d9d0fe4c26f91abf9bfe128c31cd594' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\InfoLocale.tpl',
-      1 => 1665413607,
+      1 => 1665773478,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_634431eb52c606_44485383 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6349afa80bfde5_13314852 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <?php $_smarty_tpl->_assignInScope('locale', (($tmp = $_smarty_tpl->tpl_vars['locale']->value ?? null)===null||$tmp==='' ? null ?? null : $tmp));
@@ -114,7 +114,7 @@ echo '<script'; ?>
                                 </form>
                             <?php }?>
                         <?php }?>
-                        <div class="swiper-wrapper align-items-center">
+                        <div class="swiper-wrapper">
                             <?php if (!empty($_smarty_tpl->tpl_vars['locale']->value->getImg())) {?>
                                 <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['locale']->value->getImg(), 'img');
@@ -122,18 +122,17 @@ $_smarty_tpl->tpl_vars['img']->do_else = true;
 if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['img']->value) {
 $_smarty_tpl->tpl_vars['img']->do_else = false;
 ?>
-                                    <div class="portfolio-info swiper-slide">
-                                        <img src="data:<?php echo $_smarty_tpl->tpl_vars['img']->value->getType();?>
+                                    <div class="swiper-slide">
+                                        <img style="height:575px; width:575px; border-radius: 25%" src="data:<?php echo $_smarty_tpl->tpl_vars['img']->value->getType();?>
 ;base64,<?php echo $_smarty_tpl->tpl_vars['img']->value->getImmagine();?>
 "
-                                             alt="Immagine localeeee"
-                                             style="max-height:575px; max-width:575px; border-radius:40px">
+                                             alt="Immagine localeeee">
                                     </div>
                                 <?php
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                             <?php } else { ?>
-                                <div class="portfolio-info swiper-slide">
+                                <div class="swiper-slide">
                                     <img src="/template/img/no_foto.jpg" alt="Immagine locale"
                                          style="max-height:575px; max-width:575px; border-radius:40px">
                                 </div>
@@ -172,9 +171,7 @@ $_smarty_tpl->tpl_vars['evento']->do_else = false;
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                                 <?php } else { ?>
-                                    <div class="portfolio-info">
-                                        <p>Non ci sono ancora eventi organizzati</p>
-                                    </div>
+                                    <p>Non ci sono ancora eventi organizzati</p>
                                 <?php }?>
                             <?php } else { ?>
                                 <div class="portfolio-info">

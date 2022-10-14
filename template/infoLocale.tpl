@@ -86,17 +86,16 @@
                                 </form>
                             {/if}
                         {/if}
-                        <div class="swiper-wrapper align-items-center">
+                        <div class="swiper-wrapper">
                             {if !empty($locale->getImg())}
                                 {foreach $locale->getImg() as $img}
-                                    <div class="portfolio-info swiper-slide">
-                                        <img src="data:{$img->getType()};base64,{$img->getImmagine()}"
-                                             alt="Immagine localeeee"
-                                             style="max-height:575px; max-width:575px; border-radius:40px">
+                                    <div class="swiper-slide">
+                                        <img style="height:575px; width:575px; border-radius: 25%" src="data:{$img->getType()};base64,{$img->getImmagine()}"
+                                             alt="Immagine localeeee">
                                     </div>
                                 {/foreach}
                             {else}
-                                <div class="portfolio-info swiper-slide">
+                                <div class="swiper-slide">
                                     <img src="/template/img/no_foto.jpg" alt="Immagine locale"
                                          style="max-height:575px; max-width:575px; border-radius:40px">
                                 </div>
@@ -123,9 +122,7 @@
                                         </div>
                                     {/foreach}
                                 {else}
-                                    <div class="portfolio-info">
-                                        <p>Non ci sono ancora eventi organizzati</p>
-                                    </div>
+                                    <p>Non ci sono ancora eventi organizzati</p>
                                 {/if}
                             {else}
                                 <div class="portfolio-info">
