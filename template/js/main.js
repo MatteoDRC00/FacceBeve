@@ -16,14 +16,48 @@ function validateRecensione() {
  *Funzione utilizzata per controllare che vengano inseriti tutti i campi
  */
 function validateRegForm(id) {
-    if (id === 1) { //Form registrazione Utente/Proprietario
-        let nome = document.forms["registrazioneUser"]["nome"].value;
-        let cognome = document.forms["registrazioneUser"]["cognome"].value;
-        let username = document.forms["registrazioneUser"]["username"].value;
-        let email = document["registrazioneUser"]["email"].value;
-        let password1 = document.forms["registrazioneUser"]["password"].value;
-        let password2 = document.forms["registrazioneUser"]["password2"].value;
-        let img = document.forms["registrazioneUser"]["img_profilo"].value;
+    if (id === 0) { //Form registrazione Utente
+        let nome = document.forms["registrazioneUtente"]["nome"].value;
+        let cognome = document.forms["registrazioneUtente"]["cognome"].value;
+        let username = document.forms["registrazioneUtente"]["username"].value;
+        let email = document["registrazioneUtente"]["email"].value;
+        let password1 = document.forms["registrazioneUtente"]["password"].value;
+        let password2 = document.forms["registrazioneUtente"]["password2"].value;
+        let img = document.forms["registrazioneUtente"]["img_profilo"].value;
+
+        alert(nome);
+        return false;
+
+        if (nome === "" || cognome === "" || email === "" || username === "" || password1 === "" || password2 === "") {
+            alert("Inserire i campi mancanti");
+            return false;
+        }
+
+        if (password1 !== password2) {
+            alert("Le password inserite non corrispondono!");
+            return false;
+        }
+        let allowedExtensions = /(\.jpg|\.jpeg|\.gif|\.png)$/i; //Controllo sul Type del img inserita
+
+        if (img !== ""){
+            if (!allowedExtensions.exec(img)) {
+                alert('Tipo di file non valido, sono accettati, prova con  \n-jpg\n-jpeg\n-gif\n-png');
+                img.value = '';
+                return false;
+            }
+        }
+
+    } else if (id === 1) { //Form registrazione Proprietario
+        let nome = document.forms["registrazioneProprietario"]["nome"].value;
+        let cognome = document.forms["registrazioneProprietario"]["cognome"].value;
+        let username = document.forms["registrazioneProprietario"]["username"].value;
+        let email = document["registrazioneProprietario"]["email"].value;
+        let password1 = document.forms["registrazioneProprietario"]["password"].value;
+        let password2 = document.forms["registrazioneProprietario"]["password2"].value;
+        let img = document.forms["registrazioneProprietario"]["img_profilo"].value;
+
+        alert(nome);
+        return false;
 
         if (nome === "" || cognome === "" || email === "" || username === "" || password1 === "" || password2 === "") {
             alert("Inserire i campi mancanti");

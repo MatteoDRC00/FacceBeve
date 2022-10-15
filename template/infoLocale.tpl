@@ -145,7 +145,7 @@
                             <li><strong>Citt&agrave:</strong> {$locale->getLocalizzazione()->getCitta()}
                                 <strong>CAP:</strong> {$locale->getLocalizzazione()->getCAP()}</li>
                             <li style="font-weight: bold;"><a
-                                        href="https://maps.google.com/?q= {$locale->getLocalizzazione()->getIndirizzo()}, {$locale->getLocalizzazione()->getNumCivico()}, {$locale->getLocalizzazione()->getCitta()}, {$locale->getLocalizzazione()->getCAP()}"
+                                        href="https://maps.google.com/?q= {$locale->getLocalizzazione()->getIndirizzo()}, {$locale->getLocalizzazione()->getNumCivico()}, {$locale->getLocalizzazione()->getCitta()}, {$locale->getLocalizzazione()->getCAP()}, {$locale->getNome()}"
                                         target="_blank"><i class="fas fa-map-marker-alt"></i> Come
                                     raggiungerci...</a>
                             </li>
