@@ -128,7 +128,7 @@ class FEvento
     }
 
     /**
-     * Metodo che carica Evento dal DB dato il valore di un attributo
+     * Metodo che carica oggetti Evento dal DB dato il valore di un attributo
      * @param string $attributo
      * @param string $valore
      * @return array
@@ -219,11 +219,11 @@ class FEvento
 
 
     /**
-     * Metodo che permette di caricare un evento che ha determinati parametri, i quali vengono passati in input da una form
-     * @param $part1
-     * @param $part2
-     * @param $part3
-     * @param $part4
+     * Metodo che permette di caricare uno o più eventi con determinati parametri, i quali vengono passati in input da una form
+     * @param $part1  string nome del locale
+     * @param $part2 string categoria del locale
+     * @param $part3 string citta' del locale
+     * @param $part4 string nome del locale
      * @return array[]
      */
     public static function loadByForm($part1, $part2, $part3, $part4): array

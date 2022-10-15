@@ -169,8 +169,14 @@ class FLocale
         return $locale;
     }
 
-    /** Metodo che permette di caricare un locale che ha determinati parametri, i quali vengono passati in input da una form */
-    public static function loadByForm($part1, $part2, $part3)
+    /**
+     * Metodo che permette di caricare uno o più eventi con determinati parametri, i quali vengono passati in input da una form
+     * @param $part1  string nome del locale
+     * @param $part2  categoria del locale
+     * @param $part3 string citta' del locale
+     * @return array[]
+     */
+    public static function loadByForm(string $part1, $part2, string $part3): array
     {
         $locale = array();
         $db = FDB::getInstance();
@@ -238,7 +244,7 @@ class FLocale
     }
 
     /**
-     *
+     * Metodo utilizzato per caricare i locali "preferiti" di un utente
      * @param string $username
      * @return array
      */

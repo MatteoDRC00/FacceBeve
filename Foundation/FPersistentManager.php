@@ -61,15 +61,6 @@ class FPersistentManager {
         return FImmagine::loadByLocale($id_locale);
     }
 
-
-    public function getLocaleByEvento($id_evento){
-        $db = FDB::getInstance();
-        $result = $db->getIdLocaleByIdEvento($id_evento);
-        //print_r($result['ID_Locale']);
-        return $result['ID_Locale'];
-
-    }
-
     /**
      * @param string $attributo
      * @param string $valore
@@ -145,18 +136,6 @@ class FPersistentManager {
         $ris = $class::loadAll();
         return $ris;
     }
-
-
-    /** Metodo che permette il caricamento delle sole tuple che abbiano in un loro campo una parola data in input
-     *  @param input parola da cercare
-     *@param Fclass , classe Foundation interessata
-     */
-    public static function loadByParola($input, $Fclass) {
-        $ris = null;
-        $ris = $Fclass::loadByParola($input);
-        return $ris;
-    }
-
 
     /**
      * Metodo che permette il caricamento degli utenti avendo come parametro di ricerca lo stato, i.e.,
@@ -237,16 +216,6 @@ class FPersistentManager {
         $db->deleteLocaleEvento($id_locale);
     }
 
-    public function deleteEventoLocale($id_evento){
-        $db = FDB::getInstance();
-        $db->deleteEventoLocale($id_evento);
-    }
-
-    public function storeOrariLocale($orario, $locale){
-        $db = FDB::getInstance();
-        $db->storeOrariLocale($locale, $orario);
-    }
-
     public function deleteUtentiLocali($utente, $locale){
         $db = FDB::getInstance();
         return $db->deleteUtentiLocali($locale, $utente);
@@ -257,14 +226,5 @@ class FPersistentManager {
         $db->storeUtentiLocali($locale, $utente);
     }
 
-    public function storeEventiLocale($evento, $locale){
-        $db = FDB::getInstance();
-        $db->storeEventiLocale($locale, $evento);
-    }
-
-    public function storeImmagineLocale($immagine, $locale){
-        $db = FDB::getInstance();
-        $db->storeImmagineLocale($locale, $immagine);
-    }
 
 }
