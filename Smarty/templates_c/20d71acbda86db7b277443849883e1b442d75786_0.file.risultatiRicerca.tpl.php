@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-10-15 12:31:49
+/* Smarty version 4.2.0, created on 2022-10-15 13:08:35
   from 'C:\xampp\htdocs\FacceBeve\template\risultatiRicerca.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_634a8c15291a72_87148198',
+  'unifunc' => 'content_634a94b3627831_66326591',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '20d71acbda86db7b277443849883e1b442d75786' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\risultatiRicerca.tpl',
-      1 => 1665829905,
+      1 => 1665832111,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_634a8c15291a72_87148198 (Smarty_Internal_Template $_smarty_tpl) {
+function content_634a94b3627831_66326591 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <?php $_smarty_tpl->_assignInScope('tipo', (($tmp = $_smarty_tpl->tpl_vars['tipo']->value ?? null)===null||$tmp==='' ? null ?? null : $tmp));
 $_smarty_tpl->_assignInScope('userlogged', (($tmp = $_smarty_tpl->tpl_vars['error']->value ?? null)===null||$tmp==='' ? null ?? null : $tmp));
@@ -114,8 +114,8 @@ $_smarty_tpl->_assignInScope('array', (($tmp = $_smarty_tpl->tpl_vars['array']->
                                 <li style="font-size: 20px"><strong>Nome evento: </strong><?php echo $_smarty_tpl->tpl_vars['nomeEvento']->value;?>
 </li>
                             <?php }?>
-                            <?php if ((isset($_smarty_tpl->tpl_vars['data']->value))) {?>
-                                <li style="font-size: 20px"><strong>Data evento: </strong><?php echo $_smarty_tpl->tpl_vars['data']->value;?>
+                            <?php if ((isset($_smarty_tpl->tpl_vars['dataEvento']->value))) {?>
+                                <li style="font-size: 20px"><strong>Data evento: </strong><?php echo $_smarty_tpl->tpl_vars['dataEvento']->value;?>
 </li>
                             <?php }?>
                         <?php }?>

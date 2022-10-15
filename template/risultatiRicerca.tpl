@@ -85,8 +85,8 @@
                             {if isset($nomeEvento)}
                                 <li style="font-size: 20px"><strong>Nome evento: </strong>{$nomeEvento}</li>
                             {/if}
-                            {if isset($data)}
-                                <li style="font-size: 20px"><strong>Data evento: </strong>{$data}</li>
+                            {if isset($dataEvento)}
+                                <li style="font-size: 20px"><strong>Data evento: </strong>{$dataEvento}</li>
                             {/if}
                         {/if}
                     </ul>
