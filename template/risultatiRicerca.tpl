@@ -67,26 +67,26 @@
                     <ul>
                         {if $tipo=="Locali"}
                             {if isset($nomeLocale)}
-                                <li style="font-size: 20px">{$nomeLocale}</li>
+                                <li style="font-size: 20px"><strong>Nome locale: </strong>{$nomeLocale}</li>
                             {/if}
                             {if isset($citta)}
-                                <li style="font-size: 20px">{$citta}</li>
+                                <li style="font-size: 20px"><strong>Citt&agrave locale: </strong>{$citta}</li>
                             {/if}
                             {if isset($categoria)}
-                                <li style="font-size: 20px">{$categoria}</li>
+                                <li style="font-size: 20px"><strong>Categoria locale: </strong>{$categoria}</li>
                             {/if}
                         {else}
                             {if isset($citta)}
-                                <li style="font-size: 20px">{$citta}</li>
+                                <li style="font-size: 20px"><strong>Citt&agrave evento: </strong>{$citta}</li>
                             {/if}
                             {if isset($nomeLocale)}
-                                <li style="font-size: 20px">{$nomeLocale}</li>
+                                <li style="font-size: 20px"><strong>Nome locale: </strong>{$nomeLocale}</li>
                             {/if}
                             {if isset($nomeEvento)}
-                                <li style="font-size: 20px">{$nomeEvento}</li>
+                                <li style="font-size: 20px"><strong>Nome evento: </strong>{$nomeEvento}</li>
                             {/if}
                             {if isset($data)}
-                                <li style="font-size: 20px">{$data}</li>
+                                <li style="font-size: 20px"><strong>Data evento: </strong>{$data}</li>
                             {/if}
                         {/if}
                     </ul>

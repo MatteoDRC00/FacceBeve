@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-10-15 11:46:11
+/* Smarty version 4.2.0, created on 2022-10-15 12:24:45
   from 'C:\xampp\htdocs\FacceBeve\template\risultatiRicerca.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_634a81632e97b8_80638958',
+  'unifunc' => 'content_634a8a6d531402_94940115',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '20d71acbda86db7b277443849883e1b442d75786' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\risultatiRicerca.tpl',
-      1 => 1665827167,
+      1 => 1665829481,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_634a81632e97b8_80638958 (Smarty_Internal_Template $_smarty_tpl) {
+function content_634a8a6d531402_94940115 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <?php $_smarty_tpl->_assignInScope('tipo', (($tmp = $_smarty_tpl->tpl_vars['tipo']->value ?? null)===null||$tmp==='' ? null ?? null : $tmp));
 $_smarty_tpl->_assignInScope('userlogged', (($tmp = $_smarty_tpl->tpl_vars['error']->value ?? null)===null||$tmp==='' ? null ?? null : $tmp));
@@ -90,32 +90,32 @@ $_smarty_tpl->_assignInScope('array', (($tmp = $_smarty_tpl->tpl_vars['array']->
                     <ul>
                         <?php if ($_smarty_tpl->tpl_vars['tipo']->value == "Locali") {?>
                             <?php if ((isset($_smarty_tpl->tpl_vars['nomeLocale']->value))) {?>
-                                <li style="font-size: 20px"><?php echo $_smarty_tpl->tpl_vars['nomeLocale']->value;?>
+                                <li style="font-size: 20px">Nome locale: <?php echo $_smarty_tpl->tpl_vars['nomeLocale']->value;?>
 </li>
                             <?php }?>
                             <?php if ((isset($_smarty_tpl->tpl_vars['citta']->value))) {?>
-                                <li style="font-size: 20px"><?php echo $_smarty_tpl->tpl_vars['citta']->value;?>
+                                <li style="font-size: 20px"><strong>Citt&agrave locale: </strong><?php echo $_smarty_tpl->tpl_vars['citta']->value;?>
 </li>
                             <?php }?>
                             <?php if ((isset($_smarty_tpl->tpl_vars['categoria']->value))) {?>
-                                <li style="font-size: 20px"><?php echo $_smarty_tpl->tpl_vars['categoria']->value;?>
+                                <li style="font-size: 20px">Categoria locale: <?php echo $_smarty_tpl->tpl_vars['categoria']->value;?>
 </li>
                             <?php }?>
                         <?php } else { ?>
                             <?php if ((isset($_smarty_tpl->tpl_vars['citta']->value))) {?>
-                                <li style="font-size: 20px"><?php echo $_smarty_tpl->tpl_vars['citta']->value;?>
+                                <li style="font-size: 20px">Citt&agrave evento: <?php echo $_smarty_tpl->tpl_vars['citta']->value;?>
 </li>
                             <?php }?>
                             <?php if ((isset($_smarty_tpl->tpl_vars['nomeLocale']->value))) {?>
-                                <li style="font-size: 20px"><?php echo $_smarty_tpl->tpl_vars['nomeLocale']->value;?>
+                                <li style="font-size: 20px">Nome locale: <?php echo $_smarty_tpl->tpl_vars['nomeLocale']->value;?>
 </li>
                             <?php }?>
                             <?php if ((isset($_smarty_tpl->tpl_vars['nomeEvento']->value))) {?>
-                                <li style="font-size: 20px"><?php echo $_smarty_tpl->tpl_vars['nomeEvento']->value;?>
+                                <li style="font-size: 20px">Nome evento: <?php echo $_smarty_tpl->tpl_vars['nomeEvento']->value;?>
 </li>
                             <?php }?>
                             <?php if ((isset($_smarty_tpl->tpl_vars['data']->value))) {?>
-                                <li style="font-size: 20px"><?php echo $_smarty_tpl->tpl_vars['data']->value;?>
+                                <li style="font-size: 20px">Data evento: <?php echo $_smarty_tpl->tpl_vars['data']->value;?>
 </li>
                             <?php }?>
                         <?php }?>
