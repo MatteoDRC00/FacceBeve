@@ -542,26 +542,26 @@ class FDB
                                     if ($query == null)
                                         $query = "SELECT * FROM " . $class::getTable() . " INNER JOIN Locale_Categorie ON  Locale_Categorie.ID_Locale=Locale.id INNER JOIN Categoria ON Categoria.genere=Locale_Categorie.ID_Categoria WHERE Categoria.genere='" . $categorie[$j] . "'";
                                     else
-                                        $query = $query . "; INTERSECT SELECT * FROM Locale INNER JOIN Locale_Categorie  ON  Locale_Categorie.ID_Locale=Locale.id INNER JOIN Categoria ON Categoria.genere=Locale_Categorie.ID_Categoria WHERE Categoria.genere'" . $categorie[$j] . "'";
+                                        $query = $query . " INTERSECT SELECT * FROM Locale INNER JOIN Locale_Categorie  ON  Locale_Categorie.ID_Locale=Locale.id INNER JOIN Categoria ON Categoria.genere=Locale_Categorie.ID_Categoria WHERE Categoria.genere'" . $categorie[$j] . "'";
                                 }
                             } elseif (isset($categorie)) {
                                 if ($query == null)
                                     $query = "SELECT * FROM " . $class::getTable() . " INNER JOIN Locale_Categorie ON  Locale_Categorie.ID_Locale=Locale.id INNER JOIN Categoria ON Categoria.genere=Locale_Categorie.ID_Categoria WHERE Categoria.genere='" . $categorie . "'";
                                 else
-                                    $query = $query . "; INTERSECT SELECT * FROM Locale INNER JOIN Locale_Categorie  ON  Locale_Categorie.ID_Locale=Locale.id INNER JOIN Categoria ON Categoria.genere=Locale_Categorie.ID_Categoria WHERE Categoria.genere'" . $categorie . "'";
+                                    $query = $query . " INTERSECT SELECT * FROM Locale INNER JOIN Locale_Categorie  ON  Locale_Categorie.ID_Locale=Locale.id INNER JOIN Categoria ON Categoria.genere=Locale_Categorie.ID_Categoria WHERE Categoria.genere'" . $categorie . "'";
                             }
                             break;
                         case 1:
                             if ($query == null)
                                 $query = "SELECT * FROM " . $class::getTable() . " WHERE nome LIKE '" . $nome . "%'"; //LIKE '%" . $input . "%';";
                             else
-                                $query = $query . "; INTERSECT SELECT * FROM Locale WHERE nome LIKE '% " . $nome . " %'";
+                                $query = $query . " INTERSECT SELECT * FROM Locale WHERE nome LIKE '% " . $nome . " %'";
                             break;
                         case 2:
                             if ($query == null)
                                 $query = "SELECT * FROM " . $class::getTable() . " INNER JOIN Localizzazione ON  Localizzazione.id=Locale.localizzazione WHERE localizzazione.citta LIKE '" . $citta . "%'";
                             else
-                                $query = $query . "; INTERSECT SELECT * FROM Locale INNER JOIN Localizzazione ON  Localizzazione.id=Locale.localizzazione AND localizzazione.citta LIKE '" . $citta . "%'";
+                                $query = $query . " INTERSECT SELECT * FROM Locale INNER JOIN Localizzazione ON  Localizzazione.id=Locale.localizzazione AND localizzazione.citta LIKE '" . $citta . "%'";
                             break;
                     }
                 }
@@ -609,25 +609,25 @@ class FDB
                             if ($query == null)
                                 $query = "SELECT Evento.id,Evento.nome,Evento.descrizione,Evento.data,Evento.idImg FROM Evento INNER JOIN Locale_Eventi ON Locale_Eventi.ID_Evento=Evento.id INNER JOIN Locale ON Locale_Eventi.ID_Locale=Locale.id WHERE Locale.nome LIKE '" . $nomelocale . "%'";
                             else
-                                $query = $query . "; INTERSECT SELECT Evento.id,Evento.nome,Evento.descrizione,Evento.data,Evento.idImg FROM Evento INNER JOIN Locale_Eventi ON Locale_Eventi.ID_Locale=Evento.id INNER JOIN Locale ON Locale_Eventi.ID_Locale=Locale.id WHERE Locale.nome LIKE '" . $nomelocale . "%';";
+                                $query = $query . " INTERSECT SELECT Evento.id,Evento.nome,Evento.descrizione,Evento.data,Evento.idImg FROM Evento INNER JOIN Locale_Eventi ON Locale_Eventi.ID_Locale=Evento.id INNER JOIN Locale ON Locale_Eventi.ID_Locale=Locale.id WHERE Locale.nome LIKE '" . $nomelocale . "%';";
                             break;
                         case 1:
                             if ($query == null)
                                 $query = "SELECT Evento.id,Evento.nome,Evento.descrizione,Evento.data,Evento.idImg FROM Evento WHERE nome  LIKE '" . $nomeevento . "%'";
                             else
-                                $query = $query . "; INTERSECT SELECT Evento.id,Evento.nome,Evento.descrizione,Evento.data,Evento.idImg FROM Evento WHERE Evento.nome  LIKE '" . $nomeevento . "%'";
+                                $query = $query . " INTERSECT SELECT Evento.id,Evento.nome,Evento.descrizione,Evento.data,Evento.idImg FROM Evento WHERE Evento.nome  LIKE '" . $nomeevento . "%'";
                             break;
                         case 2:
                             if ($query == null)
                                 $query = "SELECT Evento.id,Evento.nome,Evento.descrizione,Evento.data,Evento.idImg FROM Evento INNER JOIN Locale_Eventi ON Locale_Eventi.ID_Evento=Evento.id INNER JOIN Locale ON Locale.id=Locale_Eventi.ID_Locale INNER JOIN Localizzazione ON  Localizzazione.id=Locale.localizzazione WHERE Localizzazione.citta LIKE '" . $citta . "%'";
                             else
-                                $query = $query . "; INTERSECT SELECT Evento.id,Evento.nome,Evento.descrizione,Evento.data,Evento.idImg FROM Evento INNER JOIN Locale_Eventi ON Locale_Eventi.ID_Evento=Evento.id INNER JOIN Locale ON Locale.id=Locale_Eventi.ID_Locale INNER JOIN Localizzazione ON Localizzazione.id=Locale.localizzazione WHERE Localizzazione.citta LIKE '" . $citta . "%'";
+                                $query = $query . " INTERSECT SELECT Evento.id,Evento.nome,Evento.descrizione,Evento.data,Evento.idImg FROM Evento INNER JOIN Locale_Eventi ON Locale_Eventi.ID_Evento=Evento.id INNER JOIN Locale ON Locale.id=Locale_Eventi.ID_Locale INNER JOIN Localizzazione ON Localizzazione.id=Locale.localizzazione WHERE Localizzazione.citta LIKE '" . $citta . "%'";
                             break;
                         case 3:
                             if ($query == null)
                                 $query = "SELECT Evento.id,Evento.nome,Evento.descrizione,Evento.data,Evento.idImg FROM Evento WHERE evento.data ='" . $data . "'";
                             else
-                                $query = $query . " AND data ='" . $data . "'";
+                                $query = $query . "INTERSECT SELECT Evento.id,Evento.nome,Evento.descrizione,Evento.data,Evento.idImg FROM Evento WHERE data ='" . $data . "'";
                             break;
                     }
                 }
