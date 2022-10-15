@@ -47,7 +47,7 @@
 
 <div class="login-page">
     <div class="form">
-        <form class="login-form" action="/Accesso/registrazioneProprietario" enctype="multipart/form-data" method="POST" id="registrazioneProprietario" onsubmit="return validateRegForm(1)" >
+        <form class="login-form" action="/Accesso/registrazioneProprietario" enctype="multipart/form-data" method="POST" id="registrazioneUser" onsubmit="return validateRegForm(1)" >
             <h1 style="font-weight: bold; font-size: 24px">Registrati come proprietario di locali</h1>
             <input type="text" class="form-control" placeholder="nome" name="nome" pattern="[a-zA-Z]+\"/>
             <input type="text" class="form-control" placeholder="cognome" name="cognome" pattern="[a-zA-Z]+\"/>

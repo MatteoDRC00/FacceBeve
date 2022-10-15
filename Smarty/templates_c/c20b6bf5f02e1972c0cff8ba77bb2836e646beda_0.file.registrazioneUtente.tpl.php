@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-10-15 09:59:15
+/* Smarty version 4.2.0, created on 2022-10-15 10:11:06
   from 'C:\xampp\htdocs\FacceBeve\template\registrazioneUtente.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_634a6853105711_24252366',
+  'unifunc' => 'content_634a6b1aecf1f0_61100600',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c20b6bf5f02e1972c0cff8ba77bb2836e646beda' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\registrazioneUtente.tpl',
-      1 => 1665820728,
+      1 => 1665821463,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_634a6853105711_24252366 (Smarty_Internal_Template $_smarty_tpl) {
+function content_634a6b1aecf1f0_61100600 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <!--<?php $_smarty_tpl->_assignInScope('error', (($tmp = $_smarty_tpl->tpl_vars['error']->value ?? null)===null||$tmp==='' ? 'ok' ?? null : $tmp));?> -->
 <html lang="it">
@@ -67,7 +67,7 @@ function content_634a6853105711_24252366 (Smarty_Internal_Template $_smarty_tpl)
 
 <div class="login-page">
     <div class="form">
-        <form class="login-form" action="/Accesso/registrazioneUtente" enctype="multipart/form-data" method="POST" id="registrazioneUtente" onsubmit="return validateRegForm(0)">
+        <form class="login-form" action="/Accesso/registrazioneUtente" enctype="multipart/form-data" method="POST" id="registrazioneUser" onsubmit="return validateRegForm(1)">
             <h1 style="font-weight: bold; font-size: 24px">Registrati come utente</h1>
             <input type="text" class="form-control" placeholder="nome" name="nome" pattern="[a-zA-Z]+\"/>
             <input type="text" class="form-control" placeholder="cognome" name="cognome" pattern="[a-zA-Z]+\"/>
