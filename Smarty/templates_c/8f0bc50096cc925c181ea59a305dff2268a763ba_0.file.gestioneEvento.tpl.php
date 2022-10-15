@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-10-12 14:45:19
+/* Smarty version 4.2.0, created on 2022-10-15 11:59:08
   from 'C:\xampp\htdocs\FacceBeve\template\gestioneEvento.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_6346b6df0f74a6_81609183',
+  'unifunc' => 'content_634a846ca402a6_67972005',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '8f0bc50096cc925c181ea59a305dff2268a763ba' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\gestioneEvento.tpl',
-      1 => 1665578717,
+      1 => 1665827936,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6346b6df0f74a6_81609183 (Smarty_Internal_Template $_smarty_tpl) {
+function content_634a846ca402a6_67972005 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -128,10 +128,10 @@ function content_6346b6df0f74a6_81609183 (Smarty_Internal_Template $_smarty_tpl)
                         <input name="img_evento" class="w-50 p-2 m-2" type="file" required><br>
                         <button type="submit" class="btnAggiorna">AGGIORNA LOCANDINA <i class="fa fa-refresh"></i></button>
                     </form>
-                    <p style="font-weight: bold; font-size: 20px; color: #0d2735; text-align: center">IMMAGINE DI LOCANDINA</p>
+                    <p style="font-weight: bold; font-size: 20px; color: #0d2735; text-align: center">IMMAGINE DI LOCANDINA CORRENTE</p>
                     <?php if (((($_smarty_tpl->tpl_vars['img']->value) !== null ))) {?>
                         <div style="text-align: center">
-                            <img style="height: 300px; width: 300px; border-radius: 25%" src="data:<?php echo $_smarty_tpl->tpl_vars['img']->value->getType();?>
+                            <img style="height: 80%; width: 80%; border-radius: 15%" src="data:<?php echo $_smarty_tpl->tpl_vars['img']->value->getType();?>
 ;base64,<?php echo $_smarty_tpl->tpl_vars['img']->value->getImmagine();?>
 " alt="immagine profilo">
                         </div>

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-10-06 18:57:00
+/* Smarty version 4.2.0, created on 2022-10-15 12:31:49
   from 'C:\xampp\htdocs\FacceBeve\template\risultatiRicerca.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_633f08dc5ebf07_09164471',
+  'unifunc' => 'content_634a8c15291a72_87148198',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '20d71acbda86db7b277443849883e1b442d75786' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\risultatiRicerca.tpl',
-      1 => 1665075364,
+      1 => 1665829905,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_633f08dc5ebf07_09164471 (Smarty_Internal_Template $_smarty_tpl) {
+function content_634a8c15291a72_87148198 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <?php $_smarty_tpl->_assignInScope('tipo', (($tmp = $_smarty_tpl->tpl_vars['tipo']->value ?? null)===null||$tmp==='' ? null ?? null : $tmp));
 $_smarty_tpl->_assignInScope('userlogged', (($tmp = $_smarty_tpl->tpl_vars['error']->value ?? null)===null||$tmp==='' ? null ?? null : $tmp));
@@ -90,32 +90,32 @@ $_smarty_tpl->_assignInScope('array', (($tmp = $_smarty_tpl->tpl_vars['array']->
                     <ul>
                         <?php if ($_smarty_tpl->tpl_vars['tipo']->value == "Locali") {?>
                             <?php if ((isset($_smarty_tpl->tpl_vars['nomeLocale']->value))) {?>
-                                <li style="font-size: 20px"><?php echo $_smarty_tpl->tpl_vars['nomeLocale']->value;?>
+                                <li style="font-size: 20px"><strong>Nome locale: </strong><?php echo $_smarty_tpl->tpl_vars['nomeLocale']->value;?>
 </li>
                             <?php }?>
                             <?php if ((isset($_smarty_tpl->tpl_vars['citta']->value))) {?>
-                                <li style="font-size: 20px"><?php echo $_smarty_tpl->tpl_vars['citta']->value;?>
+                                <li style="font-size: 20px"><strong>Citt&agrave locale: </strong><?php echo $_smarty_tpl->tpl_vars['citta']->value;?>
 </li>
                             <?php }?>
                             <?php if ((isset($_smarty_tpl->tpl_vars['categoria']->value))) {?>
-                                <li style="font-size: 20px"><?php echo $_smarty_tpl->tpl_vars['categoria']->value;?>
+                                <li style="font-size: 20px"><strong>Categoria locale: </strong><?php echo $_smarty_tpl->tpl_vars['categoria']->value;?>
 </li>
                             <?php }?>
                         <?php } else { ?>
                             <?php if ((isset($_smarty_tpl->tpl_vars['citta']->value))) {?>
-                                <li style="font-size: 20px"><?php echo $_smarty_tpl->tpl_vars['citta']->value;?>
+                                <li style="font-size: 20px"><strong>Citt&agrave evento: </strong><?php echo $_smarty_tpl->tpl_vars['citta']->value;?>
 </li>
                             <?php }?>
                             <?php if ((isset($_smarty_tpl->tpl_vars['nomeLocale']->value))) {?>
-                                <li style="font-size: 20px"><?php echo $_smarty_tpl->tpl_vars['nomeLocale']->value;?>
+                                <li style="font-size: 20px"><strong>Nome locale: </strong><?php echo $_smarty_tpl->tpl_vars['nomeLocale']->value;?>
 </li>
                             <?php }?>
                             <?php if ((isset($_smarty_tpl->tpl_vars['nomeEvento']->value))) {?>
-                                <li style="font-size: 20px"><?php echo $_smarty_tpl->tpl_vars['nomeEvento']->value;?>
+                                <li style="font-size: 20px"><strong>Nome evento: </strong><?php echo $_smarty_tpl->tpl_vars['nomeEvento']->value;?>
 </li>
                             <?php }?>
                             <?php if ((isset($_smarty_tpl->tpl_vars['data']->value))) {?>
-                                <li style="font-size: 20px"><?php echo $_smarty_tpl->tpl_vars['data']->value;?>
+                                <li style="font-size: 20px"><strong>Data evento: </strong><?php echo $_smarty_tpl->tpl_vars['data']->value;?>
 </li>
                             <?php }?>
                         <?php }?>
@@ -128,55 +128,55 @@ $_smarty_tpl->_assignInScope('array', (($tmp = $_smarty_tpl->tpl_vars['array']->
     <section id="blog" class="blog">
         <div class="container" data-aos="fade-up">
             <div class="row">
-                <article class="entry">
-                    <?php if (!empty($_smarty_tpl->tpl_vars['array']->value)) {?>
-                        <?php if ($_smarty_tpl->tpl_vars['tipo']->value == "Locali") {?>
-                            <?php
+                <?php if (!empty($_smarty_tpl->tpl_vars['array']->value)) {?>
+                    <article class="entry">
+                    <?php if ($_smarty_tpl->tpl_vars['tipo']->value == "Locali") {?>
+                        <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['array']->value, 'locale');
 $_smarty_tpl->tpl_vars['locale']->do_else = true;
 if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['locale']->value) {
 $_smarty_tpl->tpl_vars['locale']->do_else = false;
 ?>
-                                <div class="entry-img">
-                                    <?php if (is_null($_smarty_tpl->tpl_vars['locale']->value->getPrimaImg())) {?>
-                                        <img class="photo" src="/template/img/no_foto.jpg" alt="immagine locale" width="200px" height="100px" style="border-radius:5px">
-                                        <?php } else { ?>
-                                        <img class="photo" src="data:<?php echo $_smarty_tpl->tpl_vars['locale']->value->getPrimaImg()->getType();?>
+                            <div class="entry-img">
+                                <?php if (is_null($_smarty_tpl->tpl_vars['locale']->value->getPrimaImg())) {?>
+                                    <img class="photo" src="/template/img/no_foto.jpg" alt="immagine locale" width="200px" height="100px" style="border-radius:5px">
+                                    <?php } else { ?>
+                                    <img class="photo" src="data:<?php echo $_smarty_tpl->tpl_vars['locale']->value->getPrimaImg()->getType();?>
 ;base64,<?php echo $_smarty_tpl->tpl_vars['locale']->value->getPrimaImg()->getImmagine();?>
 " alt="immagine locale" width="200px" height="100px" style="border-radius:5px">
-                                    <?php }?>
-                                </div>
-                                <h2 class="entry-title">
-                                    <a href="/Ricerca/dettagliLocale/<?php echo $_smarty_tpl->tpl_vars['locale']->value->getId();?>
+                                <?php }?>
+                            </div>
+                            <h2 class="entry-title" style="width: 400px">
+                                <a href="/Ricerca/dettagliLocale/<?php echo $_smarty_tpl->tpl_vars['locale']->value->getId();?>
 "><?php echo $_smarty_tpl->tpl_vars['locale']->value->getNome();?>
 </a>
-                                </h2>
-                                <div class="entry-meta">
-                                    <ul>
-                                        <li class="d-flex align-items-center"><i class="bi bi-person"></i>
-                                            <?php echo $_smarty_tpl->tpl_vars['locale']->value->getProprietario()->getUsername();?>
+                            </h2>
+                            <div class="entry-meta">
+                                <ul>
+                                    <li class="d-flex align-items-center"><i class="bi bi-person"></i>
+                                        <?php echo $_smarty_tpl->tpl_vars['locale']->value->getProprietario()->getUsername();?>
 </li>
-                                        <li class="d-flex align-items-center"><i class="fas fa-map-marker-alt"></i>
-                                            <?php echo $_smarty_tpl->tpl_vars['locale']->value->getLocalizzazione()->getIndirizzo();?>
+                                    <li class="d-flex align-items-center"><i class="fas fa-map-marker-alt"></i>
+                                        <?php echo $_smarty_tpl->tpl_vars['locale']->value->getLocalizzazione()->getIndirizzo();?>
 
-                                            ,<?php echo $_smarty_tpl->tpl_vars['locale']->value->getLocalizzazione()->getNumCivico();?>
+                                        ,<?php echo $_smarty_tpl->tpl_vars['locale']->value->getLocalizzazione()->getNumCivico();?>
 
-                                            , <?php echo $_smarty_tpl->tpl_vars['locale']->value->getLocalizzazione()->getCitta();?>
+                                        , <?php echo $_smarty_tpl->tpl_vars['locale']->value->getLocalizzazione()->getCitta();?>
 
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="entry-content">
-                                    <p>
-                                        <?php echo $_smarty_tpl->tpl_vars['locale']->value->getDescrizione();?>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="entry-content">
+                                <p>
+                                    <?php echo $_smarty_tpl->tpl_vars['locale']->value->getDescrizione();?>
 
-                                    </p>
-                                </div>
-                            <?php
+                                </p>
+                            </div>
+                        <?php
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
-                        <?php } else { ?>
-                            <?php
+                    <?php } else { ?>
+                        <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['array']->value, 'evento');
 $_smarty_tpl->tpl_vars['evento']->iteration = 0;
 $_smarty_tpl->tpl_vars['evento']->do_else = true;
@@ -185,77 +185,77 @@ $_smarty_tpl->tpl_vars['evento']->do_else = false;
 $_smarty_tpl->tpl_vars['evento']->iteration++;
 $__foreach_evento_1_saved = $_smarty_tpl->tpl_vars['evento'];
 ?>
-                                <div class="entry-img">
-                                    <img class="photo"
-                                         src="data:<?php echo $_smarty_tpl->tpl_vars['evento']->value->getImg()->getType();?>
+                            <div class="entry-img">
+                                <img class="photo"
+                                     src="data:<?php echo $_smarty_tpl->tpl_vars['evento']->value->getImg()->getType();?>
 ;base64,<?php echo $_smarty_tpl->tpl_vars['evento']->value->getImg()->getImmagine();?>
 "
-                                         alt="immagine evento" width="200px" height="100px" style="border-radius:5px">
-                                </div>
-                                <h2 class="entry-title">
-                                    <?php echo $_smarty_tpl->tpl_vars['evento']->value->getNome();?>
+                                     alt="immagine evento" width="200px" height="100px" style="border-radius:5px">
+                            </div>
+                            <h2 class="entry-title">
+                                <?php echo $_smarty_tpl->tpl_vars['evento']->value->getNome();?>
 
-                                </h2>
-                                <div class="entry-meta">
-                                    <ul>
-                                        <li class="d-flex align-items-center"><i class="bi bi-person"></i>
-                                            <?php ob_start();
+                            </h2>
+                            <div class="entry-meta">
+                                <ul>
+                                    <li class="d-flex align-items-center"><i class="bi bi-person"></i>
+                                        <?php ob_start();
 echo $_smarty_tpl->tpl_vars['evento']->iteration-1;
 $_prefixVariable1 = ob_get_clean();
 echo $_smarty_tpl->tpl_vars['locali']->value[$_prefixVariable1]->getNome();?>
 </li>
-                                        <li class="d-flex align-items-center"><i class="fas fa-map-marker-alt"></i>
-                                            <?php ob_start();
+                                    <li class="d-flex align-items-center"><i class="fas fa-map-marker-alt"></i>
+                                        <?php ob_start();
 echo $_smarty_tpl->tpl_vars['evento']->iteration-1;
 $_prefixVariable2 = ob_get_clean();
 echo $_smarty_tpl->tpl_vars['locali']->value[$_prefixVariable2]->getLocalizzazione()->getIndirizzo();?>
 
-                                            ,<?php ob_start();
+                                        ,<?php ob_start();
 echo $_smarty_tpl->tpl_vars['evento']->iteration-1;
 $_prefixVariable3 = ob_get_clean();
 echo $_smarty_tpl->tpl_vars['locali']->value[$_prefixVariable3]->getLocalizzazione()->getNumCivico();?>
 
-                                            , <?php ob_start();
+                                        , <?php ob_start();
 echo $_smarty_tpl->tpl_vars['evento']->iteration-1;
 $_prefixVariable4 = ob_get_clean();
 echo $_smarty_tpl->tpl_vars['locali']->value[$_prefixVariable4]->getLocalizzazione()->getCitta();?>
 
-                                        </li>
-                                        <li class="d-flex align-items-center"><i class="bi bi-pin"></i>
-                                            <?php echo $_smarty_tpl->tpl_vars['evento']->value->getData();?>
+                                    </li>
+                                    <li class="d-flex align-items-center"><i class="bi bi-pin"></i>
+                                        <?php echo $_smarty_tpl->tpl_vars['evento']->value->getData();?>
 </li>
-                                    </ul>
-                                </div>
-                                <div class="entry-content">
-                                    <p>
-                                        <?php echo $_smarty_tpl->tpl_vars['evento']->value->getDescrizione();?>
+                                </ul>
+                            </div>
+                            <div class="entry-content">
+                                <p>
+                                    <?php echo $_smarty_tpl->tpl_vars['evento']->value->getDescrizione();?>
 
-                                    </p>
-                                    <div class="read-more">
-                                        <a href="/Ricerca/dettagliLocale/<?php ob_start();
+                                </p>
+                                <div class="read-more">
+                                    <a href="/Ricerca/dettagliLocale/<?php ob_start();
 echo $_smarty_tpl->tpl_vars['evento']->iteration-1;
 $_prefixVariable5 = ob_get_clean();
 echo $_smarty_tpl->tpl_vars['locali']->value[$_prefixVariable5]->getId();?>
 ">
-                                            Visita la pagina del Locale <i class="fas fa-chevron-circle-right"></i></a>
-                                    </div>
+                                        Visita la pagina del Locale <i class="fas fa-chevron-circle-right"></i></a>
                                 </div>
-                                <br>
-                            <?php
+                            </div>
+                            <br>
+                        <?php
 $_smarty_tpl->tpl_vars['evento'] = $__foreach_evento_1_saved;
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
-                        <?php }?>
                     <?php }?>
-                    <?php if (empty($_smarty_tpl->tpl_vars['array']->value)) {?>
-                        <h2 class="accordion-body">La ricerca non ha prodotto alcun risultato. Riprova.</h2>
-                    <?php }?>
-                </article>
+                    </article>
+                <?php }?>
+                <?php if (empty($_smarty_tpl->tpl_vars['array']->value)) {?>
+                    <h2>La ricerca non ha prodotto alcun risultato. Riprova.</h2>
+                <?php }?>
             </div>
         </div>
     </section>
 </main>
-
+<!-- End Footer 
 <footer id="footer" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
 
     <div class="container">
@@ -267,7 +267,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
         </div>
     </div>
 
-</footer><!-- End Footer -->
+</footer>-->
 
 <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
             class="bi bi-arrow-up-short"></i></a>

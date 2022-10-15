@@ -89,15 +89,15 @@
                         <div class="swiper-wrapper">
                             {if !empty($locale->getImg())}
                                 {foreach $locale->getImg() as $img}
-                                    <div class="swiper-slide">
-                                        <img style="height:575px; width:575px; border-radius: 25%" src="data:{$img->getType()};base64,{$img->getImmagine()}"
+                                    <div class="swiper-slide" style="text-align: center">
+                                        <img style="height: 90%; width: 90%; border-radius: 15%" src="data:{$img->getType()};base64,{$img->getImmagine()}"
                                              alt="Immagine localeeee">
                                     </div>
                                 {/foreach}
                             {else}
-                                <div class="swiper-slide">
+                                <div class="swiper-slide" style="text-align: center">
                                     <img src="/template/img/no_foto.jpg" alt="Immagine locale"
-                                         style="max-height:575px; max-width:575px; border-radius:40px">
+                                         style="height: 90%; width: 90%; border-radius: 15%">
                                 </div>
                             {/if}
                         </div>
@@ -114,9 +114,9 @@
                                             <h3>{$evento->getNome()}</h3>
                                             <img src="data:{$evento->getImg()->getType()};base64,{$evento->getImg()->getImmagine()}"
                                                  alt="Poster evento"
-                                                 style="max-width:225px; max-height:250px; float:right; display: block; border-radius:30px;">
+                                                 style="max-width: 250px; max-height: 250px; float:right; display: block; border-radius:30px;">
                                             <ul>
-                                                <li><strong>Data</strong>: {$evento->getData()}.</li>
+                                                <li><strong>Data</strong>: {$evento->getData()}</li>
                                                 <li><strong>Descrizione</strong>: {$evento->getDescrizione()}</li>
                                             </ul>
                                         </div>

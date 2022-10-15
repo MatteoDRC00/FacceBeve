@@ -67,26 +67,26 @@
                     <ul>
                         {if $tipo=="Locali"}
                             {if isset($nomeLocale)}
-                                <li style="font-size: 20px">{$nomeLocale}</li>
+                                <li style="font-size: 20px"><strong>Nome locale: </strong>{$nomeLocale}</li>
                             {/if}
                             {if isset($citta)}
-                                <li style="font-size: 20px">{$citta}</li>
+                                <li style="font-size: 20px"><strong>Citt&agrave locale: </strong>{$citta}</li>
                             {/if}
                             {if isset($categoria)}
-                                <li style="font-size: 20px">{$categoria}</li>
+                                <li style="font-size: 20px"><strong>Categoria locale: </strong>{$categoria}</li>
                             {/if}
                         {else}
                             {if isset($citta)}
-                                <li style="font-size: 20px">{$citta}</li>
+                                <li style="font-size: 20px"><strong>Citt&agrave evento: </strong>{$citta}</li>
                             {/if}
                             {if isset($nomeLocale)}
-                                <li style="font-size: 20px">{$nomeLocale}</li>
+                                <li style="font-size: 20px"><strong>Nome locale: </strong>{$nomeLocale}</li>
                             {/if}
                             {if isset($nomeEvento)}
-                                <li style="font-size: 20px">{$nomeEvento}</li>
+                                <li style="font-size: 20px"><strong>Nome evento: </strong>{$nomeEvento}</li>
                             {/if}
                             {if isset($data)}
-                                <li style="font-size: 20px">{$data}</li>
+                                <li style="font-size: 20px"><strong>Data evento: </strong>{$data}</li>
                             {/if}
                         {/if}
                     </ul>
@@ -98,82 +98,82 @@
     <section id="blog" class="blog">
         <div class="container" data-aos="fade-up">
             <div class="row">
-                <article class="entry">
-                    {if !empty($array)}
-                        {if $tipo eq "Locali"}
-                            {foreach $array as $locale}
-                                <div class="entry-img">
-                                    {if is_null($locale->getPrimaImg())}
-                                        <img class="photo" src="/template/img/no_foto.jpg" alt="immagine locale" width="200px" height="100px" style="border-radius:5px">
-                                        {else}
-                                        <img class="photo" src="data:{$locale->getPrimaImg()->getType()};base64,{$locale->getPrimaImg()->getImmagine()}" alt="immagine locale" width="200px" height="100px" style="border-radius:5px">
-                                    {/if}
+                {if !empty($array)}
+                    <article class="entry">
+                    {if $tipo eq "Locali"}
+                        {foreach $array as $locale}
+                            <div class="entry-img">
+                                {if is_null($locale->getPrimaImg())}
+                                    <img class="photo" src="/template/img/no_foto.jpg" alt="immagine locale" width="200px" height="100px" style="border-radius:5px">
+                                    {else}
+                                    <img class="photo" src="data:{$locale->getPrimaImg()->getType()};base64,{$locale->getPrimaImg()->getImmagine()}" alt="immagine locale" width="200px" height="100px" style="border-radius:5px">
+                                {/if}
+                            </div>
+                            <h2 class="entry-title" style="width: 400px">
+                                <a href="/Ricerca/dettagliLocale/{$locale->getId()}">{$locale->getNome()}</a>
+                            </h2>
+                            <div class="entry-meta">
+                                <ul>
+                                    <li class="d-flex align-items-center"><i class="bi bi-person"></i>
+                                        {$locale->getProprietario()->getUsername()}</li>
+                                    <li class="d-flex align-items-center"><i class="fas fa-map-marker-alt"></i>
+                                        {$locale->getLocalizzazione()->getIndirizzo()}
+                                        ,{$locale->getLocalizzazione()->getNumCivico()}
+                                        , {$locale->getLocalizzazione()->getCitta()}
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="entry-content">
+                                <p>
+                                    {$locale->getDescrizione()}
+                                </p>
+                            </div>
+                        {/foreach}
+                    {else}
+                        {foreach $array as $evento}
+                            <div class="entry-img">
+                                <img class="photo"
+                                     src="data:{$evento->getImg()->getType()};base64,{$evento->getImg()->getImmagine()}"
+                                     alt="immagine evento" width="200px" height="100px" style="border-radius:5px">
+                            </div>
+                            <h2 class="entry-title">
+                                {$evento->getNome()}
+                            </h2>
+                            <div class="entry-meta">
+                                <ul>
+                                    <li class="d-flex align-items-center"><i class="bi bi-person"></i>
+                                        {$locali[{$evento@iteration-1}]->getNome()}</li>
+                                    <li class="d-flex align-items-center"><i class="fas fa-map-marker-alt"></i>
+                                        {$locali[{$evento@iteration-1}]->getLocalizzazione()->getIndirizzo()}
+                                        ,{$locali[{$evento@iteration-1}]->getLocalizzazione()->getNumCivico()}
+                                        , {$locali[{$evento@iteration-1}]->getLocalizzazione()->getCitta()}
+                                    </li>
+                                    <li class="d-flex align-items-center"><i class="bi bi-pin"></i>
+                                        {$evento->getData()}</li>
+                                </ul>
+                            </div>
+                            <div class="entry-content">
+                                <p>
+                                    {$evento->getDescrizione()}
+                                </p>
+                                <div class="read-more">
+                                    <a href="/Ricerca/dettagliLocale/{$locali[{$evento@iteration-1}]->getId()}">
+                                        Visita la pagina del Locale <i class="fas fa-chevron-circle-right"></i></a>
                                 </div>
-                                <h2 class="entry-title">
-                                    <a href="/Ricerca/dettagliLocale/{$locale->getId()}">{$locale->getNome()}</a>
-                                </h2>
-                                <div class="entry-meta">
-                                    <ul>
-                                        <li class="d-flex align-items-center"><i class="bi bi-person"></i>
-                                            {$locale->getProprietario()->getUsername()}</li>
-                                        <li class="d-flex align-items-center"><i class="fas fa-map-marker-alt"></i>
-                                            {$locale->getLocalizzazione()->getIndirizzo()}
-                                            ,{$locale->getLocalizzazione()->getNumCivico()}
-                                            , {$locale->getLocalizzazione()->getCitta()}
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="entry-content">
-                                    <p>
-                                        {$locale->getDescrizione()}
-                                    </p>
-                                </div>
-                            {/foreach}
-                        {else}
-                            {foreach $array as $evento}
-                                <div class="entry-img">
-                                    <img class="photo"
-                                         src="data:{$evento->getImg()->getType()};base64,{$evento->getImg()->getImmagine()}"
-                                         alt="immagine evento" width="200px" height="100px" style="border-radius:5px">
-                                </div>
-                                <h2 class="entry-title">
-                                    {$evento->getNome()}
-                                </h2>
-                                <div class="entry-meta">
-                                    <ul>
-                                        <li class="d-flex align-items-center"><i class="bi bi-person"></i>
-                                            {$locali[{$evento@iteration-1}]->getNome()}</li>
-                                        <li class="d-flex align-items-center"><i class="fas fa-map-marker-alt"></i>
-                                            {$locali[{$evento@iteration-1}]->getLocalizzazione()->getIndirizzo()}
-                                            ,{$locali[{$evento@iteration-1}]->getLocalizzazione()->getNumCivico()}
-                                            , {$locali[{$evento@iteration-1}]->getLocalizzazione()->getCitta()}
-                                        </li>
-                                        <li class="d-flex align-items-center"><i class="bi bi-pin"></i>
-                                            {$evento->getData()}</li>
-                                    </ul>
-                                </div>
-                                <div class="entry-content">
-                                    <p>
-                                        {$evento->getDescrizione()}
-                                    </p>
-                                    <div class="read-more">
-                                        <a href="/Ricerca/dettagliLocale/{$locali[{$evento@iteration-1}]->getId()}">
-                                            Visita la pagina del Locale <i class="fas fa-chevron-circle-right"></i></a>
-                                    </div>
-                                </div>
-                                <br>
-                            {/foreach}
-                        {/if}
+                            </div>
+                            <br>
+                        {/foreach}
                     {/if}
-                    {if empty($array)}
-                        <h2 class="accordion-body">La ricerca non ha prodotto alcun risultato. Riprova.</h2>
-                    {/if}
-                </article>
+                    </article>
+                {/if}
+                {if empty($array)}
+                    <h2>La ricerca non ha prodotto alcun risultato. Riprova.</h2>
+                {/if}
             </div>
         </div>
     </section>
 </main>
-
+<!-- End Footer 
 <footer id="footer" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
 
     <div class="container">
@@ -185,7 +185,7 @@
         </div>
     </div>
 
-</footer><!-- End Footer -->
+</footer>-->
 
 <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
             class="bi bi-arrow-up-short"></i></a>
