@@ -125,7 +125,7 @@ class CAdmin
         if ($sessione->isLogged() && $tipo == "EAdmin") {
             $genere = str_replace("%20", " ", $genere);
             $pm->delete("genere", $genere, "FCategoria");
-            $pm->deleteLocaleCategorie($genere);
+            $pm->deleteEsterne("Locale_Categorie", "ID_Categoria", $genere);
             header("Location: /Admin/dashboardAdmin");
         } else {
             header("Location: /Ricerca/mostraHome");

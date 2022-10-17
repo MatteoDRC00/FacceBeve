@@ -447,10 +447,11 @@ class CGestioneLocale
         $locale = $pm->load("id", $id_locale, "FLocale");
 
         if ($sessione->isLogged() && $tipo == "EProprietario") {
-            $pm->deleteLocaleEvento($id_locale);
-            $pm->deleteCategorieLocale($id_locale);
-            $pm->deleteOrariLocale($id_locale);
-            $pm->deleteUtenteLocale($id_locale);
+            $pm->deleteEsterne("Locale_Eventi", "ID_Locale", $id_locale);
+            $pm->deleteEsterne("Locale_Categorie", "ID_Locale", $id_locale);
+            $pm->deleteEsterne("Locale_Orari", "ID_Locale", $id_locale);
+            $pm->deleteEsterne("Utenti_Locali", "ID_Locale", $id_locale);
+            $pm->deleteEsterne("Locale_Immagini", "ID_Locale", $id_locale);
 
             $pm->delete("id", $locale[0]->getLocalizzazione()->getId(), "FLocalizzazione");
             $pm->delete("id", $id_locale, "FLocale");

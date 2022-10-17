@@ -41,6 +41,12 @@ class FPersistentManager {
         return $db->storeEsterne($table, $field1, $field2, $fk1, $fk2);
     }
 
+    /**
+     * @param string $table
+     * @param string $field
+     * @param string $fk
+     * @return bool|null
+     */
     public function deleteEsterne(string $table, string $field, string $fk) {
         $db = FDB::getInstance();
         return $db->deleteEsterne($table, $field, $fk);
@@ -48,15 +54,26 @@ class FPersistentManager {
 
     /**
      * Metodo utilizzato per caricare TUTTE le categorie di locale presenti sul sito
-    */
+     * @return array
+     */
     public function getCategorie(): array{
         return FCategoria::loadAllCategorie();
     }
 
+    /**
+     * Restituisce gli eventi di un un locale dato il suo id
+     * @param $id_locale
+     * @return array
+     */
     public function getEventiByLocale($id_locale){
         return FEvento::loadByLocale($id_locale);
     }
 
+    /**
+     * Restituisce le immagini di un un locale dato il suo id
+     * @param $id_locale
+     * @return array
+     */
     public function getImmaginiByLocale($id_locale){
         return FImmagine::loadByLocale($id_locale);
     }
@@ -84,7 +101,15 @@ class FPersistentManager {
         return $class::exist($attributo,$valore);
     }
 
-    public function existEsterna(string $class, string $attributo1, string $chiave1,  string $attributo2, string $chiave2): bool
+    /**
+     * @param string $class
+     * @param string $attributo1
+     * @param string $chiave1
+     * @param string $attributo2
+     * @param string $chiave2
+     * @return bool
+     */
+    public function existEsterne(string $class, string $attributo1, string $chiave1,  string $attributo2, string $chiave2): bool
     {
         $db = FDB::getInstance();
         return $db->existEsterne($class, $attributo1, $chiave1, $attributo2, $chiave2);
@@ -102,11 +127,14 @@ class FPersistentManager {
     }
 
 
-    /**  Metodo che permette il caricamento di una form(modulo) riempita con i parametri passati in input alla funzione
-     * @param part1 nome locale / evento
-     * @param part2 città locale/ nome locale
-     * @param part3 categorie locale / citta evento
-     * @param part4 null per Locale / data evento
+    /**
+     * Metodo che permette il caricamento di una form(modulo) riempita con i parametri passati in input alla funzione
+     * @param $part1
+     * @param $part2
+     * @param $part3
+     * @param $part4
+     * @param $tipo
+     * @return array[]
      */
     public static function loadForm ($part1, $part2,$part3, $part4,$tipo) {
         if($tipo=="Locali")
@@ -130,7 +158,11 @@ class FPersistentManager {
     }
 
 
-    /** Metodo che permette il caricamento di tutti gli elementi di una classe/tabella*/
+    /**
+     * Metodo che permette il caricamento di tutti gli elementi di una classe/tabella
+     * @param string $class
+     * @return mixed
+     */
     public function loadAll(string $class) {
         $ris = null;
         $ris = $class::loadAll();
@@ -138,17 +170,10 @@ class FPersistentManager {
     }
 
     /**
-     * Metodo che permette il caricamento degli utenti avendo come parametro di ricerca lo stato, i.e.,
-     * 0) '0' ==> Bannato
-     * 1) '1' ==> Attivo
-     */
-    public function loadUtentiByState($state) {
-        $ris = FUtente::loadUtentiByState($state);
-        return $ris;
-    }
-
-    /**
      * Metodo che permette il login di un utente, date le credenziali (username e password)
+     * @param $user
+     * @param $pass
+     * @return array|EAdmin|EProprietario|EUtente|null
      */
     public function verificaLogin($user, $pass) {
         $ris = FUtente::verificaLogin($user, $pass);
@@ -163,68 +188,49 @@ class FPersistentManager {
 
     /**
      * Metodo che restituisce i 4 locali con la valutazione più alta sul sito
-    */
+     * @return array
+     */
     public function top4Locali(){
         return FLocale::getTopLocali();
     }
 
     /**
-     * Metodo che restituisce gli eventi disponibili per un utente
+     * Metodo che restituisce gli eventi disponibili per un utente dato il suo username
+     * @param string $username
+     * @return array[]
      */
     public function eventiUtente(string $username){
         return FEvento::loadByUtente($username);
     }
 
-
+    /**
+     * Restituisce le recensioni di un locale dato il suo id
+     * @param $id
+     * @return array
+     */
     public function loadRecensioniByLocale($id){
         $result = FRecensione::loadByField("locale", $id);
         return $result;
     }
 
+    /**
+     * Restituisce i locali preferiti di un utente dato il suo id
+     * @param $id_utente
+     * @return array
+     */
     public function getLocaliPreferiti($id_utente): array
     {
         return FLocale::loadByUsername($id_utente);
     }
 
-    public function storeCategorieLocale($categoria, $locale){
-        $db = FDB::getInstance();
-        $db->storeCategorieLocale($locale, $categoria);
-    }
-
-    public function deleteCategorieLocale($id_locale){
-        $db = FDB::getInstance();
-        $db->deleteCategorieLocale($id_locale);
-    }
-
-    public function deleteLocaleCategorie($genere){
-        $db = FDB::getInstance();
-        $db->deleteLocaleCategorie($genere);
-    }
-
-    public function deleteUtenteLocale($id_locale){
-        $db = FDB::getInstance();
-        $db->deleteUtenteLocale($id_locale);
-    }
-
-    public function deleteOrariLocale($id_locale){
-        $db = FDB::getInstance();
-        $db->deleteOrariLocale($id_locale);
-    }
-
-    public function deleteLocaleEvento($id_locale){
-        $db = FDB::getInstance();
-        $db->deleteLocaleEvento($id_locale);
-    }
-
+    /**
+     * Rimuove un locale dai preferiti di un utente dato l'username e l'id del locale
+     * @param $utente
+     * @param $locale
+     * @return bool
+     */
     public function deleteUtentiLocali($utente, $locale){
         $db = FDB::getInstance();
         return $db->deleteUtentiLocali($locale, $utente);
     }
-
-    public function storeUtentiLocali($utente, $locale){
-        $db = FDB::getInstance();
-        $db->storeUtentiLocali($locale, $utente);
-    }
-
-
 }

@@ -113,7 +113,7 @@ class CRicerca
         $risposte = null;
         $tipo = $sessione->leggi_valore('tipo_utente');
         $username = $sessione->leggi_valore('utente');
-        $presente = $pm->existEsterna("utenti_locali", "ID_Locale", $id_locale, "ID_Utente", $username);
+        $presente = $pm->existEsterne("utenti_locali", "ID_Locale", $id_locale, "ID_Utente", $username);
         if (!empty($recensioni)) {
             //$risposte = array();
             $sum = 0;
@@ -159,7 +159,7 @@ class CRicerca
         if ($sessione->isLogged() && $tipo == "EUtente") {
             $value = $view->getPreferito();
             if ($value == "Aggiunto!") {
-                $pm->storeUtentiLocali($username, $id_locale);
+                $pm->storeEsterne("Utenti_Locali", "ID_Locale", "ID_Utente", $id_locale, $username);
                 header("Location: /Ricerca/dettagliLocale/" . $id_locale);
             } elseif ($value == "Aggiungi ai preferiti") {
                 $pm->deleteUtentiLocali($username, $id_locale);

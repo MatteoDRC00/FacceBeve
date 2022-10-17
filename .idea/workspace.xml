@@ -5,7 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2e58f0f9-142d-4fe5-83c4-7ac5ce6fd200" name="Changes" comment="login e registrazione aggiunta logo in alto da completare">
-      <change beforePath="$PROJECT_DIR$/template/areaPersonaleUtente.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/template/areaPersonaleUtente.tpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controller/CAdmin.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/CAdmin.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controller/CGestioneLocale.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/CGestioneLocale.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controller/CRicerca.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/CRicerca.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Foundation/FPersistentManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/Foundation/FPersistentManager.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -187,7 +191,7 @@
       <workItem from="1665820268097" duration="1421000" />
       <workItem from="1665825596745" duration="3998000" />
       <workItem from="1665834971792" duration="156000" />
-      <workItem from="1665992167005" duration="912000" />
+      <workItem from="1665992167005" duration="2103000" />
     </task>
     <servers />
   </component>
