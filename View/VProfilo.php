@@ -3,6 +3,11 @@
 require_once "Smarty/libs/autoloader.php";
 require_once "StartSmarty.php";
 
+/**
+ * La classe VProfilo si occupa dell'input-output per operazioni su dati personali di utenti e proprietari
+ * @author Gruppo8
+ * @package View
+ */
 class VProfilo{
 
     /**
@@ -140,6 +145,11 @@ class VProfilo{
         return $arrayImg;
     }
 
+    /**
+     * Funzione utilizzata per visualizzare l'area personale di un utente.
+     * @param EUtente $utente utente
+     * @param $locali_preferiti array dei locali seguiti dal utente
+    */
     public function mostraProfiloUtente(EUtente $utente, $locali_preferiti){
         $username = $utente->getUsername();
         $nome = $utente->getNome();
@@ -165,6 +175,11 @@ class VProfilo{
         $this->smarty->display('areaPersonaleUtente.tpl');
     }
 
+    /**
+     * Funzione utilizzata per visualizzare l'area personale di un proprietario.
+     * @param EProprietario $proprietario proprietario del locale
+     * @param $locali array di locali gestiti dal proprietario
+     */
     public function mostraProfiloProprietario(EProprietario $proprietario,$locali){
         $username = $proprietario->getUsername();
         $nome = $proprietario->getNome();
@@ -190,6 +205,12 @@ class VProfilo{
         $this->smarty->display('areaPersonaleProprietario.tpl');
     }
 
+    /**
+     * Funzione utilizzata per mostrare l'errore generato.
+     * @param $tipo tipo di errore generato
+     * @param $message messaggio da stampare
+     * @param $user utente collegato
+     */
     public function errore($tipo,$message,$user){
         $pm = FPersistentManager::getInstance();
 

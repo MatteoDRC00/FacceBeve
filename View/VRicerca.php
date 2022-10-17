@@ -3,6 +3,11 @@
 /**
  * @method register_object(string $string, contiene $result)
  */
+/**
+ * La classe VRicerca si occupa dell'input-output per la ricerca di eventi e locali
+ * @author Gruppo8
+ * @package View
+ */
 class VRicerca
 {
     private $smarty;
@@ -14,6 +19,9 @@ class VRicerca
         $this->smarty = StartSmarty::configuration();
     }
 
+    /**
+     * Funzione che preleva il valore del pulsante "Aggiungi ai preferiti"
+     */
     public function getPreferito(){
         $value = null;
         if (isset($_POST['pref']))
@@ -22,7 +30,7 @@ class VRicerca
     }
 
     /**
-     * Metodo che restituisce l'id' del locale selezionate nella pagina personale del utente/proprietario
+     * Metodo che restituisce l'id' del locale selezionato nella pagina personale del utente/proprietario
      * @return int
      */
     public function getIdLocale(): int
@@ -165,6 +173,11 @@ class VRicerca
      * Mostra i risultati del filtraggio della ricerca.
      * @param $result contiene i risultati ottenuti dal database
      * @param $tipo definisce il tipo di ricerca effettuata (Locali/Eventi)
+     * @param $nomelocale nome del locale cercato
+     * @param $citta citta' in cui si svolge l'evento/ in cui si trova il locale
+     * @param $eventoCat categoria locale/Nome evento
+     * @param $data data in cui si svolge l'evento
+     * @param $localEventi array utilizzato per accedere ai locali dagli eventi
      * @throws SmartyException
      */
     public function showResult($result, $tipo,$nomelocale,$citta, $eventoCat, $data, $localEventi){
@@ -187,7 +200,15 @@ class VRicerca
        $this->smarty->display('risultatiRicerca.tpl');
     }
 
-
+    /**
+     * Funzione utilizzata per visualizzare la homepage del sito
+     * @param $tipo tipo di ricerca
+     * @param $categorie categorie dei locali
+     * @param $eventiUtente eventi visibili all'utente(se connesso e se non è un proprietario)
+     * @param $localiEventiUtente per accedere ai locali in cui si svolgono gli eventi visibili all'utente
+     * @param $topLocali top4 locali sul sito
+     * @param $valutazione valutazione dei top locali
+    */
     public function mostraHome($tipo, $categorie, $topLocali, $valutazione, $eventiUtente, $localiEventiUtente){
         $this->smarty->assign('tipo',$tipo);
         $this->smarty->assign('categorie',$categorie);
@@ -202,7 +223,16 @@ class VRicerca
 
     /**
      * Mostra la pagina contenente i dettagli del locale selezionato
-     * @param array contiene l'id dell'array da visualizzare
+     * @param $arrayRecensioni Recensioni del locale
+     * @param $arrayRisposte Risposte del proprietario
+     * @param $eventiOrganizzati eventi organizzati nella storia del locale
+     * @param $proprietario bool per controlare che il profilo che sta visualizzando il locale è ilm proprietario oppure no
+     * @param $result locale
+     * @param $stato stato del utente collegato(attivo oppure bannato)
+     * @param $utente username utente collegato
+     * @param $presente utilizzato per verificare se il locale è stato aggiunto ai preferiti dall'utente
+     * @param $valutazioneLocale valutazione del locale
+     * @param $tipo tipo di utente collegato
      * @throws SmartyException
      */
     public function dettagliLocale($utente, $stato, $tipo, $presente, $result,$arrayRecensioni,$arrayRisposte,$valutazioneLocale,$proprietario,$eventiOrganizzati) {
@@ -223,34 +253,6 @@ class VRicerca
         $this->smarty->assign('stato', $stato);
         $this->smarty->assign('presente', $presente);
         $this->smarty->display('InfoLocale.tpl');
-    }
-
-    //Dubbio
-    /**
-     * Funzione di supporto per gestire le immagini presenti nell'elenco delle recensioni ||  GestioneLocali
-     * @param $imgrec elenco di immagini degli utenti presenti nelle recensioni
-     * @return array
-     */
-    public function SetImageRecensione ($imgrec) {
-        $type = null;
-        $pic64 = null;
-        if (is_array($imgrec)) {
-            foreach ($imgrec as $item) {
-                if (isset($item)) {
-                    $pic64[] = base64_encode($item->getImmagine());
-                    $type[] = $item->getType();
-                } else {
-                    $data = file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/FacceBeve/Smarty/immagini/user.png');
-                    $pic64[] = base64_encode($data);
-                    $type[] = "image/png";
-                }
-            }
-        }
-        elseif (isset($imgrec)) {
-            $pic64 = base64_encode($imgrec->getData());
-            $type = $imgrec->getType();
-        }
-        return array($type, $pic64);
     }
 
 }

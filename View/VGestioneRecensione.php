@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * La classe VGestioneRecensione si occupa dell'input-output per la scrittura di risposte e recensioni
+ * @author Gruppo8
+ * @package View
+ */
 class VGestioneRecensione{
     /**
      * @var Smarty
@@ -13,70 +18,6 @@ class VGestioneRecensione{
         $this->smarty = StartSmarty::configuration();
     }
 
-    /**
-     * Restituisce il titolo della recensione che si vuole scrivere
-     * Inviato con metodo post
-     * @return string
-     */
-    public function getTitolo(){
-        $value = null;
-        if (isset($_POST['titolo']))
-            $value = $_POST['titolo'];
-        return $value;
-    }
-
-    /**
-     * Restituisce la data in cui la recensione viene scritta
-     * Inviato con metodo post
-     * @return DateTime|false|string
-     */
-    public function getDataScrittura()
-    {
-        $value = null;
-        if (isset($_POST['titolo']) && isset($_POST['valutazione']))
-            $value = date("d-m-Y");
-        return $value;
-    }
-
-    /**
-     * Restituisce il nome del locale che si vuole recensire
-     * Inviato con metodo post
-     * @return string
-     */
-    public function getNomeLocale(): ?string
-    {
-        //VEDI PRIMA COOKIE E SESSIONI
-        $value = null;
-        if (isset($_POST['nomeLocale']))
-            $value = $_POST['nomeLocale'];
-        return $value;
-    }
-
-    /**
-     * Restituisce il nome del locale che si vuole recensire
-     * Inviato con metodo post
-     * @return string
-     */
-    public function getLocalizzazioneLocale(): ?string
-    {
-        //VEDI PRIMA COOKIE E SESSIONI
-        $value = null;
-        if (isset($_POST['localizzazione']))
-            $value = $_POST['localizzazione'];
-        return $value;
-    }
-
-    /**
-     * Restituisce la valutazione della recensione che si vuole scrivere
-     * Inviato con metodo post
-     * @return string
-     */
-    public function getValutazione(){
-        $value = null;
-        if (isset($_POST['valutazione']))
-            $value = $_POST['valutazione'];
-        return $value;
-    }
 
     /**
      * Restituisce la descrizione della recensione che si vuole scrivere
@@ -117,48 +58,11 @@ class VGestioneRecensione{
         return $value;
     }
 
-
     /**
-     * Metodo richiamato quando un utente scrive/crea una recensione.
-     * In caso di errori nella compilazione dei campi della recensione, verrÃ  ricaricata la stessa pagina con un messaggio esplicativo
-     * dell'errore commesso in fase di compilazione.
-     * @param $utente  utente che effettua l'inserimento dei dati nei campi della recensione
-     * @param $error codice di errore con svariati significati. In base al suo valore verrÃ  eventualmente visualizzato un messaggio
-     * di errore nella pagina di scrittura della recensione
-     * @throws SmartyException
+     * Restituisce il form nel quale è stata scritta la recensione
+     * Inviato con metodo post
+     * @return string
      */
-    public function showFormPost($utente,$error)
-    {
-        //RICORDARSI DI PIAZZARE LO SCRIPT SMARTY PER ERRORCLASS ED ERROREMPTY e vedere se l'utente è bannato
-        if (get_class($utente) == "EUtente") {
-            if(!$utente->getState()){
-                $this->smarty->assign('bannato', true);
-            }else{
-                switch ($error) {
-                    case "wrong_class" :
-                        $this->smarty->assign('errorClass', "errore");
-                        break;
-                    case "vuoto" :
-                        $this->smarty->assign('errorEmpty', "errore");
-                        break;
-                }
-            }
-
-        }elseif(get_class($utente) == "EProprietario"){
-            switch ($error) {
-                case "wrong_class" :
-                    $this->smarty->assign('errorClass', "errore");
-                    break;
-                case "vuoto" :
-                    $this->smarty->assign('errorEmpty', "errore");
-                    break;
-            }
-        }
-        $this->smarty->assign('username', $utente->getUsername());
-        $this->smarty->assign('userlogged', "loggato");
-        $this->smarty->display('InfoLocale.tpl');
-    }
-
     public function getFormRecensione(){
         $titolo = $_POST['titolo'];
         $valutazione = $_POST['valutazione'];

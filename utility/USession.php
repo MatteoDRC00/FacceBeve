@@ -10,7 +10,7 @@ class USession
 {
 
     /**
-     * Costruttore della classe USession. Imposta la durata del cookie a 15 minuti e avvia la sessione.
+     * Costruttore della classe USession.
      */
     public function __construct()
     {

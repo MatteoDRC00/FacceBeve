@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * La classe VGestioneLocale si occupa dell'input-output per operazioni relative ad un locale
+ * @author Gruppo8
+ * @package View
+ */
 class VGestioneLocale{
 
     /**
@@ -43,61 +48,28 @@ class VGestioneLocale{
     }
 
 
-
+  /**
+   * Funzione utilizzata per mostrare il from nel quale inserire i dati per la creazione di un locale
+   * @param $categorie categorie disponibili per locali
+   */
     public function showFormCreaLocale($categorie){
         $this->smarty->assign('categorie', $categorie);
         $this->smarty->display('registrazioneLocale.tpl');
     }
 
+    /**
+     * Funzione utilizzata per mostrare il from nel quale inserire i dati per la creazione di un locale
+     * @param $categorie categorie disponibili per locali
+     * @param $locale che si sta modificando
+     * @param $eventi eventi organizzati dal locale
+     * @param $immagini img del locale
+     */
     public function showFormModificaLocale($locale, $categorie, $eventi, $immagini){
         $this->smarty->assign('locale', $locale);
         $this->smarty->assign('categorie', $categorie);
         $this->smarty->assign('eventi', $eventi);
         $this->smarty->assign('immagini', $immagini);
         $this->smarty->display('gestioneLocale.tpl');
-    }
-
-    public function showInfoLocale($locale){
-        $this->smarty->assign('locale', $locale);
-
-        $this->smarty->display('infoLocale.tpl');
-    }
-
-
-    /**
-     * Metodo richiamato quando un Proprietario crea un locale.
-     * In caso di errori nella compilazione dei campi del locale, verrÃ  ricaricata la stessa pagina con un messaggio esplicativo
-     * dell'errore commesso in fase di compilazione.
-     * @param $utente oggetto utente che effettua l'inserimento dei dati nei campi del locale
-     * @param $error codice di errore con svariati significati. In base al suo valore verrÃ  eventualmente visualizzato un messaggio
-     * di errore nella pagina di creazione del locale
-     * @param $locale
-     * @throws SmartyException
-     */
-    public function showFormModify($error,$locale) //Poi vedo Id
-    {
-            switch ($error) {
-                case "type" :
-                    $this->smarty->assign('errorType', "errore");
-                    break;
-                case "size" :
-                    $this->smarty->assign('errorSize', "errore");
-                    break;
-            }
-            //Foto?
-            $this->smarty->assign('nomeLocale', $locale->getNome());
-            $this->smarty->assign('descrizione', $locale->getNome());
-            $this->smarty->assign('numTelefono', $locale->getNumTelefono());
-
-            $this->smarty->assign('indirizzo', $locale->getLocalizzazione()->getIndirizzo());
-            $this->smarty->assign('numCivico', $locale->getLocalizzazione()->getNumCivico());
-            $this->smarty->assign('numTelefono', $locale->getLocalizzazione()->getCitta());
-            $this->smarty->assign('CAP', $locale->getLocalizzazione()->getCAP());
-            $this->smarty->assign('Categorie', $locale->getCategoria());
-            $this->smarty->assign('Orario', $locale->getOrario());
-
-            $this->smarty->assign('userlogged', "loggato");
-            $this->smarty->display('infoLocale.tpl');
     }
 
     /**
@@ -177,15 +149,23 @@ class VGestioneLocale{
         return $value;
     }
 
-
+    /**
+     * Restituisce l''orario di apertura del locale'
+     */
     public function getOrarioApertura(){
         return $_POST["orarioapertura"];
     }
 
+    /**
+     * Restituisce l''orario di chiusura del locale'
+     */
     public function getOrarioChiusura(){
         return $_POST["orariochiusura"];
     }
 
+    /**
+     * Restituisce il valore di "Chiuso" per vedere se il locale quel girono è chiuso o meno'
+     */
     public function getOrarioClose(){
         return $_POST["close"];
     }

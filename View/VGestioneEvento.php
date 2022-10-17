@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * La classe VGestioneEvento si occupa dell'input-output per operazioni relative ad un evento
+ * @author Gruppo8
+ * @package View
+ */
 class VGestioneEvento{
 
     /**

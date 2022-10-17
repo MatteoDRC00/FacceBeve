@@ -6,10 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="2e58f0f9-142d-4fe5-83c4-7ac5ce6fd200" name="Changes" comment="login e registrazione aggiunta logo in alto da completare">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controller/CAdmin.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/CAdmin.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controller/CGestioneLocale.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/CGestioneLocale.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controller/CRicerca.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/CRicerca.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Foundation/FPersistentManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/Foundation/FPersistentManager.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/VAccesso.php" beforeDir="false" afterPath="$PROJECT_DIR$/View/VAccesso.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/VError.php" beforeDir="false" afterPath="$PROJECT_DIR$/View/VError.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/VGestioneEvento.php" beforeDir="false" afterPath="$PROJECT_DIR$/View/VGestioneEvento.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/VGestioneLocale.php" beforeDir="false" afterPath="$PROJECT_DIR$/View/VGestioneLocale.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/VGestioneRecensione.php" beforeDir="false" afterPath="$PROJECT_DIR$/View/VGestioneRecensione.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/VProfilo.php" beforeDir="false" afterPath="$PROJECT_DIR$/View/VProfilo.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/VRicerca.php" beforeDir="false" afterPath="$PROJECT_DIR$/View/VRicerca.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utility/USession.php" beforeDir="false" afterPath="$PROJECT_DIR$/utility/USession.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,8 +87,10 @@
       <recent name="C:\Users\matte\Documents\GitHub\FacceBeve\template" />
     </key>
   </component>
-  <component name="RunManager" selected="PHP Script.index.php">
-    <configuration name="home.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost/FacceBeve/Smarty/html/home.html">
+  <component name="RunManager" selected="Database Script.FacceBeveDump.sql">
+    <configuration name="FacceBeveDump.sql" type="DatabaseScript" editBeforeRun="true" temporary="true" nameIsGenerated="true">
+      <script-file value="$PROJECT_DIR$/FacceBeveDump.sql" />
+      <script-mode>FILE</script-mode>
       <method v="2" />
     </configuration>
     <configuration name="home.tpl" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost/FacceBeve/template/home.tpl">
@@ -106,11 +112,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Database Script.FacceBeveDump.sql" />
         <item itemvalue="PHP Script.index.php" />
         <item itemvalue="JavaScript Debug.infoLocale.html" />
         <item itemvalue="Node.js.main.js" />
         <item itemvalue="JavaScript Debug.home.tpl" />
-        <item itemvalue="JavaScript Debug.home.html" />
       </list>
     </recent_temporary>
   </component>

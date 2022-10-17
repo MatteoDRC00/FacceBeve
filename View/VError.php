@@ -18,13 +18,13 @@ class VError
     }
 
     /**
+     * Mostra la pagina di errore
      * @return void
      * @throws SmartyException
      */
     public function error()
     {
         $this->smarty->display('error.tpl');
-
     }
 
 }

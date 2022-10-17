@@ -3,8 +3,9 @@
 require_once "Smarty/libs/autoloader.php";
 require_once "StartSmarty.php";
 
+
 /**
- * Classe utilizzata per la visualizzazione e il recupero delle informazioni dalle pagine relative all'accesso e alla registrazione degli utenti.
+ * La classe VAccesso si occupa della visualizzazione e il recupero delle informazioni dalle pagine relative all'accesso e alla registrazione degli utenti.
  * @package View
  */
 class VAccesso
