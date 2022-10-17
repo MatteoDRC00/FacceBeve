@@ -34,14 +34,13 @@ class CGestioneEvento
 
     /**
      * Funzione che viene richiamata per la creazione di un evento.
-     * @param $id_locale
+     * @param $id_locale int id del locale nel quale si svolge l'evento
      * @throws SmartyException
      */
     public function mostraFormCreaEvento($id_locale)
     {
         $sessione = new USession();
         $tipo = $sessione->leggi_valore("tipo_utente");
-        $username = $sessione->leggi_valore("utente");
         $pm = FPersistentManager::getInstance();
         $locale = $pm->load("id", $id_locale, "FLocale");
 
@@ -53,11 +52,15 @@ class CGestioneEvento
         }
     }
 
-    public function mostraFormGestioneEvento($id_evento)
+    /**
+     * Funzione che viene richiamata per la modifica di un evento.
+     * @param $id_evento int id del evento
+     *  @return void
+     */
+    public function mostraFormGestioneEvento(int $id_evento)
     {
         $sessione = new USession();
         $view = new VGestioneEvento();
-        $username = $sessione->leggi_valore('utente');
         $tipo = $sessione->leggi_valore("tipo_utente");
         $pm = FPersistentManager::getInstance();
 
@@ -71,7 +74,8 @@ class CGestioneEvento
     }
 
     /**
-     * @param $id_locale
+     * Funzione richiamata nella creazione di un evento
+     * @param $id_locale int id del locale nel quale si svolge l'evento
      * @return void
      */
     public function creaEvento($id_locale)
@@ -107,14 +111,17 @@ class CGestioneEvento
             header("Location: /Ricerca/mostraHome");
         }
 
-
     }
 
-    public function eliminaEvento($id_evento)
+    /**
+     * Funzione utilizzata dal proprietario per eliminare un evento dal locale
+     * @param $id_evento int id del evento
+     * @return void
+     */
+    public function eliminaEvento(int $id_evento)
     {
         $sessione = new USession();
         $pm = FPersistentManager::getInstance();
-        $username = $sessione->leggi_valore('utente');
         $tipo = $sessione->leggi_valore("tipo_utente");
 
         if ($sessione->isLogged() && $tipo == "EProprietario") {
@@ -128,10 +135,11 @@ class CGestioneEvento
 
     /**
      * Funzione che gestisce la modifica del nome del Evento. Preleva il nuovo nome dalla View e procede alla modifica.
+     * @param $id_evento int id del evento
      * @return void
      * @throws SmartyException
      */
-    public function modificaNomeEvento($id_evento)
+    public function modificaNomeEvento(int $id_evento)
     {
         $sessione = new USession();
         $tipo = $sessione->leggi_valore("tipo_utente");
@@ -146,12 +154,11 @@ class CGestioneEvento
         } else {
             header('Location: /Ricerca/mostraHome');
         }
-
-
     }
 
     /**
      * Funzione che gestisce la modifica del nome del Evento. Preleva la nuova descrizione dalla View e procede alla modifica.
+     * @param $id_evento int id del evento
      * @return void
      * @throws SmartyException
      */
@@ -175,10 +182,11 @@ class CGestioneEvento
 
     /**
      * Funzione che gestisce la modifica della data del Evento. Preleva la nuova data dalla View e procede alla modifica.
+     * @param $id_evento int id del evento
      * @return void
      * @throws SmartyException
      */
-    public function modificaDataEvento($id_evento)
+    public function modificaDataEvento(int $id_evento)
     {
         $sessione = new USession();
         $tipo = $sessione->leggi_valore("tipo_utente");
@@ -199,10 +207,11 @@ class CGestioneEvento
 
     /**
      * Gestisce la modifica dell'immagine del evento. Preleva la nuova immagine dalla view e procede alla modifica.
+     * @param $id_evento int id del evento
      * @return void
      * @throws SmartyException
      */
-    public function modificaImmagineEvento($id_evento)
+    public function modificaImmagineEvento(int $id_evento)
     {
         $sessione = new USession();
         $tipo = $sessione->leggi_valore("tipo_utente");
@@ -226,8 +235,6 @@ class CGestioneEvento
         } else {
             header('Location: /Ricerca/mostraHome');
         }
-
     }
-
 
 }

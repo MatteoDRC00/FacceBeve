@@ -3,15 +3,15 @@ require_once "autoload.php";
 require_once "utility/USession.php";
 
 /**
- * La classe CAdmin implementa funzionalità per l'admin della piattaforma, al quale è consentito
- * bannare/attivare utenti, eliminare recensioni, bannare/ripristinare locali e cercare annunci, recensioni e utenti
- * filtrando i dati del database attraverso un campo di ricerca.
+ * La classe CAdmin implementa funzionalità per l'admin della piattaforma, al quale è consentito:
+ * * bannare/attivare utenti;
+ * * eliminare/ripristinare recensioni segnalate;
+ * * cercare recensioni e utenti.
  * @author Gruppo8
  * @package Controller
  */
 class CAdmin
 {
-
 
     /**
      * @var CAdmin|null Variabile di classe che mantiene l'istanza della classe.
@@ -39,7 +39,7 @@ class CAdmin
     }
 
     /**
-     * Metodo che instanzia
+     * Metodo che mostra la dashboard di controllo del admin.
      * @throws SmartyException
      */
     public function dashboardAdmin()
@@ -74,7 +74,6 @@ class CAdmin
             //loadProprietari
             $proprietari = $pm->loadAll("FProprietario");
 
-
             $view->HomeAdmin($utentiA, $utentiB, $categorie, $recSegnalate, $proprietari);
         } else {
             header('Location: /Accesso/login');
@@ -84,7 +83,6 @@ class CAdmin
 
     /**
      * Metodo utilizzato dal Admin per aggiungere categorie sul sito.
-     * @throws SmartyException
      */
     public function aggiungiCategoria()
     {
@@ -115,8 +113,9 @@ class CAdmin
 
     /**
      * Metodo utilizzato dal Admin per cancellare categorie dal sito.
+     * @param $genere string categoria identificata dal proprio nome
      */
-    public function rimuoviCategoria($genere)
+    public function rimuoviCategoria(string $genere)
     {
         $sessione = new USession();
         $tipo = $sessione->leggi_valore("tipo_utente");
@@ -135,8 +134,9 @@ class CAdmin
 
     /**
      * Funzione utile per cambiare lo stato di visibilità di un utente (nel caso specifico porta la visibilità a false).
+     * @param $username string Username dell'utente da bannare sul sito, impedendoli di scrivere ulteriori recensioni.
      **/
-    public function sospendiUtente($username)
+    public function sospendiUtente( string $username)
     {
         $sessione = new USession();
         $tipo = $sessione->leggi_valore("tipo_utente");
@@ -152,8 +152,9 @@ class CAdmin
 
     /**
      * Funzione utile per cancellare un utente già bannato.
+     * @param $username string username identificativo univoco del utente
      **/
-    public function riattivaUtente($username)
+    public function riattivaUtente(string $username)
     {
         $sessione = new USession();
         $tipo = $sessione->leggi_valore("tipo_utente");
@@ -169,10 +170,9 @@ class CAdmin
 
     /**
      * Funzione utile per eliminare una recensione segnalata.
-     * @param $id
-     * @throws SmartyException
+     * @param $id_recensione int identificativo della recensione
      */
-    public static function eliminaRecensione($id_recensione)
+    public static function eliminaRecensione(int $id_recensione)
     {
         $sessione = new USession();
         $tipo = $sessione->leggi_valore("tipo_utente");
@@ -186,7 +186,11 @@ class CAdmin
         }
     }
 
-    public static function reinserisciRecensione($id_recensione)
+    /**
+     * Funzione utile per togliere il segnalato a una recensione segnalata.
+     * @param $id_recensione int identificativo della recensione
+     */
+    public static function reinserisciRecensione(int $id_recensione)
     {
         $sessione = new USession();
         $tipo = $sessione->leggi_valore("tipo_utente");
@@ -199,6 +203,5 @@ class CAdmin
             header("Location: /Ricerca/mostraHome");
         }
     }
-
 
 }

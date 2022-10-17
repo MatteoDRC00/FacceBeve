@@ -5,7 +5,7 @@ require_once "autoload.php";
 require_once "utility/USession.php";
 
 /**
- * La classe CAccesso è utilizzata per la registrazione e l'autenticazione dell'utente/proprietario.
+ * La classe CError è utilizzata per lanciare la schermata di errore a seguito di richieste errate da parte dell'utente.
  * @author Gruppo 8
  * @package Controller
  */

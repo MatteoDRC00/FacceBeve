@@ -6,14 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="2e58f0f9-142d-4fe5-83c4-7ac5ce6fd200" name="Changes" comment="login e registrazione aggiunta logo in alto da completare">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/View/VAccesso.php" beforeDir="false" afterPath="$PROJECT_DIR$/View/VAccesso.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/View/VError.php" beforeDir="false" afterPath="$PROJECT_DIR$/View/VError.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/View/VGestioneEvento.php" beforeDir="false" afterPath="$PROJECT_DIR$/View/VGestioneEvento.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/View/VGestioneLocale.php" beforeDir="false" afterPath="$PROJECT_DIR$/View/VGestioneLocale.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/View/VGestioneRecensione.php" beforeDir="false" afterPath="$PROJECT_DIR$/View/VGestioneRecensione.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/View/VProfilo.php" beforeDir="false" afterPath="$PROJECT_DIR$/View/VProfilo.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/View/VRicerca.php" beforeDir="false" afterPath="$PROJECT_DIR$/View/VRicerca.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utility/USession.php" beforeDir="false" afterPath="$PROJECT_DIR$/utility/USession.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controller/CAdmin.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/CAdmin.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controller/CError.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/CError.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controller/CFrontController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/CFrontController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controller/CGestioneEvento.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/CGestioneEvento.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controller/CGestioneRecensione.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/CGestioneRecensione.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/VAdmin.php" beforeDir="false" afterPath="$PROJECT_DIR$/View/VAdmin.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
