@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-10-15 13:08:35
+/* Smarty version 4.2.0, created on 2022-10-17 09:42:47
   from 'C:\xampp\htdocs\FacceBeve\template\risultatiRicerca.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_634a94b3627831_66326591',
+  'unifunc' => 'content_634d0777eeaea5_96954988',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '20d71acbda86db7b277443849883e1b442d75786' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\risultatiRicerca.tpl',
-      1 => 1665832111,
+      1 => 1665834888,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_634a94b3627831_66326591 (Smarty_Internal_Template $_smarty_tpl) {
+function content_634d0777eeaea5_96954988 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <?php $_smarty_tpl->_assignInScope('tipo', (($tmp = $_smarty_tpl->tpl_vars['tipo']->value ?? null)===null||$tmp==='' ? null ?? null : $tmp));
 $_smarty_tpl->_assignInScope('userlogged', (($tmp = $_smarty_tpl->tpl_vars['error']->value ?? null)===null||$tmp==='' ? null ?? null : $tmp));
@@ -255,7 +255,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
         </div>
     </section>
 </main>
-<!-- End Footer 
+<!-- End Footer
 <footer id="footer" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
 
     <div class="container">

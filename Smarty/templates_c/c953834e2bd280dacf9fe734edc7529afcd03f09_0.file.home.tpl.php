@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-10-06 18:00:15
+/* Smarty version 4.2.0, created on 2022-10-17 09:37:23
   from 'C:\xampp\htdocs\FacceBeve\template\home.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_633efb8f2009a9_24094561',
+  'unifunc' => 'content_634d063322a5c0_38490921',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c953834e2bd280dacf9fe734edc7529afcd03f09' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\home.tpl',
-      1 => 1665072013,
+      1 => 1665992239,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_633efb8f2009a9_24094561 (Smarty_Internal_Template $_smarty_tpl) {
+function content_634d063322a5c0_38490921 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -219,7 +219,7 @@ $_smarty_tpl->tpl_vars['locale']->do_else = false;
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                 <?php } else { ?>
-                    <p>Non ci sono locali</p>
+                    <p>Non ci sono locali recensiti</p>
                 <?php }?>
             </div>
 
@@ -257,7 +257,7 @@ $_smarty_tpl->tpl_vars['evento'] = $__foreach_evento_3_saved;
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                     <?php } else { ?>
-                        <p>Non ci sono eventi tra i tuoi locali</p>
+                        <p>Non ci sono eventi tra i tuoi locali preferiti</p>
                     <?php }?>
                 </div>
             <?php }?>
