@@ -169,20 +169,4 @@ class CGestioneRecensione
         }
     }
 
-    public function mostraRecensioni()
-    {
-        $sessione = new USession();
-        $locale = $sessione->leggi_valore('locale');
-
-        $l = unserialize($locale);
-        $id = $l["id"];
-
-        $pm = FPersistentManager::getInstance();
-        $recensioni_locale = $pm->loadRecensioniByLocale($id);
-
-        $view = new VGestioneRecensione();
-        $view->mostraRecensioniLocale();
-
-    }
-
 }

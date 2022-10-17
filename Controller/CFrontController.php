@@ -3,6 +3,10 @@
 require_once 'autoload.php';
 require_once 'StartSmarty.php';
 
+/**
+ * Classe utilizzata per il controllo dell'esecuzione delle richieste effettuate al server.
+ * @package Controller
+ */
 class CFrontController
 {
 
