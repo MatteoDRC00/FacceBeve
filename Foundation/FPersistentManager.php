@@ -4,6 +4,9 @@ require_once "autoload.php";
 
 class FPersistentManager {
 
+    /**
+     * @var FPersistentManager
+     */
     private static FPersistentManager $_instance;
 
     /**
@@ -13,6 +16,10 @@ class FPersistentManager {
 
     }
 
+    /**
+     * Metodo che instanzia un unico oggetto di questa classe richiamando il costruttore se non è stato già istanziato un oggetto
+     * @return FPersistentManager
+     */
     public static function getInstance(): FPersistentManager{
         if ( !isset(self::$_instance) ) {
             self::$_instance = new FPersistentManager();
@@ -20,7 +27,11 @@ class FPersistentManager {
         return self::$_instance;
     }
 
-    /** Metodo che permette di salvare un oggetto sul db */
+    /**
+     * Metodo che permette di salvare un oggetto sul db
+     * @param $obj
+     * @return mixed
+     */
     public function store($obj) {
         $EClass = get_class($obj);
         $EClass[0] = "F";
@@ -29,6 +40,57 @@ class FPersistentManager {
     }
 
     /**
+     * Metodo che richiama la delete della classe foundation tra i parametri
+     * @param string $attributo
+     * @param string $valore
+     * @param string $Fclass
+     * @return void
+     */
+    public function delete(string $attributo, string $valore, string $Fclass) {
+        return $Fclass::delete($attributo,$valore);
+    }
+
+
+    /**
+     * Metodo che richiama la exist della classe foundation tra i parametri
+     * @param string $class
+     * @param string $attributo
+     * @param string $valore
+     * @return bool
+     */
+    public function exist(string $class, string $attributo, string $valore): bool
+    {
+        return $class::exist($attributo,$valore);
+    }
+
+    /**
+     * Metodo che richiama la load della classe foundation tra i parametri
+     * @param $field
+     * @param $val
+     * @param $Fclass
+     * @return mixed
+     */
+    public function load($field, $val, $Fclass) {
+        return $Fclass::loadByField($field,$val);
+    }
+
+    /**
+     * Metodo che richiama la exist delle classi delle relazioni n a n
+     * @param string $class
+     * @param string $attributo1
+     * @param string $chiave1
+     * @param string $attributo2
+     * @param string $chiave2
+     * @return bool
+     */
+    public function existEsterne(string $class, string $attributo1, string $chiave1,  string $attributo2, string $chiave2): bool
+    {
+        $db = FDB::getInstance();
+        return $db->existEsterne($class, $attributo1, $chiave1, $attributo2, $chiave2);
+    }
+
+    /**
+     * Metodo che richiama la store delle classi delle relazioni n a n
      * @param string $table
      * @param string $field1
      * @param string $field2
@@ -42,6 +104,7 @@ class FPersistentManager {
     }
 
     /**
+     * Metodo che richiama la delete delle classi delle relazioni n a n
      * @param string $table
      * @param string $field
      * @param string $fk
@@ -79,55 +142,6 @@ class FPersistentManager {
     }
 
     /**
-     * @param string $attributo
-     * @param string $valore
-     * @param string $Fclass
-     * @return void
-     */
-    public function delete(string $attributo, string $valore, string $Fclass) {
-        return $Fclass::delete($attributo,$valore);
-    }
-
-
-    /**
-     * metodo che accerta l'esistenza di un valore di un campo passato come parametro
-     * @param string $class
-     * @param string $attributo
-     * @param string $valore
-     * @return bool
-     */
-    public function exist(string $class, string $attributo, string $valore): bool
-    {
-        return $class::exist($attributo,$valore);
-    }
-
-    /**
-     * @param string $class
-     * @param string $attributo1
-     * @param string $chiave1
-     * @param string $attributo2
-     * @param string $chiave2
-     * @return bool
-     */
-    public function existEsterne(string $class, string $attributo1, string $chiave1,  string $attributo2, string $chiave2): bool
-    {
-        $db = FDB::getInstance();
-        return $db->existEsterne($class, $attributo1, $chiave1, $attributo2, $chiave2);
-    }
-
-    /**
-     *
-     * @param $field
-     * @param $val
-     * @param $Fclass
-     * @return mixed
-     */
-    public function load($field, $val, $Fclass) {
-        return $Fclass::loadByField($field,$val);
-    }
-
-
-    /**
      * Metodo che permette il caricamento di una form(modulo) riempita con i parametri passati in input alla funzione
      * @param $part1
      * @param $part2
@@ -157,16 +171,13 @@ class FPersistentManager {
         return $class::update($attributo, $newvalue, $attributo_pk, $value_pk);
     }
 
-
     /**
      * Metodo che permette il caricamento di tutti gli elementi di una classe/tabella
      * @param string $class
      * @return mixed
      */
     public function loadAll(string $class) {
-        $ris = null;
-        $ris = $class::loadAll();
-        return $ris;
+        return $class::loadAll();
     }
 
     /**
