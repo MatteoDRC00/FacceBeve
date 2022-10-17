@@ -5,12 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2e58f0f9-142d-4fe5-83c4-7ac5ce6fd200" name="Changes" comment="login e registrazione aggiunta logo in alto da completare">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FacceBeveDump.sql" beforeDir="false" afterPath="$PROJECT_DIR$/FacceBeveDump.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/templates_c/20d71acbda86db7b277443849883e1b442d75786_0.file.risultatiRicerca.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/Smarty/templates_c/20d71acbda86db7b277443849883e1b442d75786_0.file.risultatiRicerca.tpl.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smarty/templates_c/c953834e2bd280dacf9fe734edc7529afcd03f09_0.file.home.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/Smarty/templates_c/c953834e2bd280dacf9fe734edc7529afcd03f09_0.file.home.tpl.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/home.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/template/home.tpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/risultatiRicerca.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/template/risultatiRicerca.tpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/areaPersonaleUtente.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/template/areaPersonaleUtente.tpl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -192,7 +187,7 @@
       <workItem from="1665820268097" duration="1421000" />
       <workItem from="1665825596745" duration="3998000" />
       <workItem from="1665834971792" duration="156000" />
-      <workItem from="1665992167005" duration="664000" />
+      <workItem from="1665992167005" duration="912000" />
     </task>
     <servers />
   </component>

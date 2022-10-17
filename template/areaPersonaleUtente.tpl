@@ -149,7 +149,7 @@
                             {if !empty($locali_preferiti)}
                                 <ul>
                                     {foreach $locali_preferiti as $locale}
-                                        <li><a href="/Ricerca/dettagliLocale/{$locale->getID()}">{$locale->getNome()}   <i class="fa fa-angle-right"></i></a></li>
+                                        <li style="font-size: 24px"><a href="/Ricerca/dettagliLocale/{$locale->getID()}">{$locale->getNome()}   <i class="fa fa-angle-right"></i></a></li>
                                     {/foreach}
                                 </ul>
                             {else}

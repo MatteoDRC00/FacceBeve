@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-10-10 17:12:55
+/* Smarty version 4.2.0, created on 2022-10-17 10:08:03
   from 'C:\xampp\htdocs\FacceBeve\template\areaPersonaleUtente.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_6344367730b5d0_74831464',
+  'unifunc' => 'content_634d0d63b46eb1_32004665',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '7757a365921f193a5e1677eb3c4671e453775876' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\areaPersonaleUtente.tpl',
-      1 => 1665414766,
+      1 => 1665994081,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6344367730b5d0_74831464 (Smarty_Internal_Template $_smarty_tpl) {
+function content_634d0d63b46eb1_32004665 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -186,7 +186,7 @@ $_smarty_tpl->tpl_vars['locale']->do_else = true;
 if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['locale']->value) {
 $_smarty_tpl->tpl_vars['locale']->do_else = false;
 ?>
-                                        <li><a href="/Ricerca/dettagliLocale/<?php echo $_smarty_tpl->tpl_vars['locale']->value->getID();?>
+                                        <li style="font-size: 24px"><a href="/Ricerca/dettagliLocale/<?php echo $_smarty_tpl->tpl_vars['locale']->value->getID();?>
 "><?php echo $_smarty_tpl->tpl_vars['locale']->value->getNome();?>
    <i class="fa fa-angle-right"></i></a></li>
                                     <?php
