@@ -136,7 +136,7 @@
                                      src="data:{$evento->getImg()->getType()};base64,{$evento->getImg()->getImmagine()}"
                                      alt="immagine evento" width="200px" height="100px" style="border-radius:5px">
                             </div>
-                            <h2 class="entry-title">
+                            <h2 class="entry-title" style="width: 400px">
                                 {$evento->getNome()}
                             </h2>
                             <div class="entry-meta">
