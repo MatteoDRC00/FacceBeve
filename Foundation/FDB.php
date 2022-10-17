@@ -540,28 +540,28 @@ class FDB
                             if (is_array($categorie)) {
                                 for ($j = 0; $j < count($categorie); $j++) {
                                     if ($query == null)
-                                        $query = "SELECT * FROM " . $class::getTable() . " INNER JOIN Locale_Categorie ON  Locale_Categorie.ID_Locale=Locale.id INNER JOIN Categoria ON Categoria.genere=Locale_Categorie.ID_Categoria WHERE Categoria.genere='" . $categorie[$j] . "'";
+                                        $query = "SELECT locale.id, locale.nome, locale.numtelefono, locale.descrizione, locale.proprietario, locale.localizzazione FROM Locale INNER JOIN Locale_Categorie ON  Locale_Categorie.ID_Locale=Locale.id INNER JOIN Categoria ON Categoria.genere=Locale_Categorie.ID_Categoria WHERE Categoria.genere='" . $categorie[$j] . "'";
                                     else
-                                        $query = $query . " INTERSECT SELECT * FROM Locale INNER JOIN Locale_Categorie  ON  Locale_Categorie.ID_Locale=Locale.id INNER JOIN Categoria ON Categoria.genere=Locale_Categorie.ID_Categoria WHERE Categoria.genere'" . $categorie[$j] . "'";
+                                        $query = $query . " INTERSECT SELECT locale.ID, locale.NOME, locale.NUMTELEFONO, locale.DESCRIZIONE, locale.PROPRIETARIO, locale.LOCALIZZAZIONE FROM Locale INNER JOIN Locale_Categorie  ON  Locale_Categorie.ID_Locale=Locale.id INNER JOIN Categoria ON Categoria.genere=Locale_Categorie.ID_Categoria WHERE Categoria.genere'" . $categorie[$j] . "'";
                                 }
                             } elseif (isset($categorie)) {
                                 if ($query == null)
-                                    $query = "SELECT * FROM " . $class::getTable() . " INNER JOIN Locale_Categorie ON  Locale_Categorie.ID_Locale=Locale.id INNER JOIN Categoria ON Categoria.genere=Locale_Categorie.ID_Categoria WHERE Categoria.genere='" . $categorie . "'";
+                                    $query = "SELECT locale.id, locale.nome, locale.numtelefono, locale.descrizione, locale.proprietario, locale.localizzazione FROM Locale INNER JOIN Locale_Categorie ON  Locale_Categorie.ID_Locale=Locale.id INNER JOIN Categoria ON Categoria.genere=Locale_Categorie.ID_Categoria WHERE Categoria.genere='" . $categorie . "'";
                                 else
-                                    $query = $query . " INTERSECT SELECT * FROM Locale INNER JOIN Locale_Categorie  ON  Locale_Categorie.ID_Locale=Locale.id INNER JOIN Categoria ON Categoria.genere=Locale_Categorie.ID_Categoria WHERE Categoria.genere'" . $categorie . "'";
+                                    $query = $query . " INTERSECT SELECT locale.id, locale.nome, locale.numtelefono, locale.descrizione, locale.proprietario, locale.localizzazione FROM Locale INNER JOIN Locale_Categorie  ON  Locale_Categorie.ID_Locale=Locale.id INNER JOIN Categoria ON Categoria.genere=Locale_Categorie.ID_Categoria WHERE Categoria.genere'" . $categorie . "'";
                             }
                             break;
                         case 1:
                             if ($query == null)
-                                $query = "SELECT * FROM " . $class::getTable() . " WHERE nome LIKE '" . $nome . "%'"; //LIKE '%" . $input . "%';";
+                                $query = "SELECT locale.id, locale.nome, locale.numtelefono, locale.descrizione, locale.proprietario, locale.localizzazione FROM Locale WHERE nome LIKE '" . $nome . "%'"; //LIKE '%" . $input . "%';";
                             else
-                                $query = $query . " INTERSECT SELECT * FROM Locale WHERE nome LIKE '% " . $nome . " %'";
+                                $query = $query . " INTERSECT SELECT locale.id, locale.nome, locale.numtelefono, locale.descrizione, locale.proprietario, locale.localizzazione FROM Locale WHERE nome LIKE '" . $nome . "%'";
                             break;
                         case 2:
                             if ($query == null)
-                                $query = "SELECT * FROM " . $class::getTable() . " INNER JOIN Localizzazione ON  Localizzazione.id=Locale.localizzazione WHERE localizzazione.citta LIKE '" . $citta . "%'";
+                                $query = "SELECT locale.id, locale.nome, locale.numtelefono, locale.descrizione, locale.proprietario, locale.localizzazione FROM Locale INNER JOIN Localizzazione ON  Localizzazione.id=Locale.localizzazione WHERE localizzazione.citta LIKE '" . $citta . "%'";
                             else
-                                $query = $query . " INTERSECT SELECT * FROM Locale INNER JOIN Localizzazione ON  Localizzazione.id=Locale.localizzazione AND localizzazione.citta LIKE '" . $citta . "%'";
+                                $query = $query . " INTERSECT SELECT locale.id, locale.nome, locale.numtelefono, locale.descrizione, locale.proprietario, locale.localizzazione FROM Locale INNER JOIN Localizzazione ON  Localizzazione.id=Locale.localizzazione AND localizzazione.citta LIKE '" . $citta . "%'";
                             break;
                     }
                 }
