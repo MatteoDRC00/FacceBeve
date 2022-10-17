@@ -1,7 +1,10 @@
 <?php
 
-//if(file_exists('config.php')) require_once 'config.php';
-
+/**
+ * La classe FDB viene utilizzata per la gestione delle operazioni e la connessione con il database.
+ * @author Gruppo8
+ * @package Foundation
+ */
 class FDB
 {
 
