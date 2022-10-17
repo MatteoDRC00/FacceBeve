@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-10-15 13:08:35
+/* Smarty version 4.2.0, created on 2022-10-17 10:04:15
   from 'C:\xampp\htdocs\FacceBeve\template\risultatiRicerca.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_634a94b3627831_66326591',
+  'unifunc' => 'content_634d0c7f014197_20019466',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '20d71acbda86db7b277443849883e1b442d75786' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\risultatiRicerca.tpl',
-      1 => 1665832111,
+      1 => 1665993852,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_634a94b3627831_66326591 (Smarty_Internal_Template $_smarty_tpl) {
+function content_634d0c7f014197_20019466 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <?php $_smarty_tpl->_assignInScope('tipo', (($tmp = $_smarty_tpl->tpl_vars['tipo']->value ?? null)===null||$tmp==='' ? null ?? null : $tmp));
 $_smarty_tpl->_assignInScope('userlogged', (($tmp = $_smarty_tpl->tpl_vars['error']->value ?? null)===null||$tmp==='' ? null ?? null : $tmp));
@@ -192,7 +192,7 @@ $__foreach_evento_1_saved = $_smarty_tpl->tpl_vars['evento'];
 "
                                      alt="immagine evento" width="200px" height="100px" style="border-radius:5px">
                             </div>
-                            <h2 class="entry-title">
+                            <h2 class="entry-title" style="width: 400px">
                                 <?php echo $_smarty_tpl->tpl_vars['evento']->value->getNome();?>
 
                             </h2>
@@ -255,7 +255,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
         </div>
     </section>
 </main>
-<!-- End Footer 
+<!-- End Footer
 <footer id="footer" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
 
     <div class="container">

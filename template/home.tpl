@@ -167,7 +167,7 @@
                         {$i=$i+1}
                     {/foreach}
                 {else}
-                    <p>Non ci sono locali</p>
+                    <p>Non ci sono locali recensiti</p>
                 {/if}
             </div>
 
@@ -187,7 +187,7 @@
                             </div>
                         {/foreach}
                     {else}
-                        <p>Non ci sono eventi tra i tuoi locali</p>
+                        <p>Non ci sono eventi tra i tuoi locali preferiti</p>
                     {/if}
                 </div>
             {/if}
