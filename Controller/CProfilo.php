@@ -36,6 +36,7 @@ class CProfilo
     }
 
     /**
+     * Funzione utilizzata per mostrare l'area personale di un Utente/Proprietario
      * @return void
      */
     public function mostraProfilo()
@@ -195,10 +196,6 @@ class CProfilo
         }
     }
 
-
-
-
-
     /**
      * Gestisce la modifica dell'immagine del utente/proprietario. Preleva la nuova immagine dalla view e procede alla modifica.
      * @return void
@@ -240,6 +237,7 @@ class CProfilo
     //Gestione visualizzazione
 
     /**
+     * Funzione utilizzata per mostrare il form di modifica delle informazioni di un utente
      * @throws SmartyException
      */
     public function formModificaUtente()
@@ -252,6 +250,7 @@ class CProfilo
     }
 
     /**
+     * Funzione utilizzata per mostrare il form di modifica delle informazioni di un proprietario
      * @throws SmartyException
      */
     public function formModificaProprietario()
@@ -292,7 +291,12 @@ class CProfilo
         }
     }
 
-
+    /**
+     * Funzione che richiama il metodo errore della class VProfilo per mostrare l'errore generato dall'utente
+     * @param $tipo tipo di errore generato
+     * @param $message messaggio da stampare
+     * @param $user utente collegato
+    */
     public function erroreModifica($tipo, $message, $user): void
     {
         $view = new VProfilo();

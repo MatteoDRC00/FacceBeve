@@ -35,6 +35,9 @@ class CRicerca
         return self::$instance;
     }
 
+    /**
+     * Funzione utilizzata per mostrare al utente la homepage del sito, includendo o escludente una serie d'informazioni in base al tipo di utente(se connesso o meno)
+     */
     public function mostraHome()
     {
         $sessione = new USession();
@@ -95,7 +98,7 @@ class CRicerca
     }
 
     /**
-     * Funzione con il compito di indirizzare alla pagina specifica del locale selezionato
+     * Funzione con il compito di indirizzare alla pagina specifica del locale selezionato mostrandone tutti i dettagli
      * @param $id_locale
      * @return void
      */
@@ -146,7 +149,10 @@ class CRicerca
        $vRicerca->dettagliLocale($username,$stato, $tipo, $presente, $locale, $recensioni, $risposte, $rating, $proprietario, $eventiOrganizzati);
     }
 
-
+    /**
+     * Funzione utilizzata per l'aggiunta di un locale ai "preferiti" di un utente
+     * @param $id_locale int identificativo numerico del locale
+    */
     public function aggiungiAPreferiti($id_locale)
     {
         $sessione = new USession();
