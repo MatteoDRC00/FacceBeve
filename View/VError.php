@@ -1,6 +1,8 @@
 <?php
 /**
  * Class VError si occupa di gestire la visualizzazione della pagina di errore rispetto all' azione vietata
+ * @author Gruppo8
+ * @package View
  */
 class VError
 {

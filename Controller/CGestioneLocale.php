@@ -33,6 +33,9 @@ class CGestioneLocale
         return self::$instance;
     }
 
+    /**
+     * Funzione che viene richiamata per mostrare la pagina con il form per la registrazione del locale sul sito.
+     */
     public function mostraFormCreaLocale()
     {
         $sessione = new USession();
@@ -46,6 +49,9 @@ class CGestioneLocale
         }
     }
 
+    /**
+     * Funzione che viene richiamata per mostrare la pagina di gestione del locale, dove è possibile modificare gli attributi e le immagini del locale.
+     */
     public function mostraGestioneLocale($id_locale)
     {
         $sessione = new USession();
@@ -66,6 +72,7 @@ class CGestioneLocale
 
 
     /**
+     * Funzione che viene richiamata creare un locale.
      * @return void
      */
     public function creaLocale()
@@ -75,9 +82,7 @@ class CGestioneLocale
         $username = $sessione->leggi_valore('utente');
         $tipo = $sessione->leggi_valore("tipo_utente");
 
-
         $proprietario = $pm->load("username", $username, "FProprietario");
-
 
         if ($sessione->isLogged() && $tipo == "EProprietario") {
 
@@ -244,6 +249,7 @@ class CGestioneLocale
     }
 
     /**
+     * Funzione utilizzata per modificare la/le categoria/e del locale.
      * @param $id_locale
      * @return void
      */
@@ -274,6 +280,7 @@ class CGestioneLocale
     }
 
     /**
+     * Funzione utilizzata per modificare l'indirizzo del locale.
      * @param $id_locale
      * @return void
      */
@@ -418,6 +425,7 @@ class CGestioneLocale
     }
 
     /**
+     * Funzione utilizzata per eliminare un immagine dal locale.
      * @param $id_immagine
      * @return void
      */
@@ -437,6 +445,11 @@ class CGestioneLocale
         }
     }
 
+    /**
+     * Funzione utilizzata per eliminare un locale dal sito.
+     * @param $id_locale
+     * @return void
+    */
     public function eliminaLocale($id_locale)
     {
         $sessione = new USession();
