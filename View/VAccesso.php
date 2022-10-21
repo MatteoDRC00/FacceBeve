@@ -1,6 +1,6 @@
 <?php
 
-require_once "Smarty/libs/autoloader.php";
+require_once "Smarty/libs/Autoloader.php";
 require_once "StartSmarty.php";
 
 

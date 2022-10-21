@@ -231,12 +231,12 @@ class FLocale
         list($result, $num) = $db->getLocaliPerValutazione();
         if (($result != null) && ($num == 1)) {
             $locali = self::loadByField("id", $result["id"]);
-            $valutazione[0] = $result["ValutazioneMedia"];
+            $valutazione[0] = round($result["ValutazioneMedia"], 2);
         } else {
             if (($result != null) && ($num > 1)) {
                 for ($i = 0; $i < count($result); $i++) {
                     $locali = array_merge($locali, self::loadByField("id", $result[$i]["id"]));
-                    $valutazione[$i] = $result[$i]["ValutazioneMedia"];
+                    $valutazione[$i] = round($result[$i]["ValutazioneMedia"], 2);
                 }
             }
         }

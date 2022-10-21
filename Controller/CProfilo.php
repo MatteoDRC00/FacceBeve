@@ -224,6 +224,8 @@ class CProfilo
                     $id_imgvecchia = $user->getImgProfilo()->getId();
                     $pm->update($class, "idImg", $id, "username", $username);
                     $pm->delete("id", $id_imgvecchia, "FImmagine");
+                }else{
+                	$pm->update($class, "idImg", $id, "username", $username);
                     $user->setImgProfilo($img_profilo);
                 }
 

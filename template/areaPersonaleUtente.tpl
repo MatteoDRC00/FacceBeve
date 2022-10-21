@@ -89,7 +89,7 @@
                                 <p>Modifica l'username</p>
                                 <div class="form-example">
                                     <label>Inserisci il nuovo username: </label><br>
-                                    <input type="text" name="newusername" id="newusername" required>
+                                    <input type="text" name="newusername" id="newusername" required pattern="[a-zA-Z]+\">
                                 </div>
                                 <button type="submit" class="btnAggiorna">Modifica username</button>
                             </form>
@@ -100,7 +100,7 @@
                                 <p>Modifica l'email</p>
                                 <div class="form-example">
                                     <label>Inserisci la nuova email: </label><br>
-                                    <input type="text" name="newemail" id="newemail" required>
+                                    <input type="text" name="newemail" id="newemail" required pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$">
                                 </div>
                                 <button type="submit" class="btnAggiorna">Modifica email</button>
                             </form>
@@ -111,11 +111,11 @@
                                 <p>Modifica la password</p>
                                 <div class="form-example">
                                     <label>Inserisci la vecchia password: </label><br>
-                                    <input type="password" name="password" id="password" required>
+                                    <input type="password" name="password" id="password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
                                 </div>
                                 <div class="form-example">
                                     <label>Inserisci la nuova password: </label><br>
-                                    <input type="password" name="newpassword" id="newpassword" required>
+                                    <input type="password" name="newpassword" id="newpassword" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
                                 </div>
                                 <button type="submit" class="btnAggiorna">Modifica password</button>
                             </form>

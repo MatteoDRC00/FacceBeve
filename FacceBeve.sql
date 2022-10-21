@@ -1,10 +1,10 @@
-DROP DATABASE IF EXISTS `faccebeve`;
+DROP DATABASE IF EXISTS `my_faccebeve`;
 
-CREATE DATABASE `faccebeve`;
+CREATE DATABASE `my_faccebeve`;
 
 GRANT ALL ON faccebeve.* TO root;
 
-USE `faccebeve`;
+USE `my_faccebeve`;
 
 /*Tabella relativa alle immagini utilizzate*/
 DROP TABLE IF EXISTS `Immagine`;

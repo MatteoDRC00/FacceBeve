@@ -252,7 +252,7 @@ class VRicerca
         $this->smarty->assign('tipo', $tipo);
         $this->smarty->assign('stato', $stato);
         $this->smarty->assign('presente', $presente);
-        $this->smarty->display('InfoLocale.tpl');
+        $this->smarty->display('infoLocale.tpl');
     }
 
 }

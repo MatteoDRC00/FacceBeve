@@ -136,14 +136,14 @@ class CAdmin
      * Funzione utile per cambiare lo stato di visibilità di un utente (nel caso specifico porta la visibilità a false).
      * @param $username string Username dell'utente da bannare sul sito, impedendoli di scrivere ulteriori recensioni.
      **/
-    public function sospendiUtente( string $username)
+    public function sospendiUtente(string $username)
     {
         $sessione = new USession();
         $tipo = $sessione->leggi_valore("tipo_utente");
         $pm = FPersistentManager::getInstance();
 
         if ($sessione->isLogged() && $tipo == "EAdmin") {
-            $pm->update("FUtente", "state", false, "username", $username);
+            $pm->update("FUtente", "state", 0, "username", $username);
             header("Location: /Admin/dashboardAdmin");
         } else {
             header("Location: /Ricerca/mostraHome");
@@ -161,7 +161,7 @@ class CAdmin
         $pm = FPersistentManager::getInstance();
 
         if ($sessione->isLogged() && $tipo == "EAdmin") {
-            $pm->update("FUtente", "state", true, "username", $username);
+            $pm->update("FUtente", "state", 1, "username", $username);
             header("Location: /Admin/dashboardAdmin");
         } else {
             header("Location: /Ricerca/mostraHome");

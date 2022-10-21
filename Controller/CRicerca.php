@@ -88,7 +88,6 @@ class CRicerca
             $citta = $vRicerca->getCitta();
             $data = $vRicerca->getDataEvento();
             if ($nomelocale != null || $nomeevento != null || $citta != null || $data != null) {
-                $pm = FPersistentManager::GetInstance();
                 list($result, $local) = $pm->loadForm($nomelocale, $nomeevento, $citta, $data, $tipo);
                 $vRicerca->showResult($result, $tipo, $nomelocale, $citta, $nomeevento, $data, $local);
             } else {
@@ -116,7 +115,7 @@ class CRicerca
         $risposte = null;
         $tipo = $sessione->leggi_valore('tipo_utente');
         $username = $sessione->leggi_valore('utente');
-        $presente = $pm->existEsterne("utenti_locali", "ID_Locale", $id_locale, "ID_Utente", $username);
+        $presente = $pm->existEsterne("Utenti_Locali", "ID_Locale", $id_locale, "ID_Utente", $username);
         if (!empty($recensioni)) {
             //$risposte = array();
             $sum = 0;
@@ -134,6 +133,9 @@ class CRicerca
             $recensioni = array();
             $rating = 0;
         }
+        
+        $rating = round($rating, 2);
+        
         if ($sessione->leggi_valore('tipo_utente') == "EProprietario") {
             $check = $pm->exist("FLocale", "proprietario", $sessione->leggi_valore('utente'));
             if ($check)
