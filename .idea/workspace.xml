@@ -6,6 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="2e58f0f9-142d-4fe5-83c4-7ac5ce6fd200" name="Changes" comment="login e registrazione aggiunta logo in alto da completare">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FacceBeve.sql" beforeDir="false" afterPath="$PROJECT_DIR$/FacceBeve.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FacceBeveDump.sql" beforeDir="false" afterPath="$PROJECT_DIR$/FacceBeveDump.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Smarty/templates_c/30df5ca2fc2aed6ba9b9c2ca893fe37b5c7fbd9e_0.file.error.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/Smarty/templates_c/30df5ca2fc2aed6ba9b9c2ca893fe37b5c7fbd9e_0.file.error.tpl.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Smarty/templates_c/c953834e2bd280dacf9fe734edc7529afcd03f09_0.file.home.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/Smarty/templates_c/c953834e2bd280dacf9fe734edc7529afcd03f09_0.file.home.tpl.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +70,8 @@
   },
   &quot;keyToStringList&quot;: {
     &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;
+      &quot;mysql&quot;,
+      &quot;mariadb&quot;
     ],
     &quot;RunConfigurationTargetLRU&quot;: [
       &quot;063e7489-89be-42e4-bbe3-a5ecc915e49f&quot;
@@ -190,6 +195,10 @@
       <workItem from="1665825596745" duration="3998000" />
       <workItem from="1665834971792" duration="156000" />
       <workItem from="1665992167005" duration="2103000" />
+      <workItem from="1666344005362" duration="101000" />
+      <workItem from="1667390913115" duration="704000" />
+      <workItem from="1667459933402" duration="568000" />
+      <workItem from="1667460519592" duration="16000" />
     </task>
     <servers />
   </component>

@@ -2,7 +2,7 @@ DROP DATABASE IF EXISTS `my_faccebeve`;
 
 CREATE DATABASE `my_faccebeve`;
 
-GRANT ALL ON faccebeve.* TO root;
+GRANT ALL ON my_faccebeve.* TO faccebeve@localhost;
 
 USE `my_faccebeve`;
 
@@ -225,4 +225,4 @@ CREATE TABLE `Locale_Immagini` (
     FOREIGN KEY (`ID_Locale`)
         REFERENCES Locale (`id`)
         ON DELETE CASCADE ON UPDATE CASCADE
-);
+);admincategoria
