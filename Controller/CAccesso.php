@@ -74,7 +74,7 @@ class CAccesso
         $view = new VAccesso();
         $pm = FPersistentManager::getInstance();
 
-        $usernameLogin = $view->getUsername();
+        $usernameLogin = $view->getUsername();  
         $passwordLogin = md5($view->getPassword());
         if ($usernameLogin == null || $passwordLogin == null) {
             $tipo = "vuoti";
@@ -106,7 +106,7 @@ class CAccesso
         $view = new VAccesso();
         $sessione = new USession();
 
-        $username = $view->getUsername();
+        $username =  $view->getUsername();
         $userP = $pm->exist("FProprietario", "username", $username);
         $userU = $pm->exist("FUtente", "username", $username);
         $admin = $pm->exist("FAdmin", "username", $username);

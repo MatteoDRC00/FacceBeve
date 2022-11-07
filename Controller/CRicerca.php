@@ -74,8 +74,8 @@ class CRicerca
         $tipo = $vRicerca->getTipoRicerca();
         $pm = FPersistentManager::getInstance();
         if ($tipo == "Locali") {
-            $nomelocale = $vRicerca->getNomeLocale();
-            $citta = $vRicerca->getCitta();
+            $nomelocale = str_replace('"',"'",rtrim($vRicerca->getNomeLocale()));
+            $citta = str_replace('"',"'",rtrim($vRicerca->getCitta()));
             $categoria = $vRicerca->getCategorie();
             if ($nomelocale != null || $citta != null || $categoria != null) {
                 $result = $pm->loadForm($nomelocale, $citta, $categoria, "tmp", $tipo);
@@ -83,12 +83,11 @@ class CRicerca
             } else
                 header('Location: /Ricerca/mostraHome');
         } elseif ($tipo == "Eventi") {
-            $nomelocale = $vRicerca->getNomeLocaleEvento();
-            $nomeevento = $vRicerca->getNomeEvento();
-            $citta = $vRicerca->getCitta();
+            $nomelocale = str_replace('"',"'",rtrim($vRicerca->getNomeLocaleEvento()));
+            $nomeevento = str_replace('"',"'",rtrim($vRicerca->getNomeEvento()));
+            $citta = str_replace('"',"'",rtrim($vRicerca->getCitta()));
             $data = $vRicerca->getDataEvento();
             if ($nomelocale != null || $nomeevento != null || $citta != null || $data != null) {
-                $pm = FPersistentManager::GetInstance();
                 list($result, $local) = $pm->loadForm($nomelocale, $nomeevento, $citta, $data, $tipo);
                 $vRicerca->showResult($result, $tipo, $nomelocale, $citta, $nomeevento, $data, $local);
             } else {
@@ -116,7 +115,7 @@ class CRicerca
         $risposte = null;
         $tipo = $sessione->leggi_valore('tipo_utente');
         $username = $sessione->leggi_valore('utente');
-        $presente = $pm->existEsterne("utenti_locali", "ID_Locale", $id_locale, "ID_Utente", $username);
+        $presente = $pm->existEsterne("Utenti_Locali", "ID_Locale", $id_locale, "ID_Utente", $username);
         if (!empty($recensioni)) {
             //$risposte = array();
             $sum = 0;
@@ -134,6 +133,9 @@ class CRicerca
             $recensioni = array();
             $rating = 0;
         }
+        
+        $rating = round($rating, 2);
+        
         if ($sessione->leggi_valore('tipo_utente') == "EProprietario") {
             $check = $pm->exist("FLocale", "proprietario", $sessione->leggi_valore('utente'));
             if ($check)

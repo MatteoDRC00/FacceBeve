@@ -1,5 +1,28 @@
-<!DOCTYPE html>
-<!-- {assign var='error' value=$error|default:'ok'} -->
+<?php
+/* Smarty version 4.2.0, created on 2022-10-21 14:43:14
+  from '/membri/faccebeve/template/registrazioneProprietario.tpl' */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '4.2.0',
+  'unifunc' => 'content_635293e2cb33a9_00194203',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    '115f1b62cef7ad889155db369fab416a05182599' => 
+    array (
+      0 => '/membri/faccebeve/template/registrazioneProprietario.tpl',
+      1 => 1666356174,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+),false)) {
+function content_635293e2cb33a9_00194203 (Smarty_Internal_Template $_smarty_tpl) {
+?><!DOCTYPE html>
+<!-- <?php $_smarty_tpl->_assignInScope('error', (($tmp = $_smarty_tpl->tpl_vars['error']->value ?? null)===null||$tmp==='' ? 'ok' ?? null : $tmp));?> -->
 <html lang="it">
 <head>
     <meta charset="utf-8">
@@ -51,32 +74,36 @@
             <h1 style="font-weight: bold; font-size: 24px">Registrati come proprietario di locali</h1>
             <input type="text" class="form-control" placeholder="nome" name="nome" pattern="[a-zA-Z]+\"/>
             <input type="text" class="form-control" placeholder="cognome" name="cognome" pattern="[a-zA-Z]+\"/>
-            <input type="text" placeholder="email" name="email"  {literal}pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"{/literal} title="Deve essere inclusa una chiocciola @ essendo un email"/>
+            <input type="text" placeholder="email" name="email"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="Deve essere inclusa una chiocciola @ essendo un email"/>
             <input type="text" placeholder="username" name="username"/>
-            <input type="password" placeholder="password"  name="password" {literal}pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"{/literal} title="La password deve contenere almeno 8 caratteri, di cui almeno una lettera maiuscola"/>
-            <input type="password" placeholder="ripeti password" name="password2" {literal}pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"{/literal} title="La password deve contenere almeno 8 caratteri, di cui almeno una lettera maiuscola"/>
+            <input type="password" placeholder="password"  name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="La password deve contenere almeno 8 caratteri, di cui almeno una lettera maiuscola"/>
+            <input type="password" placeholder="ripeti password" name="password2" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="La password deve contenere almeno 8 caratteri, di cui almeno una lettera maiuscola"/>
             <h1>Aggiungi l'immagine di profilo</h1>
             <input name="img_profilo" class="p-2" type="file">
             <button type="submit">Registrati</button>
             <p class="message">Hai gi&agrave un account? <a href="/Accesso/formLogin">Accedi</a></p>
         </form>
-        <!--  {if $errorSize!='ok'}
+        <!--  <?php if ($_smarty_tpl->tpl_vars['errorSize']->value != 'ok') {?>
           <div style="color: red;">
               <p align="center">Attenzione! Formato immagine troppo grande!  </p>
           </div>
-          {/if}
-          {if $errorType!='ok'}
+          <?php }?>
+          <?php if ($_smarty_tpl->tpl_vars['errorType']->value != 'ok') {?>
           <div style="color: red;">
               <p align="center">Attenzione! Formato immagine non supportato (provare con .png o .jpg)!  </p>
           </div>
-          {/if}
-          {if $errorEmail!='ok'}
+          <?php }?>
+          <?php if ($_smarty_tpl->tpl_vars['errorEmail']->value != 'ok') {?>
           <div style="color: red;">
               <p align="center">Attenzione! Email già esistente!  </p>
           </div>
-          {/if} -->
+          <?php }?> -->
     </div>
 </div>
-<script src="/template/js/main.js"></script>
+<?php echo '<script'; ?>
+ src="/template/js/main.js"><?php echo '</script'; ?>
+>
 </body>
 </html>
+<?php }
+}

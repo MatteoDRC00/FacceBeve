@@ -90,13 +90,13 @@ class VAdmin
      * @param $recensioni array delle recensioni segnalate
      * @throws SmartyException
      */
-    public function HomeAdmin($utentiAttivi, $utentiBannati, $categorie, $recensioni, $proprietari) {
-
+    public function HomeAdmin($utentiAttivi, $utentiBannati, $categorie, $recensioni, $proprietari, $locali) {
         $this->smarty->assign('categorie',$categorie);
         $this->smarty->assign('proprietari',$proprietari);
         $this->smarty->assign('recensioni',$recensioni);
         $this->smarty->assign('utentiAttivi',$utentiAttivi);
         $this->smarty->assign('utentiBannati',$utentiBannati);
+        $this->smarty->assign('locali',$locali);
         $this->smarty->display('dashboardAdmin.tpl');
     }
 

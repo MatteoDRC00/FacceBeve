@@ -26,8 +26,8 @@ class FDB
             //global $config;
             //$this->database = new PDO ("mysql:dbname=".$config['database'].";host=localhost; charset=utf8;", $config['username'], $config['password']);
             $db_host = "localhost";
-            $db_name = "faccebeve";
-            $this->database = new PDO("mysql:host=$db_host;dbname=$db_name", "root", "");
+            $db_name = "my_faccebeve";
+            $this->database = new PDO("mysql:host=$db_host;dbname=$db_name", "faccebeve", "");
         } catch (PDOException $e) {
             echo "Attenzione errore: " . $e->getMessage();
             die;
@@ -338,7 +338,7 @@ class FDB
     {
         try {
             $this->database->beginTransaction();
-            $query = "DELETE FROM " . "utenti_locali" . " WHERE " . "ID_Utente" . "='" . $username . "' AND " . "ID_Locale" . "='" . $id_locale . "';";
+            $query = "DELETE FROM " . "Utenti_Locali" . " WHERE " . "ID_Utente" . "='" . $username . "' AND " . "ID_Locale" . "='" . $id_locale . "';";
             $stmt = $this->database->prepare($query);
             $stmt->execute();
             $this->database->commit();
@@ -393,43 +393,31 @@ class FDB
     public function loadMultipleLocale($nome, $citta, $categorie): ?array
     {
         try {
-            $query = null;
-            $class = "FLocale";
-            $param = array($categorie, $nome, $citta);
-            for ($i = 0; $i < count($param); $i++) {
-                if ($param[$i] != null) {
-                    switch ($i) {
-                        case 0:
-                            if (is_array($categorie)) {
-                                for ($j = 0; $j < count($categorie); $j++) {
-                                    if ($query == null)
-                                        $query = "SELECT locale.id, locale.nome, locale.numtelefono, locale.descrizione, locale.proprietario, locale.localizzazione FROM Locale INNER JOIN Locale_Categorie ON  Locale_Categorie.ID_Locale=Locale.id INNER JOIN Categoria ON Categoria.genere=Locale_Categorie.ID_Categoria WHERE Categoria.genere='" . $categorie[$j] . "'";
-                                    else
-                                        $query = $query . " INTERSECT SELECT locale.ID, locale.NOME, locale.NUMTELEFONO, locale.DESCRIZIONE, locale.PROPRIETARIO, locale.LOCALIZZAZIONE FROM Locale INNER JOIN Locale_Categorie  ON  Locale_Categorie.ID_Locale=Locale.id INNER JOIN Categoria ON Categoria.genere=Locale_Categorie.ID_Categoria WHERE Categoria.genere'" . $categorie[$j] . "'";
-                                }
-                            } elseif (isset($categorie)) {
-                                if ($query == null)
-                                    $query = "SELECT locale.id, locale.nome, locale.numtelefono, locale.descrizione, locale.proprietario, locale.localizzazione FROM Locale INNER JOIN Locale_Categorie ON  Locale_Categorie.ID_Locale=Locale.id INNER JOIN Categoria ON Categoria.genere=Locale_Categorie.ID_Categoria WHERE Categoria.genere='" . $categorie . "'";
-                                else
-                                    $query = $query . " INTERSECT SELECT locale.id, locale.nome, locale.numtelefono, locale.descrizione, locale.proprietario, locale.localizzazione FROM Locale INNER JOIN Locale_Categorie  ON  Locale_Categorie.ID_Locale=Locale.id INNER JOIN Categoria ON Categoria.genere=Locale_Categorie.ID_Categoria WHERE Categoria.genere'" . $categorie . "'";
-                            }
-                            break;
-                        case 1:
-                            if ($query == null)
-                                $query = "SELECT locale.id, locale.nome, locale.numtelefono, locale.descrizione, locale.proprietario, locale.localizzazione FROM Locale WHERE nome LIKE '" . $nome . "%'"; //LIKE '%" . $input . "%';";
-                            else
-                                $query = $query . " INTERSECT SELECT locale.id, locale.nome, locale.numtelefono, locale.descrizione, locale.proprietario, locale.localizzazione FROM Locale WHERE nome LIKE '" . $nome . "%'";
-                            break;
-                        case 2:
-                            if ($query == null)
-                                $query = "SELECT locale.id, locale.nome, locale.numtelefono, locale.descrizione, locale.proprietario, locale.localizzazione FROM Locale INNER JOIN Localizzazione ON  Localizzazione.id=Locale.localizzazione WHERE localizzazione.citta LIKE '" . $citta . "%'";
-                            else
-                                $query = $query . " INTERSECT SELECT locale.id, locale.nome, locale.numtelefono, locale.descrizione, locale.proprietario, locale.localizzazione FROM Locale INNER JOIN Localizzazione ON  Localizzazione.id=Locale.localizzazione AND localizzazione.citta LIKE '" . $citta . "%'";
-                            break;
-                    }
-                }
+            $query = 'SELECT Locale.id, Locale.nome, Locale.numtelefono, Locale.descrizione, Locale.proprietario, Locale.localizzazione FROM Locale';
+            $i = 0;
+            if($categorie != "")
+            	$query = $query . ' INNER JOIN Locale_Categorie ON  Locale_Categorie.ID_Locale=Locale.id INNER JOIN Categoria ON Categoria.genere=Locale_Categorie.ID_Categoria ';
+            if($citta != "")
+            	$query = $query . ' INNER JOIN Localizzazione ON  Localizzazione.id=Locale.localizzazione';
+            $query = $query . " WHERE";
+            if($categorie != ""){
+            	$query = $query . ' Categoria.genere ="' . $categorie . '"';
+                $i++;
             }
-            $query = $query . ";";
+            if($citta != ""){
+            	if($i>0)
+            		$query = $query . ' AND Localizzazione.citta LIKE "' . $citta . '%"';
+                else
+                	$query = $query . ' Localizzazione.citta LIKE "' . $citta . '%"';
+               	$i++;
+            }
+            if($nome != ""){
+            	if($i>0)
+            		$query = $query . ' AND Locale.nome LIKE "' . $nome . '%"';
+                else
+                	$query = $query . ' Locale.nome LIKE "' . $nome . '%"';
+            }
+            $query = $query . ';';
 
             $stmt = $this->database->prepare($query);
             $stmt->execute();
@@ -464,41 +452,46 @@ class FDB
     public function loadMultipleEvento($nomelocale, $nomeevento, $citta, $data)
     {
         try {
-            $query = null;
-            $class = "FEvento";
-            $param = array($nomelocale, $nomeevento, $citta, $data);
-            for ($i = 0; $i < count($param); $i++) {
-                if ($param[$i] != null) {
-                    switch ($i) {
-                        case 0:
-                            if ($query == null)
-                                $query = "SELECT Evento.id,Evento.nome,Evento.descrizione,Evento.data,Evento.idImg FROM Evento INNER JOIN Locale_Eventi ON Locale_Eventi.ID_Evento=Evento.id INNER JOIN Locale ON Locale_Eventi.ID_Locale=Locale.id WHERE Locale.nome LIKE '" . $nomelocale . "%'";
-                            else
-                                $query = $query . " INTERSECT SELECT Evento.id,Evento.nome,Evento.descrizione,Evento.data,Evento.idImg FROM Evento INNER JOIN Locale_Eventi ON Locale_Eventi.ID_Locale=Evento.id INNER JOIN Locale ON Locale_Eventi.ID_Locale=Locale.id WHERE Locale.nome LIKE '" . $nomelocale . "%';";
-                            break;
-                        case 1:
-                            if ($query == null)
-                                $query = "SELECT Evento.id,Evento.nome,Evento.descrizione,Evento.data,Evento.idImg FROM Evento WHERE nome  LIKE '" . $nomeevento . "%'";
-                            else
-                                $query = $query . " INTERSECT SELECT Evento.id,Evento.nome,Evento.descrizione,Evento.data,Evento.idImg FROM Evento WHERE Evento.nome  LIKE '" . $nomeevento . "%'";
-                            break;
-                        case 2:
-                            if ($query == null)
-                                $query = "SELECT Evento.id,Evento.nome,Evento.descrizione,Evento.data,Evento.idImg FROM Evento INNER JOIN Locale_Eventi ON Locale_Eventi.ID_Evento=Evento.id INNER JOIN Locale ON Locale.id=Locale_Eventi.ID_Locale INNER JOIN Localizzazione ON  Localizzazione.id=Locale.localizzazione WHERE Localizzazione.citta LIKE '" . $citta . "%'";
-                            else
-                                $query = $query . " INTERSECT SELECT Evento.id,Evento.nome,Evento.descrizione,Evento.data,Evento.idImg FROM Evento INNER JOIN Locale_Eventi ON Locale_Eventi.ID_Evento=Evento.id INNER JOIN Locale ON Locale.id=Locale_Eventi.ID_Locale INNER JOIN Localizzazione ON Localizzazione.id=Locale.localizzazione WHERE Localizzazione.citta LIKE '" . $citta . "%'";
-                            break;
-                        case 3:
-                            if ($query == null)
-                                $query = "SELECT Evento.id,Evento.nome,Evento.descrizione,Evento.data,Evento.idImg FROM Evento WHERE evento.data ='" . $data . "'";
-                            else
-                                $query = $query . "INTERSECT SELECT Evento.id,Evento.nome,Evento.descrizione,Evento.data,Evento.idImg FROM Evento WHERE data ='" . $data . "'";
-                            break;
-                    }
-                }
+        	$query = 'SELECT Evento.id,Evento.nome,Evento.descrizione,Evento.data,Evento.idImg FROM Evento';
+            $i = 0;
+            $scelto = false;
+            if($nomelocale != ""){
+            	$query = $query . ' INNER JOIN Locale_Eventi ON Locale_Eventi.ID_Evento=Evento.id INNER JOIN Locale ON Locale_Eventi.ID_Locale=Locale.id';
+            	$scelto = true;
+            }
+            if($citta != ""){
+            	if($scelto)
+               		$query = $query . ' INNER JOIN Localizzazione ON  Localizzazione.id=Locale.localizzazione';
+            	else
+                	$query = $query . ' INNER JOIN Locale_Eventi ON Locale_Eventi.ID_Evento=Evento.id INNER JOIN Locale ON Locale.id=Locale_Eventi.ID_Locale INNER JOIN Localizzazione ON  Localizzazione.id=Locale.localizzazione';
+            }
+            $query = $query . " WHERE";
+            if($nomelocale != ""){
+            	$query = $query . ' Locale.nome LIKE "' . $nomelocale . '%"';
+                $i++;
+            }
+            if($nomeevento != ""){
+            	if($i>0)
+            		$query = $query . ' AND Evento.nome  LIKE "' . $nomeevento . '%"';
+                else
+                	$query = $query . ' Evento.nome  LIKE "' . $nomeevento . '%"';
+               	$i++;
+            }
+            if($citta != ""){
+            	if($i>0)
+            		$query = $query . ' AND Localizzazione.citta LIKE "' . $citta . '%"';
+                else
+                	$query = $query . ' Localizzazione.citta LIKE "' . $citta . '%"';
+               	$i++;
+            }
+            if($data != ""){
+            	if($i>0)
+            		$query = $query . " AND Evento.data ='" . $data . "'";
+                else
+                	$query = $query . " Evento.data ='" . $data . "'";
             }
             $query = $query . ";";
-
+            
             $stmt = $this->database->prepare($query);
             $stmt->execute();
             $num = $stmt->rowCount();
@@ -596,7 +589,7 @@ class FDB
     public function getLocaliPerValutazione()
     {
         try {
-            $query = "SELECT locale.id,AVG(recensione.voto) AS ValutazioneMedia FROM locale INNER JOIN recensione ON locale.id = recensione.locale GROUP BY locale.id ORDER BY AVG(recensione.voto) DESC LIMIT 4;";
+            $query = "SELECT Locale.id,AVG(Recensione.voto) AS ValutazioneMedia FROM Locale INNER JOIN Recensione ON Locale.id = Recensione.locale GROUP BY Locale.id ORDER BY AVG(Recensione.voto) DESC LIMIT 4;";
             $stmt = $this->database->prepare($query);
             $stmt->execute();
             $num = $stmt->rowCount();

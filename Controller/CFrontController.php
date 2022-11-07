@@ -27,7 +27,7 @@ class CFrontController
                     $function = $resource[1];
                     if (method_exists($objController, $function)) {
                         if (isset($resource[2])) {
-                            $objController->$function(($resource[2]));
+                          	$objController->$function(($resource[2]));
                         } else
                             $objController->$function();
                     } else {

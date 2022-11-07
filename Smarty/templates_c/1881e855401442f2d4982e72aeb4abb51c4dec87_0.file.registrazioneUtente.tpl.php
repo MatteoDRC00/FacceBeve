@@ -1,5 +1,28 @@
-<!DOCTYPE html>
-<!-- {assign var='error' value=$error|default:'ok'} -->
+<?php
+/* Smarty version 4.2.0, created on 2022-10-21 14:42:12
+  from '/membri/faccebeve/template/registrazioneUtente.tpl' */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '4.2.0',
+  'unifunc' => 'content_635293a48091d7_76119739',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    '1881e855401442f2d4982e72aeb4abb51c4dec87' => 
+    array (
+      0 => '/membri/faccebeve/template/registrazioneUtente.tpl',
+      1 => 1666356127,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+),false)) {
+function content_635293a48091d7_76119739 (Smarty_Internal_Template $_smarty_tpl) {
+?><!DOCTYPE html>
+<!--<?php $_smarty_tpl->_assignInScope('error', (($tmp = $_smarty_tpl->tpl_vars['error']->value ?? null)===null||$tmp==='' ? 'ok' ?? null : $tmp));?> -->
 <html lang="it">
 <head>
     <meta charset="utf-8">
@@ -31,52 +54,38 @@
     <!-- Template Main CSS File -->
     <link href="/template/css/log.css" rel="stylesheet">
 
-
 </head>
 <body>
-
 <header id="header" class="fixed-top d-flex align-items-center header-transparent">
     <div class="container d-flex justify-content-between align-items-center">
-
         <div class="logo">
-            <h1><a href="/Ricerca/mostraHome"><img src="/template/img/logo.png" alt=""><span>FacceBeve</span></a>
-            </h1>
+            <h1><a href="/Ricerca/mostraHome"><img src="/template/img/logo.png" alt=""><span>FacceBeve</span></a></h1>
         </div>
     </div>
 </header>
 
+
 <div class="login-page">
     <div class="form">
-        <form class="login-form" action="/Accesso/registrazioneProprietario" enctype="multipart/form-data" method="POST" id="registrazioneUser" onsubmit="return validateRegForm(1)" >
-            <h1 style="font-weight: bold; font-size: 24px">Registrati come proprietario di locali</h1>
+        <form class="login-form" action="/Accesso/registrazioneUtente" enctype="multipart/form-data" method="POST" id="registrazioneUser" onsubmit="return validateRegForm(1)">
+            <h1 style="font-weight: bold; font-size: 24px">Registrati come utente</h1>
             <input type="text" class="form-control" placeholder="nome" name="nome" pattern="[a-zA-Z]+\"/>
             <input type="text" class="form-control" placeholder="cognome" name="cognome" pattern="[a-zA-Z]+\"/>
-            <input type="text" placeholder="email" name="email"  {literal}pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"{/literal} title="Deve essere inclusa una chiocciola @ essendo un email"/>
+            <input type="text" placeholder="email" name="email"  pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$" title="Deve essere inclusa una chiocciola @ essendo un email"/>
             <input type="text" placeholder="username" name="username"/>
-            <input type="password" placeholder="password"  name="password" {literal}pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"{/literal} title="La password deve contenere almeno 8 caratteri, di cui almeno una lettera maiuscola"/>
-            <input type="password" placeholder="ripeti password" name="password2" {literal}pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"{/literal} title="La password deve contenere almeno 8 caratteri, di cui almeno una lettera maiuscola"/>
+            <input type="password" placeholder="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="La password deve contenere almeno 8 caratteri, di cui almeno una lettera maiuscola"/>
+            <input type="password" placeholder="ripeti password" name="password2" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="La password deve contenere almeno 8 caratteri, di cui almeno una lettera maiuscola"/>
             <h1>Aggiungi l'immagine di profilo</h1>
             <input name="img_profilo" class="p-2" type="file">
             <button type="submit">Registrati</button>
             <p class="message">Hai gi&agrave un account? <a href="/Accesso/formLogin">Accedi</a></p>
         </form>
-        <!--  {if $errorSize!='ok'}
-          <div style="color: red;">
-              <p align="center">Attenzione! Formato immagine troppo grande!  </p>
-          </div>
-          {/if}
-          {if $errorType!='ok'}
-          <div style="color: red;">
-              <p align="center">Attenzione! Formato immagine non supportato (provare con .png o .jpg)!  </p>
-          </div>
-          {/if}
-          {if $errorEmail!='ok'}
-          <div style="color: red;">
-              <p align="center">Attenzione! Email già esistente!  </p>
-          </div>
-          {/if} -->
     </div>
 </div>
-<script src="/template/js/main.js"></script>
+<?php echo '<script'; ?>
+ src="/template/js/main.js"><?php echo '</script'; ?>
+>
 </body>
 </html>
+<?php }
+}

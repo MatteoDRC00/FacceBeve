@@ -177,7 +177,7 @@ class FCategoria
     {
         $categoria = array();
         $db = FDB::getInstance();
-        list($result, $num) = $db->getAll("categoria");
+        list($result, $num) = $db->getAll("Categoria");
         if (($result != null) && ($num == 1)) {
             $categoria[0] = new ECategoria($result['genere'], $result['descrizione']);
         } else {

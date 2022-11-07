@@ -126,7 +126,7 @@ function validateRegForm(id) {
             return false;
         }
 
-        if (DataEvento.getTime() <= Oggi.getTime()) {
+        if ((DataEvento.getFullYear() <= Oggi.getFullYear()) && (DataEvento.getMonth() <= Oggi.getMonth()) && (DataEvento.getDate() < Oggi.getDate())) {
             alert('La data del evento è precedente ad adesso, viaggiare nel tempo è pericoloso');
             return false;
         }
@@ -199,7 +199,7 @@ function validatemodificaDataForm(){
     let DataEvento = new Date(dataEvento);
     let Oggi = new Date();
 
-    if (DataEvento.getTime() <= Oggi.getTime()) {
+    if ((DataEvento.getFullYear() <= Oggi.getFullYear()) && (DataEvento.getMonth() <= Oggi.getMonth()) && (DataEvento.getDate() < Oggi.getDate())) {
         alert('La data del evento è precedente ad adesso, viaggiare nel tempo è pericoloso');
         return false;
     }
@@ -243,15 +243,16 @@ function validateResearchForm(id) {
             let nomeEvento = document.forms["ricercaEventi"]["nomeEvento"].value;
             let dataEvento = document.forms["ricercaEventi"]["dataEvento"].value;
 
+			let Oggi = new Date();
             let DataEvento = new Date(dataEvento);
-            let Oggi = new Date();
+            
 
             if (citta === "" && nomeLocale === "" && nomeEvento === "" && dataEvento === "") {
                 alert("Inserire almeno un campo per effettuare la ricerca");
                 return false;
             }
 
-            if (DataEvento.getTime() <= Oggi.getTime()) {
+            if ((DataEvento.getFullYear() <= Oggi.getFullYear()) && (DataEvento.getMonth() <= Oggi.getMonth()) && (DataEvento.getDate() < Oggi.getDate())) {
                 alert('La data del evento è precedente ad adesso, viaggiare nel tempo è pericoloso');
                 return false;
             }

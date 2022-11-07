@@ -217,16 +217,18 @@ class CProfilo
             if (!empty($img)) {
                 $img_profilo = new EImmagine($img[0], $img[1], $img[2], $img[3]);
                 $id = $pm->store($img_profilo);
-                $img_profilo->setId($id);
-
-                $user = $pm->load("username", $username, $class);
-                if($user->getImgProfilo() != null){
-                    $id_imgvecchia = $user->getImgProfilo()->getId();
-                    $pm->update($class, "idImg", $id, "username", $username);
-                    $pm->delete("id", $id_imgvecchia, "FImmagine");
-                    $user->setImgProfilo($img_profilo);
-                }
-
+                if($id){
+                	$img_profilo->setId($id);
+                    $user = $pm->load("username", $username, $class);
+                    if($user->getImgProfilo() != null){
+                      $id_imgvecchia = $user->getImgProfilo()->getId();
+                      $pm->update($class, "idImg", $id, "username", $username);
+                      $pm->delete("id", $id_imgvecchia, "FImmagine");
+                    }else{
+                      $pm->update($class, "idImg", $id, "username", $username);
+                      $user->setImgProfilo($img_profilo);
+                    }
+                } 
             }
             header('Location: /Profilo/mostraProfilo');
         } else {

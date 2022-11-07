@@ -231,12 +231,12 @@ class FLocale
         list($result, $num) = $db->getLocaliPerValutazione();
         if (($result != null) && ($num == 1)) {
             $locali = self::loadByField("id", $result["id"]);
-            $valutazione[0] = $result["ValutazioneMedia"];
+            $valutazione[0] = round($result["ValutazioneMedia"], 2);
         } else {
             if (($result != null) && ($num > 1)) {
                 for ($i = 0; $i < count($result); $i++) {
                     $locali = array_merge($locali, self::loadByField("id", $result[$i]["id"]));
-                    $valutazione[$i] = $result[$i]["ValutazioneMedia"];
+                    $valutazione[$i] = round($result[$i]["ValutazioneMedia"], 2);
                 }
             }
         }
@@ -259,6 +259,34 @@ class FLocale
             if (($result != null) && ($num > 1)) {
                 for ($i = 0; $i < count($result); $i++) {
                     $locali = array_merge($locali, self::loadByField("id", $result[$i]["ID_Locale"]));
+                }
+            }
+        }
+        return $locali;
+    }
+    
+    /**
+     * Metodo che restituisce la lista di tutti i locali
+     * @return array
+     */
+    public static function loadAll(): array
+    {
+        $locali = array();
+        $db = FDB::getInstance();
+        list($result, $num) = $db->getAll("Locale");
+        if (($result != null) && ($num == 1)) {
+        	$proprietario = FProprietario::loadByField('username', $result['proprietario']);
+            $localizzazione = FLocalizzazione::loadByField('id', $result['localizzazione']);
+            $l = new ELocale($result['nome'], $result['descrizione'], $result['numtelefono'], $proprietario, $localizzazione); //Carica un Proprietario dal database
+            $l->setId($result['id']);
+            $locali[0] = $l;
+        } else {
+            if (($result != null) && ($num > 1)) {
+                for ($i = 0; $i < count($result); $i++) {
+                	$proprietario = FProprietario::loadByField('username', $result[$i]['proprietario']);
+                    $localizzazione = FLocalizzazione::loadByField('id', $result[$i]['localizzazione']);
+                    $locali[$i] = new ELocale($result[$i]['nome'], $result[$i]['descrizione'], $result[$i]['numtelefono'], $proprietario, $localizzazione); //Carica un Proprietario dal database
+                    $locali[$i]->setId($result[$i]['id']);
                 }
             }
         }

@@ -48,14 +48,14 @@
             <h1 style="font-weight: bold; font-size: 24px">Registrati come utente</h1>
             <input type="text" class="form-control" placeholder="nome" name="nome" pattern="[a-zA-Z]+\"/>
             <input type="text" class="form-control" placeholder="cognome" name="cognome" pattern="[a-zA-Z]+\"/>
-            <input type="text" placeholder="email" name="email"  {literal}pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"{/literal} title="Deve essere inclusa una chiocciola @ essendo un email"/>
+            <input type="text" placeholder="email" name="email"  {literal}pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$"{/literal} title="Deve essere inclusa una chiocciola @ essendo un email"/>
             <input type="text" placeholder="username" name="username"/>
             <input type="password" placeholder="password" name="password" {literal}pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"{/literal} title="La password deve contenere almeno 8 caratteri, di cui almeno una lettera maiuscola"/>
             <input type="password" placeholder="ripeti password" name="password2" {literal}pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"{/literal} title="La password deve contenere almeno 8 caratteri, di cui almeno una lettera maiuscola"/>
             <h1>Aggiungi l'immagine di profilo</h1>
             <input name="img_profilo" class="p-2" type="file">
             <button type="submit">Registrati</button>
-            <p class="message">Hai gi&agrave un account? <a href="login.html">Accedi</a></p>
+            <p class="message">Hai gi&agrave un account? <a href="/Accesso/formLogin">Accedi</a></p>
         </form>
     </div>
 </div>

@@ -20,7 +20,7 @@ class FUtente
      * Tabella con la quale opera nel DB
      * @var string
      */
-    private static $table = "utente";
+    private static $table = "Utente";
 
     /**
      * Valori della tabella nel DB
