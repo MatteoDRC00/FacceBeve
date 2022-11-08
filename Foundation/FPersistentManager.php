@@ -1,7 +1,11 @@
 <?php
 
 require_once "autoload.php";
-
+/**
+ * La classe FPersistentManager viene utilizzata come interfaccia tra le classi Foundation e i Controller
+ * @author Gruppo8
+ * @package Foundation
+ */
 class FPersistentManager {
 
     /**

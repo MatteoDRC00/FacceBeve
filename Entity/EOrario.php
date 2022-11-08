@@ -4,6 +4,8 @@
  * * Giorno_settimana: indica il giorno della settimana
  * * Orario_aperuta: indica l'ora di apertura del locale in base al giorno della settimana
  * * Orario_chiusura: indica l'ora di chiusura del locale in base al giorno della settimana
+ * @author Gruppo8
+ * @package Entity
  */
 class EOrario implements JsonSerializable {
 

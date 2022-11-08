@@ -150,7 +150,7 @@ class VGestioneLocale{
     }
 
     /**
-     * Restituisce l''orario di apertura del locale'
+     * Restituisce l'orario di apertura del locale
      */
     public function getOrarioApertura(){
         return $_POST["orarioapertura"];

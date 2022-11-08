@@ -14,9 +14,10 @@
 
 
 -- Dump della struttura del database faccebeve
-DROP DATABASE IF EXISTS `faccebeve`;
-CREATE DATABASE IF NOT EXISTS `faccebeve` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
-USE `faccebeve`;
+DROP DATABASE IF EXISTS `my_faccebeve`;
+CREATE DATABASE IF NOT EXISTS `my_faccebeve` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
+GRANT ALL ON my_faccebeve.* TO faccebeve@localhost;
+USE `my_faccebeve`;
 
 -- Dump della struttura di tabella faccebeve.admin
 DROP TABLE IF EXISTS `admin`;
