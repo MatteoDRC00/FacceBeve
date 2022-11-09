@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-10-17 10:08:03
+/* Smarty version 4.2.0, created on 2022-11-09 09:38:54
   from 'C:\xampp\htdocs\FacceBeve\template\areaPersonaleUtente.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_634d0d63b46eb1_32004665',
+  'unifunc' => 'content_636b671e2b7548_01108594',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '7757a365921f193a5e1677eb3c4671e453775876' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\areaPersonaleUtente.tpl',
-      1 => 1665994081,
+      1 => 1667983132,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_634d0d63b46eb1_32004665 (Smarty_Internal_Template $_smarty_tpl) {
+function content_636b671e2b7548_01108594 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -119,7 +119,7 @@ function content_634d0d63b46eb1_32004665 (Smarty_Internal_Template $_smarty_tpl)
                                 <p>Modifica l'username</p>
                                 <div class="form-example">
                                     <label>Inserisci il nuovo username: </label><br>
-                                    <input type="text" name="newusername" id="newusername" required>
+                                    <input type="text" name="newusername" id="newusername" required pattern="[a-zA-Z]+\">
                                 </div>
                                 <button type="submit" class="btnAggiorna">Modifica username</button>
                             </form>
@@ -131,7 +131,7 @@ function content_634d0d63b46eb1_32004665 (Smarty_Internal_Template $_smarty_tpl)
                                 <p>Modifica l'email</p>
                                 <div class="form-example">
                                     <label>Inserisci la nuova email: </label><br>
-                                    <input type="text" name="newemail" id="newemail" required>
+                                    <input type="text" name="newemail" id="newemail" required pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]">
                                 </div>
                                 <button type="submit" class="btnAggiorna">Modifica email</button>
                             </form>
@@ -143,11 +143,11 @@ function content_634d0d63b46eb1_32004665 (Smarty_Internal_Template $_smarty_tpl)
                                 <p>Modifica la password</p>
                                 <div class="form-example">
                                     <label>Inserisci la vecchia password: </label><br>
-                                    <input type="password" name="password" id="password" required>
+                                    <input type="password" name="password" id="password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])">
                                 </div>
                                 <div class="form-example">
                                     <label>Inserisci la nuova password: </label><br>
-                                    <input type="password" name="newpassword" id="newpassword" required>
+                                    <input type="password" name="newpassword" id="newpassword" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])">
                                 </div>
                                 <button type="submit" class="btnAggiorna">Modifica password</button>
                             </form>
