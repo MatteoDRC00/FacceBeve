@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-09-17 23:28:38
+/* Smarty version 4.2.0, created on 2022-11-08 15:19:53
   from 'C:\xampp\htdocs\FacceBeve\template\infoLocale.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_63263c060115b1_30389751',
+  'unifunc' => 'content_636a658976f4f7_03078215',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a660993f6474d006e8e9e4e4b80317cbc019f658' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\infoLocale.tpl',
-      1 => 1663449815,
+      1 => 1667835706,
       2 => 'file',
     ),
   ),
@@ -20,11 +20,11 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_63263c060115b1_30389751 (Smarty_Internal_Template $_smarty_tpl) {
+function content_636a658976f4f7_03078215 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <?php $_smarty_tpl->_assignInScope('locale', (($tmp = $_smarty_tpl->tpl_vars['locale']->value ?? null)===null||$tmp==='' ? null ?? null : $tmp));
-$_smarty_tpl->_assignInScope('arrayRecensioni', (($tmp = $_smarty_tpl->tpl_vars['arrayRecensioni']->value ?? null)===null||$tmp==='' ? null ?? null : $tmp));
+$_smarty_tpl->_assignInScope('arrayRecensioni', (($tmp = $_smarty_tpl->tpl_vars['arrayRecensioni']->value ?? null)===null||$tmp==='' ? 'empty' ?? null : $tmp));
 $_smarty_tpl->_assignInScope('nrece', (($tmp = $_smarty_tpl->tpl_vars['nrece']->value ?? null)===null||$tmp==='' ? 0 ?? null : $tmp));
 $_smarty_tpl->_assignInScope('eventi', (($tmp = $_smarty_tpl->tpl_vars['eventi']->value ?? null)===null||$tmp==='' ? null ?? null : $tmp));
 $_smarty_tpl->_assignInScope('proprietario', (($tmp = $_smarty_tpl->tpl_vars['proprietario']->value ?? null)===null||$tmp==='' ? null ?? null : $tmp));
@@ -103,31 +103,84 @@ echo '<script'; ?>
                             <?php if ($_smarty_tpl->tpl_vars['presente']->value == true) {?>
                                 <form action="/Ricerca/aggiungiAPreferiti/<?php echo $_smarty_tpl->tpl_vars['locale']->value->getId();?>
 " method="POST">
-                                    <input onclick="change()" type="submit" value="Aggiunto!" id="pref" name="pref">
+                                    <input class="stelline" onclick="change()" type="submit" value="Aggiunto!" id="pref"
+                                           name="pref">
                                 </form>
                             <?php } else { ?>
                                 <form action="/Ricerca/aggiungiAPreferiti/<?php echo $_smarty_tpl->tpl_vars['locale']->value->getId();?>
 " method="POST">
-                                    <input onclick="change()" type="submit" value="Aggiungi ai preferiti" id="pref" name="pref">
+                                    <input class="stelline" onclick="change()" type="submit"
+                                           value="Aggiungi ai preferiti" id="pref" name="pref">
                                 </form>
                             <?php }?>
                         <?php }?>
-                        <div class="stelline star-rating" data-rating="4.6">
-                            <div class="empty-stars">
-                                <i class="far fa-star"></i>
-                                <i class="far fa-star"></i>
-                                <i class="far fa-star"></i>
-                                <i class="far fa-star"></i>
-                                <i class="far fa-star"></i>
-                            </div>
-                        </div>
-                        <div class="swiper-wrapper align-items-center">
-                            <div class="swiper-slide">
-                                <img src="data:<?php echo $_smarty_tpl->tpl_vars['locale']->value->getImg()->getType();?>
-;base64,<?php echo $_smarty_tpl->tpl_vars['locale']->value->getImg()->getImmagine();?>
+                        <div class="swiper-wrapper">
+                            <?php if (!empty($_smarty_tpl->tpl_vars['locale']->value->getImg())) {?>
+                                <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['locale']->value->getImg(), 'img');
+$_smarty_tpl->tpl_vars['img']->do_else = true;
+if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['img']->value) {
+$_smarty_tpl->tpl_vars['img']->do_else = false;
+?>
+                                    <div class="swiper-slide" style="text-align: center">
+                                        <img style="height: 90%; width: 90%; border-radius: 15%" src="data:<?php echo $_smarty_tpl->tpl_vars['img']->value->getType();?>
+;base64,<?php echo $_smarty_tpl->tpl_vars['img']->value->getImmagine();?>
 "
-                                     alt="Immagine locale">
-                            </div>
+                                             alt="Immagine localeeee">
+                                    </div>
+                                <?php
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
+                            <?php } else { ?>
+                                <div class="swiper-slide" style="text-align: center">
+                                    <img src="/template/img/no_foto.jpg" alt="Immagine locale"
+                                         style="height: 90%; width: 90%; border-radius: 15%">
+                                </div>
+                            <?php }?>
+                        </div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+                    <br>
+                    <div class="portfolio-details-slider swiper">
+                        <h4 style="display: list-item; font-weight: bold">Eventi organizzati:</h4>
+                        <div class="swiper-wrapper align-items-center">
+                            <?php if (($_smarty_tpl->tpl_vars['tipo']->value == "EUtente" || $_smarty_tpl->tpl_vars['tipo']->value == "EProprietario")) {?>
+                                <?php if (!empty($_smarty_tpl->tpl_vars['eventi']->value)) {?>
+                                    <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['eventi']->value, 'evento');
+$_smarty_tpl->tpl_vars['evento']->do_else = true;
+if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['evento']->value) {
+$_smarty_tpl->tpl_vars['evento']->do_else = false;
+?>
+                                        <div class="portfolio-info swiper-slide">
+                                            <h3><?php echo $_smarty_tpl->tpl_vars['evento']->value->getNome();?>
+</h3>
+                                            <img src="data:<?php echo $_smarty_tpl->tpl_vars['evento']->value->getImg()->getType();?>
+;base64,<?php echo $_smarty_tpl->tpl_vars['evento']->value->getImg()->getImmagine();?>
+"
+                                                 alt="Poster evento"
+                                                 style="max-width: 250px; max-height: 250px; float:right; display: block; border-radius:30px;">
+                                            <ul>
+                                                <li><strong>Data</strong>: <?php echo $_smarty_tpl->tpl_vars['evento']->value->getData();?>
+</li>
+                                                <li><strong>Descrizione</strong>: <?php echo $_smarty_tpl->tpl_vars['evento']->value->getDescrizione();?>
+</li>
+                                            </ul>
+                                        </div>
+                                    <?php
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
+                                <?php } else { ?>
+                                    <p>Non ci sono ancora eventi organizzati</p>
+                                <?php }?>
+                            <?php } else { ?>
+                                <div class="portfolio-info">
+                                    <p>Questa sezione è dedicata agli utenti iscritti, accedi o registrati per non
+                                        perderti gli
+                                        eventi
+                                        dei tuoi locali preferiti </p>
+                                </div>
+                            <?php }?>
                         </div>
                         <div class="swiper-pagination"></div>
                     </div>
@@ -141,9 +194,19 @@ echo '<script'; ?>
                                 , <?php echo $_smarty_tpl->tpl_vars['locale']->value->getLocalizzazione()->getNumCivico();?>
 </li>
                             <li><strong>Citt&agrave:</strong> <?php echo $_smarty_tpl->tpl_vars['locale']->value->getLocalizzazione()->getCitta();?>
-,
+
                                 <strong>CAP:</strong> <?php echo $_smarty_tpl->tpl_vars['locale']->value->getLocalizzazione()->getCAP();?>
 </li>
+                            <li style="font-weight: bold;"><a
+                                        href="https://maps.google.com/?q= <?php echo $_smarty_tpl->tpl_vars['locale']->value->getLocalizzazione()->getIndirizzo();?>
+, <?php echo $_smarty_tpl->tpl_vars['locale']->value->getLocalizzazione()->getNumCivico();?>
+, <?php echo $_smarty_tpl->tpl_vars['locale']->value->getLocalizzazione()->getCitta();?>
+, <?php echo $_smarty_tpl->tpl_vars['locale']->value->getLocalizzazione()->getCAP();?>
+, <?php echo $_smarty_tpl->tpl_vars['locale']->value->getNome();?>
+"
+                                        target="_blank"><i class="fas fa-map-marker-alt"></i> Come
+                                    raggiungerci...</a>
+                            </li>
                             <li><strong>Categorie:</strong>
                                 <ul>
                                     <?php
@@ -161,127 +224,138 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                             </li>
                             <li><strong>Descrizione:</strong> <?php echo $_smarty_tpl->tpl_vars['locale']->value->getDescrizione();?>
 </li>
-                            <li><strong>Valutazione:</strong> <?php echo $_smarty_tpl->tpl_vars['valutazioneLocale']->value;?>
+                            <?php if (($_smarty_tpl->tpl_vars['valutazioneLocale']->value != 0)) {?>
+                                <li><strong>Valutazione:</strong> <?php echo $_smarty_tpl->tpl_vars['valutazioneLocale']->value;?>
 /5</li>
+                            <?php }?>
                         </ul>
                     </div>
-                    <?php if (($_smarty_tpl->tpl_vars['userlogged']->value == 'loggato')) {?>
-                        <?php if ((isset($_smarty_tpl->tpl_vars['eventi']->value))) {?>
-                            <div class="portfolio-details-slider swiper">
-                                <br>
-                                <h4><strong>Eventi organizzati:</strong></h4>
-                                <?php
-$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['eventi']->value, 'evento');
-$_smarty_tpl->tpl_vars['evento']->do_else = true;
-if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['evento']->value) {
-$_smarty_tpl->tpl_vars['evento']->do_else = false;
+                    <div class="portfolio-info">
+                        <h3>Orario settimanale del locale</h3>
+                        <table id="customers">
+                            <thead>
+                            <tr>
+                                <th></th>
+                                <th>Apertura</th>
+                                <th>Chiusura</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['locale']->value->getOrario(), 'orario');
+$_smarty_tpl->tpl_vars['orario']->do_else = true;
+if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['orario']->value) {
+$_smarty_tpl->tpl_vars['orario']->do_else = false;
 ?>
-                                    <div class="portfolio-info swiper-slide">
-                                        <h3><?php echo $_smarty_tpl->tpl_vars['evento']->value->getNome();?>
-</h3>
-                                        <ul>
-                                            <li><strong>Data</strong>: <?php echo $_smarty_tpl->tpl_vars['evento']->value->getData();?>
-.</li>
-                                            <li><strong>Descrizione</strong>: <?php echo $_smarty_tpl->tpl_vars['evento']->value->getDescrizione();?>
-</li>
-                                            <br>
-                                            <li><img class="photo"
-                                                     src="data:<?php echo $_smarty_tpl->tpl_vars['evento']->value->getImg()->getType();?>
-;base64,<?php echo $_smarty_tpl->tpl_vars['evento']->value->getImg()->getImmagine();?>
-"
-                                                     alt="Poster evento" width="410px" height="155px"></li>
-                                        </ul>
-                                    </div>
-                                <?php
+                                <tr>
+                                    <td><strong><?php echo $_smarty_tpl->tpl_vars['orario']->value->getGiornoSettimana();?>
+</strong></td>
+                                    <td><?php echo $_smarty_tpl->tpl_vars['orario']->value->getOrarioApertura();?>
+</td>
+                                    <td><?php echo $_smarty_tpl->tpl_vars['orario']->value->getOrarioChiusura();?>
+ </td>
+                                </tr>
+                            <?php
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
-                            </div>
-                        <?php } else { ?>
-                            <div class="portfolio-details-slider swiper">
-                                <p>Non ci sono ancora eventi organizzati</p>
-                            </div>
-                        <?php }?>
-                    <?php } else { ?>
-                        <div class="portfolio-info">
-                            <p>Questa sezione è dedicata agli utenti iscritti, accedi o registrati per non perderti gli
-                                eventi
-                                dei tuoi locali preferiti </p>
-                        </div>
-                    <?php }?>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
-
+    <br>
     <section id="blog" class="blog">
         <div class="container" data-aos="fade-up">
             <div class="row">
                 <div class="col-lg-8 entries">
                     <div class="blog-comments">
                         <h4 class="comments-count">Area Recensioni:</h4>
-                        <?php if ((isset($_smarty_tpl->tpl_vars['arrayRecensioni']->value))) {?>
-
-                            <?php
+                        <?php if (!empty($_smarty_tpl->tpl_vars['arrayRecensioni']->value)) {?>
+                        <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['arrayRecensioni']->value, 'recensione');
 $_smarty_tpl->tpl_vars['recensione']->iteration = 0;
 $_smarty_tpl->tpl_vars['recensione']->do_else = true;
 if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['recensione']->value) {
 $_smarty_tpl->tpl_vars['recensione']->do_else = false;
 $_smarty_tpl->tpl_vars['recensione']->iteration++;
-$__foreach_recensione_2_saved = $_smarty_tpl->tpl_vars['recensione'];
+$__foreach_recensione_4_saved = $_smarty_tpl->tpl_vars['recensione'];
 ?>
-                                <div id="comment-1" class="comment">
-                                    <div class="d-flex">
-                                        <div class="comment-img"><img
-                                                    src="data:<?php echo $_smarty_tpl->tpl_vars['recensione']->value->getUtente()->getImgProfilo()->getType();?>
+                        <div id="comment-1" class="comment">
+                            <div class="d-flex">
+                                <?php if ((!is_null($_smarty_tpl->tpl_vars['recensione']->value->getUtente()->getImgProfilo()))) {?>
+                                    <div class="comment-img"><img
+                                                src="data:<?php echo $_smarty_tpl->tpl_vars['recensione']->value->getUtente()->getImgProfilo()->getType();?>
 ;base64,<?php echo $_smarty_tpl->tpl_vars['recensione']->value->getUtente()->getImgProfilo()->getImmagine();?>
 "
-                                                    alt="Immagine profilo utente" style="border-radius: 35px;">
-                                        </div>
-                                        <div>
-                                            <h5><?php echo $_smarty_tpl->tpl_vars['recensione']->value->getUtente()->getUsername();?>
+                                                alt="Immagine profilo utente" style="border-radius: 35px;">
+                                    </div>
+                                <?php } else { ?>
+                                    <div class="comment-img"><img
+                                                src="/template/img/utente.jpg" alt="immagine profiloooo"
+                                                style="border-radius: 35px;">
+                                    </div>
+                                <?php }?>
 
-                                                <?php ob_start();
+                                <div>
+                                    <h5><?php echo $_smarty_tpl->tpl_vars['recensione']->value->getUtente()->getUsername();?>
+</h5>
+
+                                    <h5><?php echo $_smarty_tpl->tpl_vars['recensione']->value->getData();?>
+ | <strong>Voto: <?php echo $_smarty_tpl->tpl_vars['recensione']->value->getVoto();?>
+
+                                            / 5</strong>
+                                        <?php if ($_smarty_tpl->tpl_vars['recensione']->value->getUtente()->getUsername() == $_smarty_tpl->tpl_vars['utente']->value) {?>
+                                            <form action="/GestioneRecensione/cancellaRecensione/<?php echo $_smarty_tpl->tpl_vars['recensione']->value->getId();?>
+"
+                                                  method="POST">
+                                                <input type="hidden" value="<?php echo $_smarty_tpl->tpl_vars['locale']->value->getId();?>
+" name="idLocale">
+                                                <button type="submit"
+                                                        style="border-radius:9px; height: 40px; color: #bb2d3b; font-weight: bold; border-color: #bb2d3b">
+                                                    <i class="align-items-xxl-end"></i>Elimina la tua Recensione
+                                                </button>
+                                            </form>
+                                        <?php }?>
+                                        <?php if ((isset($_smarty_tpl->tpl_vars['proprietario']->value)) && ($_smarty_tpl->tpl_vars['recensione']->value->isSegnalata() == 0)) {?>
+                                            <form action="/GestioneRecensione/segnalaRecensione/<?php echo $_smarty_tpl->tpl_vars['recensione']->value->getId();?>
+"
+                                                  method="POST">
+                                                <input type="hidden" value="<?php echo $_smarty_tpl->tpl_vars['locale']->value->getId();?>
+" name="idLocale">
+                                                <button type="submit" id="segnala"
+                                                        style="border-radius:9px; height: 40px; color: #bb2d3b; font-weight: bold; border-color: #bb2d3b">
+                                                    <i class="align-items-xxl-end"></i>Segnala la Recensione
+                                                </button>
+                                            </form>
+                                        <?php }?>
+                                        <?php if ((isset($_smarty_tpl->tpl_vars['proprietario']->value)) && ($_smarty_tpl->tpl_vars['recensione']->value->isSegnalata() == 1)) {?>
+                                            <h5><i> Recensione Segnalata </i></h5>
+                                        <?php }?>
+                                    </h5>
+
+                                    <h4 style="font-weight:bold;"><?php echo $_smarty_tpl->tpl_vars['recensione']->value->getTitolo();?>
+ </h4>
+                                    <p><?php echo $_smarty_tpl->tpl_vars['recensione']->value->getDescrizione();?>
+</p>
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <?php ob_start();
 echo $_smarty_tpl->tpl_vars['recensione']->iteration-1;
 $_prefixVariable1 = ob_get_clean();
-if ((isset($_smarty_tpl->tpl_vars['proprietario']->value)) && (isset($_smarty_tpl->tpl_vars['arrayRisposte']->value[$_prefixVariable1]))) {?>
-                                                    <a href="#formRisposta" class="reply"><i
-                                                                class="bi bi-reply-fill"></i>Rispondi</a>
-                                                <?php }?>
-                                            </h5>
-
-                                            <h5><?php echo $_smarty_tpl->tpl_vars['recensione']->value->getData();?>
- | Voto:<?php echo $_smarty_tpl->tpl_vars['recensione']->value->getVoto();?>
-
-                                                /5
-                                                <?php if ($_smarty_tpl->tpl_vars['recensione']->value->getUtente()->getUsername() == $_smarty_tpl->tpl_vars['utente']->value) {?>
-                                                    <form action="/GestioneRecensione/cancella/<?php echo $_smarty_tpl->tpl_vars['recensione']->value->getId();?>
-"
-                                                          method="POST">
-                                                        <button type="submit" style="border-radius:9px; height: 40px"><i
-                                                                    class="align-items-xxl-end"></i>Elimina Recensione:
-                                                        </button>
-                                                    </form>
-                                                <?php }?>
-                                            </h5>
-
-                                            <h4 style="font-weight:bold;"><?php echo $_smarty_tpl->tpl_vars['recensione']->value->getTitolo();?>
- </h4>
-                                            <p><?php echo $_smarty_tpl->tpl_vars['recensione']->value->getDescrizione();?>
-</p>
-                                            
-
-                                        </div>
-                                    </div>
-                                </div>
+if ((isset($_smarty_tpl->tpl_vars['arrayRisposte']->value[$_prefixVariable1]))) {?>
+                        <div id="comment-reply-1" class="comment comment-reply">
+                            <div class="d-flex"><h6><i class="bi-arrow-right-short">Re:</i></h6>
                                 <?php ob_start();
 echo $_smarty_tpl->tpl_vars['recensione']->iteration-1;
 $_prefixVariable2 = ob_get_clean();
-if ((isset($_smarty_tpl->tpl_vars['arrayRisposte']->value[$_prefixVariable2]))) {?>
-                                    <div id="comment-reply-1" class="comment comment-reply">
-                                        <div class="d-flex">
-                                            <div class="comment-img"><img
-                                                        src="data:<?php ob_start();
+if (!(is_null($_smarty_tpl->tpl_vars['arrayRisposte']->value[$_prefixVariable2]->getProprietario()->getImgProfilo()))) {?>
+                                <div class="comment-img"><img
+                                            src="data:<?php ob_start();
 echo $_smarty_tpl->tpl_vars['recensione']->iteration-1;
 $_prefixVariable3 = ob_get_clean();
 echo $_smarty_tpl->tpl_vars['arrayRisposte']->value[$_prefixVariable3]->getProprietario()->getImgProfilo()->getType();?>
@@ -290,101 +364,123 @@ echo $_smarty_tpl->tpl_vars['recensione']->iteration-1;
 $_prefixVariable4 = ob_get_clean();
 echo $_smarty_tpl->tpl_vars['arrayRisposte']->value[$_prefixVariable4]->getProprietario()->getImgProfilo()->getImmagine();?>
 "
-                                                        alt="Immagine profilo proprietario"
-                                                        style="border-radius: 35px;"></div>
-                                            <div>
-                                                <h5><?php ob_start();
+                                            alt="Immagine profilo proprietario"
+                                            style="border-radius: 35px;"></div>
+                                <div>
+                                    <?php } else { ?>
+                                    <div class="comment-img"><img
+                                                src="/template/img/utente.jpg"
+                                                alt="Immagine profilo proprietario"
+                                                style="border-radius: 35px;"></div>
+                                    <div>
+                                        <?php }?>
+                                        <h5><?php ob_start();
 echo $_smarty_tpl->tpl_vars['recensione']->iteration-1;
 $_prefixVariable5 = ob_get_clean();
 echo $_smarty_tpl->tpl_vars['arrayRisposte']->value[$_prefixVariable5]->getProprietario()->getUsername();?>
 </h5>
-                                                <p><?php ob_start();
+                                        <p><?php ob_start();
 echo $_smarty_tpl->tpl_vars['recensione']->iteration-1;
 $_prefixVariable6 = ob_get_clean();
 echo $_smarty_tpl->tpl_vars['arrayRisposte']->value[$_prefixVariable6]->getDescrizione();?>
 </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                <?php } else { ?>
-                                    <?php if ((isset($_smarty_tpl->tpl_vars['proprietario']->value))) {?>
-                                        <div class="reply-form" name="formRisposta">
-                                            <h4>Rispondi</h4>
-                                            <form action="/GestioneRecensione/scriviRisposta/<?php ob_start();
+
+                                        <?php ob_start();
 echo $_smarty_tpl->tpl_vars['recensione']->iteration-1;
 $_prefixVariable7 = ob_get_clean();
-echo $_smarty_tpl->tpl_vars['arrayRecensioni']->value[$_prefixVariable7]->getId();?>
-"
-                                                  method="POST"
-                                                  name="Risposta"> <!--onsubmit="return validateRisposta()"-->
-                                                <input type="hidden" name="idRecensione"
-                                                       value="<?php ob_start();
+if ($_smarty_tpl->tpl_vars['arrayRisposte']->value[$_prefixVariable7]->getProprietario()->getUsername() == $_smarty_tpl->tpl_vars['utente']->value) {?>
+                                            <form action="/GestioneRecensione/cancellaRisposta/<?php ob_start();
 echo $_smarty_tpl->tpl_vars['recensione']->iteration-1;
 $_prefixVariable8 = ob_get_clean();
-echo $_smarty_tpl->tpl_vars['arrayRecensioni']->value[$_prefixVariable8]->getId();?>
+echo $_smarty_tpl->tpl_vars['arrayRisposte']->value[$_prefixVariable8]->getId();?>
+"
+                                                  method="POST">
+                                                <input type="hidden" value="<?php echo $_smarty_tpl->tpl_vars['locale']->value->getId();?>
+" name="idLocale">
+                                                <button type="submit"
+                                                        style="border-radius:9px; height: 40px; color: #bb2d3b; font-weight: bold; border-color: #bb2d3b">
+                                                    <i class="align-items-xxl-end"></i>Elimina la tua Risposta
+                                                </button>
+                                            </form>
+                                        <?php }?>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <?php } else { ?>
+                            <?php if ((isset($_smarty_tpl->tpl_vars['proprietario']->value))) {?>
+                                <div class="reply-form" name="formRisposta">
+                                    <h4>Rispondi</h4>
+                                    <form action="/GestioneRecensione/rispondi/<?php ob_start();
+echo $_smarty_tpl->tpl_vars['recensione']->iteration-1;
+$_prefixVariable9 = ob_get_clean();
+echo $_smarty_tpl->tpl_vars['arrayRecensioni']->value[$_prefixVariable9]->getId();?>
+"
+                                          method="POST"
+                                          name="Risposta"> <!--onsubmit="return validateRisposta()"-->
+                                        <input type="hidden" name="idLocale"
+                                               value="<?php echo $_smarty_tpl->tpl_vars['locale']->value->getId();?>
 "/>
-                                                <div class="row">
-                                                    <div class="col form-group">
-                                                        <textarea name="descrizione" class="form-control"
+                                        <div class="row">
+                                            <div class="col form-group">
+                                                        <textarea name="descrizioneRisposta" class="form-control"
                                                                   placeholder="Risposta" required
                                                                   title="Inserire del testo nella risposta"></textarea>
-                                                    </div>
-                                                </div>
-                                                <button type="submit" class="btn btn-primary">Rispondi</button>
-                                            </form>
+                                            </div>
                                         </div>
-                                    <?php }?>
-                                <?php }?>
+                                        <button type="submit" class="btn btn-primary">Rispondi</button>
+                                    </form>
+                                </div>
+                            <?php }?>
+                            <?php }?>
                             <?php
-$_smarty_tpl->tpl_vars['recensione'] = $__foreach_recensione_2_saved;
+$_smarty_tpl->tpl_vars['recensione'] = $__foreach_recensione_4_saved;
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
-                        <?php } else { ?>
+                            <?php } else { ?>
                             <p>Non ci sono ancora recensioni per questo locale</p>
-                        <?php }?>
+                            <?php }?>
 
-                        <!--onsubmit="return validateRecensione()"  -->
-                        <!--/\/\//\/\//\/\//\/\//\/\//\/\///////////////////////\\\\\\\\\\\\\\\\\/\/\//\/\//\/\//\/\//\/\//\/\/////\\\\\/\/\/\/\/\/\/\/\/\//\/\/\-->
-                        <?php if (($_smarty_tpl->tpl_vars['userlogged']->value == 'loggato') && !((isset($_smarty_tpl->tpl_vars['proprietario']->value)))) {?>
-                            <div class="reply-form">
-                                <h4>Scrivi una recensione</h4>
-                                <form action="/GestioneRecensione/scriviRecensione/<?php echo $_smarty_tpl->tpl_vars['locale']->value->getId();?>
+                            <!--onsubmit="return validateRecensione()"  -->
+                            <!--/\/\//\/\//\/\//\/\//\/\//\/\///////////////////////\\\\\\\\\\\\\\\\\/\/\//\/\//\/\//\/\//\/\//\/\/////\\\\\/\/\/\/\/\/\/\/\/\//\/\/\-->
+                            <?php if (($_smarty_tpl->tpl_vars['tipo']->value == "EUtente"&$_smarty_tpl->tpl_vars['stato']->value == "1")) {?>
+                                <div class="reply-form">
+                                    <h4>Scrivi una recensione</h4>
+                                    <form action="/GestioneRecensione/scriviRecensione/<?php echo $_smarty_tpl->tpl_vars['locale']->value->getId();?>
 " method="POST"
-                                      id="Recensione" name="Recensione">
-                                    <input type="hidden" name="idLocale" value=<?php echo $_smarty_tpl->tpl_vars['locale']->value->getId();?>
-/>
-                                    <div class="row">
-                                        <div class="col-md-6 form-group">
-                                            <input name="titolo" type="text" class="form-control" placeholder="Titolo">
+                                          id="Recensione" onsubmit="return validateRecensione()">
+                                        <div class="row">
+                                            <div class="col-md-6 form-group">
+                                                <input name="titolo" type="text" class="form-control">
+                                            </div>
+                                            <div class="col-md-6 form-group">
+                                                <select name="valutazione"
+                                                        style="font-family: 'FontAwesome',Arial,sans-serif;">
+                                                    <option>-- Voto --</option>
+                                                    <option value="1">&#xf005;</option>
+                                                    <option value="2">&#xf005;&#xf005;</option>
+                                                    <option value="3">&#xf005;&#xf005;&#xf005;</option>
+                                                    <option value="4">&#xf005;&#xf005;&#xf005;&#xf005;</option>
+                                                    <option value="5">&#xf005;&#xf005;&#xf005;&#xf005;&#xf005;</option>
+                                                </select>
+                                            </div>
                                         </div>
-                                        <div class="col-md-6 form-group">
-                                            <select name="valutazione"
-                                                    style="font-family: 'FontAwesome',Arial,sans-serif;">
-                                                <option>-- Voto --</option>
-                                                <option value="1">&#xf005;</option>
-                                                <option value="2">&#xf005;&#xf005;</option>
-                                                <option value="3">&#xf005;&#xf005;&#xf005;</option>
-                                                <option value="4">&#xf005;&#xf005;&#xf005;&#xf005;</option>
-                                                <option value="5">&#xf005;&#xf005;&#xf005;&#xf005;&#xf005;</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col form-group">
+                                        <div class="row">
+                                            <div class="col form-group">
                                             <textarea name="descrizione" class="form-control"
                                                       placeholder="Descrizione"></textarea>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">Aggiungi recensione</button>
-                                </form>
-                            </div>
-                        <?php }?>
+                                        <button type="submit" class="btn btn-primary">Aggiungi recensione</button>
+                                    </form>
+                                </div>
+                            <?php }?>
+                        </div>
                     </div>
+
                 </div>
 
             </div>
-
-        </div>
     </section>
 
 </main>

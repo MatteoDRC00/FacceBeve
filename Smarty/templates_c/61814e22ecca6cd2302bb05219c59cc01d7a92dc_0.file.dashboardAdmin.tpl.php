@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-10-12 15:03:05
+/* Smarty version 4.2.0, created on 2022-11-08 15:26:14
   from 'C:\xampp\htdocs\FacceBeve\template\dashboardAdmin.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_6346bb093a0ed2_07429880',
+  'unifunc' => 'content_636a6706898587_95843861',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '61814e22ecca6cd2302bb05219c59cc01d7a92dc' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\dashboardAdmin.tpl',
-      1 => 1665579783,
+      1 => 1667835705,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6346bb093a0ed2_07429880 (Smarty_Internal_Template $_smarty_tpl) {
+function content_636a6706898587_95843861 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -238,6 +238,54 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
             <?php if (empty($_smarty_tpl->tpl_vars['proprietari']->value)) {?>
                 <br>
                 <p style="text-align: center">Attualmente non ci sono proprietari di locali </p>
+            <?php }?>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <table id="customers">
+                    <p style="padding: 3px; font-weight: bold; font-size: 20px; text-align: center; color: #17455e;">Locali</p>
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nome</th>
+                        <th>Descrizione</th>
+                        <th>Localizzazione</th>
+                        <th>Proprietario</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php if (!empty($_smarty_tpl->tpl_vars['locali']->value)) {?>
+                        <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['locali']->value, 'locale');
+$_smarty_tpl->tpl_vars['locale']->do_else = true;
+if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['locale']->value) {
+$_smarty_tpl->tpl_vars['locale']->do_else = false;
+?>
+                            <tr>
+                                <td><?php echo $_smarty_tpl->tpl_vars['locale']->value->getId();?>
+</td>
+                                <td><?php echo $_smarty_tpl->tpl_vars['locale']->value->getNome();?>
+</td>
+                                <td><?php echo $_smarty_tpl->tpl_vars['locale']->value->getDescrizione();?>
+</td>
+                                <td><?php echo $_smarty_tpl->tpl_vars['locale']->value->getLocalizzazione()->getIndirizzo();?>
+, <?php echo $_smarty_tpl->tpl_vars['locale']->value->getLocalizzazione()->getNumCivico();?>
+ <?php echo $_smarty_tpl->tpl_vars['locale']->value->getLocalizzazione()->getCitta();?>
+</td>
+                                <td><?php echo $_smarty_tpl->tpl_vars['locale']->value->getProprietario()->getUsername();?>
+</td>
+                            </tr>
+                        <?php
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
+                    <?php }?>
+                    </tbody>
+                </table>
+            </div>
+            <?php if (empty($_smarty_tpl->tpl_vars['locali']->value)) {?>
+                <br>
+                <p style="text-align: center">Attualmente non ci sono locali </p>
             <?php }?>
         </div>
 

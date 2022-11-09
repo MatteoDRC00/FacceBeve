@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-10-15 10:11:06
+/* Smarty version 4.2.0, created on 2022-11-09 09:24:01
   from 'C:\xampp\htdocs\FacceBeve\template\registrazioneUtente.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_634a6b1aecf1f0_61100600',
+  'unifunc' => 'content_636b63a1b07205_27375974',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c20b6bf5f02e1972c0cff8ba77bb2836e646beda' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\registrazioneUtente.tpl',
-      1 => 1665821463,
+      1 => 1667835706,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_634a6b1aecf1f0_61100600 (Smarty_Internal_Template $_smarty_tpl) {
+function content_636b63a1b07205_27375974 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <!--<?php $_smarty_tpl->_assignInScope('error', (($tmp = $_smarty_tpl->tpl_vars['error']->value ?? null)===null||$tmp==='' ? 'ok' ?? null : $tmp));?> -->
 <html lang="it">
@@ -71,14 +71,14 @@ function content_634a6b1aecf1f0_61100600 (Smarty_Internal_Template $_smarty_tpl)
             <h1 style="font-weight: bold; font-size: 24px">Registrati come utente</h1>
             <input type="text" class="form-control" placeholder="nome" name="nome" pattern="[a-zA-Z]+\"/>
             <input type="text" class="form-control" placeholder="cognome" name="cognome" pattern="[a-zA-Z]+\"/>
-            <input type="text" placeholder="email" name="email"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="Deve essere inclusa una chiocciola @ essendo un email"/>
+            <input type="text" placeholder="email" name="email"  pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$" title="Deve essere inclusa una chiocciola @ essendo un email"/>
             <input type="text" placeholder="username" name="username"/>
             <input type="password" placeholder="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="La password deve contenere almeno 8 caratteri, di cui almeno una lettera maiuscola"/>
             <input type="password" placeholder="ripeti password" name="password2" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="La password deve contenere almeno 8 caratteri, di cui almeno una lettera maiuscola"/>
             <h1>Aggiungi l'immagine di profilo</h1>
             <input name="img_profilo" class="p-2" type="file">
             <button type="submit">Registrati</button>
-            <p class="message">Hai gi&agrave un account? <a href="login.html">Accedi</a></p>
+            <p class="message">Hai gi&agrave un account? <a href="/Accesso/formLogin">Accedi</a></p>
         </form>
     </div>
 </div>
