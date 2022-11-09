@@ -1,0 +1,8 @@
+1. Scaricare XAMPP con versione di php 7.4 o superiore
+2. Scaricare un qualsiasi DBMS (noi abbiamo usato HeidySQL e MySQL Workbanch)
+3. Scaricare il file zip dalla seguente repository "https://github.com/MatteoDRC00/FacceBeve.git" spacchettarlo e copiare l'intero progetto nella cartella htdocs di xampp
+4. Aprire il Pannello di Controllo di XAMPP e cliccare sul pulsante Config del modulo Apache
+5. Scegliere "Apache (httpd.conf)" e trovare il campo Document Root e modificare il contenuto con "C:/xampp/htdocs/FacceBeve" fare la stessa cosa nel campo della directory sottostante
+6. Far partire da XAMPP il server Apache e MySQL
+7. Aprire il DBMS scaricato e eseguire il file "Faccebeve.sql" scaricato dalla repository
+8. Aprire il browser e digitare localhost

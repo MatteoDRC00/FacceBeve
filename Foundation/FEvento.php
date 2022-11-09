@@ -192,7 +192,8 @@ class FEvento
         list($result, $num) = $db->loadEventiUtente(static::$class, $username);
         if (($result != null) && ($num == 1)) {
             //Prendo solo gli eventi futuri ad oggi
-            if( strtotime($result["data"]) >=  strtotime(date("d/m/Y"))){
+            $dataEvento = explode("/", $result["data"]);
+            if(($dataEvento[0] >= date("d")) && ($dataEvento[1] >= date("m")) && ($dataEvento[2] >= date("Y"))){
                 $immagine = FImmagine::loadByField("id", $result['idImg']);
                 $evento[0] = new EEvento($result['nome'], $result['descrizione'], $result['data']); //Carica un evento dal database
                 $evento[0]->setImg($immagine[0]);
@@ -204,7 +205,8 @@ class FEvento
             if (($result != null) && ($num > 1)) {
                 for ($i = 0; $i < $num; $i++) {
                     //Prendo solo gli eventi futuri ad oggi
-                    if( $result[$i]["data"] >=  date("d/m/Y")){
+                    $dataEvento = explode("/", $result[$i]["data"]);
+                    if(($dataEvento[0] >= date("d")) && ($dataEvento[1] >= date("m")) && ($dataEvento[2] >= date("Y"))){
                         $immagine = FImmagine::loadByField("id", $result[$i]['idImg']);
                         $evento[$i] = new EEvento($result[$i]['nome'], $result[$i]['descrizione'], $result[$i]['data']); //Carica un array di oggetti Evento dal database
                         $evento[$i]->setImg($immagine[0]);
