@@ -11,8 +11,8 @@
 
 
     <!-- Favicons -->
-    <link href="/template/img/favicon.png" rel="icon">
-    <link href="/template/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <link href="/FacceBeve/template/img/favicon.png" rel="icon">
+    <link href="/FacceBeve/template/img/apple-touch-icon.png" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,700,700i&display=swap"
@@ -20,16 +20,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- Vendor CSS Files -->
-    <link href="/template/vendor/animate.css/animate.min.css" rel="stylesheet">
-    <link href="/template/vendor/aos/aos.css" rel="stylesheet">
-    <link href="/template/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/template/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="/template/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-    <link href="/template/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-    <link href="/template/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link href="/FacceBeve/template/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="/FacceBeve/template/vendor/aos/aos.css" rel="stylesheet">
+    <link href="/FacceBeve/template/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/FacceBeve/template/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/FacceBeve/template/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/FacceBeve/template/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/FacceBeve/template/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
     <!-- Template Main CSS File -->
-    <link href="/template/css/style.css" rel="stylesheet">
+    <link href="/FacceBeve/template/css/style.css" rel="stylesheet">
 </head>
 
 <body> <!--onload="setList()"-->
@@ -39,24 +39,24 @@
     <div class="container d-flex justify-content-between align-items-center">
 
         <div class="logo">
-            <h1><a href="/Ricerca/mostraHome"><img src="/template/img/logo.png" alt=""><span>FacceBeve</span></a></h1>
+            <h1><a href="/FacceBeve/Ricerca/mostraHome"><img src="/FacceBeve/template/img/logo.png" alt=""><span>FacceBeve</span></a></h1>
         </div>
 
         {if $tipo=='nouser'}
             <div class="sign">
-                <a href="/Accesso/formLogin">Accedi</a>
-                <a href="/Accesso/formRegistrazioneUtente">Registrati</a>
-                <a href="/Accesso/formRegistrazioneProprietario">Vuoi pubblicizzare il tuo locale?</a>
+                <a href="/FacceBeve/Accesso/formLogin">Accedi</a>
+                <a href="/FacceBeve/Accesso/formRegistrazioneUtente">Registrati</a>
+                <a href="/FacceBeve/Accesso/formRegistrazioneProprietario">Vuoi pubblicizzare il tuo locale?</a>
             </div>
         {elseif $tipo=='EUtente'}
             <div class="sign">
-                <a href="/Profilo/mostraProfilo">Area Personale Utente</a>
-                <a href="/Accesso/logout">Logout</a>
+                <a href="/FacceBeve/Profilo/mostraProfilo">Area Personale Utente</a>
+                <a href="/FacceBeve/Accesso/logout">Logout</a>
             </div>
         {elseif $tipo=='EProprietario'}
             <div class="sign">
-                <a href="/Profilo/mostraProfilo">Area Personale Proprietario</a>
-                <a href="/Accesso/logout">Logout</a>
+                <a href="/FacceBeve/Profilo/mostraProfilo">Area Personale Proprietario</a>
+                <a href="/FacceBeve/Accesso/logout">Logout</a>
             </div>
         {/if}
 
@@ -81,7 +81,7 @@
                 <div class="ricerca animate__animated animate__fadeInDown" id="Locali"
                      style="display: flex;justify-content: center;">
                     <form class="Search" id="ricercaLocali1" onsubmit="return validateResearchForm(1)"
-                          action="/Ricerca/ricerca" method="POST">
+                          action="/FacceBeve/Ricerca/ricerca" method="POST">
                         <input class="homeinput" type="hidden" value="x" name="checkLocale" id="checkLocale">
                         <input class="homeinput" type="text" placeholder="Inserisci la città" name="citta1">
                         <input class="homeinput" type="text" placeholder="Inserisci il nome" name="nomeLocale1">
@@ -102,7 +102,7 @@
                 <div class="ricerca animate__animated animate__fadeInDown" id="Eventi"
                      style="display: none;justify-content: center;">
                     <form class="Search" id="ricercaEventi" onsubmit="return validateResearchForm(1)"
-                          action="/Ricerca/ricerca" method="POST">
+                          action="/FacceBeve/Ricerca/ricerca" method="POST">
                         <input class="homeinput" type="text" placeholder="Inserisci la città" name="citta2">
                         <input class="homeinput" type="text" placeholder="Inserisci il nome del Locale"
                                name="nomeLocaleEvento">
@@ -122,7 +122,7 @@
                 </div>
                 <div class="ricerca animate__animated animate__fadeInDown"
                      style="display: flex;justify-content: center;">
-                    <form class="Search" name="ricercaLocali0" id="ricercaLocali0" action="/Ricerca/ricerca"
+                    <form class="Search" name="ricercaLocali0" id="ricercaLocali0" action="/FacceBeve/Ricerca/ricerca"
                           method="POST" onsubmit="return validateResearchForm(0)">
                         <input class="homeinput" type="text" placeholder="Inserisci la città" name="citta">
                         <input class="homeinput" type="text" placeholder="Inserisci il nome" name="nomeLocale">
@@ -158,7 +158,7 @@
                     {foreach $topLocali as $locale}
                         <div class="col-md-6 col-lg-3 d-flex align-items-stretch">
                             <div class="icon-box icon-box-pink">
-                                <a href="/Ricerca/dettagliLocale/{$locale->getId()}"><h3
+                                <a href="/FacceBeve/Ricerca/dettagliLocale/{$locale->getId()}"><h3
                                             style="font-weight: bold">{$locale->getNome()}</h3></a>
                                 <p style="font-weight: bold;">Voto: {$valutazione[$i]}/5</p>
                                 <p class="description">{$locale->getDescrizione()}</p>
@@ -179,7 +179,7 @@
                             {$i=0}
                             <div class="col-md-6 col-lg-3 d-flex align-items-stretch">
                                 <div class="icon-box icon-box-pink">
-                                    <a href="/Ricerca/dettagliLocale/{$localiEventiUtente[{$evento@iteration-1}]}"><h3
+                                    <a href="/FacceBeve/Ricerca/dettagliLocale/{$localiEventiUtente[{$evento@iteration-1}]}"><h3
                                                 style="font-weight: bold">{$evento->getNome()}</h3></a>
                                     <p style="font-weight: bold;">{$evento->getData()}</p>
                                     <p class="description">{$evento->getDescrizione()}</p>
@@ -218,17 +218,17 @@
             class="bi bi-arrow-up-short"></i></a>
 
 <!-- Vendor JS Files -->
-<script src="/template/vendor/purecounter/purecounter_vanilla.js"></script>
-<script src="/template/vendor/aos/aos.js"></script>
-<script src="/template/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="/template/vendor/glightbox/js/glightbox.min.js"></script>
-<script src="/template/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-<script src="/template/vendor/swiper/swiper-bundle.min.js"></script>
-<script src="/template/vendor/waypoints/noframework.waypoints.js"></script>
-<script src="/template/vendor/php-email-form/validate.js"></script>
+<script src="/FacceBeve/template/vendor/purecounter/purecounter_vanilla.js"></script>
+<script src="/FacceBeve/template/vendor/aos/aos.js"></script>
+<script src="/FacceBeve/template/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/FacceBeve/template/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="/FacceBeve/template/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+<script src="/FacceBeve/template/vendor/swiper/swiper-bundle.min.js"></script>
+<script src="/FacceBeve/template/vendor/waypoints/noframework.waypoints.js"></script>
+<script src="/FacceBeve/template/vendor/php-email-form/validate.js"></script>
 
 <!-- Template Main JS File -->
-<script type="text/javascript" src="/template/js/main.js"></script>
+<script src="/FacceBeve/template/js/main.js"></script>
 
 </body>
 

@@ -45,7 +45,7 @@ class CGestioneLocale
             $categorie = $pm->getCategorie();
             $view->showFormCreaLocale($categorie);
         } else {
-            header("Location: /Ricerca/mostraHome");
+            header("Location: /FacceBeve/Ricerca/mostraHome");
         }
     }
 
@@ -169,9 +169,9 @@ class CGestioneLocale
                 $img_locale->setId($id);
                 $pm->storeEsterne("Locale_Immagini", "ID_Locale", "ID_Immagine", $id_locale, $id);
             }
-            header('Location: /Profilo/mostraProfilo');
+            header('Location: /FacceBeve/Profilo/mostraProfilo');
         } else {
-            header('Location: /Ricerca/mostraHome');
+            header('Location: /FacceBeve/Ricerca/mostraHome');
         }
     }
 
@@ -194,9 +194,9 @@ class CGestioneLocale
             $nomeNuovo = $view->getNomeLocale();
             $pm->update("FLocale", "nome", $nomeNuovo, "id", $id_locale);
             $locale[0]->setNome($nomeNuovo);
-            header("Location: /GestioneLocale/mostraGestioneLocale/" . $id_locale);
+            header("Location: /FacceBeve/GestioneLocale/mostraGestioneLocale/" . $id_locale);
         } else {
-            header('Location: /Ricerca/mostraHome');
+            header('Location: /FacceBeve/Ricerca/mostraHome');
         }
     }
 
@@ -218,9 +218,9 @@ class CGestioneLocale
             $newDescrizione = $view->getDescrizioneLocale();
             $pm->update("FLocale", "descrizione", $newDescrizione, "id", $id_locale);
             $locale[0]->setDescrizione($newDescrizione);
-            header("Location: /GestioneLocale/mostraGestioneLocale/" . $id_locale);
+            header("Location: /FacceBeve/GestioneLocale/mostraGestioneLocale/" . $id_locale);
         } else {
-            header('Location: /Ricerca/mostraHome');
+            header('Location: /FacceBeve/Ricerca/mostraHome');
         }
     }
 
@@ -242,9 +242,9 @@ class CGestioneLocale
             $numeroTelefono = $view->getNumTelefono();
             $pm->update("FLocale", "numtelefono", $numeroTelefono, "id", $id_locale);
             $locale[0]->setNumTelefono($numeroTelefono);
-            header("Location: /GestioneLocale/mostraGestioneLocale/" . $id_locale);
+            header("Location: /FacceBeve/GestioneLocale/mostraGestioneLocale/" . $id_locale);
         } else {
-            header('Location: /Ricerca/mostraHome');
+            header('Location: /FacceBeve/Ricerca/mostraHome');
         }
     }
 
@@ -273,9 +273,9 @@ class CGestioneLocale
             }
             $locale[0]->setCategoria($categorie);
 
-            header("Location: /GestioneLocale/mostraGestioneLocale/" . $id_locale);
+            header("Location: /FacceBeve/GestioneLocale/mostraGestioneLocale/" . $id_locale);
         } else {
-            header('Location: /Ricerca/mostraHome');
+            header('Location: /FacceBeve/Ricerca/mostraHome');
         }
     }
 
@@ -313,9 +313,9 @@ class CGestioneLocale
             $localizzazioneNuova->setId($id_localizzazione);
 
             $locale[0]->setLocalizzazione($localizzazioneNuova);
-            header("Location: /GestioneLocale/mostraGestioneLocale/" . $id_locale);
+            header("Location: /FacceBeve/GestioneLocale/mostraGestioneLocale/" . $id_locale);
         } else {
-            header('Location: /Ricerca/mostraHome');
+            header('Location: /FacceBeve/Ricerca/mostraHome');
         }
     }
 
@@ -376,7 +376,7 @@ class CGestioneLocale
                         $message = "Inserire entrambi i campi degli orari ";
                         echo "<script type='text/javascript'>
                             alert('$message');
-                            window.location.replace('/GestioneLocale/mostraFormCreaLocale');
+                            window.location.replace('/FacceBeve/GestioneLocale/mostraFormCreaLocale');
                             </script>";
                     }
                 } else {
@@ -388,9 +388,9 @@ class CGestioneLocale
                 }
             }
             $locale[0]->setOrario($o);
-            header("Location: /GestioneLocale/mostraGestioneLocale/" . $id_locale);
+            header("Location: /FacceBeve/GestioneLocale/mostraGestioneLocale/" . $id_locale);
         } else {
-            header('Location: /Ricerca/mostraHome');
+            header('Location: /FacceBeve/Ricerca/mostraHome');
         }
     }
 
@@ -418,9 +418,9 @@ class CGestioneLocale
                 $pm->storeEsterne("Locale_Immagini", "ID_Locale", "ID_Immagine", $id_locale, $id);
                 $locale[0]->addImg($img_locale);
             }
-            header("Location: /GestioneLocale/mostraGestioneLocale/" . $id_locale);
+            header("Location: /FacceBeve/GestioneLocale/mostraGestioneLocale/" . $id_locale);
         } else {
-            header('Location: /Ricerca/mostraHome');
+            header('Location: /FacceBeve/Ricerca/mostraHome');
         }
     }
 
@@ -439,9 +439,9 @@ class CGestioneLocale
         if ($sessione->isLogged() && $tipo == "EProprietario") {
             $pm->deleteEsterne("Locale_Immagini", "ID_Immagine", $id_immagine);
             $pm->delete("id", $id_immagine, "FImmagine");
-            header("Location: /Profilo/mostraProfilo/");
+            header("Location: /FacceBeve/Profilo/mostraProfilo/");
         } else {
-            header('Location: /Ricerca/mostraHome');
+            header('Location: /FacceBeve/Ricerca/mostraHome');
         }
     }
 
@@ -468,9 +468,9 @@ class CGestioneLocale
 
             $pm->delete("id", $locale[0]->getLocalizzazione()->getId(), "FLocalizzazione");
             $pm->delete("id", $id_locale, "FLocale");
-            header("Location: /Profilo/mostraProfilo");
+            header("Location: /FacceBeve/Profilo/mostraProfilo");
         } else {
-            header("Location: /Ricerca/mostraHome");
+            header("Location: /FacceBeve/Ricerca/mostraHome");
         }
     }
 

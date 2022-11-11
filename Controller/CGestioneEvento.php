@@ -48,7 +48,7 @@ class CGestioneEvento
             $view = new VGestioneEvento();
             $view->showFormCreaEvento($locale[0]);
         } else {
-            header("Location: /Ricerca/mostraHome");
+            header("Location: /FacceBeve/Ricerca/mostraHome");
         }
     }
 
@@ -69,7 +69,7 @@ class CGestioneEvento
         if ($sessione->isLogged() && $tipo == "EProprietario") {
             $view->showFormModificaEvento($evento[0]);
         } else {
-            header("Location: /Ricerca/mostraHome");
+            header("Location: /FacceBeve/Ricerca/mostraHome");
         }
     }
 
@@ -106,9 +106,9 @@ class CGestioneEvento
 
             $pm->storeEsterne("Locale_Eventi", "ID_Locale", "ID_Evento", $id_locale, $id_evento);
 
-            header("Location: /GestioneLocale/mostraGestioneLocale/" . $id_locale);
+            header("Location: /FacceBeve/GestioneLocale/mostraGestioneLocale/" . $id_locale);
         } else {
-            header("Location: /Ricerca/mostraHome");
+            header("Location: /FacceBeve/Ricerca/mostraHome");
         }
 
     }
@@ -127,9 +127,9 @@ class CGestioneEvento
         if ($sessione->isLogged() && $tipo == "EProprietario") {
             $pm->deleteEsterne("Locale_Eventi", "ID_Evento", $id_evento);
             $pm->delete("id", $id_evento, "FEvento");
-            header("Location: /Profilo/mostraProfilo");
+            header("Location: /FacceBeve/Profilo/mostraProfilo");
         } else {
-            header("Location: /Ricerca/mostraHome");
+            header("Location: /FacceBeve/Ricerca/mostraHome");
         }
     }
 
@@ -150,9 +150,9 @@ class CGestioneEvento
             $nomeNuovo = $view->getNomeEvento();
             $pm->update("FEvento", "nome", $nomeNuovo, "id", $id_evento);
             $evento[0]->setNome($nomeNuovo);
-            header("Location: /GestioneEvento/mostraFormGestioneEvento/" . $id_evento);
+            header("Location: /FacceBeve/GestioneEvento/mostraFormGestioneEvento/" . $id_evento);
         } else {
-            header('Location: /Ricerca/mostraHome');
+            header('Location: /FacceBeve/Ricerca/mostraHome');
         }
     }
 
@@ -174,9 +174,9 @@ class CGestioneEvento
             $descrizioneNuova = $view->getDescrizioneEvento();
             $pm->update("FEvento", "descrizione", $descrizioneNuova, "id", $id_evento);
             $evento[0]->setDescrizione($descrizioneNuova);
-            header("Location: /GestioneEvento/mostraFormGestioneEvento/" . $id_evento);
+            header("Location: /FacceBeve/GestioneEvento/mostraFormGestioneEvento/" . $id_evento);
         } else {
-            header('Location: /Ricerca/mostraHome');
+            header('Location: /FacceBeve/Ricerca/mostraHome');
         }
     }
 
@@ -199,9 +199,9 @@ class CGestioneEvento
             $dataNuova = $view->getDataEvento();
             $pm->update("FEvento", "data", $dataNuova, "id", $id_evento);
             $evento[0]->setData($dataNuova);
-            header("Location: /GestioneEvento/mostraFormGestioneEvento/" . $id_evento);
+            header("Location: /FacceBeve/GestioneEvento/mostraFormGestioneEvento/" . $id_evento);
         } else {
-            header('Location: /Ricerca/mostraHome');
+            header('Location: /FacceBeve/Ricerca/mostraHome');
         }
     }
 
@@ -231,9 +231,9 @@ class CGestioneEvento
                 $pm->delete("id", $id_imgvecchia, "FImmagine");
                 $evento[0]->setImg($img_evento);
             }
-            header("Location: /GestioneEvento/mostraFormGestioneEvento/" . $id_evento);
+            header("Location: /FacceBeve/GestioneEvento/mostraFormGestioneEvento/" . $id_evento);
         } else {
-            header('Location: /Ricerca/mostraHome');
+            header('Location: /FacceBeve/Ricerca/mostraHome');
         }
     }
 

@@ -59,7 +59,7 @@ class CProfilo
                 $view->mostraProfiloProprietario($proprietario, $locali);
             }
         }else{
-            header("Location: /Ricerca/mostraHome");
+            header("Location: /FacceBeve/Ricerca/mostraHome");
         }
 
     }
@@ -101,10 +101,10 @@ class CProfilo
                 $user->setUsername($newusername);
                 $sessione->imposta_valore("utente", $newusername);
                 $sessione->imposta_valore("tipo_utente", get_class($user));
-                header("Location: /Profilo/mostraProfilo");
+                header("Location: /FacceBeve/Profilo/mostraProfilo");
             }
         } else {
-            header("Location: /Ricerca/mostraHome");
+            header("Location: /FacceBeve/Ricerca/mostraHome");
         }
 
     }
@@ -132,7 +132,7 @@ class CProfilo
                 if ($newemail != $user->getEmail()) {
                     $user->setEmail($newemail);
                     $pm->update($class, "email", $newemail, "username", $username);
-                    header('Location: /Profilo/mostraProfilo');
+                    header('Location: /FacceBeve/Profilo/mostraProfilo');
                 } else {
                     $message = "La email inserita è identica a quella precedente, si prega di scriverne un'altra";
                     $tipo = "email";
@@ -144,7 +144,7 @@ class CProfilo
                 self::erroreModifica($tipo, $message, $user);
             }
         } else {
-            header("Location: /Ricerca/mostraHome");
+            header("Location: /FacceBeve/Ricerca/mostraHome");
         }
     }
 
@@ -174,7 +174,7 @@ class CProfilo
                     if($newpassword != $password){
                         $user->setPassword($newpassword);
                         $pm->update($class,"password", md5($newpassword),"username",$username);
-                        header('Location: /Profilo/mostraProfilo');
+                        header('Location: /FacceBeve/Profilo/mostraProfilo');
                     }else{
                         $message = "La password inserita è identica a quella precedente, si prega di scriverne un'altra";
                         $tipo="password";
@@ -192,7 +192,7 @@ class CProfilo
                 self::erroreModifica($tipo,$message,$user);
             }
         }else{
-            header("Location: /Ricerca/mostraHome");
+            header("Location: /FacceBeve/Ricerca/mostraHome");
         }
     }
 
@@ -230,9 +230,9 @@ class CProfilo
                     }
                 } 
             }
-            header('Location: /Profilo/mostraProfilo');
+            header('Location: /FacceBeve/Profilo/mostraProfilo');
         } else {
-            header("Location: /Ricerca/mostraHome");
+            header("Location: /FacceBeve/Ricerca/mostraHome");
         }
     }
 

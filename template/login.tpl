@@ -11,24 +11,24 @@
 
 
     <!-- Favicons -->
-    <link href="/template/img/favicon.png" rel="icon">
-    <link href="/template/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <link href="/FacceBeve/template/img/favicon.png" rel="icon">
+    <link href="/FacceBeve/template/img/apple-touch-icon.png" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,700,700i&display=swap"
           rel="stylesheet">
 
     <!-- Vendor CSS Files -->
-    <link href="/template/vendor/animate.css/animate.min.css" rel="stylesheet">
-    <!--<link href="/Smarty/template/assets/vendor/aos/aos.css" rel="stylesheet">-->
-    <link href="/template/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/template/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="/template/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-    <link href="/template/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-    <link href="/template/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link href="/FacceBeve/template/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="/FacceBeve/template/vendor/aos/aos.css" rel="stylesheet">
+    <link href="/FacceBeve/template/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/FacceBeve/template/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/FacceBeve/template/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/FacceBeve/template/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/FacceBeve/template/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
     <!-- Template Main CSS File -->
-    <link href="/template/css/log.css" rel="stylesheet">
+    <link href="/FacceBeve/template/css/log.css" rel="stylesheet">
 
     <!-- =======================================================
     * Template Name: Moderna - v4.9.1
@@ -43,7 +43,7 @@
     <div class="container d-flex justify-content-between align-items-center">
 
         <div class="logo">
-            <h1><a href="/Ricerca/mostraHome"><img src="/template/img/logo.png" alt=""><span>FacceBeve</span></a></h1>
+            <h1><a href="/FacceBeve/Ricerca/mostraHome"><img src="/template/img/logo.png" alt=""><span>FacceBeve</span></a></h1>
         </div>
     </div>
 
@@ -55,18 +55,29 @@
     {/if}
 
     <div class="form">
-        <form class="login-form" action="/Accesso/login" method="POST">
+        <form class="login-form" action="/FacceBeve/Accesso/login" method="POST">
             <input type="text" placeholder="username" name="username">
             <input type="password" placeholder="password" name="password"/>
             <button  type="submit" >Login</button>
             <p class="message">Non sei ancora registrato?</p>
-            <a href="/Accesso/formRegistrazioneUtente" style="font-size: 12px">Crea un account utente</a>
+            <a href="/FacceBeve/Accesso/formRegistrazioneUtente" style="font-size: 12px">Crea un account utente</a>
 
             <p class="message">Hai bisogno di pubblicizzare il tuo locale?</p>
-            <a href="/Accesso/formRegistrazioneProprietario" style="font-size: 12px">Crea un account proprietario</a>
+            <a href="/FacceBeve/Accesso/formRegistrazioneProprietario" style="font-size: 12px">Crea un account proprietario</a>
         </form>
     </div>
 </div>
-<!--<script src="/Smarty/template/assets/js/main.js"></script>-->
+<!-- Vendor JS Files -->
+<script src="/FacceBeve/template/vendor/purecounter/purecounter_vanilla.js"></script>
+<script src="/FacceBeve/template/vendor/aos/aos.js"></script>
+<script src="/FacceBeve/template/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/FacceBeve/template/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="/FacceBeve/template/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+<script src="/FacceBeve/template/vendor/swiper/swiper-bundle.min.js"></script>
+<script src="/FacceBeve/template/vendor/waypoints/noframework.waypoints.js"></script>
+<script src="/FacceBeve/template/vendor/php-email-form/validate.js"></script>
+
+<!-- Template Main JS File -->
+<script src="/FacceBeve/template/js/main.js"></script>
 </body>
 </html>

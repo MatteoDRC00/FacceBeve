@@ -86,9 +86,9 @@ class CAccesso
                 $sessione->imposta_valore('utente', $user->getUsername());
                 $sessione->imposta_valore("tipo_utente", get_class($user));
                 if (get_class($user) == "EAdmin") {
-                    header("Location: /Admin/dashboardAdmin");
+                    header("Location: /FacceBeve/Admin/dashboardAdmin");
                 }
-                header("Location: /Ricerca/mostraHome");
+                header("Location: /FacceBeve/Ricerca/mostraHome");
             } else {
                 $tipo = "credenziali";
                 self::erroreLogin($tipo);
@@ -115,7 +115,7 @@ class CAccesso
             $message = "Username già esistente, si prega di scriverne un altro";
             echo "<script type='text/javascript'>
                             alert('$message');
-                            window.location.replace('/Accesso/formRegistrazioneUtente');
+                            window.location.replace('/FacceBeve/Accesso/formRegistrazioneUtente');
                       </script>";
         } else {
             $utente = new EUtente($view->getPassword(), $view->getNome(), $view->getCognome(), $username, $view->getEmail());
@@ -141,7 +141,7 @@ class CAccesso
             $sessione->imposta_valore('utente', $utente->getUsername());
             $sessione->imposta_valore("tipo_utente", get_class($utente));
 
-            header("Location: /Ricerca/mostraHome");
+            header("Location: /FacceBeve/Ricerca/mostraHome");
         }
     }
 
@@ -165,7 +165,7 @@ class CAccesso
             $message = "Username già esistente, si prega di scriverne un altro";
             echo "<script type='text/javascript'>
                             alert('$message');
-                            window.location.replace('/Accesso/formRegistrazioneProprietario');
+                            window.location.replace('/FacceBeve/Accesso/formRegistrazioneProprietario');
                       </script>";
         } else {
             $proprietario = new EProprietario($view->getNome(), $view->getCognome(), $view->getEmail(), $username, $view->getPassword());
@@ -189,7 +189,7 @@ class CAccesso
             $sessione->imposta_valore('utente', $proprietario->getUsername());
             $sessione->imposta_valore("tipo_utente", get_class($proprietario));
 
-           header("Location: /Ricerca/mostraHome");
+           header("Location: /FacceBeve/Ricerca/mostraHome");
         }
     }
 
@@ -201,7 +201,7 @@ class CAccesso
     {
         $sessione = new USession();
         $sessione->chiudi_sessione();
-        header('Location: /Ricerca/mostraHome');
+        header('Location: /FacceBeve/Ricerca/mostraHome');
     }
 
     /**

@@ -10,8 +10,8 @@
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link href="/template/img/favicon.png" rel="icon">
-    <link href="/template/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <link href="/FacceBeve/template/img/favicon.png" rel="icon">
+    <link href="/FacceBeve/template/img/apple-touch-icon.png" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,700,700i&display=swap"
@@ -21,16 +21,16 @@
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
     <!-- Vendor CSS Files -->
-    <link href="/template/vendor/animate.css/animate.min.css" rel="stylesheet">
-    <link href="/template/vendor/aos/aos.css" rel="stylesheet">
-    <link href="/template/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/template/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="/template/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-    <link href="/template/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-    <link href="/template/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link href="/FacceBeve/template/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="/FacceBeve/template/vendor/aos/aos.css" rel="stylesheet">
+    <link href="/FacceBeve/template/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/FacceBeve/template/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/FacceBeve/template/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/FacceBeve/template/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/FacceBeve/template/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
     <!-- Template Main CSS File -->
-    <link href="/template/css/style.css" rel="stylesheet">
+    <link href="/FacceBeve/template/css/style.css" rel="stylesheet">
 
     <!-- =======================================================
     * Template Name: Moderna - v4.9.1
@@ -47,7 +47,7 @@
     <div class="container d-flex justify-content-between align-items-center">
 
         <div class="logo">
-            <h1><a href="/Ricerca/mostraHome"><img src="/template/img/logo.png" alt=""><span>FacceBeve</span></a></h1>
+            <h1><a href="/FacceBeve/Ricerca/mostraHome"><img src="/template/img/logo.png" alt=""><span>FacceBeve</span></a></h1>
         </div>
 
     </div>
@@ -64,9 +64,9 @@
             </div>
 
             <div class="gestioneutente">
-                <a href="/GestioneLocale/mostraFormCreaLocale">Aggiungi locale</a>
+                <a href="/FacceBeve/GestioneLocale/mostraFormCreaLocale">Aggiungi locale</a>
                 <a href="#locali">I Tuoi Locali</a>
-                <a href="/Accesso/logout">Esci <i class="fa fa-sign-out"></i></a>
+                <a href="/FacceBeve/Accesso/logout">Esci <i class="fa fa-sign-out"></i></a>
             </div>
 
         </div>
@@ -81,7 +81,7 @@
                         <div class="col-12 bg-white p-0 px-3 py-3 mb-3">
                             <div class="d-flex flex-column align-items-center">
                                 {if $type=="" && $pic64==""}
-                                    <img class="photo" src="/template/img/utente.jpg" alt="immagine profilo">
+                                    <img class="photo" src="/FacceBeve/template/img/utente.jpg" alt="immagine profilo">
                                 {else}
                                     <img class="photo" src="data:{$type};base64,{$pic64}" alt="immagine profilo">
                                 {/if}
@@ -98,7 +98,7 @@
                             {if !empty($tipo) && $tipo=="user"}
                                 <h3 class="errore" style="font-family: Arial;color: yellow;font-size: 17px; text-align: center">{$message}</h3>
                             {/if}
-                            <form action="/Profilo/modificaUsername" method="POST" class="aggiorna">
+                            <form action="/FacceBeve/Profilo/modificaUsername" method="POST" class="aggiorna">
                                 <p>Modifica l'username</p>
                                 <div class="form-example">
                                     <label>Inserisci il nuovo username: </label><br>
@@ -109,7 +109,7 @@
                             {if !empty($tipo) && $tipo=="email"}
                                 <h3 class="errore" style="font-family: Arial;color: yellow;font-size: 17px; text-align: center">{$message}</h3>
                             {/if}
-                            <form action="/Profilo/modificaEmail" method="POST" class="aggiorna">
+                            <form action="/FacceBeve/Profilo/modificaEmail" method="POST" class="aggiorna">
                                 <p>Modifica l'email</p>
                                 <div class="form-example">
                                     <label>Inserisci la nuova email: </label><br>
@@ -120,7 +120,7 @@
                             {if !empty($tipo) && $tipo=="password"}
                                 <h3 class="errore" style="font-family: Arial;color: yellow;font-size: 17px; text-align: center">{$message}</h3>
                             {/if}
-                            <form action="/Profilo/modificaPassword" method="POST" class="aggiorna">
+                            <form action="/FacceBeve/Profilo/modificaPassword" method="POST" class="aggiorna">
                                 <p>Modifica la password</p>
                                 <div class="form-example">
                                     <label>Inserisci la vecchia password: </label><br>
@@ -134,7 +134,7 @@
                             </form>
                         </div>
                         <div class="col-12 bg-white px-3 pb-2">
-                            <form action="/Profilo/modificaImmagineProfilo" enctype="multipart/form-data" method="POST" class="aggiorna"> <!-- aggiungin i controlli -->
+                            <form action="/FacceBeve/Profilo/modificaImmagineProfilo" enctype="multipart/form-data" method="POST" class="aggiorna"> <!-- aggiungin i controlli -->
                                 <p>Modifica l'immagine di profilo</p>
                                 <input name="newimg_profilo" class="w-50 p-2 m-2" type="file" required><br>
                                 <button type="submit" class="btnAggiorna">Modifica Immagine</button>
@@ -160,8 +160,8 @@
                             <li style="padding: 4px; color: #f0c040">
                                 <div class="items-body-content row-cols-3">
                                     <p>{$locale->getNome()}</p>
-                                    <a href="/GestioneLocale/mostraGestioneLocale/{$locale->getId()}"><input type="button" value="Gestisci locale"></a>
-                                    <a href="/GestioneLocale/eliminaLocale/{$locale->getId()}"><input type="button" value="Elimina Locale"></a>
+                                    <a href="/FacceBeve/GestioneLocale/mostraGestioneLocale/{$locale->getId()}"><input type="button" value="Gestisci locale"></a>
+                                    <a href="/FacceBeve/GestioneLocale/eliminaLocale/{$locale->getId()}"><input type="button" value="Elimina Locale"></a>
                                 </div>
                             </li>
                         {/foreach}
@@ -196,17 +196,17 @@
         class="bi bi-arrow-up-short"></i></a>
 
 <!-- Vendor JS Files -->
-<script src="/template/vendor/purecounter/purecounter_vanilla.js"></script>
-<script src="/template/vendor/aos/aos.js"></script>
-<script src="/template/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="/template/vendor/glightbox/js/glightbox.min.js"></script>
-<script src="/template/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-<script src="/template/vendor/swiper/swiper-bundle.min.js"></script>
-<script src="/template/vendor/waypoints/noframework.waypoints.js"></script>
-<script src="/template/vendor/php-email-form/validate.js"></script>
+<script src="/FacceBeve/template/vendor/purecounter/purecounter_vanilla.js"></script>
+<script src="/FacceBeve/template/vendor/aos/aos.js"></script>
+<script src="/FacceBeve/template/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/FacceBeve/template/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="/FacceBeve/template/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+<script src="/FacceBeve/template/vendor/swiper/swiper-bundle.min.js"></script>
+<script src="/FacceBeve/template/vendor/waypoints/noframework.waypoints.js"></script>
+<script src="/FacceBeve/template/vendor/php-email-form/validate.js"></script>
 
 <!-- Template Main JS File -->
-<script src="/template/js/main.js"></script>
+<script src="/FacceBeve/template/js/main.js"></script>
 
 </body>
 

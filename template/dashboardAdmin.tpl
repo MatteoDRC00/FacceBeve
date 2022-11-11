@@ -10,8 +10,8 @@
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link href="/template/img/favicon.png" rel="icon">
-    <link href="/template/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <link href="/FacceBeve/template/img/favicon.png" rel="icon">
+    <link href="/FacceBeve/template/img/apple-touch-icon.png" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,700,700i&display=swap"
@@ -21,16 +21,16 @@
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
     <!-- Vendor CSS Files -->
-    <link href="/template/vendor/animate.css/animate.min.css" rel="stylesheet">
-    <link href="/template/vendor/aos/aos.css" rel="stylesheet">
-    <link href="/template/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/template/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="/template/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-    <link href="/template/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-    <link href="/template/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link href="/FacceBeve/template/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="/FacceBeve/template/vendor/aos/aos.css" rel="stylesheet">
+    <link href="/FacceBeve/template/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/FacceBeve/template/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/FacceBeve/template/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/FacceBeve/template/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/FacceBeve/template/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
     <!-- Template Main CSS File -->
-    <link href="/template/css/style.css" rel="stylesheet">
+    <link href="/FacceBeve/template/css/style.css" rel="stylesheet">
 
     <!-- =======================================================
     * Template Name: Moderna - v4.9.1
@@ -47,7 +47,7 @@
     <div class="container d-flex justify-content-between align-items-center">
 
         <div class="logo">
-            <h1><a href="/Ricerca/mostraHome"><img src="/template/img/logo.png" alt=""><span>FacceBeve</span></a></h1>
+            <h1><a href="/FacceBeve/Ricerca/mostraHome"><img src="/template/img/logo.png" alt=""><span>FacceBeve</span></a></h1>
         </div>
 
     </div>
@@ -62,7 +62,7 @@
                 <h2 style="font-weight: bold">Dashboard ADMIN</h2>
             </div>
             <div class="gestioneutente">
-                <a href="/Accesso/logout">Esci <i class="fa fa-sign-out"></i></a>
+                <a href="/FacceBeve/Accesso/logout">Esci <i class="fa fa-sign-out"></i></a>
             </div>
         </div>
     </section><!-- End Contact Section -->
@@ -93,7 +93,7 @@
                                 <td>{$utente->getEmail()}</td>
                                 <td>{$utente->getIscrizione()}</td>
                                 <td>
-                                    <form action="/Admin/sospendiUtente/{$utente->getUsername()}" method="POST">
+                                    <form action="/FacceBeve/Admin/sospendiUtente/{$utente->getUsername()}" method="POST">
                                         <input style="border-radius: 9px; padding: 3px; border-color: #0dcaf0" type="submit" value="Sospendi">
                                     </form>
                                 </td>
@@ -133,7 +133,7 @@
                                 <td>{$utente->getEmail()}</td>
                                 <td>{$utente->getIscrizione()}</td>
                                 <td>
-                                    <form action="/Admin/riattivaUtente/{$utente->getUsername()}" method="POST">
+                                    <form action="/FacceBeve/Admin/riattivaUtente/{$utente->getUsername()}" method="POST">
                                         <input style="border-radius: 9px; padding: 3px; border-color: #0dcaf0" type="submit" value="Riattiva">
                                     </form>
                                 </td>
@@ -233,7 +233,7 @@
                                 <td>{$categoria->getGenere()}</td>
                                 <td>{$categoria->getDescrizione()}</td>
                                 <td>
-                                    <form action="/Admin/rimuoviCategoria/{$categoria->getGenere()}" method="POST">
+                                    <form action="/FacceBeve/Admin/rimuoviCategoria/{$categoria->getGenere()}" method="POST">
                                         <input style="border-radius: 9px; padding: 3px; border-color: #0dcaf0" type="submit" value="Elimina">
                                     </form>
                                 </td>
@@ -241,7 +241,7 @@
                         {/foreach}
                     {/if}
                     <tr>
-                        <form action="/Admin/aggiungiCategoria" method="POST" id="aggiuntaCategoria" onsubmit="return validateRegForm(4)">
+                        <form action="/FacceBeve/Admin/aggiungiCategoria" method="POST" id="aggiuntaCategoria" onsubmit="return validateRegForm(4)">
                             <td><input style="padding: 4px" type="text" placeholder="Genere" name="genere"></td>
                             <td><input style="width: 98%; padding: 4px" type="text" placeholder="Descrizione" name="descrizione"></td>
                             <td><input style="border-radius: 9px; padding: 3px; border-color: #0dcaf0" type="submit" value="Aggiungi"></td>
@@ -280,12 +280,12 @@
                                 <td>{$rece->getUtente()->getUsername()}</td>
                                 <td>{$rece->getLocale()->getNome()}</td>
                                 <td>
-                                    <form action="/Admin/eliminaRecensione/{$rece->getId()}" method="POST">
+                                    <form action="/FacceBeve/Admin/eliminaRecensione/{$rece->getId()}" method="POST">
                                         <input style="border-radius: 9px; padding: 3px; border-color: #0dcaf0" type="submit" value="Elimina">
                                     </form>
                                 </td>
                                 <td>
-                                    <form action="/Admin/reinserisciRecensione/{$rece->getId()}" method="POST">
+                                    <form action="/FacceBeve/Admin/reinserisciRecensione/{$rece->getId()}" method="POST">
                                         <input style="border-radius: 9px; padding: 3px; border-color: #0dcaf0" type="submit" value="Reinserisci">
                                     </form>
                                 </td>
@@ -325,17 +325,17 @@
             class="bi bi-arrow-up-short"></i></a>
 
 <!-- Vendor JS Files -->
-<script src="/template/vendor/purecounter/purecounter_vanilla.js"></script>
-<script src="/template/vendor/aos/aos.js"></script>
-<script src="/template/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="/template/vendor/glightbox/js/glightbox.min.js"></script>
-<script src="/template/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-<script src="/template/vendor/swiper/swiper-bundle.min.js"></script>
-<script src="/template/vendor/waypoints/noframework.waypoints.js"></script>
-<script src="/template/vendor/php-email-form/validate.js"></script>
+<script src="/FacceBeve/template/vendor/purecounter/purecounter_vanilla.js"></script>
+<script src="/FacceBeve/template/vendor/aos/aos.js"></script>
+<script src="/FacceBeve/template/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/FacceBeve/template/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="/FacceBeve/template/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+<script src="/FacceBeve/template/vendor/swiper/swiper-bundle.min.js"></script>
+<script src="/FacceBeve/template/vendor/waypoints/noframework.waypoints.js"></script>
+<script src="/FacceBeve/template/vendor/php-email-form/validate.js"></script>
 
 <!-- Template Main JS File -->
-<script src="/template/js/main.js"></script>
+<script src="/FacceBeve/template/js/main.js"></script>
 
 </body>
 

@@ -1,9 +1,6 @@
 RewriteEngine On
-RewriteCond %{REQUEST_URI} !\/template\/.
+RewriteCond %{REQUEST_URI} !\/FacceBeve/template\/.
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteBase /
-RewriteRule ^(.*)$ index.php [L]
-
-# # av:php5-engine
-AddHandler av-php8 .php
+RewriteRule ^(.*)$ FacceBeve/index.php [L]

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-11-09 16:29:36
+/* Smarty version 4.2.0, created on 2022-11-11 16:16:53
   from 'C:\xampp\htdocs\FacceBeve\template\registrazioneUtente.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_636bc760b99638_09535415',
+  'unifunc' => 'content_636e67659c5448_05413593',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c20b6bf5f02e1972c0cff8ba77bb2836e646beda' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\registrazioneUtente.tpl',
-      1 => 1667982980,
+      1 => 1668179793,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_636bc760b99638_09535415 (Smarty_Internal_Template $_smarty_tpl) {
+function content_636e67659c5448_05413593 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <!--<?php $_smarty_tpl->_assignInScope('error', (($tmp = $_smarty_tpl->tpl_vars['error']->value ?? null)===null||$tmp==='' ? 'ok' ?? null : $tmp));?> -->
 <html lang="it">
@@ -59,7 +59,7 @@ function content_636bc760b99638_09535415 (Smarty_Internal_Template $_smarty_tpl)
 <header id="header" class="fixed-top d-flex align-items-center header-transparent">
     <div class="container d-flex justify-content-between align-items-center">
         <div class="logo">
-            <h1><a href="/Ricerca/mostraHome"><img src="/template/img/logo.png" alt=""><span>FacceBeve</span></a></h1>
+            <h1><a href="/FacceBeve/Ricerca/mostraHome"><img src="/template/img/logo.png" alt=""><span>FacceBeve</span></a></h1>
         </div>
     </div>
 </header>
@@ -67,7 +67,7 @@ function content_636bc760b99638_09535415 (Smarty_Internal_Template $_smarty_tpl)
 
 <div class="login-page">
     <div class="form">
-        <form class="login-form" action="/Accesso/registrazioneUtente" enctype="multipart/form-data" method="POST" id="registrazioneUser" onsubmit="return validateRegForm(1)">
+        <form class="login-form" action="/FacceBeve/Accesso/registrazioneUtente" enctype="multipart/form-data" method="POST" id="registrazioneUser" onsubmit="return validateRegForm(1)">
             <h1 style="font-weight: bold; font-size: 24px">Registrati come utente</h1>
             <input type="text" class="form-control" placeholder="nome" name="nome" pattern="[a-zA-Z]+\"/>
             <input type="text" class="form-control" placeholder="cognome" name="cognome" pattern="[a-zA-Z]+\"/>
@@ -78,7 +78,7 @@ function content_636bc760b99638_09535415 (Smarty_Internal_Template $_smarty_tpl)
             <h1>Aggiungi l'immagine di profilo</h1>
             <input name="img_profilo" class="p-2" type="file">
             <button type="submit">Registrati</button>
-            <p class="message">Hai gi&agrave un account? <a href="/Accesso/formLogin">Accedi</a></p>
+            <p class="message">Hai gi&agrave un account? <a href="/FacceBeve/Accesso/formLogin">Accedi</a></p>
         </form>
     </div>
 </div>

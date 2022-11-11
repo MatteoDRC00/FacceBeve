@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-11-09 12:33:11
+/* Smarty version 4.2.0, created on 2022-11-11 16:16:56
   from 'C:\xampp\htdocs\FacceBeve\template\login.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_636b8ff7d144c9_83008535',
+  'unifunc' => 'content_636e6768b003a5_34975676',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '4bbbafc2ea6d5409b92c2264798b2d324bd194ae' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\login.tpl',
-      1 => 1667982980,
+      1 => 1668179793,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_636b8ff7d144c9_83008535 (Smarty_Internal_Template $_smarty_tpl) {
+function content_636e6768b003a5_34975676 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <!--<?php $_smarty_tpl->_assignInScope('error', (($tmp = $_smarty_tpl->tpl_vars['error']->value ?? null)===null||$tmp==='' ? 'ok' ?? null : $tmp));?>-->
 <html lang="it">
@@ -66,7 +66,7 @@ function content_636b8ff7d144c9_83008535 (Smarty_Internal_Template $_smarty_tpl)
     <div class="container d-flex justify-content-between align-items-center">
 
         <div class="logo">
-            <h1><a href="/Ricerca/mostraHome"><img src="/template/img/logo.png" alt=""><span>FacceBeve</span></a></h1>
+            <h1><a href="/FacceBeve/Ricerca/mostraHome"><img src="/template/img/logo.png" alt=""><span>FacceBeve</span></a></h1>
         </div>
     </div>
 
@@ -79,15 +79,15 @@ function content_636b8ff7d144c9_83008535 (Smarty_Internal_Template $_smarty_tpl)
     <?php }?>
 
     <div class="form">
-        <form class="login-form" action="/Accesso/login" method="POST">
+        <form class="login-form" action="/FacceBeve/Accesso/login" method="POST">
             <input type="text" placeholder="username" name="username">
             <input type="password" placeholder="password" name="password"/>
             <button  type="submit" >Login</button>
             <p class="message">Non sei ancora registrato?</p>
-            <a href="/Accesso/formRegistrazioneUtente" style="font-size: 12px">Crea un account utente</a>
+            <a href="/FacceBeve/Accesso/formRegistrazioneUtente" style="font-size: 12px">Crea un account utente</a>
 
             <p class="message">Hai bisogno di pubblicizzare il tuo locale?</p>
-            <a href="/Accesso/formRegistrazioneProprietario" style="font-size: 12px">Crea un account proprietario</a>
+            <a href="/FacceBeve/Accesso/formRegistrazioneProprietario" style="font-size: 12px">Crea un account proprietario</a>
         </form>
     </div>
 </div>

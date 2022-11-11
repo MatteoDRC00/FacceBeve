@@ -64,9 +64,9 @@ class CGestioneRecensione
 
             $idR = $pm->store($recensione);
 
-            header('Location: /Ricerca/dettagliLocale/' . $id);
+            header('Location: /FacceBeve/Ricerca/dettagliLocale/' . $id);
         } else {
-            header('Location: /Ricerca/mostraHome');
+            header('Location: /FacceBeve/Ricerca/mostraHome');
         }
     }
 
@@ -91,9 +91,9 @@ class CGestioneRecensione
 
             $pm->store($risposta);
 
-            header('Location: /Ricerca/dettagliLocale/' . $view->getIdLocale());
+            header('Location: /FacceBeve/Ricerca/dettagliLocale/' . $view->getIdLocale());
         } else {
-            header('Location: /Ricerca/mostraHome');
+            header('Location: /FacceBeve/Ricerca/mostraHome');
         }
     }
 
@@ -116,10 +116,10 @@ class CGestioneRecensione
             $utente = $pm->load("username", $user, "FUtente");
             if ($utente->getUsername() == $recensione[0]->getUtente()->getUsername()) {
                 $pm->delete("id", $id, "FRecensione");
-                header('Location: /Ricerca/dettagliLocale/' . $view->getIdLocale());
+                header('Location: /FacceBeve/Ricerca/dettagliLocale/' . $view->getIdLocale());
             } else {
                 $sessione->cancella_valore('locale');
-                header('Location: /Ricerca/mostraHome');
+                header('Location: /FacceBeve/Ricerca/mostraHome');
             }
         }
     }
@@ -143,10 +143,10 @@ class CGestioneRecensione
             $proprietario = $pm->load("username", $user, "FProprietario");
             if ($proprietario->getUsername() == $risposta->getProprietario()->getUsername()) {
                 $pm->delete("id", $id, "FRisposta");
-                header('Location: /Ricerca/dettagliLocale/' . $view->getIdLocale());
+                header('Location: /FacceBeve/Ricerca/dettagliLocale/' . $view->getIdLocale());
             }
         } else {
-            header('Location: /Ricerca/mostraHome'); //Qualcosa va mostrato però
+            header('Location: /FacceBeve/Ricerca/mostraHome'); //Qualcosa va mostrato però
         }
     }
 
@@ -163,9 +163,9 @@ class CGestioneRecensione
         $pm = FPersistentManager::GetInstance();
         if ($tipo == "EProprietario") {
             $pm->update("FRecensione", "segnalato", 1, "id", $id);
-            header('Location: /Ricerca/dettagliLocale/' . $view->getIdLocale());
+            header('Location: /FacceBeve/Ricerca/dettagliLocale/' . $view->getIdLocale());
         } else {
-            header('Location: /Ricerca/mostraHome');
+            header('Location: /FacceBeve/Ricerca/mostraHome');
         }
     }
 

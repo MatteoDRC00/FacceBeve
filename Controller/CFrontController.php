@@ -12,10 +12,11 @@ class CFrontController
 
     public function run($path)
     {
-        if ($path != '/') {
+        if ($path != '/FacceBeve/') {
             $resource = explode('/', $path);
 
             array_shift($resource);
+		    array_shift($resource);
 
             $controller = "C" . $resource[0];
             $dir = 'Controller';

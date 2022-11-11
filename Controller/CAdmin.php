@@ -77,7 +77,7 @@ class CAdmin
 
             $view->HomeAdmin($utentiA, $utentiB, $categorie, $recSegnalate, $proprietari, $locali);
         } else {
-            header('Location: /Accesso/login');
+            header('Location: /FacceBeve/Accesso/login');
         }
     }
 
@@ -99,16 +99,16 @@ class CAdmin
             if (!$pm->exist("FCategoria", "genere", $genere)) {
                 $categoria = new ECategoria($genere, $descrizione);
                 $pm->store($categoria);
-                header("Location: /Admin/dashboardAdmin");
+                header("Location: /FacceBeve/Admin/dashboardAdmin");
             } else {
                 $message = "Categoria già esistente";
                 echo "<script type='text/javascript'>
                             alert('$message');
-                            window.location.replace('/Admin/dashboardAdmin');
+                            window.location.replace('/FacceBeve/Admin/dashboardAdmin');
                       </script>";
             }
         } else {
-            header("Location: /Ricerca/mostraHome");
+            header("Location: /FacceBeve/Ricerca/mostraHome");
         }
     }
 
@@ -126,9 +126,9 @@ class CAdmin
             $genere = str_replace("%20", " ", $genere);
             $pm->delete("genere", $genere, "FCategoria");
             $pm->deleteEsterne("Locale_Categorie", "ID_Categoria", $genere);
-            header("Location: /Admin/dashboardAdmin");
+            header("Location: /FacceBeve/Admin/dashboardAdmin");
         } else {
-            header("Location: /Ricerca/mostraHome");
+            header("Location: /FacceBeve/Ricerca/mostraHome");
         }
     }
 
@@ -145,9 +145,9 @@ class CAdmin
 
         if ($sessione->isLogged() && $tipo == "EAdmin") {
             $pm->update("FUtente", "state", 0, "username", $username);
-            header("Location: /Admin/dashboardAdmin");
+            header("Location: /FacceBeve/Admin/dashboardAdmin");
         } else {
-            header("Location: /Ricerca/mostraHome");
+            header("Location: /FacceBeve/Ricerca/mostraHome");
         }
     }
 
@@ -163,9 +163,9 @@ class CAdmin
 
         if ($sessione->isLogged() && $tipo == "EAdmin") {
             $pm->update("FUtente", "state", 1, "username", $username);
-            header("Location: /Admin/dashboardAdmin");
+            header("Location: /FacceBeve/Admin/dashboardAdmin");
         } else {
-            header("Location: /Ricerca/mostraHome");
+            header("Location: /FacceBeve/Ricerca/mostraHome");
         }
     }
 
@@ -183,7 +183,7 @@ class CAdmin
             $pm->delete("id", $id_recensione, "FRecensione");
             header("Location: /Admin/dashboardAdmin");
         } else {
-            header("Location: /Ricerca/mostraHome");
+            header("Location: /FacceBeve/Ricerca/mostraHome");
         }
     }
 
@@ -199,9 +199,9 @@ class CAdmin
 
         if ($sessione->isLogged() && $tipo == "EAdmin") {
             $pm->update("FRecensione", "segnalato", false, "id", $id_recensione);
-            header("Location: /Admin/dashboardAdmin");
+            header("Location: /FacceBeve/Admin/dashboardAdmin");
         } else {
-            header("Location: /Ricerca/mostraHome");
+            header("Location: /FacceBeve/Ricerca/mostraHome");
         }
     }
 

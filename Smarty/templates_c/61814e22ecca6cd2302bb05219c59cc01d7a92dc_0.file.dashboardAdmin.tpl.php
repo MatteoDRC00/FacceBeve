@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-11-09 12:33:28
+/* Smarty version 4.2.0, created on 2022-11-11 16:17:14
   from 'C:\xampp\htdocs\FacceBeve\template\dashboardAdmin.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_636b9008177b05_93005353',
+  'unifunc' => 'content_636e677a168ac0_35091257',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '61814e22ecca6cd2302bb05219c59cc01d7a92dc' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\dashboardAdmin.tpl',
-      1 => 1667982979,
+      1 => 1668179793,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_636b9008177b05_93005353 (Smarty_Internal_Template $_smarty_tpl) {
+function content_636e677a168ac0_35091257 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -70,7 +70,7 @@ function content_636b9008177b05_93005353 (Smarty_Internal_Template $_smarty_tpl)
     <div class="container d-flex justify-content-between align-items-center">
 
         <div class="logo">
-            <h1><a href="/Ricerca/mostraHome"><img src="/template/img/logo.png" alt=""><span>FacceBeve</span></a></h1>
+            <h1><a href="/FacceBeve/Ricerca/mostraHome"><img src="/template/img/logo.png" alt=""><span>FacceBeve</span></a></h1>
         </div>
 
     </div>
@@ -85,7 +85,7 @@ function content_636b9008177b05_93005353 (Smarty_Internal_Template $_smarty_tpl)
                 <h2 style="font-weight: bold">Dashboard ADMIN</h2>
             </div>
             <div class="gestioneutente">
-                <a href="/Accesso/logout">Esci <i class="fa fa-sign-out"></i></a>
+                <a href="/FacceBeve/Accesso/logout">Esci <i class="fa fa-sign-out"></i></a>
             </div>
         </div>
     </section><!-- End Contact Section -->
@@ -126,7 +126,7 @@ $_smarty_tpl->tpl_vars['utente']->do_else = false;
                                 <td><?php echo $_smarty_tpl->tpl_vars['utente']->value->getIscrizione();?>
 </td>
                                 <td>
-                                    <form action="/Admin/sospendiUtente/<?php echo $_smarty_tpl->tpl_vars['utente']->value->getUsername();?>
+                                    <form action="/FacceBeve/Admin/sospendiUtente/<?php echo $_smarty_tpl->tpl_vars['utente']->value->getUsername();?>
 " method="POST">
                                         <input style="border-radius: 9px; padding: 3px; border-color: #0dcaf0" type="submit" value="Sospendi">
                                     </form>
@@ -179,7 +179,7 @@ $_smarty_tpl->tpl_vars['utente']->do_else = false;
                                 <td><?php echo $_smarty_tpl->tpl_vars['utente']->value->getIscrizione();?>
 </td>
                                 <td>
-                                    <form action="/Admin/riattivaUtente/<?php echo $_smarty_tpl->tpl_vars['utente']->value->getUsername();?>
+                                    <form action="/FacceBeve/Admin/riattivaUtente/<?php echo $_smarty_tpl->tpl_vars['utente']->value->getUsername();?>
 " method="POST">
                                         <input style="border-radius: 9px; padding: 3px; border-color: #0dcaf0" type="submit" value="Riattiva">
                                     </form>
@@ -314,7 +314,7 @@ $_smarty_tpl->tpl_vars['categoria']->do_else = false;
                                 <td><?php echo $_smarty_tpl->tpl_vars['categoria']->value->getDescrizione();?>
 </td>
                                 <td>
-                                    <form action="/Admin/rimuoviCategoria/<?php echo $_smarty_tpl->tpl_vars['categoria']->value->getGenere();?>
+                                    <form action="/FacceBeve/Admin/rimuoviCategoria/<?php echo $_smarty_tpl->tpl_vars['categoria']->value->getGenere();?>
 " method="POST">
                                         <input style="border-radius: 9px; padding: 3px; border-color: #0dcaf0" type="submit" value="Elimina">
                                     </form>
@@ -325,7 +325,7 @@ $_smarty_tpl->tpl_vars['categoria']->do_else = false;
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                     <?php }?>
                     <tr>
-                        <form action="/Admin/aggiungiCategoria" method="POST" id="aggiuntaCategoria" onsubmit="return validateRegForm(4)">
+                        <form action="/FacceBeve/Admin/aggiungiCategoria" method="POST" id="aggiuntaCategoria" onsubmit="return validateRegForm(4)">
                             <td><input style="padding: 4px" type="text" placeholder="Genere" name="genere"></td>
                             <td><input style="width: 98%; padding: 4px" type="text" placeholder="Descrizione" name="descrizione"></td>
                             <td><input style="border-radius: 9px; padding: 3px; border-color: #0dcaf0" type="submit" value="Aggiungi"></td>
@@ -374,13 +374,13 @@ $_smarty_tpl->tpl_vars['rece']->do_else = false;
                                 <td><?php echo $_smarty_tpl->tpl_vars['rece']->value->getLocale()->getNome();?>
 </td>
                                 <td>
-                                    <form action="/Admin/eliminaRecensione/<?php echo $_smarty_tpl->tpl_vars['rece']->value->getId();?>
+                                    <form action="/FacceBeve/Admin/eliminaRecensione/<?php echo $_smarty_tpl->tpl_vars['rece']->value->getId();?>
 " method="POST">
                                         <input style="border-radius: 9px; padding: 3px; border-color: #0dcaf0" type="submit" value="Elimina">
                                     </form>
                                 </td>
                                 <td>
-                                    <form action="/Admin/reinserisciRecensione/<?php echo $_smarty_tpl->tpl_vars['rece']->value->getId();?>
+                                    <form action="/FacceBeve/Admin/reinserisciRecensione/<?php echo $_smarty_tpl->tpl_vars['rece']->value->getId();?>
 " method="POST">
                                         <input style="border-radius: 9px; padding: 3px; border-color: #0dcaf0" type="submit" value="Reinserisci">
                                     </form>

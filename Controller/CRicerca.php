@@ -48,7 +48,7 @@ class CRicerca
         if ($sessione->isLogged()) {
             $tipo = $sessione->leggi_valore("tipo_utente");
             if ($tipo == "EAdmin") {
-                header('Location: /Admin/dashboardAdmin');
+                header('Location: /FacceBeve/Admin/dashboardAdmin');
             }elseif ($tipo == "EUtente") {
                 list ($eventiUtente, $localiEventiUtente)  = $pm->eventiUtente($sessione->leggi_valore("utente"));
             }
@@ -81,7 +81,7 @@ class CRicerca
                 $result = $pm->loadForm($nomelocale, $citta, $categoria, "tmp", $tipo);
                 $vRicerca->showResult($result, $tipo, $nomelocale, $citta, $categoria, null, null);
             } else
-                header('Location: /Ricerca/mostraHome');
+                header('Location: /FacceBeve/Ricerca/mostraHome');
         } elseif ($tipo == "Eventi") {
             $nomelocale = str_replace('"',"'",rtrim($vRicerca->getNomeLocaleEvento()));
             $nomeevento = str_replace('"',"'",rtrim($vRicerca->getNomeEvento()));
@@ -91,7 +91,7 @@ class CRicerca
                 list($result, $local) = $pm->loadForm($nomelocale, $nomeevento, $citta, $data, $tipo);
                 $vRicerca->showResult($result, $tipo, $nomelocale, $citta, $nomeevento, $data, $local);
             } else {
-                header('Location: /Ricerca/mostraHome');
+                header('Location: /FacceBeve/Ricerca/mostraHome');
             }
         }
     }
@@ -168,10 +168,10 @@ class CRicerca
             $value = $view->getPreferito();
             if ($value == "Aggiunto!") {
                 $pm->storeEsterne("Utenti_Locali", "ID_Locale", "ID_Utente", $id_locale, $username);
-                header("Location: /Ricerca/dettagliLocale/" . $id_locale);
+                header("Location: /FacceBeve/Ricerca/dettagliLocale/" . $id_locale);
             } elseif ($value == "Aggiungi ai preferiti") {
                 $pm->deleteUtentiLocali($username, $id_locale);
-                header("Location: /Ricerca/dettagliLocale/" . $id_locale);
+                header("Location: /FacceBeve/Ricerca/dettagliLocale/" . $id_locale);
             }
         }
     }

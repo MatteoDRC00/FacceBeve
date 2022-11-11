@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.0, created on 2022-11-08 15:19:53
+/* Smarty version 4.2.0, created on 2022-11-11 17:03:18
   from 'C:\xampp\htdocs\FacceBeve\template\infoLocale.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.0',
-  'unifunc' => 'content_636a658976f4f7_03078215',
+  'unifunc' => 'content_636e7246bb95e3_92350147',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a660993f6474d006e8e9e4e4b80317cbc019f658' => 
     array (
       0 => 'C:\\xampp\\htdocs\\FacceBeve\\template\\infoLocale.tpl',
-      1 => 1667835706,
+      1 => 1668182475,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_636a658976f4f7_03078215 (Smarty_Internal_Template $_smarty_tpl) {
+function content_636e7246bb95e3_92350147 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <?php $_smarty_tpl->_assignInScope('locale', (($tmp = $_smarty_tpl->tpl_vars['locale']->value ?? null)===null||$tmp==='' ? null ?? null : $tmp));
@@ -51,8 +51,8 @@ echo '<script'; ?>
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link href="/template/img/favicon.png" rel="icon">
-    <link href="/template/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <link href="/FacceBeve/template/img/favicon.png" rel="icon">
+    <link href="/FacceBeve/template/img/apple-touch-icon.png" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,700,700i&display=swap"
@@ -64,16 +64,16 @@ echo '<script'; ?>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
 
     <!-- Vendor CSS Files -->
-    <link href="/template/vendor/animate.css/animate.min.css" rel="stylesheet">
-    <link href="/template/vendor/aos/aos.css" rel="stylesheet">
-    <link href="/template/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/template/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="/template/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-    <link href="/template/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-    <link href="/template/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link href="/FacceBeve/template/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="/FacceBeve/template/vendor/aos/aos.css" rel="stylesheet">
+    <link href="/FacceBeve/template/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/FacceBeve/template/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/FacceBeve/template/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/FacceBeve/template/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/FacceBeve/template/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
     <!-- Template Main CSS File -->
-    <link href="/template/css/style.css" rel="stylesheet">
+    <link href="/FacceBeve/template/css/style.css" rel="stylesheet">
 
 </head>
 
@@ -84,7 +84,7 @@ echo '<script'; ?>
     <div class="container d-flex justify-content-between align-items-center">
 
         <div class="logo">
-            <h1><a href="/Ricerca/mostraHome"><img src="/template/img/logo.png" alt=""><span>FacceBeve</span></a></h1>
+            <h1><a href="/FacceBeve/Ricerca/mostraHome"><img src="/template/img/logo.png" alt=""><span>FacceBeve</span></a></h1>
         </div>
 
     </div>
@@ -101,13 +101,13 @@ echo '<script'; ?>
 </h2>
                         <?php if ($_smarty_tpl->tpl_vars['tipo']->value == "EUtente") {?>
                             <?php if ($_smarty_tpl->tpl_vars['presente']->value == true) {?>
-                                <form action="/Ricerca/aggiungiAPreferiti/<?php echo $_smarty_tpl->tpl_vars['locale']->value->getId();?>
+                                <form action="/FacceBeve/Ricerca/aggiungiAPreferiti/<?php echo $_smarty_tpl->tpl_vars['locale']->value->getId();?>
 " method="POST">
                                     <input class="stelline" onclick="change()" type="submit" value="Aggiunto!" id="pref"
                                            name="pref">
                                 </form>
                             <?php } else { ?>
-                                <form action="/Ricerca/aggiungiAPreferiti/<?php echo $_smarty_tpl->tpl_vars['locale']->value->getId();?>
+                                <form action="/FacceBeve/Ricerca/aggiungiAPreferiti/<?php echo $_smarty_tpl->tpl_vars['locale']->value->getId();?>
 " method="POST">
                                     <input class="stelline" onclick="change()" type="submit"
                                            value="Aggiungi ai preferiti" id="pref" name="pref">
@@ -133,7 +133,7 @@ $_smarty_tpl->tpl_vars['img']->do_else = false;
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                             <?php } else { ?>
                                 <div class="swiper-slide" style="text-align: center">
-                                    <img src="/template/img/no_foto.jpg" alt="Immagine locale"
+                                    <img src="/FacceBeve/template/img/no_foto.jpg" alt="Immagine locale"
                                          style="height: 90%; width: 90%; border-radius: 15%">
                                 </div>
                             <?php }?>
@@ -293,7 +293,7 @@ $__foreach_recensione_4_saved = $_smarty_tpl->tpl_vars['recensione'];
                                     </div>
                                 <?php } else { ?>
                                     <div class="comment-img"><img
-                                                src="/template/img/utente.jpg" alt="immagine profiloooo"
+                                                src="/FacceBeve/template/img/utente.jpg" alt="immagine profiloooo"
                                                 style="border-radius: 35px;">
                                     </div>
                                 <?php }?>
@@ -307,7 +307,7 @@ $__foreach_recensione_4_saved = $_smarty_tpl->tpl_vars['recensione'];
 
                                             / 5</strong>
                                         <?php if ($_smarty_tpl->tpl_vars['recensione']->value->getUtente()->getUsername() == $_smarty_tpl->tpl_vars['utente']->value) {?>
-                                            <form action="/GestioneRecensione/cancellaRecensione/<?php echo $_smarty_tpl->tpl_vars['recensione']->value->getId();?>
+                                            <form action="/FacceBeve/GestioneRecensione/cancellaRecensione/<?php echo $_smarty_tpl->tpl_vars['recensione']->value->getId();?>
 "
                                                   method="POST">
                                                 <input type="hidden" value="<?php echo $_smarty_tpl->tpl_vars['locale']->value->getId();?>
@@ -319,7 +319,7 @@ $__foreach_recensione_4_saved = $_smarty_tpl->tpl_vars['recensione'];
                                             </form>
                                         <?php }?>
                                         <?php if ((isset($_smarty_tpl->tpl_vars['proprietario']->value)) && ($_smarty_tpl->tpl_vars['recensione']->value->isSegnalata() == 0)) {?>
-                                            <form action="/GestioneRecensione/segnalaRecensione/<?php echo $_smarty_tpl->tpl_vars['recensione']->value->getId();?>
+                                            <form action="/FacceBeve/GestioneRecensione/segnalaRecensione/<?php echo $_smarty_tpl->tpl_vars['recensione']->value->getId();?>
 "
                                                   method="POST">
                                                 <input type="hidden" value="<?php echo $_smarty_tpl->tpl_vars['locale']->value->getId();?>
@@ -369,7 +369,7 @@ echo $_smarty_tpl->tpl_vars['arrayRisposte']->value[$_prefixVariable4]->getPropr
                                 <div>
                                     <?php } else { ?>
                                     <div class="comment-img"><img
-                                                src="/template/img/utente.jpg"
+                                                src="/FacceBeve/template/img/utente.jpg"
                                                 alt="Immagine profilo proprietario"
                                                 style="border-radius: 35px;"></div>
                                     <div>
@@ -389,7 +389,7 @@ echo $_smarty_tpl->tpl_vars['arrayRisposte']->value[$_prefixVariable6]->getDescr
 echo $_smarty_tpl->tpl_vars['recensione']->iteration-1;
 $_prefixVariable7 = ob_get_clean();
 if ($_smarty_tpl->tpl_vars['arrayRisposte']->value[$_prefixVariable7]->getProprietario()->getUsername() == $_smarty_tpl->tpl_vars['utente']->value) {?>
-                                            <form action="/GestioneRecensione/cancellaRisposta/<?php ob_start();
+                                            <form action="/FacceBeve/GestioneRecensione/cancellaRisposta/<?php ob_start();
 echo $_smarty_tpl->tpl_vars['recensione']->iteration-1;
 $_prefixVariable8 = ob_get_clean();
 echo $_smarty_tpl->tpl_vars['arrayRisposte']->value[$_prefixVariable8]->getId();?>
@@ -411,7 +411,7 @@ echo $_smarty_tpl->tpl_vars['arrayRisposte']->value[$_prefixVariable8]->getId();
                             <?php if ((isset($_smarty_tpl->tpl_vars['proprietario']->value))) {?>
                                 <div class="reply-form" name="formRisposta">
                                     <h4>Rispondi</h4>
-                                    <form action="/GestioneRecensione/rispondi/<?php ob_start();
+                                    <form action="/FacceBeve/GestioneRecensione/rispondi/<?php ob_start();
 echo $_smarty_tpl->tpl_vars['recensione']->iteration-1;
 $_prefixVariable9 = ob_get_clean();
 echo $_smarty_tpl->tpl_vars['arrayRecensioni']->value[$_prefixVariable9]->getId();?>
@@ -446,7 +446,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                             <?php if (($_smarty_tpl->tpl_vars['tipo']->value == "EUtente"&$_smarty_tpl->tpl_vars['stato']->value == "1")) {?>
                                 <div class="reply-form">
                                     <h4>Scrivi una recensione</h4>
-                                    <form action="/GestioneRecensione/scriviRecensione/<?php echo $_smarty_tpl->tpl_vars['locale']->value->getId();?>
+                                    <form action="/FacceBeve/GestioneRecensione/scriviRecensione/<?php echo $_smarty_tpl->tpl_vars['locale']->value->getId();?>
 " method="POST"
                                           id="Recensione" onsubmit="return validateRecensione()">
                                         <div class="row">
@@ -507,33 +507,33 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 
 <!-- Vendor JS Files -->
 <?php echo '<script'; ?>
- src="/template/vendor/purecounter/purecounter_vanilla.js"><?php echo '</script'; ?>
+ src="/FacceBeve/template/vendor/purecounter/purecounter_vanilla.js"><?php echo '</script'; ?>
 >
 <?php echo '<script'; ?>
- src="/template/vendor/aos/aos.js"><?php echo '</script'; ?>
+ src="/FacceBeve/template/vendor/aos/aos.js"><?php echo '</script'; ?>
 >
 <?php echo '<script'; ?>
- src="/template/vendor/bootstrap/js/bootstrap.bundle.min.js"><?php echo '</script'; ?>
+ src="/FacceBeve/template/vendor/bootstrap/js/bootstrap.bundle.min.js"><?php echo '</script'; ?>
 >
 <?php echo '<script'; ?>
- src="/template/vendor/glightbox/js/glightbox.min.js"><?php echo '</script'; ?>
+ src="/FacceBeve/template/vendor/glightbox/js/glightbox.min.js"><?php echo '</script'; ?>
 >
 <?php echo '<script'; ?>
- src="/template/vendor/isotope-layout/isotope.pkgd.min.js"><?php echo '</script'; ?>
+ src="/FacceBeve/template/vendor/isotope-layout/isotope.pkgd.min.js"><?php echo '</script'; ?>
 >
 <?php echo '<script'; ?>
- src="/template/vendor/swiper/swiper-bundle.min.js"><?php echo '</script'; ?>
+ src="/FacceBeve/template/vendor/swiper/swiper-bundle.min.js"><?php echo '</script'; ?>
 >
 <?php echo '<script'; ?>
- src="/template/vendor/waypoints/noframework.waypoints.js"><?php echo '</script'; ?>
+ src="/FacceBeve/template/vendor/waypoints/noframework.waypoints.js"><?php echo '</script'; ?>
 >
 <?php echo '<script'; ?>
- src="/template/vendor/php-email-form/validate.js"><?php echo '</script'; ?>
+ src="/FacceBeve/template/vendor/php-email-form/validate.js"><?php echo '</script'; ?>
 >
 
 <!-- Template Main JS File -->
 <?php echo '<script'; ?>
- src="/template/js/main.js"><?php echo '</script'; ?>
+ src="/FacceBeve/template/js/main.js"><?php echo '</script'; ?>
 >
 
 </body>
